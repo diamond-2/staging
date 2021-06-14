@@ -1,0 +1,142 @@
+<div class="" role="region" aria-label="slideshow" aria-describedby="slideshow-info" tabindex="-1">
+<div class="homepage-slider-wrapper"  data-slider>
+{%- if section.blocks.size > 0 -%}
+{%- for block in section.blocks -%}
+    {%- if block.type == 'image'-%}
+    {%- assign img_desktop = block.settings.slider_image_desktop -%}
+    {%- assign img_mobile = block.settings.slider_image_mobile -%}
+    {%- assign heading = block.settings.slider_heading -%}
+    {%- assign subheading = block.settings.slider_subheading -%}
+    {%- assign linktext = block.settings.slider_linkText -%}
+    {%- assign linkurl = block.settings.slider_link -%}
+        <div class="slide-item slide--{{ forloop.index }}" data-type="image">
+            {%- if img_desktop != blank -%}
+            <img src="{{ img_desktop | img_url: '1920x' }}" class="{% if img_mobile != blank %}mobile_hide {% endif %} lazyload{% unless forloop.first %} lazypreload{% endunless %}" alt="" /> 
+            {%- endif -%}
+            {%- if img_mobile != blank -%}
+            <img src="{{ img_mobile | img_url: '739x' }}" class="desktop_hide lazyload {% unless forloop.first %} lazypreload{% endunless %}" alt="" />
+            {%- endif -%}
+            {%- if heading != blank or subheading != blank -%}
+            <div class="slide-overlay">
+                {%- if heading != blank -%}<div class="slide-overaly-heading">{{ heading }}</div>{%- endif -%}
+                {%- if subheading != blank -%}<div class="slide-overaly-subheading">{{ subheading }}</div>{%- endif -%}
+            {%- if linktext != blank -%}<a class="slide-overlay-link" href="{{ linkurl }}" aria-label=" {{ linktext }}"> {{ linktext }}</a>{%- endif -%}
+            </div>
+            {% endif %}
+        </div>
+    {%- else -%}
+    {%- assign videolink = block.settings.video_url -%}
+    {%- assign videocontrols = block.settings.video_controls -%}
+    {%- assign heading = block.settings.video_heading -%}
+    {%- assign subheading = block.settings.video_subheading -%}
+    {%- assign linktext = block.settings.video_linkText -%}
+    {%- assign linkurl = block.settings.video_link -%}
+    {%- if videolink != blank -%}
+    <div class="slide-item slide--{{ forloop.index }}" data-type="video">
+    <video {% if videocontrols %}controls{% endif %}>
+        <source src="{{ videolink }}" type="video/mp4">
+    </video>
+    {%- endif -%}
+    {%- if heading != blank or subheading != blank -%}
+    <div class="slide-overlay">
+        {%- if heading != blank -%}<div class="slide-overaly-heading">{{ heading }}</div>{%- endif -%}
+        {%- if subheading != blank -%}<div class="slide-overaly-subheading">{{ subheading }}</div>{%- endif -%}
+        {%- if linktext != blank -%}<a class="slide-overlay-link" href="{{ linkurl }}" aria-label=" {{ linktext }}"> {{ linktext }}</a>{%- endif -%}
+    </div>
+    {% endif %}
+    </div>
+
+    {%- endif -%}
+{%- endfor -%}
+{%- endif -%}
+</div>
+</div>
+{% schema %}
+{
+    "name" : "Home Slider",
+    "class": "index-section home--slider",
+    "max_blocks": 6,
+    "settings": [],
+    "blocks": [
+        {
+            "type": "image",
+            "name": "Image",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "slider_image_desktop",
+                    "label": "Slide Image Desktop(1920x970)"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "slider_image_mobile",
+                    "label": "Slide Image Mobile(750x600)"
+                },
+                {
+                    "type": "text",
+                    "id": "slider_heading",
+                    "label": "Slide Heading"
+                },
+                {
+                    "type": "text",
+                    "id": "slider_subheading",
+                    "label": "Slide Sub-heading"
+                },
+                {
+                    "type": "text",
+                    "id": "slider_linkText",
+                    "label": "Slide Link Text"
+                },
+                {
+                    "type": "url",
+                    "id": "slider_link",
+                    "label": "Slide Link"
+                }
+            ]
+        },
+        {
+            "type": "video",
+            "name": "Video",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "video_url",
+                    "label": "Video Link"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "video_controls",
+                    "label": "Show Controls",
+                    "default": true
+                },
+                {
+                    "type": "text",
+                    "id": "video_heading",
+                    "label": "Slide Heading"
+                },
+                {
+                    "type": "text",
+                    "id": "video_subheading",
+                    "label": "Slide Sub-heading"
+                },
+                {
+                    "type": "text",
+                    "id": "video_linkText",
+                    "label": "Slide Link Text"
+                },
+                {
+                    "type": "url",
+                    "id": "video_link",
+                    "label": "Slide Link"
+                }
+            ]
+        }
+    ],
+    "presets": [
+    {
+      "name": "Image with Video",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}
