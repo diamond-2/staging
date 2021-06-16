@@ -24,10 +24,41 @@
     -moz-transition:    0.08s ease-in;
     -webkit-transition: 0.08s ease-in;
   }
+
+  @mixin bdr-radius10() {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+  }
+  @mixin bdr-radius50() {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+  }
   /*============================================================================
 #Breakpoint
 ==============================================================================*/
 $content-container: 1720px;
+$background-blue: #89A1C0;
+$textcolor-black: #000000;
+$textcolor-white: #ffffff;
+@mixin content-container() {
+  max-width: 1920px;
+  padding-left: 100px;
+  padding-right: 100px;
+  @media screen and (max-width: $xl) {
+    padding-left: 55px;
+    padding-right: 55px;
+  }
+  @media screen and (max-width: $md) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
 $viewportIncrement: 1px;
 
 $sm: 576px;
@@ -64,7 +95,8 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   font-size: calc(24px + (100vw - 750px)/1170 * 12);
   line-height: calc(24px + (100vw - 750px)/1170 * 12);
   @media screen and (max-width: $md){
-    font-size: 36px;
+    font-size: 24px;
+    line-height: 26px;
   }	
   @media screen and (min-width: $postSiteWidth) {
     font-size: 1.87vw;
@@ -73,10 +105,10 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
 }
 
 @mixin font-range-24to16() {
-  font-size: calc(24px + (100vw - 750px)/1170 * 8);
-  line-height: calc(24px + (100vw - 750px)/1170 * 8);;
+  font-size: calc(16px + (100vw - 750px)/1170 * 8);
+  line-height: calc(16px + (100vw - 750px)/1170 * 8);;
   @media screen and (max-width: $preMd){
-    font-size: 24px;
+    font-size: 16px;
   }	
   @media screen and (min-width: $postSiteWidth) {
     font-size: 1.25vw;
@@ -106,6 +138,10 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
 /*==============================================================================
 #Common Classes and Styles
 =================================================================================*/
+.custom-link {
+  text-transform: uppercase;
+  color: $textcolor-white;
+}
 .visually-hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
@@ -126,6 +162,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
    .home--slider { 
     display: block;
     width: 100%;
+    padding-bottom: 0px;
     .homepage-slider-wrapper {
       display: block;
       .slick-arrow {
@@ -195,8 +232,93 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
           }
         }
       }
+      .slick-dots {
+        position: absolute;
+        width: 100%;
+        bottom: 50px;
+        z-index: 9;
+        li {
+            width: 25px;
+            height: 25px;
+            @include bdr-radius50();
+            background: #ffffff;
+            margin: 0 5px;
+            &.slick-active {
+              background: #6C1D45;
+            }
+            button {
+              display: none;
+            }
+        }
+
+      }
     }
   }
 
-
+  /* Home page section --  image with text */
+  .homepage-image-text {
+    background-color: $background-blue;
+    color: $textcolor-white;
+    .dia-container{
+      @include content-container();
+      margin: 0 auto;
+    }
+    .feature-row__item {
+      flex: none;
+      width: 60%;
+      @media screen and (max-width: $lg){
+        width: 50%;
+      }
+      @media screen and (max-width: $md) {
+        width: 100%;
+      }
+      &.feature-row__text {
+        color: $textcolor-white;
+        width: 40%;
+        @media screen and (max-width: $lg){
+          width: 50%;
+        }
+        @media screen and (max-width: $md) {
+          width: 100%;
+          padding-top: 10px;
+        }
+        &.feature-row__text--left {
+          padding-left: 100px;
+          @media screen and (max-width: $lg){
+            padding-left: 50px;
+          }
+          @media screen and (max-width: $md) {
+            padding-left: 0px;
+          }
+        }
+        &.feature-row__text--right {
+          padding-right: 100px;
+          @media screen and (max-width: $lg){
+            padding-right: 50px;
+          }
+          @media screen and (max-width: $md) {
+            padding-right: 0px;
+          }
+        }
+      }
+      .feature-row__image {
+        @include bdr-radius10();
+      }
+      .h3 {
+        @include heading-fonts();
+        @include font-range-36to24();
+        text-transform: uppercase;
+        margin-bottom: 40px;;
+        @media screen and (max-width: $md) {
+          margin-bottom: 30px;
+        }
+      }
+      .featured-row__subtext {
+        color: $textcolor-white;
+        p{
+          color:$textcolor-white;
+        }
+      }
+    }    
+  }
   

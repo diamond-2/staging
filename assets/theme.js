@@ -9688,7 +9688,7 @@ function removeImageLoadingAnimation(image) {
 
 
 document.addEventListener('DOMContentLoaded', function(event) {
-  $('.home--slider [data-slider]').slick();
+  
   let initwindowScrolled = $(window).scrollTop();
   fixedHeaderBg(initwindowScrolled);
 

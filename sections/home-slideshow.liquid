@@ -1,4 +1,4 @@
-<div class="" role="region" aria-label="slideshow" aria-describedby="slideshow-info" tabindex="-1">
+<div class="slider-{{ section.id }}" role="region" aria-label="slideshow" aria-describedby="slideshow-info" tabindex="-1">
 <div class="homepage-slider-wrapper"  data-slider>
 {%- if section.blocks.size > 0 -%}
 {%- for block in section.blocks -%}
@@ -51,6 +51,17 @@
 {%- endif -%}
 </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function(event) {
+    $('.home--slider .slider-{{ section.id }} [data-slider]').slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        dots: true
+    });
+});
+</script>
 {% schema %}
 {
     "name" : "Home Slider",
