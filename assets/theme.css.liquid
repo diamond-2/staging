@@ -7036,10 +7036,12 @@ hr {
     display: block;
   }
   .homepage-slider-wrapper .slick-arrow {
+    outline: none;
     position: absolute;
     width: 50px;
     height: 80px;
     top: 50%;
+    z-index: 99;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     -o-transform: translateY(-50%);
@@ -7047,10 +7049,17 @@ hr {
     transform: translateY(-50%);
   }
   .homepage-slider-wrapper .slick-arrow.slick-next{
-    background: url({{ ''}});
+    background: url({{ 'arrow-right.svg' | asset_url }}) no-repeat center;
+    background-size: 50px;
+    right: 50px;
   } 
   .homepage-slider-wrapper .slick-arrow.slick-prev{
-
+    background: url({{ 'arrow-left.svg' | asset_url }}) no-repeat center;
+    background-size: 50px;
+    left: 50px;
+  }
+  .homepage-slider-wrapper .slick-arrow::before {
+    content: '';
   }
   .home--slider img,
   .home--slider video {

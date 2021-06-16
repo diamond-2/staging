@@ -76,7 +76,7 @@
     }
   </script>
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadStylesheet()">
-
+  <link rel="stylesheet" href="{{ 'custom-styles.css' | asset_url }}" type="text/css">
   <style>
     {{ header_font | font_face: font_display: 'swap' }}
     {{ base_font | font_face: font_display: 'swap' }}
@@ -85,7 +85,6 @@
     {{ base_font_italic | font_face: font_display: 'swap' }}
     {{ base_font_bold_italic | font_face: font_display: 'swap' }}
   </style>
-
   <script>
     var theme = {
       breakpoints: {
@@ -189,7 +188,6 @@
       scripts.parentNode.insertBefore(polyfill, scripts);
     }
   </script>
-
   {{ content_for_header }}
 </head>
 <body class="template-{{ request.page_type | handle }} " data-template="{{ template }}">
