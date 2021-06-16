@@ -1,0 +1,47 @@
+<div class="full_width_slider_wrapper">
+    <div class="full_width_slider">
+        {%- if section.blocks.size > 0 -%}
+        {%- for slide in section.blocks -%}
+
+        <div class="full_width_slide_item slide--{{ forloop.index }}" data-type="image">
+            {%- if slide.settings.slider_image_desktop !=blank -%}
+            <div class="full_width_slider_image_holder {% if slide.settings.slider_image_mobile != blank %}mobile_hide {% endif %}">
+                <img src="{{ slide.settings.slider_image_desktop | img_url: '1920x' }}" lazyload{% unless forloop.first %} lazypreload{% endunless %}" alt="" />
+            </div>
+            {%- endif -%}
+            {%- if slide.settings.slider_image_mobile !=blank -%}
+            <div class="full_width_slider_image_holder {% if slide.settings.slider_image_desktop != blank %}mobile_hide {% endif %}">
+                <img src="{{ slide.settings.slider_image_mobile | img_url: '739x' }}"  lazyload{% unless forloop.first %} lazypreload{% endunless %}" alt="" />
+            </div>
+            {%- endif -%}
+        </div>
+        
+        {%- endfor -%}
+        {%- endif -%}  
+    </div>
+</div>
+{% schema %}
+{
+    "name": "Full Width Slider",
+    "max_blocks": 6,
+    "settings": [],
+    "blocks": [
+       {
+          "type": "image",
+          "name": "Image",
+          "settings": [
+             {
+                "type": "image_picker",
+                "id": "slider_image_desktop",
+                "label": "Slide Image Desktop(1920x970)"
+             },
+             {
+                "type": "image_picker",
+                "id": "slider_image_mobile",
+                "label": "Slide Image Mobile(750x600)"
+             }
+          ]
+       }
+    ]
+ }
+{% endschema %}
