@@ -138,6 +138,10 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
 /*==============================================================================
 #Common Classes and Styles
 =================================================================================*/
+.dia-container{
+  @include content-container();
+  margin: 0 auto;
+}
 .custom-link {
   text-transform: uppercase;
   color: $textcolor-white;
@@ -250,7 +254,6 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
               display: none;
             }
         }
-
       }
     }
   }
@@ -259,10 +262,6 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   .homepage-image-text {
     background-color: $background-blue;
     color: $textcolor-white;
-    .dia-container{
-      @include content-container();
-      margin: 0 auto;
-    }
     .feature-row__item {
       flex: none;
       width: 60%;
