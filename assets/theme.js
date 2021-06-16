@@ -9689,6 +9689,17 @@ function removeImageLoadingAnimation(image) {
 
 document.addEventListener('DOMContentLoaded', function(event) {
   $('.home--slider [data-slider]').slick();
+  
+  // full slider call global
+  $(".full_width_slider").slick({
+    dots: true,
+    autoplay: false,
+    autoplaySpeed: 5000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    navigation: true,
+    infinite: true
+  });
   let initwindowScrolled = $(window).scrollTop();
   fixedHeaderBg(initwindowScrolled);
 

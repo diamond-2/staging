@@ -1,0 +1,165 @@
+
+<div class="shop-loose-diamond2-slider-wrapper">
+    <div class="amd-container">
+        {%- if section.settings.heading != blank or section.settings.content != blank  -%}
+        <div class="shop-loose-diamond2-slider-top-row">
+            {%- if section.settings.heading != blank -%}<h1>{{ section.settings.heading }}</h1>{%- endif -%}
+            {%- if section.settings.content != blank -%}
+            <div class="shop-loose-diamond2-slider-top-des">{{ section.settings.content }}</div>
+            {%- endif -%}
+        </div>
+        {%- endif -%}
+
+        {%- if section.blocks.size > 0 -%}
+        <div class="shop-loose-diamond2-slider">
+            {%- for slide in section.blocks -%}
+            {%- if slide.settings.slide_image != blank or slide.settings.image_title != blank -%}
+            <div class="shop-loose-diamond2-slide">
+                <div class="shop-loose-diamond2-slide-inner">
+                    <a href="{{ slide.settings.slide_link }}">
+                        {%- if slide.settings.slide_image != blank -%}
+                        <div class="img_holder">
+                            <img data-src="{{ slide.settings.slide_image | img_url: 'master' }}" class="lazyload">
+                        </div>
+                        {%- endif -%}
+                        {%- if slide.settings.image_title != blank -%}<div class="caption_holder">{{ slide.settings.image_title }}</div>{%- endif -%}
+                    </a>
+                </div>
+            </div>
+            {%- endif -%}
+            {%- endfor -%}
+        </div>
+        {%- endif -%}
+
+        {%- if section.settings.button_text != blank -%}
+        <div class="btn-ld-holder">
+            <a href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
+        </div>
+        {%- endif -%}
+
+    </div>
+</div>
+
+<script>
+    $(".shop-loose-diamond2-slider").slick({
+        dots: false,
+        autoplay: false,
+        autoplaySpeed: 5000,
+        slidesToShow: {{ section.settings.slide_show_count }},
+        slidesToScroll: 1,
+        navigation: true,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+                dots: false
+                }
+            },
+            {
+                breakpoint: 767,
+                settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+                }
+            }
+        ]
+    });
+</script>
+
+
+
+{% schema %}
+  {
+    "name": "Shop Loose Slider",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Slider Settings"
+        },
+        {
+            "type": "select",
+            "label": "Slide Show Count",
+            "id": "slide_show_count",
+            "options": [
+                {
+                    "value": "3",
+                    "label": "Three Column"
+                },
+                {
+                    "value": "4",
+                    "label": "Four Column"
+                },
+                {
+                    "value": "5",
+                    "label": "Five Column"
+                },
+                {
+                    "value": "6",
+                    "label": "Six Column"
+                }
+            ],
+            "default": "6"
+        },
+        {
+            "type": "header",
+            "content": "Slider Top Content"
+        },
+    	{
+    		"type": "text",
+    		"label": "Heading",
+    		"id": "heading",
+    		"default": "TRUST FOR LIFE"
+    	},
+    	{
+    		"type": "richtext",
+    		"label": "Content",
+    		"id": "content",
+    		"default": "<p>It’s all about trust and Diamond2 takes a pride to offer a limited lifetime warranty to our precious customers so they can enjoy our quality products with least worry. </p>"
+    	},
+        {
+    		"type": "text",
+    		"label": "Button Text",
+    		"id": "button_text",
+    		"default": "EXPLORE DIAMOND2  GEMSTONES BY CUT >"
+    	},
+        {
+    		"type": "url",
+    		"label": "Button Link",
+    		"id": "button_link"
+    	}
+    ],
+    "blocks": [
+        {
+            "type": "image",
+            "name": "Slide",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "label": "Image",
+                    "id": "slide_image"
+                },
+                {
+                    "type": "text",
+                    "label": "Image Title",
+                    "id": "image_title"
+                },
+                {
+                    "type": "url",
+                    "label": "Link",
+                    "id": "slide_link"
+                }
+            ]
+        }
+    ]
+  }
+{% endschema %}

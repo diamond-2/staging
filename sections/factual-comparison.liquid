@@ -1,0 +1,103 @@
+
+<div class="factual-comparison-section-wrapper">
+	<div class="amd-container">
+		<div class="amd-small-container">
+			{%- if section.settings.heading != blank -%}
+            <div class="factual-comparison-top-header text-center">
+				<h2>{{ section.settings.heading }}</h2>
+			</div>
+            {%- endif -%}
+
+            <div class="factual-comparison-table">
+				<table>
+					<tbody>
+						<tr>
+						    <th>{{ section.settings.column_1_title }}</th>
+						    <th>{{ section.settings.column_2_title }}</th>
+						    <th>{{ section.settings.column_3_title }}</th>
+						    <th>{%- if section.settings.column_4_logo !=blank -%}<img class="lazyload" data-src="{{ section.settings.column_4_logo | img_url: 'master' }}">{%- endif -%}</th>
+						</tr>
+                        {%- for item in section.blocks -%}
+                        {%- if item.settings.column_1_text !=blank or item.settings.column_2_text !=blank or item.settings.column_3_text !=blank or item.settings.column_4_text !=blank -%}
+						<tr>
+						    <td>{{ item.settings.column_1_text }}</td>
+						    <td>{{ item.settings.column_2_text }}</td>
+						    <td>{{ item.settings.column_3_text }}</td>
+						    <td>{{ item.settings.column_4_text }}</td>
+						</tr>
+                        {%- endif -%}
+                        {%- endfor -%}
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div>
+</div> 
+
+
+{% schema %}
+  {
+    "name": "Factual Comparison",
+    "settings": [
+    	{
+    		"type": "text",
+    		"label": "Heading",
+    		"id": "heading",
+    		"default": "WHY diamond2 ?"
+    	},
+        {
+    		"type": "text",
+    		"label": "Column 1 Title",
+    		"id": "column_1_title",
+    		"default": "gemstone <br>grade"
+    	},
+        {
+    		"type": "text",
+    		"label": "Column 2 Title",
+    		"id": "column_2_title",
+    		"default": "natural <br>diamond"
+    	},
+        {
+    		"type": "text",
+    		"label": "Column 3 Title",
+    		"id": "column_3_title",
+    		"default": "lab-grown <br>diamond"
+    	},
+        {
+    		"type": "image_picker",
+    		"label": "Column 4 Logo",
+    		"id": "column_4_logo"
+    	}
+    ],
+
+    "blocks": [
+        {
+            "type": "text",
+            "name": "Table Item",
+            "settings": [
+                {
+                    "type": "text",
+                    "label": "Column 1 Text",
+                    "id": "column_1_text"
+                },
+                {
+                    "type": "text",
+                    "label": "Column 2 Text",
+                    "id": "column_2_text"
+                },
+                {
+                    "type": "text",
+                    "label": "Column 3 Text",
+                    "id": "column_3_text"
+                },
+                {
+                    "type": "text",
+                    "label": "Column 4 Text",
+                    "id": "column_4_text"
+                }
+            ]
+        }
+    ]
+  }
+{% endschema %}

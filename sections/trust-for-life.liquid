@@ -1,0 +1,53 @@
+{%- if section.settings.heading != blank or section.settings.content != blank or section.settings.button_text != blank -%}
+<div class="trust-for-life-section">
+	<div class="amd-container">
+		<div class="amd-small-container">
+			<div class="trust-for-life-content-holder text-center">
+				{%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
+				{%- if section.settings.content != blank -%}
+                <div class="trust-for-life-des">{{ section.settings.content }}</div>
+                {%- endif -%}
+
+                {%- if section.settings.button_text != blank -%}
+                <div class="trust-for-life-btn-holder">
+                    <a href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
+                </div>
+                {%- endif -%}
+
+			</div>
+		</div>
+	</div>
+</div> 
+{%- endif -%}
+
+
+{% schema %}
+  {
+    "name": "Trust For Life",
+    "settings": [
+    	{
+    		"type": "text",
+    		"label": "Heading",
+    		"id": "heading",
+    		"default": "TRUST FOR LIFE"
+    	},
+    	{
+    		"type": "richtext",
+    		"label": "Content",
+    		"id": "content",
+    		"default": "<p>It’s all about trust and Diamond2 takes a pride to offer a limited lifetime warranty to our precious customers so they can enjoy our quality products with least worry. </p>"
+    	},
+        {
+    		"type": "text",
+    		"label": "Button Text",
+    		"id": "button_text",
+    		"default": "DISCOVER MORE >"
+    	},
+        {
+    		"type": "url",
+    		"label": "Button Link",
+    		"id": "button_link"
+    	}
+    ]
+  }
+{% endschema %}
