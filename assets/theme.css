@@ -58,9 +58,6 @@
 /*================ Drawers ================*/
 /*================ Hero Slider ================*/
 /*================ Typography ================*/
-:root {
-  --font-spectral: 'Spectral', serif;
-}
 /*================ Gift Cards ================*/
 /*================ Z-index ================*/
 /*================ Product video ================*/
@@ -7025,29 +7022,6 @@ hr {
   body[data-template="index"] .main-content {
     padding-top: 0;
   }
-
-  /* Home page section -- Image with Video */
-  .home--slider { 
-    display: block;
-    width: 100%;
-  }
-
-  .homepage-slider-wrapper {
-    display: block;
-  }
-  .homepage-slider-wrapper .slick-arrow {
-    outline: none;
-    position: absolute;
-    width: 50px;
-    height: 80px;
-    top: 50%;
-    z-index: 99;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-  }
   .homepage-slider-wrapper .slick-arrow.slick-next{
     background: url({{ 'arrow-right.svg' | asset_url }}) no-repeat center;
     background-size: 50px;
@@ -7058,43 +7032,5 @@ hr {
     background-size: 50px;
     left: 50px;
   }
-  .homepage-slider-wrapper .slick-arrow::before {
-    content: '';
-  }
-  .home--slider img,
-  .home--slider video {
-    width: 100%;
-    max-height: 100vh;
-    object-fit: cover;
-  }
-  .home--slider .slide-item {
-    position: relative;
-    font-size: 0px;
-  }
-  .slide-overlay {
-    position:absolute;
-    left: 150px;
-    bottom: 90px;
-    font-size: 26px;
-    font-style: var(--font-style-body);
-  }
-  .slide-overlay .slide-overaly-heading {
-    font-family: var(--font-spectral);
-    font-size: 56px;
-    font-style: normal;
-    font-weight: 200;
-    line-height: 60px;
-    letter-spacing: 0em;
-    text-align: left;
-    margin-bottom: 60px;
-    text-transform: uppercase;
-  }
-  .slide-overlay-link {
-    display: block;
-    margin-top: 60px;
-    font-weight: 500;
-    text-transform: uppercase;
-    color: #6C1D45;
-  }
-
+  
 

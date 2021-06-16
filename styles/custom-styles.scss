@@ -1,3 +1,14 @@
+/*base font family*/
+@mixin base-font(){
+  font-family: 'Montserrat', sans-serif;
+  font-weight:normal;
+}
+
+@mixin heading-fonts() {
+  font-family: 'Spectral', serif;
+  font-weight: normal;
+}
+
 @mixin prefix-transform-translate(){
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
@@ -15,81 +26,62 @@
   /*============================================================================
 #Breakpoint
 ==============================================================================*/
+$content-container: 1720px;
 $viewportIncrement: 1px;
 
 $sm: 576px;
 $md: 750px;
-$lg: 992px;
-$xl: 1200px;
+$lg: 991px;
+$xl: 1199px;
 $xxl: 1600px;
-$xxxl: 1780px;
-$siteWidth: 1440px;
+$siteWidth: 1920px;
 $tabOrient: 1023px;
 $tab:1099px;
+
+$postSm: $sm +  $viewportIncrement;
+$postTab: $tab +  $viewportIncrement;
 $postTabOrient: $tabOrient + $viewportIncrement;
-$preXl: $xl - $viewportIncrement;
+$PostXl: $xl + $viewportIncrement;
 $postMd: $md + $viewportIncrement;
-$preMd: $md - $viewportIncrement;
-$preLg: $lg - $viewportIncrement;
-$prexxxl: $xxxl - $viewportIncrement;
+$postLg: $lg + $viewportIncrement;
+$postSiteWidth: $siteWidth + $viewportIncrement;
 
-@mixin font-range-40to24() {
-  font-size: calc(24px + (100vw - 750px)/690 * 16);
+
+@mixin font-range-56to36() {
+  font-size: calc(36px + (100vw - 750px)/1170 * 20);
+  line-height: calc(40px + (100vw - 750px)/1170 * 20);
+  @media screen and (max-width: $md){
+    font-size: 36px;
+  }	
+  @media screen and (min-width: $postSiteWidth) {
+    font-size: 2.916666666666667vw;
+    line-height: 3.125vw;
+  }
+}
+
+@mixin font-range-36to24() {
+  font-size: calc(24px + (100vw - 750px)/1170 * 12);
+  line-height: calc(24px + (100vw - 750px)/1170 * 12);
+  @media screen and (max-width: $md){
+    font-size: 36px;
+  }	
+  @media screen and (min-width: $postSiteWidth) {
+    font-size: 1.87vw;
+    line-height: 2.02vw;
+  }
+}
+
+@mixin font-range-24to16() {
+  font-size: calc(24px + (100vw - 750px)/1170 * 8);
+  line-height: calc(24px + (100vw - 750px)/1170 * 8);;
   @media screen and (max-width: $preMd){
     font-size: 24px;
   }	
-  @media screen and (min-width: $xxxl) {
-    font-size: 2.69vw;
+  @media screen and (min-width: $postSiteWidth) {
+    font-size: 1.25vw;
+    line-height: 1.354vw;
   }
 }
-
-@mixin font-range-30to24() {
-  font-size: calc(24px + (100vw - 750px)/690 * 6);
-  @media screen and (max-width: $preMd){
-    font-size: 24px;
-  }	
-  @media screen and (min-width: $xxxl) {
-    font-size: 1.85vw;
-  }
-}
-
-@mixin font-range-24to20() {
-  font-size: calc(20px + (100vw - 750px)/690 * 4);
-  @media screen and (max-width: $preMd){
-    font-size: 20px;
-  }	
-  @media screen and (min-width: $xxxl) {
-    font-size: 1.348314606741573vw;
-  }
-}
-
-@mixin font-range-16to14() {
-  font-size: calc(14px + (100vw - 750px)/690 * 2);
-  @media screen and (max-width: $preMd){
-    font-size: 14px;
-  }	
-  @media screen and (min-width: $xxxl) {
-    font-size: 20px;
-  }
-}
-
-@mixin font-range-16to12() {
-  font-size: calc(12px + (100vw - 750px)/690 * 4);
-  @media screen and (max-width: $preMd){
-    font-size: 12px;
-  }	
-  @media screen and (min-width: $xxxl) {
-    font-size: 20px;
-  }
-}
-
-@mixin font-ratio-14(){
-  font-size: 14px;
-  @media screen and (min-width: $xxxl) {
-    font-size: 18px;
-  }
-}
-
 /*==============================================================================
 #Common Classes and Styles
 =================================================================================*/
@@ -102,3 +94,63 @@ $prexxxl: $xxxl - $viewportIncrement;
     white-space: nowrap;
     width: 1px;
   }
+
+   /* Home page section -- Image with Video */
+   .home--slider { 
+    display: block;
+    width: 100%;
+    .homepage-slider-wrapper {
+      display: block;
+      .slick-arrow {
+        outline: none;
+        position: absolute;
+        width: 50px;
+        height: 80px;
+        top: 50%;
+        z-index: 99;
+        -webkit-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        &::before {
+          content: '';
+        }
+      }
+      img,video {
+          width: 100%;
+          max-height: 100vh;
+          object-fit: cover;
+      }
+      .slide-item {
+        position: relative;
+        font-size: 0px;
+        .slide-overlay {
+          position:absolute;
+          left: 150px;
+          bottom: 90px;
+          font-size: 26px;
+          @include base-font();
+          .slide-overaly-heading {
+            @include heading-fonts();
+            @include font-range-56to36();
+            font-weight: 200;
+            letter-spacing: 0em;
+            text-align: left;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+          }
+          .slide-overlay-link {
+            display: block;
+            margin-top: 60px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: #6C1D45;
+          }
+        }
+      }
+    }
+  }
+
+
+  
