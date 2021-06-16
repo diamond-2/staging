@@ -1,0 +1,88 @@
+<div class="content-with-image-diamond-section-wrapper">
+    {%- for item in section.blocks -%}
+    <div class="content-with-image-diamond-section-row">
+        <div class="amd-container">
+            {%- if item.settings.heading !=blank -%}
+            <div class="top_header">
+                <h2>{{ item.settings.heading }}</h2>
+            </div>
+            {%- endif -%} 
+            <div class="content-with-image-diamond-row image_pos_{{ item.settings.image_position }}">
+                {%- if item.settings.image !=blank -%}
+                <div class="content-with-image-diamond-image-column">
+                    <div class="image_holder">
+                        <img src="{{ item.settings.image | img_url: 'master' }}" alt="">
+                    </div>
+                </div>
+                {%- endif -%}
+
+                {%- if item.settings.content !=blank -%}
+                <div class="content-with-image-diamond-content-column">
+                    <div class="content_holder">{{ item.settings.content }}</div>
+                </div>
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+    {%- endfor -%}
+</div>
+
+
+{% schema %}
+{
+    "name": "Content With Image",
+    "settings": [],
+    "blocks": [
+       {
+          "type": "image",
+          "name": "Item",
+          "settings": [
+                {
+                    "type": "header",
+                    "content": "Header"
+                },
+                {
+                    "type": "text",
+                    "label": "Heading",
+                    "id": "heading",
+                    "default": "what is diamond2  ?"
+                },
+                {
+                    "type": "header",
+                    "content": "Image Column"
+                },
+                {
+                    "type": "image_picker",
+                    "label": "Image",
+                    "id": "image"
+                },
+                {
+                    "type": "select",
+                    "label": "Image Position",
+                    "id": "image_position",
+                    "options": [
+                        {
+                            "value": "left",
+                            "label": "Left"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        }
+                    ],
+                    "default": "right"
+                },
+                {
+                    "type": "header",
+                    "content": "Content Column"
+                },
+                {
+                    "type": "richtext",
+                    "label": "Content",
+                    "id": "content"
+                }
+          ]
+       }
+    ]
+ }
+{% endschema %}

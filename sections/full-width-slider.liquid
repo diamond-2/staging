@@ -3,16 +3,15 @@
         {%- if section.blocks.size > 0 -%}
         {%- for slide in section.blocks -%}
 
-        
         <div class="full_width_slide_item slide--{{ forloop.index }}" data-type="image">
-            {%- slide.settings.slider_image_desktop !=blank -%}
+            {%- if slide.settings.slider_image_desktop !=blank -%}
             <div class="full_width_slider_image_holder {% if slide.settings.slider_image_mobile != blank %}mobile_hide {% endif %}">
                 <img src="{{ slide.settings.slider_image_desktop | img_url: '1920x' }}" lazyload{% unless forloop.first %} lazypreload{% endunless %}" alt="" />
             </div>
             {%- endif -%}
-            {%- slide.settings.slider_image_mobile !=blank -%}
+            {%- if slide.settings.slider_image_mobile !=blank -%}
             <div class="full_width_slider_image_holder {% if slide.settings.slider_image_desktop != blank %}mobile_hide {% endif %}">
-                <img src="{{ slide.settings.slider_image_mobile | img_url: '1920x' }}"  lazyload{% unless forloop.first %} lazypreload{% endunless %}" alt="" />
+                <img src="{{ slide.settings.slider_image_mobile | img_url: '739x' }}"  lazyload{% unless forloop.first %} lazypreload{% endunless %}" alt="" />
             </div>
             {%- endif -%}
         </div>
@@ -40,7 +39,7 @@
                 "type": "image_picker",
                 "id": "slider_image_mobile",
                 "label": "Slide Image Mobile(750x600)"
-             },
+             }
           ]
        }
     ]
