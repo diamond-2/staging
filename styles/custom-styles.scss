@@ -255,43 +255,6 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     }
   }
 
-<<<<<<< HEAD
-
-// Know Your Diamond Page
-
-// Factual Comparison Tabel
-.factual-comparison-table {
-  table {
-    margin: 0;
-    border: none;
-    border-spacing: 0;
-    th, td {
-      text-align: center;
-      border: 1px solid #FFFFFF;
-      font-weight: normal;
-      color: #fff;
-      font-size: 18px;
-      line-height: 19.44px; 
-      padding: 10px;
-      text-transform: uppercase;
-      &:not(:last-child) {
-        border-right-width: 2px;
-      }
-      &:last-child {
-        background: #ECE2E7;
-      }
-    }
-    th {
-      height: 70px;
-    }
-    td {
-      height: 70px;
-    }
-  }
-}
-
-
-=======
   /* Home page section --  image with text */
   .homepage-image-text {
     background-color: $background-blue;
@@ -358,5 +321,4 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
       }
     }    
   }
->>>>>>> Development-Store
   
