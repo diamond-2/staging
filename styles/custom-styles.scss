@@ -1,3 +1,4 @@
+
 /*base font family*/
 @mixin base-font(){
   font-family: 'Montserrat', sans-serif;
@@ -30,7 +31,7 @@ $content-container: 1720px;
 $viewportIncrement: 1px;
 
 $sm: 576px;
-$md: 750px;
+$md: 749px;
 $lg: 991px;
 $xl: 1199px;
 $xxl: 1600px;
@@ -46,12 +47,12 @@ $postMd: $md + $viewportIncrement;
 $postLg: $lg + $viewportIncrement;
 $postSiteWidth: $siteWidth + $viewportIncrement;
 
-
-@mixin font-range-56to36() {
-  font-size: calc(36px + (100vw - 750px)/1170 * 20);
-  line-height: calc(40px + (100vw - 750px)/1170 * 20);
+@mixin font-range-56to26() {
+  font-size: calc(26px + (100vw - 750px)/1170 * 30);
+  line-height: calc(30px + (100vw - 750px)/1170 * 30);
   @media screen and (max-width: $md){
-    font-size: 36px;
+    font-size: 26px;
+    line-height: 30px;
   }	
   @media screen and (min-width: $postSiteWidth) {
     font-size: 2.916666666666667vw;
@@ -82,6 +83,26 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     line-height: 1.354vw;
   }
 }
+
+@mixin mobile_hide() {
+  @media screen and (max-width: $md) {
+    display: none!important;    
+  }
+}
+@mixin desktop_hide() {
+  @media screen and (min-width: $postMd) {
+    display: none!important;    
+  }
+}
+
+@mixin container-spacing() {
+  padding-left: 30px;
+  padding-right: 30px;
+  @media screen and (max-width: $md) {
+    padding-left: 15px;
+    padding-right: 15px;   
+  } 
+}
 /*==============================================================================
 #Common Classes and Styles
 =================================================================================*/
@@ -93,6 +114,12 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     position: absolute;
     white-space: nowrap;
     width: 1px;
+  }
+  .desktop_hide {
+    @include desktop_hide();
+  }
+  .mobile_hide {
+    @include mobile_hide();
   }
 
    /* Home page section -- Image with Video */
@@ -131,14 +158,30 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
           bottom: 90px;
           font-size: 26px;
           @include base-font();
+          @media screen and (min-width: $postMd) and (max-width: $tab) {
+            bottom: 40px;
+            left: 100px; 
+            font-size: 20px; 
+          }
+          @media screen and (max-width: $md) {
+            position: relative;
+            bottom:initial;
+            left: initial;
+            font-size: 16px; 
+            padding-top: 40px;
+            @include container-spacing();            
+          }
           .slide-overaly-heading {
             @include heading-fonts();
-            @include font-range-56to36();
+            @include font-range-56to26();
             font-weight: 200;
             letter-spacing: 0em;
             text-align: left;
             margin-bottom: 60px;
             text-transform: uppercase;
+            @media screen and (max-width: $tab) {
+              margin-bottom: 20px; 
+            }
           }
           .slide-overlay-link {
             display: block;
@@ -146,6 +189,9 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
             font-weight: 500;
             text-transform: uppercase;
             color: #6C1D45;
+            @media screen and (max-width: $tab) {
+              margin-top: 20px; 
+            }
           }
         }
       }
