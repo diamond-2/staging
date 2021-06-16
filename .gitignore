@@ -1,8 +1,5 @@
 config.yml
 node_modules
-assets/custom-styles.css
 gulpfile.js
 package-lock.json
 package.json
-styles/
-.gitignore

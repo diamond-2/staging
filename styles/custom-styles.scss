@@ -1,0 +1,104 @@
+@mixin prefix-transform-translate(){
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+  @mixin smooth-transition() {
+    transition:         0.08s ease-in;
+    -o-transition:      0.08s ease-in;
+    -ms-transition:     0.08s ease-in;
+    -moz-transition:    0.08s ease-in;
+    -webkit-transition: 0.08s ease-in;
+  }
+  /*============================================================================
+#Breakpoint
+==============================================================================*/
+$viewportIncrement: 1px;
+
+$sm: 576px;
+$md: 750px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1600px;
+$xxxl: 1780px;
+$siteWidth: 1440px;
+$tabOrient: 1023px;
+$tab:1099px;
+$postTabOrient: $tabOrient + $viewportIncrement;
+$preXl: $xl - $viewportIncrement;
+$postMd: $md + $viewportIncrement;
+$preMd: $md - $viewportIncrement;
+$preLg: $lg - $viewportIncrement;
+$prexxxl: $xxxl - $viewportIncrement;
+
+@mixin font-range-40to24() {
+  font-size: calc(24px + (100vw - 750px)/690 * 16);
+  @media screen and (max-width: $preMd){
+    font-size: 24px;
+  }	
+  @media screen and (min-width: $xxxl) {
+    font-size: 2.69vw;
+  }
+}
+
+@mixin font-range-30to24() {
+  font-size: calc(24px + (100vw - 750px)/690 * 6);
+  @media screen and (max-width: $preMd){
+    font-size: 24px;
+  }	
+  @media screen and (min-width: $xxxl) {
+    font-size: 1.85vw;
+  }
+}
+
+@mixin font-range-24to20() {
+  font-size: calc(20px + (100vw - 750px)/690 * 4);
+  @media screen and (max-width: $preMd){
+    font-size: 20px;
+  }	
+  @media screen and (min-width: $xxxl) {
+    font-size: 1.348314606741573vw;
+  }
+}
+
+@mixin font-range-16to14() {
+  font-size: calc(14px + (100vw - 750px)/690 * 2);
+  @media screen and (max-width: $preMd){
+    font-size: 14px;
+  }	
+  @media screen and (min-width: $xxxl) {
+    font-size: 20px;
+  }
+}
+
+@mixin font-range-16to12() {
+  font-size: calc(12px + (100vw - 750px)/690 * 4);
+  @media screen and (max-width: $preMd){
+    font-size: 12px;
+  }	
+  @media screen and (min-width: $xxxl) {
+    font-size: 20px;
+  }
+}
+
+@mixin font-ratio-14(){
+  font-size: 14px;
+  @media screen and (min-width: $xxxl) {
+    font-size: 18px;
+  }
+}
+
+/*==============================================================================
+#Common Classes and Styles
+=================================================================================*/
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
