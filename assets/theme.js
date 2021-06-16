@@ -9688,8 +9688,6 @@ function removeImageLoadingAnimation(image) {
 
 
 document.addEventListener('DOMContentLoaded', function(event) {
-  $('.home--slider [data-slider]').slick();
-  
   // full slider call global
   $(".full_width_slider").slick({
     dots: true,
