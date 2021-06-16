@@ -191,13 +191,15 @@
   {{ content_for_header }}
 </head>
 <body class="template-{{ request.page_type | handle }} " data-template="{{ template }}">
+<<<<<<< HEAD
   
+=======
+>>>>>>> 84c4b574bae325c3f63fbe5142c133d1580254f1
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
   {%- if settings.enable_ajax -%}
     {% include 'cart-popup' %}
   {%- endif -%}
-
   {% section 'header' %}
 
   <div class="page-container drawer-page-content" id="PageContainer">
