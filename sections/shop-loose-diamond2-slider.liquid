@@ -1,42 +1,41 @@
-
-<div class="shop-loose-diamond2-slider-wrapper">
-    <div class="amd-container">
-        {%- if section.settings.heading != blank or section.settings.content != blank  -%}
-        <div class="shop-loose-diamond2-slider-top-row">
-            {%- if section.settings.heading != blank -%}<h1>{{ section.settings.heading }}</h1>{%- endif -%}
-            {%- if section.settings.content != blank -%}
-            <div class="shop-loose-diamond2-slider-top-des">{{ section.settings.content }}</div>
-            {%- endif -%}
-        </div>
-        {%- endif -%}
-
-        {%- if section.blocks.size > 0 -%}
-        <div class="shop-loose-diamond2-slider">
-            {%- for slide in section.blocks -%}
-            {%- if slide.settings.slide_image != blank or slide.settings.image_title != blank -%}
-            <div class="shop-loose-diamond2-slide">
-                <div class="shop-loose-diamond2-slide-inner">
-                    <a href="{{ slide.settings.slide_link }}">
-                        {%- if slide.settings.slide_image != blank -%}
-                        <div class="img_holder">
-                            <img data-src="{{ slide.settings.slide_image | img_url: 'master' }}" class="lazyload">
-                        </div>
-                        {%- endif -%}
-                        {%- if slide.settings.image_title != blank -%}<div class="caption_holder">{{ slide.settings.image_title }}</div>{%- endif -%}
-                    </a>
-                </div>
+<div class="sld-{{ section.id }} home-sld">
+    <div class="shop-loose-diamond2-slider-wrapper">
+        <div class="dia-container">
+            {%- if section.settings.heading != blank or section.settings.content != blank  -%}
+            <div class="shop-loose-diamond2-slider-top-row">
+                {%- if section.settings.heading != blank -%}<h2 class="h3">{{ section.settings.heading }}</h2>{%- endif -%}
+                {%- if section.settings.content != blank -%}
+                <div class="shop-loose-diamond2-slider-top-des">{{ section.settings.content }}</div>
+                {%- endif -%}
             </div>
             {%- endif -%}
-            {%- endfor -%}
-        </div>
-        {%- endif -%}
+            {%- if section.blocks.size > 0 -%}
+            <div class="shop-loose-diamond2-slider">
+                {%- for slide in section.blocks -%}
+                {%- if slide.settings.slide_image != blank or slide.settings.image_title != blank -%}
+                <div class="shop-loose-diamond2-slide">
+                    <div class="shop-loose-diamond2-slide-inner">
+                        <a href="{{ slide.settings.slide_link }}">
+                            {%- if slide.settings.slide_image != blank -%}
+                            <div class="img_holder">
+                                <img data-src="{{ slide.settings.slide_image | img_url: 'master' }}" class="lazyload">
+                            </div>
+                            {%- endif -%}
+                            {%- if slide.settings.image_title != blank -%}<div class="caption_holder">{{ slide.settings.image_title }}</div>{%- endif -%}
+                        </a>
+                    </div>
+                </div>
+                {%- endif -%}
+                {%- endfor -%}
+            </div>
+            {%- endif -%}
+            {%- if section.settings.button_text != blank -%}
+            <div class="custom-link">
+                <a href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
+            </div>
+            {%- endif -%}
 
-        {%- if section.settings.button_text != blank -%}
-        <div class="btn-ld-holder">
-            <a href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
         </div>
-        {%- endif -%}
-
     </div>
 </div>
 
@@ -45,7 +44,7 @@
         dots: false,
         autoplay: false,
         autoplaySpeed: 5000,
-        slidesToShow: {{ section.settings.slide_show_count }},
+        slidesToShow: 6,
         slidesToScroll: 1,
         navigation: true,
         responsive: [
@@ -80,39 +79,11 @@
 
 {% schema %}
   {
-    "name": "Shop Loose Slider",
+    "name": "Shop Loose Diamond",
     "settings": [
         {
             "type": "header",
             "content": "Slider Settings"
-        },
-        {
-            "type": "select",
-            "label": "Slide Show Count",
-            "id": "slide_show_count",
-            "options": [
-                {
-                    "value": "3",
-                    "label": "Three Column"
-                },
-                {
-                    "value": "4",
-                    "label": "Four Column"
-                },
-                {
-                    "value": "5",
-                    "label": "Five Column"
-                },
-                {
-                    "value": "6",
-                    "label": "Six Column"
-                }
-            ],
-            "default": "6"
-        },
-        {
-            "type": "header",
-            "content": "Slider Top Content"
         },
     	{
     		"type": "text",
@@ -160,6 +131,12 @@
                 }
             ]
         }
-    ]
+    ],
+    "presets": [
+    {
+      "name": "Shop Loose Diamond",
+      "category": "Image"
+    }
+  ]
   }
 {% endschema %}

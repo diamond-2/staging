@@ -358,7 +358,8 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   }
 
   // Home Solitaire collection
-  .home-scl {
+  .home-scl,
+  .home-jcl {
     padding: 60px 0;
     background-color: $background-blue;
     .scl-header {
@@ -461,6 +462,14 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
       a{
         color:$textcolor-white;
       }
+    }
+  }
+
+  // Shop Loose Diamond section
+
+  .home-sld {
+    padding: 55px 0;
+    .shop-loose-diamond2-slider {
     }
   }
   // Know Your Diamond Page
