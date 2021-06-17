@@ -1,13 +1,15 @@
-<div class="content-with-image-diamond-section-wrapper">
+<div class="content-with-image-diamond-section-wrapper global_section_bg">
     {%- for item in section.blocks -%}
-    <div class="content-with-image-diamond-section-row">
-        <div class="amd-container">
+    <div class="content-with-image-diamond-section-row image_pos_{{ item.settings.image_position }}">
+        <div class="dia-container">
+            {%- if item.settings.image_position == 'right' -%}
             {%- if item.settings.heading !=blank -%}
             <div class="top_header">
                 <h2>{{ item.settings.heading }}</h2>
             </div>
             {%- endif -%} 
-            <div class="content-with-image-diamond-row image_pos_{{ item.settings.image_position }}">
+            {%- endif -%}
+            <div class="content-with-image-diamond-row">
                 {%- if item.settings.image !=blank -%}
                 <div class="content-with-image-diamond-image-column">
                     <div class="image_holder">
@@ -16,11 +18,17 @@
                 </div>
                 {%- endif -%}
 
-                {%- if item.settings.content !=blank -%}
                 <div class="content-with-image-diamond-content-column">
-                    <div class="content_holder">{{ item.settings.content }}</div>
+                    {%- if item.settings.image_position == 'left' -%}
+                    {%- if item.settings.heading !=blank -%}
+                    <div class="top_header">
+                        <h2>{{ item.settings.heading }}</h2>
+                    </div>
+                    {%- endif -%} 
+                    {%- endif -%}
+                    {%- if item.settings.content != blank -%}<div class="content_holder">{{ item.settings.content }}</div>{%- endif -%}
+                    {%- if item.settings.bottom_text != blank -%}<div class="image_cap_b"><p>{{ item.settings.bottom_text }}</p></div>{%- endif -%}
                 </div>
-                {%- endif -%}
             </div>
         </div>
     </div>
@@ -77,9 +85,14 @@
                     "content": "Content Column"
                 },
                 {
-                    "type": "richtext",
+                    "type": "html",
                     "label": "Content",
                     "id": "content"
+                },
+                {
+                    "type": "text",
+                    "label": "Bottom Text",
+                    "id": "bottom_text"
                 }
           ]
        }
