@@ -6997,34 +6997,212 @@ hr {
 .store-availability-list__phone {
   margin-bottom: 0; }
 
-  /* Header */
-  body[data-template="index"] #shopify-section-header,
-  body[data-template="know-your-diamond"] #shopify-section-header  {
-    position: fixed;
-    width: 100%;
-    top:0px;
-    left: 0px;
-    z-index: 9;    
+/* Header */
+body[data-template="index"] #shopify-section-header,
+body[data-template="know-your-diamond"] #shopify-section-header  {
+  position: fixed;
+  width: 100%;
+  top:0px;
+  left: 0px;
+  z-index: 9;    
+}
+body[data-template="index"] #shopify-section-header .site-header,
+body[data-template="index"] #shopify-section-header .site-header__mobile-nav,
+body[data-template="know-your-diamond"] #shopify-section-header .site-header,
+body[data-template="know-your-diamond"] #shopify-section-header .site-header__mobile-nav {
+  background-color: transparent;
+  border-bottom: none;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+body[data-template="index"] #shopify-section-header.header-bg .site-header,
+body[data-template="index"] #shopify-section-header.header-bg .site-header__mobile-nav,
+body[data-template="know-your-diamond"] #shopify-section-header.header-bg .site-header,
+body[data-template="know-your-diamond"] #shopify-section-header.header-bg .site-header__mobile-nav {
+  background-color: var(--color-body);
+}
+body[data-template="index"] .main-content,
+body[data-template="know-your-diamond"] .main-content {
+  padding-top: 0;
+}
+
+/* Know Your Diamond Page Start */
+
+body[data-template="know-your-diamond"] sup {
+  font-size: 39%;
+  top: -17px;
+}
+/* Top Slider */
+
+body[data-template="know-your-diamond"] .home--slider .homepage-slider-wrapper .slide-item .slide-overlay {
+  bottom: auto;
+  top: 50%;
+  transform: translateY(-26%);
+}
+/* End Top SLider */
+
+.global_section_bg {
+  background: #89A1C0;
+  color: #fff;
+}
+body[data-template="know-your-diamond"] h2 {
+  font-size: 36px;
+  line-height: 38.88px;
+  font-family: Spectral;
+  font-style: normal;
+  font-weight: 200;
+  letter-spacing: normal;
+  text-transform: uppercase;
+}
+.global_section_bg * {
+  color:inherit;
+}
+.beyond-the-diamond-section {
+  padding: 97px 0 30px;
+}
+.dia-small-container {
+  max-width: 1237px;
+  margin: 0 auto;
+}
+.beyond-the-diamond-section .beyond-the-diamond-des p {
+  font-size: 26px;
+  line-height: 28.08px;
+}
+.beyond-the-diamond-section h2 {
+  margin: 0 0 45px;
+}
+.beyond-the-diamond-section .beyond-the-diamond-des p:not(:last-child) {
+  margin-bottom: 39px;
+}
+
+/* Full Slider Global css */
+.full_width_slider_wrapper img {
+  width: 100%;
+  object-fit: cover;
+  max-height: 970px;
+}
+.full_width_slider_wrapper .slick-arrow {
+  outline: 0;
+  position: absolute;
+  width: 40px;
+  height: 64px;
+  top: 50%;
+  z-index: 99;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background-size: 40px !important;
+}
+.full_width_slider_wrapper .slick-arrow:before {
+content: none;
+}
+.full_width_slider_wrapper .slick-arrow.slick-prev {
+  background: url(//cdn.shopify.com/s/files/1/0575/2681/2840/t/4/assets/arrow-left.svg?v=1246343…) no-repeat center;
+  left: 50px;
+}
+.full_width_slider_wrapper .slick-arrow.slick-next {
+  background: url(//cdn.shopify.com/s/files/1/0575/2681/2840/t/4/assets/arrow-right.svg?v=1066636…) no-repeat center;
+  right: 50px;
+}
+.full_width_slider_wrapper ul.slick-dots {
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+}
+.full_width_slider_wrapper ul.slick-dots li {
+  width: auto;
+  height: auto;
+  margin: 0 10px;
+}
+.full_width_slider_wrapper ul.slick-dots li button {
+  width: 25px;
+  height: 25px;
+  background: #fff;
+  padding: 0;
+  border-radius: 50%;
+}
+.full_width_slider_wrapper ul.slick-dots li button:before {
+content: none;
+}
+.full_width_slider_wrapper ul.slick-dots li button:hover, 
+.full_width_slider_wrapper ul.slick-dots li.slick-active button {
+  background: #6C1D45;
+}
+/* End Full Slider Global css */
+
+.content-with-image-diamond-section-wrapper {
+  padding: 100px 0;
+}
+.content-with-image-diamond-section-wrapper .top_header h2 {
+    text-align: center;
+    margin-bottom: 44px;
+}
+.content-with-image-diamond-section-wrapper .top_header h2 sup {
+    font-size: 50%;
+    top: -19px;
+    left: -4px;
+}
+.content-with-image-diamond-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+.content-with-image-diamond-row > div {
+    padding: 0 15px;
+}
+.image_pos_right .content-with-image-diamond-row {
+    flex-direction: row-reverse;
+}
+.content-with-image-diamond-row .content-with-image-diamond-image-column {
+    width: 42.6%;
+}
+.content-with-image-diamond-row .content-with-image-diamond-content-column {
+    width: 57.4%;
+}
+.content-with-image-diamond-row .content-with-image-diamond-content-column p {
+    font-size: 26px;
+    line-height: 28.08px;
+}
+.content-with-image-diamond-row .content-with-image-diamond-content-column p:not(:last-child) {
+    margin-bottom: 39px;
+}
+.content-with-image-diamond-row .content-with-image-diamond-content-column .content_holder {
+    padding-right: 54px;
+}
+.content-with-image-diamond-section-wrapper .content-with-image-diamond-section-row:not(:last-child) {
+    margin-bottom: 100px;
+}
+.image_pos_left .content-with-image-diamond-content-column .content_holder {
+    padding-right: 0;
+    padding-left: 54px;
+}
+.image_pos_left .content-with-image-diamond-content-column .content_holder p {
+    line-height: 30px;
+}
+
+/* Responsive */
+
+@media(min-width: 1920px) {
+  body[data-template="know-your-diamond"] .home--slider .homepage-slider-wrapper img,
+  body[data-template="know-your-diamond"] .home--slider .homepage-slider-wrapper video {
+    max-height: 100%;
+    height: 970px;
   }
-  body[data-template="index"] #shopify-section-header .site-header,
-  body[data-template="index"] #shopify-section-header .site-header__mobile-nav,
-  body[data-template="know-your-diamond"] #shopify-section-header .site-header,
-  body[data-template="know-your-diamond"] #shopify-section-header .site-header__mobile-nav {
-    background-color: transparent;
-    border-bottom: none;
-    -webkit-transition: 0.3s ease-in-out;
-    -moz-transition: 0.3s ease-in-out;
-    -o-transition: 0.3s ease-in-out;
-    -ms-transition: 0.3s ease-in-out;
-    transition: 0.3s ease-in-out;
+}
+
+@media(min-width: 750px) {
+  .show_mobile {
+      display: none !important;
   }
-  body[data-template="index"] #shopify-section-header.header-bg .site-header,
-  body[data-template="index"] #shopify-section-header.header-bg .site-header__mobile-nav,
-  body[data-template="know-your-diamond"] #shopify-section-header.header-bg .site-header,
-  body[data-template="know-your-diamond"] #shopify-section-header.header-bg .site-header__mobile-nav {
-    background-color: var(--color-body);
+}
+@media(max-width: 749px) {
+  .show_mobile {
+      display: none !important;
   }
-  body[data-template="index"] .main-content,
-  body[data-template="know-your-diamond"] .main-content {
-    padding-top: 0;
-  }
+}
+/* Know Your Diamond Page End */
