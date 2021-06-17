@@ -9,6 +9,9 @@
     {%- assign subheading = block.settings.slider_subheading -%}
     {%- assign linktext = block.settings.slider_linkText -%}
     {%- assign linkurl = block.settings.slider_link -%}
+    {%- assign contentPos = block.settings.slider_content_position -%}
+    {%- assign contentClr = block.settings.slider_content_color -%}
+    {%- assign contentLinkClr = block.settings.slider_link_color -%}
         <div class="slide-item slide--{{ forloop.index }}" data-type="image">
             {%- if img_desktop != blank -%}
             <img src="{{ img_desktop | img_url: '1920x' }}" class="{% if img_mobile != blank %}mobile_hide {% endif %} lazyload{% unless forloop.first %} lazypreload{% endunless %}" alt="" /> 
@@ -17,10 +20,10 @@
             <img src="{{ img_mobile | img_url: '739x' }}" class="desktop_hide lazyload {% unless forloop.first %} lazypreload{% endunless %}" alt="" />
             {%- endif -%}
             {%- if heading != blank or subheading != blank -%}
-            <div class="slide-overlay">
+            <div class="slide-overlay {% if contentPos == 'right' %} content-right {% else %} content-left{% endif %}" {% if contentClr != blank %}style="color: {{ contentClr }}"{% endif %}>
                 {%- if heading != blank -%}<div class="slide-overaly-heading">{{ heading }}</div>{%- endif -%}
                 {%- if subheading != blank -%}<div class="slide-overaly-subheading">{{ subheading }}</div>{%- endif -%}
-            {%- if linktext != blank -%}<a class="slide-overlay-link" href="{{ linkurl }}" aria-label=" {{ linktext }}"> {{ linktext }}</a>{%- endif -%}
+            {%- if linktext != blank -%}<a class="slide-overlay-link" href="{{ linkurl }}" aria-label=" {{ linktext }}" {% if contentLinkClr != blank %} style="color: {{ contentLinkClr }}" {% endif %}> {{ linktext }}</a>{%- endif -%}
             </div>
             {% endif %}
         </div>
@@ -31,6 +34,9 @@
     {%- assign subheading = block.settings.video_subheading -%}
     {%- assign linktext = block.settings.video_linkText -%}
     {%- assign linkurl = block.settings.video_link -%}
+    {%- assign contentPos = block.settings.video_content_position -%}
+    {%- assign contentClr = block.settings.video_content_color -%}
+    {%- assign contentLinkClr = block.settings.video_link_color -%}
     {%- if videolink != blank -%}
     <div class="slide-item slide--{{ forloop.index }}" data-type="video">
     <video {% if videocontrols %}controls{% endif %}>
@@ -38,10 +44,10 @@
     </video>
     {%- endif -%}
     {%- if heading != blank or subheading != blank -%}
-    <div class="slide-overlay">
+    <div class="slide-overlay {% if contentPos == 'right' %} content-right {% else %} content-left{% endif %}" {% if contentClr != blank %}style="color: {{ contentClr }}"{% endif %}>
         {%- if heading != blank -%}<div class="slide-overaly-heading">{{ heading }}</div>{%- endif -%}
         {%- if subheading != blank -%}<div class="slide-overaly-subheading">{{ subheading }}</div>{%- endif -%}
-        {%- if linktext != blank -%}<a class="slide-overlay-link" href="{{ linkurl }}" aria-label=" {{ linktext }}"> {{ linktext }}</a>{%- endif -%}
+        {%- if linktext != blank -%}<a class="slide-overlay-link" href="{{ linkurl }}" aria-label=" {{ linktext }}" {% if contentLinkClr != blank %} style="color: {{ contentLinkClr }}" {% endif %}> {{ linktext }}</a>{%- endif -%}
     </div>
     {% endif %}
     </div>
@@ -58,7 +64,17 @@
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: true,
-        dots: true
+        dots: true,
+        adaptiveHeight: true,
+        responsive: [
+            {
+                breakpoint: 749,
+                settings: {
+                arrows: false,
+                dots: false
+                }
+            }
+        ]
     });
 });
 </script>
@@ -84,6 +100,31 @@
                     "label": "Slide Image Mobile(750x600)"
                 },
                 {
+                    "type": "select",
+                    "id": "slider_content_position",
+                    "label": "Content position",
+                    "options": [
+                      {
+                        "group": "position",
+                        "value": "left",
+                        "label": "Left"
+                      },
+                      {
+                        "group": "position",
+                        "value": "right",
+                        "label": "Right"
+                      }
+                    ],
+                    "default": "left",
+                    "info": "Left"
+                 },
+                 {
+                    "type":      "color",
+                    "id":        "slider_content_color",
+                    "label":     "Content color",
+                    "default":   "#000000"
+                 },
+                {
                     "type": "text",
                     "id": "slider_heading",
                     "label": "Slide Heading"
@@ -102,7 +143,13 @@
                     "type": "url",
                     "id": "slider_link",
                     "label": "Slide Link"
-                }
+                },
+                {
+                    "type":      "color",
+                    "id":        "slider_link_color",
+                    "label":     "link color",
+                    "default":   "#000000"
+                 }
             ]
         },
         {
@@ -120,6 +167,31 @@
                     "label": "Show Controls",
                     "default": true
                 },
+                {
+                    "type": "select",
+                    "id": "video_content_position",
+                    "label": "Content position",
+                    "options": [
+                      {
+                        "group": "position",
+                        "value": "left",
+                        "label": "Left"
+                      },
+                      {
+                        "group": "position",
+                        "value": "right",
+                        "label": "Right"
+                      }
+                    ],
+                    "default": "left",
+                    "info": "Left"
+                 },
+                 {
+                    "type":      "color",
+                    "id":        "video_content_color",
+                    "label":     "Content color",
+                    "default":   "#000000"
+                 },
                 {
                     "type": "text",
                     "id": "video_heading",
@@ -139,7 +211,13 @@
                     "type": "url",
                     "id": "video_link",
                     "label": "Slide Link"
-                }
+                },
+                {
+                    "type":      "color",
+                    "id":        "video_link_color",
+                    "label":     "link color",
+                    "default":   "#000000"
+                 }
             ]
         }
     ],
