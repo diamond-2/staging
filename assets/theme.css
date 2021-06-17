@@ -7030,10 +7030,23 @@ body[data-template="know-your-diamond"] .main-content {
 }
 
 /* Know Your Diamond Page Start */
+:root {
+  --headingFont: Spectral;
+  --globalBg: #89A1C0;
+  --globalBgTextColor: #fff;
+  --h2FontSize: 36px;
+  --h2LineHeight: 38.88px;
+  --kmdPSize: 26px;
+  --kmdPlineHeight: 28.08px;
+}
 
 body[data-template="know-your-diamond"] sup {
   font-size: 39%;
   top: -17px;
+}
+body[data-template="know-your-diamond"] .main-content p {
+  font-size:var(--kmdPSize);
+  line-height: var(--kmdPlineHeight);
 }
 /* Top Slider */
 
@@ -7045,13 +7058,13 @@ body[data-template="know-your-diamond"] .home--slider .homepage-slider-wrapper .
 /* End Top SLider */
 
 .global_section_bg {
-  background: #89A1C0;
-  color: #fff;
+  background: var(--globalBg);
+  color: var(--globalBgTextColor);
 }
 body[data-template="know-your-diamond"] h2 {
-  font-size: 36px;
-  line-height: 38.88px;
-  font-family: Spectral;
+  font-size: var(--h2FontSize);
+  line-height: var(--h2LineHeight);
+  font-family: var(--headingFont);
   font-style: normal;
   font-weight: 200;
   letter-spacing: normal;
@@ -7066,10 +7079,6 @@ body[data-template="know-your-diamond"] h2 {
 .dia-small-container {
   max-width: 1237px;
   margin: 0 auto;
-}
-.beyond-the-diamond-section .beyond-the-diamond-des p {
-  font-size: 26px;
-  line-height: 28.08px;
 }
 .beyond-the-diamond-section h2 {
   margin: 0 0 45px;
@@ -7162,11 +7171,13 @@ content: none;
     width: 42.6%;
 }
 .content-with-image-diamond-row .content-with-image-diamond-content-column {
-    width: 57.4%;
+  width: 57.4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.content-with-image-diamond-row .content-with-image-diamond-content-column p {
-    font-size: 26px;
-    line-height: 28.08px;
+.image_pos_right .content-with-image-diamond-content-column .image_cap_b {
+  text-align: right;
 }
 .content-with-image-diamond-row .content-with-image-diamond-content-column p:not(:last-child) {
     margin-bottom: 39px;

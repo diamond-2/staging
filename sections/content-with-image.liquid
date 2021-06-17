@@ -5,7 +5,7 @@
             {%- if item.settings.image_position == 'right' -%}
             {%- if item.settings.heading !=blank -%}
             <div class="top_header">
-                <h2>{{ item.settings.heading | replace: '®', '<sup>®</sup>' }}</h2>
+                <h2>{{ item.settings.heading }}</h2>
             </div>
             {%- endif -%} 
             {%- endif -%}
@@ -18,18 +18,17 @@
                 </div>
                 {%- endif -%}
 
-                {%- if item.settings.content !=blank -%}
                 <div class="content-with-image-diamond-content-column">
                     {%- if item.settings.image_position == 'left' -%}
                     {%- if item.settings.heading !=blank -%}
                     <div class="top_header">
-                        <h2>{{ item.settings.heading | replace: '®', '<sup>®</sup>' }}</h2>
+                        <h2>{{ item.settings.heading }}</h2>
                     </div>
                     {%- endif -%} 
                     {%- endif -%}
-                    <div class="content_holder">{{ item.settings.content | replace: '®', '<sup>®</sup>' }}</div>
+                    {%- if item.settings.content != blank -%}<div class="content_holder">{{ item.settings.content }}</div>{%- endif -%}
+                    {%- if item.settings.bottom_text != blank -%}<div class="image_cap_b"><p>{{ item.settings.bottom_text }}</p></div>{%- endif -%}
                 </div>
-                {%- endif -%}
             </div>
         </div>
     </div>
@@ -86,9 +85,14 @@
                     "content": "Content Column"
                 },
                 {
-                    "type": "richtext",
+                    "type": "html",
                     "label": "Content",
                     "id": "content"
+                },
+                {
+                    "type": "text",
+                    "label": "Bottom Text",
+                    "id": "bottom_text"
                 }
           ]
        }
