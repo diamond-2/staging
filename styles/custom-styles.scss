@@ -385,6 +385,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
       display: flex;
       flex-direction: row;
       gap: 30px;
+      justify-content: center;
       @media screen and (max-width: $md) {
         flex-direction: column;   
         gap: 10px;     
