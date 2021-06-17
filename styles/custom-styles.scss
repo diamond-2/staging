@@ -46,6 +46,7 @@ $content-container: 1720px;
 $background-blue: #89A1C0;
 $textcolor-black: #000000;
 $textcolor-white: #ffffff;
+$textcolor-phanton: #6C1D45;
 @mixin content-container() {
   max-width: 1920px;
   padding-left: 100px;
@@ -427,11 +428,26 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
           &.full-width {
             flex-basis: 100%!important;
           }
-        }
-        .box--1-1, .box--1-2{
-          flex-basis: 50%;
-        }        
+        }       
         /* //B & D */
+        .box--1-1, .box--1-2,
+        .box--2-1,  .box--2-2,
+        .box--3-1,.box--3-2{
+          flex-basis: 50%;
+        }
+      }   
+    }
+    .scl-collection-link {
+      text-align: center;
+      padding: 30px 0 0;
+      a{
+        color:$textcolor-white;
+      }
+    }
+  }
+  .home-scl{
+    .scl-collage {
+      [class ^="block-"]{
         .box--2-1{
           flex-basis: 60%;
         }
@@ -450,28 +466,85 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
             transform: translateY(-50%);
           }
         }
-        /* //E  & C */
-        .box--3-1,.box--3-2{
-          flex-basis: 50%
-        }
-      }      
-    }
-    .scl-collection-link {
-      text-align: center;
-      padding: 30px 0 0;
-      a{
-        color:$textcolor-white;
       }
     }
   }
-
   // Shop Loose Diamond section
 
   .home-sld {
-    padding: 55px 0;
-    .shop-loose-diamond2-slider {
-    }
+    padding: 55px 0;    
+      .shop-loose-diamond2-slider-top-row{
+        color: $textcolor-black;
+        max-width: 580px;
+        .h3 {
+          color: $textcolor-phanton;
+          @include heading-fonts();
+          @include font-range-36to24();
+          text-transform: uppercase;
+          margin-bottom: 40px;;
+          @media screen and (max-width: $md) {
+            margin-bottom: 30px;
+          }
+        }
+      }   
+      .shop-loose-diamond2-slider {
+        position: relative;
+        padding: 0 50px;
+        .slick-arrow{
+          width: 25px;
+          height: 60px;
+          position: absolute;
+          top:50%;
+          z-index: 99;
+          -webkit-transform: translateY(-50%);
+          -moz-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+          -o-transform: translateY(-50%);
+          transform: translateY(-50%);
+          &:before{
+            display: none;
+          }
+        }
+        .shop-loose-diamond2-slide{
+          .shop-loose-diamond2-slide-inner{
+            text-align: center;
+            padding: 0 30px;
+            @media screen and(max-width: $md) {
+              padding: 0 15px;              
+            }
+            .img_holder{
+              min-height: 1px;
+              padding-bottom: 100%;
+              position: relative;
+              img{
+                position: absolute;
+                width: 100%;
+                max-width: 100%;
+                top:50%;
+                left: 50%;
+                @include prefix-transform-translate();
+              }
+            }
+            .caption_holder {
+              margin-top: 5px;
+              display: inline-block;
+              line-height: 1;
+              color: $textcolor-phanton;
+              text-transform: uppercase;
+              border-bottom: 1px solid $textcolor-phanton;
+            }
+          }
+        }
+      }   
+      .sld-collection-link {
+        text-align: center;
+        padding: 60px 0px 0px;
+        a{
+          color: $textcolor-black;
+        }
+      }
   }
+  
   // Know Your Diamond Page
 
 // Factual Comparison Tabel
