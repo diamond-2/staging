@@ -1,0 +1,40 @@
+
+<div class="collection-slider-wrapper">
+    <div class="collection-slider">
+        {%- for slide in section.blocks -%}
+        {% assign collection = collections[slide.select_collection] %}
+        <div class="collection-slide">
+            <div class="collection-card">
+                <div class="collection-image-holder">{{ collection.title }}</div>
+                <div class="collection-image-title"></div>
+            </div>
+        </div>
+        {%- endfor -%}
+    </div>
+</div>
+
+
+
+
+
+
+{% schema %}
+  {
+    "name": "Collection Slider",
+    "settings": [
+    ],
+    "blocks": [
+        {
+            "type": "collection",
+            "name": "Collection",
+            "settings": [
+                {
+                    "type": "collection",
+                    "label": "Select Collection",
+                    "id": "select_collection"
+                }
+            ]
+        }
+    ]
+  }
+{% endschema %}

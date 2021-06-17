@@ -1,0 +1,23 @@
+
+
+<div class="custom-video-section-wrapper">
+    {%- if section.settings.video_url !=blank -%}
+    <div class="custom-video-holder">
+        <iframe width="100%" height="315" class="lazyload" data-src="{{ section.settings.video_url }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+    {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Custom Video",
+  "settings": [
+    {
+        "type": "text",
+        "id": "video_url",
+        "label": "YouTube video Url"
+    }
+  ]
+  
+}
+{% endschema %}
