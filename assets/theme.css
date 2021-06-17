@@ -7031,13 +7031,26 @@ body[data-template="know-your-diamond"] .main-content {
 
 /* Know Your Diamond Page Start */
 :root {
+  --globalBg: #fff;
+  --globalBgTextColor: #000;
   --headingFont: Spectral;
-  --globalBg: #89A1C0;
-  --globalBgTextColor: #fff;
-  --h2FontSize: 36px;
-  --h2LineHeight: 38.88px;
+  --headingColor: #6C1D45;
+  --h2FontSize: 45px;
+  --h2LineHeight: 48.6px;
+  --h2FontWeight: 200;
   --kmdPSize: 26px;
   --kmdPlineHeight: 28.08px;
+}
+.glb-btn {
+  display: inline-block;
+  background: #6679CC;
+  border: 1px solid #6679CC;
+  box-sizing: border-box;
+  color: #fff;
+  padding: 22px 32px;
+  font-size: 22px;
+  line-height: 23.76px;
+  transition: all 0.3s;
 }
 
 body[data-template="know-your-diamond"] sup {
@@ -7065,8 +7078,8 @@ body[data-template="know-your-diamond"] h2 {
   font-size: var(--h2FontSize);
   line-height: var(--h2LineHeight);
   font-family: var(--headingFont);
-  font-style: normal;
-  font-weight: 200;
+  color: var(--headingColor);
+  font-weight: var(--h2FontWeight);
   letter-spacing: normal;
   text-transform: uppercase;
 }
@@ -7077,7 +7090,7 @@ body[data-template="know-your-diamond"] h2 {
   padding: 97px 0 30px;
 }
 .dia-small-container {
-  max-width: 1237px;
+  max-width: 1455px;
   margin: 0 auto;
 }
 .beyond-the-diamond-section h2 {
@@ -7178,23 +7191,88 @@ content: none;
 }
 .image_pos_right .content-with-image-diamond-content-column .image_cap_b {
   text-align: right;
+  margin-top: 15px;
 }
 .content-with-image-diamond-row .content-with-image-diamond-content-column p:not(:last-child) {
     margin-bottom: 39px;
 }
 .content-with-image-diamond-row .content-with-image-diamond-content-column .content_holder {
-    padding-right: 54px;
+    padding-right: 40px;
 }
 .content-with-image-diamond-section-wrapper .content-with-image-diamond-section-row:not(:last-child) {
     margin-bottom: 100px;
 }
 .image_pos_left .content-with-image-diamond-content-column .content_holder {
     padding-right: 0;
-    padding-left: 54px;
+    padding-left: 40px;
 }
 .image_pos_left .content-with-image-diamond-content-column .content_holder p {
     line-height: 30px;
 }
+.content-with-image-diamond-section-row.image_pos_left .top_header {
+  width: 57.4%;
+  margin-left: auto;
+  text-align: left;
+  padding-left: 76px;
+}
+.content-with-image-diamond-section-row.image_pos_left .top_header h2 {
+  text-align: left;
+}
+.image_col_size_large .content-with-image-diamond-row .content-with-image-diamond-image-column {
+  width: 61.7%;
+}
+.image_col_size_large .content-with-image-diamond-row .content-with-image-diamond-content-column {
+  width: 38.3%;
+}
+.image_col_size_large .content-with-image-diamond-content-column h2 {
+  margin-bottom: 84px;
+}
+.image_col_size_large.image_pos_left .content-with-image-diamond-content-column .content_holder {
+  padding-right: 46px;
+}
+.content-with-image-diamond-content-column h2 {
+  margin-bottom: 50px;
+}
+.image_pos_right .content-with-image-diamond-content-column h2 {
+  text-align: right;
+}
+.content-with-image-diamond-row .content-with-image-diamond-image-column img {
+  vertical-align: top;
+}
+.content-with-image-diamond-content-column.has_bottom_text .content_holder {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.why-diamond2-section {
+  padding: 93px 0 96px;
+}
+.why-diamond2-section h2 {
+  margin-bottom: 44px;
+}
+.why-diamond2-section p:not(:last-child) {
+  margin-bottom: 39px;
+}
+.ethically-produced-section {
+  padding: 43px 0 103px;
+}
+.ethically-produced-section h2 {
+  margin-bottom: 46px;
+}
+.ethically-produced-section p:not(:last-child) {
+  margin-bottom: 38px;
+}
+.trust-for-life-section {
+  padding: 45px 0;
+}
+.trust-for-life-section h2 {
+  margin-bottom: 43px;
+}
+.trust-for-life-section .trust-for-life-des:not(:last-child) {
+  margin-bottom: 54.5px;
+}
+
 
 /* Responsive */
 

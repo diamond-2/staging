@@ -1,9 +1,9 @@
 
 <div class="shop-loose-diamond2-slider-wrapper">
-    <div class="amd-container">
+    <div class="dia-container">
         {%- if section.settings.heading != blank or section.settings.content != blank  -%}
         <div class="shop-loose-diamond2-slider-top-row">
-            {%- if section.settings.heading != blank -%}<h1>{{ section.settings.heading }}</h1>{%- endif -%}
+            {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
             {%- if section.settings.content != blank -%}
             <div class="shop-loose-diamond2-slider-top-des">{{ section.settings.content }}</div>
             {%- endif -%}
@@ -33,7 +33,7 @@
 
         {%- if section.settings.button_text != blank -%}
         <div class="btn-ld-holder">
-            <a href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
+            <a class="glb-btn" href="{{ section.settings.button_link }}">{{ section.settings.button_text }}</a>
         </div>
         {%- endif -%}
 
@@ -121,7 +121,7 @@
     		"default": "TRUST FOR LIFE"
     	},
     	{
-    		"type": "richtext",
+    		"type": "html",
     		"label": "Content",
     		"id": "content",
     		"default": "<p>It’s all about trust and Diamond2 takes a pride to offer a limited lifetime warranty to our precious customers so they can enjoy our quality products with least worry. </p>"
