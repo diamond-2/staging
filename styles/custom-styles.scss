@@ -544,6 +544,11 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
         }
       }
   }
+  footer{
+    a{
+      color: $textcolor-phanton;
+    }
+  }
   
   // Know Your Diamond Page
 
