@@ -585,4 +585,16 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     }
   }
 }
+
+.glb-btn {
+  display: inline-block;
+  background: #6679CC;
+  border: 1px solid #6679CC;
+  box-sizing: border-box;
+  color: #fff;
+  padding: 22px 32px;
+  font-size: 22px;
+  line-height: 23.76px;
+  transition: all 0.3s;
+}
   
