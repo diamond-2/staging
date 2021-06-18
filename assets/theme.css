@@ -5549,7 +5549,7 @@ hr {
   padding: 45px 0 55px 0; }
   @media only screen and (min-width: 750px) {
     .site-footer {
-      padding-bottom: 35px; } }
+      padding-bottom: 7px; } }
   .site-footer h4, .site-footer .h4 {
     margin-bottom: 12.5px; }
     @media only screen and (min-width: 750px) {
@@ -5591,11 +5591,13 @@ hr {
   -moz-flex: 1 1 100%;
   -ms-flex: 1 1 100%;
   flex: 1 1 100%;
-  margin-bottom: 55px; }
+  margin-bottom: 0; }
   @media only screen and (min-width: 750px) {
     .site-footer__item {
       padding: 0 15px 0 15px;
-      margin-bottom: 45px; } }
+      margin-bottom: 0; 
+    } 
+  }
   .site-footer__item:first-of-type {
     padding-left: 0; }
   .site-footer__item:last-of-type {
@@ -7030,11 +7032,6 @@ body[data-template="know-your-diamond"] #shopify-section-header.header-bg .site-
 body[data-template="index"] .main-content,
 body[data-template="know-your-diamond"] .main-content {
   padding-top: 0;
-}
-
-body[data-template="know-your-diamond"] sup {
-  font-size: 39%;
-  top: -17px;
 }
 
 /* Top Slider */
