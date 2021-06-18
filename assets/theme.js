@@ -9705,6 +9705,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
     let windowScrolled = $(window).scrollTop();
     fixedHeaderBg(windowScrolled);    
   });
+  
+  $('.site-footer__item-inner .site-footer__linklist > li > a').after('<div class="footer-menu-Childtrigger"></div>');
+  $('.footer-menu-Childtrigger').click(function(){
+      $(this).next().slideToggle(250);
+      $(this).parent().toggleClass('menu_down');
+      $(this).parent().siblings().removeClass('menu_down');
+      $(this).parent().siblings().children('.site-footer__sub-linklist').slideUp(250);
+  });
 });
 
 function fixedHeaderBg(scrollPosition) {
