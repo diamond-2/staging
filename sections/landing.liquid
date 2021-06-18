@@ -1,0 +1,66 @@
+{% assign landingBanner = section.settings.landing_image %}
+{% assign bannerToptext = section.settings.landing_text_top %}
+{% assign bannerBottomtext = section.settings.landing_text_bottom %}
+<div id="main-landing-page">
+    <div class="main-landing-page-container">
+        <div class="landing-banner">
+            <img data-src="{{ landingBanner | img_url: 'master'}}" alt="" class="lazyload"/>
+        </div>
+        <div class="landing-content">
+            <div class="landing-top-content landing-content-item">
+                <div class="landing-logo-icn">
+                    <img data-src="{{ 'logo-white-small.svg' | asset_url }}" alt="" class="lazyload" />
+                </div>
+                <div class="landing-logo-white">
+                    <img data-src="{{ 'landing-logo-white.svg' |  asset_url }}" alt="" class="lazyload" />
+                </div>
+                {% if bannerToptext != blank %}
+                <div class="landing-top-content-item">{{ bannerToptext }}</div>
+                {% endif %}
+            </div>
+            <div class="landing-bottom-content landing-content-item">
+                <div class="landing-bottom-animation">
+                    <span class="large-circle">
+                        <span class="animate-line"></span>
+                        <span class="small-circle"></span>
+                    </span>
+                </div>
+                {% if bannerBottomtext != blank %}
+                    <div class="landing-bottom-content-item">{{ bannerBottomtext }}</div>    
+                {% endif %}                
+            </div>
+        </div>
+    </div>    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function(event) {
+        $(document).on('click', '.large-circle', function(){
+            $('body').removeClass('overflow-hidden');
+            $('#shopify-section-landing').remove();
+        })
+    });
+</script>
+{% schema %}
+{
+    "name": "Landing Page",
+    "class": "landing-section",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "landing_image",
+            "label": "Select Image"
+        },
+        {
+            "type": "richtext",
+            "id": "landing_text_top",
+            "label": "Top content"
+        },
+        {
+            "type": "text",
+            "id": "landing_text_bottom",
+            "label": "Bottom content",
+            "default": "enter <br> the world beyond the diamond"
+        }
+    ]
+}
+{% endschema %}

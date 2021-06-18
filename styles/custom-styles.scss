@@ -1,5 +1,13 @@
 
 /*base font family*/
+$content-container: 1720px;
+$background-blue: #89A1C0;
+$textcolor-black: #000000;
+$textcolor-white: #ffffff;
+$textcolor-phanton: #6C1D45;
+$color-primary: #6679CC;
+$small-text: 12px;
+
 @mixin base-font(){
   font-family: 'Montserrat', sans-serif;
   font-weight:normal;
@@ -33,11 +41,11 @@
   }
 
   @mixin smooth-transition() {
-    transition:         0.05s ease-in;
-    -o-transition:      0.05s ease-in;
-    -ms-transition:     0.05s ease-in;
-    -moz-transition:    0.05s ease-in;
-    -webkit-transition: 0.05s ease-in;
+    transition:         0.05s ease-in-out;
+    -o-transition:      0.05s ease-in-out;
+    -ms-transition:     0.05s ease-in-out;
+    -moz-transition:    0.05s ease-in-out;
+    -webkit-transition: 0.05s ease-in-out;
   }
 
   @mixin bdr-radius10() {
@@ -54,15 +62,21 @@
     -o-border-radius: 50%;
     border-radius: 50%;
   }
+  @mixin global-button() {
+    display: inline-block;
+    background:$color-primary;
+    border: 1px solid $color-primary;
+    color: $textcolor-white;
+    padding: 22px 32px;
+    font-size: 22px;
+    line-height: 23.76px;
+    @include smooth-transition();
+  }
 
   /*============================================================================
 #Breakpoint
 ==============================================================================*/
-$content-container: 1720px;
-$background-blue: #89A1C0;
-$textcolor-black: #000000;
-$textcolor-white: #ffffff;
-$textcolor-phanton: #6C1D45;
+
 @mixin content-container() {
   max-width: 1920px;
   padding-left: 100px;
@@ -179,6 +193,9 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
 /*==============================================================================
 #Common Classes and Styles
 =================================================================================*/
+.glb-btn {
+  @include global-button();
+}
 .dia-container{
   @include content-container();
   margin: 0 auto;
@@ -186,6 +203,9 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
 .custom-link {
   text-transform: uppercase;
   color: $textcolor-white;
+}
+.overflow-hidden {
+  overflow: hidden!important;
 }
 .visually-hidden {
     clip: rect(0 0 0 0);
@@ -201,6 +221,116 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   }
   .mobile_hide {
     @include mobile_hide();
+  }
+
+  // Landing Page 
+  #shopify-section-landing {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: 999;
+    #main-landing-page{
+      .landing-banner {
+        height: 100vh;
+        img {
+          height: 100vh;
+          object-fit: cover;
+        }
+      }
+      .landing-content{
+        text-align: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        width: 100%;
+        height: 100%;
+        .landing-content-item {  
+          padding-top: 40px;       
+          .landing-logo-icn {
+            margin-bottom: 25px;
+          }
+          .landing-top-content-item {
+            @include base-font();
+            @include base-font-size();
+            color: $textcolor-white;
+            text-transform: uppercase;
+            padding-top: 25px;
+            font-weight: 300;
+              p {
+                color: $textcolor-white;
+                &:last-child{
+                  color: $textcolor-white;
+                }                
+              }
+             strong {
+              font-weight: 600;
+            }
+          }
+          &.landing-top-content{}
+          &.landing-bottom-content{
+            position: absolute;
+            bottom: 70px;
+            width: 100%;
+            color: white;
+            text-transform: uppercase;
+            .landing-bottom-animation {
+              .large-circle{
+                position: relative;
+                width: 30px;
+                height: 30px;
+                border: 1.5px solid rgba(255, 255, 255, 0.35);
+                display: inline-block;
+                cursor: pointer;
+                @include bdr-radius50();
+                &::after{
+                  content: '';
+                  position: absolute;
+                  width: 0.5px;
+                  height: 0px;
+                  background: rgba(255,255,255,.35);;
+                  bottom: 30px;
+                  height: 0px;
+                  transition: height 0.4s ease-out;
+                }
+                .small-circle {
+                  position: absolute;
+                  width: 18px;
+                  height: 18px;
+                  background: rgba(255,255,255,.35);
+                  border: 1px solid transparent;
+                  @include bdr-radius50();
+                  left: 4px;
+                  top: 4px;
+                  transition: 0.5s ease-out;
+                  -webkit-transform: translateY(0px);
+                  -moz-transform: translateY(0px);
+                  -o-transform: translateY(0px);
+                  -ms-transform: translateY(0px);
+                  transform: translateY(0px);
+                }
+                &:hover {
+                  &:after{
+                    height: 65px;
+                    transition: height 0.4s ease-in;
+                  }
+                  .small-circle {
+                    border-color: rgba(255,255,255,.35);
+                    background: none;
+                    -webkit-transform: translateY(-90px);
+                  -moz-transform: translateY(-90px);
+                  -o-transform: translateY(-90px);
+                  -ms-transform: translateY(-90px);
+                  transform: translateY(-90px);
+                    
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
    /* Home page section -- Image with Video */
@@ -387,7 +517,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     }    
   }
 
-  // Home Solitaire collection
+  // Home Solitaire/Jewellery collection
   .home-scl,
   .home-jcl {
     padding: 60px 0;
@@ -499,7 +629,6 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     }
   }
   // Shop Loose Diamond section
-
   .home-sld {
     padding: 55px 0;    
       .shop-loose-diamond2-slider-top-row{
@@ -519,6 +648,9 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
       .shop-loose-diamond2-slider {
         position: relative;
         padding: 0 50px;
+        @media screen and (max-width: $md) {
+          padding: 0 30px;
+        }
         .slick-arrow{
           width: 25px;
           height: 60px;
@@ -532,6 +664,18 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
           transform: translateY(-50%);
           &:before{
             display: none;
+          }
+          &.slick-prev{
+            @media screen and (max-width: $md) {
+              background-size: 15px;
+              left: 2px;  
+            }            
+          }
+          &.slick-next{
+            @media screen and (max-width: $md) {
+              background-size: 15px;
+              right: 2px;
+            }
           }
         }
         .shop-loose-diamond2-slide{
@@ -573,9 +717,149 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
         }
       }
   }
-  footer{
-    a{
-      color: $textcolor-phanton;
+
+  .site-footer{
+    margin-top: 0px;
+    .footer-bottom-logo {
+      text-align: center;
+      padding-bottom: 50px;
+      border-bottom: 1px solid $textcolor-phanton;
+    }
+    .site-footer__content{
+      padding-top: 50px;
+      .site-footer__item{
+        &.site-footer__item--one-half{
+          &[data-content="link_list"] {
+            flex: 1 1 66.666%;
+            .site-footer__item-inner--link_list{
+              display: block;
+              width: 100%;
+              .site-footer__linklist {
+                  display: flex;
+                  justify-content: space-between;
+                  .site-footer__linklist-item {
+                    @include heading-fonts();
+                    @include base-font-size();
+                    font-weight: 600;
+                    display: block;
+                    a {
+                      color: $textcolor-phanton;
+                    }
+                    .site-footer__sub-linklist{
+                      padding-top: 30px;
+                      .site-footer__sub-linklist-item {
+                        @include base-font();
+                        margin-bottom: 8px;
+                        a{
+                          color: $textcolor-black;
+                        }
+                      }
+                    }
+                  }
+              }
+
+            }
+          }
+          &[data-content="newsletter"] {
+            flex: 1 1 33.333%;
+            justify-content: flex-end;
+            .site-footer__item-inner--newsletter{
+              max-width: 380px;
+              .h4 {
+                @include heading-fonts();
+                @include base-font-size();
+                font-weight: 600;
+                display: block;
+                color: $textcolor-phanton;
+              }
+              .footer-social__icns {
+                display: flex;
+                padding-top: 20px;
+                .footer-social-icns-label {
+                  flex: 1 1 31%;
+                  min-width: 78px;
+                  max-width: 78px;
+                  & > span {
+                    text-transform: uppercase;
+                    font-size: 14px;
+                    color:$textcolor-phanton;
+                    display: block;
+                    text-align: right;
+                    &.small-text{
+                      font-size: $small-text;
+                      text-transform: none;
+                    }
+                  }
+                }
+                .site-footer__social-icons{
+                  flex: 1 1 69%;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  padding-left: 15px;
+                  .social-icons__item {
+                    padding: 0px;
+                    .social-icons__link {
+                      width: 40px;
+                      height: 40px;
+                      background: #E0E0E0;
+                      border-radius: 50%;
+                      position: relative;
+                      text-align: center;
+                      .icon {
+                          width: 18px;
+                          height: 18px;
+                          position: absolute;
+                          top: 50%;
+                          left: 50%;
+                          @include prefix-transform-translate();
+                          color: $textcolor-phanton;
+                      }
+                    }
+                  }
+                }
+              }              
+            }
+          }
+        }
+      }
+    }
+    .footer-form__entrepreneur {
+      background: #E0E0E0;
+      padding: 17px 0;
+      .ffe-content-wrapper {
+        max-width: 991px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        .ffe-label,
+        .ffe-form-wrapper {
+          flex: 50%;
+        }
+        .ffe-form-wrapper {
+          .input-group__field{
+            margin-bottom: 0px;
+          }
+        }
+      }
+    }
+    .footer-bottom__nav {
+      text-align: center;
+      padding: 30px 0;
+      .footer_bottom__nav--list-items {
+        display: flex;
+        justify-content: center;
+        .footer_bottom__nav--list-item {
+          padding: 0 70px;
+          font-size: 14px;
+          @include base-font();
+          color: $textcolor-black;
+          a{
+            color: $textcolor-black;
+          }
+        }
+      }
     }
   }
   

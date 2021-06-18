@@ -23,7 +23,7 @@
             <div class="slide-overlay {% if contentPos == 'right' %} content-right {% else %} content-left{% endif %}" {% if contentClr != blank %}style="color: {{ contentClr }}"{% endif %}>
                 {%- if heading != blank -%}<div class="slide-overaly-heading">{{ heading }}</div>{%- endif -%}
                 {%- if subheading != blank -%}<div class="slide-overaly-subheading">{{ subheading }}</div>{%- endif -%}
-            {%- if linktext != blank -%}<a class="slide-overlay-link" href="{{ linkurl }}" aria-label=" {{ linktext }}" {% if contentLinkClr != blank %} style="color: {{ contentLinkClr }}" {% endif %}> {{ linktext }}</a>{%- endif -%}
+            {%- if linktext != blank -%}<a class="slide-overlay-link glb-btn" href="{{ linkurl }}" aria-label=" {{ linktext }}" {% if contentLinkClr != blank %} style="color: {{ contentLinkClr }}" {% endif %}> {{ linktext }}</a>{%- endif -%}
             </div>
             {% endif %}
         </div>
@@ -47,7 +47,7 @@
     <div class="slide-overlay {% if contentPos == 'right' %} content-right {% else %} content-left{% endif %}" {% if contentClr != blank %}style="color: {{ contentClr }}"{% endif %}>
         {%- if heading != blank -%}<div class="slide-overaly-heading">{{ heading }}</div>{%- endif -%}
         {%- if subheading != blank -%}<div class="slide-overaly-subheading">{{ subheading }}</div>{%- endif -%}
-        {%- if linktext != blank -%}<a class="slide-overlay-link" href="{{ linkurl }}" aria-label=" {{ linktext }}" {% if contentLinkClr != blank %} style="color: {{ contentLinkClr }}" {% endif %}> {{ linktext }}</a>{%- endif -%}
+        {%- if linktext != blank -%}<a class="slide-overlay-link glb-btn" href="{{ linkurl }}" aria-label=" {{ linktext }}" {% if contentLinkClr != blank %} style="color: {{ contentLinkClr }}" {% endif %}> {{ linktext }}</a>{%- endif -%}
     </div>
     {% endif %}
     </div>
