@@ -4,6 +4,7 @@
         <div class="collection-slider">
             {%- for slide in section.blocks -%}
             {% assign collection = collections[slide.settings.select_collection] %}
+            {%- if collection != blank -%}
             <div class="collection-slide">
                 <div class="collection-card">
                     {%- if collection.featured_image !=blank -%}
@@ -20,6 +21,7 @@
                     {%- endif -%}
                 </div>
             </div>
+            {%- endif -%}
             {%- endfor -%}
         </div>
         {%- if section.settings.button_text -%}
