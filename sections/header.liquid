@@ -341,6 +341,11 @@
       "default": "main-menu"
     },
     {
+      "type": "checkbox",
+      "id": "enable_megamenu",
+      "label": "Enable megamenu"
+    },
+    {
       "type": "header",
       "content": "Announcement bar"
     },
@@ -380,6 +385,60 @@
       "label": "Text",
       "default": "#ffffff"
     }
-  ]
+  ],
+  "blocks": [
+        {
+            "type": "linklist",
+            "name": "Meganav",
+            "settings": [
+            {
+              "type": "text",
+              "id": "meganav_parent",
+              "label": "Item menu"
+            },
+            {
+              "type": "text",
+              "id": "subnav_title_1",
+              "label": "Subnav heading"
+            },
+            {
+              "type": "url",
+              "id": "subnav_title_link_1",
+              "label": "Subnav heading link"
+            },
+            {
+              "type": "image_picker",
+              "id": "subnav_img_1",
+              "label": "Subnav Featured Image"
+            },
+            {
+              "type": "link_list",
+              "id": "subnav_list_1",
+              "label": "Select subnav"
+            },
+            {
+              "type": "text",
+              "id": "subnav_title_2",
+              "label": "Subnav heading"
+            },
+            {
+              "type": "url",
+              "id": "subnav_title_link_2",
+              "label": "Subnav heading link"
+            },
+            {
+              "type": "image_picker",
+              "id": "subnav_img_2",
+              "label": "Subnav Featured Image"
+            },
+            {
+              "type": "link_list",
+              "id": "subnav_list_2",
+              "label": "Select subnav"
+            }
+                            
+            ]
+        }
+    ]
 }
 {% endschema %}

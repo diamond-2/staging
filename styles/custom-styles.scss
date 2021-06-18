@@ -255,10 +255,24 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   // Header Styling
   .announcement-bar {
     background-color: transparent!important;
+    height: auto;
+    transition: height 0.5s ease-in-out;
     .announcement-bar__message {
       color:$textcolor-black;
     }
   }
+#shopify-section-header{
+  &.header-bg{
+    .announcement-bar{
+      height: 0px;
+      padding: 0px;
+      border: none;
+      .announcement-bar__message {
+        font-size: 0px;
+      }
+    }
+  }
+}
 .site-header{
   .site-header__mobile-nav{
     position: initial;
@@ -278,6 +292,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     }
   }
 }
+
   #AccessibleNav {
     padding-left: 20px;
     .site-nav {
@@ -290,10 +305,16 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
           padding-right: 0;
           position: relative;
           .site-nav__childlist-grid {
-            .site-nav__childlist-item{
+            .site-nav__childlist-item {
               .site-nav__link{
                 padding-left:10px;
                 padding-right: 10px;
+                .site-nav__link {
+                  .site-nav__label {
+                    white-space: normal;
+                    border-bottom: none i !important;
+                  }
+                }
               }
             }
             li#nav-img-block {
@@ -304,8 +325,6 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
               background: #ffffff;
               top: 10px;
               text-align: center;
-              /* display: flex; */
-              /* justify-content: center; */
               img.navItemsThumb {
                 position: absolute;
                 width: 100%;
@@ -316,14 +335,23 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
                 transform: translate(-50%,-50%);
             }
           }
+          .site-nav__childlist--group{
+              .site-nav__childlist-item{
+                ul {
+                  &.site-nav__childlist--split-2-columns{
+                    // column-count: 2;
+                    display: flex;
+                    flex-direction: column;
+                    max-height: 230px;
+                    flex-wrap: wrap;
+                    width: 230px;
+                    li {
+                      max-width: 110px;
+                    }
+                  }
+                }
+              }
           }
-          .nav-image-wrapper {
-            // position: absolute;
-            // right: 0px;
-            // width: 300px;
-            // height: 300px;
-            // top: 50%;
-            // @include prefix-transform-translateY();
           }
         }
       }

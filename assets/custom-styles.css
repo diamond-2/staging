@@ -59,9 +59,18 @@
     display: none !important; } }
 
 .announcement-bar {
-  background-color: transparent !important; }
+  background-color: transparent !important;
+  height: auto;
+  transition: height 0.5s ease-in-out; }
   .announcement-bar .announcement-bar__message {
     color: #000000; }
+
+#shopify-section-header.header-bg .announcement-bar {
+  height: 0px;
+  padding: 0px;
+  border: none; }
+  #shopify-section-header.header-bg .announcement-bar .announcement-bar__message {
+    font-size: 0px; }
 
 .site-header .site-header__mobile-nav {
   position: initial; }
@@ -86,6 +95,9 @@
       #AccessibleNav .site-nav .site-nav__dropdown .site-nav__childlist .site-nav__childlist-grid .site-nav__childlist-item .site-nav__link {
         padding-left: 10px;
         padding-right: 10px; }
+        #AccessibleNav .site-nav .site-nav__dropdown .site-nav__childlist .site-nav__childlist-grid .site-nav__childlist-item .site-nav__link .site-nav__link .site-nav__label {
+          white-space: normal;
+          border-bottom: none i !important; }
       #AccessibleNav .site-nav .site-nav__dropdown .site-nav__childlist .site-nav__childlist-grid li#nav-img-block {
         position: absolute;
         width: 300px;
@@ -93,9 +105,7 @@
         right: -250px;
         background: #ffffff;
         top: 10px;
-        text-align: center;
-        /* display: flex; */
-        /* justify-content: center; */ }
+        text-align: center; }
         #AccessibleNav .site-nav .site-nav__dropdown .site-nav__childlist .site-nav__childlist-grid li#nav-img-block img.navItemsThumb {
           position: absolute;
           width: 100%;
@@ -104,6 +114,14 @@
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%); }
+      #AccessibleNav .site-nav .site-nav__dropdown .site-nav__childlist .site-nav__childlist-grid .site-nav__childlist--group .site-nav__childlist-item ul.site-nav__childlist--split-2-columns {
+        display: flex;
+        flex-direction: column;
+        max-height: 230px;
+        flex-wrap: wrap;
+        width: 230px; }
+        #AccessibleNav .site-nav .site-nav__dropdown .site-nav__childlist .site-nav__childlist-grid .site-nav__childlist--group .site-nav__childlist-item ul.site-nav__childlist--split-2-columns li {
+          max-width: 110px; }
 
 #shopify-section-landing {
   position: fixed;
