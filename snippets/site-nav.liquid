@@ -29,6 +29,7 @@
 
         <div class="site-nav__dropdown{% if three_level_nav %} site-nav__dropdown--centered{% endif %} critical-hidden" id="SiteNavLabel-{{ child_list_handle }}">
           {% if three_level_nav %}
+          <div class="dia-container">
             <div class="site-nav__childlist">
               <ul class="site-nav__childlist-grid">
                 {% if link.links != blank %}
@@ -45,7 +46,14 @@
                         <ul>
                         {% for grandchildlink in childlink.links %}
                           <li>
-                            <a href="{{ grandchildlink.url }}"
+                            {% if grandchildlink.url contains 'collection' %}
+                              {% assign handle = grandchildlink.url | replace: '/collections/', '' %}
+                            {% elsif grandchildlink.url contains 'page' %}
+                            {% assign handle = grandchildlink.url | replace: '/pages/', '' %}
+                            {% else %}
+                            {% endif %}
+                            {% assign collectionImg = collections[handle].image.src %}
+                            <a {% if collectionImg != blank %}data-handle="{{ collectionImg | img_url: 'medium' }}"{% endif %} href="{{ grandchildlink.url }}"
                             class="site-nav__link site-nav__child-link"
                             {% if grandchildlink.current %} aria-current="page"{% endif %}
                           >
@@ -58,10 +66,13 @@
 
                     </li>
                   {% endfor %}
+                  {% assign collection = collections.solitaire-rings %}
+                  
+                  <li id="nav-img-block" class="nav-image-wrapper"><img class="navItemsThumb lazyload" src="{{ collection.image.src | img_url: 'small' }}" alt="{{ collection.title | escape }}" /></li>
                 {% endif %}
               </ul>
             </div>
-
+          </div>
           {% else %}
             <ul>
               {% for childlink in link.links %}

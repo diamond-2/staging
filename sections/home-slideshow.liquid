@@ -58,7 +58,8 @@
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function(event) {
-    $('.home--slider .slider-{{ section.id }} [data-slider]').slick({
+        var mainSlider = $('.home--slider .slider-{{ section.id }} [data-slider]')
+        mainSlider.slick({
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -74,7 +75,20 @@
                 }
             }
         ]
-    });
+    }).on('afterChange', function(event, slick, currentSlide, nextSlide){
+        var vids = mainSlider.find('.slide-item.slick-current[data-slick-index="'+currentSlide+'"] video');
+        if(vids.length > 0){
+            vids[0].pause();
+            vids[0].currentTime = 0;
+            // vids[0].play();
+        }
+        })
+        .on('beforeChange', function(event, slick, currentSlide, nextSlide){
+        var vids = mainSlider.find('.slide-item.slick-current[data-slick-index="'+currentSlide+'"] video');
+        if(vids.length > 0){
+            vids[0].pause();
+        }
+        });
 });
 </script>
 {% schema %}

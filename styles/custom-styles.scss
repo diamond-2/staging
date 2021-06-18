@@ -222,6 +222,84 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   .mobile_hide {
     @include mobile_hide();
   }
+  // Header Styling
+  .announcement-bar {
+    background-color: transparent!important;
+    .announcement-bar__message {
+      color:$textcolor-black;
+    }
+  }
+.site-header{
+  .site-header__mobile-nav{
+    position: initial;
+    #SiteNav{
+      position: initial;
+      .site-nav--active{
+        .site-nav__label {
+          border-bottom: none;
+        }
+      }
+    }
+    .site-header__icons {
+      .site-header__icon {
+        padding: 10px 11px;
+        margin: 0 17px;
+      }
+    }
+  }
+}
+  #AccessibleNav {
+    padding-left: 20px;
+    .site-nav {
+      text-align: left;
+      .site-nav__dropdown {
+        .site-nav__childlist{
+          width: 50%;
+          margin: 0 auto;
+          padding-left: 0;
+          padding-right: 0;
+          position: relative;
+          .site-nav__childlist-grid {
+            .site-nav__childlist-item{
+              .site-nav__link{
+                padding-left:10px;
+                padding-right: 10px;
+              }
+            }
+            li#nav-img-block {
+              position: absolute;
+              width: 300px;
+              height: 300px;
+              right: -250px;
+              background: #ffffff;
+              top: 10px;
+              text-align: center;
+              /* display: flex; */
+              /* justify-content: center; */
+              img.navItemsThumb {
+                position: absolute;
+                width: 100%;
+                max-width: 90%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+            }
+          }
+          }
+          .nav-image-wrapper {
+            // position: absolute;
+            // right: 0px;
+            // width: 300px;
+            // height: 300px;
+            // top: 50%;
+            // @include prefix-transform-translateY();
+          }
+        }
+      }
+    }
+  }
+
 
   // Landing Page 
   #shopify-section-landing {
