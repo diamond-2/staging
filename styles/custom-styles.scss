@@ -865,32 +865,6 @@ body[data-template="know-your-diamond"] {
   }
 }
 
-// Responsive
-
-@media(min-width: $siteWidth) {
-  body[data-template="know-your-diamond"] {
-    .home--slider {
-      .homepage-slider-wrapper {
-        img, video {
-          max-height: 100%;
-          height: 970px;
-        }
-      }
-    }
-  }
-}
-
-@media(min-width: $postMd) {
-  .show_mobile {
-      display: none !important;
-  }
-}
-@media(max-width: $md) {
-  .hide_mobile {
-      display: none !important;
-  }
-}
-
 .custom-video-holder {
   position: relative;
   overflow: hidden;
@@ -904,6 +878,144 @@ body[data-template="know-your-diamond"] {
     right: 0;
   }
 }
+.collection-slider-wrapper {
+  padding-bottom: 100px;
+  .collection-slider-bottom-btn-holder {
+    text-align: center;
+    padding-top: 50px;
+  }
+}
+.collection-slider {
+  padding: 0 30px;
+  .slick-list {
+    margin: 0 -10px;
+  }
+  .collection-card {
+    text-align: center;
+    margin: 0 10px;
+    .collection-image-holder {
+      background: #f1f1f1;
+    }
+    .collection-image-title {
+      margin-top: 30px;
+      font-size: 18px;
+      line-height: 19.44px;
+      font-family: Montserrat;
+      text-transform: uppercase;
+      a {
+        color: #6C1D45;
+        text-decoration: underline;
+        &:hover {
+          color: #000;
+        }
+      }
+    }
+  }
+  .slick-arrow {
+    z-index: 2;
+    width: 25px;
+    height: 59px;
+    margin-top: -23px;
+    &:before {
+      content: none;
+    }
+    &:after {
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: 300;
+      font-size: 50px;
+      line-height: 59px;
+      text-align: center;
+      letter-spacing: 0.02em;
+      text-transform: capitalize;
+      color: #6C1D45;
+    }
+  }
+  .slick-prev.slick-arrow:after {
+    content: "<";
+  }
+  .slick-next.slick-arrow:after {
+    content: ">";
+  }
+}
+
+// Responsive
+
+// min 1920
+@media(min-width: $siteWidth) {}
+
+// min 750
+@media(min-width: $postMd) {
+  .show_mobile {
+      display: none !important;
+  }
+}
+
+// max-1600 min-750
+@media(max-width: $xxl) and (min-width: $postMd) {
+  body[data-template=know-your-diamond] {
+    .main-content {
+      p {
+        font-size: 16px;
+        line-height: 1.8;
+      }
+    }
+  }
+  .why-diamond2-section,
+  .ethically-produced-section,
+  .trust-for-life-section,
+  .content-with-image-diamond-section-wrapper {
+    padding-top:50px;
+    padding-bottom:50px;
+  }
+  .content-with-image-diamond-section-wrapper {
+    .content-with-image-diamond-section-row:not(:last-child) {
+      margin-bottom: 50px;
+    }
+  }
+  .image_col_size_large {
+    .content-with-image-diamond-row {
+      .content-with-image-diamond-image-column {
+        width: 55%;
+      }
+      .content-with-image-diamond-content-column {
+        width: 45%;
+        h2 {
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+  .content-with-image-diamond-row {
+    .content-with-image-diamond-content-column {
+      p:not(:last-child) {
+        margin-bottom: 20px;
+      }
+    }
+  }
+  .content-with-image-diamond-content-column {
+    h2 {
+      margin-bottom: 20px;
+    }
+    .content_holder {
+      padding-left:0 !important;
+      padding-right:0 !important;
+    }
+  }
+  .glb-btn {
+      font-size: 16px;
+      line-height: 1.8;
+      padding: 10px 25px;
+  }
+}
+
+// max 749
+@media(max-width: $md) {
+  .hide_mobile {
+      display: none !important;
+  }
+}
+
 
 
 // End Know More Diamond Page
