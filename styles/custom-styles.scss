@@ -252,6 +252,112 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   .mobile_hide {
     @include mobile_hide();
   }
+  // Header Styling
+  .announcement-bar {
+    background-color: transparent!important;
+    height: auto;
+    transition: height 0.5s ease-in-out;
+    .announcement-bar__message {
+      color:$textcolor-black;
+    }
+  }
+#shopify-section-header{
+  &.header-bg{
+    .announcement-bar{
+      height: 0px;
+      padding: 0px;
+      border: none;
+      .announcement-bar__message {
+        font-size: 0px;
+      }
+    }
+  }
+}
+.site-header{
+  .site-header__mobile-nav{
+    position: initial;
+    #SiteNav{
+      position: initial;
+      .site-nav--active{
+        .site-nav__label {
+          border-bottom: none;
+        }
+      }
+    }
+    .site-header__icons {
+      .site-header__icon {
+        padding: 10px 11px;
+        margin: 0 17px;
+      }
+    }
+  }
+}
+
+  #AccessibleNav {
+    padding-left: 20px;
+    .site-nav {
+      text-align: left;
+      .site-nav__dropdown {
+        .site-nav__childlist{
+          width: 50%;
+          margin: 0 auto;
+          padding-left: 0;
+          padding-right: 0;
+          position: relative;
+          .site-nav__childlist-grid {
+            .site-nav__childlist-item {
+              .site-nav__link{
+                padding-left:10px;
+                padding-right: 10px;
+                .site-nav__link {
+                  .site-nav__label {
+                    white-space: normal;
+                    border-bottom: none i !important;
+                  }
+                }
+              }
+            }
+            li#nav-img-block {
+              position: absolute;
+              width: 300px;
+              height: 300px;
+              right: -250px;
+              background: #ffffff;
+              top: 10px;
+              text-align: center;
+              img.navItemsThumb {
+                position: absolute;
+                width: 100%;
+                max-width: 90%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+            }
+          }
+          .site-nav__childlist--group{
+              .site-nav__childlist-item{
+                ul {
+                  &.site-nav__childlist--split-2-columns{
+                    // column-count: 2;
+                    display: flex;
+                    flex-direction: column;
+                    max-height: 230px;
+                    flex-wrap: wrap;
+                    width: 230px;
+                    li {
+                      max-width: 110px;
+                    }
+                  }
+                }
+              }
+          }
+          }
+        }
+      }
+    }
+  }
+
 
   // Landing Page 
   #shopify-section-landing {

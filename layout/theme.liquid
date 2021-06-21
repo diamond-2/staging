@@ -194,7 +194,9 @@
 </head>
 <body class="template-{{ request.page_type | handle }} {% if template == 'index'%} overflow-hidden {% endif %}" data-template="{{ template | | replace: 'page.', '' }}">
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
-  {% section 'landing' %}
+  {% if template == 'index' %}
+    {% section 'landing' %}
+  {% endif %}
   {%- if settings.enable_ajax -%}
     {% include 'cart-popup' %}
   {%- endif -%}

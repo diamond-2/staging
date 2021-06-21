@@ -2968,7 +2968,7 @@ theme.Header = (function() {
           selectors.siteNavCenteredDropdown
         );
 
-        var fullWidthDropdownOffset = el.offsetTop + 41;
+        var fullWidthDropdownOffset = el.offsetTop + 71; console.log(el.offsetTop);
         fullWidthDropdown.style.top = fullWidthDropdownOffset + 'px';
       });
   }
@@ -9698,9 +9698,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
     navigation: true,
     infinite: true
   });
+  // Change header background on window scroll Event
+  // Dom Load
   let initwindowScrolled = $(window).scrollTop();
   fixedHeaderBg(initwindowScrolled);
 
+  // On scroll
   $(window).on('scroll', function(){
     let windowScrolled = $(window).scrollTop();
     fixedHeaderBg(windowScrolled);    
@@ -9713,6 +9716,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
       $(this).parent().siblings().removeClass('menu_down');
       $(this).parent().siblings().children('.site-footer__sub-linklist').slideUp(250);
   });
+
+  // HeaderNav image change on mouseenter event
+
+  $(document).on('mouseenter', '.site-nav__childlist-item .site-nav__link', function(){
+    let handle = $(this).data('handle'); console.log(handle);
+    handle != undefined ? $(document).find('#nav-img-block img').attr('src', handle).fadeIn():$(document).find('#nav-img-block img').fadeOut();
+
+  })
 });
 
 function fixedHeaderBg(scrollPosition) {
