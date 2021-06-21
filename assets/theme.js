@@ -3098,6 +3098,7 @@ theme.MobileNav = (function() {
 
   function cacheSelectors() {
     cache = {
+      bodyClass: document.querySelector('body'),
       pageContainer: document.querySelector('#PageContainer'),
       siteHeader: document.querySelector('.site-header'),
       mobileNavToggle: document.querySelector('.js-mobile-nav-toggle'),
@@ -3113,6 +3114,8 @@ theme.MobileNav = (function() {
 
     theme.Helpers.prepareTransition(cache.mobileNavContainer);
     cache.mobileNavContainer.classList.add(classes.navOpen);
+    cache.pageContainer.classList.add(classes.navOpen);
+    cache.bodyClass.classList.add(classes.navOpen)
 
     cache.mobileNavContainer.style.transform =
       'translateY(' + translateHeaderHeight + 'px)';
@@ -3141,6 +3144,8 @@ theme.MobileNav = (function() {
   function closeMobileNav() {
     theme.Helpers.prepareTransition(cache.mobileNavContainer);
     cache.mobileNavContainer.classList.remove(classes.navOpen);
+    cache.pageContainer.classList.remove(classes.navOpen);
+    cache.bodyClass.classList.remove(classes.navOpen)
     cache.mobileNavContainer.style.transform = 'translateY(-100%)';
     cache.pageContainer.setAttribute('style', '');
 
@@ -9703,11 +9708,31 @@ document.addEventListener('DOMContentLoaded', function(event) {
   let initwindowScrolled = $(window).scrollTop();
   fixedHeaderBg(initwindowScrolled);
 
+  // readystate update Navigation
+  let navHeight = $('#SiteNav').innerHeight(); console.log (navHeight);
+    if(navHeight > 30){
+      $('#shopify-section-header').addClass('mobile__nav--show')
+    }else {
+      $('#shopify-section-header').removeClass('mobile__nav--show')
+    }
+
   // On scroll
   $(window).on('scroll', function(){
     let windowScrolled = $(window).scrollTop();
     fixedHeaderBg(windowScrolled);    
   });
+
+  // onResize update Navigation
+  $(window).on('resize', function(){
+      let navHeight = $('#SiteNav').innerHeight(); console.log (navHeight);
+      if(navHeight > 30){
+        $('#shopify-section-header').addClass('mobile__nav--show')
+      }else {
+        $('#shopify-section-header').removeClass('mobile__nav--show')
+      }
+  })
+
+
   
   $('.site-footer__item-inner .site-footer__linklist > li > a').after('<div class="footer-menu-Childtrigger"></div>');
   $('.footer-menu-Childtrigger').click(function(){
@@ -9726,6 +9751,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
   })
 });
 
+var showMobileNav = false;
 function fixedHeaderBg(scrollPosition) {
   if(scrollPosition > 10) {
     $('#shopify-section-header').addClass('header-bg')
