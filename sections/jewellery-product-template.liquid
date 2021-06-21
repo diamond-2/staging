@@ -57,15 +57,17 @@
                     </ul>
                 </div>
                 <div class="product-single__meta">
-
+                    {%- assign current_variant = product.selected_or_first_available_variant -%}
                     <h1 class="product-single__title">{{ product.title }}</h1>
-                    <script>window.performance.mark('debut:product:title_visible');</script>
-
-                    <div class="product__price">
-                        {% include 'product-price', variant: current_variant, show_vendor: section.settings.show_vendor
-                        %}
+                    <div class="product-sku-wrapper">
+                        <div class="p_sku">SKU: {{ current_variant.sku }}</div>
+                        <div class="p_weight_guide"><a href="javascript:void(0);">Carat Weight Guide</a></div>
                     </div>
-
+                    <div class="product-wishlist">
+                        <div class="wishlist-icon"><img src="{{ 'Vector.png' | asset_url }}"  alt="SAVE TO WISHLIST"></div>
+                        <div class="wishlist-text">SAVE TO WISHLIST</div>
+                    </div>
+                   
                     {%- if cart.taxes_included or shop.shipping_policy.body != blank -%}
                     <div class="product__policies rte" data-product-policies>
                         {%- if cart.taxes_included -%}
@@ -91,17 +93,35 @@
                     <div class="product-form__controls-group">
                         {% for option in product.options_with_values %}
                         <div class="selector-wrapper js product-form__item">
-                            <label for="SingleOptionSelector-{{ forloop.index0 }}">
-                                {{ option.name }}
-                            </label>
-                            <select
-                                class="single-option-selector single-option-selector-{{ section.id }} product-form__input"
-                                id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
-                                {% for value in option.values %}
-                                <option value="{{ value | escape }}" {% if option.selected_value==value %}
-                                    selected="selected" {% endif %}>{{ value }}</option>
-                                {% endfor %}
-                            </select>
+                            {% assign indexVal = forloop.index %}
+
+                            {% if option.name =='Color' %}
+                            <label>Select {{ option.name }}</label>
+                            {% for value in option.values %}
+                            <div class="custom-checkbox">
+                                <input class="single-option-selector-{{ section.id }}" id="color-{{ forloop.index }}" type="radio" value="{{ value | escape }}"  data-index="option{{ indexVal }}" name="color" {% if option.selected_value==value %}checked{% endif %}>
+                                <label for="color-{{ forloop.index }}">{{ value }}</label>
+                            </div>
+                            {% endfor %}
+
+                            {% else %}
+                            <div class="custom-select-holder">
+                                <label for="SingleOptionSelector-{{ forloop.index0 }}">
+                                    Select {{ option.name }}
+                                </label>
+                                <select
+                                    class="single-option-selector single-option-selector-{{ section.id }} product-form__input"
+                                    id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
+                                    {% for value in option.values %}
+                                    <option value="{{ value | escape }}" {% if option.selected_value==value %}
+                                        selected="selected" {% endif %}>{{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            {% if option.name =='Size' %}
+                            <div class="ring-size-chart"><a href="javascript:void(0;">Ring Size Guide</a></div>
+                            {% endif %}
+                            {% endif %}
                         </div>
                         {% endfor %}
                     </div>
@@ -145,6 +165,12 @@
                                 aria-label="{% unless current_variant.available %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endunless %}"
                                 class="btn product-form__cart-submit{% if section.settings.enable_payment_button and product.selling_plan_groups == empty %} btn--secondary-accent{% endif %}"
                                 {% if settings.enable_ajax %}aria-haspopup="dialog" {% endif %} data-add-to-cart>
+
+                                <div class="product__price">
+                                    {% include 'product-price', variant: current_variant, show_vendor: section.settings.show_vendor
+                                    %}
+                                </div>
+
                                 <span data-add-to-cart-text>
                                     {% unless current_variant.available %}
                                     {{ 'products.product.sold_out' | t }}
@@ -162,6 +188,7 @@
                         </div>
                     </div>
                     {% endform %}
+
                 </div>
 
                 {%- comment -%}
@@ -207,6 +234,7 @@
     $('.product-detail-slider-thumbnail').slick({
         slidesToShow: 5,
         slidesToScroll: 1,
+        vertical:true,
         asNavFor: '.product-detail-slider',
         dots: false,
         focusOnSelect: true,

@@ -1471,6 +1471,14 @@ body[data-template="product"] .main-content {
     width: calc(100% - 216px); }
     .product-detail-slider-wrapper .product-detail-slider-holder .product-detail-slider {
       border: 1px solid #E0E0E0; }
+      .product-detail-slider-wrapper .product-detail-slider-holder .product-detail-slider .product-detail-slide-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+        .product-detail-slider-wrapper .product-detail-slider-holder .product-detail-slider .product-detail-slide-inner img {
+          display: block;
+          width: 600px;
+          margin: 0 auto; }
 
 .product-section-row {
   display: flex;
@@ -1503,6 +1511,36 @@ body[data-template="product"] .main-content {
     .product-detail-breadcrumb ul li:not(:last-child):after {
       content: "/";
       margin: 0 3px; }
+
+.product-sku-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 16px -10px 19px;
+  font-size: 13px;
+  line-height: 15.85px; }
+  .product-sku-wrapper > div {
+    min-height: 1px;
+    width: 50%;
+    padding: 0 10px; }
+  .product-sku-wrapper .p_weight_guide {
+    text-align: right;
+    text-transform: uppercase; }
+    .product-sku-wrapper .p_weight_guide a {
+      text-decoration: underline; }
+
+.product-wishlist {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  line-height: 15.85px; }
+  .product-wishlist .wishlist-icon {
+    margin-right: 10px; }
+    .product-wishlist .wishlist-icon img {
+      vertical-align: top; }
+
+.product-form__controls-group .product-form__item {
+  width: 100%;
+  flex-basis: 100%; }
 
 /*============ Jewellay Pdp End ============*/
 @media (min-width: 750px) {
