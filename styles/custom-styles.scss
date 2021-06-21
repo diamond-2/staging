@@ -92,16 +92,7 @@ $input-field-border-color:#6679CC;
     -o-border-radius: 50%;
     border-radius: 50%;
   }
-  @mixin global-button() {
-    display: inline-block;
-    background:$color-primary;
-    border: 1px solid $color-primary;
-    color: $textcolor-white;
-    padding: 22px 32px;
-    font-size: 22px;
-    line-height: 23.76px;
-    @include smooth-transition();
-  }
+ 
 
   /*============================================================================
 #Breakpoint
@@ -223,9 +214,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
 /*==============================================================================
 #Common Classes and Styles
 =================================================================================*/
-.glb-btn {
-  @include global-button();
-}
+
 .dia-container{
   @include content-container();
   margin: 0 auto;
@@ -441,8 +430,8 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
                   background: rgba(255,255,255,.35);
                   border: 1px solid transparent;
                   @include bdr-radius50();
-                  left: 4px;
-                  top: 4px;
+                  left: 4.5px;
+                  top: 4.5px;
                   transition: 0.5s ease-out;
                   -webkit-transform: translateY(0px);
                   -moz-transform: translateY(0px);
@@ -494,9 +483,22 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
         -o-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
         transform: translateY(-50%);
+        background-size: 50px;
+        background-position: center;
+        background-repeat: no-repeat;
+        @media(max-width: $lg) {
+          background-size: 25px;
+        }
+        &.slick-prev {
+          left: 50px;
+        }
+        &.slick-next {
+          right: 50px;
+        }
         &::before {
           content: '';
         }
+        
       }
       img,video {
           width: 100%;
@@ -540,7 +542,6 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
             }
           }
           .slide-overlay-link {
-            display: block;
             margin-top: 60px;
             font-weight: 500;
             text-transform: uppercase;
@@ -708,6 +709,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
           position: relative;
           overflow: hidden;
           background-color: #f1f1f3;
+
           .content-box {
             position: absolute;
             width: 100%;
@@ -764,6 +766,12 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
             -ms-transform: translateY(-50%);
             -o-transform: translateY(-50%);
             transform: translateY(-50%);
+            @media(max-width: $lg) and (min-width: $postMd) {
+              max-width: 132px;
+            }
+            @media (max-width: $md) {
+              max-width: 105px;
+            }
           }
         }
       }
@@ -771,7 +779,10 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   }
   // Shop Loose Diamond section
   .home-sld {
-    padding: 55px 0;    
+    padding: 55px 0;   
+    @media(max-width: $md) {
+      padding: 50px 0;
+    } 
       .shop-loose-diamond2-slider-top-row{
         color: $textcolor-black;
         max-width: 580px;
@@ -853,9 +864,6 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
       .sld-collection-link {
         text-align: center;
         padding: 60px 0px 0px;
-        a{
-          color: $textcolor-black;
-        }
       }
   }
 
@@ -1258,15 +1266,16 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
 
 @mixin globalBtn() {
   display: inline-block;
-  background: #6679CC;
-  border: 1px solid #6679CC;
+  background: $color-primary;
+  border: 1px solid $color-primary;
   box-sizing: border-box;
-  color: #fff;
+  color: $textcolor-white;
   padding: 22px 32px;
   font-size: 22px;
   line-height: 23.76px;
+  @include smooth-transition();
   &:hover, &:focus {
-    color: #6679CC !important;
+    color: $color-primary;
     border-color:currentColor;
     background:transparent;
   }
@@ -1452,6 +1461,9 @@ body[data-template="know-your-diamond"] {
     justify-content: space-between;
     p:not(:last-child) {
       margin-bottom: 39px;
+      @media(max-width: $md) {
+        margin-bottom: 15px;
+      }
     }
     .content_holder {
       padding-right: 40px;
@@ -1671,6 +1683,7 @@ body[data-template="know-your-diamond"] {
   padding-bottom: 100px;
   @media(max-width: $md) {
     padding-bottom: 50px;
+    padding-top:0;
   }
   .collection-slider-bottom-btn-holder {
     text-align: center;
