@@ -2,6 +2,7 @@
 /*base font family*/
 $content-container: 1720px;
 $background-blue: #89A1C0;
+$background-white: #ffffff;
 $textcolor-black: #000000;
 $textcolor-white: #ffffff;
 $textcolor-phanton: #6C1D45;
@@ -11,7 +12,6 @@ $glbFontFamily: Montserrat;
 $glbFontSize: 26px;
 $glbLineHeight: 28.08px;
 $small-container: 1455px;
-
 $input-field-background:#fff;
 $input-field-border-color:#6679CC;
 
@@ -36,8 +36,6 @@ $input-field-border-color:#6679CC;
   padding: 9px 32px;
 }
 
-
-
 @mixin base-font(){
   font-family: 'Montserrat', sans-serif;
   font-weight:normal;
@@ -54,21 +52,23 @@ $input-field-border-color:#6679CC;
     -o-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-  }
-  @mixin prefix-transform-translateY() {
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-  }
-  @mixin prefix-transform-translateX() {
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
-  }
+}
+
+@mixin prefix-transform-translateY() {
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@mixin prefix-transform-translateX() {
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
 
   @mixin smooth-transition() {
     transition:         0.05s ease-in-out;
@@ -111,6 +111,7 @@ $input-field-border-color:#6679CC;
     padding-right: 15px;
   }
 }
+
 $viewportIncrement: 1px;
 
 $sm: 576px;
@@ -246,11 +247,25 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     background-color: transparent!important;
     height: auto;
     transition: height 0.5s ease-in-out;
+    @media screen and (max-width: $tabOrient) {
+      background-color: $background-white!important;
+    }
     .announcement-bar__message {
       color:$textcolor-black;
     }
   }
+
+  div#PageContainer {
+    &.js-menu--is-open {
+      transform: initial !important;
+    }
+  }  
+
 #shopify-section-header{
+  @media screen and (max-width: $tabOrient) {
+    background-color: $background-white;
+  }
+
   &.header-bg{
     .announcement-bar{
       height: 0px;
@@ -260,11 +275,46 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
         font-size: 0px;
       }
     }
+    .mobile-nav-wrapper{
+      &.js-menu--is-open {
+        height: calc(100vh - 60px)!important;
+      }
+    }
+  }
+  &.mobile__nav--show {
+    .site-header {
+      #AccessibleNav {
+        #SiteNav {
+          opacity: 0;
+          max-height: 36px;
+          visibility: hidden;
+        }
+      }
+      .site-header__icons {
+        button.site-header__menu {
+          display: inline-block!important;
+        }
+      }
+    }
   }
 }
 .site-header{
   .site-header__mobile-nav{
     position: initial;
+    z-index: 99;
+    @media screen and (max-width: $tabOrient) {
+      position: relative;
+      background-color: $background-white!important;
+    }
+    .site-header__logo {
+      .site-header__logo-image {
+        img {
+          @media screen and (max-width: $tabOrient) {
+            max-width: 240px;            
+          }
+        }
+      }
+    }
     #SiteNav{
       position: initial;
       .site-nav--active{
@@ -275,8 +325,8 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     }
     .site-header__icons {
       .site-header__icon {
-        padding: 10px 11px;
-        margin: 0 17px;
+        padding: 10px 8px;
+        margin: 0 7px;
       }
     }
   }
@@ -347,6 +397,42 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     }
   }
 
+  .mobile-nav-wrapper {
+    z-index: 0;
+    &:after {
+      border-bottom: none;
+    }
+    &.js-menu--is-open {
+      height: calc(100vh - 110px)!important;
+      max-width: 350px; 
+      overflow: hidden;
+      overflow-y: auto;
+      .is-active {
+        &+.mobile-nav__dropdown {
+          padding-bottom: 50px;
+        }
+      }
+    }
+  }
+  body {
+    &.js-menu--is-open {
+      overflow: hidden;
+      position: relative;
+      &::after{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0.35);
+        content: '';
+        top: 0;
+        left: 0;
+      }
+      #shopify-section-header {
+         z-index: 999!important; 
+      }
+    }
+  }
 
   // Landing Page 
   #shopify-section-landing {
@@ -1958,5 +2044,6 @@ body[data-template="product"] {
       display: none !important;
   }
 }
+
 
 // End Know More Diamond Page

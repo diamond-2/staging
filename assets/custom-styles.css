@@ -48,8 +48,18 @@
   background-color: transparent !important;
   height: auto;
   transition: height 0.5s ease-in-out; }
+  @media screen and (max-width: 1023px) {
+    .announcement-bar {
+      background-color: #ffffff !important; } }
   .announcement-bar .announcement-bar__message {
     color: #000000; }
+
+div#PageContainer.js-menu--is-open {
+  transform: initial !important; }
+
+@media screen and (max-width: 1023px) {
+  #shopify-section-header {
+    background-color: #ffffff; } }
 
 #shopify-section-header.header-bg .announcement-bar {
   height: 0px;
@@ -58,15 +68,34 @@
   #shopify-section-header.header-bg .announcement-bar .announcement-bar__message {
     font-size: 0px; }
 
+#shopify-section-header.header-bg .mobile-nav-wrapper.js-menu--is-open {
+  height: calc(100vh - 60px) !important; }
+
+#shopify-section-header.mobile__nav--show .site-header #AccessibleNav #SiteNav {
+  opacity: 0;
+  max-height: 36px;
+  visibility: hidden; }
+
+#shopify-section-header.mobile__nav--show .site-header .site-header__icons button.site-header__menu {
+  display: inline-block !important; }
+
 .site-header .site-header__mobile-nav {
-  position: initial; }
+  position: initial;
+  z-index: 99; }
+  @media screen and (max-width: 1023px) {
+    .site-header .site-header__mobile-nav {
+      position: relative;
+      background-color: #ffffff !important; } }
+  @media screen and (max-width: 1023px) {
+    .site-header .site-header__mobile-nav .site-header__logo .site-header__logo-image img {
+      max-width: 240px; } }
   .site-header .site-header__mobile-nav #SiteNav {
     position: initial; }
     .site-header .site-header__mobile-nav #SiteNav .site-nav--active .site-nav__label {
       border-bottom: none; }
   .site-header .site-header__mobile-nav .site-header__icons .site-header__icon {
-    padding: 10px 11px;
-    margin: 0 17px; }
+    padding: 10px 8px;
+    margin: 0 7px; }
 
 #AccessibleNav {
   padding-left: 20px; }
@@ -108,6 +137,33 @@
         width: 230px; }
         #AccessibleNav .site-nav .site-nav__dropdown .site-nav__childlist .site-nav__childlist-grid .site-nav__childlist--group .site-nav__childlist-item ul.site-nav__childlist--split-2-columns li {
           max-width: 110px; }
+
+.mobile-nav-wrapper {
+  z-index: 0; }
+  .mobile-nav-wrapper:after {
+    border-bottom: none; }
+  .mobile-nav-wrapper.js-menu--is-open {
+    height: calc(100vh - 110px) !important;
+    max-width: 350px;
+    overflow: hidden;
+    overflow-y: auto; }
+    .mobile-nav-wrapper.js-menu--is-open .is-active + .mobile-nav__dropdown {
+      padding-bottom: 50px; }
+
+body.js-menu--is-open {
+  overflow: hidden;
+  position: relative; }
+  body.js-menu--is-open::after {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.35);
+    content: '';
+    top: 0;
+    left: 0; }
+  body.js-menu--is-open #shopify-section-header {
+    z-index: 999 !important; }
 
 #shopify-section-landing {
   position: fixed;
