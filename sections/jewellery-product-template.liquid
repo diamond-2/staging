@@ -36,8 +36,10 @@
                             {%- if mediaThumb -%}
                             <div class="product-detail-slider-thumbnail-slide">
                                 <div class="product-detail-slider-thumbnail-slide-inner">
-                                    <img data-src="{{ mediaThumb | img_url:'150x150' }}" class="lazyload"
+                                    <div class="img_holder">
+                                        <img data-src="{{ mediaThumb | img_url:'150x150' }}" class="lazyload"
                                         alt="{{ product.title }}">
+                                    </div>
                                 </div>
                             </div>
                             {%- endif -%}
@@ -92,17 +94,20 @@
                     {% unless product.has_only_default_variant %}
                     <div class="product-form__controls-group">
                         {% for option in product.options_with_values %}
-                        <div class="selector-wrapper js product-form__item">
+                        <div class="selector-wrapper js product-form__item pdp-select-item">
                             {% assign indexVal = forloop.index %}
 
                             {% if option.name =='Color' %}
-                            <label>Select {{ option.name }}</label>
-                            {% for value in option.values %}
-                            <div class="custom-checkbox">
-                                <input class="single-option-selector-{{ section.id }}" id="color-{{ forloop.index }}" type="radio" value="{{ value | escape }}"  data-index="option{{ indexVal }}" name="color" {% if option.selected_value==value %}checked{% endif %}>
-                                <label for="color-{{ forloop.index }}">{{ value }}</label>
+                            <label>Select Gold {{ option.name }}</label>
+                            <div class="custom-checkbox-list">
+                                {% for value in option.values %}
+                                <div class="custom-checkbox">
+                                    <input class="single-option-selector-{{ section.id }}" id="color-{{ forloop.index }}" type="radio" value="{{ value | escape }}"  data-index="option{{ indexVal }}" name="color" {% if option.selected_value==value %}checked{% endif %}>
+                                    <span class="custom_check" style="background-color: {{ value | replace:'Gold','' | escape }};">14k</span>
+                                    <label for="color-{{ forloop.index }}">14k {{ value }}</label>
+                                </div>
+                                {% endfor %}
                             </div>
-                            {% endfor %}
 
                             {% else %}
                             <div class="custom-select-holder">
@@ -163,7 +168,7 @@
                             <button type="submit" name="add" {% unless current_variant.available %} aria-disabled="true"
                                 {% endunless %}
                                 aria-label="{% unless current_variant.available %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endunless %}"
-                                class="btn product-form__cart-submit{% if section.settings.enable_payment_button and product.selling_plan_groups == empty %} btn--secondary-accent{% endif %}"
+                                class="btn product-form__cart-submit glb-btn{% if section.settings.enable_payment_button and product.selling_plan_groups == empty %} btn--secondary-accent{% endif %}"
                                 {% if settings.enable_ajax %}aria-haspopup="dialog" {% endif %} data-add-to-cart>
 
                                 <div class="product__price">
@@ -191,6 +196,56 @@
 
                 </div>
 
+                <div class="price_inclusive">Price is Inclusive of Taxes</div>
+                <div class="delivery-check-sec">
+                    <div class="delivery-check-title">check delivery date</div>
+                    <div class="delivery-check-input">
+                        <span class="delivery-icon">
+                            <img src="{{ 'location.png' | asset_url  }}" alt="delivery">
+                        </span>
+                        <input type="text" id="delivery-check" placeholder="Enter pincode">
+                    </div>
+                    <div class="delivery-check-date">Delivery by Wed, Jan 30 for Pincode</div>
+                </div>
+
+                <div class="product-details-btn-grid">
+                    <div class="product-details-btn-item full-width-btn">
+                        <a class="pdp-white-btn" href="#">SHOP AT HOME WITH OUR AMBASSADOR</a>
+                    </div>
+                    <div class="product-details-btn-item">
+                        <a class="pdp-white-btn" href="#">VIRTUAL TRY ON</a>
+                    </div>
+                    <div class="product-details-btn-item">
+                        <a class="pdp-white-btn" href="#">TRY AT HOME</a>
+                    </div>
+                </div>
+
+                <div class="pdp-connect-section">
+                    <div class="connect-with-phone">
+                        <div class="left_col">
+                            <span><img src="{{ 'phone.png' | asset_url  }}" alt="phone"></span>
+                            <span class="text">to order by  phone</span>
+                        </div>
+                        <div class="right_col">
+                            <a href="tel:+8002278400">1-800-227-8400</a>
+                        </div>
+                    </div>
+                    <div class="pdp-warranty-sec">
+                        <div class="pdp-warranty-item _returns">
+                            <span><img src="{{ 'returns.png' | asset_url  }}" alt="returns"></span>
+                            <span class="text">free 15 day returns</span>
+                        </div>
+                        <div class="pdp-warranty-item _warranty">
+                            <span><img src="{{ 'warranty.png' | asset_url  }}" alt="warranty"></span>
+                            <span class="text">limited lifetime warranty</span>
+                        </div>
+                        <div class="pdp-warranty-item _shipping">
+                            <span><img src="{{ 'shipping.png' | asset_url  }}" alt="shipping"></span>
+                            <span class="text">free shipping</span>
+                        </div>
+                    </div>
+                </div>
+
                 {%- comment -%}
                 Live region for announcing updated price and availability to screen readers
                 {%- endcomment -%}
@@ -209,16 +264,102 @@
                     data-base-url="{{ shop.url }}{{ routes.root_url }}">
                 </div>
 
-                <div class="product-single__description rte">
-                    {{ product.description }}
-                </div>
-
                 {% if section.settings.show_share_buttons %}
                 {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image:
                 product.featured_media %}
                 {% endif %}
             </div>
         </div>
+
+        <div class="product-content-section">
+            {{ product.description }}
+            <div class="product-details-wrapper">
+                <p>PRODUCT DETAILS</p>
+                <h3>{{ product.title }}</h3>
+                <div class="product-info-gird">
+                    <div class="product-info-item">
+                        <div class="product-info-holder">
+                            <h5>Ring Information</h5>
+                            <div class="product-info-table">
+                                <div class="product-info-table-row">
+                                    <div class="product-info-table-td">Stock Number</div>
+                                    <div class="product-info-table-td"><strong>82270</strong></div>
+                                </div>
+                                <div class="product-info-table-row">
+                                    <div class="product-info-table-td">Metal</div>
+                                    <div class="product-info-table-td"><strong>14k Yellow Gold</strong><span class="info_tooltip"></span></div>
+                                </div>
+                                <div class="product-info-table-row">
+                                    <div class="product-info-table-td">Height</div>
+                                    <div class="product-info-table-td"><strong>1.9</strong><span class="info_tooltip"></span></div>
+                                </div>
+                                <div class="product-info-table-row">
+                                    <div class="product-info-table-td">Width</div>
+                                    <div class="product-info-table-td"><strong>1.9 mm</strong><span class="info_tooltip"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-info-item">
+                        <div class="product-info-holder">
+                            <h5>Diamond2<sup>®</sup>  Information</h5>
+                            <div class="product-info-table">
+                                <div class="product-info-table-row">
+                                    <div class="product-info-table-td">Number of Side Round Diamond2<sup>®</sup></div>
+                                    <div class="product-info-table-td"><strong>6</strong><span class="info_tooltip"></span></div>
+                                </div>
+                                <div class="product-info-table-row">
+                                    <div class="product-info-table-td">Minimum Carat Total Weight (ct. tw.)</div>
+                                    <div class="product-info-table-td"><strong>0.07</strong><span class="info_tooltip"></span></div>
+                                </div>
+                                <div class="product-info-table-row">
+                                    <div class="product-info-table-td">Average Color</div>
+                                    <div class="product-info-table-td"><strong>J</strong><span class="info_tooltip"></span></div>
+                                </div>
+                                <div class="product-info-table-row">
+                                    <div class="product-info-table-td">Average Clarity</div>
+                                    <div class="product-info-table-td"><strong>VS2</strong><span class="info_tooltip"></span></div>
+                                </div>
+                                <div class="product-info-table-row">
+                                    <div class="product-info-table-td">Setting Type</div>
+                                    <div class="product-info-table-td"><strong>Prong setting</strong><span class="info_tooltip"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-info-holder">
+                            <h5>Diamond2<sup>®</sup>  Information</h5>
+                            <div class="product-info-table">
+                                <div class="product-info-table-row">
+                                    <div class="product-info-table-td">Number of Center SOLITAIRE RING Diamond2<sup>®</sup></div>
+                                    <div class="product-info-table-td"><strong>1</strong><span class="info_tooltip"></span></div>
+                                </div>
+                                <div class="product-info-table-row">
+                                    <div class="product-info-table-td">Minimum Carat Total Weight (ct. tw.)</div>
+                                    <div class="product-info-table-td"><strong>0.25</strong><span class="info_tooltip"></span></div>
+                                </div>
+                                <div class="product-info-table-row">
+                                    <div class="product-info-table-td">Minimum Color</div>
+                                    <div class="product-info-table-td"><strong>White</strong><span class="info_tooltip"></span></div>
+                                </div>
+                                <div class="product-info-table-row">
+                                    <div class="product-info-table-td">Minimum Clarity</div>
+                                    <div class="product-info-table-td"><strong>VS2</strong><span class="info_tooltip"></span></div>
+                                </div>
+                                <div class="product-info-table-row">
+                                    <div class="product-info-table-td">Setting Type</div>
+                                    <div class="product-info-table-td"><strong>Bar channel setting</strong><span class="info_tooltip"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
 </div>
 
@@ -229,7 +370,8 @@
         slidesToScroll: 1,
         arrows: true,
         fade: true,
-        asNavFor: '.product-detail-slider-thumbnail'
+        asNavFor: '.product-detail-slider-thumbnail',
+        draggable: false
     });
     $('.product-detail-slider-thumbnail').slick({
         slidesToShow: 4,
@@ -238,26 +380,34 @@
         asNavFor: '.product-detail-slider',
         dots: false,
         verticalSwiping:true,
-        focusOnSelect: true
-    });
+        focusOnSelect: true,
+        draggable: false,
+        responsive: [
+            {
+                breakpoint: 991,
+                settings: {
+                    verticalSwiping:false,
+                    vertical:false
+                }
+           },
+        ]
+    }); 
 
-    //magic line
+    //Border Moving
     $('.product-detail-slider-thumbnail .slick-track').append('<div class="slide-active-border"></div>');
     $(".slide-active-border").css({
         height: $(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").height(),
         top: $(".product-detail-slider-thumbnail .slick-slide.slick-current").position().top
     });
-
     $(".product-detail-slider-thumbnail .slick-slide").click(function() {
-        var borederHeight = $(this).height();
+        var borederHeight = $(this).children('.product-detail-slider-thumbnail-slide-inner').height();
             borederPos = $(this).children('.product-detail-slider-thumbnail-slide-inner').position().top;
         $(".slide-active-border").css({
             height: borederHeight,
             top: borederPos
         })
     });
-
-    // arrow click
+    // border mover on Arrow click
     $(".product-detail-slider-wrapper .slick-arrow").click(function() {
         $(".slide-active-border").css({
             height: $(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").height(),
