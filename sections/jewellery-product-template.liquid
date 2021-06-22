@@ -393,27 +393,71 @@
         ]
     }); 
 
+    function mglineHorizantal() {
+        console.log('worked on 991')
+    }
+
     //Border Moving
-    $('.product-detail-slider-thumbnail .slick-track').append('<div class="slide-active-border"></div>');
-    $(".slide-active-border").css({
-        height: $(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").height(),
-        top: $(".product-detail-slider-thumbnail .slick-slide.slick-current").position().top
-    });
-    $(".product-detail-slider-thumbnail .slick-slide").click(function() {
-        var borederHeight = $(this).children('.product-detail-slider-thumbnail-slide-inner').height();
-            borederPos = $(this).children('.product-detail-slider-thumbnail-slide-inner').position().top;
-        $(".slide-active-border").css({
-            height: borederHeight,
-            top: borederPos
-        })
-    });
-    // border mover on Arrow click
-    $(".product-detail-slider-wrapper .slick-arrow").click(function() {
+
+    function myFunction(x) {
+        if (x.matches) {
+            horizantalBorder();
+        } else {
+            verticalBorder();
+        }
+    }
+
+    var x = window.matchMedia("(max-width: 991px)");
+    myFunction(x);
+    x.addListener(myFunction);
+    $(window).on('resize',myFunction);
+
+    
+    function verticalBorder() {
+        $('.product-detail-slider-thumbnail .slick-track').append('<div class="slide-active-border"></div>');
         $(".slide-active-border").css({
             height: $(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").height(),
             top: $(".product-detail-slider-thumbnail .slick-slide.slick-current").position().top
         });
-    });
+        $(".product-detail-slider-thumbnail .slick-slide").click(function() {
+            var borederHeight = $(this).children('.product-detail-slider-thumbnail-slide-inner').height();
+                borederPos = $(this).children('.product-detail-slider-thumbnail-slide-inner').position().top;
+            $(".slide-active-border").css({
+                height: borederHeight,
+                top: borederPos
+            })
+        });
+        // border mover on Arrow click
+        $(".product-detail-slider-wrapper .slick-arrow").click(function() {
+            $(".slide-active-border").css({
+                height: $(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").height(),
+                top: $(".product-detail-slider-thumbnail .slick-slide.slick-current").position().top
+            });
+        });
+    }
+
+    function horizantalBorder() {
+        $('.product-detail-slider-thumbnail .slick-track').append('<div class="slide-active-border"></div>');
+        $(".slide-active-border").css({
+            width: $(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").width(),
+            left: $(".product-detail-slider-thumbnail .slick-slide.slick-current").position().left
+        });
+        $(".product-detail-slider-thumbnail .slick-slide").click(function() {
+            var borederWidth = $(this).children('.product-detail-slider-thumbnail-slide-inner').width();
+                borederPos1 = $(this).children('.product-detail-slider-thumbnail-slide-inner').position().left;
+            $(".slide-active-border").css({
+                width: borederWidth,
+                left: borederPos1
+            })
+        });
+        // border mover on Arrow click
+        $(".product-detail-slider-wrapper .slick-arrow").click(function() {
+            $(".slide-active-border").css({
+                width: $(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").width(),
+                left: $(".product-detail-slider-thumbnail .slick-slide.slick-current").position().left
+            });
+        });
+    }
 </script>
 
 {% unless product == empty %}
