@@ -232,13 +232,37 @@
         asNavFor: '.product-detail-slider-thumbnail'
     });
     $('.product-detail-slider-thumbnail').slick({
-        slidesToShow: 5,
+        slidesToShow: 4,
         slidesToScroll: 1,
         vertical:true,
         asNavFor: '.product-detail-slider',
         dots: false,
-        focusOnSelect: true,
-        verticalSwiping:true
+        verticalSwiping:true,
+        focusOnSelect: true
+    });
+
+    //magic line
+    $('.product-detail-slider-thumbnail .slick-track').append('<div class="slide-active-border"></div>');
+    $(".slide-active-border").css({
+        height: $(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").height(),
+        top: $(".product-detail-slider-thumbnail .slick-slide.slick-current").position().top
+    });
+
+    $(".product-detail-slider-thumbnail .slick-slide").click(function() {
+        var borederHeight = $(this).height();
+            borederPos = $(this).children('.product-detail-slider-thumbnail-slide-inner').position().top;
+        $(".slide-active-border").css({
+            height: borederHeight,
+            top: borederPos
+        })
+    });
+
+    // arrow click
+    $(".product-detail-slider-wrapper .slick-arrow").click(function() {
+        $(".slide-active-border").css({
+            height: $(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").height(),
+            top: $(".product-detail-slider-thumbnail .slick-slide.slick-current").position().top
+        });
     });
 </script>
 
