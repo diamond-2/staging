@@ -273,92 +273,9 @@
 
         <div class="product-content-section">
             {{ product.description }}
-            <div class="product-details-wrapper">
-                <p>PRODUCT DETAILS</p>
-                <h3>{{ product.title }}</h3>
-                <div class="product-info-gird">
-                    <div class="product-info-item">
-                        <div class="product-info-holder">
-                            <h5>Ring Information</h5>
-                            <div class="product-info-table">
-                                <div class="product-info-table-row">
-                                    <div class="product-info-table-td">Stock Number</div>
-                                    <div class="product-info-table-td"><strong>82270</strong></div>
-                                </div>
-                                <div class="product-info-table-row">
-                                    <div class="product-info-table-td">Metal</div>
-                                    <div class="product-info-table-td"><strong>14k Yellow Gold</strong><span class="info_tooltip"></span></div>
-                                </div>
-                                <div class="product-info-table-row">
-                                    <div class="product-info-table-td">Height</div>
-                                    <div class="product-info-table-td"><strong>1.9</strong><span class="info_tooltip"></span></div>
-                                </div>
-                                <div class="product-info-table-row">
-                                    <div class="product-info-table-td">Width</div>
-                                    <div class="product-info-table-td"><strong>1.9 mm</strong><span class="info_tooltip"></span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="product-info-item">
-                        <div class="product-info-holder">
-                            <h5>Diamond2<sup>®</sup>  Information</h5>
-                            <div class="product-info-table">
-                                <div class="product-info-table-row">
-                                    <div class="product-info-table-td">Number of Side Round Diamond2<sup>®</sup></div>
-                                    <div class="product-info-table-td"><strong>6</strong><span class="info_tooltip"></span></div>
-                                </div>
-                                <div class="product-info-table-row">
-                                    <div class="product-info-table-td">Minimum Carat Total Weight (ct. tw.)</div>
-                                    <div class="product-info-table-td"><strong>0.07</strong><span class="info_tooltip"></span></div>
-                                </div>
-                                <div class="product-info-table-row">
-                                    <div class="product-info-table-td">Average Color</div>
-                                    <div class="product-info-table-td"><strong>J</strong><span class="info_tooltip"></span></div>
-                                </div>
-                                <div class="product-info-table-row">
-                                    <div class="product-info-table-td">Average Clarity</div>
-                                    <div class="product-info-table-td"><strong>VS2</strong><span class="info_tooltip"></span></div>
-                                </div>
-                                <div class="product-info-table-row">
-                                    <div class="product-info-table-td">Setting Type</div>
-                                    <div class="product-info-table-td"><strong>Prong setting</strong><span class="info_tooltip"></span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-info-holder">
-                            <h5>Diamond2<sup>®</sup>  Information</h5>
-                            <div class="product-info-table">
-                                <div class="product-info-table-row">
-                                    <div class="product-info-table-td">Number of Center SOLITAIRE RING Diamond2<sup>®</sup></div>
-                                    <div class="product-info-table-td"><strong>1</strong><span class="info_tooltip"></span></div>
-                                </div>
-                                <div class="product-info-table-row">
-                                    <div class="product-info-table-td">Minimum Carat Total Weight (ct. tw.)</div>
-                                    <div class="product-info-table-td"><strong>0.25</strong><span class="info_tooltip"></span></div>
-                                </div>
-                                <div class="product-info-table-row">
-                                    <div class="product-info-table-td">Minimum Color</div>
-                                    <div class="product-info-table-td"><strong>White</strong><span class="info_tooltip"></span></div>
-                                </div>
-                                <div class="product-info-table-row">
-                                    <div class="product-info-table-td">Minimum Clarity</div>
-                                    <div class="product-info-table-td"><strong>VS2</strong><span class="info_tooltip"></span></div>
-                                </div>
-                                <div class="product-info-table-row">
-                                    <div class="product-info-table-td">Setting Type</div>
-                                    <div class="product-info-table-td"><strong>Bar channel setting</strong><span class="info_tooltip"></span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+            {% include 'product-metafield' %}
         </div>
-
-
 
     </div>
 </div>
@@ -371,10 +288,12 @@
         arrows: true,
         fade: true,
         asNavFor: '.product-detail-slider-thumbnail',
-        draggable: false
+        draggable: false,
+        infinite: false,
+        autoplay:false
     });
     $('.product-detail-slider-thumbnail').slick({
-        slidesToShow: 4,
+        slidesToShow: 5,
         slidesToScroll: 1,
         vertical:true,
         asNavFor: '.product-detail-slider',
@@ -382,6 +301,9 @@
         verticalSwiping:true,
         focusOnSelect: true,
         draggable: false,
+        arrows: true,
+        infinite: false,
+        autoplay:false,
         responsive: [
             {
                 breakpoint: 991,
@@ -393,28 +315,8 @@
         ]
     }); 
 
-    function mglineHorizantal() {
-        console.log('worked on 991')
-    }
-
-    //Border Moving
-
-    function myFunction(x) {
-        if (x.matches) {
-            horizantalBorder();
-        } else {
-            verticalBorder();
-        }
-    }
-
-    var x = window.matchMedia("(max-width: 991px)");
-    myFunction(x);
-    x.addListener(myFunction);
-    $(window).on('resize',myFunction);
-
-    
-    function verticalBorder() {
-        $('.product-detail-slider-thumbnail .slick-track').append('<div class="slide-active-border"></div>');
+    window.addEventListener("load", function(){
+        $('.product-detail-slider-thumbnail .slick-track').prepend('<div class="slide-active-border"></div>');
         $(".slide-active-border").css({
             height: $(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").height(),
             top: $(".product-detail-slider-thumbnail .slick-slide.slick-current").position().top
@@ -434,30 +336,9 @@
                 top: $(".product-detail-slider-thumbnail .slick-slide.slick-current").position().top
             });
         });
-    }
+    });
 
-    function horizantalBorder() {
-        $('.product-detail-slider-thumbnail .slick-track').append('<div class="slide-active-border"></div>');
-        $(".slide-active-border").css({
-            width: $(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").width(),
-            left: $(".product-detail-slider-thumbnail .slick-slide.slick-current").position().left
-        });
-        $(".product-detail-slider-thumbnail .slick-slide").click(function() {
-            var borederWidth = $(this).children('.product-detail-slider-thumbnail-slide-inner').width();
-                borederPos1 = $(this).children('.product-detail-slider-thumbnail-slide-inner').position().left;
-            $(".slide-active-border").css({
-                width: borederWidth,
-                left: borederPos1
-            })
-        });
-        // border mover on Arrow click
-        $(".product-detail-slider-wrapper .slick-arrow").click(function() {
-            $(".slide-active-border").css({
-                width: $(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").width(),
-                left: $(".product-detail-slider-thumbnail .slick-slide.slick-current").position().left
-            });
-        });
-    }
+    
 </script>
 
 {% unless product == empty %}
