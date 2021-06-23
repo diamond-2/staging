@@ -1436,18 +1436,27 @@ body[data-template="know-your-diamond"] {
 /* Full Slider Global css */
 .full_width_slider_wrapper {
   .full_width_slider_image_holder {
-    min-height: 780px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    @media (max-width: $xxl) {
-      min-height: 100vh;
+    position: relative;
+    padding-bottom: 40.64%;
+    img {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top:0;
+      left: 0;
+      right: 0;
+      object-fit: cover;
+      object-position: center;
     }
   }
   .full_width_slide_item {
+    position: relative;
     &.caption_align_right {
       .slider-caption-wrapper {
         text-align: right;
@@ -1459,11 +1468,33 @@ body[data-template="know-your-diamond"] {
     .slider-caption-wrapper {
       width: 100%;
       color:#fff;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 3;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      @media(max-width: $md) {
+        position: static;
+        color: #000;
+        text-align: left !important;
+        padding-top:30px;
+        padding-bottom:30px;
+      }
+      .dia-container {
+        width: 100%;
+      }
       .slider-caption-holder {
         padding-top: 93px;
+        @media(max-width: $xxl) {
+          padding-top:50px;
+          padding-bottom:50px;
+        }
         @media(max-width: $xl) {
-          padding-top: 30px;
-          padding-bottom: 30xp;
+          padding-top: 0;
+          padding-bottom: 0;
         }
         h2 {
           @include font-range-45to25();
@@ -1522,6 +1553,9 @@ body[data-template="know-your-diamond"] {
     position: absolute;
     bottom: 50px;
     width: 100%;
+    @media(max-width: $md) {
+      display: none !important;
+    }
     li {
       width: auto;
       height: auto;
@@ -2829,6 +2863,165 @@ body[data-template="product"] {
   }
 }
 
+// Fine Jewellary Collection Page Start
+body[data-template="list-collections"] {
+  h2 {
+    @include font-range-45to25();
+    @include heading-fonts();
+    color: $textcolor-phanton;
+    letter-spacing: normal;
+    text-transform: uppercase;
+  }
+  .site-header {
+    background: rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    border: none;
+    padding-top: 70px;
+    .site-header__mobile-nav,
+    .mobile-nav-wrapper {
+      background: transparent;
+    }
+  }
+  .main-content {
+    padding-top: 0;
+  }
+}
+.full_width_slider_wrapper.jewellery-collection-slider {
+  .full_width_slider_image_holder {
+    padding-bottom: 50.55%;
+  }
+  .full_width_slide_item  {
+    .slider-caption-wrapper {
+      .slider-caption-holder {
+        padding-top:146px;
+        padding-bottom:50px;
+        h2 {
+          font-size: 112px;
+          line-height: 127px;
+          font-weight: 200;
+          text-transform: uppercase;
+          letter-spacing: normal;
+          &:last-child {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+  ul.slick-dots {
+    li {
+      margin: 0 10px;
+      button {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+}
+
+.jewellary-collection-wrapper {
+  .jewellary-collection-row {
+    text-align: center;
+    padding-top: 93px;
+    .jewellary-collection-header {
+      max-width: 1520px;
+      margin: 0 auto;
+      margin-bottom: 53px;
+      h2 {
+        margin-bottom: 43px;
+      }
+      p {
+        @include globalFontSize26();
+        font-weight: 300;
+      }
+    }
+    .jewellary-collection-grid {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -15px;
+      .jewellary-collection-block {
+        width: 31.4%;
+        &.big_col {
+          width: 37.2%;
+        }
+        padding: 0 15px;
+        .jewellary-collection-card {
+          position: relative;
+          margin-bottom: 30px;
+          &.content_align_right {
+            .content_holder {
+              right: 7%;
+              width: auto;
+              left: auto;
+              text-align: right;
+              top: 50%;
+              transform: translateY(-50%);
+              padding-top: 4%;
+              .title {
+                padding-right:18px;
+              }
+            }
+
+          }
+          .image_holder {
+            img {
+              width: 100%;
+              display: block;
+            }
+          }
+          .content_holder {
+            position: absolute;
+            bottom: 10.3%;
+            left: 0;
+            right: 0;
+            .title {
+              font-size: 22px;
+              line-height: 23.76px;
+              color: #000000;
+              margin-bottom: 8px;
+            }
+            .more_btn {
+              color: #6c1d45;
+              font-size: 18px;
+              font-weight: 500;
+              position: relative;
+              display: inline-block;
+              padding-right: 18px;
+              &:before {
+                content: "";
+                background-image: url(https://cdn.shopify.com/s/files/1/0575/2681/2840/files/arrow_right_small_9c2b969f-10e1-46a2-9046-3509ff4fbd11.png?v=1624465880);
+                width: 11px;
+                height: 14px;
+                position: absolute;
+                right: -4px;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                top: 50%;
+                transform: translateY(-50%);
+              }
+              &:after {
+                content: "";
+                height: 1px;
+                width: 100%;
+                background: #6c1d45;
+                display: block;
+                margin-top: 3px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// Fine Jewellary Collection Page End
 
 
 
