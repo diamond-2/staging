@@ -10,13 +10,13 @@
         <div class="product-info-gird">
             {% for k in (1..2) %}
             {% capture columnDivider %}block_{{ i }}_column_{{ k }}_content{% endcapture %}
-            
             {% if columnDivider != blank %}
             <div class="product-info-gird_column">
                 {% for j in (1..10) %}
                 {% capture columnTitle %}block_{{ i }}_column_{{ j }}_title{% endcapture %}
-                {% capture columnContent %}block_{{ 1 }}_column_{{ j }}_content{% endcapture %}
+                {% capture columnContent %}block_{{ i }}_column_{{ j }}_content{% endcapture %}
                 {% if productMetafield[columnTitle] !=blank or productMetafield[columnTitle] !=blank %}
+                
                 <div class="product-info-item">
                     <div class="product-info-holder">
                         <h5>{{ productMetafield[columnTitle] }}</h5>
