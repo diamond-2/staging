@@ -2704,6 +2704,9 @@ body[data-template="product"] {
       line-height: 1.4;
       margin-bottom: 20px;
     }
+    @media(max-width: $md) {
+      font-size: 18px;
+    }
   }
   .product-info-gird {
     display: flex;
@@ -2751,6 +2754,10 @@ body[data-template="product"] {
                 font-size: 12px;
                 line-height: 1.5;
               }
+              @media(max-width: $md) {
+                font-size: 9px;
+                line-height: 1.5;
+              }
               tr {
                 background: #F0F0F0;
                 &:nth-child(even) {
@@ -2767,7 +2774,7 @@ body[data-template="product"] {
                     font-weight: 600;
                     padding-right: 50px;
                   }
-                  i {
+                  .meta_tooltip {
                     width: 20px;
                     height: 20px;
                     position: absolute;

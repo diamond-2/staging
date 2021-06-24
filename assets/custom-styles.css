@@ -2255,6 +2255,9 @@ body[data-template="product"] .main-content {
         font-size: 20px;
         line-height: 1.4;
         margin-bottom: 20px; } }
+    @media (max-width: 749px) {
+      .product-details-wrapper h3 {
+        font-size: 18px; } }
   .product-details-wrapper .product-info-gird {
     display: flex;
     flex-wrap: wrap;
@@ -2299,6 +2302,10 @@ body[data-template="product"] .main-content {
             .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table .table table {
               font-size: 12px;
               line-height: 1.5; } }
+          @media (max-width: 749px) {
+            .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table .table table {
+              font-size: 9px;
+              line-height: 1.5; } }
           .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table .table table tr {
             background: #F0F0F0; }
             .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table .table table tr:nth-child(even) {
@@ -2311,7 +2318,7 @@ body[data-template="product"] .main-content {
               text-align: right;
               font-weight: 600;
               padding-right: 50px; }
-            .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table .table table tr td i {
+            .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table .table table tr td .meta_tooltip {
               width: 20px;
               height: 20px;
               position: absolute;
@@ -2323,7 +2330,7 @@ body[data-template="product"] .main-content {
               background-repeat: no-repeat;
               background-position: center;
               font-size: 0; }
-              .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table .table table tr td i[data-tooltip-title]:before {
+              .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table .table table tr td .meta_tooltip[data-tooltip-title]:before {
                 content: attr(data-tooltip-title);
                 font-size: 14px;
                 font-style: normal;
@@ -2339,7 +2346,7 @@ body[data-template="product"] .main-content {
                 transition: all 0.4s;
                 text-transform: capitalize;
                 line-height: normal; }
-              .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table .table table tr td i[data-tooltip-title]:after {
+              .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table .table table tr td .meta_tooltip[data-tooltip-title]:after {
                 content: "";
                 display: block;
                 position: absolute;
@@ -2353,7 +2360,7 @@ body[data-template="product"] .main-content {
                 border-bottom: 3px solid #000;
                 opacity: 0;
                 transition: all 0.4s; }
-              .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table .table table tr td i[data-tooltip-title]:hover:after, .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table .table table tr td i[data-tooltip-title]:hover:before {
+              .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table .table table tr td .meta_tooltip[data-tooltip-title]:hover:after, .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table .table table tr td .meta_tooltip[data-tooltip-title]:hover:before {
                 opacity: 1; }
             .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table .table table tr th:last-child {
               text-align: right;
