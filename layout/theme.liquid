@@ -193,7 +193,7 @@
   <script src="//www.searchanise.com/widgets/shopify/init.js?a=7r9L5P8L4h"></script>
   {{ content_for_header }}
 </head>
-<body class="template-{{ request.page_type | handle }} {% if template == 'index'%} overflow-hidden {% endif %}" data-template="{{ template | | replace: 'page.', '' }}">
+<body class="layout_{{ template.suffix }} template-{{ request.page_type | handle }} {% if template == 'index'%} overflow-hidden {% endif %}" data-template="{{ template | | replace: 'page.', '' }}">
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
   {% if template == 'index' %}
     {% section 'landing' %}

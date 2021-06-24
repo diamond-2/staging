@@ -2381,7 +2381,7 @@ body[data-template="product"] .main-content {
           .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table.three_td_table table tr td:last-child, .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table.three_td_table table tr th:last-child {
             text-align: right; }
 
-body[data-template="list-collections"] h2 {
+body.layout_jewellery h2 {
   font-size: calc(25px + (100vw - 750px)/1170 * 20);
   line-height: calc(28px + (100vw - 750px)/1170 * 20);
   font-family: 'Spectral', serif;
@@ -2390,15 +2390,15 @@ body[data-template="list-collections"] h2 {
   letter-spacing: normal;
   text-transform: uppercase; }
   @media screen and (max-width: 749px) {
-    body[data-template="list-collections"] h2 {
+    body.layout_jewellery h2 {
       font-size: 25px;
       line-height: 30px; } }
   @media screen and (min-width: 1921px) {
-    body[data-template="list-collections"] h2 {
+    body.layout_jewellery h2 {
       font-size: 2.916666666666667vw;
       line-height: 3.125vw; } }
 
-body[data-template="list-collections"] .site-header {
+body.layout_jewellery .site-header {
   background: rgba(255, 255, 255, 0.2);
   position: absolute;
   top: 0;
@@ -2407,11 +2407,11 @@ body[data-template="list-collections"] .site-header {
   z-index: 9;
   border: none;
   padding-top: 70px; }
-  body[data-template="list-collections"] .site-header .site-header__mobile-nav,
-  body[data-template="list-collections"] .site-header .mobile-nav-wrapper {
+  body.layout_jewellery .site-header .site-header__mobile-nav,
+  body.layout_jewellery .site-header .mobile-nav-wrapper {
     background: transparent; }
 
-body[data-template="list-collections"] .main-content {
+body.layout_jewellery .main-content {
   padding-top: 0; }
 
 .full_width_slider_wrapper.jewellery-collection-slider .full_width_slider_image_holder {

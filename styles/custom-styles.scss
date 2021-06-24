@@ -2871,7 +2871,7 @@ body[data-template="product"] {
 }
 
 // Fine Jewellary Collection Page Start
-body[data-template="list-collections"] {
+body.layout_jewellery {
   h2 {
     @include font-range-45to25();
     @include heading-fonts();
