@@ -9,14 +9,13 @@
         {% if productMetafield[blockTitle] !=blank %}<h3>{{ productMetafield[blockTitle] }}</h3>{% endif %}
         <div class="product-info-gird">
             {% for k in (1..2) %}
-            {% capture columnDivider %}block_{{ i }}_column_{{ k }}_content{% endcapture %}
-            {% if columnDivider != blank %}
+            {% capture columnDivider %}block_{{ i }}_column_{{ k }}{% endcapture %}
+            {% if columnDivider %}
             <div class="product-info-gird_column">
                 {% for j in (1..10) %}
-                {% capture columnTitle %}block_{{ i }}_column_{{ j }}_title{% endcapture %}
-                {% capture columnContent %}block_{{ i }}_column_{{ j }}_content{% endcapture %}
+                {% capture columnTitle %}block_{{ i }}_column_{{ k }}_title_{{ j }}{% endcapture %}
+                {% capture columnContent %}block_{{ i }}_column_{{ k }}_content_{{ j }}{% endcapture %}
                 {% if productMetafield[columnTitle] !=blank or productMetafield[columnTitle] !=blank %}
-                
                 <div class="product-info-item">
                     <div class="product-info-holder">
                         <h5>{{ productMetafield[columnTitle] }}</h5>
