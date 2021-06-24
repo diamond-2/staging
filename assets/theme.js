@@ -9701,7 +9701,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
     slidesToShow: 1,
     slidesToScroll: 1,
     navigation: true,
-    infinite: true
+    infinite: true,
+    adaptiveHeight: true
   });
   // Change header background on window scroll Event
   // Dom Load

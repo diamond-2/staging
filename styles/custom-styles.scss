@@ -9,11 +9,18 @@ $textcolor-phanton: #6C1D45;
 $color-primary: #6679CC;
 $small-text: 12px;
 $glbFontFamily: Montserrat;
-$glbFontSize: 26px;
-$glbLineHeight: 28.08px;
 $small-container: 1455px;
 $input-field-background:#fff;
 $input-field-border-color:#6679CC;
+
+@mixin globalFontSize26() {
+  font-size: 26px;
+  line-height: 28.08px;
+  @media(max-width: $xxl) {
+    font-size: 16px;
+    line-height: 1.8;
+  }
+}
 
 @mixin primary-btn() {
   background: #6679CC;
@@ -1407,16 +1414,7 @@ body[data-template="know-your-diamond"] {
   .main-content {
     p {
       font-family:$glbFontFamily;
-      font-size: $glbFontSize;
-      line-height: $glbLineHeight;
-      @media(max-width: $xxl) and (min-width: $postMd) {
-        font-size: 16px;
-        line-height: 1.8;
-      }
-      @media(max-width: $md) {
-        font-size: 16px;
-        line-height: 1.8;
-      }
+      @include globalFontSize26();
     }
   }
 }
@@ -1437,10 +1435,93 @@ body[data-template="know-your-diamond"] {
 
 /* Full Slider Global css */
 .full_width_slider_wrapper {
-  img {
-    width: 100%;
-    object-fit: cover;
-    max-height: 970px;
+  .full_width_slider_image_holder {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: relative;
+    padding-bottom: 40.64%;
+    img {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top:0;
+      left: 0;
+      right: 0;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+  .full_width_slide_item {
+    position: relative;
+    &.caption_align_right {
+      .slider-caption-wrapper {
+        text-align: right;
+        .slider-caption-holder {
+          margin-left: auto;
+        }
+      }
+    }
+    .slider-caption-wrapper {
+      width: 100%;
+      color:#fff;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 3;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      @media(max-width: $md) {
+        position: static;
+        color: #000;
+        text-align: left !important;
+        padding-top:30px;
+        padding-bottom:30px;
+      }
+      .dia-container {
+        width: 100%;
+      }
+      .slider-caption-holder {
+        padding-top: 93px;
+        @media(max-width: $xxl) {
+          padding-top:50px;
+          padding-bottom:50px;
+        }
+        @media(max-width: $xl) {
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+        h2 {
+          @include font-range-45to25();
+          @include heading-fonts();
+          color: inherit;
+          letter-spacing: normal;
+          font-weight: 200;
+          margin-bottom: 90px;
+          @media(max-width: $xl) {
+            margin-bottom: 30px;
+          }
+        }
+        .cap_content {
+          margin-bottom: 194px;
+          @media(max-width: $xl) {
+            margin-bottom: 30px;
+          }
+          p {
+            font-family: $glbFontFamily;
+            @include globalFontSize26();
+            margin-bottom: 194px;
+            color: inherit;
+            margin: 0;
+          }
+        }
+      }
+    }
   }
   .slick-arrow {
     outline: 0;
@@ -1455,6 +1536,7 @@ body[data-template="know-your-diamond"] {
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     background-size: 40px !important;
+    display: none !important;
     &::before {
       content: none;
     }
@@ -1471,13 +1553,16 @@ body[data-template="know-your-diamond"] {
     position: absolute;
     bottom: 50px;
     width: 100%;
+    @media(max-width: $md) {
+      display: none !important;
+    }
     li {
       width: auto;
       height: auto;
-      margin: 0 10px;
+      margin: 0 7.5px;
       button {
-        width: 25px;
-        height: 25px;
+        width: 18px;
+        height: 18px;
         background: #fff;
         padding: 0;
         border-radius: 50%;
@@ -1842,15 +1927,19 @@ body[data-template="know-your-diamond"] {
 
 
 /*============ Jewellay Pdp Start ============*/
-body[data-template="product"] .site-header {
-  padding-bottom: 70px;
-}
+// body[data-template="product"] .site-header {
+//   padding-bottom: 70px;
+// }
 // need to remove above line code wahen page done
 body[data-template="product"] {
 	.main-content {
     padding-top: 25px;
     padding-bottom: 25px;
   }
+}
+@mixin pdp-mobile-font-size(){
+  font-size: 10px;
+  line-height: 1.5;
 }
 // pdp slider
 .product-detail-slider-wrapper {
@@ -1860,21 +1949,22 @@ body[data-template="product"] {
     width: 5px;
     height: 150px;
     border-radius: 6px;
-    background: #6C1D45;
+    background: #6c1d45;
     top: 0;
-    right: -35px;
+    right: -23.5%;
     position: absolute;
-    transition: all 0.4s;
+    transition: all .4s;
     @media(max-width: $lg) {
       height: 5px !important;
       width: 100%;
       top: -25px !important;
       right: auto;
       left: 0;
+      display: none;
     }
   }
   .product-detail-slider-thumbnail-wrapper {
-    width: 216px;
+    width: 19.4%;
     order: 1;
     position: relative;
     @media(max-width: $lg) {
@@ -1883,15 +1973,12 @@ body[data-template="product"] {
     }
     .product-detail-slider-thumbnail {
       .slick-list {
-        padding-right: 66px;
+        padding-right: 31%;
         @media(max-width: $lg) {
           padding-right:0;
           padding-top:50px;
+          padding-top: 20px;
         }
-      }
-      .slick-track {
-        height: auto !important;
-        transform: none !important;
       }
       &.slick-vertical {
         .slick-slide {
@@ -1904,8 +1991,8 @@ body[data-template="product"] {
       position: absolute;
       height: 100%;
       width: 5px;
-      right: 31px;
-      background: rgba(224, 224, 224, 0.7);
+      right: 14.8%;
+      background: rgba(224,224,224,.7);
       border-radius: 6px;
       @media(max-width: $lg) {
         width: 100%;
@@ -1913,30 +2000,39 @@ body[data-template="product"] {
         top: 25px;
         left: 0;
         right: 0;
+        display: none;
       }
     }
     .product-detail-slider-thumbnail-slide {
-      @media(max-width: $lg) {
-        width: auto !important;
-      }
       .product-detail-slider-thumbnail-slide-inner {
-        width: 150px;
-        height: 135px;
         border: 1px solid #E0E0E0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         text-align: center;
         margin-bottom: 10px;
+        .img_holder {
+          position: relative;
+          padding-bottom: 91%;
+          img {
+            margin: 0 auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
         @media(max-width: $lg) {
           margin-right: 10px;
+        }
+      }
+      &:last-child {
+        .product-detail-slider-thumbnail-slide-inner {
+          margin-bottom: 0;
         }
       }
     }
   }
   .product-detail-slider-holder {
     order: 2;
-    width: calc(100% - 216px);
+    width: 80.6%;
     @media(max-width: $lg) {
       order: 1;
       width: 100%;
@@ -1965,6 +2061,9 @@ body[data-template="product"] {
         height: auto;
         margin-top: -2px;
         z-index: 2;
+        &[aria-disabled="true"] {
+          opacity: 0 !important;
+        }
         &.slick-prev {
           left: -25px;
           @media(max-width: $xxl){
@@ -2019,7 +2118,7 @@ body[data-template="product"] {
     width: 35.2%;
     padding-left: 77px;
     @media(max-width: $xxl) and (min-width: $postMd) {
-        padding-left: 35px;
+        padding-left: 45px;
     }
     @media(max-width: $xl) and (min-width: $postLg) {
       padding-left: 25px;
@@ -2044,6 +2143,10 @@ body[data-template="product"] {
         font-size: 15px;
         line-height: normal;
       }
+      @media(max-width: $sm) {
+        font-size: 16px;
+        line-height: 1.5;
+      }
     }
   }
   .product-detail-breadcrumb ul {
@@ -2061,6 +2164,9 @@ body[data-template="product"] {
       @media(max-width: $xl) and (min-width: $postLg) {
         font-size: 10px;
         line-height: 1.5;
+      }
+      @media(max-width: $sm) {
+        @include pdp-mobile-font-size();
       }
       &:not(:last-child):after {
         content: "/";
@@ -2080,6 +2186,9 @@ body[data-template="product"] {
     @media(max-width: $xl) and (min-width: $postLg) {
       font-size: 10px;
       line-height: 1.5;
+    }
+    @media(max-width: $sm) {
+      @include pdp-mobile-font-size();
     }
     > div {
       min-height: 1px;
@@ -2109,11 +2218,14 @@ body[data-template="product"] {
         font-size: 10px;
         line-height: 1.5;
       }
+      @media(max-width: $sm) {
+        @include pdp-mobile-font-size();
+      }
       .wishlist-icon {
         margin-right: 10px;
         img {
           vertical-align: top;
-          @media(max-width: $xl) and (min-width: $postLg) {
+          @media(max-width: $xl) {
             width: 15px;
           }
         }
@@ -2143,6 +2255,9 @@ body[data-template="product"] {
           font-size: 10px;
           line-height: 1.5;
         }
+        @media(max-width: $sm) {
+          @include pdp-mobile-font-size();
+        }
       }
       .custom-checkbox-list {
         display: flex;
@@ -2150,6 +2265,9 @@ body[data-template="product"] {
         align-items: center;
         line-height: 0;
         @media(max-width: $xl) and (min-width: $postLg) {
+          margin-top: 10px;
+        }
+        @media(max-width: $sm) {
           margin-top: 10px;
         }
         .custom-checkbox {
@@ -2216,6 +2334,9 @@ body[data-template="product"] {
         font-size: 10px;
         line-height: 1.5;
       }
+      @media(max-width: $sm) {
+        @include pdp-mobile-font-size();
+      }
       a {
           text-decoration: underline;
       }
@@ -2236,6 +2357,9 @@ body[data-template="product"] {
             margin-right: 15px;
             width: auto;
           }
+          @media(max-width: $sm) {
+            width: 100%;
+          }
         }
       select.product-form__input {
           width: calc(100% - 170px);
@@ -2243,13 +2367,17 @@ body[data-template="product"] {
           max-width: 158px;
           padding: 5px 5px;
           font-size: 12px;
+          @media(max-width: $sm) {
+            width: 100%;
+            @include pdp-mobile-font-size();
+          }
       }
     }
   }
   .product-form__controls-group {
     &~.product-form__controls-group--submit {
       margin-top: 48px;
-      @media(max-width: $xxl) and (min-width: $postMd) {
+      @media(max-width: $xxl) {
         margin-top: 30px;
       }
     }
@@ -2270,6 +2398,10 @@ body[data-template="product"] {
         font-size: 10px;
         line-height: normal;
       }
+      @media(max-width: $sm) {
+        font-size: 10px;
+        line-height: normal;
+      }
       * {
         color: inherit;
       }
@@ -2287,6 +2419,10 @@ body[data-template="product"] {
       font-size: 12px;
       line-height: normal;
     }
+    @media(max-width: $sm) {
+      font-size: 12px;
+      line-height: normal;
+    }
   }
   .price_inclusive {
     text-transform: uppercase;
@@ -2296,6 +2432,9 @@ body[data-template="product"] {
       font-size: 12px;
       line-height: normal;
       margin-top: 10px;
+    }
+    @media(max-width: $sm) {
+      @include pdp-mobile-font-size();
     }
   }
   .delivery-check-sec {
@@ -2310,9 +2449,12 @@ body[data-template="product"] {
         font-size: 10px;
         line-height: normal;
       }
+      @media(max-width: $sm) {
+        @include pdp-mobile-font-size();
+      }
       .delivery-check-title {
         width: 30%;
-        @media(max-width: $xl) and (min-width: $postLg) {
+        @media(max-width: $xl) {
           width: 100%;
           margin-bottom: 5px;
         }
@@ -2321,7 +2463,7 @@ body[data-template="product"] {
         width: calc(27% - 24px);
         position: relative;
         margin: 0 12px;
-        @media(max-width: $xl) and (min-width: $postLg) {
+        @media(max-width: $xl) {
           width: 100%;
           margin:0 0 5px;
         }
@@ -2348,7 +2490,7 @@ body[data-template="product"] {
         text-transform: none;
         width: 43%;
         white-space: nowrap;
-        @media(max-width: $xl) and (min-width: $postLg) {
+        @media(max-width: $xl) {
           width: 100%;
           flex-wrap: wrap;
         }
@@ -2359,15 +2501,17 @@ body[data-template="product"] {
     margin-top: 26px;
     display: flex;
     flex-wrap: wrap;
-    @media(max-width: $xl) and (min-width: $postLg) {
+    @media(max-width: $xl) {
+      margin: 0 -7px;
       margin-top: 15px;
     }
     .product-details-btn-item {
       padding: 0 15px;
       width: 50%;
       margin-bottom: 30px;
-      @media(max-width: $xl) and (min-width: $postLg) {
+      @media(max-width: $xl) {
         margin-bottom: 15px;
+        padding: 0 7px;
       }
       &.full-width-btn {
         width: 100%;
@@ -2385,9 +2529,10 @@ body[data-template="product"] {
           font-size: 14px;
           line-height: normal;
         }
-        @media(max-width: $xl) and (min-width: $postLg) {
+        @media(max-width: $xl) {
           padding: 10px;
           font-size: 12px;
+          line-height: 1.5;
         }
         &:hover, &:focus {
           background:#6C1D45;
@@ -2420,6 +2565,9 @@ body[data-template="product"] {
           font-size: 10px;
           line-height: 1.5;
         }
+        @media(max-width: $sm) {
+          @include pdp-mobile-font-size();
+        }
         .left_col {
           display: flex;
           align-items: center;
@@ -2427,6 +2575,9 @@ body[data-template="product"] {
           img {
             margin-right: 9px;
             @media(max-width: $xxl) and (min-width: $postMd) {
+              width: 20px;
+            }
+            @media(max-width: $sm) {
               width: 20px;
             }
           }
@@ -2448,9 +2599,15 @@ body[data-template="product"] {
       text-transform: uppercase;
       align-items: center;
       padding: 12px 13px;
+      @media(max-width: $xxl) and (min-width: $postLg) {
+        font-size: 8px;
+      }
       @media(max-width: $xl) and (min-width: $postLg) {
         padding-left:0;
         padding-right:0;
+      }
+      @media(max-width: $sm) {
+        @include pdp-mobile-font-size();
       }
       .pdp-warranty-item {
         display: flex;
@@ -2460,6 +2617,10 @@ body[data-template="product"] {
           width: 100%;
           margin-bottom: 15px;
         }
+        @media(max-width: $sm) {
+          width: 100%;
+          margin-bottom: 10px;
+        }
         &:not(:first-child) {
           margin-left: 15px;
           @media(max-width: $xxl) and (min-width: $postMd) {
@@ -2468,12 +2629,19 @@ body[data-template="product"] {
           @media(max-width: $xl) and (min-width: $postLg) {
             margin-left: 0;
           }
+          @media(max-width: $sm) {
+            margin-left: 0;
+          }
         }
         img {
           margin-right: 16px;
           @media(max-width: $xxl) and (min-width: $postMd) {
             margin-right: 10px;
-            width: 20px;
+            width: 15px;
+          }
+          @media(max-width: $sm) {
+            margin-right: 10px;
+            width: 15px;
           }
         }
       }
@@ -2483,6 +2651,10 @@ body[data-template="product"] {
 
 .product-content-section {
   padding: 40px 90px 0;
+  @media(max-width: $xxl) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   @media(max-width: $lg) {
     padding: 20px 0 0;
   }
@@ -2490,7 +2662,7 @@ body[data-template="product"] {
     font-size: 16px;
     line-height: 24px;
     margin: 0 0 30px;
-    @media(max-width: $xxl) and (min-width: $postMd) {
+    @media(max-width: $xxl) {
       font-size: 15px;
       line-height: 1.8;
       margin-bottom: 15px;
@@ -2501,7 +2673,7 @@ body[data-template="product"] {
     font-size: 18px;
     line-height: 27px;
     padding-left: 0;
-    @media(max-width: $xxl) and (min-width: $postMd) {
+    @media(max-width: $xxl) {
       font-size: 14px;
       line-height: 1.8;
     }
@@ -2519,6 +2691,344 @@ body[data-template="product"] {
   }
 }
 
+// product Metafield section
+.product-details-wrapper {
+  margin-top: 51px;
+  h3 {
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    margin-bottom: 48px;
+    @media(max-width: $xxl) {
+      font-size: 20px;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+    @media(max-width: $md) {
+      font-size: 18px;
+    }
+  }
+  .product-info-gird {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -27px;
+    justify-content: flex-end;
+    .product-info-item {
+      width: 50%;
+      padding: 0 27px;
+      margin-bottom: 49px;
+      @media(max-width: $md) {
+        width: 100%;
+        margin-bottom: 30px;
+      }
+      .product-info-holder {
+        h5 {
+          font-weight: 600;
+          font-size: 18px;
+          line-height: 22px;
+          color: #000000;
+          font-family: Montserrat;
+          text-transform: uppercase;
+          margin-bottom: 30px;
+          @media(max-width: $xxl) {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+          }
+        }
+        .product-info-table {
+          .table {
+            margin: 0;
+            padding: 0;
+            table {
+              margin: 0;
+              padding: 0;
+              border: none;
+              letter-spacing: -0.02em;
+              text-transform: uppercase;
+              font-size: 14px;
+              line-height: 17px;
+              @include base-font();
+              color: $textcolor-black;
+              @media(max-width: $xxl) {
+                font-size: 12px;
+                line-height: 1.5;
+              }
+              @media(max-width: $md) {
+                font-size: 9px;
+                line-height: 1.5;
+              }
+              tr {
+                background: #F0F0F0;
+                &:nth-child(even) {
+                  background: #FCFBFB;
+                }
+                th,td {
+                  padding: 22px 20px;
+                  border: none;
+                  position: relative;
+                }
+                td {
+                  &:last-child {
+                    text-align: right;
+                    font-weight: 600;
+                    padding-right: 50px;
+                  }
+                  .meta_tooltip {
+                    width: 20px;
+                    height: 20px;
+                    position: absolute;
+                    right: 20px;
+                    top: 50%;
+                    background-color: #6679cc;
+                    border-radius: 50%;
+                    transform: translateY(-50%);
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    font-size: 0;
+                    &[data-tooltip-title]{
+                      &:before {
+                        content: attr(data-tooltip-title);
+                        font-size: 14px;
+                        font-style: normal;
+                        color: #fff;
+                        background: #000;
+                        padding: 10px;
+                        position: absolute;
+                        top: -50px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        border-radius: 2px;
+                        opacity: 0;
+                        transition: all 0.4s;
+                        text-transform: capitalize;
+                        line-height: normal;
+                      }
+                      &:after {
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        top: -19px;
+                        left: 50%;
+                        transform: translateX(-50%) rotate(45deg);
+                        background: #000;
+                        height: 10px;
+                        width: 10px;
+                        border-right: 3px solid #000;
+                        border-bottom: 3px solid #000;
+                        opacity: 0;
+                        transition: all 0.4s;
+                      }
+                      &:hover {
+                        &:after, &:before {
+                          opacity: 1;
+                        }
+                      }
+                    }
+                  }
+                }
+                th {
+                  &:last-child {
+                    text-align: right;
+                    font-weight: 600;
+                    padding-right: 50px;
+                  }
+                }
+              }
+            }
+          }
+          &.three_td_table {
+            table {
+              thead {
+                tr {
+                  background: #f0f0f0;
+                  &:nth-child(even) {
+                    background: #fcfbfb;
+                  }
+                }
+              }
+              tr {
+                background: #fcfbfb;
+                &:nth-child(even) {
+                  background: #f0f0f0;
+                }
+                td,th {
+                  text-align: center;
+                  &:first-child {
+                    text-align: left;
+                  }
+                  &:last-child {
+                    text-align: right;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Fine Jewellary Collection Page Start
+body[data-template="list-collections"] {
+  h2 {
+    @include font-range-45to25();
+    @include heading-fonts();
+    color: $textcolor-phanton;
+    letter-spacing: normal;
+    text-transform: uppercase;
+  }
+  .site-header {
+    background: rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9;
+    border: none;
+    padding-top: 70px;
+    .site-header__mobile-nav,
+    .mobile-nav-wrapper {
+      background: transparent;
+    }
+  }
+  .main-content {
+    padding-top: 0;
+  }
+}
+.full_width_slider_wrapper.jewellery-collection-slider {
+  .full_width_slider_image_holder {
+    padding-bottom: 50.55%;
+  }
+  .full_width_slide_item  {
+    .slider-caption-wrapper {
+      .slider-caption-holder {
+        padding-top:146px;
+        padding-bottom:50px;
+        h2 {
+          font-size: 112px;
+          line-height: 127px;
+          font-weight: 200;
+          text-transform: uppercase;
+          letter-spacing: normal;
+          &:last-child {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+  ul.slick-dots {
+    li {
+      margin: 0 10px;
+      button {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+}
+
+.jewellary-collection-wrapper {
+  .jewellary-collection-row {
+    text-align: center;
+    padding-top: 93px;
+    .jewellary-collection-header {
+      max-width: 1520px;
+      margin: 0 auto;
+      margin-bottom: 53px;
+      h2 {
+        margin-bottom: 43px;
+      }
+      p {
+        @include globalFontSize26();
+        font-weight: 300;
+      }
+    }
+    .jewellary-collection-grid {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -15px;
+      .jewellary-collection-block {
+        width: 31.4%;
+        &.big_col {
+          width: 37.2%;
+        }
+        padding: 0 15px;
+        .jewellary-collection-card {
+          position: relative;
+          margin-bottom: 30px;
+          &.content_align_right {
+            .content_holder {
+              right: 7%;
+              width: auto;
+              left: auto;
+              text-align: right;
+              top: 50%;
+              transform: translateY(-50%);
+              padding-top: 4%;
+              .title {
+                padding-right:18px;
+              }
+            }
+
+          }
+          .image_holder {
+            img {
+              width: 100%;
+              display: block;
+            }
+          }
+          .content_holder {
+            position: absolute;
+            bottom: 10.3%;
+            left: 0;
+            right: 0;
+            .title {
+              font-size: 22px;
+              line-height: 23.76px;
+              color: #000000;
+              margin-bottom: 8px;
+            }
+            .more_btn {
+              color: #6c1d45;
+              font-size: 18px;
+              font-weight: 500;
+              position: relative;
+              display: inline-block;
+              padding-right: 18px;
+              &:before {
+                content: "";
+                background-image: url(https://cdn.shopify.com/s/files/1/0575/2681/2840/files/arrow_right_small_9c2b969f-10e1-46a2-9046-3509ff4fbd11.png?v=1624465880);
+                width: 11px;
+                height: 14px;
+                position: absolute;
+                right: -4px;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                top: 50%;
+                transform: translateY(-50%);
+              }
+              &:after {
+                content: "";
+                height: 1px;
+                width: 100%;
+                background: #6c1d45;
+                display: block;
+                margin-top: 3px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// Fine Jewellary Collection Page End
 
 
 

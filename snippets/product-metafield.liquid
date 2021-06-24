@@ -1,0 +1,54 @@
+<!-- Product Metafield Code -->
+<div class="product-details-wrapper">
+    <p>PRODUCT DETAILS</p>
+    {% assign productMetafield = product.metafields.global %}
+    {% for i in (1..10) %}
+    {% capture blockTitle %}block_{{ i }}_title{% endcapture %}
+    {% if productMetafield[blockTitle] !=blank %}
+    <div class="product-details-row">
+        {% if productMetafield[blockTitle] !=blank %}<h3>{{ productMetafield[blockTitle] }}</h3>{% endif %}
+        <div class="product-info-gird">
+            {% for k in (1..2) %}
+            {% capture columnDivider %}block_{{ i }}_column_{{ k }}_content{% endcapture %}
+            
+            {% if columnDivider != blank %}
+            <div class="product-info-gird_column">
+                {% for j in (1..10) %}
+                {% capture columnTitle %}block_{{ i }}_column_{{ j }}_title{% endcapture %}
+                {% capture columnContent %}block_{{ 1 }}_column_{{ j }}_content{% endcapture %}
+                {% if productMetafield[columnTitle] !=blank or productMetafield[columnTitle] !=blank %}
+                <div class="product-info-item">
+                    <div class="product-info-holder">
+                        <h5>{{ productMetafield[columnTitle] }}</h5>
+                        <div class="product-info-table">{{ productMetafield[columnContent] }}</div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+<script>
+
+    $(document).ready(function(){
+        // convert 'i' tag into tooltip
+        $('.product-info-holder .product-info-table tr td').each(function(){
+            var toolTipText = $(this).find('.meta_tooltip').text();
+            $(this).find('.meta_tooltip').attr('data-tooltip-title',toolTipText);
+            $(this).find('.meta_tooltip').html('');
+        });
+        // td length
+        $('.product-info-holder .product-info-table tr').each(function(){
+            var tdlength = $(this).find('td').length || $(this).find('th').length;
+            if(tdlength > 2) {
+                $(this).closest('.product-info-table').addClass('three_td_table');
+            }
+        });
+    });
+</script>
