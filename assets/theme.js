@@ -9750,6 +9750,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
     handle != undefined ? $(document).find('#nav-img-block img').attr('src', handle).fadeIn():$(document).find('#nav-img-block img').fadeOut();
 
   })
+  // big block class for Jewellary Collection
+  $('.has_only_image').closest('.jewellary-collection-block').addClass('big_column');
+
 });
 
 var showMobileNav = false;

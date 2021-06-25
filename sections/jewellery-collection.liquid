@@ -1,0 +1,296 @@
+
+
+<div class="jewellary-collection-wrapper">
+    <div class="dia-container">
+        {% for collection in section.blocks %}
+
+        {% assign collection_name = collection.settings.select_menu | handle %}
+        {% assign mainCollection = collections[collection_name] %}
+        <div class="jewellary-collection-row">
+            <div class="jewellary-collection-header">
+                {%- if mainCollection.title != blank -%}<h2>{{ mainCollection.title }}</h2>{%- endif -%}
+                {%- if mainCollection.description != blank -%}{{ mainCollection.description }}{%- endif -%}
+            </div>
+
+            {%- assign subs = linklists[collection_name].links -%}
+            {%- if subs != blank -%}
+            <div class="jewellary-collection-grid ">
+                <div class="jewellary-collection-block">
+                    {% if collection.settings.image_position == 'block_1_column_1' %}
+                    <div class="jewellary-collection-card has_only_image">
+                        <div class="image_holder">
+                            <img data-src="{{ collection.settings.image1 | img_url: 'master' }}" class="lazyload" alt="{{ collection.settings.image1.alt }}" >
+                        </div>
+                    </div>
+                    {% for sub in subs limit: 1 %}
+                    {% assign subitem_handle = sub.title | handle %}
+                    {% if collections[subitem_handle].title != blank %}
+                    <div class="jewellary-collection-card">
+                        {% if collections[subitem_handle].image %}
+                        <div class="image_holder">
+                            <img data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" class="lazyload" alt="{{ collections[subitem_handle].title }}">
+                        </div>
+                        {% endif %}
+                        <div class="content_holder">
+                            <div class="title">{{ collections[subitem_handle].title }}</div>
+                            <a class="more_btn" href="{{ collections[subitem_handle].url }}">DISCOVER MORE</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% elsif collection.settings.image_position == 'block_1_column_2' %}
+                    {% for sub in subs limit: 1 offset: continue %}
+                    {% assign subitem_handle = sub.title | handle %}
+                    {% if collections[subitem_handle].title != blank %}
+                    <div class="jewellary-collection-card">
+                        {% if collections[subitem_handle].image %}
+                        <div class="image_holder">
+                            <img data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" class="lazyload" alt="{{ collections[subitem_handle].title }}">
+                        </div>
+                        {% endif %}
+                        <div class="content_holder">
+                            <div class="title">{{ collections[subitem_handle].title }}</div>
+                            <a class="more_btn" href="{{ collections[subitem_handle].url }}">DISCOVER MORE</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    <div class="jewellary-collection-card has_only_image">
+                        <div class="image_holder">
+                            <img data-src="{{ collection.settings.image1 | img_url: 'master' }}" class="lazyload" alt="{{ collection.settings.image1.alt }}" >
+                        </div>
+                    </div>
+                    {% else %}
+
+                    {% for sub in subs limit: 2 offset: continue %}
+                    {% assign subitem_handle = sub.title | handle %}
+                    {% if collections[subitem_handle].title != blank %}
+                    <div class="jewellary-collection-card">
+                        {% if collections[subitem_handle].image %}
+                        <div class="image_holder">
+                            <img data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" class="lazyload" alt="{{ collections[subitem_handle].title }}">
+                        </div>
+                        {% endif %}
+                        <div class="content_holder">
+                            <div class="title">{{ collections[subitem_handle].title }}</div>
+                            <a class="more_btn" href="{{ collections[subitem_handle].url }}">DISCOVER MORE</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %} 
+                    {% endif %}
+                </div>
+
+                <div class="jewellary-collection-block">
+                    {% if collection.settings.image_position == 'block_2_column_1' %}
+                    <div class="jewellary-collection-card has_only_image">
+                        <div class="image_holder">
+                            <img data-src="{{ collection.settings.image1 | img_url: 'master' }}" class="lazyload" alt="{{ collection.settings.image1.alt }}" >
+                        </div>
+                    </div>
+                    {% for sub in subs limit: 1 offset: continue %}
+                    {% assign subitem_handle = sub.title | handle %}
+                    {% if collections[subitem_handle].title != blank %}
+                    <div class="jewellary-collection-card">
+                        {% if collections[subitem_handle].image %}
+                        <div class="image_holder">
+                            <img data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" class="lazyload" alt="{{ collections[subitem_handle].title }}">
+                        </div>
+                        {% endif %}
+                        <div class="content_holder">
+                            <div class="title">{{ collections[subitem_handle].title }}</div>
+                            <a class="more_btn" href="{{ collections[subitem_handle].url }}">DISCOVER MORE</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% elsif collection.settings.image_position == 'block_2_column_2' %}
+                    {% for sub in subs limit: 1 offset: continue %}
+                    {% assign subitem_handle = sub.title | handle %}
+                    {% if collections[subitem_handle].title != blank %}
+                    <div class="jewellary-collection-card">
+                        {% if collections[subitem_handle].image %}
+                        <div class="image_holder">
+                            <img data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" class="lazyload" alt="{{ collections[subitem_handle].title }}">
+                        </div>
+                        {% endif %}
+                        <div class="content_holder">
+                            <div class="title">{{ collections[subitem_handle].title }}</div>
+                            <a class="more_btn" href="{{ collections[subitem_handle].url }}">DISCOVER MORE</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    <div class="jewellary-collection-card has_only_image">
+                        <div class="image_holder">
+                            <img data-src="{{ collection.settings.image1 | img_url: 'master' }}" class="lazyload" alt="{{ collection.settings.image1.alt }}" >
+                        </div>
+                    </div>
+                    {% else %}
+
+                    {% for sub in subs limit: 2 offset: continue %}
+                    {% assign subitem_handle = sub.title | handle %}
+                    {% if collections[subitem_handle].title != blank %}
+                    <div class="jewellary-collection-card">
+                        {% if collections[subitem_handle].image %}
+                        <div class="image_holder">
+                            <img data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" class="lazyload" alt="{{ collections[subitem_handle].title }}">
+                        </div>
+                        {% endif %}
+                        <div class="content_holder">
+                            <div class="title">{{ collections[subitem_handle].title }}</div>
+                            <a class="more_btn" href="{{ collections[subitem_handle].url }}">DISCOVER MORE</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %} 
+                    {% endif %}
+                </div>
+
+                <div class="jewellary-collection-block">
+                    {% if collection.settings.image_position == 'block_3_column_1' %}
+                    <div class="jewellary-collection-card has_only_image">
+                        <div class="image_holder">
+                            <img data-src="{{ collection.settings.image1 | img_url: 'master' }}" class="lazyload" alt="{{ collection.settings.image1.alt }}" >
+                        </div>
+                    </div>
+                    {% for sub in subs limit: 1 offset: continue %}
+                    {% assign subitem_handle = sub.title | handle %}
+                    {% if collections[subitem_handle].title != blank %}
+                    <div class="jewellary-collection-card">
+                        {% if collections[subitem_handle].image %}
+                        <div class="image_holder">
+                            <img data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" class="lazyload" alt="{{ collections[subitem_handle].title }}">
+                        </div>
+                        {% endif %}
+                        <div class="content_holder">
+                            <div class="title">{{ collections[subitem_handle].title }}</div>
+                            <a class="more_btn" href="{{ collections[subitem_handle].url }}">DISCOVER MORE</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% elsif collection.settings.image_position == 'block_3_column_2' %}
+                    {% for sub in subs limit: 1 offset: continue %}
+                    {% assign subitem_handle = sub.title | handle %}
+                    {% if collections[subitem_handle].title != blank %}
+                    <div class="jewellary-collection-card">
+                        {% if collections[subitem_handle].image %}
+                        <div class="image_holder">
+                            <img data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" class="lazyload" alt="{{ collections[subitem_handle].title }}">
+                        </div>
+                        {% endif %}
+                        <div class="content_holder">
+                            <div class="title">{{ collections[subitem_handle].title }}</div>
+                            <a class="more_btn" href="{{ collections[subitem_handle].url }}">DISCOVER MORE</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    <div class="jewellary-collection-card has_only_image">
+                        <div class="image_holder">
+                            <img data-src="{{ collection.settings.image1 | img_url: 'master' }}" class="lazyload" alt="{{ collection.settings.image1.alt }}" >
+                        </div>
+                    </div>
+                    {% else %}
+
+                    {% for sub in subs limit: 2 offset: continue %}
+                    {% assign subitem_handle = sub.title | handle %}
+                    {% if collections[subitem_handle].title != blank %}
+                    <div class="jewellary-collection-card">
+                        {% if collections[subitem_handle].image %}
+                        <div class="image_holder">
+                            <img data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" class="lazyload" alt="{{ collections[subitem_handle].title }}">
+                        </div>
+                        {% endif %}
+                        <div class="content_holder">
+                            <div class="title">{{ collections[subitem_handle].title }}</div>
+                            <a class="more_btn" href="{{ collections[subitem_handle].url }}">DISCOVER MORE</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %} 
+                    {% endif %}
+                </div>
+
+
+            </div>
+            {%- endif -%}
+
+            {%- if mainCollection.title != blank -%}
+            <div class="jewellary-collection-btn-holder text-center">
+                <a href="{{ mainCollection.url }}" class="glb-btn">EXPLORE {{ mainCollection.title }}</a>
+            </div>
+            {%- endif -%}
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Jewellery Collection",
+    "settings": [
+    ],
+    "blocks": [
+        {
+            "type": "collection",
+            "name": "Collection",
+            "settings": [
+                {
+                    "type": "link_list",
+                    "label": "Select Menu",
+                    "id": "select_menu"
+                },
+                {
+                    "type": "image_picker",
+                    "label": "Image",
+                    "id": "image1"
+                },
+                {
+                    "type": "header",
+                    "content": "Column Settings"
+
+                },
+                {
+                    "type": "select",
+                    "label": "Image Position",
+                    "id": "image_position",
+                    "default": "block_2_column_1",
+                    "options": [
+                        {
+                            "value": "block_1_column_1",
+                            "label": "Block 1 Column 1"
+                        },
+                        {
+                            "value": "block_1_column_2",
+                            "label": "Block 1 Column 2"
+                        },
+                        {
+                            "value": "block_2_column_1",
+                            "label": "Block 2 Column 1"
+                        },
+                        {
+                            "value": "block_2_column_2",
+                            "label": "Block 2 Column 2"
+                        },
+                        {
+                            "value": "block_3_column_1",
+                            "label": "Block 3 Column 1"
+                        },
+                        {
+                            "value": "block_3_column_2",
+                            "label": "Block 3 Column 2"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+  }
+{% endschema %}
