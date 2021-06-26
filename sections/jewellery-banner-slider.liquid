@@ -1,4 +1,4 @@
-<div class="full_width_slider_wrapper">
+<div class="full_width_slider_wrapper jewellery-collection-slider">
     <div class="full_width_slider">
         {%- if section.blocks.size > 0 -%}
         {%- for slide in section.blocks -%}
@@ -36,9 +36,11 @@
         {%- endif -%}  
     </div>
 </div>
+
+
 {% schema %}
 {
-    "name": "Full Width Slider",
+    "name": "Jewellery Banner Slider",
     "max_blocks": 6,
     "settings": [],
     "blocks": [
@@ -82,21 +84,6 @@
                 "type": "text",
                 "label": "Heading",
                 "id": "heading"
-             },
-             {
-                "type": "richtext",
-                "label": "Content",
-                "id": "content"
-             },
-             {
-                "type": "text",
-                "label": "Button Text",
-                "id": "button_text"
-             },
-             {
-                "type": "url",
-                "label": "Button Link",
-                "id": "button_link"
              }
           ]
        }

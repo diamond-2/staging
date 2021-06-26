@@ -1,0 +1,133 @@
+<li class="site-nav--has-dropdown {% if meganav %} meganav-dropdown {% endif %}{% if three_level_nav %} site-nav--has-centered-dropdown{% endif %}{% if link.active %} site-nav--active{% endif %}" data-has-dropdowns>
+    <button class="site-nav__link site-nav__link--main site-nav__link--button{% if link.child_active %} site-nav__link--active{% endif %}" type="button" aria-expanded="false" aria-controls="SiteNavLabel-{{ child_list_handle }}">
+      <span class="site-nav__label">{{ link.title | escape }}</span>{% include 'icon-chevron-down' %}
+    </button>
+
+    <div class="site-nav__dropdown{% if three_level_nav %} site-nav__dropdown--centered{% endif %} critical-hidden" id="SiteNavLabel-{{ child_list_handle }}">
+      {% if three_level_nav %}
+      <div class="dia-container">
+        <div class="site-nav__childlist">
+          {% if meganav %}
+         {% if section.blocks.size > 0 %}
+         <ul class="site-nav__childlist-grid">
+         {% for block in section.blocks %}
+          {% assign matchParent  = block.settings.meganav_parent | downcase | strip %}
+          {% assign linkTitle = link.title | downcase | strip %}
+          {% if matchParent == linkTitle %}
+         
+            <div class="site-nav__childlist--group site-nav__childlist--group--{{ forloop.index }}">
+                {% for i in (1..2) %}
+
+                {% capture subnavtitle %}subnav_title_{{i}}{% endcapture %}
+                {% capture subnavtitlelink %}subnav_title_link_{{i}}{% endcapture %}                
+                {% capture subnavmenu %}subnav_list_{{i}}{% endcapture %}
+                {% capture subnavimage %}subnav_img_{{i}}{% endcapture %}
+                {% if block.settings[subnavtitle] != blank %}
+                <li class="site-nav__childlist-item">
+                    {% if block.settings[subnavtitlelink] != blank %}<a href="{{ block.settings[subnavtitlelink] }}" class="site-nav__link site-nav__child-link site-nav__child-link--parent"> {% endif %}
+                      <span class="site-nav__label">{{  block.settings[subnavtitle] }}</span>
+                      {% if  block.settings[subnavtitlelink] != blank %} </a> {% endif %}
+                      {% if  block.settings[subnavmenu] != blank %}
+                        {% assign subnavmenulist = block.settings[subnavmenu] %}
+                        {% assign subnavmenulistitemcounts = linklists[subnavmenulist].links | size %}
+                        <ul {% if subnavmenulistitemcounts > 7 %} class="site-nav__childlist--split-2-columns" {% endif %} data-count= "{{ subnavmenulistitemcounts }}">
+                        {% for subnav in linklists[subnavmenulist].links %}
+                        {% if subnav.url contains 'collection' %}
+                          {% assign handle = subnav.url | replace: '/collections/', '' %}
+                          {% assign featuredImg = collections[handle].image.src  %}
+                          {% assign imgSrc = featuredImg | img_url: 'medium' %}
+                        {% elsif subnav.url contains 'page' %}
+                        {% assign handle = subnav.url | replace: '/pages/', '' %}
+                        {% assign featuredImg = pages[handle].metafields.global.nav_item_img %}
+                          {% assign imgSrc = featuredImg %}
+                        {% else %}
+                        {% endif %}
+                        <li>
+                            <a {% if featuredImg != blank %}data-handle="{{ imgSrc }}"{% endif %} href="{{ subnav.url }}" class="site-nav__link site-nav__child-link">
+                                <span class="site-nav__label">{{ subnav.title | escape}}</span>
+                            </a>
+                        </li>
+                        {% endfor %}   
+                        </ul>
+                      {% endif %}
+                </li>  
+                
+                {% endif %}  
+
+                {% endfor %}                
+            </div>
+            
+        {% endif %}
+        {% endfor %}
+        <li id="nav-img-block" class="nav-image-wrapper"><img class="navItemsThumb lazyload" src="" alt="{{ collection.title | escape }}" /></li>
+                    
+    </ul>
+         {% endif %}
+          {% else %}
+          <ul class="site-nav__childlist-grid">
+            {% if link.links != blank %}
+              {% for childlink in link.links %}
+              {% assign mainchildCount = childlink.links | size %}
+              {% if mainchildCount > 7 %}
+              {% else %}
+              {% endif %}
+                <li class="site-nav__childlist-item" data-childCount="{{ mainchildCount }}">
+                  <a href="{{ childlink.url }}"
+                    class="site-nav__link site-nav__child-link site-nav__child-link--parent"
+                    {% if childlink.current %} aria-current="page"{% endif %}
+                  >
+                    <span class="site-nav__label">{{ childlink.title | escape }}</span>
+                  </a>
+
+                  {% if childlink.links != blank %}
+                  {% assign childCount = childlink.links | size %}
+                    <ul data-childCount="{{ childCount }}">
+                    {% for grandchildlink in childlink.links %}
+                      
+                      <li>
+                        {% if grandchildlink.url contains 'collection' %}
+                          {% assign handle = grandchildlink.url | replace: '/collections/', '' %}
+                          {% assign featuredImg = collections[handle].image.src  %}
+                          {% assign imgSrc = featuredImg | img_url: 'medium' %}
+                        {% elsif grandchildlink.url contains 'page' %}
+                        {% assign handle = grandchildlink.url | replace: '/pages/', '' %}
+                        {% assign featuredImg = pages[handle].metafields.global.nav_item_img %}
+                          {% assign imgSrc = featuredImg %}
+                        {% else %}
+                        {% endif %}
+                        
+                        <a {% if featuredImg != blank %}data-handle="{{ imgSrc }}"{% endif %} href="{{ grandchildlink.url }}"
+                        class="site-nav__link site-nav__child-link"
+                        {% if grandchildlink.current %} aria-current="page"{% endif %}
+                      >
+                          <span class="site-nav__label">{{ grandchildlink.title | escape }}</span>
+                        </a>
+                      </li>
+                    {% endfor %}
+                    </ul>
+                  {% endif %}
+
+                </li>
+              {% endfor %}
+              <li id="nav-img-block" class="nav-image-wrapper"><img class="navItemsThumb lazyload" src="" alt="{{ collection.title | escape }}" /></li>
+            {% endif %}
+          </ul>
+          {% endif %}
+        </div>
+      </div>
+      {% else %}
+        <ul>
+          {% for childlink in link.links %}
+            <li>
+              <a href="{{ childlink.url }}"
+              class="site-nav__link site-nav__child-link{% if forloop.last %} site-nav__link--last{% endif %}"
+              {% if childlink.current %} aria-current="page"{% endif %}
+            >
+                <span class="site-nav__label">{{ childlink.title | escape }}</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </li>

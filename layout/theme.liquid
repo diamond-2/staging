@@ -76,8 +76,9 @@
     }
   </script>
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadStylesheet()">
-  <link rel="stylesheet" href="{{ 'custom-styles.css' | asset_url }}" type="text/css">
   <link rel="stylesheet" href="{{ 'asset-styles.css' | asset_url }}" type="text/css">
+  <link rel="stylesheet" href="{{ 'custom-styles.css' | asset_url }}" type="text/css">
+  
   <style>
     {{ header_font | font_face: font_display: 'swap' }}
     {{ base_font | font_face: font_display: 'swap' }}
@@ -189,11 +190,14 @@
       scripts.parentNode.insertBefore(polyfill, scripts);
     }
   </script>
+  <script src="//www.searchanise.com/widgets/shopify/init.js?a=7r9L5P8L4h"></script>
   {{ content_for_header }}
 </head>
-<body class="template-{{ request.page_type | handle }} " data-template="{{ template }}">
+<body class="layout_{{ template.suffix }} template-{{ request.page_type | handle }} {% if template == 'index'%} overflow-hidden {% endif %}" data-template="{{ template | | replace: 'page.', '' }}">
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
-
+  {% if template == 'index' %}
+    {% section 'landing' %}
+  {% endif %}
   {%- if settings.enable_ajax -%}
     {% include 'cart-popup' %}
   {%- endif -%}
