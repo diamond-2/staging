@@ -103,6 +103,10 @@ $input-field-border-color:#6679CC;
     -o-border-radius: 50%;
     border-radius: 50%;
   }
+
+  @mixin slick-dots-small() {
+
+  }
  
 
   /*============================================================================
@@ -1381,9 +1385,9 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     padding: 10px 25px;
   }
   @media(max-width: $md) {
-    font-size: 16px;
-    line-height: normal;
-    padding: 15px 20px;
+    font-size: 12px;
+    line-height: 12.96px;
+    padding: 10px 7px;
   }
 }
 
@@ -1401,6 +1405,41 @@ body[data-template="know-your-diamond"] {
       }
     }
   }
+  .home--slider {
+    .homepage-slider-wrapper {
+      .slide-item {
+        .slide-overlay {
+          @media(min-width: $postMd) {
+            bottom: auto;
+            top: 50%;
+            transform: translateY(-26%);
+          }
+          @media(max-width: $md) {
+            text-align: center;
+            padding-top: 20px;
+            padding-bottom: 0;
+          }
+          .slide-overaly-heading {
+            @media(max-width: $md) {
+              font-size: 28px;
+              line-height: 35px;
+              margin-bottom: 17px;
+            }
+          }
+          .slide-overaly-subheading {
+            @media(max-width: $md) {
+              display: none;
+            }
+          }
+          .slide-overlay-link {
+            @media(max-width: $md) {
+              margin-top: 0;
+            }
+          }
+        }
+      }
+    }
+  } 
   h2,
   .shop-loose-diamond2-slider-top-row .h3 {
     @include font-range-45to25();
@@ -1449,7 +1488,7 @@ body[data-template="know-your-diamond"] {
     position: relative;
     padding-bottom: 40.64%;
     @media(max-width: $sm) {
-      padding-bottom: 440px;
+      padding-bottom: 375px;
     }
     img {
       height: 100%;
@@ -1486,7 +1525,7 @@ body[data-template="know-your-diamond"] {
       @media(max-width: $md) {
         position: static;
         color: #000;
-        text-align: left !important;
+        text-align: center !important;
         padding-top:13px;
         padding-bottom:0;
       }
@@ -1517,6 +1556,7 @@ body[data-template="know-your-diamond"] {
             font-size: 28px;
             line-height: 35.24px;
             color: #6C1D45;
+            margin-bottom: 9px;
           }
         }
         .cap_content {
@@ -1524,12 +1564,18 @@ body[data-template="know-your-diamond"] {
           @media(max-width: $xl) {
             margin-bottom: 30px;
           }
+          @media(max-width: $md) {
+            margin-bottom: 18px;
+          }
           p {
             font-family: $glbFontFamily;
             @include globalFontSize26();
             margin-bottom: 194px;
             color: inherit;
             margin: 0;
+            @media(max-width: $md) {
+              text-transform: uppercase;
+            }
           }
         }
       }
@@ -1566,18 +1612,26 @@ body[data-template="know-your-diamond"] {
     bottom: 50px;
     width: 100%;
     @media(max-width: $md) {
-      display: none !important;
+      bottom: auto;
+      top: 323px;
     }
     li {
       width: auto;
       height: auto;
       margin: 0 7.5px;
+      @media(max-width: $md) {
+        margin: 0 5px;
+      }
       button {
         width: 18px;
         height: 18px;
         background: #fff;
         padding: 0;
         border-radius: 50%;
+        @media(max-width: $md) {
+          width: 12px;
+          height: 12px;
+        }
         &:before {
           content: none;
         }
@@ -2932,11 +2986,22 @@ body.layout_jewellery {
     }
   }
   ul.slick-dots {
+    @media(max-width: $md) {
+      bottom: auto;
+      top: 388px;
+    }
     li {
       margin: 0 10px;
+      @media(max-width: $md) {
+        margin: 0 5px;
+      }
       button {
         width: 25px;
         height: 25px;
+        @media(max-width: $md) {
+          width: 12px;
+          height: 12px;
+        }
       }
     }
   }
@@ -2951,10 +3016,13 @@ body.layout_jewellery {
     text-align: center;
     padding-bottom: 100px;
     @media(max-width: $md) {
-      padding-bottom: 50px;
+      padding-bottom: 27px;
     }
     .jewellary-collection-btn-holder {
       padding-top: 18px;
+      @media(max-width: $md) {
+        padding-top: 0;
+      }
       .glb-btn {
         text-transform: uppercase;
       }
@@ -2963,6 +3031,13 @@ body.layout_jewellery {
       max-width: 1520px;
       margin: 0 auto;
       margin-bottom: 53px;
+      &.mb-image-bottom {
+        .content_holder {
+          @media(max-width: $md) {
+            margin-bottom: 20px;
+          }
+        }
+      }
       @media(max-width: $md) {
         margin-bottom: 20px;
       }
@@ -2986,6 +3061,7 @@ body.layout_jewellery {
         margin-bottom: 43px;
         @media(max-width: $md) {
           margin-bottom: 20px;
+          padding: 0 15px;
         }
       }
       p {
@@ -3007,6 +3083,7 @@ body.layout_jewellery {
           width: 37.2%;
           @media(max-width: $md) {
             width: 100%;
+            order: 3;
           }
           .jewellary-collection-card {
             @media(max-width: $md) {
@@ -3015,6 +3092,9 @@ body.layout_jewellery {
             &.has_only_image {
               .image_holder {
                 padding-bottom: 80.2%;
+                @media(max-width: $md) {
+                  padding-bottom: 375px;
+                }
               }
             }
             &:not(.has_only_image) {
@@ -3029,6 +3109,11 @@ body.layout_jewellery {
                 top: 50%;
                 transform: translateY(-50%);
                 padding-top: 4%;
+                @media(max-width: $md) {
+                  transform: none;
+                  text-align: center;
+                  padding-top: 0;
+                }
               }
             }
           }
@@ -3062,7 +3147,7 @@ body.layout_jewellery {
           @media(max-width: $md) {
             width: 50%;
             padding: 0 7.5px;
-            margin-bottom: 15px;
+            margin-bottom: 17px;
           }
           &.content_align_right {
             .content_holder {

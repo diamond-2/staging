@@ -7040,11 +7040,5 @@ body.layout_jewellery .main-content {
   padding-top: 0;
 }
 
-/* Top Slider */
-body[data-template="know-your-diamond"] .home--slider .homepage-slider-wrapper .slide-item .slide-overlay {
-  bottom: auto;
-  top: 50%;
-  transform: translateY(-26%);
-}
-/* End Top SLider */
+
 
