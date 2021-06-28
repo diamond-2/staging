@@ -9749,9 +9749,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     let handle = $(this).data('handle'); console.log(handle);
     handle != undefined ? $(document).find('#nav-img-block img').attr('src', handle).fadeIn():$(document).find('#nav-img-block img').fadeOut();
 
-  })
-  // big block class for Jewellary Collection
-  $('.has_only_image').closest('.jewellary-collection-block').addClass('big_column');
+  });
 
 });
 

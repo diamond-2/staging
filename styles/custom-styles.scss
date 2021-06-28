@@ -20,6 +20,10 @@ $input-field-border-color:#6679CC;
     font-size: 16px;
     line-height: 1.8;
   }
+  @media(max-width: $md) {
+    font-size: 12px;
+    line-height: 18px;
+  }
 }
 
 @mixin primary-btn() {
@@ -114,8 +118,8 @@ $input-field-border-color:#6679CC;
     padding-right: 55px;
   }
   @media screen and (max-width: $md) {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
@@ -155,8 +159,8 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   font-size: calc(25px + (100vw - 750px)/1170 * 20);
   line-height: calc(28px + (100vw - 750px)/1170 * 20);
   @media screen and (max-width: $md){
-    font-size: 25px;
-    line-height: 30px;
+    font-size: 28px;
+    line-height: 30.24px;
   }	
   @media screen and (min-width: $postSiteWidth) {
     font-size: 2.916666666666667vw;
@@ -1383,7 +1387,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   }
 }
 
-.glb-btn {
+.glb-btn, a.glb-btn {
   @include globalBtn();
 }
 
@@ -1432,7 +1436,7 @@ body[data-template="know-your-diamond"] {
     margin-bottom: 39px;
   }
 }
-
+ 
 /* Full Slider Global css */
 .full_width_slider_wrapper {
   .full_width_slider_image_holder {
@@ -1444,6 +1448,9 @@ body[data-template="know-your-diamond"] {
     align-items: center;
     position: relative;
     padding-bottom: 40.64%;
+    @media(max-width: $sm) {
+      padding-bottom: 440px;
+    }
     img {
       height: 100%;
       width: 100%;
@@ -1480,8 +1487,8 @@ body[data-template="know-your-diamond"] {
         position: static;
         color: #000;
         text-align: left !important;
-        padding-top:30px;
-        padding-bottom:30px;
+        padding-top:13px;
+        padding-bottom:0;
       }
       .dia-container {
         width: 100%;
@@ -1505,6 +1512,11 @@ body[data-template="know-your-diamond"] {
           margin-bottom: 90px;
           @media(max-width: $xl) {
             margin-bottom: 30px;
+          }
+          @media(max-width: $md) {
+            font-size: 28px;
+            line-height: 35.24px;
+            color: #6C1D45;
           }
         }
         .cap_content {
@@ -2883,6 +2895,9 @@ body.layout_jewellery {
 .full_width_slider_wrapper.jewellery-collection-slider {
   .full_width_slider_image_holder {
     padding-bottom: 50.55%;
+    @media(max-width: $sm) {
+      padding-bottom: 440px;
+    }
   }
   .full_width_slide_item  {
     .slider-caption-wrapper {
@@ -2892,6 +2907,7 @@ body.layout_jewellery {
         @media(max-width: $md) {
           padding-top: 0;
           padding-bottom: 0;
+          text-align: center;
         }
         h2 {
           font-size: 112px;
@@ -2904,7 +2920,9 @@ body.layout_jewellery {
             line-height: 1;
           }
           @media(max-width: $md) {
-            font-size: 30px;
+            font-size: 28px;
+            line-height: 35.24px;
+            color: #6c1d45;
           }
           &:last-child {
             margin: 0;
@@ -2927,7 +2945,7 @@ body.layout_jewellery {
 .jewellary-collection-wrapper {
   padding-top: 93px;
   @media(max-width: $md) {
-    padding-top: 50px;
+    padding-top: 22px;
   }
   .jewellary-collection-row {
     text-align: center;
@@ -2946,7 +2964,23 @@ body.layout_jewellery {
       margin: 0 auto;
       margin-bottom: 53px;
       @media(max-width: $md) {
-        margin-bottom: 50px;
+        margin-bottom: 20px;
+      }
+      .mobile_featured_image {
+        position: relative;
+        overflow: hidden;
+        padding-bottom: 112%;
+        margin-bottom: 25px;
+        img {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          top: 0;
+          left: 0;
+          right: 0;
+          object-fit: cover;
+          object-position: top center;
+        }
       }
       h2 {
         margin-bottom: 43px;
@@ -2958,16 +2992,26 @@ body.layout_jewellery {
         @include globalFontSize26();
         font-weight: 300;
       }
+      
     }
     .jewellary-collection-grid {
       display: flex;
       flex-wrap: wrap;
       margin: 0 -15px;
+      @media(max-width: $md) {
+        margin: 0 -22.5px;
+      }
       .jewellary-collection-block {
         width: 31.4%;
         &.big_column {
           width: 37.2%;
+          @media(max-width: $md) {
+            width: 100%;
+          }
           .jewellary-collection-card {
+            @media(max-width: $md) {
+              width: 100%;
+            }
             &.has_only_image {
               .image_holder {
                 padding-bottom: 80.2%;
@@ -3040,6 +3084,9 @@ body.layout_jewellery {
             position: relative;
             overflow: hidden;
             padding-bottom: 75.1%;
+            @media(max-width: $md) {
+              padding-bottom: 100%;
+            }
             img {
               width: 100%;
               display: block;
@@ -3061,21 +3108,24 @@ body.layout_jewellery {
               line-height: 0;
             }
             @media(max-width: $md) {
-              bottom: 4vw;
+              position: static;
             }
             .title {
               font-size: 22px;
               line-height: 23.76px;
               color: #000000;
               margin-bottom: 8px;
+              text-transform: uppercase;
               @media(max-width: $xxl) {
                 font-size: 1vw;
                 line-height: 1;
                 margin-bottom: 0.5vw;
               }
               @media(max-width: $md) {
-                font-size: 2vw;
-                line-height: 1;
+                font-size: 12px;
+                line-height: 18px;
+                margin-top: 6px;
+                margin-bottom: 4px;
               }
             }
             .more_btn {
@@ -3091,8 +3141,8 @@ body.layout_jewellery {
                 padding-right: 0.9vw;
               }
               @media(max-width: $md) {
-                font-size: 1.5vw;
-                padding-right: 1.5vw;
+                font-size: 11px;
+                padding-right: normal;
               }
               &:before {
                 content: "";
@@ -3112,9 +3162,10 @@ body.layout_jewellery {
                   background-size: 0.5vw;
                 }
                 @media(max-width: $md) {
-                  width: 1vw;
-                  height: 1.4vw;
-                  background-size: 1vw;
+                  width: 7px;
+                  height: 5.75px;
+                  background-size: 5px;
+                  right: -6px;
                 }
               }
               &:after {
@@ -3124,6 +3175,9 @@ body.layout_jewellery {
                 background: #6c1d45;
                 display: block;
                 margin-top: 3px;
+                @media(max-width: $md) {
+                  margin-top: 1px;
+                }
               }
             }
           }
