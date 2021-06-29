@@ -2475,8 +2475,8 @@ hr {
   padding-bottom: 35px; }
   @media only screen and (min-width: 750px) {
     .index-section {
-      padding-top: 55px;
-      padding-bottom: 55px; } }
+      padding-top: 100px; 
+      padding-bottom: 100px; } }
   .index-section:first-child {
     padding-top: 0;
     border-top: 0; }
@@ -3695,7 +3695,7 @@ hr {
       border-bottom: 1px solid var(--color-border); } }
   @media only screen and (min-width: 750px) {
     .site-header {
-      padding: 0 55px; }
+      padding: 14px 50px 10px; }
       .site-header.logo--center {
         padding-top: 30px; } }
 
@@ -3742,8 +3742,9 @@ hr {
   white-space: nowrap; }
   @media only screen and (max-width: 749px) {
     .site-header__icons {
-      width: auto;
-      padding-right: 13px; }
+      width: 100%;
+      padding:0 16px !important;
+     }
       .site-header__icons .btn--link,
       .site-header__icons .site-header__cart {
         font-size: calc(((var(--font-size-base)) / (var(--font-size-base))) * 1em); } }
@@ -3854,15 +3855,13 @@ hr {
 .announcement-bar__link {
   display: block; }
 
-.announcement-bar__message {
-  display: block;
-  padding: 11px 22px;
-  font-size: calc(((16) / (var(--font-size-base))) * 1em);
-  font-weight: var(--font-weight-header); }
-  @media only screen and (min-width: 750px) {
+
+@media only screen and (min-width: 750px) {
     .announcement-bar__message {
-      padding-left: 55px;
-      padding-right: 55px; } }
+      padding-left: 48px;
+      padding-right: 48px;
+     } 
+}
 
 .article-listing {
   padding-top: 55px;
@@ -5760,10 +5759,11 @@ hr {
       -ms-flex: 1 1 auto;
       flex: 1 1 auto;
       width: 100%;
-      max-width: 100%; } }
+      max-width: 100%; } 
+    }
 
 .feature-row__image-wrapper {
-  margin: 0 auto 19.44444px;
+  margin: 0 auto 0;
   position: relative;
   width: 100%; }
 
@@ -5779,7 +5779,7 @@ hr {
       order: 1; } }
 
 .feature-row__text {
-  padding-top: 35px;
+  padding-top: 90px;
   padding-bottom: 35px; }
   @media only screen and (max-width: 749px) {
     .feature-row__text {
@@ -7010,8 +7010,15 @@ body.layout_jewellery #shopify-section-header {
   width: 100%;
   top:0px;
   left: 0px;
-  z-index: 9;    
+  z-index: 9;  
+  background: rgba(255, 255, 255, 0.2);
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
+
 body[data-template="index"] #shopify-section-header .site-header,
 body[data-template="index"] #shopify-section-header .site-header__mobile-nav,
 body[data-template="know-your-diamond"] #shopify-section-header .site-header,
@@ -7020,24 +7027,24 @@ body.layout_jewellery #shopify-section-header .site-header,
 body.layout_jewellery #shopify-section-header .site-header__mobile-nav {
   background-color: transparent;
   border-bottom: none;
-  -webkit-transition: 0.3s ease-in-out;
-  -moz-transition: 0.3s ease-in-out;
-  -o-transition: 0.3s ease-in-out;
-  -ms-transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out;
 }
-body[data-template="index"] #shopify-section-header.header-bg .site-header,
-body[data-template="index"] #shopify-section-header.header-bg .site-header__mobile-nav,
-body[data-template="know-your-diamond"] #shopify-section-header.header-bg .site-header,
-body[data-template="know-your-diamond"] #shopify-section-header.header-bg .site-header__mobile-nav,
-body.layout_jewellery #shopify-section-header.header-bg .site-header,
-body.layout_jewellery #shopify-section-header.header-bg .site-header__mobile-nav {
+body[data-template="index"] #shopify-section-header.header-bg,
+body[data-template="know-your-diamond"] #shopify-section-header.header-bg,
+body.layout_jewellery #shopify-section-header.header-bg {
   background-color: var(--color-body);
 }
 body[data-template="index"] .main-content,
 body[data-template="know-your-diamond"] .main-content,
 body.layout_jewellery .main-content {
   padding-top: 0;
+}
+@media(max-width: 749px) {
+  body[data-template="index"] #shopify-section-header,
+  body[data-template="know-your-diamond"] #shopify-section-header,
+  body.layout_jewellery #shopify-section-header {
+    position:relative;
+    background:#fff;
+  }
 }
 
 

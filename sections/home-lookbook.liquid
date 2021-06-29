@@ -2,8 +2,8 @@
 
 <div class="scl-{{ section.id }} home-scl">
 <div class="dia-container">
-    <div class="scl-header">
-        {% if section.settings.scl-heading != blank %}<h2 class="h3">{{ section.settings.scl-heading }}</h2>{% endif %}
+    <div class="scl-header"> 
+        {% if section.settings.scl-heading != blank %}<h2>{{ section.settings.scl-heading }}</h2>{% endif %}
         {% if section.settings.scl-desc != blank %}<div class="scl-desc">{{ section.settings.scl-desc }}</div>{% endif %}
     </div>
     {% if section.blocks.size > 0%}

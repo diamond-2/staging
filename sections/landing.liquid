@@ -32,14 +32,24 @@
         </div>
     </div>    
 </div>
+
+<!-- Cookies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function(event) {
+        if($.cookie('landingpage') == null) {
+          $('#shopify-section-landing').show();
+          $('body').addClass('overflow-hidden');
+        }
         $(document).on('click', '.large-circle', function(){
             $('body').removeClass('overflow-hidden');
             $('#shopify-section-landing').remove();
-        })
+            $.cookie('landingpage',2)
+        });
+        
     });
 </script>
+
 {% schema %}
 {
     "name": "Landing Page",

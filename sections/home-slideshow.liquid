@@ -13,12 +13,14 @@
     {%- assign contentClr = block.settings.slider_content_color -%}
     {%- assign contentLinkClr = block.settings.slider_link_color -%}
         <div class="slide-item slide--{{ forloop.index }}" data-type="image">
-            {%- if img_desktop != blank -%}
-            <img src="{{ img_desktop | img_url: '1920x' }}" class="{% if img_mobile != blank %}mobile_hide {% endif %} lazyload{% unless forloop.first %} lazypreload{% endunless %}" alt="" /> 
-            {%- endif -%}
-            {%- if img_mobile != blank -%}
-            <img src="{{ img_mobile | img_url: '739x' }}" class="desktop_hide lazyload {% unless forloop.first %} lazypreload{% endunless %}" alt="" />
-            {%- endif -%}
+            <div class="home_slide_item_inner">
+                {%- if img_desktop != blank -%}
+                <img src="{{ img_desktop | img_url: '1920x' }}" class="{% if img_mobile != blank %}mobile_hide {% endif %} lazyload{% unless forloop.first %} lazypreload{% endunless %}" alt="" /> 
+                {%- endif -%}
+                {%- if img_mobile != blank -%}
+                <img src="{{ img_mobile | img_url: '739x' }}" class="desktop_hide lazyload {% unless forloop.first %} lazypreload{% endunless %}" alt="" />
+                {%- endif -%}
+            </div>
             {%- if heading != blank or subheading != blank -%}
             <div class="slide-overlay {% if contentPos == 'right' %} content-right {% else %} content-left{% endif %}" {% if contentClr != blank %}style="color: {{ contentClr }}"{% endif %}>
                 {%- if heading != blank -%}<div class="slide-overaly-heading">{{ heading }}</div>{%- endif -%}
@@ -39,9 +41,11 @@
     {%- assign contentLinkClr = block.settings.video_link_color -%}
     {%- if videolink != blank -%}
     <div class="slide-item slide--{{ forloop.index }}" data-type="video">
-    <video {% if videocontrols %}controls{% endif %}>
-        <source src="{{ videolink }}" type="video/mp4">
-    </video>
+        <div class="home_slide_item_inner">
+            <video {% if videocontrols %}controls{% endif %}>
+                <source src="{{ videolink }}" type="video/mp4">
+            </video>
+        </div>
     {%- endif -%}
     {%- if heading != blank or subheading != blank -%}
     <div class="slide-overlay {% if contentPos == 'right' %} content-right {% else %} content-left{% endif %}" {% if contentClr != blank %}style="color: {{ contentClr }}"{% endif %}>
@@ -70,11 +74,10 @@
             {
                 breakpoint: 749,
                 settings: {
-                arrows: false,
-                dots: false
+                arrows: false
                 }
             }
-        ]
+        ] 
     }).on('afterChange', function(event, slick, currentSlide, nextSlide){
         var vids = mainSlider.find('.slide-item.slick-current[data-slick-index="'+currentSlide+'"] video');
         if(vids.length > 0){

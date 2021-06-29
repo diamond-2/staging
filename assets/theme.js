@@ -9739,8 +9739,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
   $('.footer-menu-Childtrigger').click(function(){
       $(this).next().slideToggle(250);
       $(this).parent().toggleClass('menu_down');
-      $(this).parent().siblings().removeClass('menu_down');
-      $(this).parent().siblings().children('.site-footer__sub-linklist').slideUp(250);
   });
 
   // HeaderNav image change on mouseenter event
@@ -9748,8 +9746,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
   $(document).on('mouseenter', '.site-nav__childlist-item .site-nav__link', function(){
     let handle = $(this).data('handle'); console.log(handle);
     handle != undefined ? $(document).find('#nav-img-block img').attr('src', handle).fadeIn():$(document).find('#nav-img-block img').fadeOut();
-
   });
+
+  // currency card toggle
+  $('.currency-trigger').click(function(){
+    $(this).next('.currency-box-child').fadeToggle(250);
+    $(this).parent('li').toggleClass('clicked');
+  }); 
 
 });
 
