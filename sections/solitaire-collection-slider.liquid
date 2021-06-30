@@ -1,5 +1,5 @@
 
-<div class="collection-slider-wrapper">
+<div class="collection-slider-wrapper solitaire-collection-slider-section">
     <div class="dia-container">
         {%- if section.settings.heading != blank -%}
         <div class="collection-slider-header">
@@ -78,18 +78,19 @@
 
 {% schema %}
   {
-    "name": "Collection Slider",
+    "name": "Solitaire Collection",
     "settings": [
         {
             "type": "text",
             "label": "heading",
-            "id": "heading"
+            "id": "heading",
+            "default": "Solitaire Collection"
         },
         {
             "type": "text",
             "label": "Button Text",
             "id": "button_text",
-            "default": "EXPLORE OUR FINE JEWELLERY COLLECTIONS"
+            "default": "EXPLORE OUR Solitaire COLLECTIONS"
         },
         {
             "type": "url",

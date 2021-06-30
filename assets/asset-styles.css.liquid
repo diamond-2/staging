@@ -27,3 +27,14 @@
   .footer-menu-Childtrigger:after {
     content: url({{ 'footer-down-arrow.png' | asset_url }});
   }
+
+@media(max-width: 749px) {
+  .shop-loose-diamond2-slider .slick-arrow.slick-prev:after,
+  .collection-slider .slick-arrow.slick-prev {
+    background-image:url({{ 'arrow-left-mobile.png' | asset_url }});
+  }
+  .shop-loose-diamond2-slider .slick-arrow.slick-next:after,
+  .collection-slider .slick-arrow.slick-next {
+    background-image:url({{ 'arrow-right-mobile.png' | asset_url }});
+  }
+}

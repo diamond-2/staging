@@ -4,11 +4,28 @@
         <div class="dia-container">
             <div class="content-with-image-diamond-row">
                 {%- if item.settings.image !=blank -%}
-                <div class="content-with-image-diamond-image-column">
+                <div class="content-with-image-diamond-image-column hide_mobile">
                     <div class="image_holder">
-                        <img data-src="{{ item.settings.image | img_url: 'master' }}" class="lazyload" alt="">
+                        <img data-src="{{ item.settings.image | img_url: 'master' }}" class="lazyload" alt="{{  item.settings.image.alt }}">
                     </div>
                 </div>
+
+                {%- if item.settings.mobile_image !=blank -%}
+                <div class="content-with-image-diamond-image-column show_mobile">
+                    <div class="image_holder">
+                        <img data-src="{{ item.settings.mobile_image | img_url: 'master' }}" class="lazyload" alt="{{  item.settings.image.mobile_image }}">
+                    </div>
+                    {%- if item.settings.bottom_text != blank -%}<div class="image_cap_b show_mobile"><p>{{ item.settings.bottom_text }}</p></div>{%- endif -%}
+                </div>
+                {%- else -%}
+                <div class="content-with-image-diamond-image-column show_mobile">
+                    <div class="image_holder">
+                        <img data-src="{{ item.settings.image | img_url: 'master' }}" class="lazyload" alt="{{  item.settings.image.alt }}">
+                    </div>
+                    {%- if item.settings.bottom_text != blank -%}<div class="image_cap_b show_mobile"><p>{{ item.settings.bottom_text }}</p></div>{%- endif -%}
+                </div>
+                {%- endif -%}
+
                 {%- endif -%}
 
                 {%- if item.settings.bottom_text != blank -%}
@@ -24,7 +41,7 @@
                             {{ item.settings.content }}
                         </div>
                         {%- endif -%}
-                        {%- if item.settings.bottom_text != blank -%}<div class="image_cap_b"><p>{{ item.settings.bottom_text }}</p></div>{%- endif -%}
+                        {%- if item.settings.bottom_text != blank -%}<div class="image_cap_b hide_mobile"><p>{{ item.settings.bottom_text }}</p></div>{%- endif -%}
                     </div>
                     {%- endif -%}
                 </div>
@@ -52,6 +69,11 @@
                     "type": "image_picker",
                     "label": "Image",
                     "id": "image"
+                },
+                {
+                    "type": "image_picker",
+                    "label": "Mobile Image",
+                    "id": "mobile_image"
                 },
                 {
                     "type": "select",

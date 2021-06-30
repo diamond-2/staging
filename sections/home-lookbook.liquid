@@ -3,6 +3,11 @@
 <div class="scl-{{ section.id }} home-scl">
 <div class="dia-container">
     <div class="scl-header"> 
+        {% if section.settings.mobile_featured_image  %}
+        <div class="mobile_featured_image show_mobile">
+            <img class="lazyload" data-src="{{ section.settings.mobile_featured_image | img_url: 'master' }}" alt="{{  section.settings.mobile_featured_image.alt }}">
+        </div>
+        {% endif %}
         {% if section.settings.scl-heading != blank %}<h2>{{ section.settings.scl-heading }}</h2>{% endif %}
         {% if section.settings.scl-desc != blank %}<div class="scl-desc">{{ section.settings.scl-desc }}</div>{% endif %}
     </div>
@@ -10,7 +15,7 @@
     <div class="scl-collage">
         {%- for block in section.blocks -%}    
         {% capture blockIndex %}-{{ forloop.index }}{% endcapture %} 
-        <div class="block-{{ forloop.index }} {% if block.settings.scl_image_1 == blank or block.settings.scl_image_2 == blank %} full-width {% endif %}">
+        <div class="block-{{ forloop.index }} {% if forloop.index == 2 %}big_block{% endif %} {% if block.settings.scl_image_1 == blank or block.settings.scl_image_2 == blank %} full-width {% endif %}">
         {% for i in (1..2) %}
         {% capture blockImg %}scl_image_{{ i }}{% endcapture %}
         {% capture blockTitle %}scl_heading_{{ i }}{% endcapture %}
@@ -48,6 +53,12 @@
     "class": "solitaire-col-layout",
     "max_blocks": 3,
     "settings": [
+        {
+            "type": "image_picker",
+            "label": "Mobile Featured Image",
+            "id": "mobile_featured_image",
+            "info": "This image will visible on mobile"
+        },
         {
             "type":"text",
             "id":"scl-heading",
