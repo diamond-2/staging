@@ -27,6 +27,7 @@
   .footer-menu-Childtrigger:after {
     content: url({{ 'footer-down-arrow.png' | asset_url }});
   }
+ 
 
 @media(max-width: 749px) {
   .shop-loose-diamond2-slider .slick-arrow.slick-prev:after,
@@ -36,5 +37,11 @@
   .shop-loose-diamond2-slider .slick-arrow.slick-next:after,
   .collection-slider .slick-arrow.slick-next {
     background-image:url({{ 'arrow-right-mobile.png' | asset_url }});
+  }
+  .product-desc-section .product-desc-title:after {
+    content: url({{ 'up_arrow_lg.png' | asset_url }});
+  }
+  .product-detail-slider .slick-arrow:after {
+    background-image: url({{ 'product_slide_mg_arrow.png' | asset_url }});
   }
 }

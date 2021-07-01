@@ -7034,6 +7034,24 @@ body[data-template="know-your-diamond"] #shopify-section-header.header-bg,
 body.layout_jewellery #shopify-section-header.header-bg {
   background-color: var(--color-body);
 }
+
+
+@media(min-width: 750px) {
+  body[data-template="index"] #shopify-section-header.header-bg .announcement-bar,
+  body[data-template="know-your-diamond"] #shopify-section-header.header-bg .announcement-bar,
+  body.layout_jewellery #shopify-section-header.header-bg .announcement-bar {
+    height: 0px;
+    padding: 0px;
+    border: none;
+  }
+  body[data-template="index"] #shopify-section-header.header-bg .announcement-bar .announcement-bar__message,
+  body[data-template="know-your-diamond"] #shopify-section-header.header-bg .announcement-bar .announcement-bar__message,
+  body.layout_jewellery #shopify-section-header.header-bg .announcement-bar .announcement-bar__message {
+    font-size: 0px;
+  }
+}
+
+
 body[data-template="index"] .main-content,
 body[data-template="know-your-diamond"] .main-content,
 body.layout_jewellery .main-content {

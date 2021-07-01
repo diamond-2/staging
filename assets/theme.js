@@ -9753,6 +9753,11 @@ document.addEventListener('DOMContentLoaded', function(event) {
     $(this).next('.currency-box-child').fadeToggle(250);
     $(this).parent('li').toggleClass('clicked');
   }); 
+  // product description toggle mobile
+  $('.product-desc-title').click(function(){
+      $(this).parent().toggleClass('content_showed');
+      $(this).next().slideToggle(300);
+  });
 
 });
 
