@@ -1,10 +1,24 @@
 {%- comment -%}Add Full Width Slider 4{%- endcomment -%}
 {% section 'full-width-slider4' %}
 {%- comment -%}Page header{%- endcomment -%}
-<h1>{{ page.title }}</h1>
+<div class="dia-container">
+    <div class="glb-sec-header text-center">
+        <img data-src="{{ 'small_logo.png' | asset_img_url: 'master' }}" class="lazyload loose-stone-sec-logo show_mobile" alt="Diomand2">
+        <h2>{{ page.title }}</h2>
+    </div>
+</div>
 <div class="page-content">
     <div class="dia-container">
         {% section 'loose-stone' %}
     </div>
 </div>
+
+<div class="show_mobile">
+    {% section 'solitaire-collection-slider' %}
+</div>
+
+{% section 'custom-jewellary-collection2' %}
+
 {% section 'jewellery-pdp-slider' %}
+
+

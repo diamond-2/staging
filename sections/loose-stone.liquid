@@ -9,14 +9,14 @@
             <div class="loose-stone-item-img"><img data-src="{% if blockImg != blank %}{{ blockImg | img_url: '485x'}} {% else %} {{ blockImg | placeholder_svg_tag }} {% endif %}" class="lazyload" alt="{{ blockTitle }}" /></div>
             {% if blockTitle != blank or blockDesc != blank %}
                 <div class="loose-stone-item-content">
-                    {% if blockTitle != blank %}<h2 class="loose-stone-item-title">{{ blockTitle }}</h2> {% endif %}
+                    {% if blockTitle != blank %}<div class="loose-stone-item-title">{{ blockTitle }}</div> {% endif %}
                     {% if blockDesc != blank %}<div class="loose-stone-item-desc">{{ blockDesc }}</div> {% endif %}
-                    {% if blockLink != blank %} <div class="loose-stone-item-link"><a href="{{ blockLink }}" aria-lable="{{ blockTitle }}">EXPLORE ></a></div> {% endif %}
+                    {% if blockLink != blank %} <div class="loose-btn-holder"><a class="glb-btn-with-arrow" href="{{ blockLink }}" aria-lable="{{ blockTitle }}">EXPLORE</a></div>{% endif %}
             </div>
             {% endif %}
         </div>    
 {% endfor %}    
-</div>
+</div> 
 {% endif %}
 
 {% schema %}

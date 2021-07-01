@@ -1,4 +1,5 @@
-<div class="full_width_slider_wrapper full_width_slider4_wrapper">
+
+<div class="full_width_slider_wrapper jewellery-collection-slider full_width_slider4_wrapper">
     <div class="full_width_slider">
         {%- if section.blocks.size > 0 -%}
         {%- for slide in section.blocks -%}
@@ -36,6 +37,8 @@
         {%- endif -%}  
     </div>
 </div>
+
+
 {% schema %}
 {
     "name": "Full Width Slider",
@@ -82,24 +85,11 @@
                 "type": "text",
                 "label": "Heading",
                 "id": "heading"
-             },
-             {
-                "type": "richtext",
-                "label": "Content",
-                "id": "content"
-             },
-             {
-                "type": "text",
-                "label": "Button Text",
-                "id": "button_text"
-             },
-             {
-                "type": "url",
-                "label": "Button Link",
-                "id": "button_link"
              }
           ]
        }
     ]
 }
 {% endschema %} 
+
+
