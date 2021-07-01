@@ -3137,6 +3137,48 @@ body.layout_jewellery {
 // Fine Jewellary Collection Page End
 
 
+// Loose Stone
+.title {
+  @include font-range-45to25();
+  @include heading-fonts();
+  color: $textcolor-phanton;
+}
+.loose-stone-block-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .loose-stone-item {
+    width: 33.333%;
+    padding: 0 20px;
+    text-align: center;
+    margin-bottom: 50px;
+    .loose-stone-item-img {
+      margin-bottom: 30px;
+    }
+    .loose-stone-item-content {
+      @include base-font();
+      .loose-stone-item-title{
+        font-size: 28px;
+        letter-spacing: 0.2em;
+        color: $textcolor-phanton;
+        margin-bottom: 15px;
+      }
+      .loose-stone-item-desc{
+        font-size: 26px;
+        margin-bottom: 25px;
+        line-height: 28.8px;
+      }
+      .loose-stone-item-link {
+        font-size: 18px;
+        line-height: normal;
+        color: $textcolor-phanton;
+        border-bottom: 1px solid #6C1D45;
+        display: inline-block;
+      }
+    }
+  }
+}
+
 
 // Responsive
 

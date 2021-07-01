@@ -1,0 +1,55 @@
+{% if section.blocks.size > 0 %}
+<div class="loose-stone-block-items">
+{% for block in section.blocks %}
+    {%- assign blockImg = block.settings.ls_block_img -%}
+    {%- assign blockTitle = block.settings.ls_block_title -%}
+    {%- assign blockDesc = block.settings.ls_block_desc -%}
+    {%- assign blockLink = block.settings.ls_block_link -%}    
+        <div class="loose-stone-item">
+            <div class="loose-stone-item-img"><img data-src="{% if blockImg != blank %}{{ blockImg | img_url: '485x'}} {% else %} {{ blockImg | placeholder_svg_tag }} {% endif %}" class="lazyload" alt="{{ blockTitle }}" /></div>
+            {% if blockTitle != blank or blockDesc != blank %}
+                <div class="loose-stone-item-content">
+                    {% if blockTitle != blank %}<h2 class="loose-stone-item-title">{{ blockTitle }}</h2> {% endif %}
+                    {% if blockDesc != blank %}<div class="loose-stone-item-desc">{{ blockDesc }}</div> {% endif %}
+                    {% if blockLink != blank %} <div class="loose-stone-item-link"><a href="{{ blockLink }}" aria-lable="{{ blockTitle }}">EXPLORE ></a></div> {% endif %}
+            </div>
+            {% endif %}
+        </div>    
+{% endfor %}    
+</div>
+{% endif %}
+
+{% schema %}
+{
+    "name": "Loose Stone Section",
+    "settings": [],
+    "blocks": [
+        {
+            "type": "image",
+            "name": "Image",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "ls_block_img",
+                    "label": "Loose stone item image"
+                },
+                {
+                    "type": "text",
+                    "id": "ls_block_title",
+                    "label": "Loose stone item title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "ls_block_desc",                 
+                    "label": "Loose stone item description"
+                },
+                {
+                    "type": "url",
+                    "id": "ls_block_link",
+                    "label": "Loose stone item link"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}
