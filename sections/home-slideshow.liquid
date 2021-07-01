@@ -12,18 +12,22 @@
     {%- assign contentPos = block.settings.slider_content_position -%}
     {%- assign contentClr = block.settings.slider_content_color -%}
     {%- assign contentLinkClr = block.settings.slider_link_color -%}
+    {%- assign contentBtnTheme = block.settings.slide_button_theme -%}
+
         <div class="slide-item slide--{{ forloop.index }}" data-type="image">
-            {%- if img_desktop != blank -%}
-            <img src="{{ img_desktop | img_url: '1920x' }}" class="{% if img_mobile != blank %}mobile_hide {% endif %} lazyload{% unless forloop.first %} lazypreload{% endunless %}" alt="" /> 
-            {%- endif -%}
-            {%- if img_mobile != blank -%}
-            <img src="{{ img_mobile | img_url: '739x' }}" class="desktop_hide lazyload {% unless forloop.first %} lazypreload{% endunless %}" alt="" />
-            {%- endif -%}
+            <div class="home_slide_item_inner">
+                {%- if img_desktop != blank -%}
+                <img src="{{ img_desktop | img_url: '1920x' }}" class="{% if img_mobile != blank %}mobile_hide {% endif %} lazyload{% unless forloop.first %} lazypreload{% endunless %}" alt="" /> 
+                {%- endif -%}
+                {%- if img_mobile != blank -%}
+                <img src="{{ img_mobile | img_url: '739x' }}" class="desktop_hide lazyload {% unless forloop.first %} lazypreload{% endunless %}" alt="" />
+                {%- endif -%}
+            </div>
             {%- if heading != blank or subheading != blank -%}
             <div class="slide-overlay {% if contentPos == 'right' %} content-right {% else %} content-left{% endif %}" {% if contentClr != blank %}style="color: {{ contentClr }}"{% endif %}>
                 {%- if heading != blank -%}<div class="slide-overaly-heading">{{ heading }}</div>{%- endif -%}
                 {%- if subheading != blank -%}<div class="slide-overaly-subheading">{{ subheading }}</div>{%- endif -%}
-            {%- if linktext != blank -%}<a class="slide-overlay-link glb-btn" href="{{ linkurl }}" aria-label=" {{ linktext }}" {% if contentLinkClr != blank %} style="color: {{ contentLinkClr }}" {% endif %}> {{ linktext }}</a>{%- endif -%}
+            {%- if linktext != blank -%}<a class="slide-overlay-link glb-btn {{ contentBtnTheme }}" href="{{ linkurl }}" aria-label=" {{ linktext }}" {% if contentLinkClr != blank %} style="color: {{ contentLinkClr }}" {% endif %}> {{ linktext }}</a>{%- endif -%}
             </div>
             {% endif %}
         </div>
@@ -37,17 +41,20 @@
     {%- assign contentPos = block.settings.video_content_position -%}
     {%- assign contentClr = block.settings.video_content_color -%}
     {%- assign contentLinkClr = block.settings.video_link_color -%}
+    {%- assign videoBtnTheme = block.settings.slide_button_theme -%}
     {%- if videolink != blank -%}
     <div class="slide-item slide--{{ forloop.index }}" data-type="video">
-    <video {% if videocontrols %}controls{% endif %}>
-        <source src="{{ videolink }}" type="video/mp4">
-    </video>
+        <div class="home_slide_item_inner">
+            <video {% if videocontrols %}controls{% endif %}>
+                <source src="{{ videolink }}" type="video/mp4">
+            </video>
+        </div> 
     {%- endif -%}
     {%- if heading != blank or subheading != blank -%}
     <div class="slide-overlay {% if contentPos == 'right' %} content-right {% else %} content-left{% endif %}" {% if contentClr != blank %}style="color: {{ contentClr }}"{% endif %}>
         {%- if heading != blank -%}<div class="slide-overaly-heading">{{ heading }}</div>{%- endif -%}
         {%- if subheading != blank -%}<div class="slide-overaly-subheading">{{ subheading }}</div>{%- endif -%}
-        {%- if linktext != blank -%}<a class="slide-overlay-link glb-btn" href="{{ linkurl }}" aria-label=" {{ linktext }}" {% if contentLinkClr != blank %} style="color: {{ contentLinkClr }}" {% endif %}> {{ linktext }}</a>{%- endif -%}
+        {%- if linktext != blank -%}<a class="slide-overlay-link glb-btn {{ videoBtnTheme }}" href="{{ linkurl }}" aria-label=" {{ linktext }}" {% if contentLinkClr != blank %} style="color: {{ contentLinkClr }}" {% endif %}> {{ linktext }}</a>{%- endif -%}
     </div>
     {% endif %}
     </div>
@@ -70,11 +77,10 @@
             {
                 breakpoint: 749,
                 settings: {
-                arrows: false,
-                dots: false
+                arrows: false
                 }
             }
-        ]
+        ] 
     }).on('afterChange', function(event, slick, currentSlide, nextSlide){
         var vids = mainSlider.find('.slide-item.slick-current[data-slick-index="'+currentSlide+'"] video');
         if(vids.length > 0){
@@ -148,14 +154,30 @@
                     "label": "Slide Sub-heading"
                 },
                 {
+                    "type": "select",
+                    "label": "Slide Button Theme",
+                    "id": "slide_button_theme",
+                    "default": "blue",
+                    "options": [
+                        {
+                            "value": "blue",
+                            "label": "Blue"
+                        },
+                        {
+                            "value": "transparent",
+                            "label": "Transparent"
+                        }
+                    ]
+                },
+                {
                     "type": "text",
                     "id": "slider_linkText",
-                    "label": "Slide Link Text"
+                    "label": "Slide Button Text"
                 },
                 {
                     "type": "url",
                     "id": "slider_link",
-                    "label": "Slide Link"
+                    "label": "Slide Button Link"
                 },
                 {
                     "type":      "color",
@@ -218,12 +240,28 @@
                 {
                     "type": "text",
                     "id": "video_linkText",
-                    "label": "Slide Link Text"
+                    "label": "Slide Button Text"
+                },
+                {
+                    "type": "select",
+                    "label": "Slide Button Theme",
+                    "id": "slide_button_theme",
+                    "default": "blue",
+                    "options": [
+                        {
+                            "value": "blue",
+                            "label": "Blue"
+                        },
+                        {
+                            "value": "transparent",
+                            "label": "Transparent"
+                        }
+                    ]
                 },
                 {
                     "type": "url",
                     "id": "video_link",
-                    "label": "Slide Link"
+                    "label": "Slide Button Link"
                 },
                 {
                     "type":      "color",

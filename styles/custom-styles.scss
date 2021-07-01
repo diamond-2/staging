@@ -20,6 +20,10 @@ $input-field-border-color:#6679CC;
     font-size: 16px;
     line-height: 1.8;
   }
+  @media(max-width: $md) {
+    font-size: 12px;
+    line-height: 18px;
+  }
 }
 
 @mixin primary-btn() {
@@ -50,7 +54,7 @@ $input-field-border-color:#6679CC;
 
 @mixin heading-fonts() {
   font-family: 'Spectral', serif;
-  font-weight: normal;
+  font-weight: 200;
 }
 
 @mixin prefix-transform-translate() {
@@ -99,6 +103,10 @@ $input-field-border-color:#6679CC;
     -o-border-radius: 50%;
     border-radius: 50%;
   }
+
+  @mixin slick-dots-small() {
+
+  }
  
 
   /*============================================================================
@@ -114,8 +122,8 @@ $input-field-border-color:#6679CC;
     padding-right: 55px;
   }
   @media screen and (max-width: $md) {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
@@ -155,8 +163,8 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   font-size: calc(25px + (100vw - 750px)/1170 * 20);
   line-height: calc(28px + (100vw - 750px)/1170 * 20);
   @media screen and (max-width: $md){
-    font-size: 25px;
-    line-height: 30px;
+    font-size: 28px;
+    line-height: 30.24px;
   }	
   @media screen and (min-width: $postSiteWidth) {
     font-size: 2.916666666666667vw;
@@ -223,6 +231,16 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
 #Common Classes and Styles
 =================================================================================*/
 
+.main-content h2 {
+    @include font-range-45to25();
+    @include heading-fonts();
+    color: $textcolor-phanton;
+    letter-spacing: normal;
+    text-transform: uppercase;
+}
+.main-content P {
+  @include globalFontSize26();
+}
 .dia-container{
   @include content-container();
   margin: 0 auto;
@@ -254,11 +272,31 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     background-color: transparent!important;
     height: auto;
     transition: height 0.5s ease-in-out;
-    @media screen and (max-width: $tabOrient) {
-      background-color: $background-white!important;
+    @media(max-width: $md) {
+      background: #E5E5E5 !important;
     }
     .announcement-bar__message {
       color:$textcolor-black;
+      display: block;
+      padding-top: 26px;
+      padding-bottom: 17px;
+      display: flex;
+      justify-content: space-between;
+      text-transform: uppercase;
+      font-size: 14px;
+      line-height: 15.12px;
+      @media(max-width: $xl) and (min-width: $postMd) {
+        font-size: 12px;
+      }
+      @media(max-width: $md) {
+        justify-content: center;
+        font-size: 9px;
+        line-height: 1;
+        text-transform: none;
+        padding: 4px 20px;
+        letter-spacing: 0;
+        color: #484848;
+      }
     }
   }
 
@@ -274,14 +312,6 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   }
 
   &.header-bg{
-    .announcement-bar{
-      height: 0px;
-      padding: 0px;
-      border: none;
-      .announcement-bar__message {
-        font-size: 0px;
-      }
-    }
     .mobile-nav-wrapper{
       &.js-menu--is-open {
         height: calc(100vh - 60px)!important;
@@ -299,11 +329,70 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
       }
       .site-header__icons {
         button.site-header__menu {
-          display: inline-block!important;
+          display: inline-block;
+          order: 7;
+          svg {
+            vertical-align: top;
+          }
         }
       }
     }
   }
+  .site-header__search-toggle {
+    svg {
+      @media(max-width: $md) {
+        width: 13.5px;
+        vertical-align: middle;
+        margin: 0 13px
+      }
+    }
+  }
+
+  .js-mobile-nav-toggle {
+    svg.icon {
+      @media(max-width: $md) {
+        width: 17px;
+        margin-top: -6px;
+      }
+    }
+  }
+
+  .site-header__cart {
+    svg {
+      @media(max-width: $md) {
+        width: 13px;
+        height: 13px;
+      }
+    }
+  }
+
+  .site-header__account {
+    svg {
+      @media(max-width: $md) {
+        width: 13px;
+        height: 13px;
+        margin: 0 10px;
+      }
+    }
+  }
+  .site-header__logo {
+    @media(max-width: $md) {
+      padding:0 10px;
+      margin: 12px 0;
+    }
+    .site-header__logo-image {
+      @media(max-width: $md) {
+        max-width: 205px;
+        margin: 0 auto !important;
+      }
+    }
+  }
+  h1.site-header__logo {
+    @media(max-width: $md) {
+      margin: 9px 0 19px;
+    }
+  }
+
 }
 .site-header{
   .site-header__mobile-nav{
@@ -311,13 +400,18 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     z-index: 99;
     @media screen and (max-width: $tabOrient) {
       position: relative;
-      background-color: $background-white!important;
     }
     .site-header__logo {
       .site-header__logo-image {
         img {
           @media screen and (max-width: $tabOrient) {
             max-width: 240px;            
+          }
+          &.header_sm_logo {
+            max-width: 22px;
+            margin: 0 auto 6px;
+            position: relative;
+            left: -10px
           }
         }
       }
@@ -332,16 +426,50 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     }
     .site-header__icons {
       .site-header__icon {
-        padding: 10px 8px;
-        margin: 0 7px;
+        padding: 10px 7px;
+        margin: 0 10px;
+        svg {
+          @media(max-width: $xl) and (min-width: $postMd) {
+            width: 18px;
+            height: 18px;
+          }
+        }
+        @media(max-width: $md) {
+          padding:0;
+          margin:0;
+        }
+      }
+    }
+  }
+}
+
+[data-template="index"] {
+   .site-header__icons {
+    .site-header__icon {
+      @media(max-width: $md) {
+        margin-top: 15px !important;
       }
     }
   }
 }
   #AccessibleNav {
-    padding-left: 20px;
+    padding-left:0;
     .site-nav {
+      margin: 25px 0;
+      margin-left: -29px;
+      margin-top: 21px;
       text-align: left;
+      @media(max-width: $xl) and (min-width: $postMd) {
+        margin: 10px 0;
+      }
+      > li {
+        > a {
+          padding: 3px 19px;
+          font-size: 16px;
+          line-height: 17.28px;
+          font-weight: 400;
+        }
+      }
       .site-nav__dropdown {
         .site-nav__childlist{
           width: 50%;
@@ -403,6 +531,72 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     }
   }
 
+// currency box
+.currency-box-wrapper {
+  position: relative;
+	padding-left: 17px;
+	margin-top: -5px;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      position: relative;
+      a {
+        font-size: 24px;
+        line-height: 25.92px;
+        @media(max-width: $xl) and (min-width: $postMd) {
+          font-size: 16px;
+          line-height: normal;
+        }
+        &.currency-trigger {
+          padding-right: 22px;
+          position: relative;
+          &:after {
+            position: absolute;
+            top: 9px;
+            right: 0;
+            line-height: 0;
+            @include smooth-transition();
+            @media(max-width: $xl) and (min-width: $postMd) {
+              top: 7px;
+            }
+          }
+        }
+      }
+      &.clicked {
+        > a {
+          &:after {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+    &.currency-box-child {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: #fff;
+      padding: 10px;
+      width: 150px;
+      text-align: left;
+      margin-top: 10px;
+      border-radius: 3px;
+      li {
+        a {
+          font-size: 18px;
+          line-height: 1.5;
+          @media(max-width: $xl) and (min-width: $postMd) {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
   .mobile-nav-wrapper {
     z-index: 0;
     &:after {
@@ -446,6 +640,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     width: 100%;
     height: 100vh;
     z-index: 999;
+    display: none;
     #main-landing-page{
       .landing-banner {
         height: 100vh;
@@ -556,7 +751,34 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   }
 
    /* Home page section -- Image with Video */
+
    .home--slider { 
+     &:first-child {
+      .homepage-slider-wrapper {
+        .home_slide_item_inner {
+          padding-bottom: 50.5%;
+          @media(max-width: $xxl) and (min-width: $postMd) {
+            padding-top: 160px;
+          }
+          @media(max-width: $md) {
+            padding-bottom: 440px;
+          }
+        }
+        .slick-dots {
+          @media(max-width: $md) {
+            bottom: auto;
+            top: 394px;
+          }
+        }
+        .slide-item {
+          .slide-overlay {
+            @media(max-width: $md) {
+              padding-top: 40px;
+            }
+          }
+        }
+      }
+     }
     display: block;
     width: 100%;
     padding-bottom: 0px;
@@ -578,6 +800,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
         background-size: 50px;
         background-position: center;
         background-repeat: no-repeat;
+        display: none !important;
         @media(max-width: $lg) {
           background-size: 25px;
         }
@@ -592,24 +815,36 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
         }
         
       }
+      .home_slide_item_inner {
+        position: relative;
+        overflow: hidden;
+        padding-bottom: 40.66%;
+        @media(max-width: $md) {
+          padding-bottom: 375px;
+        }
+      }
       img,video {
           width: 100%;
-          max-height: 100vh;
+          height: 100%;
           object-fit: cover;
+          position:absolute;
+          top:0;
+          left: 0;
+          right: 0;
       }
       .slide-item {
         position: relative;
         font-size: 0px;
         .slide-overlay {
           position:absolute;
-          left: 150px;
+          left: 100px;
           bottom: 90px;
           font-size: 26px;
           text-align: left;
           @include base-font();
-          @media screen and (min-width: $postMd) and (max-width: $tab) {
-            bottom: 40px;
-            left: 100px; 
+          @media screen and (min-width: $postMd) and (max-width: $xl) {
+            bottom: 100px;
+            left: 55px; 
             font-size: 20px; 
           }
           @media screen and (max-width: $md) {
@@ -617,44 +852,76 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
             bottom:initial;
             left: initial;
             font-size: 16px; 
-            padding-top: 40px;
-            padding-bottom: 40px;
+            padding-top: 20px;
+            padding-bottom: 0;
             @include container-spacing();  
-            color: $textcolor-black!important;          
+            color: $textcolor-black!important;    
+            text-align: center;      
           }
           .slide-overaly-heading {
             @include heading-fonts();
-            @include font-range-56to26();
-            font-weight: 200;
-            letter-spacing: 0em;
-            margin-bottom: 60px;
+            @include font-range-45to25();
+            line-height: 1.25;
+            letter-spacing: 0;
+            margin-bottom: 74px;
             text-transform: uppercase;
             @media screen and (max-width: $tab) {
               margin-bottom: 20px; 
             }
+            @media(max-width: $md) {
+              color: #6C1D45;
+              margin-bottom: 15px !important;
+            }
+          }
+          .slide-overaly-subheading {
+            line-height: 33.08px;
+            @media(max-width:$md) {
+              font-size: 12px;
+              line-height: 18px;
+            }
+            br {
+              @media(max-width: $md) {
+                display: none;
+              }
+            }
           }
           .slide-overlay-link {
-            margin-top: 60px;
+            margin-top: 86px;
             font-weight: 500;
             text-transform: uppercase;
             color: #6C1D45;
+            &.transparent {
+              @media(min-width: $postMd) {
+                border-color: #fff;
+                color: #fff;
+                background-color: transparent;
+              }
+              &:hover {
+                @media(min-width: $postMd) {
+                  background-color: #6C1D45;
+                  border-color:#6C1D45;
+                  color: #fff;
+                }
+              }
+
+            }
             @media screen and (max-width: $tab) {
               margin-top: 20px; 
             }
             @media screen and (max-width: $md) {
-              color: $textcolor-black!important;              
+              margin-top: 18px;
             }
           }
           &.content-right {
             left: initial;
-            right: 150px;
+            right: 100px;
             text-align: right;
             @media screen and (min-width: $postMd) and (max-width: $tab) {
               right: 100px; 
             }
             @media screen and (max-width: $md) {
               right: initial;
-              text-align: left;
+              text-align: center;
             }
           }
         }
@@ -664,12 +931,21 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
         width: 100%;
         bottom: 50px;
         z-index: 9;
+        @media(max-width: $md) {
+          bottom: auto;
+          top: 333px;
+        }
         li {
-            width: 25px;
-            height: 25px;
+            width: 18px;
+            height: 18px;
             @include bdr-radius50();
             background: #ffffff;
-            margin: 0 5px;
+            margin: 0 7.5px;
+            @media(max-width: $md) {
+              width: 12px;
+              height: 12px;
+              margin: 0 5px;
+            }
             &.slick-active {
               background: #6C1D45;
             }
@@ -683,11 +959,9 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
 
   /* Home page section --  image with text */
   .homepage-image-text {
-    background-color: $background-blue;
-    color: $textcolor-white;
     .feature-row__item {
       flex: none;
-      width: 60%;
+      width: 61%;
       @media screen and (max-width: $lg){
         width: 50%;
       }
@@ -695,23 +969,44 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
         width: 100%;
       }
       &.feature-row__text {
-        color: $textcolor-white;
-        width: 40%;
+        width: 39%;
         @media screen and (max-width: $lg){
           width: 50%;
         }
         @media screen and (max-width: $md) {
           width: 100%;
-          padding-top: 10px;
+          padding-top: 15px;
+          text-align: center;
         }
         &.feature-row__text--left {
-          padding-left: 100px;
+          padding-left: 80px;
           @media screen and (max-width: $lg){
             padding-left: 50px;
           }
           @media screen and (max-width: $md) {
             padding-left: 0px;
           }
+        }
+        .featured-row__subtext {
+          @include globalFontSize26();
+          p:not(:last-child) {
+            margin-bottom: 35px;
+            @media (max-width: $md) {
+              margin-bottom: 18px;
+            }
+          }
+          margin-bottom: 90px;
+          @media (max-width: $md) {
+            margin-bottom: 17px;
+          }
+          br {
+            @media (max-width: $md) {
+              display: none;
+            }
+          }
+        }
+        .glb-btn {
+          text-transform: uppercase;
         }
         &.feature-row__text--right {
           padding-right: 100px;
@@ -722,9 +1017,23 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
             padding-right: 0px;
           }
         }
+        h2 {
+          margin-bottom: 90px;
+          @media(max-width: $md) {
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-bottom: 20px;
+          }
+        }
       }
-      .feature-row__image {
-        @include bdr-radius10();
+      .feature-row__image-wrapper {
+        img {
+          @media(max-width: $md) {
+            display: block;
+          }
+        }
       }
       .h3 {
         @include heading-fonts();
@@ -733,12 +1042,6 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
         margin-bottom: 40px;;
         @media screen and (max-width: $md) {
           margin-bottom: 30px;
-        }
-      }
-      .featured-row__subtext {
-        color: $textcolor-white;
-        p{
-          color:$textcolor-white;
         }
       }
       .custom-link {
@@ -754,88 +1057,272 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   // Home Solitaire/Jewellery collection
   .home-scl,
   .home-jcl {
-    padding: 60px 0;
-    background-color: $background-blue;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    @media(max-width: $md) {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
     .scl-header {
       text-align: center;
       color: $textcolor-white;
-      .h3 {
-        @include heading-fonts();
-        @include font-range-36to24();
+      .mobile_featured_image {
+        margin-bottom: 20px;
+        img {
+          display: block;
+        }
+      }
+      h2 {
         text-transform: uppercase;
         margin-bottom: 40px;;
         @media screen and (max-width: $md) {
-          margin-bottom: 30px;
+          margin-bottom: 16px;
         }
       }
       .scl-desc {
-        margin-bottom: 30px;
-        color: $textcolor-white;
-        p {
-          color: $textcolor-white;
+        margin-bottom: 50px;
+        @media(max-width: $md) {
+          margin-bottom: 19px;
         }
       }
     }
+    // .scl-collage {
+    //   display: flex;
+    //   flex-direction: row;
+    //   gap: 30px;
+    //   justify-content: center;
+    //   @media screen and (max-width: $md) {
+    //     flex-direction: column;   
+    //     gap: 10px;     
+    //   }
+    //   [class ^="block-"]{
+    //     display: flex;
+    //     flex-direction: column;
+    //     gap: 30px;
+    //     width: 30%;
+    //     @media screen and (max-width: $md){
+    //       flex-direction: row;
+    //       gap: 10px;
+    //       width: 100% !important;
+    //     }
+    //     [class ^="box-"]{
+    //       display: flex;
+    //       justify-content: center;
+    //       align-items: center;  
+    //       position: relative;
+    //       overflow: hidden;
+    //       background-color: #f1f1f3;
+
+    //       .content-box {
+    //         position: absolute;
+    //         width: 100%;
+    //         text-align: center;
+    //         bottom: 10px;            
+    //         h3{
+    //           @include base-font-size();
+    //           margin-bottom: 5px;
+    //           @media(max-width: $xl) and (min-width: $postMd) {
+    //             font-size: 10px;
+    //           }
+    //           @media screen and (max-width: $md) {
+    //             margin-bottom: 0px;                
+    //           }
+    //         }
+    //         .custom-link {
+    //           @include base-font-size();
+    //           color: #6C1D45;
+    //           @media(max-width: $xl) and (min-width: $postMd) {
+    //             font-size: 10px;
+    //           }
+    //         }
+    //       }
+    //       &.full-width {
+    //         flex-basis: 100%!important;
+    //       }
+    //     }       
+    //     /* //B & D */
+    //     .box--1-1, .box--1-2,
+    //     .box--2-1,  .box--2-2,
+    //     .box--3-1,.box--3-2{
+    //       flex-basis: 50%;
+    //     }
+    //   }   
+    //   .block-2 {
+    //     width:40%;
+    //     .img-box {
+    //       width:100%;
+    //       img {
+    //         display: block;
+    //         width: 100%;
+    //       }
+    //     }
+    //   }
+    // }
+
     .scl-collage {
+      margin: 0 -15px -30px;
       display: flex;
-      flex-direction: row;
-      gap: 30px;
-      justify-content: center;
-      @media screen and (max-width: $md) {
-        flex-direction: column;   
-        gap: 10px;     
+      flex-wrap: wrap;
+      @media(max-width: $md) {
+        margin: 0 -6.5px -16px;
       }
       [class ^="block-"]{
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-        @media screen and (max-width: $md){
-          flex-direction: row;
-          gap: 10px;
+        width: 31.4%;
+        padding:0 15px;
+        @media(max-width: $md) {
+          width: 50%;
+          padding:0 6.5px;
         }
-        [class ^="box-"]{
-          display: flex;
-          justify-content: center;
-          align-items: center;  
-          border-radius: 10px;
+        > div {
+          position: relative;
+          margin-bottom: 30px;
+          @media(max-width: $md) {
+            margin-bottom: 16px;
+          }
+        }
+        .img-box {
           position: relative;
           overflow: hidden;
-          background-color: #f1f1f3;
-
-          .content-box {
-            position: absolute;
+          padding-bottom: 75.1%;
+          @media(max-width: $md) {
+            padding-bottom: 93.1%;
+          }
+          img {
             width: 100%;
-            text-align: center;
-            bottom: 10px;            
-            h3{
-              @include base-font-size();
-              margin-bottom: 5px;
-              @media screen and (max-width: $md) {
-                margin-bottom: 0px;                
+            position: absolute;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .content-box {
+          position: absolute;
+          bottom: 44px;
+          left: 0;
+          right: 0;
+          text-align: center;
+          @media(max-width: $xxl) and (min-width: $postMd) {
+            bottom: 1.5vw;
+          }
+          @media(max-width: $md) {
+            position: static;
+          }
+          h3 {
+            font-size: 22px;
+            line-height: 23.76px;
+            color: #000000;
+            font-family: Montserrat;
+            font-weight: 400;
+            margin-bottom: 12px;
+            @media(max-width: $xxl) and (min-width: $postMd) {
+              font-size: 1.3vw;
+              line-height: normal;
+              margin-bottom: 0.5vw;
+            }
+            @media(max-width: $md) {
+              font-size: 12px;
+              line-height: 18px;
+              margin-top: 7px;
+              margin-bottom: -8px;
+            }
+          }
+          a {
+            color: #6C1D45;
+            font-weight: 500;
+            line-height: 19.44px;
+            font-size: 18px;
+            position: relative;
+            padding-bottom: 5px;
+            @media(max-width: $xxl) and (min-width: $postMd) {
+              font-size: 1.2vw;
+              line-height: normal;
+              padding-bottom: 0.2vw;
+            }
+            @media(max-width: $md) {
+              font-size: 10px;
+              line-height: normal;
+              padding-bottom: 0;
+            }
+            &:after {
+              content: "";
+              height: 1px;
+              display: block;
+              background: #6C1D45;
+              width: 156px;
+              position: absolute;
+              top: 100%;
+              left: 0;
+              @media(max-width: $xxl) and (min-width: $postMd) {
+                width: 10.4vw;
+              }
+              @media(max-width: $md) {
+                width: 86px;
               }
             }
-            .custom-link {
-              @include base-font-size();
-              color: #6C1D45;
+          }
+        }
+        &.big_block {
+          width: 37.2%;
+          @media(max-width: $md) {
+            width: 100%;
+            order: 4;
+          }
+          > div {
+            .img-box {
+              padding-bottom: 45.1%;
+            }
+            &:first-child {
+              .img-box {
+                padding-bottom: 80.6%;
+              }
             }
           }
-          &.full-width {
-            flex-basis: 100%!important;
+          .box--2-2 {
+            .content-box {
+              @media(max-width: $md) {
+                position: absolute;
+                right: 20px;
+                margin-top: -5px;
+                max-width: 126px;
+                margin-left: auto;
+                text-align: center;
+              }
+            }
           }
-        }       
-        /* //B & D */
-        .box--1-1, .box--1-2,
-        .box--2-1,  .box--2-2,
-        .box--3-1,.box--3-2{
-          flex-basis: 50%;
         }
-      }   
+      }
+      
     }
     .scl-collection-link {
       text-align: center;
-      padding: 30px 0 0;
+      padding: 50px 0 0;
+      @media(max-width: $md) {
+        padding: 20px 0 0;
+      }
       a{
         color:$textcolor-white;
+      }
+    }
+  }
+  .home-jcl {
+    .scl-collage {
+      [class^=block-] {
+        &.big_block {
+          display: flex;
+          flex-wrap: wrap;
+          > div {
+            &.full-width {
+              width: 100%;
+              margin: 0;
+              @media(max-width: $md) {
+                display: none;
+              }
+              .img-box {
+                padding-bottom: 100%;
+                height: calc(100% - 30px);
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -844,12 +1331,15 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
       [class ^="block-"]{
         .box--2-1{
           flex-basis: 60%;
+          @media(max-width: $md) {
+            display: none;
+          }
         }
         .box--2-2 {
           flex-basis: 40%;
           .content-box {
             text-align: right;
-            right: 10px;
+            right: 41px;
             width: auto;
             top: 50%;
             bottom: initial;
@@ -858,11 +1348,8 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
             -ms-transform: translateY(-50%);
             -o-transform: translateY(-50%);
             transform: translateY(-50%);
-            @media(max-width: $lg) and (min-width: $postMd) {
-              max-width: 132px;
-            }
-            @media (max-width: $md) {
-              max-width: 105px;
+            @media(max-width: $xxl) and (min-width: $postMd) {
+              right: 3vw;
             }
           }
         }
@@ -871,29 +1358,29 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   }
   // Shop Loose Diamond section
   .home-sld {
-    padding: 55px 0;   
+    padding: 8px 0 0;   
     @media(max-width: $md) {
-      padding: 50px 0;
+      padding: 0 0 30px;
     } 
       .shop-loose-diamond2-slider-top-row{
         color: $textcolor-black;
-        max-width: 580px;
-        .h3 {
-          color: $textcolor-phanton;
-          @include heading-fonts();
-          @include font-range-36to24();
+        max-width: 878px;
+        @media(max-width: $md) {
+          text-align: center;
+        }
+        h2 {
           text-transform: uppercase;
-          margin-bottom: 40px;;
+          margin-bottom: 44px;;
           @media screen and (max-width: $md) {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
           }
         }
       }   
       .shop-loose-diamond2-slider {
         position: relative;
-        padding: 0 50px;
+        margin-top: 50px;
         @media screen and (max-width: $md) {
-          padding: 0 30px;
+          margin-top: 20px;
         }
         .slick-arrow{
           width: 25px;
@@ -906,19 +1393,51 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
           -ms-transform: translateY(-50%);
           -o-transform: translateY(-50%);
           transform: translateY(-50%);
+          background-image: none !important;
+          @media(max-width: $md) {
+            margin-top: -12px;
+          }
           &:before{
             display: none;
           }
+          &:after {
+            content: "<";
+            font-size: 50px;
+            line-height: 59px;
+            color: #6C1D45;
+            text-align: center;
+            letter-spacing: 0.02em;
+            text-transform: capitalize;
+            font-family: Rubik;
+            font-style: normal;
+            font-weight: 300;
+            @media(max-width: $md) {
+              content: "" !important;
+              width: 100%;
+              height: 100%;
+              display: block;
+              background-size: 9px 16px;
+              background-repeat: no-repeat;
+              background-position: center;
+              font-size: 0;
+              line-height: 0;
+            }
+          }
           &.slick-prev{
+            left: -22px;
             @media screen and (max-width: $md) {
               background-size: 15px;
-              left: 2px;  
+              left: -18px;
             }            
           }
           &.slick-next{
+            right: -22px;
+            &:after {
+              content: ">";
+            }
             @media screen and (max-width: $md) {
               background-size: 15px;
-              right: 2px;
+              right: -18px;
             }
           }
         }
@@ -949,6 +1468,10 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
               color: $textcolor-phanton;
               text-transform: uppercase;
               border-bottom: 1px solid $textcolor-phanton;
+              @media(max-width: $md) {
+                font-size: 12px;
+                line-height: 18px;
+              }
             }
           }
         }
@@ -956,13 +1479,24 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
       .sld-collection-link {
         text-align: center;
         padding: 60px 0px 0px;
-      }
+        @media(max-width: $md) {
+          padding: 16px 0 0;
+        }
+      } 
   }
-
   .site-footer{
     margin-top: 0px;
+    padding-top:100px;
+    padding-bottom: 0;
     @media(max-width: $md) {
       padding-bottom: 0;
+      padding-top:32px;
+    }
+    .dia-container {
+      @media(max-width: $md) {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
     }
     .input-group__field {
       background: $input-field-background;
@@ -979,21 +1513,29 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     }
     .input-group {
       flex-wrap: nowrap;
-      @media (max-width: $sm) {
-        flex-wrap: wrap;
-        justify-content: flex-start;
-      }
     }
     .footer-bottom-logo {
       text-align: center;
       padding-bottom: 44px;
       border-bottom: 1px solid $textcolor-phanton;
+      @media(max-width: $md) {
+        border: none;
+        padding-bottom: 18px;
+      }
+      img {
+        @media(max-width: $md) {
+          width: 30px;
+        }
+      }
     }
     .site-footer__newsletter {
+      @media (max-width: $md) {
+        padding: 0 22px;
+      }
       .input-group__btn {
           width: 120px;
-          @media (max-width: $sm) {
-            width: 100%;
+          @media (max-width: $md) {
+            width: auto;
           }
           .btn {
               margin: 0;
@@ -1001,7 +1543,10 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
               @media (max-width: $sm) {
                 display: inline-block;
                 width: auto;
-                min-width: 120px;
+                min-width: 81.78px;
+                font-size: 10px;
+                line-height: 10.8px;
+                padding: 10px 10px 7px;
               }
           }
       }
@@ -1009,8 +1554,10 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
         padding: 6px 8px;
         margin: 0;
         @media (max-width: $sm) {
-          margin-bottom: 10px;
-          max-width: 360px;
+          font-size: 10px;
+          line-height: 10.8px;
+          padding: 8px 13px 6px;
+          font-weight: 300;
         }
       }
     }
@@ -1026,11 +1573,13 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
         padding-left: 0;
         padding-right: 0;
         flex-wrap: wrap;
+        padding-top:0;
       }
       @media(max-width: $lg) and (min-width: $postMd) {
         flex-wrap: wrap;
         padding-bottom: 25px;
       }
+    
       .site-footer__item{
         &.site-footer__item--one-half{
           &[data-content="link_list"] {
@@ -1055,9 +1604,9 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
                     display: block;
                     border-top: 2px solid #6C1D45;
                     border-bottom: 2px solid #6C1D45;
-                    margin-bottom: 30px;
-                    margin-top: 30px;
-                    padding-top: 27px;
+                    margin-bottom: 0;
+                    margin-top: 19px;
+                    padding-top: 15px;
                   }
                   @media(max-width: $lg) and (min-width: $postMd) {
                     display: flex;
@@ -1086,23 +1635,19 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
                         width: 100%;
                         cursor: pointer;
                         &:after {
-                          content: "";
                           display: block;
-                          height: 10px;
-                          width: 10px;
                           position: absolute;
-                          right: 7px;
+                          right: 1px;
                           top: 0;
-                          border-bottom: 2px solid;
-                          border-right: 2px solid;
-                          transform: rotate(45deg);
                         }
                       }
                     }
                     > a {
                       @media(max-width: $md) {
                         display: block;
-                        margin-bottom: 20px;
+                        margin-bottom: 13px;
+                        font-size: 13px;
+                        letter-spacing: normal;
                       }
                     }
                     a {
@@ -1112,16 +1657,20 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
                       padding-top: 25px;
                       @media(max-width: $md) {
                         padding-top: 0 ;
-                        padding-left: 15px;
-                        padding-right: 15px;
-                        display: none;
-                        padding-bottom: 20px;
+                        padding-left: 10px;
+                        padding-right: 10px;
+                        padding-bottom: 18px;
                       }
                       .site-footer__sub-linklist-item {
                         @include base-font();
                         margin-bottom: 9px;
                         font-size: 14px;
                         letter-spacing: 0.05em;
+                        @media(max-width: $md) {
+                          font-size: 11px;
+                          line-height: 11.88px;
+                          margin-bottom: 13px;
+                        }
                         &:last-child {
                           margin-bottom: 0;
                         }
@@ -1168,6 +1717,12 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
                 min-height: 0;
                 letter-spacing: 0.05em;
                 margin-bottom: 26px;
+                @media(max-width: $md) {
+                  font-size: 16px;
+                  line-height: 17.28px;
+                  letter-spacing: normal;
+                  margin-bottom: 20px;
+                }
               }
               p{
                 font-size: 14px;
@@ -1175,6 +1730,11 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
                 line-height: 15.12px;
                 font-weight: 400;
                 margin-bottom: 25px;
+                @media(max-width: $md) {
+                  font-size: 12px;
+                  line-height: 18px;
+                  letter-spacing: normal;
+                }
               }
               .footer-social__icns {
                 display: flex;
@@ -1192,6 +1752,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
                     width: 100%;
                     flex: 1 1 100%;
                     margin-bottom: 10px;
+                    display: none;
                   }
                   & > span {
                     text-transform: uppercase;
@@ -1218,9 +1779,13 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
                     flex: 1 1 100%;
                     width: 10%;
                     padding: 0 30px;
+                    justify-content: center;
                   }
                   .social-icons__item {
                     padding: 0px;
+                    @media(max-width: $md) {
+                      margin: 0 7.5px;
+                    }
                     .social-icons__link {
                       width: 40px;
                       height: 40px;
@@ -1228,6 +1793,10 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
                       border-radius: 50%;
                       position: relative;
                       text-align: center;
+                      @media(max-width: $md) {
+                        width: 20px;
+                        height: 20px;
+                      }
                       .icon {
                           width: 18px;
                           height: 18px;
@@ -1236,6 +1805,10 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
                           left: 50%;
                           @include prefix-transform-translate();
                           color: $textcolor-phanton;
+                          @media(max-width: $md) {
+                            width: 12px;
+                            height: 12px;
+                          }
                       }
                     }
                   }
@@ -1310,6 +1883,9 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     .footer-bottom__nav {
       text-align: center;
       padding: 33px 0;
+      @media(max-width: $md) {
+        padding: 15px 0;
+      }
       .footer_bottom__nav--list-items {
         display: flex;
         justify-content: center;
@@ -1330,13 +1906,25 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
             padding: 0 15px;
           }
           @media(max-width: $md) {
-            padding: 0 6px;
+            padding: 0;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 16px;
+            font-size: 9px;
+            line-height: 9.72px;
+            width: 25%;
+          }
+          &:first-child {
+            text-align: left;
+          }
+          &:nth-child(4) {
+            text-align: right;
           }
           &:last-child {
             @media(max-width: $md) {
               width: 100%;
+              font-size: 10px;
+              line-height: 10.8px;
+              margin-bottom: 10px;
             }
           }
           a{
@@ -1365,6 +1953,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   padding: 22px 32px;
   font-size: 22px;
   line-height: 23.76px;
+  text-transform: uppercase;
   @include smooth-transition();
   &:hover, &:focus {
     color: $color-primary;
@@ -1377,25 +1966,65 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     padding: 10px 25px;
   }
   @media(max-width: $md) {
-    font-size: 16px;
-    line-height: normal;
-    padding: 15px 20px;
+    font-size: 12px;
+    line-height: 12.96px;
+    padding: 7.6px 10px;
   }
 }
 
-.glb-btn {
+.glb-btn, a.glb-btn {
   @include globalBtn();
 }
 
 body[data-template="know-your-diamond"] {
   .home-sld {
+    padding-top: 55px;
+    padding-bottom: 100px;
+    @media(max-width: $md) {
+      padding-top: 0;
+      padding-bottom: 35px;
+    }
     .shop-loose-diamond2-slider-top-row {
       max-width: 878px;
       margin-bottom: 30px;
+      @media(max-width: $md) {
+        margin-bottom: 19px;
+      }
       p {
         line-height: 34px;
+        @media(max-width: $md) {
+          line-height: 18px;
+          padding-left: 15px;
+          padding-right: 15px;
+        }
       }
     }
+  }
+  .home--slider {
+    &:first-child {
+      .homepage-slider-wrapper {
+        .slide-item {
+          .slide-overlay {
+            @media(max-width: $md) {
+              padding-top: 22px;
+            }
+            .slide-overaly-subheading {
+              @media(max-width: $md) {
+                display: none;
+              }
+            }
+            .slide-overlay-link {
+              @media(max-width: $md) {
+                margin-top: 13px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .collection-slider-wrapper {
+    padding-top:0;
   }
   h2,
   .shop-loose-diamond2-slider-top-row .h3 {
@@ -1432,9 +2061,18 @@ body[data-template="know-your-diamond"] {
     margin-bottom: 39px;
   }
 }
-
+ 
 /* Full Slider Global css */
 .full_width_slider_wrapper {
+  &.Jewellery-pdp-slider-wrapper {
+    .slider-caption-holder {
+      .cap_content {
+        p {
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
   .full_width_slider_image_holder {
     background-repeat: no-repeat;
     background-position: center;
@@ -1444,6 +2082,9 @@ body[data-template="know-your-diamond"] {
     align-items: center;
     position: relative;
     padding-bottom: 40.64%;
+    @media(max-width: $md) {
+      padding-bottom: 375px;
+    }
     img {
       height: 100%;
       width: 100%;
@@ -1479,9 +2120,9 @@ body[data-template="know-your-diamond"] {
       @media(max-width: $md) {
         position: static;
         color: #000;
-        text-align: left !important;
-        padding-top:30px;
-        padding-bottom:30px;
+        text-align: center !important;
+        padding-top:13px;
+        padding-bottom:0;
       }
       .dia-container {
         width: 100%;
@@ -1506,11 +2147,20 @@ body[data-template="know-your-diamond"] {
           @media(max-width: $xl) {
             margin-bottom: 30px;
           }
+          @media(max-width: $md) {
+            font-size: 28px;
+            line-height: 35.24px;
+            color: #6C1D45;
+            margin-bottom: 9px;
+          }
         }
         .cap_content {
           margin-bottom: 194px;
           @media(max-width: $xl) {
             margin-bottom: 30px;
+          }
+          @media(max-width: $md) {
+            margin-bottom: 18px;
           }
           p {
             font-family: $glbFontFamily;
@@ -1518,6 +2168,9 @@ body[data-template="know-your-diamond"] {
             margin-bottom: 194px;
             color: inherit;
             margin: 0;
+            @media(max-width: $md) {
+              text-transform: uppercase;
+            }
           }
         }
       }
@@ -1554,18 +2207,26 @@ body[data-template="know-your-diamond"] {
     bottom: 50px;
     width: 100%;
     @media(max-width: $md) {
-      display: none !important;
+      bottom: auto;
+      top: 323px;
     }
     li {
       width: auto;
       height: auto;
       margin: 0 7.5px;
+      @media(max-width: $md) {
+        margin: 0 5px;
+      }
       button {
         width: 18px;
         height: 18px;
         background: #fff;
         padding: 0;
         border-radius: 50%;
+        @media(max-width: $md) {
+          width: 12px;
+          height: 12px;
+        }
         &:before {
           content: none;
         }
@@ -1590,13 +2251,17 @@ body[data-template="know-your-diamond"] {
     padding-top:50px;
     padding-bottom:50px;
   }
+  @media(max-width: $md) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
   .content-with-image-diamond-section-row:not(:last-child) {
     margin-bottom: 100px;
     @media(max-width: $xxl) and (min-width: $postMd) {
       margin-bottom: 50px;
     }
     @media(max-width: $md) {
-      margin-bottom: 50px;
+      margin-bottom: 30px;
     }
   }
   .top_header {
@@ -1615,6 +2280,9 @@ body[data-template="know-your-diamond"] {
   display: flex;
   flex-wrap: wrap;
   margin: 0 -15px;
+  @media(max-width: $md) {
+    justify-content: center;
+  }
   > div {
       padding: 0 15px;
   }
@@ -1666,6 +2334,9 @@ body[data-template="know-your-diamond"] {
     }
     .content_holder p {
         line-height: 30px;
+        @media(max-width: $md) {
+          line-height: 18px;
+        }
     }
   }
 }
@@ -1684,6 +2355,14 @@ body[data-template="know-your-diamond"] {
   .content-with-image-diamond-row {
     .content-with-image-diamond-image-column {
       width: 61.7%;
+      @media(max-width: $md) {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: -5px;
+        margin-right: -5px;
+        width: auto !important;
+        margin-bottom: 20px;
+      }
       @media(max-width: $xxl) and (min-width: $postMd) {
         width: 55%;
       }
@@ -1693,20 +2372,52 @@ body[data-template="know-your-diamond"] {
       @media(max-width: $xxl) and (min-width: $postMd) {
         width: 45%;
       }
+      @media(max-width: $md) {
+        text-align: center;
+      }
       h2 {
         margin-bottom: 84px;
         @media(max-width: $xxl) and (min-width: $postMd) {
           margin-bottom: 20px;
         }
+        
       }
     }
   }
 }
 .image_col_size_medium {
+  &.image_pos_left {
+    .image_cap_b {
+      p {
+        @media(max-width: $md) {
+          font-size: 10px;
+          line-height: 15px;
+        }
+      }
+    }
+  }
+  .content-with-image-diamond-row {
+    .content-with-image-diamond-image-column {
+      order: 2;
+      margin-bottom: 0;
+      margin-top: 20px;
+      @media(max-width: $md) {
+        width: auto !important;
+      }
+      .image_holder {
+        @media(max-width: $md) {
+          text-align: center;
+        }
+      }
+      .image_cap_b {
+        margin-top: 8px;
+      }
+    }
+  }
   .content_holder_box {
     text-align: justify;
     @media(max-width: $md) {
-      text-align: left;
+      text-align: justify;
     }
   }
 }
@@ -1725,6 +2436,7 @@ body[data-template="know-your-diamond"] {
     }
     @media(max-width: $md) {
       margin-bottom: 20px !important;
+      text-align: center;
     }
   }
   p:not(:last-child) {
@@ -1744,7 +2456,7 @@ body[data-template="know-your-diamond"] {
     h2 {
       text-align: right;
       @media(max-width: $md) {
-        text-align:left;
+        text-align:center;
       }
     }
   }
@@ -1783,16 +2495,28 @@ body[data-template="know-your-diamond"] {
     padding-top: 50px;
     padding-bottom: 50px;
   }
+  @media(max-width: $md) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
   h2 {
     margin-bottom: 44px;
     @media(max-width: $md) {
       margin-bottom: 20px;
+      max-width: 245px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  .why-diamond2-des {
+    @media(max-width: $md) {
+      text-align: left;
     }
   }
   p:not(:last-child) {
     margin-bottom: 39px;
     @media(max-width: $md) {
-      margin-bottom: 15px;
+      margin-bottom: 19px;
     }
   }
 }
@@ -1802,10 +2526,23 @@ body[data-template="know-your-diamond"] {
     padding-top:50px;
     padding-bottom:50px;
   }
+  @media(max-width: $md) {
+    padding-top:20px;
+    padding-bottom:30px;
+  }
   h2 {
     margin-bottom: 46px;
     @media(max-width: $md) {
       margin-bottom: 20px;
+      max-width: 245px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  .ethically-produced-des {
+    @media(max-width: $md) {
+      text-align: left;
+      padding: 0 8px;
     }
   }
   p:not(:last-child) {
@@ -1821,16 +2558,24 @@ body[data-template="know-your-diamond"] {
     padding-top:50px;
     padding-bottom:50px;
   }
+  @media(max-width: $md) {
+    padding-top: 20px;
+    padding-bottom: 23px;
+  }
   h2 {
     margin-bottom: 43px;
     @media(max-width: $md) {
-      margin-bottom: 20px;
+      margin-bottom: 13px;
+      max-width: 200px;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
   .trust-for-life-des:not(:last-child) {
     margin-bottom: 54.5px;
     @media(max-width: $md) {
-      margin-bottom: 30px;
+      margin-bottom: 19px;
+      padding: 0 10px
     }
   }
 }
@@ -1839,6 +2584,9 @@ body[data-template="know-your-diamond"] {
   position: relative;
   overflow: hidden;
   padding-bottom: 40.65%;
+  @media(max-width: $md) {
+    padding-bottom: 98%;
+  }
   iframe {
     position: absolute;
     height: 100%;
@@ -1852,16 +2600,31 @@ body[data-template="know-your-diamond"] {
   padding-top: 42px;
   padding-bottom: 100px;
   @media(max-width: $md) {
-    padding-bottom: 50px;
+    padding-bottom: 30px;
     padding-top:0;
+  }
+  .collection-slider-header {
+    h2 {
+      text-align: center;
+      margin-bottom: 47px;
+      @media(max-width: $md) {
+        margin-bottom: 20px;
+      }
+    }
   }
   .collection-slider-bottom-btn-holder {
     text-align: center;
     padding-top: 50px;
+    @media(max-width: $md) {
+      padding-top: 16px;
+    }
   }
 }
 .collection-slider {
   padding: 0 30px;
+  @media(max-width: $md) {
+    padding: 0 10px;
+  }
   .slick-list {
     margin: 0 -10px;
   }
@@ -1870,6 +2633,19 @@ body[data-template="know-your-diamond"] {
     margin: 0 10px;
     .collection-image-holder {
       background: #f1f1f1;
+      @media(max-width: $md) {
+        position: relative;
+        overflow: hidden;
+        padding-bottom: 80%;
+      }
+      img {
+        @media(max-width: $md) {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
     }
     .collection-image-title {
       margin-top: 30px;
@@ -1877,6 +2653,11 @@ body[data-template="know-your-diamond"] {
       line-height: 19.44px;
       font-family: Montserrat;
       text-transform: uppercase;
+      @media(max-width: $md) {
+        font-size: 12px;
+        line-height: 18px;
+        margin-top: 6px;
+      }
       a {
         color: #6C1D45;
         text-decoration: underline;
@@ -1891,14 +2672,19 @@ body[data-template="know-your-diamond"] {
     width: 25px;
     height: 59px;
     margin-top: -23px;
+    background-repeat: no-repeat;
+    background-position: center;
+    @media(max-width: $md) {
+      margin-top: -13px;
+    }
     &.slick-prev{
       @media(max-width: $md) {
-        left: 0;
+        left: -20px;
       }
     }
     &.slick-next{
       @media(max-width: $md) {
-        right: 0;
+        right: -20px;
       }
     }
     &:before {
@@ -1914,6 +2700,9 @@ body[data-template="know-your-diamond"] {
       letter-spacing: 0.02em;
       text-transform: capitalize;
       color: #6C1D45;
+      @media(max-width: $md) {
+        display: none;
+      }
     }
   }
   .slick-prev.slick-arrow:after {
@@ -1934,7 +2723,9 @@ body[data-template="know-your-diamond"] {
 body[data-template="product"] {
 	.main-content {
     padding-top: 25px;
-    padding-bottom: 25px;
+    @media(max-width: $md) {
+      padding-top:0;
+    }
   }
 }
 @mixin pdp-mobile-font-size(){
@@ -2039,6 +2830,10 @@ body[data-template="product"] {
     }
     .product-detail-slider {
       border: 1px solid #E0E0E0;
+      @media(max-width: $md) {
+        border: none;
+        padding-bottom: 20px;
+      }
       .product-detail-slide-inner {
           display: flex;
           align-items: center;
@@ -2048,6 +2843,9 @@ body[data-template="product"] {
           padding-bottom: 80.88%;
           @media(max-width: $xl) {
             padding-bottom: 56.66%;
+          }
+          @media(max-width: $md) {
+            padding-bottom: 80.4%;
           }
           img {
             position: absolute;
@@ -2064,6 +2862,19 @@ body[data-template="product"] {
         &[aria-disabled="true"] {
           opacity: 0 !important;
         }
+        @media(max-width: $md) {
+          top: 24px;
+          transform: none;
+          margin: 0;
+          backdrop-filter: blur(20px);
+          background: rgba(18, 18, 29, 0.05);
+          width: 44px;
+          height: 44.86px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+        }
         &.slick-prev {
           left: -25px;
           @media(max-width: $xxl){
@@ -2072,8 +2883,14 @@ body[data-template="product"] {
           @media(max-width: $lg) {
             left: -35px;
           }
+          @media(max-width: $md) {
+            left: 27px;
+          }
           &:after {
             transform: rotate(-180deg);
+            @media(max-width: $md) {
+              transform: none;
+            }
           }
         }
         &.slick-next {
@@ -2083,6 +2900,14 @@ body[data-template="product"] {
           }
           @media(max-width: $lg) {
             right: -35px;
+          }
+          @media(max-width: $md) {
+            right: 27px;
+          }
+          &:after {
+            @media(max-width: $md) {
+              transform: rotate(-180deg);
+            }
           }
         }
         &:before {
@@ -2097,6 +2922,38 @@ body[data-template="product"] {
           background-position: center;
         }
       }
+      .slick-dots {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        bottom: 13px;
+        left: 0;
+        right: 0;
+        li {
+          width: auto;
+          height: auto;
+          margin:0;
+          button {
+            width: 6px;
+            height: 4px;
+            background: rgba(18, 18, 29, 0.1);
+            border-radius: 4px;
+            margin: 0px 4px;
+            padding:0;
+            transition:all 0.4s;
+            &:before {
+              content: none;
+            }
+          }
+          &.slick-active {
+            button {
+              background: #6C1D45;
+              width: 40px;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -2105,13 +2962,24 @@ body[data-template="product"] {
 .product-section-row {
   display: flex;
   flex-wrap: wrap;
+  @media(max-width: $md) {
+    margin: 0 -20px;
+  }
   .product-form {
     padding-top: 14px;
+    @media(max-width: $md) {
+      padding-top: 9px;
+    }
   }
   .product-detail-slider-grp {
       width: 64.8%;
       @media(max-width: $lg) {
         width: 100%;
+      }
+      @media(max-width: $lg) {
+        width: 100%;
+        position: relative;
+        z-index: 4;
       }
   }
   .product-detail-content-column {
@@ -2128,6 +2996,15 @@ body[data-template="product"] {
       padding-left:0;
       margin-top: 20px;
     }
+    @media(max-width: $md) {
+      background: #ffff;
+      box-shadow: 0 -16px 28px #e3e3e3;
+      position: relative;
+      z-index: 3;
+      border-radius: 23px 23px 0 0;
+      margin-top: 0;
+      padding: 37px 20px 20px;
+    }
     .product-single__title {
       font-size: 24px;
       line-height: 36.53px;
@@ -2143,9 +3020,12 @@ body[data-template="product"] {
         font-size: 15px;
         line-height: normal;
       }
-      @media(max-width: $sm) {
-        font-size: 16px;
-        line-height: 1.5;
+      @media(max-width: $md) {
+        font-family: 'Montserrat';
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 24px;
+        margin-top: 2px;
       }
     }
   }
@@ -2153,7 +3033,6 @@ body[data-template="product"] {
     display: flex;
     flex-wrap: wrap;
     margin: 0;
-    margin-bottom: -5px;
     list-style: none;
     padding: 0;
     li {
@@ -2166,7 +3045,8 @@ body[data-template="product"] {
         line-height: 1.5;
       }
       @media(max-width: $sm) {
-        @include pdp-mobile-font-size();
+        font-size: 11px;
+        line-height: 1.2;
       }
       &:not(:last-child):after {
         content: "/";
@@ -2177,7 +3057,7 @@ body[data-template="product"] {
   .product-sku-wrapper {
     display: flex;
     flex-wrap: wrap;
-    margin: 16px -10px 19px;
+    margin: 12px -10px 19px;
     font-size: 13px;
     line-height: 15.85px;
     @media(max-width: $xxl) and (min-width: $postMd) {
@@ -2187,8 +3067,11 @@ body[data-template="product"] {
       font-size: 10px;
       line-height: 1.5;
     }
-    @media(max-width: $sm) {
-      @include pdp-mobile-font-size();
+    @media(max-width: $md) {
+      font-size: 12px;
+      line-height: 14.63px;
+      justify-content: space-between;
+      margin-bottom: 0;
     }
     > div {
       min-height: 1px;
@@ -2197,12 +3080,21 @@ body[data-template="product"] {
       @media(max-width: $xl) and (min-width: $postLg) {
         margin-bottom: 5px;
       }
+      @media(max-width: $md) {
+        width: auto;
+      }
     }
     .p_weight_guide {
         text-align: right;
         text-transform: uppercase;
+        @media(max-width: $md) {
+          text-transform: none;
+        }
         a {
             text-decoration: underline;
+            @media(max-width: $md) {
+              text-decoration: none;
+            }
         }
     }
   }
@@ -2218,11 +3110,11 @@ body[data-template="product"] {
         font-size: 10px;
         line-height: 1.5;
       }
-      @media(max-width: $sm) {
-        @include pdp-mobile-font-size();
+      @media(max-width: $md) {
+        display: none;
       }
       .wishlist-icon {
-        margin-right: 10px;
+        margin-right: 12px;
         img {
           vertical-align: top;
           @media(max-width: $xl) {
@@ -2242,6 +3134,9 @@ body[data-template="product"] {
       align-items: center;
       &:not(:last-child) {
         padding-bottom: 39px;
+        @media(max-width: $md) {
+          padding-bottom: 20px;
+        }
       }
       label {
         font-size: 13px;
@@ -2255,8 +3150,11 @@ body[data-template="product"] {
           font-size: 10px;
           line-height: 1.5;
         }
-        @media(max-width: $sm) {
-          @include pdp-mobile-font-size();
+        @media(max-width: $md) {
+          font-size: 11px;
+          line-height: 13.41px;
+          padding-top: 6px;
+          margin-right: 5px;
         }
       }
       .custom-checkbox-list {
@@ -2267,12 +3165,15 @@ body[data-template="product"] {
         @media(max-width: $xl) and (min-width: $postLg) {
           margin-top: 10px;
         }
-        @media(max-width: $sm) {
-          margin-top: 10px;
+        @media(max-width: $md) {
+          margin-top: 3px;
         }
         .custom-checkbox {
           position: relative;
           margin-left: 30px;
+          @media(max-width: $md) {
+            margin-left: 15px;
+          }
           > label {
             position: absolute;
             bottom: -22px;
@@ -2283,6 +3184,9 @@ body[data-template="product"] {
             transform: translateX(-50%);
             opacity: 0;
             visibility: hidden;
+            @media(max-width: $md) {
+              display: none;
+            }
           }
           .custom_check {
             display: inline-block;
@@ -2297,6 +3201,19 @@ body[data-template="product"] {
             display: flex;
             align-items: center;
             justify-content: center;
+            @media(max-width: $md) {
+              width: 25px;
+              height: 25px;
+            }
+            &.yellow {
+              background: #F2C163;
+            }
+            &.rose {
+              background: #EFC1B8;
+            }
+            &.grey {
+              background: #C4C4C4;
+            }
           }
           input {
             position: absolute;
@@ -2310,6 +3227,10 @@ body[data-template="product"] {
             &:checked {
               & ~ .custom_check {
                 border: 1px solid #6C1D45;
+                @media(max-width: $md) {
+                  box-shadow: 2px 2px 3px rgba(0, 0, 0,0.11);
+                  border: none;
+                }
               }
               & ~ .custom_check + label {
                 opacity: 1;
@@ -2357,8 +3278,10 @@ body[data-template="product"] {
             margin-right: 15px;
             width: auto;
           }
-          @media(max-width: $sm) {
-            width: 100%;
+          @media(max-width: $md) {
+            width: auto;
+            padding-top: 0;
+            margin-right: 0;
           }
         }
       select.product-form__input {
@@ -2367,9 +3290,16 @@ body[data-template="product"] {
           max-width: 158px;
           padding: 5px 5px;
           font-size: 12px;
-          @media(max-width: $sm) {
-            width: 100%;
-            @include pdp-mobile-font-size();
+          @media(max-width: $md) {
+            width: 53px;
+            font-size: 14px;
+            line-height: 17.07px;
+            margin-left: auto;
+            font-weight: 300;
+            border-radius: 0;
+            border-color: #000000;
+            height: 26px;
+            padding: 0 9px;
           }
       }
     }
@@ -2379,6 +3309,9 @@ body[data-template="product"] {
       margin-top: 48px;
       @media(max-width: $xxl) {
         margin-top: 30px;
+      }
+      @media(max-width: $md) {
+        margin-top: 20px;
       }
     }
   }
@@ -2398,9 +3331,17 @@ body[data-template="product"] {
         font-size: 10px;
         line-height: normal;
       }
-      @media(max-width: $sm) {
-        font-size: 10px;
-        line-height: normal;
+      @media(max-width: $md) {
+        border: 1px solid #6C1D45;
+        border-radius: 0;
+        background: transparent;
+        color: #6C1D45;
+        font-size: 11px;
+        line-height: 24px;
+        padding: 7.5px 14px;
+        height: auto;
+        min-height: 0;
+        margin-bottom: 13px;
       }
       * {
         color: inherit;
@@ -2419,9 +3360,18 @@ body[data-template="product"] {
       font-size: 12px;
       line-height: normal;
     }
-    @media(max-width: $sm) {
-      font-size: 12px;
+    @media(max-width: $md) {
+      font-size: 20px;
       line-height: normal;
+      font-weight: 500;
+    }
+    .price {
+      @media(max-width: $md) {
+        font-size:inherit;
+      }
+      .price-item {
+        font-weight: inherit;
+      }
     }
   }
   .price_inclusive {
@@ -2449,14 +3399,18 @@ body[data-template="product"] {
         font-size: 10px;
         line-height: normal;
       }
-      @media(max-width: $sm) {
-        @include pdp-mobile-font-size();
+      @media(max-width: $md) {
+        font-size: 12px;
+        line-height: 1.5;
       }
       .delivery-check-title {
         width: 30%;
         @media(max-width: $xl) {
           width: 100%;
           margin-bottom: 5px;
+        }
+        @media(max-width: $md) {
+          display: none;
         }
     }
       .delivery-check-input {
@@ -2467,15 +3421,27 @@ body[data-template="product"] {
           width: 100%;
           margin:0 0 5px;
         }
+        @media(max-width: $md) {
+          margin: 0 0 8px;
+        }
         .delivery-icon {
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
           left: 11px;
+          @media(max-width: $md) {
+            left: 1px;
+            margin-top: 2px;
+          }
+          img {
+            @media(max-width: $md) {
+              width: 15px;
+            }
+          }
       }
       input {
           min-height: 0;
-          padding: 6px 10px;
+          padding: 6px 2px ;
           border-color: currentColor;
           border-radius: 0;
           font-size: 10px;
@@ -2484,6 +3450,14 @@ body[data-template="product"] {
           padding-left: 25px;
           display: block;
           width: 100%;
+          outline: none;
+          @media(max-width: $md) {
+            font-size: 11px;
+            line-height: 13.41px;
+            margin-left: 30px;
+            padding: 7px 10px;
+            width: calc(100% - 30px);
+          }
       }
     }
     .delivery-check-date {
@@ -2505,6 +3479,9 @@ body[data-template="product"] {
       margin: 0 -7px;
       margin-top: 15px;
     }
+    @media(max-width: $md) {
+      margin-top: 11px;
+    }
     .product-details-btn-item {
       padding: 0 15px;
       width: 50%;
@@ -2512,6 +3489,9 @@ body[data-template="product"] {
       @media(max-width: $xl) {
         margin-bottom: 15px;
         padding: 0 7px;
+      }
+      @media(max-width: $md) {
+        margin-bottom: 8px;
       }
       &.full-width-btn {
         width: 100%;
@@ -2547,9 +3527,15 @@ body[data-template="product"] {
     @media(max-width: $xxl) and (min-width: $postMd) {
       padding-top: 0;
     }
+    @media(max-width: $md) {
+      padding-top: 12px;
+    }
     > div {
       border-top: 1px solid #6c1d45;
       padding: 7px 13px;
+      @media(max-width: $md) {
+        border: none;
+      }
       &.connect-with-phone {
         display: flex;
         flex-wrap: wrap;
@@ -2565,8 +3551,12 @@ body[data-template="product"] {
           font-size: 10px;
           line-height: 1.5;
         }
-        @media(max-width: $sm) {
-          @include pdp-mobile-font-size();
+        @media(max-width: $md) {
+          font-size: 11px;
+          line-height: 13.41px;
+          border: none;
+          padding: 0;
+          margin-bottom: 11px;
         }
         .left_col {
           display: flex;
@@ -2584,6 +3574,9 @@ body[data-template="product"] {
         }
         .right_col {
           padding-right: 20px;
+          @media(max-width: $md) {
+            padding-right: 0;
+          }
           a {
             text-decoration: underline;
           }
@@ -2606,8 +3599,10 @@ body[data-template="product"] {
         padding-left:0;
         padding-right:0;
       }
-      @media(max-width: $sm) {
-        @include pdp-mobile-font-size();
+      @media(max-width: $md) {
+        font-size: 11px;
+        line-height: 13.41px;
+        padding: 0;
       }
       .pdp-warranty-item {
         display: flex;
@@ -2639,9 +3634,9 @@ body[data-template="product"] {
             margin-right: 10px;
             width: 15px;
           }
-          @media(max-width: $sm) {
+          @media(max-width: $md) {
             margin-right: 10px;
-            width: 15px;
+            width: 18px;
           }
         }
       }
@@ -2658,6 +3653,96 @@ body[data-template="product"] {
   @media(max-width: $lg) {
     padding: 20px 0 0;
   }
+  @media(max-width: $md) {
+    padding:0;
+  }
+  .product-desc-section {
+    @media(max-width: $md) {
+      border-top: 2px solid #6C1D45;
+      border-bottom: 2px solid #6C1D45;
+      padding: 19px 0;
+    }
+    &.content_showed {
+      .product-desc-title {
+        &:after {
+          transform: none;
+          transition: all 0.3s;
+        }
+      }
+    }
+    .product-desc-title {
+      position: relative;
+      pointer-events: none;
+      @media(max-width: $md) {
+        pointer-events: all;
+        cursor: pointer;
+      }
+      &:after {
+        @media(max-width: $md) {
+          position: absolute;
+          top: -1px;
+          right: 0;
+          transform: rotate(180deg);
+        }
+      }
+      p {
+        font-size: 16px;
+        line-height: 24px;
+        margin: 0 0 30px;
+        @media(max-width: $xxl) {
+          font-size: 15px;
+          line-height: 1.8;
+          margin-bottom: 15px;
+        }
+        @media(max-width: $md) {
+          font-size: 13px;
+	    	  line-height: 23px;
+          margin-bottom: 0;
+        }
+      }
+    }
+    .product-desc-content {
+      @media(max-width: $md) {
+        margin-top: 17px;
+      }
+      ul {
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 27px;
+        padding-left: 0;
+        @media(max-width: $xxl) {
+          font-size: 14px;
+          line-height: 1.8;
+        }
+        @media(max-width: $md) {
+          font-size: 12px;
+          line-height: 18px;
+        }
+        li {
+          position: relative;
+          padding-left: 25px;
+          @media(max-width: $md) {
+            padding-left: 18px;
+          }
+          &:before {
+            content: ".";
+            position: absolute;
+            left: 10px;
+            top: 8px;
+            line-height: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+// product Metafield section
+.product-details-wrapper {
+  margin-top: 51px;
+  @media(max-width: $md) {
+    margin-top: 13px;
+  }
   p {
     font-size: 16px;
     line-height: 24px;
@@ -2667,33 +3752,12 @@ body[data-template="product"] {
       line-height: 1.8;
       margin-bottom: 15px;
     }
-  }
-  ul {
-    font-weight: 300;
-    font-size: 18px;
-    line-height: 27px;
-    padding-left: 0;
-    @media(max-width: $xxl) {
-      font-size: 14px;
-      line-height: 1.8;
-    }
-    li {
-      position: relative;
-      padding-left: 25px;
-      &:before {
-        content: ".";
-        position: absolute;
-        left: 10px;
-        top: 8px;
-        line-height: 0;
-      }
+    @media(max-width: $md) {
+      font-size: 13px;
+      line-height: 23px;
+      margin-bottom: 12px;
     }
   }
-}
-
-// product Metafield section
-.product-details-wrapper {
-  margin-top: 51px;
   h3 {
     font-size: 24px;
     line-height: 29px;
@@ -2705,7 +3769,9 @@ body[data-template="product"] {
       margin-bottom: 20px;
     }
     @media(max-width: $md) {
-      font-size: 18px;
+      font-size: 13px;
+      line-height: 14.04px;
+      text-transform: uppercase;
     }
   }
   .product-info-gird {
@@ -2715,10 +3781,14 @@ body[data-template="product"] {
     .product-info-gird_column {
       width: 50%;
       padding: 0 27px;
-      margin-bottom: 49px;
       @media(max-width: $md) {
         width: 100%;
-        margin-bottom: 30px;
+      }
+      .product-info-item {
+        margin-bottom: 49px;
+        @media(max-width: $md) {
+          margin-bottom: 20px;
+        }
       }
       .product-info-holder {
         h5 {
@@ -2733,6 +3803,11 @@ body[data-template="product"] {
             font-size: 16px;
             line-height: 1.5;
             margin-bottom: 15px;
+          }
+          @media(max-width: $md) {
+            font-size: 13px;
+            line-height: 15.85px;
+            margin-bottom: 13px;
           }
         }
         .product-info-table {
@@ -2754,8 +3829,8 @@ body[data-template="product"] {
                 line-height: 1.5;
               }
               @media(max-width: $md) {
-                font-size: 9px;
-                line-height: 1.5;
+                font-size: 11px;
+                line-height: 13.41px;
               }
               tr {
                 background: #F0F0F0;
@@ -2766,12 +3841,18 @@ body[data-template="product"] {
                   padding: 22px 20px;
                   border: none;
                   position: relative;
+                  @media(max-width: $md) {
+                    padding: 14px 15px;
+                  }
                 }
                 td {
                   &:last-child {
                     text-align: right;
                     font-weight: 600;
                     padding-right: 50px;
+                    @media(max-width: $md) {
+                      padding-right: 40px;
+                    }
                   }
                   .meta_tooltip {
                     width: 20px;
@@ -2785,6 +3866,11 @@ body[data-template="product"] {
                     background-repeat: no-repeat;
                     background-position: center;
                     font-size: 0;
+                    @media(max-width: $md) {
+                      width: 15px;
+                      height: 15px;
+                      right: 15px;
+                    }
                     &[data-tooltip-title]{
                       &:before {
                         content: attr(data-tooltip-title);
@@ -2883,6 +3969,9 @@ body.layout_jewellery {
 .full_width_slider_wrapper.jewellery-collection-slider {
   .full_width_slider_image_holder {
     padding-bottom: 50.55%;
+    @media(max-width: $md) {
+      padding-bottom: 440px;
+    }
   }
   .full_width_slide_item  {
     .slider-caption-wrapper {
@@ -2892,6 +3981,7 @@ body.layout_jewellery {
         @media(max-width: $md) {
           padding-top: 0;
           padding-bottom: 0;
+          text-align: center;
         }
         h2 {
           font-size: 112px;
@@ -2904,7 +3994,9 @@ body.layout_jewellery {
             line-height: 1;
           }
           @media(max-width: $md) {
-            font-size: 30px;
+            font-size: 28px;
+            line-height: 35.24px;
+            color: #6c1d45;
           }
           &:last-child {
             margin: 0;
@@ -2914,11 +4006,22 @@ body.layout_jewellery {
     }
   }
   ul.slick-dots {
+    @media(max-width: $md) {
+      bottom: auto;
+      top: 388px;
+    }
     li {
       margin: 0 10px;
+      @media(max-width: $md) {
+        margin: 0 5px;
+      }
       button {
         width: 25px;
         height: 25px;
+        @media(max-width: $md) {
+          width: 12px;
+          height: 12px;
+        }
       }
     }
   }
@@ -2927,16 +4030,19 @@ body.layout_jewellery {
 .jewellary-collection-wrapper {
   padding-top: 93px;
   @media(max-width: $md) {
-    padding-top: 50px;
+    padding-top: 22px;
   }
   .jewellary-collection-row {
     text-align: center;
     padding-bottom: 100px;
     @media(max-width: $md) {
-      padding-bottom: 50px;
+      padding-bottom: 27px;
     }
     .jewellary-collection-btn-holder {
       padding-top: 18px;
+      @media(max-width: $md) {
+        padding-top: 0;
+      }
       .glb-btn {
         text-transform: uppercase;
       }
@@ -2945,32 +4051,70 @@ body.layout_jewellery {
       max-width: 1520px;
       margin: 0 auto;
       margin-bottom: 53px;
+      &.mb-image-bottom {
+        .content_holder {
+          @media(max-width: $md) {
+            margin-bottom: 20px;
+          }
+        }
+      }
       @media(max-width: $md) {
-        margin-bottom: 50px;
+        margin-bottom: 20px;
+      }
+      .mobile_featured_image {
+        position: relative;
+        overflow: hidden;
+        padding-bottom: 112%;
+        margin-bottom: 25px;
+        img {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          top: 0;
+          left: 0;
+          right: 0;
+          object-fit: cover;
+          object-position: top center;
+        }
       }
       h2 {
         margin-bottom: 43px;
         @media(max-width: $md) {
           margin-bottom: 20px;
+          padding: 0 15px;
         }
       }
       p {
         @include globalFontSize26();
         font-weight: 300;
       }
+      
     }
     .jewellary-collection-grid {
       display: flex;
       flex-wrap: wrap;
       margin: 0 -15px;
+      @media(max-width: $md) {
+        margin: 0 -22.5px;
+      }
       .jewellary-collection-block {
         width: 31.4%;
         &.big_column {
           width: 37.2%;
+          @media(max-width: $md) {
+            width: 100%;
+            order: 3;
+          }
           .jewellary-collection-card {
+            @media(max-width: $md) {
+              width: 100%;
+            }
             &.has_only_image {
               .image_holder {
                 padding-bottom: 80.2%;
+                @media(max-width: $md) {
+                  padding-bottom: 375px;
+                }
               }
             }
             &:not(.has_only_image) {
@@ -2985,6 +4129,11 @@ body.layout_jewellery {
                 top: 50%;
                 transform: translateY(-50%);
                 padding-top: 4%;
+                @media(max-width: $md) {
+                  transform: none;
+                  text-align: center;
+                  padding-top: 0;
+                }
               }
             }
           }
@@ -3018,7 +4167,7 @@ body.layout_jewellery {
           @media(max-width: $md) {
             width: 50%;
             padding: 0 7.5px;
-            margin-bottom: 15px;
+            margin-bottom: 17px;
           }
           &.content_align_right {
             .content_holder {
@@ -3040,6 +4189,9 @@ body.layout_jewellery {
             position: relative;
             overflow: hidden;
             padding-bottom: 75.1%;
+            @media(max-width: $md) {
+              padding-bottom: 100%;
+            }
             img {
               width: 100%;
               display: block;
@@ -3061,21 +4213,24 @@ body.layout_jewellery {
               line-height: 0;
             }
             @media(max-width: $md) {
-              bottom: 4vw;
+              position: static;
             }
             .title {
               font-size: 22px;
               line-height: 23.76px;
               color: #000000;
               margin-bottom: 8px;
+              text-transform: uppercase;
               @media(max-width: $xxl) {
                 font-size: 1vw;
                 line-height: 1;
                 margin-bottom: 0.5vw;
               }
               @media(max-width: $md) {
-                font-size: 2vw;
-                line-height: 1;
+                font-size: 12px;
+                line-height: 18px;
+                margin-top: 6px;
+                margin-bottom: 4px;
               }
             }
             .more_btn {
@@ -3091,8 +4246,8 @@ body.layout_jewellery {
                 padding-right: 0.9vw;
               }
               @media(max-width: $md) {
-                font-size: 1.5vw;
-                padding-right: 1.5vw;
+                font-size: 11px;
+                padding-right: normal;
               }
               &:before {
                 content: "";
@@ -3112,9 +4267,10 @@ body.layout_jewellery {
                   background-size: 0.5vw;
                 }
                 @media(max-width: $md) {
-                  width: 1vw;
-                  height: 1.4vw;
-                  background-size: 1vw;
+                  width: 7px;
+                  height: 5.75px;
+                  background-size: 5px;
+                  right: -6px;
                 }
               }
               &:after {
@@ -3124,6 +4280,9 @@ body.layout_jewellery {
                 background: #6c1d45;
                 display: block;
                 margin-top: 3px;
+                @media(max-width: $md) {
+                  margin-top: 1px;
+                }
               }
             }
           }

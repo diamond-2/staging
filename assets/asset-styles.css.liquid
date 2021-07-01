@@ -21,3 +21,27 @@
   .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table .table table tr td .meta_tooltip {
     background-image: url({{ 'info_icon.png' | asset_url }});
   }
+  .currency-box-wrapper ul li a.currency-trigger:after {
+    content: url({{ 'down-arrow.png' | asset_url }});
+  }
+  .footer-menu-Childtrigger:after {
+    content: url({{ 'footer-down-arrow.png' | asset_url }});
+  }
+ 
+
+@media(max-width: 749px) {
+  .shop-loose-diamond2-slider .slick-arrow.slick-prev:after,
+  .collection-slider .slick-arrow.slick-prev {
+    background-image:url({{ 'arrow-left-mobile.png' | asset_url }});
+  }
+  .shop-loose-diamond2-slider .slick-arrow.slick-next:after,
+  .collection-slider .slick-arrow.slick-next {
+    background-image:url({{ 'arrow-right-mobile.png' | asset_url }});
+  }
+  .product-desc-section .product-desc-title:after {
+    content: url({{ 'up_arrow_lg.png' | asset_url }});
+  }
+  .product-detail-slider .slick-arrow:after {
+    background-image: url({{ 'product_slide_mg_arrow.png' | asset_url }});
+  }
+}

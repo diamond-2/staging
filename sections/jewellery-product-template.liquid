@@ -29,7 +29,7 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <div class="product-detail-slider-thumbnail-wrapper">
+                    <div class="product-detail-slider-thumbnail-wrapper hide_mobile">
                         <div class="right-border-line"></div>
                         <div class="product-detail-slider-thumbnail">
                             {% for mediaThumb in product.media %}
@@ -103,7 +103,7 @@
                                 {% for value in option.values %}
                                 <div class="custom-checkbox">
                                     <input class="single-option-selector-{{ section.id }}" id="color-{{ forloop.index }}" type="radio" value="{{ value | escape }}"  data-index="option{{ indexVal }}" name="color" {% if option.selected_value==value %}checked{% endif %}>
-                                    <span class="custom_check" style="background-color: {{ value | replace:'Gold','' | escape }};">14k</span>
+                                    <span class="custom_check {{ value | downcase | replace:'gold','' | escape }}">14k</span>
                                     <label for="color-{{ forloop.index }}">14k {{ value }}</label>
                                 </div>
                                 {% endfor %}
@@ -272,7 +272,13 @@
         </div>
 
         <div class="product-content-section">
-            {{ product.description }}
+
+            {%- if product.description != blank -%}
+            <div class="product-desc-section content_showed">
+                <div class="product-desc-title"><p>PRODUCT DESCRIPTION</p><span></span></div>
+                <div class="product-desc-content">{{ product.description }}</div>
+            </div>
+            {%- endif -%}
 
             {% include 'product-metafield' %}
         </div>
@@ -290,7 +296,15 @@
         asNavFor: '.product-detail-slider-thumbnail',
         draggable: false,
         infinite: false,
-        autoplay:false
+        autoplay:false,
+        responsive: [
+            {
+                breakpoint: 749,
+                settings: {
+                    dots: true
+                }
+            }
+        ]
     });
     $('.product-detail-slider-thumbnail').slick({
         slidesToShow: 5,
@@ -311,12 +325,12 @@
                     verticalSwiping:false,
                     vertical:false
                 }
-           },
+            }
         ]
     }); 
 
-    window.addEventListener("load", function(){
-        $('.product-detail-slider-thumbnail .slick-track').prepend('<div class="slide-active-border"></div>');
+    
+    function activeBorder() {
         $(".slide-active-border").css({
             height: $(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").height(),
             top: $(".product-detail-slider-thumbnail .slick-slide.slick-current").position().top
@@ -329,13 +343,18 @@
                 top: borederPos
             })
         });
+    }
+
+    window.addEventListener("load", function(){
+        $('.product-detail-slider-thumbnail .slick-track').prepend('<div class="slide-active-border"></div>');
+        activeBorder();
         // border mover on Arrow click
         $(".product-detail-slider-wrapper .slick-arrow").click(function() {
             $(".slide-active-border").css({
                 height: $(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").height(),
                 top: $(".product-detail-slider-thumbnail .slick-slide.slick-current").position().top
             });
-        });
+        });    
     });
 
     

@@ -1,12 +1,13 @@
 <div class="dia-container feature-row">
   {% capture image_layout %}
+    {% if section.settings.image != blank %}
     <div class="feature-row__item">
       {% if section.settings.image != blank %}
         {% capture img_id %}FeatureRowImage-{{ section.id }}{% endcapture %}
         {% capture wrapper_id %}FeatureRowImageWrapper-{{ section.id }}{% endcapture %}
         {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
         {% include 'image-style', image: section.settings.image, height: 780, wrapper_id: wrapper_id, img_id: img_id %}
-        <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js">
+        <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js hide_mobile">
           <div style="padding-top:{{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100}}%;" data-image-loading-animation>
             <img id="{{ img_id }}"
                  class="feature-row__image lazyload"
@@ -24,7 +25,26 @@
       {% else %}
         {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
       {% endif %}
+      
+      {% if section.settings.mobile_image != blank %}
+        <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js show_mobile">
+          <div class="img_holder">
+            <img class="lazyload" data-src="{{ section.settings.mobile_image | img_url: 'master' }}" data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                 data-aspectratio="{{ section.settings.mobile_image.aspect_ratio }}"
+                 data-sizes="auto"
+                 alt="{{ section.settings.mobile_image.alt | escape }}">
+          </div>
+        </div>
+      {% else %}
+        <div id="{{ wrapper_id }}" class="feature-row__image-wrapper js show_mobile">
+          <div class="img_holder">
+            <img class="lazyload" data-src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.image.alt | escape }}">
+          </div>
+        </div>
+      {% endif %}
+
     </div>
+    {% endif %}
   {% endcapture %}
 
   <div class="feature-row">
@@ -34,7 +54,7 @@
 
     <div class="feature-row__item feature-row__text feature-row__text--{{ section.settings.layout }}">
       {% if section.settings.title != blank %}
-        <h2 class="h3">{{ section.settings.title | escape }}</h2>
+        <h2>{{ section.settings.title | escape }}</h2>
       {% endif %}
       {% if section.settings.text != blank %}
         <div class="rte rte-setting featured-row__subtext">{{ section.settings.text }}</div>
@@ -75,6 +95,11 @@
       "type": "image_picker",
       "id": "image",
       "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Image"
     },
     {
       "type": "select",
