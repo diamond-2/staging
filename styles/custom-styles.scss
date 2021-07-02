@@ -275,12 +275,20 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
       margin-top: 23px;
       margin-bottom: 17px;
     }
+    h2 {
+      margin-bottom: 43px;
+    }
     > *:last-child {
       margin-bottom: 0;;
     }
     img.loose-stone-sec-logo {
       margin-bottom: 16px;
       vertical-align: top;
+    }
+    .glb-sec-desc {
+      max-width: 1087.41px;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
   .glb-btn-with-arrow {
@@ -1565,7 +1573,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
       outline: none;
       letter-spacing: 0.05em;
       font-size: 14px;
-      font-weight: bold;
+      font-weight: 400;
       padding: 10px 8px;
       border-radius: 0;
       height: auto;
@@ -1678,7 +1686,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
                     @include base-font-size();
                     font-weight: 600;
                     display: block;
-                    padding-bottom: 27px;
+                    padding-bottom: 29px;
                     letter-spacing: 0.05em;
                     position: relative;
                     @media(max-width: $md) {
@@ -1724,8 +1732,9 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
                       }
                       .site-footer__sub-linklist-item {
                         @include base-font();
-                        margin-bottom: 9px;
+                        margin-bottom: 15px;
                         font-size: 14px;
+                        line-height: 15.12px;
                         letter-spacing: 0.05em;
                         @media(max-width: $md) {
                           font-size: 11px;
@@ -1898,6 +1907,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
         .ffe-label {
           @include heading-fonts();
           font-size: 20px;
+          font-weight: 300;
           font-style: normal;
           line-height: 22px;
           color:$textcolor-black;
@@ -2865,6 +2875,52 @@ body[data-template="product"] {
   font-size: 10px;
   line-height: 1.5;
 }
+.product-social-wrapper {
+  position: absolute;
+  top: 81px;
+  right: 20px;
+  display: none;
+  @media(max-width: $md) {
+    display: block;
+  }
+  .product-social-toggle {
+    width: 44px;
+    height: 44px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    img {
+        width: 19px;
+    }
+  }
+  .product-social-box {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    right: 100%;
+    z-index: 9;
+    width: 250px;
+    border: 1px solid #d9d9d9;
+    padding: 5px;
+    display: none;
+    .social-sharing {
+      flex-wrap: wrap;
+      display: flex;
+      li {
+        margin: 0 5px;
+        a {
+          margin: 0;
+          font-size: 9px;
+          padding: 5px;
+        }
+      }
+    }
+  }
+}
 // pdp slider
 .product-detail-slider-wrapper {
   display: flex;
@@ -2972,19 +3028,27 @@ body[data-template="product"] {
           align-items: center;
           justify-content: center;
           position: relative;
-          height: 0;
-          padding-bottom: 80.88%;
-          @media(max-width: $xl) {
-            padding-bottom: 56.66%;
-          }
+          height: 37.8vw;
           @media(max-width: $md) {
             padding-bottom: 80.4%;
           }
-          img {
+          .product-detail-slide-img-holder {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: auto;
+            transition: transform 0.5s ease-out;
+          }
+          img {
+            // position: absolute;
+            // top: 50%;
+            // left: 50%;
+            // transform: translate(-50%, -50%);
+            opacity: 0;
           }
       }
       .slick-arrow {
@@ -3106,6 +3170,7 @@ body[data-template="product"] {
   }
   .product-detail-slider-grp {
       width: 64.8%;
+      position: relative;
       @media(max-width: $lg) {
         width: 100%;
       }
@@ -3550,6 +3615,9 @@ body[data-template="product"] {
         width: calc(27% - 24px);
         position: relative;
         margin: 0 12px;
+        @media(max-width: $xxl) {
+          width: calc(36% - 24px);
+        }
         @media(max-width: $xl) {
           width: 100%;
           margin:0 0 5px;
@@ -3596,7 +3664,9 @@ body[data-template="product"] {
     .delivery-check-date {
         text-transform: none;
         width: 43%;
-        white-space: nowrap;
+        @media(max-width: $xxl) {
+          width: 34%;
+        }
         @media(max-width: $xl) {
           width: 100%;
           flex-wrap: wrap;
@@ -4370,7 +4440,7 @@ body.layout_jewellery {
 // Fine Jewellary Collection Page End
 
 
-// Loose Stone
+// Loose Stone Start
 .title {
   @include font-range-45to25();
   @include heading-fonts();
@@ -4526,6 +4596,178 @@ body.layout_jewellery {
     text-align: center;
   }
 }
+// Loose Stone End
+
+// Solitaire PLP Start
+.solitaire-collection-wrapper {
+  padding-left: 90px;
+  padding-right: 90px;
+  .glb-sec-header {
+    margin-bottom: 52px;
+  }
+  .filters-toolbar-wrapper {
+    border: none;
+    height: 293px;
+    .filter-top-row {
+      text-align: center;
+      position: relative;
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #6C1D45;
+        height: 1px;
+        left: 0;
+        right: 0;
+        width: 100%;
+      }
+      .img_box {
+        display: inline-block;
+        background: #fff;
+        position: relative;
+        z-index: 1;
+        width: 83px;
+        img {
+          vertical-align: top;
+        }
+      }
+    }
+  }
+  .grid--view-items {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -20px;
+    overflow: initial;
+    .grid__item {
+      padding: 20px 20px 16px;
+      margin-bottom: 6px;
+      position: relative;
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        height: calc(100% - 10px);
+        width: calc(100% - 10px);
+        top: 5px;
+        left: 5px;
+        background: #F8F8F8;
+        transition: all 0.4s;
+        transform: scale(0);
+        opacity: 0;
+        visibility: hidden;
+      }
+      &:hover {
+        &:after {
+          transform: scale(1);
+          opacity: 1;
+          visibility: visible;
+        }
+        .price_hidden_row {
+          opacity: 1;
+          visibility: visible;
+        }
+        .product_images_slider {
+          .slick-arrow {
+            &.slick-prev {
+              left: 9px;
+              opacity: 1;
+            }
+            &.slick-next {
+              right: 9px;
+              opacity: 1;
+            }
+          }
+        }
+      }
+      .price_hidden_row {
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s;
+      }
+      .grid-view-item__image-wrapper {
+        margin-bottom: 0;
+        opacity: 1;
+        .product_img_holder {
+          overflow: hidden;
+          position: relative;
+          padding-bottom: 100%;
+          .grid-view-item__image {
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+      .grid-view-item {
+        text-align: center;
+        margin: 0;
+        position: relative;
+        z-index: 3;
+        .prodct_card_body {
+          padding: 15px 10px 0;
+          .product-card__title {
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 15.12px;
+            border: none;
+            display: block;
+          }
+          .product-price-card {
+            font-size: 15px;
+            line-height: 16.2px;
+            font-weight: 300;
+            .product-price-card-row {
+              display: flex;
+              justify-content: space-between;
+              margin-top: 14px;
+              .product_price {
+                font-weight: bold;
+                font-size: 16px;
+                line-height: 17.28px;
+              }
+              &+ {
+                margin-top: 12px;
+              }
+            }
+          }
+        }
+      }
+      .product_images_slider {
+        .slick-arrow {
+          z-index: 2;
+          width: 30px;
+          height: 30px;
+          transition: all 0.4s;
+          &:before {
+            content: none;
+          }
+          &:after {
+            content: "";
+            display: block;
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 100%;
+            height: 100%;
+          }
+          &.slick-prev {
+            left: 30px;
+            opacity: 0;
+          }
+          &.slick-next {
+            right: 30px;
+            opacity: 0;
+            &:after {
+              transform: rotate(180deg);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Solitaire PLP End
 
 
 

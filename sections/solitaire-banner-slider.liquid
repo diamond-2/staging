@@ -1,0 +1,25 @@
+
+{% assign sliderImage = collection.metafields.global.banner_slider_images | split: ',' %}
+{% if sliderImage.size > 0 %}
+<!-- DO Not Stype With 'top_banner' Class -->
+<div class="full_width_slider_wrapper solitaire-banner-slider-wrapper top_banner">
+    <div class="full_width_slider">
+        {% for item in sliderImage %}
+        {%- if item !=blank -%}
+        <div class="full_width_slide_item slide--{{ forloop.index }}">
+            <div class="full_width_slider_image_holder">
+                <img data-src="{{ item }}" class="lazyload"  alt="{{ collection.title }}" />
+            </div>      
+        </div>
+        {%- endif -%}   
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% schema %}
+{
+    "name": "Solitaire Banner Slider",
+    "class": "top_banner_section",
+    "settings": []
+}
+{% endschema %} 

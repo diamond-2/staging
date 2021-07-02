@@ -9758,6 +9758,19 @@ document.addEventListener('DOMContentLoaded', function(event) {
       $(this).parent().toggleClass('content_showed');
       $(this).next().slideToggle(300);
   });
+  // product Social Share Toggle
+  $('.product-social-toggle').click(function(){
+    $(this).next().fadeToggle(300);
+    $(this).toggleClass('active');
+  });
+  // If top banner exist
+  let hasTopBanner = document.querySelector('.top_banner_section:first-child');
+  if(hasTopBanner !=null) {
+    let bannrSec = hasTopBanner.querySelector('.top_banner');
+    if(bannrSec !=null) {
+      document.body.classList.add('has_top_banner');
+    }
+  }
 
 });
 

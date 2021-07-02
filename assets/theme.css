@@ -7007,7 +7007,8 @@ hr {
 body[data-template="index"] #shopify-section-header,
 body[data-template="know-your-diamond"] #shopify-section-header,
 body.layout_jewellery #shopify-section-header,
-body.layout_loose-stone #shopify-section-header {
+body.layout_loose-stone #shopify-section-header,
+body.has_top_banner #shopify-section-header {
   position: fixed;
   width: 100%;
   top:0px;
@@ -7028,14 +7029,17 @@ body[data-template="know-your-diamond"] #shopify-section-header .site-header__mo
 body.layout_jewellery #shopify-section-header .site-header,
 body.layout_jewellery #shopify-section-header .site-header__mobile-nav,
 body.layout_loose-stone #shopify-section-header .site-header,
-body.layout_loose-stone #shopify-section-header .site-header__mobile-nav {
+body.layout_loose-stone #shopify-section-header .site-header__mobile-nav,
+body.has_top_banner #shopify-section-header .site-header,
+body.has_top_banner #shopify-section-header .site-header__mobile-nav {
   background-color: transparent;
   border-bottom: none;
 }
 body[data-template="index"] #shopify-section-header.header-bg,
 body[data-template="know-your-diamond"] #shopify-section-header.header-bg,
 body.layout_jewellery #shopify-section-header.header-bg,
-body.layout_loose-stone #shopify-section-header.header-bg {
+body.layout_loose-stone #shopify-section-header.header-bg,
+body.has_top_banner #shopify-section-header.header-bg {
   background-color: var(--color-body);
 }
 
@@ -7044,7 +7048,8 @@ body.layout_loose-stone #shopify-section-header.header-bg {
   body[data-template="index"] #shopify-section-header.header-bg .announcement-bar,
   body[data-template="know-your-diamond"] #shopify-section-header.header-bg .announcement-bar,
   body.layout_jewellery #shopify-section-header.header-bg .announcement-bar,
-  body.layout_loose-stone #shopify-section-header.header-bg .announcement-bar {
+  body.layout_loose-stone #shopify-section-header.header-bg .announcement-bar,
+  body.has_top_banner #shopify-section-header.header-bg .announcement-bar {
     height: 0px;
     padding: 0px;
     border: none;
@@ -7052,7 +7057,8 @@ body.layout_loose-stone #shopify-section-header.header-bg {
   body[data-template="index"] #shopify-section-header.header-bg .announcement-bar .announcement-bar__message,
   body[data-template="know-your-diamond"] #shopify-section-header.header-bg .announcement-bar .announcement-bar__message,
   body.layout_jewellery #shopify-section-header.header-bg .announcement-bar .announcement-bar__message,
-  body.layout_loose-stone #shopify-section-header.header-bg .announcement-bar .announcement-bar__message {
+  body.layout_loose-stone #shopify-section-header.header-bg .announcement-bar .announcement-bar__message,
+  body.has_top_banner #shopify-section-header.header-bg .announcement-bar .announcement-bar__message {
     font-size: 0px;
   }
 }
@@ -7061,14 +7067,16 @@ body.layout_loose-stone #shopify-section-header.header-bg {
 body[data-template="index"] .main-content,
 body[data-template="know-your-diamond"] .main-content,
 body.layout_jewellery .main-content,
-body.layout_loose-stone .main-content {
+body.layout_loose-stone .main-content,
+body[data-template="collection"] .main-content {
   padding-top: 0;
 }
 @media(max-width: 749px) {
   body[data-template="index"] #shopify-section-header,
   body[data-template="know-your-diamond"] #shopify-section-header,
   body.layout_jewellery #shopify-section-header,
-  body.layout_loose-stone #shopify-section-header {
+  body.layout_loose-stone #shopify-section-header,
+  body.has_top_banner #shopify-section-header {
     position:relative;
     background:#fff;
   }
