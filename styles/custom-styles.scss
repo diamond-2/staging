@@ -299,6 +299,20 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     font-weight: 500;
     padding-right: 17px;
     position: relative;
+    text-transform: uppercase;
+    &.large_arrow_btn {
+      font-size: 24px;
+      line-height: 25.92px;
+      @media(max-width: $xxl) {
+        font-size: 19px;
+        line-height: 1.2;
+      }
+      &:before {
+        top: 50%;
+        transform: translateY(-50%);
+        margin-top: -2px;
+      }
+    }
     @media(max-width: $md) {
       font-size: 11px;
       line-height: normal;
@@ -380,6 +394,13 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     .mobile-nav-wrapper{
       &.js-menu--is-open {
         height: calc(100vh - 60px)!important;
+      }
+    }
+    #AccessibleNav {
+      .site-nav {
+        .site-nav__dropdown {
+          margin-top: -28px;
+        }
       }
     }
   }
@@ -533,25 +554,52 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
           font-size: 16px;
           line-height: 17.28px;
           font-weight: 400;
+          cursor: pointer;
+        }
+        &.site-nav--active-dropdown {
+          > a {
+            color: $textcolor-phanton;
+          }
         }
       }
       .site-nav__dropdown {
-        .site-nav__childlist{
+        .dia-container {
           width: 50%;
+          padding: 0 5px;
+          margin-left: 25%;
+        }
+        .site-nav__childlist{
+          width: 100%;
           margin: 0 auto;
           padding-left: 0;
           padding-right: 0;
           position: relative;
+          padding: 0;
           .site-nav__childlist-grid {
+            padding-right: 300px;
+            position: relative;
+            justify-content: space-between;
+            margin:0;
             .site-nav__childlist-item {
               .site-nav__link{
-                padding-left:10px;
-                padding-right: 10px;
-                .site-nav__link {
-                  .site-nav__label {
-                    white-space: normal;
-                    border-bottom: none i !important;
-                  }
+                padding: 4px 10px 7px;
+                text-transform: capitalize;
+                font-size: 14px;
+                line-height: 15.12px;
+                &.active_color {
+                  color: #602B3F;
+                }
+                &.site-nav__child-link--parent {
+                  font-family: Spectral;
+                  color: #602B3F;
+                  font-weight: 300;
+                  font-size: 18px;
+                  line-height: 19.44px;
+                  padding: 4px 10px 3px;
+                }
+                .site-nav__label {
+                  white-space: normal;
+                  border-bottom: none !important;
                 }
               }
             }
@@ -559,10 +607,9 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
               position: absolute;
               width: 300px;
               height: 300px;
-              right: -250px;
-              background: #ffffff;
-              top: 10px;
+              right: 0;
               text-align: center;
+              top: 0;
               img.navItemsThumb {
                 position: absolute;
                 width: 100%;
@@ -580,7 +627,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
                     // column-count: 2;
                     display: flex;
                     flex-direction: column;
-                    max-height: 230px;
+                    max-height: 215px;
                     flex-wrap: wrap;
                     width: 230px;
                     li {
@@ -3330,6 +3377,7 @@ body[data-template="product"] {
       padding: 0;
       margin: 0;
       align-items: center;
+      max-width: 100%;
       &:not(:last-child) {
         padding-bottom: 39px;
         @media(max-width: $md) {
@@ -4765,7 +4813,116 @@ body.layout_jewellery {
       }
     }
   }
+  .solitaire-two-col-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -20px;
+    &.img_pos_right {
+      flex-direction: row-reverse;
+    }
+    .static_image_column {
+      width: 50%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      .img_holder {
+        position: relative;
+        overflow: hidden;
+        height: 93.9%;
+        img {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .btn-holder {
+        .glb-btn-with-arrow {
+          &.large_arrow_btn {
+            font-size: 26px;
+            font-weight: 500;
+            line-height: 28.08px;
+            margin-top: 15px;
+          }
+        }
+      }
+    }
+    .pd_column {
+      width: 50%;
+      .grid--view-items {
+        margin: 0;
+        .grid__item {
+          width: 50%;
+          margin-bottom: -19px;
+        }
+      }
+    }
+  }
 }
+.custom-row {
+  display: flex;
+  flex-wrap: wrap;
+  .custom-content-column {
+    width: 39%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 85px;
+    .content-holder {
+      h2 {
+        margin-bottom: 62px;
+      }
+    }
+  }
+  .custom-image-column {
+    width: 61%;
+    .image-holder {
+      img {
+        vertical-align: top;
+      }
+    }
+  }
+}
+.content-with-image-wrapper {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  .buttons-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+    justify-content: space-between;
+    .button-item {
+      padding: 0 15px;
+      margin-top: 10px;
+    }
+  }
+}
+.loadmore-btn-holder {
+  text-align: center;
+  .loadMore-btn {
+    cursor: pointer;
+  }
+  .loder-spiner {
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    border: 5px solid #e6e6e6;
+    border-top-color:#6679cc;
+    border-radius: 50%;
+    animation: loderSpin 1s linear infinite;
+    display: none;
+  }
+}
+
+@keyframes loderSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 
 // Solitaire PLP End
 
