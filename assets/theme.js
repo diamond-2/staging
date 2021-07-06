@@ -9772,6 +9772,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
     }
   }
 
+  //Back To Top
+  $('.back-to-top').click(function(e){
+    e.preventDefault();
+    $('html, body').animate({scrollTop:0}, '1000');
+  });
+
+
 });
 
 var showMobileNav = false;

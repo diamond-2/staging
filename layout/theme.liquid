@@ -180,6 +180,10 @@
   <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script>
 
+  {% if template contains 'collection' %}
+  <script src="{{ 'collection-loadmore.js' | asset_url }}" async="async"></script>
+  {% endif %}
+
   <script type="text/javascript">
     if (window.MSInputMethodContext && document.documentMode) {
       var scripts = document.getElementsByTagName('script')[0];
@@ -216,7 +220,6 @@
     </div>
 
   </div>
-
   <script type="application/json" data-cart-routes>
     {
       "cartUrl": "{{ routes.cart_url }}",

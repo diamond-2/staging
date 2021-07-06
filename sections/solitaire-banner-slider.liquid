@@ -1,7 +1,7 @@
 
 {% assign sliderImage = collection.metafields.global.banner_slider_images | split: ',' %}
 {% if sliderImage.size > 0 %}
-<!-- DO Not Stype With 'top_banner' Class -->
+<!-- DO Not style With 'top_banner' Class -->
 <div class="full_width_slider_wrapper solitaire-banner-slider-wrapper top_banner">
     <div class="full_width_slider">
         {% for item in sliderImage %}

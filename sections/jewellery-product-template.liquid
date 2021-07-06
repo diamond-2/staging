@@ -6,23 +6,38 @@
         {% endcomment %}
 
         {%- assign current_variant = product.selected_or_first_available_variant -%}
+        {%- assign product_image_zoom_size = '1024x1024' -%}
+        {%- assign product_image_scale = '2' -%}
+        {%- assign enable_image_zoom = section.settings.enable_image_zoom -%}
         {%- assign compare_at_price = current_variant.compare_at_price -%}
         {%- assign price = current_variant.price -%}
 
-
-
         <div class="product-section-row">
             <div class="product-detail-slider-grp" data-product-single-media-group>
-                {% if product.media.size > 1 %}
+                {% if product.media.size > 0 %}
                 <div class="product-detail-slider-wrapper">
                     <div class="product-detail-slider-holder">
                         <div class="product-detail-slider">
                             {% for mediaSlide in product.media %}
                             {%- if mediaSlide -%}
                             <div class="product-detail-slide {% if section.settings.enable_image_zoom == true %}image_zoom{% endif %}">
+                                
+                                {% if mediaSlide.media_type == 'image' %}
                                 <div class="product-detail-slide-inner" data-scale="1.4">
                                     <div class="product-detail-slide-img-holder" style="background-image: url({{ mediaSlide | img_url:'900x' }});"></div>
                                 </div>
+                                {% elsif mediaSlide.media_type == 'video' %}
+                                <div class="product-detail-slide-inner media_type_video" >
+                                    <div class="product-detail-slide-img-holder">
+                                        <video class="abc" controls muted>
+                                            {% for video in mediaSlide.sources %}
+                                            <source src="{{ video.url }}" type="{{ video.mime_type }}">
+                                            {% endfor %}
+                                        </video>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                
                             </div>
                             {%- endif -%}
                             {% endfor %}
@@ -34,12 +49,18 @@
                             {% for mediaThumb in product.media %}
                             {%- if mediaThumb -%}
                             <div class="product-detail-slider-thumbnail-slide">
+                                {% if mediaThumb.media_type == 'image' %}
                                 <div class="product-detail-slider-thumbnail-slide-inner">
                                     <div class="img_holder">
                                         <img data-src="{{ mediaThumb | img_url:'150x150' }}" class="lazyload"
                                         alt="{{ product.title }}">
                                     </div>
                                 </div>
+                                {% elsif mediaThumb.media_type == 'video' %}
+                                <div class="product-detail-slider-thumbnail-slide-inner media_thumb">
+                                    <div class="img_holder">{{ 'thumb-6.jpg' | asset_url | img_tag :'360 Video' }}</div>
+                                </div>
+                                {% endif %}
                             </div>
                             {%- endif -%}
                             {% endfor %}
@@ -322,7 +343,7 @@
         verticalSwiping:true,
         focusOnSelect: true,
         draggable: false,
-        arrows: true,
+        arrows: false,
         infinite: false,
         autoplay:false,
         centerMode: false,
