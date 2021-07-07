@@ -185,7 +185,7 @@
                 <a href="javascript:void(0)" class="currency-trigger"><span class="selected_currency">INR</span></a>
                 <ul class="currency-box-child">
                   <li><a href="javascript:void(0)">INR</a></li>
-                  <li><a href="javascript:void(0)">USD</a></li>
+                  <li><a href="javascript:void(0)">SGD</a></li>
                 </ul>
               </li>
             </ul>
@@ -196,98 +196,121 @@
     </div>
 
     <nav class="mobile-nav-wrapper critical-hidden" role="navigation">
-      <ul id="MobileNav" class="mobile-nav">
-        {% for link in linklists[section.settings.main_linklist].links %}
-          {%- assign outerLoopIndex = forloop.index -%}
-
-          <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %}">
-            {% if link.links != blank %}
-              {% capture child_list_handle %}{{ link.handle }}-{{ outerLoopIndex }}{% endcapture %}
-              <button type="button" class="btn--link js-toggle-submenu mobile-nav__link{% if link.child_active %} mobile-nav__link--active{% endif %}" data-target="{{ child_list_handle }}" data-level="1" aria-expanded="false">
-                <span class="mobile-nav__label">{{ link.title | escape }}</span>
-                <div class="mobile-nav__icon">
-                  {% include 'icon-chevron-right' %}
-                </div>
-              </button>
-              <ul class="mobile-nav__dropdown" data-parent="{{ child_list_handle }}" data-level="2">
-                <li class="visually-hidden" tabindex="-1" data-menu-title="2">
-                  {{- link.title }} {{ 'layout.navigation.menu' | t -}}
-                </li>
-                <li class="mobile-nav__item border-bottom">
-                  <div class="mobile-nav__table">
-                    <div class="mobile-nav__table-cell mobile-nav__return">
-                      <button class="btn--link js-toggle-submenu mobile-nav__return-btn" type="button" aria-expanded="true" aria-label="{{ link.title }}">
-                        {% include 'icon-chevron-left' %}
-                      </button>
+      <div class="mobile-nav-wrapper-2">
+        <ul id="MobileNav" class="mobile-nav">
+          <div class="back-menu-item">
+            <span class="back-menu-arrow">{% include 'icon-back-menu' %}</span>
+            <span class="back-menu-text">Main Menu</span>
+            <span class="back-menu-close">{% include 'icon-close-back-menu' %}</span>
+          </div>
+          <div class="mobile_nav_inner">
+            {% for link in linklists[section.settings.main_linklist].links %}
+              {%- assign outerLoopIndex = forloop.index -%}
+              <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %}">
+                {% if link.links != blank %}
+                  {% capture child_list_handle %}{{ link.handle }}-{{ outerLoopIndex }}{% endcapture %}
+                  <button type="button" class="btn--link js-toggle-submenu mobile-nav__link{% if link.child_active %} mobile-nav__link--active{% endif %}" data-target="{{ child_list_handle }}" data-level="1" aria-expanded="false">
+                    <span class="mobile-nav__label">{{ link.title | escape }}</span>
+                    <div class="mobile-nav__icon">
+                      {% include 'icon-chevron-right-mobile' %}
                     </div>
-                    <span class="mobile-nav__sublist-link mobile-nav__sublist-header mobile-nav__sublist-header--main-nav-parent">
-                      <span class="mobile-nav__label">{{ link.title | escape }}</span>
-                    </span>
-                  </div>
-                </li>
-
-                {% for childlink in link.links %}
-                  <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %}">
-                    {% if childlink.links != blank %}
-                      {% capture grandchild_list_handle %}{{ childlink.handle }}-{{ outerLoopIndex }}-{{ forloop.index }}{% endcapture %}
-                      <button type="button" class="btn--link js-toggle-submenu mobile-nav__link mobile-nav__sublist-link" data-target="{{ grandchild_list_handle }}" aria-expanded="false">
-                        <span class="mobile-nav__label">{{ childlink.title | escape }}</span>
-                        <div class="mobile-nav__icon">
-                          {% include 'icon-chevron-right' %}
-                        </div>
-                      </button>
-                      <ul class="mobile-nav__dropdown" data-parent="{{ grandchild_list_handle }}" data-level="3">
-                        <li class="visually-hidden" tabindex="-1" data-menu-title="3">
-                          {{- childlink.title }} {{ 'layout.navigation.menu' | t -}}
-                        </li>
-                        <li class="mobile-nav__item border-bottom">
-                          <div class="mobile-nav__table">
-                            <div class="mobile-nav__table-cell mobile-nav__return">
-                              <button type="button" class="btn--link js-toggle-submenu mobile-nav__return-btn" data-target="{{ child_list_handle }}" aria-expanded="true" aria-label="{{ childlink.title }}">
-                                {% include 'icon-chevron-left' %}
-                              </button>
-                            </div>
+                  </button>
+                  <ul class="mobile-nav__dropdown" data-parent="{{ child_list_handle }}" data-level="2">
+                    <li class="visually-hidden" tabindex="-1" data-menu-title="2">
+                      {{- link.title }} {{ 'layout.navigation.menu' | t -}}
+                    </li>
+                    
+                    <div class="back-menu-item">
+                      <span class="back-menu-arrow btn--link js-toggle-submenu mobile-nav__return-btn" aria-expanded="true" aria-label="{{ link.title }}">{% include 'icon-back-menu' %}</span>
+                      <span class="back-menu-text">{{ link.title | escape }}</span>
+                      <span class="back-menu-close">{% include 'icon-close-back-menu' %}</span>
+                    </div>
+                    <div class="mobile_nav_child_inner">
+                      {% for childlink in link.links %}
+                        <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %}">
+                          {% if childlink.links != blank %}
+                            {% capture grandchild_list_handle %}{{ childlink.handle }}-{{ outerLoopIndex }}-{{ forloop.index }}{% endcapture %}
+                            <button type="button" class="btn--link js-toggle-submenu mobile-nav__link mobile-nav__sublist-link" data-target="{{ grandchild_list_handle }}" aria-expanded="false">
+                              <span class="mobile-nav__label">{{ childlink.title | escape }}</span>
+                              <div class="mobile-nav__icon">
+                                {% include 'icon-chevron-right-mobile' %}
+                              </div>
+                            </button>
+                            <ul class="mobile-nav__dropdown" data-parent="{{ grandchild_list_handle }}" data-level="3">
+                              <li class="visually-hidden" tabindex="-1" data-menu-title="3">
+                                {{- childlink.title }} {{ 'layout.navigation.menu' | t -}}
+                              </li>
+                            
+                              <div class="back-menu-item">
+                                <span class="back-menu-arrow btn--link js-toggle-submenu mobile-nav__return-btn" data-target="{{ child_list_handle }}" aria-expanded="true" aria-label="{{ childlink.title }}">{% include 'icon-back-menu' %}</span>
+                                <span class="back-menu-text">{{ childlink.title | escape }}</span>
+                                <span class="back-menu-close">{% include 'icon-close-back-menu' %}</span>
+                              </div>
+                              <div class="mobile_nav_child_inner">
+                                {% for grandchildlink in childlink.links %}
+                                  <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %}">
+                                    <a href="{{ grandchildlink.url }}"
+                                      class="mobile-nav__sublist-link"
+                                      {% if grandchildlink.current %} aria-current="page"{% endif %}
+                                    >
+                                      <span class="mobile-nav__label">{{ grandchildlink.title | escape }}</span>
+                                    </a>
+                                  </li>
+                                {% endfor %}
+                              </div>
+                            </ul>
+                          {% else %}
                             <a href="{{ childlink.url }}"
-                              class="mobile-nav__sublist-link mobile-nav__sublist-header"
+                              class="mobile-nav__sublist-link"
                               {% if childlink.current %} aria-current="page"{% endif %}
                             >
                               <span class="mobile-nav__label">{{ childlink.title | escape }}</span>
                             </a>
-                          </div>
+                          {% endif %}
                         </li>
-                        {% for grandchildlink in childlink.links %}
-                          <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %}">
-                            <a href="{{ grandchildlink.url }}"
-                              class="mobile-nav__sublist-link"
-                              {% if grandchildlink.current %} aria-current="page"{% endif %}
-                            >
-                              <span class="mobile-nav__label">{{ grandchildlink.title | escape }}</span>
-                            </a>
-                          </li>
-                        {% endfor %}
-                      </ul>
-                    {% else %}
-                      <a href="{{ childlink.url }}"
-                        class="mobile-nav__sublist-link"
-                        {% if childlink.current %} aria-current="page"{% endif %}
-                      >
-                        <span class="mobile-nav__label">{{ childlink.title | escape }}</span>
-                      </a>
-                    {% endif %}
-                  </li>
-                {% endfor %}
+                      {% endfor %}
+                    </div>
+                  </ul>
+                {% else %}
+                  <a href="{{ link.url }}"
+                    class="mobile-nav__link{% if link.active %} mobile-nav__link--active{% endif %}"
+                    {% if link.current %} aria-current="page"{% endif %}
+                  >
+                    <span class="mobile-nav__label">{{ link.title | escape }}</span>
+                  </a>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </div>
+        </ul>
+        
+      <!-- Header Mobile Login Details -->
+      <div class="header-mb-login-details-wrapper">
+        <div class="header-mb-login-details">
+          <ul>
+            <li><a href="/"><span class="icon_hold">{% include 'icon-ambassador' %}</span><span class="tex_">Diamond2<sup>®</sup> Ambassador</span></a></li>
+            <li><a href="/pages/store-locator"><span class="icon_hold">{% include 'icon-location-mobile' %}</span><span class="tex_">Store Locator</span></a></li>
+            <li><a href="tel:+1234567890"><span class="icon_hold">{% include 'icon-phone' %}</span><span class="tex_">Help/Contact Us</span></a></li>
+            <li><a href="/sign-in"><span class="icon_hold">{% include 'icon-user' %}</span><span class="tex_">Sign Up / Sign In</span></a></li>
+          </ul>
+        </div>
+
+        <div class="currency-box-wrapper">
+          <ul>
+            <li>
+              <a href="javascript:void(0)" class="currency-trigger"><span class="selected_currency"><span class="flag">{{ 'sgd-flag.png' | asset_url | img_tag :'SGD' }}</span>SGD</span><span class="caret_down">{% include 'caret-down' %}</span></a>
+              <ul class="currency-box-child">
+                <li><a href="javascript:void(0)"><span class="flag">{{ 'sgd-flag.png' | asset_url | img_tag :'SGD' }}</span>INR</a></li>
+                <li><a href="javascript:void(0)"><span class="flag">{{ 'sgd-flag.png' | asset_url | img_tag :'SGD' }}</span>SGD</a></li>
               </ul>
-            {% else %}
-              <a href="{{ link.url }}"
-                class="mobile-nav__link{% if link.active %} mobile-nav__link--active{% endif %}"
-                {% if link.current %} aria-current="page"{% endif %}
-              >
-                <span class="mobile-nav__label">{{ link.title | escape }}</span>
-              </a>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+      
+
     </nav>
   </header>
 

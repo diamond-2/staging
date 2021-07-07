@@ -127,6 +127,20 @@ $input-field-border-color:#6679CC;
   }
 }
 
+// large container
+@mixin large-container() {
+  padding-left: 50px;
+  padding-right: 50px;
+  @media screen and (max-width: $xl) {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  @media screen and (max-width: $md) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
 $viewportIncrement: 1px;
 
 $sm: 576px;
@@ -350,6 +364,10 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     }
   }
 
+  .dia-large-container {
+    @include large-container();
+  }
+
   // Header Styling
   .announcement-bar {
     background-color: transparent!important;
@@ -390,6 +408,8 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   }  
 
 #shopify-section-header{
+  position: relative;
+  z-index: 999;
   @media screen and (max-width: $tabOrient) {
     background-color: $background-white;
   }
@@ -544,6 +564,11 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
 }
   #AccessibleNav {
     padding-left:0;
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
     .site-nav {
       margin: 25px 0;
       margin-left: -29px;
@@ -714,22 +739,186 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
 
 
   .mobile-nav-wrapper {
-    z-index: 0;
+    z-index: 999;
+    transform: none !important;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100% !important;
+    position: fixed;
+    top: 0;
+    right: auto;
+    width: 100%;
+    max-width: 375px;
+    left: -375px;
+    padding:0;
+    overflow: hidden;
+    &.js-menu--is-open {
+      left: 0;
+    }
+    .back-menu-arrow {
+      cursor: pointer;
+    }
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+      border-radius:6px;
+    }
+    ::-webkit-scrollbar-track-piece {
+      background: rgba(0, 0, 0, 0.05);
+      border-radius:6px;
+    }
+    ::-webkit-scrollbar-thumb:vertical {
+      height: 30px;
+      background: #6C1D45;
+      border-radius:6px;
+    }
+    .mobile_nav_child_inner, 
+    .mobile_nav_inner {
+      height: calc(100vh - 341px);
+      overflow: auto;
+      padding-bottom: 22px;
+    }
+    ul {
+      margin:0;
+      padding: 0;
+      list-style: none;
+      padding-left: 30px;
+      padding-right: 30px;
+      li {
+        border: none;
+        .mobile-nav__link, a {
+          font-size: 12px;
+          line-height: 12.96px;
+          color: #000000;
+          padding: 8px 0 !important;
+          position: relative;
+          .mobile-nav__label {
+            border: none !important;
+          }
+          .mobile-nav__icon {
+            padding: 0;
+            bottom: auto;
+            top: 50%;
+            transform: translateY(-50%);
+            padding-left: 10px;
+            svg {
+              display: block;
+            }
+          }
+        }
+      }
+    }
     &:after {
       border-bottom: none;
     }
     &.js-menu--is-open {
-      height: calc(100vh - 110px)!important;
-      max-width: 350px; 
-      overflow: hidden;
-      overflow-y: auto;
       .is-active {
         &+.mobile-nav__dropdown {
           padding-bottom: 50px;
         }
       }
     }
+    .back-menu-item {
+        font-size: 12px;
+        line-height: 12.96px;
+        text-transform: uppercase;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        color: #6C1D45;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 20px 0;
+        margin-bottom: 22px;
+        width: auto;
+        .mobile-nav__return-btn {
+          width: auto;
+          padding: 0;
+        }
+        svg {
+          display: block;
+        }
+        .back-menu-close {
+          cursor: pointer;
+        }
+    }
+    .header-mb-login-details-wrapper {
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      padding-top: 21px;
+      position: relative;
+      z-index: 3;
+      padding-left: 30px;
+      padding-right: 30px;
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .header-mb-login-details {
+        ul {
+          li {
+            margin-bottom: 15px;
+            &:last-child {
+              margin-bottom: 0px;
+            }
+            a {
+              font-size: 13px;
+              line-height: 19.5px;
+              display: flex;
+              align-items: center;
+              padding: 0 !important;
+              .icon_hold {
+                margin-right: 7px;
+                svg {
+                  display: block;
+                }
+              }
+            }
+          }
+        }
+      }
+      .currency-box-wrapper {
+        margin: 0;
+        padding: 0;
+        margin-top:53px;
+        margin-bottom: 30px;
+        ul {
+          li {
+            a {
+              font-size: 13px;
+              line-height: 19.5px;
+              text-transform: uppercase;
+              &.currency-trigger {
+                padding: 0;
+                display: flex;
+                align-items: center;
+                &:after {
+                  content: none;
+                }
+              }
+              .flag {
+                display: inline-block;
+                margin-right: 7px;
+                img {
+                  vertical-align: middle;
+                }
+              }
+              .caret_down {
+                margin-left: 5px;
+                line-height: 0;
+              }
+            }
+            .currency-box-child {
+              padding: 10px 0;
+              position: static;
+              width: auto;
+            }
+          }
+        }
+      }
+    }
   }
+  
   body {
     &.js-menu--is-open {
       overflow: hidden;
@@ -1715,6 +1904,11 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
             .site-footer__item-inner--link_list{
               display: block;
               width: 100%;
+              ul {
+                margin:0;
+                padding:0;
+                list-style: none;
+              }
               .site-footer__linklist {
                   display: flex;
                   justify-content: space-between;
@@ -2005,6 +2199,11 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     .footer-bottom__nav {
       text-align: center;
       padding: 33px 0;
+      ul {
+        margin:0;
+        padding:0;
+        list-style: none;
+      }
       @media(max-width: $md) {
         padding: 15px 0;
       }
@@ -3970,6 +4169,9 @@ body[data-template="product"] {
         margin-top: 17px;
       }
       ul {
+        margin:0;
+        padding:0;
+        list-style: none;
         font-weight: 300;
         font-size: 18px;
         line-height: 27px;
@@ -5125,8 +5327,88 @@ body.layout_jewellery {
   cursor: pointer;
 }
 
-
 // Solitaire PLP End
+
+// Common Layout 1 ( privacy-policy ) Start
+body[data-template="common-layout-1"] {
+  .main-content {
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+}
+.common-layout-wrapper {
+  .custom-section-header {
+    h1 {
+      @include heading-fonts();
+      font-size: 24px;
+      line-height:25.92px;
+      color: $textcolor-phanton;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      font-weight: 200;
+      margin-bottom: 53px;
+    }
+  }
+}
+
+.two-col-layout {
+  display: flex;
+  flex-wrap: wrap;
+  .sidebar-column {
+    width: 22.2%;
+    padding-right:48px;
+  }
+  .main-column {
+    width: calc(77.8% - 2px);
+    min-height: 1px;
+    border-left: 2px solid #6C1D45;
+    padding-left: 50px;
+  }
+}
+.sidebar-nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      margin: 48px 0;
+      &:first-child {
+        margin-top: 0;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+      a {
+        display: block;
+        font-size: 18px;
+        line-height: 27px;
+        color: $textcolor-black;
+        letter-spacing: 0.5px;
+        position: relative;
+        &:after {
+          content: "";
+          width: 6px;
+          height: 12px;
+          display: block;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          right: 0;
+        }
+        .menu_text {
+          display: inline-block;
+          position: relative;
+          border-bottom: 2px solid transparent;
+        }
+      }
+    }
+  }
+
+}
+
+
+// Common Layout 1 ( privacy-policy ) End
+
 
 
 

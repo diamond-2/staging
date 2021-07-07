@@ -33,6 +33,12 @@
   .product_images_slider .slick-arrow:after {
     background-image: url({{ 'arrow_thin.png' | asset_url }});
   }
+  .sidebar-nav ul li a:after {
+    background-image: url({{ 'menu-arrow-right.png' | asset_url }});
+  }
+  .sidebar-nav ul li.active a:after {
+    background-image: url({{ 'menu-arrow-right-active.png' | asset_url }});
+  }
   
 
 @media(max-width: 749px) {

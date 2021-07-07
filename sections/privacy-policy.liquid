@@ -1,0 +1,47 @@
+
+<div class="accordion-wrapper">
+    <div class="ac-grid">
+        {% for item in section.blocks %}
+        {%- if item.settings.question != blank or item.settings.answer != blank -%}
+        <div class="ac-item">
+            {%- if item.settings.question != blank -%}
+            <div class="ac-heading">
+                <a href="javascript:void(0);">{{ item.settings.question }}</a>
+            </div>
+            {%- endif -%}
+            {%- if item.settings.answer != blank -%}
+            <div class="ac-body">
+                <div class="ac-body-inner">{{ item.settings.answer }}</div>
+            </div>
+            {%- endif -%}
+        </div>
+        {%- endif -%}
+        {% endfor %}
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Privacy Policy",
+    "settings": [
+    ],
+    "blocks": [
+        {
+            "type": "text",
+            "name": "Accordion",
+            "settings": [
+                {
+                    "type": "text",
+                    "label": "Question",
+                    "id": "question"
+                },
+                {
+                    "type": "html",
+                    "label": "Answer",
+                    "id": "answer"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %} 

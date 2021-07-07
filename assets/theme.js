@@ -9778,6 +9778,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
     $('html, body').animate({scrollTop:0}, '1000');
   });
 
+  // Close Menu In Mobile
+  $('.back-menu-close, .mobile-nav > .back-menu-item .back-menu-arrow').click(function(){
+    $('.js-mobile-nav-toggle').removeClass('mobile-nav--close');
+    $('.js-mobile-nav-toggle').addClass('mobile-nav--open');
+    $('.js-mobile-nav-toggle').attr('aria-expanded','false');
+    $('.mobile-nav-wrapper').removeClass('js-menu--is-open');
+    $('.mobile-nav-wrapper').removeClass('sub-nav--is-open');
+  }); 
 
 });
 

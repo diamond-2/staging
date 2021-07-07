@@ -1,1 +1,24 @@
-<h1> {{ page.title }} </h1>
+<div class="common-layout-wrapper">
+    <div class="dia-large-container">
+        <div class="custom-section-header"><h1>{{ page.title }}</h1></div>
+        <div class="two-col-layout"> 
+            <!-- Sidebar Start -->
+            <div class="sidebar-column">
+                <div class="sidebar-nav">
+                    {% if linklists.privacy-policy-menu.links.size > 0 %}
+                    <ul>
+                    {% for link in linklists.privacy-policy-menu.links %}
+                    {% if link.title %}<li><a href="{{ link.url }}"><span class="menu_text">{{ link.title }}</span></a></li>{% endif %}
+                    {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+            <!-- Sidebar End -->
+
+            <div class="main-column">
+                {% section 'privacy-policy' %}
+            </div>
+        </div>
+    </div>
+</div>
