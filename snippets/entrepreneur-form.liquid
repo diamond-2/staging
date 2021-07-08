@@ -1,7 +1,7 @@
 {%- assign formId = 'becomeEntrepreneur' -%}
-    {% form 'customer', id: formId, novalidate: 'novalidate' %}
+    {% form 'customer', id: formId, novalidate: 'novalidate', class: 'newsletter-form contact-form' %}
     {%- if form.posted_successfully? -%}
-        <p class="form-message form-message--success" tabindex="-1" data-form-status>
+        <p class="form-message form-message--success hide" tabindex="-1" data-form-status>
             Thanks you!
         </p>
     {%- endif -%}
@@ -29,6 +29,7 @@
         </button>
         </span>
     </div>
+    <p class="form-message form-message--error custom-error"></p>
     {% if form.errors contains 'email' %}
         <span id="{{ formId }}-email-error" class="input-error-message">
         <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>

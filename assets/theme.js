@@ -9787,6 +9787,79 @@ document.addEventListener('DOMContentLoaded', function(event) {
     $('.mobile-nav-wrapper').removeClass('sub-nav--is-open');
   }); 
 
+
+  // newesletter validation
+  $(document).ready(function(){
+    $('.newsletter-form [name="contact[email]"]').keyup(function(){
+      var emailActive = $(this).val();
+      if(emailActive == ''){
+        $(this).closest('.input-group').find('.input-group__btn button').attr('disabled', '');
+      } else {
+        $(this).closest('.input-group').find('.input-group__btn button').removeAttr('disabled');
+      }
+    });
+    $('[name="contact[email]"]').removeClass('input--error');
+    $(document).on('keyup', '[name="contact[email]"]', function(){
+      if($(this).val() != ''){
+      }else{
+      }
+    });
+    $('.newsletter-form').on('submit', function(e){
+      let formId = $(this).attr('id')
+      localStorage.setItem("form-Id", formId);
+      const email = $(this).find('[name="contact[email]"]').val();
+      const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if(regex.test(email)){
+        $(this).find('.custom-error').removeClass('show').text('');
+      } else {
+          e.preventDefault();
+          $(this).find('.custom-error').addClass('show').text(email+' is not valid email.');
+      }
+    });
+  })
+  
+  $(window).on('load', function(){  
+    var check = window.location.search;
+    var getFormId = localStorage.getItem('form-Id');
+    if(getFormId !=null) {
+      $('#'+getFormId).find('.form-message').addClass('show');
+      $('#'+getFormId).find('.form-message').removeClass('hide');
+      setTimeout(function(){
+        $('#'+getFormId).find('.form-message').removeClass('show');
+        $('#'+getFormId).find('.form-message').addClass('hide');
+      },5000)
+    }
+    //success
+    let getOffset = $('.newsletter-form').offset().top;
+    if($('.form-message--success').length > 0){
+      if(check.indexOf('customer_posted=true') > -1){
+        setTimeout(function(){
+          // $('.form-message--success').remove();
+          window.history.replaceState(null, null, window.location.pathname);
+          localStorage.removeItem("form-Id");
+        },1000);
+      }
+    }
+    //error
+    setTimeout(function() {
+      if(check.indexOf('newsletter&form_type=customer') > -1){
+        $('#'+getFormId).find('.custom-error').text('This email ID is already registered with us').addClass('show');
+      }
+    },500);
+    // remove Error after sometitme 
+    setTimeout(function() {
+      if(check.indexOf('newsletter&form_type=customer') > -1){
+        $('#'+getFormId).find('.custom-error').addClass('hide');
+        $('#'+getFormId).find('.custom-error').removeClass('show');
+      }
+    },5000);
+
+
+  });
+  
+
+
+
 });
 
 var showMobileNav = false;

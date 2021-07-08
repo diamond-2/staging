@@ -168,33 +168,9 @@
     document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
   </script>
 
-  {%- if request.page_type contains 'customers/' -%}
-    <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
-  {%- endif -%}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous" ></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" ></script>
 
-  <script
-  src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-  crossorigin="anonymous"></script>
-  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-  <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script>
-
-  {% if template contains 'collection' %}
-  <script src="{{ 'collection-loadmore.js' | asset_url }}" async="async"></script>
-  {% endif %}
-
-  <script type="text/javascript">
-    if (window.MSInputMethodContext && document.documentMode) {
-      var scripts = document.getElementsByTagName('script')[0];
-      var polyfill = document.createElement("script");
-      polyfill.defer = true;
-      polyfill.src = "{{ 'ie11CustomProperties.min.js' | asset_url }}";
-
-      scripts.parentNode.insertBefore(polyfill, scripts);
-    }
-  </script>
-  <script src="//www.searchanise.com/widgets/shopify/init.js?a=7r9L5P8L4h"></script>
   {{ content_for_header }}
 </head>
 <body class="layout_{{ template.suffix }} template-{{ request.page_type | handle }} " data-template="{{ template | | replace: 'page.', '' }}">
@@ -214,6 +190,29 @@
     </main>
 
     {% section 'footer' %}
+
+  {%- if request.page_type contains 'customers/' -%}
+    <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+  {%- endif -%}
+
+  <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script>
+
+  {% if template contains 'collection' %}
+  <script src="{{ 'collection-loadmore.js' | asset_url }}" async="async"></script>
+  {% endif %}
+
+  <script type="text/javascript">
+    if (window.MSInputMethodContext && document.documentMode) {
+      var scripts = document.getElementsByTagName('script')[0];
+      var polyfill = document.createElement("script");
+      polyfill.defer = true;
+      polyfill.src = "{{ 'ie11CustomProperties.min.js' | asset_url }}";
+
+      scripts.parentNode.insertBefore(polyfill, scripts);
+    }
+  </script>
+  <script src="//www.searchanise.com/widgets/shopify/init.js?a=7r9L5P8L4h"></script>
 
     <div id="slideshow-info" class="visually-hidden" aria-hidden="true">
       {{- 'sections.slideshow.navigation_instructions' | t -}}

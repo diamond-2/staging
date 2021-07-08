@@ -1,29 +1,38 @@
 {% assign landingBanner = section.settings.landing_image %}
+{% assign landingBannerMobile = section.settings.landing_image_mobile %}
 {% assign bannerToptext = section.settings.landing_text_top %}
 {% assign bannerBottomtext = section.settings.landing_text_bottom %}
 <div id="main-landing-page">
     <div class="main-landing-page-container">
         <div class="landing-banner">
-            <img data-src="{{ landingBanner | img_url: 'master'}}" alt="" class="lazyload"/>
+            <img data-src="{{ landingBanner | img_url: 'master'}}" alt="" class="lazyload hide_mobile"/>
+            {% if landingBannerMobile %}
+            <img data-src="{{ landingBannerMobile | img_url: 'master'}}" alt="" class="lazyload show_mobile"/>
+            {% else %}
+            <img data-src="{{ landingBanner | img_url: 'master'}}" alt="" class="lazyload show_mobile"/>
+            {% endif %}
+          
         </div>
         <div class="landing-content">
             <div class="landing-top-content landing-content-item">
-                <div class="landing-logo-icn">
-                    <img data-src="{{ 'logo-white-small.svg' | asset_url }}" alt="" class="lazyload" />
-                </div>
-                <div class="landing-logo-white">
-                    <img data-src="{{ 'landing-logo-white.svg' |  asset_url }}" alt="" class="lazyload" />
+                <div class="landing-logo-holder">
+                    <span class="logo-top-text">introducing</span>
+                    <div class="landing-small-logo">
+                        <img data-src="{{ 'diamond2-small-logo-white.png' |  asset_url }}" alt="diamond2" class="lazyload" />
+                    </div>
+                    <div class="landing-main-logo">
+                        <img data-src="{{ 'diamond2-logo-2.png' |  asset_url }}" alt="diamond2" class="lazyload hide_mobile" />
+                        <img data-src="{{ 'Diamond2_Logo_white_mobile.png' |  asset_url }}" alt="diamond2" class="lazyload show_mobile" />
+                    </div>
+                    <span class="logo-bottom-text"><span>a</span>  <span>patented</span>  <span>laB-grown</span>  <span>gem</span></span>
                 </div>
                 {% if bannerToptext != blank %}
                 <div class="landing-top-content-item">{{ bannerToptext }}</div>
                 {% endif %}
             </div>
             <div class="landing-bottom-content landing-content-item">
-                <div class="landing-bottom-animation">
-                    <span class="large-circle">
-                        <span class="animate-line"></span>
-                        <span class="small-circle"></span>
-                    </span>
+                <div class="landing-page-button">
+                    <a href="javascript:void(0);" class="landing-btn discover-btn"><span class="btn_text">Discover</span>{% include 'langing-button-arrow' %}</a>
                 </div>
                 {% if bannerBottomtext != blank %}
                     <div class="landing-bottom-content-item">{{ bannerBottomtext }}</div>    
@@ -41,7 +50,7 @@
           $('#shopify-section-landing').show();
           $('body').addClass('overflow-hidden');
         }
-        $(document).on('click', '.large-circle', function(){
+        $(document).on('click', '.discover-btn', function(){
             $('body').removeClass('overflow-hidden');
             $('#shopify-section-landing').remove();
             $.cookie('landingpage',2)
@@ -59,6 +68,11 @@
             "type": "image_picker",
             "id": "landing_image",
             "label": "Select Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "landing_image_mobile",
+            "label": "Select Image For Mobile"
         },
         {
             "type": "richtext",
