@@ -139,8 +139,8 @@
                         id="{{ formId }}-email"
                         class="input-group__field newsletter__input{% if form.errors %} input--error{% endif %}"
                         value="{{ form.email }}"
-                        placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
-                        aria-label="{{ 'general.newsletter_form.email_placeholder' | t }}"
+                        placeholder="Email"
+                        aria-label="Email"
                         aria-required="true"
                         required
                         autocorrect="off"
@@ -151,8 +151,8 @@
                           data-form-status
                         {% endif %}>
                       <span class="input-group__btn">
-                        <button type="submit" class="btn newsletter__submit" name="commit" >
-                          <span class="newsletter__submit-text--large">{{ 'general.newsletter_form.submit' | t }}</span>
+                        <button type="submit" class="btn newsletter__submit" name="commit" disabled>
+                          <span class="newsletter__submit-text--large">Sign Up</span>
                         </button>
                       </span>
                     </div>
@@ -214,7 +214,7 @@
                         <ul class="site-footer__sub-linklist">
                           {% for childlink in link.links %}
                             <li class="site-footer__sub-linklist-item" data-level="level-1">
-                              <a href="{{ childlink.url }}" aria-label="{{ childlink.title }}">{{ childlink.title}}</a>
+                              <a href="{{ childlink.url }}" aria-label="{{ childlink.title }}">{{ childlink.title | replace: '®', '<sup>®</sup>'}}</a>
                             </li>
                         {% endfor %}
                         </ul>                        
@@ -382,7 +382,7 @@
           {% endfor %}
         {% endif %}
         <li class="footer_bottom__nav--list-item">
-          <span class="site-footer__copyright-text">&copy; {{ shop.name | link_to: routes.root_url }}&reg; {{ 'now' | date: "%Y" }}</span>
+          <span class="site-footer__copyright-text">&copy; {{ shop.name | link_to: routes.root_url }}<sup>&reg;</sup> {{ 'now' | date: "%Y" }}</span>
           {%- comment -%}<small class="site-footer__copyright-content site-footer__copyright-content--powered-by">{{ powered_by_link }}</small> {%- endcomment -%}
         </li>
       </ul>
@@ -485,7 +485,7 @@
           "id": "title",
           "label": "Heading",
           "info": "Subscribers will be added to your “accepts marketing” [customer list.](/admin/customers?query=&accepts_marketing=1)",
-          "default": "Newsletter"
+          "default": "NEWSROOM"
         },
         {
           "type": "richtext",

@@ -9737,8 +9737,10 @@ document.addEventListener('DOMContentLoaded', function(event) {
   
   $('.site-footer__item-inner .site-footer__linklist > li > a').after('<div class="footer-menu-Childtrigger"></div>');
   $('.footer-menu-Childtrigger').click(function(){
-      $(this).next().slideToggle(250);
+      $(this).next().slideToggle();
       $(this).parent().toggleClass('menu_down');
+      $(this).parent().siblings().removeClass('menu_down');
+      $(this).parent().siblings().children('.site-footer__sub-linklist').slideUp();
   });
 
   // HeaderNav image change on mouseenter event
@@ -9785,6 +9787,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
     $('.js-mobile-nav-toggle').attr('aria-expanded','false');
     $('.mobile-nav-wrapper').removeClass('js-menu--is-open');
     $('.mobile-nav-wrapper').removeClass('sub-nav--is-open');
+    $('body').removeClass('js-menu--is-open');
   }); 
 
 
@@ -9805,6 +9808,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
       }
     });
     $('.newsletter-form').on('submit', function(e){
+      $(this).find('.custom-error').removeClass('hide');
       let formId = $(this).attr('id')
       localStorage.setItem("form-Id", formId);
       const email = $(this).find('[name="contact[email]"]').val();
@@ -9818,6 +9822,11 @@ document.addEventListener('DOMContentLoaded', function(event) {
     });
   })
   
+  var challengePage = window.location.pathname;
+  if(challengePage == '/challenge'){
+    $('html, body').animate({scrollTop:0}, 'slow');
+  }
+  
   $(window).on('load', function(){  
     var check = window.location.search;
     var getFormId = localStorage.getItem('form-Id');
@@ -9830,33 +9839,44 @@ document.addEventListener('DOMContentLoaded', function(event) {
       },5000)
     }
     //success
-    let getOffset = $('.newsletter-form').offset().top;
     if($('.form-message--success').length > 0){
       if(check.indexOf('customer_posted=true') > -1){
         setTimeout(function(){
           // $('.form-message--success').remove();
           window.history.replaceState(null, null, window.location.pathname);
+          $('html, body').animate({scrollTop: $('#'+getFormId).offset().top}, 'slow');
           localStorage.removeItem("form-Id");
-        },1000);
+        },500);
       }
     }
     //error
     setTimeout(function() {
+      if(check.indexOf('entrepreneur&form_type=customer') > -1){
+        $('#'+getFormId).find('.custom-error').text('This email ID is already registered with us').addClass('show');
+        $('html, body').animate({scrollTop: $('#'+getFormId).offset().top}, 'slow');
+        $('#'+getFormId).find('.input-group__btn button').removeAttr('disabled');
+      }
       if(check.indexOf('newsletter&form_type=customer') > -1){
         $('#'+getFormId).find('.custom-error').text('This email ID is already registered with us').addClass('show');
+        $('html, body').animate({scrollTop: $('#'+getFormId).offset().top}, 'slow');
+        $('#'+getFormId).find('.input-group__btn button').removeAttr('disabled');
       }
     },500);
-    // remove Error after sometitme 
-    setTimeout(function() {
-      if(check.indexOf('newsletter&form_type=customer') > -1){
-        $('#'+getFormId).find('.custom-error').addClass('hide');
-        $('#'+getFormId).find('.custom-error').removeClass('show');
-      }
-    },5000);
-
-
   });
   
+  // add class on body if mega menu opend
+  $('#AccessibleNav').click(function(e){
+    e.stopPropagation();
+    let item = $(this).children('ul').children('li.site-nav--has-centered-dropdown');
+    if(!$(item).hasClass('site-nav--active-dropdown')){
+        $('body').removeClass('menu_menu_opend')
+    } else {
+        $('body').addClass('menu_menu_opend')
+    }
+  });
+  $('body').click(function(){
+    $('body').removeClass('menu_menu_opend')
+  })
 
 
 

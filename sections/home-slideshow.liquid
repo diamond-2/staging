@@ -45,9 +45,14 @@
     {%- if videolink != blank -%}
     <div class="slide-item slide--{{ forloop.index }}" data-type="video">
         <div class="home_slide_item_inner">
-            <video {% if videocontrols %}controls{% endif %}>
+            <video loop muted {% if videocontrols %}controls{% endif %}>
                 <source src="{{ videolink }}" type="video/mp4">
             </video>
+            <div class="video-play-box">
+                <a class="video-play-button">
+                    <span></span>
+                </a>
+            </div>
         </div> 
     {%- endif -%}
     {%- if heading != blank or subheading != blank -%}
@@ -87,15 +92,27 @@
             vids[0].pause();
             vids[0].currentTime = 0;
             // vids[0].play();
+            vids[0].closest('.home_slide_item_inner').classList.remove('video-playing');
         }
         })
         .on('beforeChange', function(event, slick, currentSlide, nextSlide){
         var vids = mainSlider.find('.slide-item.slick-current[data-slick-index="'+currentSlide+'"] video');
         if(vids.length > 0){
             vids[0].pause();
+            vids[0].closest('.home_slide_item_inner').classList.remove('video-playing');
         }
         });
 });
+
+$('.home_slide_item_inner').each(function(){
+    let $video = $(this).find('video')
+    let videoTrigger = $(this).find('.video-play-button');
+    $(videoTrigger).click(function(){
+        $($video).get(0).play();
+        $(this).closest('.home_slide_item_inner').addClass('video-playing');
+    });
+});
+
 </script>
 {% schema %}
 {
@@ -200,7 +217,7 @@
                     "type": "checkbox",
                     "id": "video_controls",
                     "label": "Show Controls",
-                    "default": true
+                    "default": false
                 },
                 {
                     "type": "select",
