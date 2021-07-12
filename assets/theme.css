@@ -1475,7 +1475,7 @@ a[href^="tel"] {
     height: 9px; }
   .btn[disabled], .shopify-payment-button .shopify-payment-button__button--unbranded[disabled], .btn[aria-disabled], .shopify-payment-button .shopify-payment-button__button--unbranded[aria-disabled] {
     cursor: default;
-    opacity: 0.5; }
+  }
 
 .btn--secondary {
   background-color: transparent;
@@ -2048,7 +2048,6 @@ textarea {
   position: static; }
 
 .site-nav__dropdown {
-  display: none;
   position: absolute;
   padding: 11px 30px 11px 0;
   margin: 0;
@@ -2057,17 +2056,16 @@ textarea {
   border: 1px solid var(--color-border);
   background: var(--color-bg);
   left: -1px;
-  top: 67px!important;
+  top: 100%!important;
   border:none;
 }
 .site-nav--has-centered-dropdown .site-nav__dropdown {
   min-height: 276px;
-  top: 100% !important; 
 }
   .site-nav__dropdown .site-nav__link {
-    padding: 4px 15px 5px; }
-  .site-nav--active-dropdown .site-nav__dropdown {
-    display: block; }
+    padding: 4px 15px 5px;
+  }
+
   .site-nav__dropdown li {
     display: block; }
 
@@ -3723,12 +3721,19 @@ hr {
       border-bottom: 1px solid var(--color-border); } }
   @media only screen and (min-width: 750px) {
     .site-header {
-      padding: 14px 50px 0; }
-      .site-header.logo--center {
-        padding-top: 30px; } }
+      padding: 14px 50px 0; 
+    }
+    .site-header.logo--center {
+      padding-top: 30px; 
+    } 
+    .mobile_view_show .site-header {
+      padding-bottom: 14px;
+    }
+
+  }
 
 .site-header__logo {
-  margin: 15px 0; }
+  margin: 0; }
   .logo-align--center .site-header__logo {
     text-align: center;
     margin: 0 auto; }
@@ -7041,11 +7046,11 @@ body.has_top_banner #shopify-section-header {
   top:0px;
   left: 0px;
   background: rgba(255, 255, 255, 0.2);
-  -webkit-transition: 0.3s ease-in-out;
-  -moz-transition: 0.3s ease-in-out;
-  -o-transition: 0.3s ease-in-out;
-  -ms-transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  -ms-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 
 body[data-template="index"] #shopify-section-header .site-header,

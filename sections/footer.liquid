@@ -214,7 +214,7 @@
                         <ul class="site-footer__sub-linklist">
                           {% for childlink in link.links %}
                             <li class="site-footer__sub-linklist-item" data-level="level-1">
-                              <a href="{{ childlink.url }}" aria-label="{{ childlink.title }}">{{ childlink.title | replace: '®', '<sup>®</sup>'}}</a>
+                              <a href="{{ childlink.url }}" aria-label="{{ childlink.title }}">{{ childlink.title}}</a>
                             </li>
                         {% endfor %}
                         </ul>                        
@@ -382,7 +382,7 @@
           {% endfor %}
         {% endif %}
         <li class="footer_bottom__nav--list-item">
-          <span class="site-footer__copyright-text">&copy; {{ shop.name | link_to: routes.root_url }}<sup>&reg;</sup> {{ 'now' | date: "%Y" }}</span>
+          <span class="site-footer__copyright-text">&copy; {{ shop.name | downcase | replace: 'SG', '' | link_to: routes.root_url }} {{ 'now' | date: "%Y" }}</span>
           {%- comment -%}<small class="site-footer__copyright-content site-footer__copyright-content--powered-by">{{ powered_by_link }}</small> {%- endcomment -%}
         </li>
       </ul>
