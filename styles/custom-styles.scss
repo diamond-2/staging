@@ -432,16 +432,22 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
       }
       @media(max-width: $md) {
         justify-content: center;
-        font-size: 9px;
-        line-height: 1;
+        font-size: 11px;
+        line-height: 13.41px;
         text-transform: none;
-        padding: 4px 20px;
+        padding: 4px 20px 0px; 
         letter-spacing: 0;
         color: #484848;
+        text-transform: uppercase;
+        font-weight: 300;
       }
       span {
         @media(max-width: $md) {
           padding: 0 5px;
+          display: none;
+        }
+        &.return_policy {
+          display: block;
         }
       }
     }
@@ -566,7 +572,8 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
             max-width: 22px;
             margin: 0 auto 6px;
             position: relative;
-            left: -10px
+            left: -10px;
+            transition: all 0.4s;
           }
         }
       }
@@ -592,6 +599,20 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
         @media(max-width: $md) {
           padding:0;
           margin:0;
+        }
+      }
+    }
+  }
+}
+.header-bg {
+  .site-header {
+    .site-header__mobile-nav {
+      .site-header__logo {
+        .site-header__logo-image {
+          img.header_sm_logo {
+            max-width: 0;
+            opacity: 0;
+          }
         }
       }
     }
@@ -3244,6 +3265,7 @@ body[data-template="know-your-diamond"] {
       width: 42.6%;
       @media(max-width: $md) {
         margin-bottom: 30px;
+
       }
   }
   .content-with-image-diamond-content-column {
@@ -3350,13 +3372,13 @@ body[data-template="know-your-diamond"] {
       }
     }
   }
-  
   .content-with-image-diamond-row {
     .content-with-image-diamond-image-column {
       margin-bottom: 0;
       margin-top: 20px;
       @media(max-width: $md) {
         width: auto !important;
+        order: 2;
       }
       .image_holder {
         @media(max-width: $md) {
@@ -3390,7 +3412,9 @@ body[data-template="know-your-diamond"] {
     }
     @media(max-width: $md) {
       margin-bottom: 20px !important;
-      text-align: center;
+      max-width: 200px;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
   p:not(:last-child) {
@@ -3457,7 +3481,7 @@ body[data-template="know-your-diamond"] {
     margin-bottom: 44px;
     @media(max-width: $md) {
       margin-bottom: 20px;
-      max-width: 245px;
+      max-width: 230px;
       margin-left: auto;
       margin-right: auto;
     }

@@ -9956,10 +9956,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
     $(this).parent().toggleClass('active');
     $(this).parent().parent().siblings().find('.ac-heading').removeClass('active');
     $(this).parent().parent().siblings().find('.ac-body').slideUp();
-  })
-
-
-
+  });
+  
 });
 
 var showMobileNav = false;

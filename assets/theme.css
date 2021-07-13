@@ -7090,6 +7090,12 @@ body.has_top_banner #shopify-section-header.header-bg {
   body.has_no_banner {
     padding-top:172px;
   }
+  .mobile_view_show .site-header {
+    padding-top: 0;
+  }
+  .mobile_view_show .header-bg .site-header {
+    padding-top: 16.5px;
+  }
 }
 
 
@@ -7109,8 +7115,19 @@ body[data-template="collection"] .main-content {
     background:#fff;
     position: fixed;
   }
-  
+  body[data-template="index"] #shopify-section-header.header-bg,
+  body[data-template="know-your-diamond"] #shopify-section-header.header-bg,
+  body.layout_jewellery #shopify-section-header.header-bg,
+  body.layout_loose-stone #shopify-section-header.header-bg,
+  body.has_top_banner #shopify-section-header.header-bg {
+    transform: translateY(-22px);
+  }
+  .header-bg .mobile-nav-wrapper {
+    transform: translateY(22px) !important;
+  }
+  .has_top_banner {
+    padding-top: 82.625px;
+  }
 }
-
 
 

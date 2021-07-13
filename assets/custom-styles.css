@@ -187,15 +187,20 @@
     @media (max-width: 749px) {
       .announcement-bar .announcement-bar__message {
         justify-content: center;
-        font-size: 9px;
-        line-height: 1;
+        font-size: 11px;
+        line-height: 13.41px;
         text-transform: none;
-        padding: 4px 20px;
+        padding: 4px 20px 0px;
         letter-spacing: 0;
-        color: #484848; } }
+        color: #484848;
+        text-transform: uppercase;
+        font-weight: 300; } }
     @media (max-width: 749px) {
       .announcement-bar .announcement-bar__message span {
-        padding: 0 5px; } }
+        padding: 0 5px;
+        display: none; } }
+    .announcement-bar .announcement-bar__message span.return_policy {
+      display: block; }
 
 div#PageContainer.js-menu--is-open {
   transform: initial !important; }
@@ -272,7 +277,8 @@ div#PageContainer.js-menu--is-open {
     max-width: 22px;
     margin: 0 auto 6px;
     position: relative;
-    left: -10px; }
+    left: -10px;
+    transition: all 0.4s; }
   .site-header .site-header__mobile-nav #SiteNav {
     position: initial; }
     .site-header .site-header__mobile-nav #SiteNav .site-nav--active .site-nav__label {
@@ -288,6 +294,10 @@ div#PageContainer.js-menu--is-open {
       .site-header .site-header__mobile-nav .site-header__icons .site-header__icon {
         padding: 0;
         margin: 0; } }
+
+.header-bg .site-header .site-header__mobile-nav .site-header__logo .site-header__logo-image img.header_sm_logo {
+  max-width: 0;
+  opacity: 0; }
 
 @media (max-width: 749px) {
   [data-template="index"] .site-header__icons .site-header__icon {
@@ -2672,7 +2682,8 @@ body[data-template="know-your-diamond"] .main-content p {
   margin-top: 20px; }
   @media (max-width: 749px) {
     .image_col_size_medium .content-with-image-diamond-row .content-with-image-diamond-image-column {
-      width: auto !important; } }
+      width: auto !important;
+      order: 2; } }
   @media (max-width: 749px) {
     .image_col_size_medium .content-with-image-diamond-row .content-with-image-diamond-image-column .image_holder {
       text-align: center; } }
@@ -2696,7 +2707,9 @@ body[data-template="know-your-diamond"] .main-content p {
   @media (max-width: 749px) {
     .content-with-image-diamond-content-column h2 {
       margin-bottom: 20px !important;
-      text-align: center; } }
+      max-width: 200px;
+      margin-left: auto;
+      margin-right: auto; } }
 
 @media (max-width: 749px) {
   .content-with-image-diamond-content-column p:not(:last-child) {
@@ -2749,7 +2762,7 @@ body[data-template="know-your-diamond"] .main-content p {
     @media (max-width: 749px) {
       .why-diamond2-section h2 {
         margin-bottom: 20px;
-        max-width: 245px;
+        max-width: 230px;
         margin-left: auto;
         margin-right: auto; } }
   @media (max-width: 749px) {
