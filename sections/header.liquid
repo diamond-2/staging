@@ -209,19 +209,19 @@
               <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %}">
                 {% if link.links != blank %}
                   {% capture child_list_handle %}{{ link.handle }}-{{ outerLoopIndex }}{% endcapture %}
-                  <button type="button" class="btn--link js-toggle-submenu mobile-nav__link{% if link.child_active %} mobile-nav__link--active{% endif %}" data-target="{{ child_list_handle }}" data-level="1" aria-expanded="false">
-                    <span class="mobile-nav__label">{{ link.title | escape }}</span>
+                  <a type="button" class="btn--link js-toggle-submenu mobile-nav__link{% if link.child_active %} mobile-nav__link--active{% endif %}" data-target="{{ child_list_handle }}" data-level="1" aria-expanded="false">
+                    <span class="mobile-nav__label">{{ link.title | escape | replace: '®', '<sup>®</sup>' }}</span>
                     <div class="mobile-nav__icon">
                       {% include 'icon-chevron-right-mobile' %}
                     </div>
-                  </button>
+                  </a>
                   <ul class="mobile-nav__dropdown" data-parent="{{ child_list_handle }}" data-level="2">
                     <li class="visually-hidden" tabindex="-1" data-menu-title="2">
                       {{- link.title }} {{ 'layout.navigation.menu' | t -}}
                     </li>
                     <div class="back-menu-item">
                       <span class="back-menu-arrow btn--link js-toggle-submenu mobile-nav__return-btn" aria-expanded="true" aria-label="{{ link.title }}">{% include 'icon-back-menu' %}</span>
-                      <span class="back-menu-text">{{ link.title | escape }}</span>
+                      <a class="back-menu-text">{{ link.title | escape | replace: '®', '<sup>®</sup>' }}</a>
                       <span class="back-menu-close">{% include 'icon-close-back-menu' %}</span>
                     </div>
                     <div class="mobile_nav_child_inner lebel-2 {% if link.title contains 'INTRODUCING DIAMOND2' %}flex_mb_col{% endif %}">
@@ -229,7 +229,7 @@
                         <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %}  {% if childlink.links == blank %}not_child_menu{% endif %}">
                           {% if childlink.links != blank %}
                             {% capture grandchild_list_handle %}{{ childlink.handle }}-{{ outerLoopIndex }}-{{ forloop.index }}{% endcapture %}
-                            <a class="mobile-nav__sublist-link" href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                            <a class="mobile-nav__sublist-link" href="{{ childlink.url }}">{{ childlink.title | escape | replace: '®', '<sup>®</sup>' }}</a>
                             <ul class="mobile-nav__dropdown" data-parent="{{ grandchild_list_handle }}" data-level="3">
                               <li class="visually-hidden" tabindex="-1" data-menu-title="3">
                                 {{- childlink.title }} {{ 'layout.navigation.menu' | t -}}
@@ -242,7 +242,7 @@
                                       class="mobile-nav__sublist-link {% if grandchildlink.title contains 'all' %}active_color{% endif %}"
                                       {% if grandchildlink.current %} aria-current="page"{% endif %}
                                     >
-                                      <span class="mobile-nav__label">{{ grandchildlink.title | escape }}</span>
+                                      <span class="mobile-nav__label">{{ grandchildlink.title | escape | replace: '®', '<sup>®</sup>' }}</span>
                                     </a>
                                   </li>
                                 {% endfor %}
@@ -254,7 +254,7 @@
                               class="mobile-nav__sublist-link"
                               {% if childlink.current %} aria-current="page"{% endif %}
                             >
-                              <span class="mobile-nav__label">{{ childlink.title | escape }}</span>
+                              <span class="mobile-nav__label">{{ childlink.title | escape | replace: '®', '<sup>®</sup>' }}</span>
                             </a>
                           {% endif %}
                         </li>
@@ -274,14 +274,13 @@
                     class="mobile-nav__link{% if link.active %} mobile-nav__link--active{% endif %}"
                     {% if link.current %} aria-current="page"{% endif %}
                   >
-                    <span class="mobile-nav__label">{{ link.title | escape }}</span>
+                    <span class="mobile-nav__label">{{ link.title | escape | replace: '®', '<sup>®</sup>' }}</span>
                   </a>
                 {% endif %}
               </li>
             {% endfor %}
           </div>
         </ul>
-        
       <!-- Header Mobile Login Details -->
       <div class="header-mb-login-details-wrapper">
         <div class="header-mb-login-details">

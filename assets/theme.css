@@ -3721,19 +3721,22 @@ hr {
       border-bottom: 1px solid var(--color-border); } }
   @media only screen and (min-width: 750px) {
     .site-header {
-      padding: 14px 50px 0; 
+      padding: 10px 50px 0; 
+      transition: padding 0.4s;
+    }
+    .header-bg .site-header {
+      padding-top: 16.5px;
+      padding-bottom: 16.5px;
     }
     .site-header.logo--center {
       padding-top: 30px; 
     } 
-    .mobile_view_show .site-header {
-      padding-bottom: 14px;
-    }
 
   }
 
 .site-header__logo {
-  margin: 0; }
+  margin: 14px 0;
+}
   .logo-align--center .site-header__logo {
     text-align: center;
     margin: 0 auto; }
@@ -7036,6 +7039,7 @@ hr {
   margin-bottom: 0; }
 
 /* Header */
+
 body[data-template="index"] #shopify-section-header,
 body[data-template="know-your-diamond"] #shopify-section-header,
 body.layout_jewellery #shopify-section-header,
@@ -7046,11 +7050,11 @@ body.has_top_banner #shopify-section-header {
   top:0px;
   left: 0px;
   background: rgba(255, 255, 255, 0.2);
-  -webkit-transition: 0.5s ease-in-out;
-  -moz-transition: 0.5s ease-in-out;
-  -o-transition: 0.5s ease-in-out;
-  -ms-transition: 0.5s ease-in-out;
-  transition: 0.5s ease-in-out;
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 body[data-template="index"] #shopify-section-header .site-header,
@@ -7075,22 +7079,16 @@ body.has_top_banner #shopify-section-header.header-bg {
 }
 
 
+
 @media(min-width: 750px) {
-  body[data-template="index"] #shopify-section-header.header-bg .announcement-bar,
-  body[data-template="know-your-diamond"] #shopify-section-header.header-bg .announcement-bar,
-  body.layout_jewellery #shopify-section-header.header-bg .announcement-bar,
-  body.layout_loose-stone #shopify-section-header.header-bg .announcement-bar,
-  body.has_top_banner #shopify-section-header.header-bg .announcement-bar {
-    height: 0px;
-    padding: 0px;
-    border: none;
+  #shopify-section-header {
+    transform: translateY(0);
   }
-  body[data-template="index"] #shopify-section-header.header-bg .announcement-bar .announcement-bar__message,
-  body[data-template="know-your-diamond"] #shopify-section-header.header-bg .announcement-bar .announcement-bar__message,
-  body.layout_jewellery #shopify-section-header.header-bg .announcement-bar .announcement-bar__message,
-  body.layout_loose-stone #shopify-section-header.header-bg .announcement-bar .announcement-bar__message,
-  body.has_top_banner #shopify-section-header.header-bg .announcement-bar .announcement-bar__message {
-    font-size: 0px;
+  #shopify-section-header.header-bg {
+    transform: translateY(-54px);
+  }
+  body.has_no_banner {
+    padding-top:172px;
   }
 }
 
@@ -7108,9 +7106,10 @@ body[data-template="collection"] .main-content {
   body.layout_jewellery #shopify-section-header,
   body.layout_loose-stone #shopify-section-header,
   body.has_top_banner #shopify-section-header {
-    position:relative;
     background:#fff;
+    position: fixed;
   }
+  
 }
 
 

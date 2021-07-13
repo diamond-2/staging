@@ -9796,13 +9796,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
     $(this).next().fadeToggle(300);
     $(this).toggleClass('active');
   });
+
   // If top banner exist
-  let hasTopBanner = document.querySelector('.top_banner_section:first-child');
-  if(hasTopBanner !=null) {
-    let bannrSec = hasTopBanner.querySelector('.top_banner');
-    if(bannrSec !=null) {
-      document.body.classList.add('has_top_banner');
-    }
+  let bannrSec = document.querySelector('.top_banner_section:first-child .top_banner');
+  if(bannrSec !=null) {
+    document.body.classList.add('has_top_banner');
+  } else {
+    document.body.classList.add('has_no_banner');
   }
 
   //Back To Top
@@ -9913,7 +9913,6 @@ document.addEventListener('DOMContentLoaded', function(event) {
     e.stopPropagation();
     $('body').toggleClass('menu_menu_opend');
   });
-
   // Add ® sign with all 'Diamond2' text
   function findAndReplace(searchText, replacement, searchNode) {
     if (!searchText || typeof replacement === 'undefined') {
@@ -9950,7 +9949,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
   }
   findAndReplace('(Diamond2|diamond2|DIAMOND2)', 'Diamond2<sup>®</sup>');
 
-  
+  // Accordion
+  $('.ac-heading a').click(function(e){
+    e.preventDefault();
+    $(this).parent().next().slideToggle();
+    $(this).parent().toggleClass('active');
+    $(this).parent().parent().siblings().find('.ac-heading').removeClass('active');
+    $(this).parent().parent().siblings().find('.ac-body').slideUp();
+  })
 
 
 

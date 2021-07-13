@@ -1,0 +1,95 @@
+<div class="contact-us-section-wrapper">
+    <div class="contact-us-top-row">
+        {%- if section.settings.title != blank -%}<h3>{{ section.settings.title }}</h3>{%- endif -%}
+        <h6>OFFICE ADDRESS</h6>
+        <ul class="contcat-address-details">
+            {%- if section.settings.address -%}
+            <li class="address-item">
+                <span class="icon_s">{% include 'contact-location-icon' %}</span>
+                <span class="text">{{ section.settings.address }}</span>
+            </li>
+            {%- endif -%}
+
+            {%- if section.settings.email_address -%}
+            <li class="email-item">
+                <span class="icon_s">{% include 'contact-email-icon' %}</span>
+                <span class="text"><a href="">{{ section.settings.email_address }}</a></span>
+            </li>
+            {%- endif -%}
+
+            {%- if section.settings.phone_number -%}
+            <li class="phone-item">
+                <span class="icon_s">{% include 'contact-phone-icon' %}</span>
+                <span class="text"><a href="">{{ section.settings.phone_number }}</a></span>
+            </li>
+            {%- endif -%}
+        </ul>
+    </div>
+</div>
+
+
+
+{% schema %}
+{
+    "name": "Contact Us",
+    "settings": [
+        {
+            "type": "text",
+            "label": "Title",
+            "id": "title",
+            "default": "Singapore"
+        },
+        {
+            "type": "text",
+            "label": "Address",
+            "id": "address",
+            "default": "Aryamond Singapore PTE. Limited <br>Wisma Atria <br>#02-06/07 <br>435 Orchard Road <br>Singapore 238877"
+        },
+        {
+            "type": "text",
+            "label": "Emial Address",
+            "id": "email_address",
+            "default": "info@diamond2.sg"
+        },
+        {
+            "type": "text",
+            "label": "Phone Number",
+            "id": "phone_number",
+            "default": "65 4444 26XX"
+        },
+        {
+            "type": "header",
+            "content": "Other Queries"
+        },
+        {
+            "type": "text",
+            "label": "Title",
+            "id": "other_queries_title",
+            "default": "Other Queries"
+        },
+        {
+            "type": "text",
+            "label": "Description",
+            "id": "other_queries_description",
+            "default": "Feel free to contact us any time. We will get back to you as soon as we can!"
+        },
+        {
+            "type": "header",
+            "content": "Location on Map"
+        },
+        {
+            "type": "text",
+            "label": "Title",
+            "id": "location_map_title",
+            "default": "Location on Map"
+        },
+        {
+            "type": "text",
+            "label": "Description",
+            "id": "location_map_description",
+            "default": "Nulla tempus sollicitudin dui, ut vehicula lacus porta vel. Duis urna ligula, luctus at feugiat a lacinia ut sem. Quisque sit ."
+        }
+    ]
+    
+}
+{% endschema %} 

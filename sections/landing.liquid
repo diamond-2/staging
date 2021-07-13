@@ -43,11 +43,23 @@
         if($.cookie('landingpage') == null) {
           $('#shopify-section-landing').show();
           $('body').addClass('overflow-hidden');
+          $('[data-template=index] #shopify-section-header, [data-template=index] .page-container').css({
+              "opacity": "0",
+              "visibility": "hidden"
+          });
         }
         $(document).on('click', '.discover-btn', function(){
             $('body').removeClass('overflow-hidden');
-            $('#shopify-section-landing').remove();
-            $.cookie('landingpage',2)
+            $.cookie('landingpage',2);
+            setTimeout(function(){
+                $('#shopify-section-landing').remove();
+            },3000);
+            setTimeout(function(){
+                $('[data-template=index] #shopify-section-header, [data-template=index] .page-container').css({
+                "opacity": "1",
+                "visibility": "visible"
+                });
+            },500);
         });
         
     });
