@@ -9771,7 +9771,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
   $(document).on('mouseenter', '.site-nav__childlist-item .site-nav__link', function(){
     let handle = $(this).data('handle'); console.log(handle);
-    handle != undefined ? $(document).find('#nav-img-block img').attr('src', handle).fadeIn():$(document).find('#nav-img-block img').fadeOut();
+    handle != undefined ? $(document).find('#nav-img-block img').attr('src', handle).fadeIn():'';//$(document).find('#nav-img-block img').fadeOut();
   });
 
   // add class after page load

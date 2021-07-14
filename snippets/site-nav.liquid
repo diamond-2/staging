@@ -39,13 +39,6 @@
     {% if meganav and three_level_nav %}
 
     {% include 'meganav-layout'%}
-
-
-
-
-
-
-
     {% else %}
     {% if link.links != blank %}
       <li class="site-nav--has-dropdown {% if three_level_nav %} site-nav--has-centered-dropdown{% endif %}{% if link.active %} site-nav--active{% endif %}" data-has-dropdowns>
@@ -74,9 +67,9 @@
 
                       {% if childlink.links != blank %}
                       {% assign childCount = childlink.links | size %}
-                        <ul data-childCount="{{ childCount }}">
-                        {% for grandchildlink in childlink.links %}
-                          
+                      {% assign firstChildLink = childlink.links | first %}
+                        <ul data-childCount="{{ childCount }}" data-childFirst="{{ firstChildLink }}">
+                        {% for grandchildlink in childlink.links %}                          
                           <li>
                             {% if grandchildlink.url contains 'collection' %}
                               {% assign handle = grandchildlink.url | replace: '/collections/', '' %}

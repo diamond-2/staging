@@ -2098,7 +2098,9 @@ textarea {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: auto;
-  margin-bottom: -15px; }
+  margin-bottom: -15px;
+  justify-content: space-evenly;
+}
 
 .site-nav__childlist-item {
   -webkit-flex: 0 1 auto;

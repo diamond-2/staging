@@ -422,7 +422,7 @@ div#PageContainer.js-menu--is-open {
             #AccessibleNav .site-nav .site-nav__dropdown .site-nav__childlist .site-nav__childlist-grid .site-nav__childlist-item .site-nav__link:hover .site-nav__label:after {
               width: 100%; }
           #AccessibleNav .site-nav .site-nav__dropdown .site-nav__childlist .site-nav__childlist-grid li#nav-img-block {
-            margin-left: auto;
+            margin-left: 0;
             max-width: 490px; }
             #AccessibleNav .site-nav .site-nav__dropdown .site-nav__childlist .site-nav__childlist-grid li#nav-img-block img.navItemsThumb {
               display: block;
