@@ -459,6 +459,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     }
   }  
 
+  
 #shopify-section-header{
   z-index: 999;
   position: sticky;
@@ -952,9 +953,12 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     }
     .mobile_nav_child_inner, 
     .mobile_nav_inner {
-      height: 290px;
+      height: 345px;
       overflow: auto;
       padding-bottom: 22px;
+      @media (max-height: 635px) {
+        height: 300px;
+      }
     }
     .mobile_nav_child_inner {
       padding-bottom: 0;
@@ -6149,5 +6153,6 @@ body[data-template="common-layout-1"] {
       display: none !important;
   }
 }
+
 
 // End Know More Diamond Page

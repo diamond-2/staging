@@ -540,9 +540,13 @@ div#PageContainer.js-menu--is-open {
         min-height: 250px; } }
   .mobile-nav-wrapper .mobile_nav_child_inner,
   .mobile-nav-wrapper .mobile_nav_inner {
-    height: 290px;
+    height: 345px;
     overflow: auto;
     padding-bottom: 22px; }
+    @media (max-height: 635px) {
+      .mobile-nav-wrapper .mobile_nav_child_inner,
+      .mobile-nav-wrapper .mobile_nav_inner {
+        height: 300px; } }
   .mobile-nav-wrapper .mobile_nav_child_inner {
     padding-bottom: 0; }
     .mobile-nav-wrapper .mobile_nav_child_inner.flex_mb_col {
