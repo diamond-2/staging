@@ -8,7 +8,7 @@
                     {% if linklists.privacy-policy-menu.links.size > 0 %}
                     <ul>
                     {% for link in linklists.privacy-policy-menu.links %}
-                    {% if link.title %}<li><a href="{{ link.url }}"><span class="menu_text">{{ link.title }}</span></a></li>{% endif %}
+                    {% if link.title %}<li><a {% if forloop.first %}class="active"{% endif %} href="{{ link.url }}"><span class="menu_text">{{ link.title }}</span></a></li>{% endif %}
                     {% endfor %}
                     </ul>
                     {% endif %}
@@ -17,7 +17,14 @@
             <!-- Sidebar End -->
 
             <div class="main-column">
-                {% section 'privacy-policy' %}
+                <div class="commaon-layout-section-wrapper">
+                    <div class="commaon-layout-section show" id="privacy-policy">
+                        {% section 'privacy-policy' %}
+                    </div>
+                    <div class="commaon-layout-section" id="contact-us">
+                        {% section 'contact-us' %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

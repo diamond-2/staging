@@ -93,7 +93,7 @@
                             class="site-nav__link site-nav__child-link"
                             {% if grandchildlink.current %} aria-current="page"{% endif %}
                           >
-                              <span class="site-nav__label">{{ grandchildlink.title | escape }}</span>
+                              <span class="site-nav__label">{{ grandchildlink.title | escape | replace: '®', '<sup>®</sup>' }}</span>
                             </a>
                           </li>
                         {% endfor %}
@@ -115,7 +115,7 @@
                   class="site-nav__link site-nav__child-link{% if forloop.last %} site-nav__link--last{% endif %}"
                   {% if childlink.current %} aria-current="page"{% endif %}
                 >
-                    <span class="site-nav__label">{{ childlink.title | escape }}</span>
+                    <span class="site-nav__label">{{ childlink.title | escape | replace: '®', '<sup>®</sup>' }}</span>
                   </a>
                 </li>
               {% endfor %}

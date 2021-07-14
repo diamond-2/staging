@@ -208,13 +208,13 @@
                         <a href="{{ link.url }}"
                           {% if link.current %} aria-current="page"{% endif %}
                         >
-                          {{ link.title | escape }}
+                          {{ link.title | escape | replace: '®', '<sup>®</sup>' }}
                         </a>
                         {% if link.links != blank %}
                         <ul class="site-footer__sub-linklist">
                           {% for childlink in link.links %}
                             <li class="site-footer__sub-linklist-item" data-level="level-1">
-                              <a href="{{ childlink.url }}" aria-label="{{ childlink.title }}">{{ childlink.title | replace: '®', '<sup>®</sup>'}}</a>
+                              <a href="{{ childlink.url }}" aria-label="{{ childlink.title }}">{{ childlink.title | replace: '®', '<sup>®</sup>' }}</a>
                             </li>
                         {% endfor %}
                         </ul>                        
@@ -377,12 +377,12 @@
           {% assign footer_bottom__nav = section.settings.footer_bottom_nav %}
           {% for link in linklists[footer_bottom__nav].links %}
             <li class="footer_bottom__nav--list-item">
-              <a href="{{ link.url }}" aria-label="{{ link.title }}">{{ link.title }}</a>
+              <a href="{{ link.url }}" aria-label="{{ link.title }}">{{ link.title | replace: '®', '<sup>®</sup>' }}</a>
             </li>
           {% endfor %}
         {% endif %}
         <li class="footer_bottom__nav--list-item">
-          <span class="site-footer__copyright-text">&copy; {{ shop.name | link_to: routes.root_url }}<sup>&reg;</sup> {{ 'now' | date: "%Y" }}</span>
+          <span class="site-footer__copyright-text">&copy; <a href="/">Diamond2<sup>®</sup></a> {{ 'now' | date: "%Y" }}</span>
           {%- comment -%}<small class="site-footer__copyright-content site-footer__copyright-content--powered-by">{{ powered_by_link }}</small> {%- endcomment -%}
         </li>
       </ul>

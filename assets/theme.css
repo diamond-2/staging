@@ -1475,7 +1475,7 @@ a[href^="tel"] {
     height: 9px; }
   .btn[disabled], .shopify-payment-button .shopify-payment-button__button--unbranded[disabled], .btn[aria-disabled], .shopify-payment-button .shopify-payment-button__button--unbranded[aria-disabled] {
     cursor: default;
-    opacity: 0.5; }
+  }
 
 .btn--secondary {
   background-color: transparent;
@@ -2048,7 +2048,6 @@ textarea {
   position: static; }
 
 .site-nav__dropdown {
-  display: none;
   position: absolute;
   padding: 11px 30px 11px 0;
   margin: 0;
@@ -2057,17 +2056,16 @@ textarea {
   border: 1px solid var(--color-border);
   background: var(--color-bg);
   left: -1px;
-  top: 67px!important;
+  top: 100%!important;
   border:none;
 }
 .site-nav--has-centered-dropdown .site-nav__dropdown {
   min-height: 276px;
-  top: 100% !important; 
 }
   .site-nav__dropdown .site-nav__link {
-    padding: 4px 15px 5px; }
-  .site-nav--active-dropdown .site-nav__dropdown {
-    display: block; }
+    padding: 4px 15px 5px;
+  }
+
   .site-nav__dropdown li {
     display: block; }
 
@@ -3723,12 +3721,22 @@ hr {
       border-bottom: 1px solid var(--color-border); } }
   @media only screen and (min-width: 750px) {
     .site-header {
-      padding: 14px 50px 0; }
-      .site-header.logo--center {
-        padding-top: 30px; } }
+      padding: 10px 50px 0; 
+      transition: padding 0.4s;
+    }
+    .header-bg .site-header {
+      padding-top: 16.5px;
+      padding-bottom: 16.5px;
+    }
+    .site-header.logo--center {
+      padding-top: 30px; 
+    } 
+
+  }
 
 .site-header__logo {
-  margin: 15px 0; }
+  margin: 14px 0;
+}
   .logo-align--center .site-header__logo {
     text-align: center;
     margin: 0 auto; }
@@ -7031,6 +7039,7 @@ hr {
   margin-bottom: 0; }
 
 /* Header */
+
 body[data-template="index"] #shopify-section-header,
 body[data-template="know-your-diamond"] #shopify-section-header,
 body.layout_jewellery #shopify-section-header,
@@ -7070,22 +7079,22 @@ body.has_top_banner #shopify-section-header.header-bg {
 }
 
 
+
 @media(min-width: 750px) {
-  body[data-template="index"] #shopify-section-header.header-bg .announcement-bar,
-  body[data-template="know-your-diamond"] #shopify-section-header.header-bg .announcement-bar,
-  body.layout_jewellery #shopify-section-header.header-bg .announcement-bar,
-  body.layout_loose-stone #shopify-section-header.header-bg .announcement-bar,
-  body.has_top_banner #shopify-section-header.header-bg .announcement-bar {
-    height: 0px;
-    padding: 0px;
-    border: none;
+  #shopify-section-header {
+    transform: translateY(0);
   }
-  body[data-template="index"] #shopify-section-header.header-bg .announcement-bar .announcement-bar__message,
-  body[data-template="know-your-diamond"] #shopify-section-header.header-bg .announcement-bar .announcement-bar__message,
-  body.layout_jewellery #shopify-section-header.header-bg .announcement-bar .announcement-bar__message,
-  body.layout_loose-stone #shopify-section-header.header-bg .announcement-bar .announcement-bar__message,
-  body.has_top_banner #shopify-section-header.header-bg .announcement-bar .announcement-bar__message {
-    font-size: 0px;
+  #shopify-section-header.header-bg {
+    transform: translateY(-54px);
+  }
+  body.has_no_banner {
+    padding-top:172px;
+  }
+  .mobile_view_show .site-header {
+    padding-top: 0;
+  }
+  .mobile_view_show .header-bg .site-header {
+    padding-top: 16.5px;
   }
 }
 
@@ -7103,10 +7112,22 @@ body[data-template="collection"] .main-content {
   body.layout_jewellery #shopify-section-header,
   body.layout_loose-stone #shopify-section-header,
   body.has_top_banner #shopify-section-header {
-    position:relative;
     background:#fff;
+    position: fixed;
+  }
+  body[data-template="index"] #shopify-section-header.header-bg,
+  body[data-template="know-your-diamond"] #shopify-section-header.header-bg,
+  body.layout_jewellery #shopify-section-header.header-bg,
+  body.layout_loose-stone #shopify-section-header.header-bg,
+  body.has_top_banner #shopify-section-header.header-bg {
+    transform: translateY(-22px);
+  }
+  .header-bg .mobile-nav-wrapper {
+    transform: translateY(22px) !important;
+  }
+  .has_top_banner {
+    padding-top: 82.625px;
   }
 }
-
 
 

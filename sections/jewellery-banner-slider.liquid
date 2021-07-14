@@ -1,4 +1,5 @@
-<div class="full_width_slider_wrapper jewellery-collection-slider">
+<!-- Do not Style with class 'top_banner' -->
+<div class="full_width_slider_wrapper jewellery-collection-slider top_banner">
     <div class="full_width_slider">
         {%- if section.blocks.size > 0 -%}
         {%- for slide in section.blocks -%}
@@ -41,6 +42,7 @@
 {% schema %}
 {
     "name": "Jewellery Banner Slider",
+    "class": "top_banner_section",
     "max_blocks": 6,
     "settings": [],
     "blocks": [

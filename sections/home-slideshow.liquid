@@ -1,4 +1,5 @@
-<div class="slider-{{ section.id }}" role="region" aria-label="slideshow" aria-describedby="slideshow-info" tabindex="-1">
+<!-- Do not Style with class 'top_banner' -->
+<div class="slider-{{ section.id }} top_banner" role="region" aria-label="slideshow" aria-describedby="slideshow-info" tabindex="-1">
 <div class="homepage-slider-wrapper"  data-slider>
 {%- if section.blocks.size > 0 -%}
 {%- for block in section.blocks -%}
@@ -117,7 +118,7 @@ $('.home_slide_item_inner').each(function(){
 {% schema %}
 {
     "name" : "Home Slider",
-    "class": "index-section home--slider",
+    "class": "index-section home--slider top_banner_section",
     "max_blocks": 6,
     "settings": [],
     "blocks": [

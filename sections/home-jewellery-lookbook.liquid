@@ -22,7 +22,7 @@
             {% capture blockUrl %}scl_link_{{ i }}{% endcapture %}
             {% if block.settings[blockImg] != blank %}
             <div class="box-{{ blockIndex }}-{{ forloop.index }} {% if block.settings.scl_image_1 == blank or block.settings.scl_image_2 == blank %} full-width {% endif %}  {{ block.settings[blockTitle] | downcase | handleize }} {% if block.settings[blockTitle] == blank or block.settings[blockUrl] == blank %}no_content_in_box{% endif %}">
-    
+                {% if block.settings[blockUrl] != blank %}  <a href="{{ block.settings[blockUrl] }}" aria-label="" class="full_link"></a> {% endif %}
                 <div class="img-box"><img src="{{ block.settings[blockImg] | img_url: '480x'}}" class="lazyload" alt="" /></div>
                 {% if block.settings[blockTitle] != blank or block.settings[blockUrl] != blank %}
                 <div class="content-box">

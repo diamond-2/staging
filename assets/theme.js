@@ -9711,10 +9711,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
   // readystate update Navigation
   let navHeight = $('#SiteNav').innerHeight(); console.log (navHeight);
-    if(navHeight > 30){
-      $('#shopify-section-header').addClass('mobile__nav--show')
+    if(navHeight > 125){
+      $('#shopify-section-header').addClass('mobile__nav--show');
+      $('body').addClass('mobile_view_show');
     }else {
-      $('#shopify-section-header').removeClass('mobile__nav--show')
+      $('#shopify-section-header').removeClass('mobile__nav--show');
+      $('body').removeClass('mobile_view_show');
     }
 
   // On scroll
@@ -9724,14 +9726,36 @@ document.addEventListener('DOMContentLoaded', function(event) {
   });
 
   // onResize update Navigation
-  $(window).on('resize', function(){
-      let navHeight = $('#SiteNav').innerHeight(); console.log (navHeight);
-      if(navHeight > 30){
-        $('#shopify-section-header').addClass('mobile__nav--show')
-      }else {
-        $('#shopify-section-header').removeClass('mobile__nav--show')
+  // $(window).on('resize', function(){
+  //   let navHeight = $('#SiteNav').innerHeight();
+  //   console.log('Nav Height '+navHeight)
+  //   if(navHeight > 125){
+  //     $('#shopify-section-header').addClass('mobile__nav--show')
+  //     $('body').addClass('mobile_view_show');
+  //   }else {
+  //     $('#shopify-section-header').removeClass('mobile__nav--show')
+  //    $('body').removeClass('mobile_view_show');
+  //   }
+  // });
+
+
+  var $header = document.getElementById("shopify-section-header");
+  var timeOutFunctionId;
+  function workAfterResizeIsDone() {
+      let navHeight = $('#SiteNav').innerHeight();
+      console.log('Nav Height '+navHeight)
+      if(navHeight > 125){
+        $header.classList.add('mobile__nav--show');
+        document.body.classList.add('mobile_view_show');
+      } else {
+        $header.classList.remove('mobile__nav--show');
+        document.body.classList.remove('mobile_view_show');
       }
-  })
+  }
+  window.addEventListener("resize", function() {
+      clearTimeout(timeOutFunctionId);
+      timeOutFunctionId = setTimeout(workAfterResizeIsDone, 1000);
+  });
 
 
   
@@ -9750,6 +9774,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
     handle != undefined ? $(document).find('#nav-img-block img').attr('src', handle).fadeIn():$(document).find('#nav-img-block img').fadeOut();
   });
 
+  // add class after page load
+  $(window).on('load', function(){ 
+    setTimeout(function(){
+      $('body').addClass('page-loaded');
+    },500);
+  });
+
   // currency card toggle
   $('.currency-trigger').click(function(){
     $(this).next('.currency-box-child').fadeToggle(250);
@@ -9765,13 +9796,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
     $(this).next().fadeToggle(300);
     $(this).toggleClass('active');
   });
+
   // If top banner exist
-  let hasTopBanner = document.querySelector('.top_banner_section:first-child');
-  if(hasTopBanner !=null) {
-    let bannrSec = hasTopBanner.querySelector('.top_banner');
-    if(bannrSec !=null) {
-      document.body.classList.add('has_top_banner');
-    }
+  let bannrSec = document.querySelector('.top_banner_section:first-child .top_banner');
+  if(bannrSec !=null) {
+    document.body.classList.add('has_top_banner');
+  } else {
+    document.body.classList.add('has_no_banner');
   }
 
   //Back To Top
@@ -9876,10 +9907,57 @@ document.addEventListener('DOMContentLoaded', function(event) {
   });
   $('body').click(function(){
     $('body').removeClass('menu_menu_opend')
-  })
+  });
 
+  $('#AccessibleNav #SiteNav > li').hover(function(e){
+    e.stopPropagation();
+    $('body').toggleClass('menu_menu_opend');
+  });
+  // Add ® sign with all 'Diamond2' text
+  function findAndReplace(searchText, replacement, searchNode) {
+    if (!searchText || typeof replacement === 'undefined') {
+        return;
+    }
+    var regex = typeof searchText === 'string' ?
+        new RegExp(searchText, 'g') : searchText,
+        childNodes = (searchNode || document.body).childNodes,
+        cnLength = childNodes.length,
+        excludes = 'html,head,style,title,link,meta,script,object,iframe';
+    while (cnLength--) {
+        var currentNode = childNodes[cnLength];
+        if (currentNode.nodeType === 1 &&
+            (excludes + ',').indexOf(currentNode.nodeName.toLowerCase() + ',') === -1) {
+            arguments.callee(searchText, replacement, currentNode);
+        }
+        if (currentNode.nodeType !== 3 || !regex.test(currentNode.data)) {
+            continue;
+        }
+        var parent = currentNode.parentNode,
+            frag = (function() {
+                var html = currentNode.data.replace(regex, replacement),
+                    wrap = document.createElement('div'),
+                    frag = document.createDocumentFragment();
+                wrap.innerHTML = html;
+                while (wrap.firstChild) {
+                    frag.appendChild(wrap.firstChild);
+                }
+                return frag;
+            })();
+        parent.insertBefore(frag, currentNode);
+        parent.removeChild(currentNode);
+    }
+  }
+  findAndReplace('(Diamond2|diamond2|DIAMOND2)', 'Diamond2<sup>®</sup>');
 
-
+  // Accordion
+  $('.ac-heading a').click(function(e){
+    e.preventDefault();
+    $(this).parent().next().slideToggle();
+    $(this).parent().toggleClass('active');
+    $(this).parent().parent().siblings().find('.ac-heading').removeClass('active');
+    $(this).parent().parent().siblings().find('.ac-body').slideUp();
+  });
+  
 });
 
 var showMobileNav = false;

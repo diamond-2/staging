@@ -16,15 +16,9 @@
         <div class="landing-content">
             <div class="landing-top-content landing-content-item">
                 <div class="landing-logo-holder">
-                    <span class="logo-top-text">introducing</span>
-                    <div class="landing-small-logo">
-                        <img data-src="{{ 'diamond2-small-logo-white.png' |  asset_url }}" alt="diamond2" class="lazyload" />
+                    <div class="landing-logo">
+                        <img data-src="{{ 'landing_logo_desktop.png' |  asset_url }}" alt="diamond2" class="lazyload" />
                     </div>
-                    <div class="landing-main-logo">
-                        <img data-src="{{ 'diamond2-logo-2.png' |  asset_url }}" alt="diamond2" class="lazyload hide_mobile" />
-                        <img data-src="{{ 'Diamond2_Logo_white_mobile.png' |  asset_url }}" alt="diamond2" class="lazyload show_mobile" />
-                    </div>
-                    <span class="logo-bottom-text"><span>a</span>  <span>patented</span>  <span>laB-grown</span>  <span>gem</span></span>
                 </div>
                 {% if bannerToptext != blank %}
                 <div class="landing-top-content-item">{{ bannerToptext }}</div>
@@ -49,11 +43,23 @@
         if($.cookie('landingpage') == null) {
           $('#shopify-section-landing').show();
           $('body').addClass('overflow-hidden');
+          $('[data-template=index] #shopify-section-header, [data-template=index] .page-container').css({
+              "opacity": "0",
+              "visibility": "hidden"
+          });
         }
         $(document).on('click', '.discover-btn', function(){
             $('body').removeClass('overflow-hidden');
-            $('#shopify-section-landing').remove();
-            $.cookie('landingpage',2)
+            $.cookie('landingpage',2);
+            setTimeout(function(){
+                $('#shopify-section-landing').remove();
+            },3000);
+            setTimeout(function(){
+                $('[data-template=index] #shopify-section-header, [data-template=index] .page-container').css({
+                "opacity": "1",
+                "visibility": "visible"
+                });
+            },500);
         });
         
     });
