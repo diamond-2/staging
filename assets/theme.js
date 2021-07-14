@@ -9696,7 +9696,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
   // full slider call global
   $(".full_width_slider").slick({
     dots: true,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 5000,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -9896,18 +9896,18 @@ document.addEventListener('DOMContentLoaded', function(event) {
   });
   
   // add class on body if mega menu opend
-  $('#AccessibleNav').click(function(e){
-    e.stopPropagation();
-    let item = $(this).children('ul').children('li.site-nav--has-centered-dropdown');
-    if(!$(item).hasClass('site-nav--active-dropdown')){
-        $('body').removeClass('menu_menu_opend')
-    } else {
-        $('body').addClass('menu_menu_opend')
-    }
-  });
-  $('body').click(function(){
-    $('body').removeClass('menu_menu_opend')
-  });
+  // $('#AccessibleNav').click(function(e){
+  //   e.stopPropagation();
+  //   let item = $(this).children('ul').children('li.site-nav--has-centered-dropdown');
+  //   if(!$(item).hasClass('site-nav--active-dropdown')){
+  //       $('body').removeClass('menu_menu_opend')
+  //   } else {
+  //       $('body').addClass('menu_menu_opend')
+  //   }
+  // });
+  // $('body').click(function(){
+  //   $('body').removeClass('menu_menu_opend')
+  // });
 
   $('#AccessibleNav #SiteNav > li').hover(function(e){
     e.stopPropagation();
@@ -9962,7 +9962,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
 var showMobileNav = false;
 function fixedHeaderBg(scrollPosition) {
-  if(scrollPosition > 10) {
+  if(scrollPosition > 50) {
     $('#shopify-section-header').addClass('header-bg')
   } else {
     $('#shopify-section-header').removeClass('header-bg')
