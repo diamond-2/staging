@@ -9725,47 +9725,19 @@ document.addEventListener('DOMContentLoaded', function(event) {
     fixedHeaderBg(windowScrolled);    
   });
 
-  // onResize update Navigation
-  $(window).on('resize', function(){
-    let navHeight = $('#SiteNav').innerHeight();
-    console.log('Nav Height '+navHeight)
-    setTimeout( function(){
-      console.log('Nav Height STO '+navHeight);      
-    },500);
-  })
+var $header = document.getElementById("shopify-section-header");  
+var navParentEle = $(document).find('.site-header__mobile-nav').innerWidth()/2;
 
-  // $(window).on('resize', function(){
-  //   let navHeight = $('#SiteNav').innerHeight();
-  //   console.log('Nav Height '+navHeight)
-  //   if(navHeight > 125){
-  //     $('#shopify-section-header').addClass('mobile__nav--show')
-  //     $('body').addClass('mobile_view_show');
-  //   }else {
-  //     $('#shopify-section-header').removeClass('mobile__nav--show')
-  //    $('body').removeClass('mobile_view_show');
-  //   }
-  // });
-
-
-  var $header = document.getElementById("shopify-section-header");
-  var timeOutFunctionId;
-  function workAfterResizeIsDone() {
-      let navHeight = $('#SiteNav').innerHeight();
-      console.log('Nav Height '+navHeight)
-      if(navHeight > 125){
-        $header.classList.add('mobile__nav--show');
-        document.body.classList.add('mobile_view_show');
-      } else {
-        $header.classList.remove('mobile__nav--show');
-        document.body.classList.remove('mobile_view_show');
-      }
+window.addEventListener("resize", function() {
+  var navEle = $('#SiteNav').innerWidth(); 
+  if(navEle > navParentEle){
+    $header.classList.remove('mobile__nav--show');
+    document.body.classList.remove('mobile_view_show');    
+  } else {
+    $header.classList.add('mobile__nav--show');
+    document.body.classList.add('mobile_view_show');
   }
-  window.addEventListener("resize", function() {
-      clearTimeout(timeOutFunctionId);
-      timeOutFunctionId = setTimeout(workAfterResizeIsDone, 1000);
-  });
-
-
+});
   
   $('.site-footer__item-inner .site-footer__linklist > li > a').after('<div class="footer-menu-Childtrigger"></div>');
   $('.footer-menu-Childtrigger').click(function(){

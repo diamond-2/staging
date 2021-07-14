@@ -49,17 +49,18 @@
           });
         }
         $(document).on('click', '.discover-btn', function(){
-            $('body').removeClass('overflow-hidden');
             $.cookie('landingpage',2);
+            $('#shopify-section-landing').slideUp(600);            
             setTimeout(function(){
                 $('#shopify-section-landing').remove();
-            },3000);
-            setTimeout(function(){
+            },2000);
+            setTimeout(function(){     
                 $('[data-template=index] #shopify-section-header, [data-template=index] .page-container').css({
                 "opacity": "1",
                 "visibility": "visible"
                 });
-            },500);
+                $('body').removeClass('overflow-hidden');
+            },700);
         });
         
     });
