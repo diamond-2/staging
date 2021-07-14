@@ -785,7 +785,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
               }
             }
             li#nav-img-block {
-              margin-left: auto;
+              margin-left: 0;
               max-width: 490px;
               img.navItemsThumb {
                 display: block;
