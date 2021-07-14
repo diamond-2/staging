@@ -43,10 +43,11 @@
     {%- assign contentClr = block.settings.video_content_color -%}
     {%- assign contentLinkClr = block.settings.video_link_color -%}
     {%- assign videoBtnTheme = block.settings.slide_button_theme -%}
+    {%- assign posterImage = block.settings.video_poster_image -%}
     {%- if videolink != blank -%}
     <div class="slide-item slide--{{ forloop.index }}" data-type="video">
         <div class="home_slide_item_inner">
-            <video loop muted {% if videocontrols %}controls{% endif %}>
+            <video loop muted {% if videocontrols %}controls{% endif %} {% if posterImage != blank %}poster="{{ posterImage | img_url: '1920x' }}"{% endif %}>
                 <source src="{{ videolink }}" type="video/mp4">
             </video>
             <div class="video-play-box">
@@ -215,6 +216,11 @@ $('.home_slide_item_inner').each(function(){
                     "type": "text",
                     "id": "video_url",
                     "label": "Video Link"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "video_poster_image",
+                    "label": "Video Post Image"
                 },
                 {
                     "type": "checkbox",

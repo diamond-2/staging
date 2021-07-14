@@ -95,14 +95,15 @@
     </span>
     <div class="product-price-card">
       <div class="product-price-card-row">
-        <div class="product_weight">{{ product.weight }}</div>
-        <div class="product_price ragular_price">{{ product.price | money | remove: '.00' }}</div>
+        <div class="product_weight">1 1/3 CTW.</div>
         <div class="product_def">DEF</div>
+        <div class="product_compare">COMPARE</div>
       </div>
-      <div class="product-price-card-row price_hidden_row">
-        <div class="product_weight">COMPARE</div>
-        <div class="product_price compare_at_price">{{ product.compare_at_price | money | remove: '.00' }}</div>
-        <div class="product_def">BUY</div>
+      <div class="product-price-card-row price_row {% if product.compare_at_price == blank %}no_discount{% endif %}">
+        <div class="ragular_price">{{ product.price | money | remove: '.00' }}</div>
+        {% if product.compare_at_price %}<div class="compare_at_price">{{ product.compare_at_price | money | remove: '.00' }}</div>{% endif %}
+        {% assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price %}
+        {% if product.compare_at_price %}<div class="product_discount">{{ discount | floor }}% OFF</div>{% endif %}
       </div>
     </div>
   </div>

@@ -1701,7 +1701,7 @@ this.Shopify.theme.PredictiveSearchComponent = (function(PredictiveSearch) {
       'style',
       'position: absolute !important; overflow: hidden; clip: rect(0 0 0 0); height: 1px; width: 1px; margin: -1px; padding: 0; border: 0;'
     );
-
+ 
     this._accessibilityAnnouncerDiv.setAttribute('data-search-announcer', '');
     this._accessibilityAnnouncerDiv.setAttribute('aria-live', 'polite');
     this._accessibilityAnnouncerDiv.setAttribute('aria-atomic', 'true');
@@ -9738,7 +9738,8 @@ window.addEventListener("resize", function() {
     document.body.classList.add('mobile_view_show');
   }
 });
-  
+
+
   $('.site-footer__item-inner .site-footer__linklist > li > a').after('<div class="footer-menu-Childtrigger"></div>');
   $('.footer-menu-Childtrigger').click(function(){
       $(this).next().slideToggle();

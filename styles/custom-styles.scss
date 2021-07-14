@@ -343,7 +343,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     display: inline-block;
     font-size: 18px;
     line-height: 19.44px;
-    color: $textcolor-phanton;
+    color: $textcolor-phanton !important;
     font-weight: 500;
     padding-right: 17px;
     position: relative;
@@ -369,12 +369,20 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
       font-size: 11px;
       line-height: normal;
     }
+    &:hover {
+      &:after {
+        transform: scale(1);
+      }
+    }
     &:after {
       content: "";
       display: block;
       height: 1px;
       background: currentColor;
       margin-top: 3px;
+      transition: all 0.4s;
+      transform: scale(0);
+      transform-origin: left;
       @media(max-width: $md) {
         margin-top: 0px;
       }
@@ -459,7 +467,6 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     }
   }  
 
-  
 #shopify-section-header{
   z-index: 999;
   position: sticky;
@@ -487,8 +494,10 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
       }
       .site-header__icons {
         button.site-header__menu {
-          display: inline-block;
-          order: 7;
+          @media(min-width: $postMd) {
+            display: inline-block;
+            order: 7;
+          }
           svg {
             vertical-align: top;
             margin-top: -4px;
@@ -1203,7 +1212,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   #shopify-section-landing {
     position: fixed;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     z-index: 99999;
     display: none;
     // -webkit-transform: translateY(-100%);
@@ -1482,9 +1491,6 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
       padding: 18px 20px 18px 28px;
       cursor: pointer;
       @media(max-width: $md) {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         padding: 0;
       }
       &:before {
@@ -1504,6 +1510,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
         @media(max-width: $md) {
           width: 60px;
           height: 60px;
+          display: none;
         }
       }
       &:after {
@@ -1537,6 +1544,10 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
           border-left: 20px solid #fff;
           border-top: 10px solid transparent;
           border-bottom: 10px solid transparent;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
         }
       }
     }
@@ -5585,7 +5596,7 @@ body.layout_jewellery {
       content: none;
     }
     .grid__item {
-      padding: 20px 20px 16px;
+      padding: 20px;
       margin-bottom: 6px;
       position: relative;
       width: 25%;
@@ -5639,14 +5650,10 @@ body.layout_jewellery {
         .grid-view-item {
           .prodct_card_body {
             .product-card__title {
-              @media(max-width: $md) {
-                color: #6C1D45;
-              }
+              color:$textcolor-phanton;
             }
             .product-price-card {
-              @media(max-width: $md) {
-                color: #6C1D45;
-              }
+              color:$textcolor-phanton;
             }
           }
         }
@@ -5679,16 +5686,17 @@ body.layout_jewellery {
         position: relative;
         z-index: 3;
         .prodct_card_body {
-          padding: 15px 10px 0;
+          padding: 15px 0 0;
           @media(max-width: $md) {
             padding: 7px 10px 3px;
           }
           .product-card__title {
             font-size: 14px;
-            font-weight: bold;
+            font-weight: 500;
             line-height: 15.12px;
             border: none;
             display: block;
+            color: $textcolor-black;
             @media(max-width: $xxl) {
               line-height: normal;
               font-size: 13px;
@@ -5714,14 +5722,18 @@ body.layout_jewellery {
             .product-price-card-row {
               display: flex;
               justify-content: space-between;
-              margin-top: 14px;
+              margin-top: 12px;
               @media(max-width: $md) {
                 margin-top: 4px;
               }
-              .product_price {
-                font-weight: bold;
+              &.no_discount {
+                justify-content: center;
+              }
+              &.price_row {
+                font-weight: 500;
                 font-size: 16px;
                 line-height: 17.28px;
+                margin-top: 9px;
                 @media(max-width: $xxl) {
                   font-size: 12px;
                   line-height: normal;
@@ -5729,6 +5741,17 @@ body.layout_jewellery {
                 @media(max-width: $md) {
                   font-size: 11px;
                   line-height: 16.5px;
+                }
+                .ragular_price {
+                  color: $textcolor-phanton;
+                }
+                .compare_at_price {
+                  text-decoration: line-through;
+                }
+                .product_discount {
+                  @media(max-width: $md) {
+                    display: none;
+                  }
                 }
               }
               &+ {
@@ -5774,6 +5797,7 @@ body.layout_jewellery {
     display: flex;
     flex-wrap: wrap;
     margin: 0 -20px;
+    margin-top: -16px;
     &.img_pos_right {
       flex-direction: row-reverse;
     }
@@ -5790,7 +5814,7 @@ body.layout_jewellery {
       .img_holder {
         position: relative;
         overflow: hidden;
-        height: 93.9%;
+        height: 90.9%;
         padding-bottom: 100%;
         @media(max-width: $md) {
           height: auto;
@@ -5809,7 +5833,7 @@ body.layout_jewellery {
             font-size: 26px;
             font-weight: 500;
             line-height: 28.08px;
-            margin-top: 15px;
+            margin-top: 30px;
             @media(max-width: $xxl) {
               font-size: 20px;
               line-height: normal;
@@ -5844,7 +5868,7 @@ body.layout_jewellery {
         }
         .grid__item {
           width: 50%;
-          margin-bottom: -19px;
+          margin-bottom: 0;
           @media(max-width: $md) {
             margin-bottom: 10px;
           }
@@ -5899,8 +5923,8 @@ body.layout_jewellery {
   padding-top: 100px;
   padding-bottom: 100px;
   @media(max-width: $md) {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
   .buttons-wrapper {
     display: flex;
@@ -5910,6 +5934,9 @@ body.layout_jewellery {
     .button-item {
       padding: 0 15px;
       margin-top: 10px;
+      .glb-btn-with-arrow {
+        text-transform: none;
+      }
     }
   }
 }
@@ -5917,9 +5944,9 @@ body.layout_jewellery {
   text-align: center;
   .loadMore-btn {
     cursor: pointer;
-    font-size: 18px;
-    line-height: 24px;
-    padding: 14px 42px;
+    font-size: 22px;
+    line-height: 23.76px;
+    padding: 22px 31px;
     @media(max-width: $md) {
       font-size: 12px;
       line-height: 12.96px;
@@ -5947,7 +5974,7 @@ body.layout_jewellery {
   }
 }
 .bottom-pagination-row {
-  margin-top: 30px;
+  margin-top: 80px;
   display: flex;
   justify-content: center;
   position: relative;
@@ -5959,7 +5986,8 @@ body.layout_jewellery {
   .back-to-top-holder {
     position: absolute;
     right: 0;
-    top: 66px;
+    top: 50%;
+    transform: translateY(-50%);
     img {
       vertical-align: top;
     }
@@ -5967,6 +5995,27 @@ body.layout_jewellery {
 }
 .back-to-top {
   cursor: pointer;
+  color: $textcolor-phanton;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -0.02em;
+  display: inline-block;
+  .back_top_text {
+    min-width: 110px;
+    display: inline-block;
+    vertical-align: top;
+    text-decoration: underline;
+  }
+  .back_top_arrow {
+    display: inline-block;
+    line-height: 0;
+    border-top: 2px solid currentColor;
+    svg {
+      path {
+        fill: currentColor;
+      }
+    }
+  }
 }
 
 // Solitaire PLP End
