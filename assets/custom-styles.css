@@ -717,17 +717,12 @@ body.js-menu--is-open {
   body.js-menu--is-open #shopify-section-header {
     z-index: 999 !important; }
 
-.overflow-hidden #shopify-section-landing {
-  transform: translateY(0); }
-
 #shopify-section-landing {
   position: fixed;
   width: 100%;
   height: 100vh;
   z-index: 99999;
-  display: none;
-  transform: translateY(-100%);
-  transition: transform 0.4s; }
+  display: none; }
   #shopify-section-landing #main-landing-page .landing-banner {
     height: 100vh; }
     #shopify-section-landing #main-landing-page .landing-banner img {
