@@ -513,7 +513,6 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     svg {
       @media(max-width: $md) {
         width: 13.5px;
-        vertical-align: middle;
         margin: 0 13px
       }
     }

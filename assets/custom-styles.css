@@ -243,7 +243,6 @@ div#PageContainer.js-menu--is-open {
   @media (max-width: 749px) {
     #shopify-section-header .site-header__search-toggle svg {
       width: 13.5px;
-      vertical-align: middle;
       margin: 0 13px; } }
   @media (max-width: 749px) {
     #shopify-section-header .js-mobile-nav-toggle svg.icon {
