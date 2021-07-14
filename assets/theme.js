@@ -9726,6 +9726,14 @@ document.addEventListener('DOMContentLoaded', function(event) {
   });
 
   // onResize update Navigation
+  $(window).on('resize', function(){
+    let navHeight = $('#SiteNav').innerHeight();
+    console.log('Nav Height '+navHeight)
+    setTimeout( function(){
+      console.log('Nav Height STO '+navHeight);      
+    },500);
+  })
+
   // $(window).on('resize', function(){
   //   let navHeight = $('#SiteNav').innerHeight();
   //   console.log('Nav Height '+navHeight)
