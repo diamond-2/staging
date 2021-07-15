@@ -72,6 +72,13 @@
     and slick-theme.scss (at Slick Slider Theme). Upgrade each area individually.
   - Remove `outline: none` from `.slick-dots li button`
 ==============================================================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spectral:wght@200;300;400;500;600;700;800&display=swap');
+
+/* font landing page */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400&display=swap');
 /*================ Slick Slider SCSS ================*/
 .slick-slider {
   position: relative;
@@ -1468,7 +1475,7 @@ a[href^="tel"] {
     height: 9px; }
   .btn[disabled], .shopify-payment-button .shopify-payment-button__button--unbranded[disabled], .btn[aria-disabled], .shopify-payment-button .shopify-payment-button__button--unbranded[aria-disabled] {
     cursor: default;
-    opacity: 0.5; }
+  }
 
 .btn--secondary {
   background-color: transparent;
@@ -2016,7 +2023,13 @@ textarea {
   border: 1px solid var(--color-border);
   border-bottom: 1px solid transparent;
   z-index: 2; }
-
+  .site-nav__label {
+    border:none;
+  }
+.grid--table > .grid__item.logo-align--left {
+  position: relative;
+  z-index: 9;
+}
 .site-nav__link:focus .site-nav__label, .site-nav__link:not([disabled]):hover .site-nav__label {
   border-bottom-color: var(--color-text); }
 
@@ -2035,7 +2048,6 @@ textarea {
   position: static; }
 
 .site-nav__dropdown {
-  display: none;
   position: absolute;
   padding: 11px 30px 11px 0;
   margin: 0;
@@ -2044,11 +2056,16 @@ textarea {
   border: 1px solid var(--color-border);
   background: var(--color-bg);
   left: -1px;
-  top: 41px; }
+  top: 100%!important;
+  border:none;
+}
+.site-nav--has-centered-dropdown .site-nav__dropdown {
+  min-height: 276px;
+}
   .site-nav__dropdown .site-nav__link {
-    padding: 4px 15px 5px; }
-  .site-nav--active-dropdown .site-nav__dropdown {
-    display: block; }
+    padding: 4px 15px 5px;
+  }
+
   .site-nav__dropdown li {
     display: block; }
 
@@ -2081,7 +2098,9 @@ textarea {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   width: auto;
-  margin-bottom: -15px; }
+  margin-bottom: -15px;
+  justify-content: space-evenly;
+}
 
 .site-nav__childlist-item {
   -webkit-flex: 0 1 auto;
@@ -2466,22 +2485,35 @@ hr {
     .slideshow__arrows .slick-dots li .slick-active-mobile a::before {
       opacity: 0.7; }
 
+      
 /*================ Index sections ================*/
 .index-section {
-  padding-top: 35px;
-  padding-bottom: 35px; }
+  padding-top: 60px;
+  padding-bottom: 60px; 
+}
   @media only screen and (min-width: 750px) {
     .index-section {
-      padding-top: 55px;
-      padding-bottom: 55px; } }
+      padding-top: 100px; 
+      padding-bottom: 100px;
+     }
+  }
+  @media (max-width: 1200px) and (min-width: 750px) {
+    .index-section {
+      padding-top: 50px; 
+      padding-bottom: 50px;
+     }
+  }
   .index-section:first-child {
     padding-top: 0;
-    border-top: 0; }
+    border-top: 0; 
+  }
   .index-section:last-child {
-    padding-bottom: 0; }
+    padding-bottom: 0; 
+  }
 
 .index-section--flush + .index-section--flush {
-  margin-top: -70px; }
+  margin-top: -70px; 
+}
 
 @media only screen and (min-width: 750px) {
   [class*="index-section--flush"] + [class*="index-section--flush"] {
@@ -3692,12 +3724,22 @@ hr {
       border-bottom: 1px solid var(--color-border); } }
   @media only screen and (min-width: 750px) {
     .site-header {
-      padding: 0 55px; }
-      .site-header.logo--center {
-        padding-top: 30px; } }
+      padding: 10px 50px 0; 
+      transition: padding 0.4s;
+    }
+    .header-bg .site-header {
+      padding-top: 16.5px;
+      padding-bottom: 16.5px;
+    }
+    .site-header.logo--center {
+      padding-top: 30px; 
+    } 
+
+  }
 
 .site-header__logo {
-  margin: 15px 0; }
+  margin: 14px 0;
+}
   .logo-align--center .site-header__logo {
     text-align: center;
     margin: 0 auto; }
@@ -3739,8 +3781,9 @@ hr {
   white-space: nowrap; }
   @media only screen and (max-width: 749px) {
     .site-header__icons {
-      width: auto;
-      padding-right: 13px; }
+      width: 100%;
+      padding:0 16px !important;
+     }
       .site-header__icons .btn--link,
       .site-header__icons .site-header__cart {
         font-size: calc(((var(--font-size-base)) / (var(--font-size-base))) * 1em); } }
@@ -3851,15 +3894,13 @@ hr {
 .announcement-bar__link {
   display: block; }
 
-.announcement-bar__message {
-  display: block;
-  padding: 11px 22px;
-  font-size: calc(((16) / (var(--font-size-base))) * 1em);
-  font-weight: var(--font-weight-header); }
-  @media only screen and (min-width: 750px) {
+
+@media only screen and (min-width: 750px) {
     .announcement-bar__message {
-      padding-left: 55px;
-      padding-right: 55px; } }
+      padding-left: 48px;
+      padding-right: 48px;
+     } 
+}
 
 .article-listing {
   padding-top: 55px;
@@ -5546,7 +5587,7 @@ hr {
   padding: 45px 0 55px 0; }
   @media only screen and (min-width: 750px) {
     .site-footer {
-      padding-bottom: 35px; } }
+      padding-bottom: 7px; } }
   .site-footer h4, .site-footer .h4 {
     margin-bottom: 12.5px; }
     @media only screen and (min-width: 750px) {
@@ -5588,11 +5629,13 @@ hr {
   -moz-flex: 1 1 100%;
   -ms-flex: 1 1 100%;
   flex: 1 1 100%;
-  margin-bottom: 55px; }
+  margin-bottom: 0; }
   @media only screen and (min-width: 750px) {
     .site-footer__item {
       padding: 0 15px 0 15px;
-      margin-bottom: 45px; } }
+      margin-bottom: 0; 
+    } 
+  }
   .site-footer__item:first-of-type {
     padding-left: 0; }
   .site-footer__item:last-of-type {
@@ -5755,10 +5798,11 @@ hr {
       -ms-flex: 1 1 auto;
       flex: 1 1 auto;
       width: 100%;
-      max-width: 100%; } }
+      max-width: 100%; } 
+    }
 
 .feature-row__image-wrapper {
-  margin: 0 auto 19.44444px;
+  margin: 0 auto 0;
   position: relative;
   width: 100%; }
 
@@ -5774,7 +5818,7 @@ hr {
       order: 1; } }
 
 .feature-row__text {
-  padding-top: 35px;
+  padding-top: 90px;
   padding-bottom: 35px; }
   @media only screen and (max-width: 749px) {
     .feature-row__text {
@@ -6997,28 +7041,88 @@ hr {
 .store-availability-list__phone {
   margin-bottom: 0; }
 
-  /* Header */
-  body[data-template="index"] #shopify-section-header  {
-    position: fixed;
-    width: 100%;
-    top:0px;
-    left: 0px;
-    z-index: 9;    
+/* Header */
+
+body[data-template="index"] #shopify-section-header,
+body[data-template="know-your-diamond"] #shopify-section-header,
+body.layout_jewellery #shopify-section-header,
+body.layout_loose-stone #shopify-section-header,
+body.has_top_banner #shopify-section-header {
+  position: fixed;
+  width: 100%;
+  top:0px;
+  left: 0px;
+  background: rgba(255, 255, 255, 0.2);
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
+  -o-transition: 0.3s ease-in-out;
+  -ms-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+
+body[data-template="index"] #shopify-section-header .site-header,
+body[data-template="index"] #shopify-section-header .site-header__mobile-nav,
+body[data-template="know-your-diamond"] #shopify-section-header .site-header,
+body[data-template="know-your-diamond"] #shopify-section-header .site-header__mobile-nav,
+body.layout_jewellery #shopify-section-header .site-header,
+body.layout_jewellery #shopify-section-header .site-header__mobile-nav,
+body.layout_loose-stone #shopify-section-header .site-header,
+body.layout_loose-stone #shopify-section-header .site-header__mobile-nav,
+body.has_top_banner #shopify-section-header .site-header,
+body.has_top_banner #shopify-section-header .site-header__mobile-nav {
+  background-color: transparent;
+  border-bottom: none;
+}
+body[data-template="index"] #shopify-section-header.header-bg,
+body[data-template="know-your-diamond"] #shopify-section-header.header-bg,
+body.layout_jewellery #shopify-section-header.header-bg,
+body.layout_loose-stone #shopify-section-header.header-bg,
+body.has_top_banner #shopify-section-header.header-bg {
+  background-color: var(--color-body);
+}
+
+
+
+@media(min-width: 750px) {
+  #shopify-section-header {
+    margin-top:0;
   }
-  body[data-template="index"] #shopify-section-header .site-header,
-  body[data-template="index"] #shopify-section-header .site-header__mobile-nav{
-    background-color: transparent;
-    border-bottom: none;
-    -webkit-transition: 0.3s ease-in-out;
-    -moz-transition: 0.3s ease-in-out;
-    -o-transition: 0.3s ease-in-out;
-    -ms-transition: 0.3s ease-in-out;
-    transition: 0.3s ease-in-out;
+  #shopify-section-header.header-bg {
+    top: -54px !important;
   }
-  body[data-template="index"] #shopify-section-header.header-bg .site-header,
-  body[data-template="index"] #shopify-section-header.header-bg .site-header__mobile-nav{
-    background-color: var(--color-body);
-  }
-  body[data-template="index"] .main-content {
+  .mobile_view_show .site-header {
     padding-top: 0;
   }
+  .mobile_view_show .header-bg .site-header {
+    padding-top: 16.5px;
+  }
+}
+
+
+body[data-template="index"] .main-content,
+body[data-template="know-your-diamond"] .main-content,
+body.layout_jewellery .main-content,
+body.layout_loose-stone .main-content,
+body[data-template="collection"] .main-content {
+  padding-top: 0;
+}
+@media(max-width: 749px) {
+  body[data-template="index"] #shopify-section-header,
+  body[data-template="know-your-diamond"] #shopify-section-header,
+  body.layout_jewellery #shopify-section-header,
+  body.layout_loose-stone #shopify-section-header,
+  body.has_top_banner #shopify-section-header {
+    background:#fff;
+    position: sticky;
+    top:0;
+  }
+  body[data-template="index"] #shopify-section-header.header-bg,
+  body[data-template="know-your-diamond"] #shopify-section-header.header-bg,
+  body.layout_jewellery #shopify-section-header.header-bg,
+  body.layout_loose-stone #shopify-section-header.header-bg,
+  body.has_top_banner #shopify-section-header.header-bg {
+    top: -22px !important;
+  }
+}
+
+

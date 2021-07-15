@@ -1,0 +1,96 @@
+{% assign landingBanner = section.settings.landing_image %}
+{% assign landingBannerMobile = section.settings.landing_image_mobile %}
+{% assign bannerToptext = section.settings.landing_text_top %}
+{% assign bannerBottomtext = section.settings.landing_text_bottom %}
+<div id="main-landing-page">
+    <div class="main-landing-page-container">
+        <div class="landing-banner">
+            <img data-src="{{ landingBanner | img_url: 'master'}}" alt="" class="lazyload hide_mobile"/>
+            {% if landingBannerMobile %}
+            <img data-src="{{ landingBannerMobile | img_url: 'master'}}" alt="" class="lazyload show_mobile"/>
+            {% else %}
+            <img data-src="{{ landingBanner | img_url: 'master'}}" alt="" class="lazyload show_mobile"/>
+            {% endif %}
+          
+        </div>
+        <div class="landing-content">
+            <div class="landing-top-content landing-content-item">
+                <div class="landing-logo-holder">
+                    <div class="landing-logo">
+                        <img data-src="{{ 'landing_logo_desktop.png' |  asset_url }}" alt="diamond2" class="lazyload" />
+                    </div>
+                </div>
+                {% if bannerToptext != blank %}
+                <div class="landing-top-content-item">{{ bannerToptext }}</div>
+                {% endif %}
+            </div>
+            <div class="landing-bottom-content landing-content-item">
+                <div class="landing-page-button">
+                    <a href="javascript:void(0);" class="landing-btn discover-btn"><span class="btn_text">Discover</span>{% include 'langing-button-arrow' %}</a>
+                </div>
+                {% if bannerBottomtext != blank %}
+                    <div class="landing-bottom-content-item">{{ bannerBottomtext }}</div>    
+                {% endif %}                
+            </div>
+        </div>
+    </div>    
+</div>
+
+<!-- Cookies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function(event) {
+        if($.cookie('landingpage') == null) {
+          $('#shopify-section-landing').show();
+          $('body').addClass('overflow-hidden');
+          $('[data-template=index] #shopify-section-header, [data-template=index] .page-container').css({
+              "opacity": "0",
+              "visibility": "hidden"
+          });
+        }
+        $(document).on('click', '.discover-btn', function(){
+            $.cookie('landingpage',2);
+            $('#shopify-section-landing').slideUp(600);            
+            setTimeout(function(){
+                $('#shopify-section-landing').remove();
+            },2000);
+            setTimeout(function(){     
+                $('[data-template=index] #shopify-section-header, [data-template=index] .page-container').css({
+                "opacity": "1",
+                "visibility": "visible"
+                });
+                $('body').removeClass('overflow-hidden');
+            },700);
+        });
+        
+    });
+</script>
+{% schema %}
+{
+    "name": "Landing Page",
+    "class": "landing-section",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "landing_image",
+            "label": "Select Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "landing_image_mobile",
+            "label": "Select Image For Mobile"
+        },
+        {
+            "type": "richtext",
+            "id": "landing_text_top",
+            "label": "Top content"
+        },
+        {
+            "type": "text",
+            "id": "landing_text_bottom",
+            "label": "Bottom content",
+            "default": "enter <br> the world beyond the diamond"
+        }
+    ]
+}
+{% endschema %}

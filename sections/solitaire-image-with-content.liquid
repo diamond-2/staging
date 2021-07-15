@@ -1,0 +1,122 @@
+
+<div class="content-with-image-wrapper">
+	<div class="dia-container">
+		<div class="custom-row">
+			<div class="custom-content-column">
+				<div class="content-holder">
+					{%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
+					{%- if section.settings.content != blank -%}<div class="desc_content">{{ section.settings.content }}</div>{%- endif -%}
+				</div>
+				{%- if section.settings.button_1_text != blank or  section.settings.button_2_text != blank -%}
+				<div class="buttons-wrapper hide_mobile">
+					{%- if section.settings.button_1_text != blank -%}
+					<div class="button-item">
+						<a class="glb-btn-with-arrow large_arrow_btn" href="{{ section.settings.button_1_link }}">{{ section.settings.button_1_text }}</a>
+					</div>
+					{%- endif -%}
+					{%- if section.settings.button_2_text != blank -%}
+					<div class="button-item">
+						<a class="glb-btn-with-arrow large_arrow_btn" href="{{ section.settings.button_2_link }}">{{ section.settings.button_2_text }}</a>
+					</div>
+					{%- endif -%}
+				</div>
+				{%- endif -%}
+			</div>
+			<div class="custom-image-column">
+				{%- if section.settings.image_desktop -%}
+				<div class="image-holder">
+					{%- if section.settings.image_desktop -%}
+					<div class="hide_mobile">
+						<img class="lazyload" data-src="{{ section.settings.image_desktop | img_url: 'master' }}" alt="{{ section.settings.image_desktop.alt }}">
+					</div>
+					{%- endif -%}
+
+					{%- if section.settings.image_mobile -%}
+					<div class="show_mobile">
+						<img class="lazyload" data-src="{{ section.settings.image_mobile | img_url: 'master' }}" alt="{{ section.settings.image_mobile.alt }}">
+					</div>
+					{% else %}
+					<div class="show_mobile">
+						<img class="lazyload" data-src="{{ section.settings.image_desktop | img_url: 'master' }}" alt="{{ section.settings.image_desktop.alt }}">
+					</div>
+					{%- endif -%}
+				</div>
+				{%- endif -%}
+				{%- if section.settings.button_1_text != blank or  section.settings.button_2_text != blank -%}
+				<div class="buttons-wrapper show_mobile">
+					{%- if section.settings.button_1_text != blank -%}
+					<div class="button-item">
+						<a class="glb-btn-with-arrow large_arrow_btn" href="{{ section.settings.button_1_link }}">{{ section.settings.button_1_text }}</a>
+					</div>
+					{%- endif -%}
+					{%- if section.settings.button_2_text != blank -%}
+					<div class="button-item">
+						<a class="glb-btn-with-arrow large_arrow_btn" href="{{ section.settings.button_2_link }}">{{ section.settings.button_2_text }}</a>
+					</div>
+					{%- endif -%}
+				</div>
+				{%- endif -%}
+			</div>
+		</div>
+	</div>
+</div>
+
+{% schema %}
+  {
+    "name": "Image With Content",
+    "settings": [
+		{
+			"type": "header",
+			"content": "Content Column"
+		},
+    	{
+    		"type": "text",
+    		"label": "Heading",
+    		"id": "heading",
+    		"default": "A Guide to <br>Diamond2"
+    	},
+    	{
+    		"type": "html",
+    		"label": "Content",
+    		"id": "content",
+    		"default": "<p>Discover how each Diamond2 is crafted in a unique way to enhance it’s brilliance.</p>"
+    	},
+        {
+    		"type": "text",
+    		"label": "Button 1 Text",
+    		"id": "button_1_text",
+    		"default": "LEARN MORE"
+    	},
+        {
+    		"type": "url",
+    		"label": "Button 1 Link",
+    		"id": "button_1_link"
+    	},
+		{
+    		"type": "text",
+    		"label": "Button 2 Text",
+    		"id": "button_2_text",
+    		"default": "Carat Weight Guide"
+    	},
+        {
+    		"type": "url",
+    		"label": "Button 2 Link",
+    		"id": "button_2_link"
+    	},
+		{
+			"type": "header",
+			"content": "Image Column"
+		},
+		{
+			"type": "image_picker",
+			"id": "image_desktop",
+			"label": "Image Desktop(1920x970)"
+		},
+		{
+			"type": "image_picker",
+			"id": "image_mobile",
+			"label": "Image Mobile(750x600)"
+		}
+    ]
+  }
+{% endschema %}

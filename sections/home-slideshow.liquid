@@ -1,4 +1,5 @@
-<div class="" role="region" aria-label="slideshow" aria-describedby="slideshow-info" tabindex="-1">
+<!-- Do not Style with class 'top_banner' -->
+<div class="slider-{{ section.id }} top_banner" role="region" aria-label="slideshow" aria-describedby="slideshow-info" tabindex="-1">
 <div class="homepage-slider-wrapper"  data-slider>
 {%- if section.blocks.size > 0 -%}
 {%- for block in section.blocks -%}
@@ -9,18 +10,25 @@
     {%- assign subheading = block.settings.slider_subheading -%}
     {%- assign linktext = block.settings.slider_linkText -%}
     {%- assign linkurl = block.settings.slider_link -%}
+    {%- assign contentPos = block.settings.slider_content_position -%}
+    {%- assign contentClr = block.settings.slider_content_color -%}
+    {%- assign contentLinkClr = block.settings.slider_link_color -%}
+    {%- assign contentBtnTheme = block.settings.slide_button_theme -%}
+
         <div class="slide-item slide--{{ forloop.index }}" data-type="image">
-            {%- if img_desktop != blank -%}
-            <img src="{{ img_desktop | img_url: '1920x' }}" class="{% if img_mobile != blank %}mobile_hide {% endif %} lazyload{% unless forloop.first %} lazypreload{% endunless %}" alt="" /> 
-            {%- endif -%}
-            {%- if img_mobile != blank -%}
-            <img src="{{ img_mobile | img_url: '739x' }}" class="desktop_hide lazyload {% unless forloop.first %} lazypreload{% endunless %}" alt="" />
-            {%- endif -%}
+            <div class="home_slide_item_inner">
+                {%- if img_desktop != blank -%}
+                <img src="{{ img_desktop | img_url: '1920x' }}" class="{% if img_mobile != blank %}mobile_hide {% endif %} lazyload{% unless forloop.first %} lazypreload{% endunless %}" alt="" /> 
+                {%- endif -%}
+                {%- if img_mobile != blank -%}
+                <img src="{{ img_mobile | img_url: '739x' }}" class="desktop_hide lazyload {% unless forloop.first %} lazypreload{% endunless %}" alt="" />
+                {%- endif -%}
+            </div>
             {%- if heading != blank or subheading != blank -%}
-            <div class="slide-overlay">
+            <div class="slide-overlay {% if contentPos == 'right' %} content-right {% else %} content-left{% endif %}" {% if contentClr != blank %}style="color: {{ contentClr }}"{% endif %}>
                 {%- if heading != blank -%}<div class="slide-overaly-heading">{{ heading }}</div>{%- endif -%}
                 {%- if subheading != blank -%}<div class="slide-overaly-subheading">{{ subheading }}</div>{%- endif -%}
-            {%- if linktext != blank -%}<a class="slide-overlay-link" href="{{ linkurl }}" aria-label=" {{ linktext }}"> {{ linktext }}</a>{%- endif -%}
+            {%- if linktext != blank -%}<a class="slide-overlay-link glb-btn {{ contentBtnTheme }}" href="{{ linkurl }}" aria-label=" {{ linktext }}" {% if contentLinkClr != blank %} style="color: {{ contentLinkClr }}" {% endif %}> {{ linktext }}</a>{%- endif -%}
             </div>
             {% endif %}
         </div>
@@ -31,30 +39,89 @@
     {%- assign subheading = block.settings.video_subheading -%}
     {%- assign linktext = block.settings.video_linkText -%}
     {%- assign linkurl = block.settings.video_link -%}
+    {%- assign contentPos = block.settings.video_content_position -%}
+    {%- assign contentClr = block.settings.video_content_color -%}
+    {%- assign contentLinkClr = block.settings.video_link_color -%}
+    {%- assign videoBtnTheme = block.settings.slide_button_theme -%}
+    {%- assign posterImage = block.settings.video_poster_image -%}
     {%- if videolink != blank -%}
     <div class="slide-item slide--{{ forloop.index }}" data-type="video">
-    <video {% if videocontrols %}controls{% endif %}>
-        <source src="{{ videolink }}" type="video/mp4">
-    </video>
+        <div class="home_slide_item_inner">
+            <video loop muted {% if videocontrols %}controls{% endif %} {% if posterImage != blank %}poster="{{ posterImage | img_url: '1920x' }}"{% endif %}>
+                <source src="{{ videolink }}" type="video/mp4">
+            </video>
+            <div class="video-play-box">
+                <a class="video-play-button">
+                    <span></span>
+                </a>
+            </div>
+        </div> 
     {%- endif -%}
     {%- if heading != blank or subheading != blank -%}
-    <div class="slide-overlay">
+    <div class="slide-overlay {% if contentPos == 'right' %} content-right {% else %} content-left{% endif %}" {% if contentClr != blank %}style="color: {{ contentClr }}"{% endif %}>
         {%- if heading != blank -%}<div class="slide-overaly-heading">{{ heading }}</div>{%- endif -%}
         {%- if subheading != blank -%}<div class="slide-overaly-subheading">{{ subheading }}</div>{%- endif -%}
-        {%- if linktext != blank -%}<a class="slide-overlay-link" href="{{ linkurl }}" aria-label=" {{ linktext }}"> {{ linktext }}</a>{%- endif -%}
+        {%- if linktext != blank -%}<a class="slide-overlay-link glb-btn {{ videoBtnTheme }}" href="{{ linkurl }}" aria-label=" {{ linktext }}" {% if contentLinkClr != blank %} style="color: {{ contentLinkClr }}" {% endif %}> {{ linktext }}</a>{%- endif -%}
     </div>
     {% endif %}
     </div>
-
     {%- endif -%}
 {%- endfor -%}
 {%- endif -%}
 </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function(event) {
+        var mainSlider = $('.home--slider .slider-{{ section.id }} [data-slider]')
+        mainSlider.slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        dots: true,
+        autoplay:true,
+        autoplaySpeed:5000,
+        adaptiveHeight: true,
+        responsive: [
+            {
+                breakpoint: 749,
+                settings: {
+                arrows: false
+                }
+            }
+        ] 
+    }).on('afterChange', function(event, slick, currentSlide, nextSlide){
+        var vids = mainSlider.find('.slide-item.slick-current[data-slick-index="'+currentSlide+'"] video');
+        if(vids.length > 0){
+            vids[0].pause();
+            vids[0].currentTime = 0;
+            // vids[0].play();
+            vids[0].closest('.home_slide_item_inner').classList.remove('video-playing');
+        }
+        })
+        .on('beforeChange', function(event, slick, currentSlide, nextSlide){
+        var vids = mainSlider.find('.slide-item.slick-current[data-slick-index="'+currentSlide+'"] video');
+        if(vids.length > 0){
+            vids[0].pause();
+            vids[0].closest('.home_slide_item_inner').classList.remove('video-playing');
+        }
+        });
+});
+
+$('.home_slide_item_inner').each(function(){
+    let $video = $(this).find('video')
+    let videoTrigger = $(this).find('.video-play-button');
+    $(videoTrigger).click(function(){
+        $($video).get(0).play();
+        $(this).closest('.home_slide_item_inner').addClass('video-playing');
+    });
+});
+
+</script>
 {% schema %}
 {
     "name" : "Home Slider",
-    "class": "index-section home--slider",
+    "class": "index-section home--slider top_banner_section",
     "max_blocks": 6,
     "settings": [],
     "blocks": [
@@ -73,6 +140,31 @@
                     "label": "Slide Image Mobile(750x600)"
                 },
                 {
+                    "type": "select",
+                    "id": "slider_content_position",
+                    "label": "Content position",
+                    "options": [
+                      {
+                        "group": "position",
+                        "value": "left",
+                        "label": "Left"
+                      },
+                      {
+                        "group": "position",
+                        "value": "right",
+                        "label": "Right"
+                      }
+                    ],
+                    "default": "left",
+                    "info": "Left"
+                 },
+                 {
+                    "type":      "color",
+                    "id":        "slider_content_color",
+                    "label":     "Content color",
+                    "default":   "#000000"
+                 },
+                {
                     "type": "text",
                     "id": "slider_heading",
                     "label": "Slide Heading"
@@ -83,15 +175,37 @@
                     "label": "Slide Sub-heading"
                 },
                 {
+                    "type": "select",
+                    "label": "Slide Button Theme",
+                    "id": "slide_button_theme",
+                    "default": "blue",
+                    "options": [
+                        {
+                            "value": "blue",
+                            "label": "Blue"
+                        },
+                        {
+                            "value": "transparent",
+                            "label": "Transparent"
+                        }
+                    ]
+                },
+                {
                     "type": "text",
                     "id": "slider_linkText",
-                    "label": "Slide Link Text"
+                    "label": "Slide Button Text"
                 },
                 {
                     "type": "url",
                     "id": "slider_link",
-                    "label": "Slide Link"
-                }
+                    "label": "Slide Button Link"
+                },
+                {
+                    "type":      "color",
+                    "id":        "slider_link_color",
+                    "label":     "link color",
+                    "default":   "#000000"
+                 }
             ]
         },
         {
@@ -104,11 +218,41 @@
                     "label": "Video Link"
                 },
                 {
+                    "type": "image_picker",
+                    "id": "video_poster_image",
+                    "label": "Video Post Image"
+                },
+                {
                     "type": "checkbox",
                     "id": "video_controls",
                     "label": "Show Controls",
-                    "default": true
+                    "default": false
                 },
+                {
+                    "type": "select",
+                    "id": "video_content_position",
+                    "label": "Content position",
+                    "options": [
+                      {
+                        "group": "position",
+                        "value": "left",
+                        "label": "Left"
+                      },
+                      {
+                        "group": "position",
+                        "value": "right",
+                        "label": "Right"
+                      }
+                    ],
+                    "default": "left",
+                    "info": "Left"
+                 },
+                 {
+                    "type":      "color",
+                    "id":        "video_content_color",
+                    "label":     "Content color",
+                    "default":   "#000000"
+                 },
                 {
                     "type": "text",
                     "id": "video_heading",
@@ -122,13 +266,35 @@
                 {
                     "type": "text",
                     "id": "video_linkText",
-                    "label": "Slide Link Text"
+                    "label": "Slide Button Text"
+                },
+                {
+                    "type": "select",
+                    "label": "Slide Button Theme",
+                    "id": "slide_button_theme",
+                    "default": "blue",
+                    "options": [
+                        {
+                            "value": "blue",
+                            "label": "Blue"
+                        },
+                        {
+                            "value": "transparent",
+                            "label": "Transparent"
+                        }
+                    ]
                 },
                 {
                     "type": "url",
                     "id": "video_link",
-                    "label": "Slide Link"
-                }
+                    "label": "Slide Button Link"
+                },
+                {
+                    "type":      "color",
+                    "id":        "video_link_color",
+                    "label":     "link color",
+                    "default":   "#000000"
+                 }
             ]
         }
     ],

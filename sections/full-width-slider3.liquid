@@ -1,0 +1,105 @@
+<div class="full_width_slider_wrapper full_width_slider3_wrapper">
+    <div class="full_width_slider">
+        {%- if section.blocks.size > 0 -%}
+        {%- for slide in section.blocks -%}
+
+        <div class="full_width_slide_item slide--{{ forloop.index }} caption_align_{{ slide.settings.caption_alignment }}" data-type="image">
+            {%- if slide.settings.slider_image_desktop !=blank -%}
+            <div class="full_width_slider_image_holder {% if slide.settings.slider_image_mobile != blank %}mobile_hide {% endif %}">
+                <img src="{{ slide.settings.slider_image_desktop | img_url: '1920x' }}" lazyload{% unless forloop.first %} lazypreload{% endunless %}" alt="" />
+            </div>
+            {%- endif -%}
+            {%- if slide.settings.slider_image_mobile !=blank -%}
+            <div class="full_width_slider_image_holder {% if slide.settings.slider_image_desktop != blank %}show_mobile{% endif %}">
+                <img src="{{ slide.settings.slider_image_mobile | img_url: '739x' }}"  lazyload{% unless forloop.first %} lazypreload{% endunless %}" alt="" />
+            </div>
+            {%- endif -%}
+
+            <!-- Caption -->
+            {%- if slide.settings.caption == true -%}
+            {%- if slide.settings.heading !=blank or slide.settings.content !=blank or slide.settings.button_text !=blank -%}
+            <div class="slider-caption-wrapper">
+                <div class="dia-container">
+                    <div class="slider-caption-holder">
+                        {%- if slide.settings.heading !=blank -%}<h2>{{ slide.settings.heading }}</h2>{%- endif -%}
+                        {%- if slide.settings.content !=blank -%}<div class="cap_content">{{ slide.settings.content }}</div>{%- endif -%}
+                        {%- if slide.settings.button_text !=blank -%}<a href="{{ slide.settings.button_link }}" class="glb-btn">{{ slide.settings.button_text }}</a>{%- endif -%}
+                    </div>
+                </div>
+            </div>
+            {%- endif -%}
+            {%- endif -%}
+            
+        </div>
+        
+        {%- endfor -%}
+        {%- endif -%}  
+    </div>
+</div>
+{% schema %}
+{
+    "name": "Full Width Slider",
+    "max_blocks": 6,
+    "settings": [],
+    "blocks": [
+       {
+          "type": "image",
+          "name": "Image",
+          "settings": [
+             {
+                "type": "image_picker",
+                "id": "slider_image_desktop",
+                "label": "Slide Image Desktop(1920x970)"
+             },
+             {
+                "type": "image_picker",
+                "id": "slider_image_mobile",
+                "label": "Slide Image Mobile(750x600)"
+             },
+             {
+                "type": "checkbox",
+                "label": "Caption",
+                "id": "caption",
+                "info": "Check it for caption."
+             },
+             {
+                "type": "select",
+                "label": "Caption Alignment",
+                "id": "caption_alignment",
+                "default": "right",
+                "options": [
+                    {
+                        "value": "left",
+                        "label": "Left"
+                    },
+                    {
+                        "value": "right",
+                        "label": "Right"
+                    }
+                ]
+             },
+             {
+                "type": "text",
+                "label": "Heading",
+                "id": "heading"
+             },
+             {
+                "type": "richtext",
+                "label": "Content",
+                "id": "content"
+             },
+             {
+                "type": "text",
+                "label": "Button Text",
+                "id": "button_text"
+             },
+             {
+                "type": "url",
+                "label": "Button Link",
+                "id": "button_link"
+             }
+          ]
+       }
+    ]
+}
+{% endschema %} 

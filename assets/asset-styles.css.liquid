@@ -1,0 +1,59 @@
+.home--slider .homepage-slider-wrapper .slick-arrow.slick-next{
+    background-image: url({{ 'arrow-right.svg' | asset_url }});
+  } 
+  .home--slider .homepage-slider-wrapper .slick-arrow.slick-prev{
+    background-image: url({{ 'arrow-left.svg' | asset_url }});
+  }
+  .home-sld .shop-loose-diamond2-slider .slick-arrow.slick-next{
+    background: url({{ 'slider-arrow-right.svg' | asset_url }}) no-repeat center;
+    background-size: 25px;
+    right: 10px;
+  } 
+  .home-sld .shop-loose-diamond2-slider .slick-arrow.slick-prev{
+    background: url({{ 'slider-arrow-left.svg' | asset_url }}) no-repeat center;
+    background-size: 25px;
+    left: 10px;
+  }
+
+  .product-detail-slider .slick-arrow:after {
+    background-image: url({{ 'product-slider-arrow.png' | asset_url }});
+  }
+  .product-details-wrapper .product-info-gird .product-info-item .product-info-holder .product-info-table .table table tr td .meta_tooltip {
+    background-image: url({{ 'info_icon.png' | asset_url }});
+  }
+  .currency-box-wrapper ul li a.currency-trigger:after {
+    content: url({{ 'down-arrow.png' | asset_url }});
+  }
+  .footer-menu-Childtrigger:after {
+    content: url({{ 'footer-down-arrow.png' | asset_url }});
+  }
+  .glb-btn-with-arrow:before {
+    background-image: url({{ 'button-right-arrow.png' | asset_url }});
+  }
+  .product_images_slider .slick-arrow:after {
+    background-image: url({{ 'arrow_thin.png' | asset_url }});
+  }
+  .sidebar-nav ul li a:after {
+    background-image: url({{ 'menu-arrow-right.png' | asset_url }});
+  }
+  .sidebar-nav ul li.active a:after {
+    background-image: url({{ 'menu-arrow-right-active.png' | asset_url }});
+  }
+  
+
+@media(max-width: 749px) {
+  .shop-loose-diamond2-slider .slick-arrow.slick-prev:after,
+  .collection-slider .slick-arrow.slick-prev {
+    background-image:url({{ 'arrow-left-mobile.png' | asset_url }});
+  }
+  .shop-loose-diamond2-slider .slick-arrow.slick-next:after,
+  .collection-slider .slick-arrow.slick-next {
+    background-image:url({{ 'arrow-right-mobile.png' | asset_url }});
+  }
+  .product-desc-section .product-desc-title:after {
+    content: url({{ 'up_arrow_lg.png' | asset_url }});
+  }
+  .product-detail-slider .slick-arrow:after {
+    background-image: url({{ 'product_slide_mg_arrow.png' | asset_url }});
+  }
+}

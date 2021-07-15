@@ -1,0 +1,132 @@
+
+
+<div class="jcl-{{ section.id }} home-jcl"> 
+    <div class="dia-container">
+        <div class="scl-header">
+            {% if section.settings.mobile_featured_image  %}
+            <div class="mobile_featured_image show_mobile">
+                <img class="lazyload" data-src="{{ section.settings.mobile_featured_image | img_url: 'master' }}" alt="{{  section.settings.mobile_featured_image.alt }}">
+            </div>
+            {% endif %}
+            {% if section.settings.scl-heading != blank %}<h2>{{ section.settings.scl-heading }}</h2>{% endif %}
+            {% if section.settings.scl-desc != blank %}<div class="scl-desc">{{ section.settings.scl-desc }}</div>{% endif %}
+        </div>
+        {% if section.blocks.size > 0%}
+        <div class="scl-collage">
+            {%- for block in section.blocks -%}    
+            {% capture blockIndex %}-{{ forloop.index }}{% endcapture %} 
+            <div class="block-{{ forloop.index }} {% if block.settings.scl_image_1 == blank or block.settings.scl_image_2 == blank %} big_block {% endif %}">
+            {% for i in (1..2) %}
+            {% capture blockImg %}scl_image_{{ i }}{% endcapture %}
+            {% capture blockTitle %}scl_heading_{{ i }}{% endcapture %}
+            {% capture blockUrl %}scl_link_{{ i }}{% endcapture %}
+            {% if block.settings[blockImg] != blank %}
+            
+            <div class="box-{{ blockIndex }}-{{ forloop.index }} {% if block.settings.scl_image_1 == blank or block.settings.scl_image_2 == blank %} full-width {% endif %}  {{ block.settings[blockTitle] | downcase | handleize }} {% if block.settings[blockTitle] == blank or block.settings[blockUrl] == blank %}no_content_in_box{% endif %}">
+                {% if block.settings[blockUrl] != blank %}  <a href="{{ block.settings[blockUrl] }}" aria-label="" class="full_link"></a> {% endif %}
+                <div class="img-box"><img src="{{ block.settings[blockImg] | img_url: '480x'}}" class="lazyload" alt="" /></div>
+                {% if block.settings[blockTitle] != blank or block.settings[blockUrl] != blank %}
+                <div class="content-box">
+                    {% if block.settings[blockTitle] != blank %}  <h3> {{ block.settings[blockTitle] }}</h3> {% endif %}
+                    {% if block.settings[blockUrl] != blank %}  <a href="{{ block.settings[blockUrl] }}" aria-label="" class="custom-link"> Discover more ></a> {% endif %}
+                </div>
+                {% endif %}
+    
+            </div>
+            {% endif %}
+            {% endfor %} 
+        </div>
+    
+            {%- endfor -%}
+        </div>
+        {% endif %}
+        {% if section.settings.scl_collection_link != blank and section.settings.scl_link_label != blank  %}
+        <div class="scl-collection-link">
+            <a class="glb-btn" href="{{ section.settings.scl_collection_link }}" aria-label="{{ section.settings.scl_link_label }}">{{ section.settings.scl_link_label }}</a>
+        </div>
+        {% endif %}
+            
+    </div>
+    
+    </div>
+    
+    {% schema %}
+    {
+        "name" : "Jewellery",
+        "class": "jewellery-col-layout",
+        "max_blocks": 3,
+        "settings": [
+            {
+                "type": "image_picker",
+                "label": "Mobile Featured Image",
+                "id": "mobile_featured_image",
+                "info": "This image will visible on mobile"
+            },
+            {
+                "type":"text",
+                "id":"scl-heading",
+                "label":"Section heading"
+            },
+            {
+                "type":"richtext",
+                "id":"scl-desc",
+                "label":"Section description"
+            },
+            {
+                "type":"text",
+                "id":"scl_link_label",
+                "label":"Section link"
+            },
+            {
+                "type":"url",
+                "id":"scl_collection_link",
+                "label":"Section link"
+            }
+        ],
+        "blocks": [
+            {
+                "type": "image",
+                "name": "Image",
+                "settings": [
+                    {
+                        "type": "image_picker",
+                        "id": "scl_image_1",
+                        "label": "Collection Image"
+                    },
+                    {
+                        "type": "text",
+                        "id": "scl_heading_1",
+                        "label": "Collection Caption"
+                    },
+                    {
+                        "type": "url",
+                        "id": "scl_link_1",
+                        "label": "Collection Link"
+                    },
+                    {
+                        "type": "image_picker",
+                        "id": "scl_image_2",
+                        "label": "Collection Image"
+                    },
+                    {
+                        "type": "text",
+                        "id": "scl_heading_2",
+                        "label": "Collection Caption"
+                    },
+                    {
+                        "type": "url",
+                        "id": "scl_link_2",
+                        "label": "Collection Link"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+        {
+          "name": "Jewellery",
+          "category": "Image"
+        }
+      ]
+    }
+    {% endschema %}
+    
