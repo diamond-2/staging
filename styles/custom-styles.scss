@@ -3064,7 +3064,7 @@ body[data-template="know-your-diamond"] {
     .full_width_slider_image_holder {
       padding-bottom: 50.55%;
       @media(max-width: $md) {
-        padding-bottom: 440px;
+        padding-bottom: 531px;
       }
     }
     .full_width_slide_item  {
@@ -3102,7 +3102,7 @@ body[data-template="know-your-diamond"] {
     ul.slick-dots {
       @media(max-width: $md) {
         bottom: auto;
-        top: 388px;
+        top: 480px;
       }
       li {
         margin: 0 10px;
@@ -5107,13 +5107,21 @@ body.layout_jewellery {
 .jewellary-collection-wrapper {
   padding-top: 93px;
   @media(max-width: $md) {
-    padding-top: 22px;
+    padding-top: 60px;
   }
   .jewellary-collection-row {
     text-align: center;
     padding-bottom: 100px;
     @media(max-width: $md) {
-      padding-bottom: 27px;
+      padding-bottom: 60px;
+    }
+    &.jewellary-collection-layout-3 {
+      .jewellary-collection-btn-holder {
+        a.glb-btn {
+          padding-left:5px;
+          padding-right:5px;
+        }
+      }
     }
     .jewellary-collection-btn-holder {
       padding-top: 18px;
@@ -5158,7 +5166,7 @@ body.layout_jewellery {
         margin-bottom: 43px;
         @media(max-width: $md) {
           margin-bottom: 20px;
-          padding: 0 15px;
+          padding: 0 20px;
         }
       }
       p {
@@ -5206,7 +5214,9 @@ body.layout_jewellery {
                 transform: translateY(-50%);
                 padding-top: 4%;
                 text-align: center;
-                width: 209px;
+                @media(min-width: $postMd) {
+                  width: 34%;
+                }
                 @media(max-width: $md) {
                   transform: none;
                   text-align: center;
@@ -5242,14 +5252,15 @@ body.layout_jewellery {
         .jewellary-collection-card {
           position: relative;
           margin-bottom: 30px;
-          @include transition();
           @media(max-width: $md) {
             width: 50%;
             padding: 0 7.5px;
             margin-bottom: 17px;
           }
           &:hover {
-            @include cardHover();
+            .image_holder {
+              @include cardHover();
+            }
             .content_holder {
               .more_btn {
                 &:after {
@@ -5287,6 +5298,7 @@ body.layout_jewellery {
             position: relative;
             overflow: hidden;
             padding-bottom: 75.1%;
+            @include transition();
             @media(max-width: $md) {
               padding-bottom: 100%;
             }
@@ -5347,7 +5359,7 @@ body.layout_jewellery {
               }
               @media(max-width: $md) {
                 font-size: 11px;
-                padding-right: normal;
+                padding-right: 4px;
               }
               &:before {
                 content: "";
@@ -5371,6 +5383,7 @@ body.layout_jewellery {
                   height: 5.75px;
                   background-size: 5px;
                   right: -6px;
+                  margin-top: -2px;
                 }
               }
               &:after {
@@ -5929,6 +5942,9 @@ body.layout_jewellery {
     flex-direction: column;
     justify-content: space-between;
     padding-right: 85px;
+    @media(max-width: $xl) {
+      padding-right:20px;
+    }
     @media(max-width: $md) {
       padding-right:0;
       width: 100%;
@@ -5938,6 +5954,9 @@ body.layout_jewellery {
     .content-holder {
       h2 {
         margin-bottom: 62px;
+        @media(max-width: $xl) {
+          margin-bottom: 30px;
+        }
         @media(max-width: $md) {
           margin-bottom: 25px;
         }
@@ -5948,10 +5967,16 @@ body.layout_jewellery {
           line-height: 19.44px;
         }
       }
+      .glb-btn-with-arrow {
+        @media(max-width: $xl) and (min-width: $postMd) {
+          font-size: 13px;
+        }
+      } 
     }
   }
   .custom-image-column {
     width: 61%;
+    text-align: center;
     @media(max-width: $md) {
       width: 100%;
     }
@@ -5977,9 +6002,6 @@ body.layout_jewellery {
     .button-item {
       padding: 0 15px;
       margin-top: 10px;
-      .glb-btn-with-arrow {
-        text-transform: none;
-      }
     }
   }
 }
@@ -6238,6 +6260,53 @@ body[data-template="common-layout-1"] {
 // Common Layout 1 ( privacy-policy ) End
 
 
+// Jewellery PLP Start
+
+.jewellery-plp-collection-layout {
+  .glb-sec-header {
+    .glb-sec-desc {
+      max-width: 100%;
+    }
+  }
+  .grid--view-items {
+    .grid__item {
+      margin-bottom: 0;
+    }
+  }
+  .static_image_column {
+    width: 75%;
+    padding: 20px;
+    @media(max-width: $md) {
+      width: 100%;
+      padding:7.5px;
+    }
+    .img_holder {
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      @media(max-width: $md) {
+        padding-bottom: 112%;
+      }
+      img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+.jewellery-pdp-col-slider-md {
+  .collection-slider-wrapper {
+    padding-top: 100px;
+    padding-bottom: 0;
+    @media(max-width: $md) {
+      padding-top:60px;
+    }
+  }
+}
+
+// Jewellery PLP Start End
 
 
 // Responsive
@@ -6254,6 +6323,3 @@ body[data-template="common-layout-1"] {
       display: none !important;
   }
 }
-
-
-// End Know More Diamond Page

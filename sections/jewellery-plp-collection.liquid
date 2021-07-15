@@ -12,12 +12,12 @@
 {% if section.settings.layout == 'grid' %}
   {%- assign limit = section.settings.rows -%}
 {% else %}
-  {%- assign limit = 16 -%}
+  {%- assign limit = 14 -%}
 {% endif %}
 
 {% paginate collection.products by limit %}
 
-<div data-section-id="{{ section.id }}" data-section-type="collection-template" class="solitaire-collection-wrapper">
+<div data-section-id="{{ section.id }}" data-section-type="collection-template" class="solitaire-collection-wrapper jewellery-plp-collection-layout">
   <header class="collection-header">
     {%- assign is_filter_by_available = false -%}
     {%- if section.settings.tags_enable and collection.all_tags.size > 0 -%}
@@ -96,291 +96,64 @@
     {% endif %}
   </header>
 
-  <div class="dia-container" id="Collection">
+  <div class="dia-container " id="Collection">
     {% if section.settings.layout == 'grid' %}
-      
-    {%- if paginate.current_page == 1 -%}
-
       {% assign productMetafield = collection.metafields.meta %}
-      {% if productMetafield != blank %}
-      <!-- First Row -->
-      <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
-        {% for product in collection.products limit: 4 %}
-          <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
-            {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
-          </li>
-        {% else %}
-          {% comment %}
-          Add default products to help with onboarding for collections/all only.
-
-          The onboarding styles and products are only loaded if the
-          store has no products.
-          {% endcomment %}
-          {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
-            <li class="grid__item">
-              <div class="grid grid--uniform">
-                {% for i in (1..limit) %}
-                  <div class="grid__item {{ grid_item_width }}">
-                    <div class="grid-view-item">
-                      <a href="#" class="grid-view-item__link">
-                        <div class="grid-view-item__image">
-                          {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-                          {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
-                        </div>
-                        <div class="h4 grid-view-item__title">{{ 'homepage.onboarding.product_title' | t }}</div>
-                        <div class="grid-view-item__meta">
-                          <span class="product-price__price">$19.99</span>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                {% endfor %}
-              </div>
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-      <!-- second Row -->
+      <!-- Metafield Block 1 -->
       {% capture bigImage %}custom_image_1{% endcapture %}
       {% assign plploop = productMetafield[bigImage] | split: '~' %}
       {% assign imageUrl = plploop[0] %}
       {% assign imageLink = plploop[1] %}
 
-      <!-- show section if there is more then 4 product avil -->
-      {%- if collection.products.size > 4 -%}
-      <div class="{% if productMetafield[bigImage] != blank %}solitaire-two-col-row{% endif %}">
-        {% if imageUrl != blank or imageLink %}
-        <div class="static_image_column">
-          <div class="img_holder">
-            <img src="{{ imageUrl }}">
-          </div>
-          <div class="btn-holder"><a class="glb-btn-with-arrow large_arrow_btn" href="{{ imageLink }}">SHOP THE LOOK</a></div>
-        </div>
-        {% endif %}
-        <div class="pd_column">
-          <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
-            {% for product in collection.products limit: 4 offset: continue %}
-              <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
-                {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
-              </li>
-            {% else %}
-              {% comment %}
-              Add default products to help with onboarding for collections/all only.
-
-              The onboarding styles and products are only loaded if the
-              store has no products.
-              {% endcomment %}
-              {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
-                <li class="grid__item">
-                  <div class="grid grid--uniform">
-                    {% for i in (1..limit) %}
-                      <div class="grid__item {{ grid_item_width }}">
-                        <div class="grid-view-item">
-                          <a href="#" class="grid-view-item__link">
-                            <div class="grid-view-item__image">
-                              {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-                              {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
-                            </div>
-                            <div class="h4 grid-view-item__title">{{ 'homepage.onboarding.product_title' | t }}</div>
-                            <div class="grid-view-item__meta">
-                              <span class="product-price__price">$19.99</span>
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                    {% endfor %}
-                  </div>
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
+      {% capture metaBlock1 %}
+      {% if imageUrl %}
+      <div class="static_image_column">
+        <div class="img_holder">
+          <a {% if imageLink %}href="{{ imageLink }}"{% endif %}>
+            <img src="{{ imageUrl }}" alt="{{ collection.title }}">
+          </a>
         </div>
       </div>
-      {%- endif -%}
+      {% endif %}
+      {% endcapture %}
 
-
-      <!-- Third Row -->
-      <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
-        {% for product in collection.products limit: 4 offset: continue %}
-          <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
-            {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
-          </li>
-        {% else %}
-          {% comment %}
-          Add default products to help with onboarding for collections/all only.
-
-          The onboarding styles and products are only loaded if the
-          store has no products.
-          {% endcomment %}
-          {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
-            <li class="grid__item">
-              <div class="grid grid--uniform">
-                {% for i in (1..limit) %}
-                  <div class="grid__item {{ grid_item_width }}">
-                    <div class="grid-view-item">
-                      <a href="#" class="grid-view-item__link">
-                        <div class="grid-view-item__image">
-                          {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-                          {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
-                        </div>
-                        <div class="h4 grid-view-item__title">{{ 'homepage.onboarding.product_title' | t }}</div>
-                        <div class="grid-view-item__meta">
-                          <span class="product-price__price">$19.99</span>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                {% endfor %}
-              </div>
-            </li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-      <!-- Fourth Row -->
+      <!-- Metafield Block 2 -->
       {% capture bigImage2 %}custom_image_2{% endcapture %}
       {% assign plploop2 = productMetafield[bigImage2] | split: '~' %}
       {% assign imageUrl2 = plploop2[0] %}
       {% assign imageLink2 = plploop2[1] %}
-      
-      <!-- show section if there is more then 12 product avil -->
-      {%- if collection.products.size > 12 -%}
-      <div class="{% if productMetafield[bigImage2] != blank %}solitaire-two-col-row img_pos_right{% endif %}">
-        {% if imageUrl2 != blank or imageLink2 != blank  %}
-        <div class="static_image_column">
-          <div class="img_holder">
-            <img src="{{ imageUrl2 }}">
-          </div>
-          <div class="btn-holder"><a class="glb-btn-with-arrow large_arrow_btn" href="{{ imageLink2 }}">SHOP THE LOOK</a></div>
+
+      {% capture metaBlock2 %}
+      {% if imageLink2 %}
+      <div class="static_image_column">
+        <div class="img_holder">
+          <a {% if imageLink2 %}href="{{ imageLink2 }}"{% endif %}>
+            <img src="{{ imageUrl2 }}" alt="{{ collection.title }}">
+          </a>
         </div>
-        {% endif %}
-        <div class="pd_column">
-          <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
-            {% for product in collection.products limit: 4 offset: continue %}
-              <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
-                {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
-              </li>
-            {% else %}
-              {% comment %}
-              Add default products to help with onboarding for collections/all only.
-
-              The onboarding styles and products are only loaded if the
-              store has no products.
-              {% endcomment %}
-              {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
-                <li class="grid__item">
-                  <div class="grid grid--uniform">
-                    {% for i in (1..limit) %}
-                      <div class="grid__item {{ grid_item_width }}">
-                        <div class="grid-view-item">
-                          <a href="#" class="grid-view-item__link">
-                            <div class="grid-view-item__image">
-                              {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-                              {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
-                            </div>
-                            <div class="h4 grid-view-item__title">{{ 'homepage.onboarding.product_title' | t }}</div>
-                            <div class="grid-view-item__meta">
-                              <span class="product-price__price">$19.99</span>
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                    {% endfor %}
-                  </div>
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-        </div>
-      </div>
-      {%- endif -%}
-
-      <div data-pagination="{{ paginate.next.url }}" class="product-listing">
-        <ul  class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
-          {% for product in collection.products offset: continue %}
-            <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
-              {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
-            </li>
-          {% else %}
-            {% comment %}
-            Add default products to help with onboarding for collections/all only.
-
-            The onboarding styles and products are only loaded if the
-            store has no products.
-            {% endcomment %}
-            {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
-              <li class="grid__item">
-                <div class="grid grid--uniform">
-                  {% for i in (1..limit) %}
-                    <div class="grid__item {{ grid_item_width }}">
-                      <div class="grid-view-item">
-                        <a href="#" class="grid-view-item__link">
-                          <div class="grid-view-item__image">
-                            {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-                            {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
-                          </div>
-                          <div class="h4 grid-view-item__title">{{ 'homepage.onboarding.product_title' | t }}</div>
-                          <div class="grid-view-item__meta">
-                            <span class="product-price__price">$19.99</span>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  {% endfor %}
-                </div>
-              </li>
-            {% endif %}
-          {% endfor %}
-        </ul>
-      </div>
-
-      {% else %}
-      <div data-pagination="{{ paginate.next.url }}" class="product-listing">
-        <ul  class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
-          {% for product in collection.products %}
-            <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
-              {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
-            </li>
-          {% else %}
-            {% comment %}
-            Add default products to help with onboarding for collections/all only.
-
-            The onboarding styles and products are only loaded if the
-            store has no products.
-            {% endcomment %}
-            {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
-              <li class="grid__item">
-                <div class="grid grid--uniform">
-                  {% for i in (1..limit) %}
-                    <div class="grid__item {{ grid_item_width }}">
-                      <div class="grid-view-item">
-                        <a href="#" class="grid-view-item__link">
-                          <div class="grid-view-item__image">
-                            {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
-                            {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
-                          </div>
-                          <div class="h4 grid-view-item__title">{{ 'homepage.onboarding.product_title' | t }}</div>
-                          <div class="grid-view-item__meta">
-                            <span class="product-price__price">$19.99</span>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  {% endfor %}
-                </div>
-              </li>
-            {% endif %}
-          {% endfor %}
-        </ul>
       </div>
       {% endif %}
+      {% endcapture %}
 
-      {%- else -%}
+
       <div data-pagination="{{ paginate.next.url }}" class="product-listing">
         <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
           {% for product in collection.products %}
             <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
               {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
             </li>
+
+            <!-- will show only first page -->
+            {%- if paginate.current_page == 1 -%}
+              {% if forloop.index == 4 %}
+                {{ metaBlock1 }}
+              {% endif %}
+
+              {% if forloop.index == 10 %}
+                {{ metaBlock2 }}
+              {% endif %}
+            {%- endif -%}
+
           {% else %}
             {% comment %}
             Add default products to help with onboarding for collections/all only.
@@ -413,7 +186,6 @@
           {% endfor %}
         </ul>
       </div>
-      {%- endif -%}
 
     {% else %}
       <ul class="list-view-items">
@@ -480,7 +252,6 @@
       </div>
     </div>
     
-
   </div>
 </div>
 {% endpaginate %}
@@ -630,9 +401,9 @@
       "type": "range",
       "id": "rows",
       "label": "Product Per Page",
-      "default": 16,
+      "default": 14,
       "min": 4,
-      "max": 20,
+      "max": 18,
       "step": 1
     },
     {

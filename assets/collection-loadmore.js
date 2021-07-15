@@ -19,7 +19,8 @@ $(document).ready(function(){
         loadmoreSpiner.hide();
         var newProduct = $(next_page).find('.product-listing .grid--uniform');
         console.log(newProduct)
-        var new_url = $(newProduct).attr('data-pagination');
+        var new_url = $(newProduct).closest('.product-listing').attr('data-pagination');
+        console.log(new_url)
         nextUrl = new_url;
         $(listProduct).append(newProduct.html());
         if(new_url) {

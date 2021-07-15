@@ -7093,6 +7093,9 @@ body.layout_loose-stone .main-content,
 body[data-template="collection"] .main-content {
   padding-top: 0;
 }
+body.layout_jewellery-plp .main-content {
+  padding: 0;
+}
 @media(max-width: 749px) {
   body.has_top_banner #shopify-section-header {
     background:#fff;
