@@ -278,7 +278,9 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
 /*==============================================================================
 #Common Classes and Styles
 =================================================================================*/
-
+* {
+  outline: none !important;
+}
 .main-content h2 {
     @include font-range-45to25();
     @include heading-fonts();
@@ -411,6 +413,24 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
   }
 
   // Header Styling
+  .menu-overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    background: rgba(0,0,0,0.7);
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    @include transition();
+  }
+  .js-menu--is-open {
+    .menu-overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
   .menu_menu_opend {
     #shopify-section-header {
       @media(min-width: $postMd) {
@@ -510,14 +530,18 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     }
   }
   .site-header__search-toggle {
+    @media(max-width: $md) {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
     svg {
       @media(max-width: $md) {
         width: 13.5px;
-        margin: 0 13px
+        margin: 0 8px;
       }
     }
   }
-
   .js-mobile-nav-toggle {
     svg.icon {
       @media(max-width: $md) {
@@ -526,7 +550,6 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
       }
     }
   }
-
   .site-header__cart {
     svg {
       @media(max-width: $md) {
@@ -599,6 +622,10 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
       .site-header__icon {
         padding: 10px 7px;
         margin: 0 10px;
+        pointer-events: none;
+        &.js-mobile-nav-toggle {
+          pointer-events: all;
+        }
         svg {
           @media(max-width: $xl) and (min-width: $postMd) {
             width: 18px;
@@ -2310,6 +2337,10 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
           background-image: none !important;
           @media(max-width: $md) {
             margin-top: -12px;
+          }
+          &.slick-disabled {
+            opacity: 0;
+            visibility: hidden;
           }
           &:before{
             display: none;

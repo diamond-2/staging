@@ -6,6 +6,9 @@
 /*==============================================================================
 #Common Classes and Styles
 =================================================================================*/
+* {
+  outline: none !important; }
+
 .main-content h2 {
   font-size: calc(25px + (100vw - 750px)/1170 * 20);
   line-height: calc(28px + (100vw - 750px)/1170 * 20);
@@ -165,6 +168,26 @@
       padding-left: 20px;
       padding-right: 20px; } }
 
+.menu-overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -webkit-transition: all 0.4s; }
+
+.js-menu--is-open .menu-overlay {
+  opacity: 1;
+  visibility: visible; }
+
 @media (min-width: 750px) {
   .menu_menu_opend #shopify-section-header {
     background: #fff !important; } }
@@ -241,9 +264,13 @@ div#PageContainer.js-menu--is-open {
       #shopify-section-header.mobile__nav--show .site-header .site-header__icons button.site-header__menu svg {
         margin-top: 0; } }
   @media (max-width: 749px) {
+    #shopify-section-header .site-header__search-toggle {
+      margin-left: 5px;
+      margin-right: 5px; } }
+  @media (max-width: 749px) {
     #shopify-section-header .site-header__search-toggle svg {
       width: 13.5px;
-      margin: 0 13px; } }
+      margin: 0 8px; } }
   @media (max-width: 749px) {
     #shopify-section-header .js-mobile-nav-toggle svg.icon {
       width: 17px;
@@ -290,7 +317,10 @@ div#PageContainer.js-menu--is-open {
       border-bottom: none; }
   .site-header .site-header__mobile-nav .site-header__icons .site-header__icon {
     padding: 10px 7px;
-    margin: 0 10px; }
+    margin: 0 10px;
+    pointer-events: none; }
+    .site-header .site-header__mobile-nav .site-header__icons .site-header__icon.js-mobile-nav-toggle {
+      pointer-events: all; }
     @media (max-width: 1199px) and (min-width: 750px) {
       .site-header .site-header__mobile-nav .site-header__icons .site-header__icon svg {
         width: 18px;
@@ -1672,6 +1702,9 @@ body.js-menu--is-open {
       @media (max-width: 749px) {
         .home-sld .shop-loose-diamond2-slider .slick-arrow {
           margin-top: -12px; } }
+      .home-sld .shop-loose-diamond2-slider .slick-arrow.slick-disabled {
+        opacity: 0;
+        visibility: hidden; }
       .home-sld .shop-loose-diamond2-slider .slick-arrow:before {
         display: none; }
       .home-sld .shop-loose-diamond2-slider .slick-arrow:after {

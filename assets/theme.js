@@ -9791,9 +9791,12 @@ window.addEventListener("resize", function() {
     e.preventDefault();
     $('html, body').animate({scrollTop:0}, '1000');
   });
+  
+  // menu overlay
+  $('#shopify-section-header').append('<span class="menu-overlay"></span>');
 
   // Close Menu In Mobile
-  $('.back-menu-close, .mobile-nav > .back-menu-item .back-menu-arrow').click(function(){
+  $('.back-menu-close, .mobile-nav > .back-menu-item .back-menu-arrow, .menu-overlay').click(function(){
     $('.js-mobile-nav-toggle').removeClass('mobile-nav--close');
     $('.js-mobile-nav-toggle').addClass('mobile-nav--open');
     $('.js-mobile-nav-toggle').attr('aria-expanded','false');
@@ -9801,6 +9804,8 @@ window.addEventListener("resize", function() {
     $('.mobile-nav-wrapper').removeClass('sub-nav--is-open');
     $('body').removeClass('js-menu--is-open');
   }); 
+
+
 
 
   // newesletter validation
