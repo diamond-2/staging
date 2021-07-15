@@ -32,11 +32,12 @@
                    
                     {% if collections[subitem_handle].title != blank %}
                     <div class="jewellary-collection-card">
-                        {% if collections[subitem_handle].image %}
+                        <a class="full_link" href="{{ collections[subitem_handle].url }}"></a>
                         <div class="image_holder">
-                            <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% if collections[subitem_handle].image %}
+                                <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% endif %}
                         </div>
-                        {% endif %}
                         <div class="content_holder">
                             <div class="title">{{ collections[subitem_handle].title }}</div>
                             <a class="more_btn" href="{{ collections[subitem_handle].url }}">DISCOVER MORE</a>
@@ -60,11 +61,12 @@
                     {% assign subitem_handle = sub.title | handle %}
                     {% if collections[subitem_handle].title != blank %}
                     <div class="jewellary-collection-card">
-                        {% if collections[subitem_handle].image %}
+                        <a class="full_link" href="{{ collections[subitem_handle].url }}"></a>
                         <div class="image_holder">
-                            <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% if collections[subitem_handle].image %}
+                                <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% endif %}
                         </div>
-                        {% endif %}
 
                         <div class="content_holder">
                             <div class="title">{{ collections[subitem_handle].title }}</div>
@@ -80,11 +82,12 @@
                     {% assign subitem_handle = sub.title | handle %}
                     {% if collections[subitem_handle].title != blank %}
                     <div class="jewellary-collection-card">
-                        {% if collections[subitem_handle].image %}
+                        <a class="full_link" href="{{ collections[subitem_handle].url }}"></a>
                         <div class="image_holder">
-                            <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% if collections[subitem_handle].image %}
+                                <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% endif %}
                         </div>
-                        {% endif %}
                         <div class="content_holder">
                             <div class="title">{{ collections[subitem_handle].title }}</div>
                             <a class="more_btn" href="{{ collections[subitem_handle].url }}">DISCOVER MORE</a>
@@ -139,11 +142,12 @@
                      {% assign subitem_handle = sub.title | handle %}
                      {% if collections[subitem_handle].title != blank %}
                      <div class="jewellary-collection-card">
-                         {% if collections[subitem_handle].image %}
-                         <div class="image_holder">
-                             <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
-                         </div>
-                         {% endif %}
+                        <a class="full_link" href="{{ collections[subitem_handle].url }}"></a>
+                        <div class="image_holder">
+                            {% if collections[subitem_handle].image %}
+                                <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% endif %}
+                        </div>
  
                          <div class="content_holder">
                              <div class="title">{{ collections[subitem_handle].title }}</div>
@@ -159,11 +163,12 @@
                      {% assign subitem_handle = sub.title | handle %}
                      {% if collections[subitem_handle].title != blank %}
                      <div class="jewellary-collection-card">
-                         {% if collections[subitem_handle].image %}
+                        <a class="full_link" href="{{ collections[subitem_handle].url }}"></a>
                          <div class="image_holder">
-                             <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% if collections[subitem_handle].image %}
+                                <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% endif %}
                          </div>
-                         {% endif %}
                          
                          <div class="content_holder">
                              <div class="title">{{ collections[subitem_handle].title }}</div>
@@ -179,11 +184,12 @@
                      {% assign subitem_handle = sub.title | handle %}
                      {% if collections[subitem_handle].title != blank %}
                      <div class="jewellary-collection-card">
-                         {% if collections[subitem_handle].image %}
+                        <a class="full_link" href="{{ collections[subitem_handle].url }}"></a>
                          <div class="image_holder">
-                             <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% if collections[subitem_handle].image %}
+                                <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% endif %}
                          </div>
-                         {% endif %}
                          <div class="content_holder">
                              <div class="title">{{ collections[subitem_handle].title }}</div>
                              <a class="more_btn" href="{{ collections[subitem_handle].url }}">DISCOVER MORE</a>
@@ -239,11 +245,12 @@
                     {% assign subitem_handle = sub.title | handle %}
                     {% if collections[subitem_handle].title != blank %}
                     <div class="jewellary-collection-card">
-                        {% if collections[subitem_handle].image %}
+                        <a class="full_link" href="{{ collections[subitem_handle].url }}"></a>
                         <div class="image_holder">
-                            <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% if collections[subitem_handle].image %}
+                                <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% endif %}
                         </div>
-                        {% endif %}
                         
                         <div class="content_holder">
                             <div class="title">{{ collections[subitem_handle].title }}</div>
@@ -259,11 +266,12 @@
                     {% assign subitem_handle = sub.title | handle %}
                     {% if collections[subitem_handle].title != blank %}
                     <div class="jewellary-collection-card">
-                        {% if collections[subitem_handle].image %}
+                        <a class="full_link" href="{{ collections[subitem_handle].url }}"></a>
                         <div class="image_holder">
-                            <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% if collections[subitem_handle].image %}
+                                <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% endif %}
                         </div>
-                        {% endif %}
                         <div class="content_holder">
                             <div class="title">{{ collections[subitem_handle].title }}</div>
                             <a class="more_btn" href="{{ collections[subitem_handle].url }}">DISCOVER MORE</a>
@@ -279,11 +287,12 @@
                     {% assign subitem_handle = sub.title | handle %}
                     {% if collections[subitem_handle].title != blank %}
                     <div class="jewellary-collection-card">
-                        {% if collections[subitem_handle].image %}
+                        <a class="full_link" href="{{ collections[subitem_handle].url }}"></a>
                         <div class="image_holder">
-                            <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% if collections[subitem_handle].image %}
+                                <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% endif %}
                         </div>
-                        {% endif %}
 
                         <div class="content_holder">
                             <div class="title">{{ collections[subitem_handle].title }}</div>
@@ -318,11 +327,12 @@
                     {% assign subitem_handle = sub.title | handle %}
                     {% if collections[subitem_handle].title != blank %}
                     <div class="jewellary-collection-card">
-                        {% if collections[subitem_handle].image %}
+                        <a class="full_link" href="{{ collections[subitem_handle].url }}"></a>
                         <div class="image_holder">
-                            <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% if collections[subitem_handle].image %}
+                                <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% endif %}
                         </div>
-                        {% endif %}
                         
                         <div class="content_holder">
                             <div class="title">{{ collections[subitem_handle].title }}</div>
@@ -338,11 +348,12 @@
                     {% assign subitem_handle = sub.title | handle %}
                     {% if collections[subitem_handle].title != blank %}
                     <div class="jewellary-collection-card">
-                        {% if collections[subitem_handle].image %}
+                        <a class="full_link" href="{{ collections[subitem_handle].url }}"></a>
                         <div class="image_holder">
-                            <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% if collections[subitem_handle].image %}
+                                <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ collections[subitem_handle].title }}">
+                            {% endif %}
                         </div>
-                        {% endif %}
                         <div class="content_holder">
                             <div class="title">{{ collections[subitem_handle].title }}</div>
                             <a class="more_btn" href="{{ collections[subitem_handle].url }}">DISCOVER MORE</a>
