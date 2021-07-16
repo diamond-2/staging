@@ -26,11 +26,12 @@
             </div>
             <div class="landing-bottom-content landing-content-item">
                 <div class="landing-page-button">
-                    <a href="javascript:void(0);" class="landing-btn discover-btn"><span class="btn_text">Discover</span>{% include 'langing-button-arrow' %}</a>
+                    <a href="javascript:void(0);" class="landing-btn discover-btn"><span class="btn_text">Discover</span></a>
                 </div>
                 {% if bannerBottomtext != blank %}
                     <div class="landing-bottom-content-item">{{ bannerBottomtext }}</div>    
-                {% endif %}                
+                {% endif %}   
+                {% include 'langing-button-arrow' %}             
             </div>
         </div>
     </div>    

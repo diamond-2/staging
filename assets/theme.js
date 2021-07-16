@@ -3487,7 +3487,8 @@ theme.Slideshow = (function() {
         slideInterval: 0,
         slidesToShow: 0,
         slidesToScroll: 1,
-        type: 'fade'
+        type: 'fade',
+        pauseOnHover: true
       },
       options
     );
@@ -9701,7 +9702,8 @@ document.addEventListener('DOMContentLoaded', function(event) {
     slidesToScroll: 1,
     navigation: true,
     infinite: true,
-    adaptiveHeight: true
+    adaptiveHeight: true,
+    pauseOnHover: true
   });
   // Change header background on window scroll Event
   // Dom Load

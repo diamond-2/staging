@@ -1351,8 +1351,7 @@
             "zh-CN": "https:\/\/facebook.com\/shopify",
             "zh-TW": "https:\/\/facebook.com\/shopify"
           }
-        },
-        
+        },        
         {
           "type": "text",
           "id": "social_tumblr_link",

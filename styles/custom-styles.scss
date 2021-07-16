@@ -1378,7 +1378,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
               span {
                 display: inline-block;
                 &.btn_text {
-                  border-bottom: 1px solid currentColor;
+                  // border-bottom: 1px solid currentColor;
                   margin-right: 10px;
                   @media(max-width: $md) {
                     padding-bottom: 1px;
@@ -1416,16 +1416,18 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
           .landing-bottom-content-item {
             font-size: 20px;
             line-height: 21.6px;
+            padding-bottom: 17px;
             @media(max-width: $md) {
               font-size: 12px;
               line-height: 12.96px;
+              padding-bottom: 10px;
             }
           }
           &.landing-bottom-content{
             width: 100%;
             color: #fff;
             text-transform: uppercase;
-            padding-bottom: 80px;
+            padding-bottom: 60px;
             @media(max-width: $md) {
               padding-bottom: 70px;
             }
