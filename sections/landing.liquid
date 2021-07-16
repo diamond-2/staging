@@ -41,29 +41,42 @@
 <script>
     document.addEventListener('DOMContentLoaded', function(event) {
         if($.cookie('landingpage') == null) {
-          $('#shopify-section-landing').show();
-          $('body').addClass('overflow-hidden');
-          $('[data-template=index] #shopify-section-header, [data-template=index] .page-container').css({
-              "opacity": "0",
-              "visibility": "hidden"
-          });
+          $('body').prepend('<div id="landing-illusion"></div>');
+          $('#shopify-section-landing').slideDown();
+          $('body').addClass('landing-exist');
+          
         }
-        $(document).on('click', '.discover-btn', function(){
-            $.cookie('landingpage',2);
-            $('#shopify-section-landing').slideUp(600);            
-            setTimeout(function(){
+        var lastScrollTop = 0;
+        $(window).on('scroll', function(){
+            let windowScrolled = $(window).scrollTop(); console.log(windowScrolled)
+            let windowHeight = window.innerHeight;
+            // let landingOffset = $('#shopify-section-162365259171b8a08b').offset().top; console.log(landingOffset);
+            
+            var st = $(this).scrollTop();
+            if (st > lastScrollTop){
+                if($('body').hasClass('landing-exist')){
+                $('#shopify-section-landing').css('transform','translateY(-'+windowScrolled+'px)');
+                $('#landing-illusion').css('transform','translateY('+windowScrolled+'px)')
+                // downscroll code
+            }
+            } else {
+                // upscroll code
+            }
+            lastScrollTop = st;
+            
+
+            
+            if(windowScrolled >= windowHeight) {
                 $('#shopify-section-landing').remove();
-            },2000);
-            setTimeout(function(){     
-                $('[data-template=index] #shopify-section-header, [data-template=index] .page-container').css({
-                "opacity": "1",
-                "visibility": "visible"
-                });
-                $('body').removeClass('overflow-hidden');
-            },700);
+                $('body').removeClass('landing-exist');
+                $.cookie('landingpage',2);
+            }
         });
-        
     });
+    $(window).on('load', function(){
+        $('#landing-illusion').css('transform','translateY('+window.innerHeight+'px)');
+
+    })
 </script>
 {% schema %}
 {

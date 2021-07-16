@@ -94,9 +94,13 @@
   {% if section.settings.show_footer_logo %}
    <div class="footer-bottom-logo">
     {% if section.settings.footer_logo != blank%}
-    <span>
-      <img src="{{ section.settings.footer_logo | img_url: '45x'}}" alt="" class="lazyload" />
-    </span>
+    <div class="dia-container">
+      <div class="footer-logo-block">
+        <span>
+          <img src="{{ section.settings.footer_logo | img_url: '45x'}}" alt="" class="lazyload" />
+        </span>
+      </div>    
+    </div>
     {% endif %}    
   </div>
   {% endif %}

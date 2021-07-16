@@ -9646,7 +9646,6 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
   });
-
   // When the theme loads, lazysizes might load images before the "lazyloaded"
   // event listener has been attached. When this happens, the following function
   // hides the loading placeholders.
@@ -9805,9 +9804,6 @@ window.addEventListener("resize", function() {
     $('body').removeClass('js-menu--is-open');
   }); 
 
-
-
-
   // newesletter validation
   $(document).ready(function(){
     $('.newsletter-form [name="contact[email]"]').keyup(function(){
@@ -9881,20 +9877,6 @@ window.addEventListener("resize", function() {
     },500);
   });
   
-  // add class on body if mega menu opend
-  // $('#AccessibleNav').click(function(e){
-  //   e.stopPropagation();
-  //   let item = $(this).children('ul').children('li.site-nav--has-centered-dropdown');
-  //   if(!$(item).hasClass('site-nav--active-dropdown')){
-  //       $('body').removeClass('menu_menu_opend')
-  //   } else {
-  //       $('body').addClass('menu_menu_opend')
-  //   }
-  // });
-  // $('body').click(function(){
-  //   $('body').removeClass('menu_menu_opend')
-  // });
-
   $('#AccessibleNav #SiteNav > li').hover(function(e){
     e.stopPropagation();
     $('body').toggleClass('menu_menu_opend');

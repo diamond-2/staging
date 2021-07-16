@@ -1245,6 +1245,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     width: 100%;
     height: 100%;
     z-index: 99999;
+    top: 0;
     display: none;
     // -webkit-transform: translateY(-100%);
     // -moz-transform: translateY(-100%);
@@ -1486,6 +1487,18 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
       }
     }
   }
+
+body{
+  &.landing-exist{
+    #landing-illusion {     
+        content: '';
+        height: 100vh;
+        position: relative;
+        width: 100%;
+        display: block;
+    }
+  }
+}
 
    /* Home page section -- Image with Video */
    @keyframes pulse-border {
@@ -1786,7 +1799,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
             width: 18px;
             height: 18px;
             @include bdr-radius50();
-            background: #ffffff;
+            background: $textcolor-phanton;
             margin: 0 7.5px;
             @media(max-width: $md) {
               width: 12px;
@@ -1794,7 +1807,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
               margin: 0 5px;
             }
             &.slick-active {
-              background: $textcolor-phanton;
+               background: $textcolor-white;
             }
             button {
               display: none;
@@ -2522,15 +2535,40 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     .footer-bottom-logo {
       text-align: center;
       padding-bottom: 44px;
+      position: relative;
       @media(max-width: $md) {
         border: none;
         padding-bottom: 18px;
+      }
+      .dia-container {
+        .footer-logo-block{
+          position: relative;
+          font-size: 0px;
+          span {
+            display: inline-block;
+            background: white;
+            position: relative;
+            z-index: 1;
+            padding: 0 15px;
+          }
+          &:after {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 1px;
+            background: $textcolor-phanton;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0px;
+          }
+        }       
       }
       img {
         @media(max-width: $md) {
           width: 30px;
         }
       }
+      
     }
     .site-footer__newsletter {
       @media (max-width: $md) {
@@ -2567,8 +2605,8 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     }
     .site-footer__content{
       padding-top: 45px;
-      padding-left: 50px;
-      padding-right: 50px;
+      // padding-left: 50px;
+      // padding-right: 50px;
       @media(max-width: $xxl) and (min-width: $postMd) {
         padding-left: 0;
         padding-right: 0;
@@ -2755,14 +2793,14 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
               .footer-social__icns {
                 display: flex;
                 padding-top: 20px;
-                align-items: center;
+                align-items: baseline;
                 @media(max-width: $md) {
                   flex-wrap: wrap;
                 }
                 .footer-social-icns-label {
                   flex: 1 1 31%;
-                  min-width: 88px;
-                  max-width: 88px;
+                  min-width: 78px;
+                  max-width: 78px;
                   @media(max-width: $md) {
                     max-width: 100%;
                     min-width: 0;
@@ -2777,8 +2815,14 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
                     color:$textcolor-phanton;
                     display: block;
                     line-height: 15.12px;
+                    text-align:right;
+                    position: relative;
                     @media(max-width: $md) {
                       text-align: left;
+                    }
+                    &.small-text {
+                      font-size: 10px;
+                      display: none;;
                     }
                   }
                 }
@@ -2807,6 +2851,9 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
                       border-radius: 50%;
                       position: relative;
                       text-align: center;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
                       @media(max-width: $md) {
                         width: 20px;
                         height: 20px;
