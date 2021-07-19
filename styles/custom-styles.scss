@@ -1113,6 +1113,10 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
               top: 50%;
               transform: translateY(-50%);
             }
+            @media(max-width: $xxl) {
+              top: 50%;
+              transform: translateY(-50%);
+            }
           }
         }
       }

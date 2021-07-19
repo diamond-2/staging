@@ -656,6 +656,10 @@ div#PageContainer.js-menu--is-open {
               .currency-box-wrapper ul li a.currency-trigger:after {
                 top: 50%;
                 transform: translateY(-50%); } }
+            @media (max-width: 1600px) {
+              .currency-box-wrapper ul li a.currency-trigger:after {
+                top: 50%;
+                transform: translateY(-50%); } }
       .currency-box-wrapper ul li.clicked > a:after {
         transform: rotate(180deg); }
     .currency-box-wrapper ul.currency-box-child {
