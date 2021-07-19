@@ -54,13 +54,11 @@
     {% endif %}
   {% endif %}
 
+  {% if section.settings.align_logo == 'left' %}
   <header class="site-header{% if section.settings.align_logo == 'left' %} border-bottom logo--left{% else %} logo--center{% endif %}" role="banner">
     <div class="grid grid--no-gutters grid--table site-header__mobile-nav">
-      {% if section.settings.align_logo == 'center' %}
-        {%- assign logo_classes = 'medium-up--one-third medium-up--push-one-third logo-align--center' -%}
-      {% else %}
-        {%- assign logo_classes = 'medium-up--one-quarter logo-align--left' -%}
-      {% endif %}
+      
+      {%- assign logo_classes = 'medium-up--one-quarter logo-align--left' -%}
 
       <div class="grid__item {{ logo_classes }} hide_mobile">
         {% comment %}
@@ -103,11 +101,9 @@
         {% endif %}
       </div>
 
-      {% if section.settings.align_logo == 'left' %}
-        <nav class="grid__item medium-up--one-half small--hide" id="AccessibleNav" role="navigation">
-          {% include 'site-nav', linklist: section.settings.main_linklist %}
-        </nav>
-      {% endif %}
+      <nav class="grid__item medium-up--one-half small--hide" id="AccessibleNav" role="navigation">
+        {% include 'site-nav', linklist: section.settings.main_linklist %}
+      </nav>
 
       <div class="grid__item {% if section.settings.align_logo == 'left' %}medium-up--one-quarter{% else %}medium-up--one-third medium-up--push-one-third{% endif %} text-right site-header__icons{% if shop.customer_accounts_enabled %} site-header__icons--plus{% endif %}">
         <div class="site-header__icons-wrapper">
@@ -240,7 +236,7 @@
                                 {% for grandchildlink in childlink.links %}
                                   <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %} {% if grandchildlink.title contains 'all' %}last_menu{% endif %}">
                                     <a href="{{ grandchildlink.url }}"
-                                      class="mobile-nav__sublist-link {% if grandchildlink.title contains 'all' %}active_color{% endif %}"
+                                      class="mobile-nav__sublist-link {% if grandchildlink.title contains ' all ' %}active_color{% endif %}"
                                       {% if grandchildlink.current %} aria-current="page"{% endif %}
                                     >
                                       <span class="mobile-nav__label">{{ grandchildlink.title | escape | replace: '®', '<sup>®</sup>' }}</span>
@@ -311,12 +307,276 @@
 
     </nav>
   </header>
+  
+  <!-- If Logo aligned center -->
+  {% else %}
 
-  {% if section.settings.align_logo == 'center' %}
-  <nav class="small--hide border-bottom" id="AccessibleNav" role="navigation">
+  <header class="centered-header site-header{% if section.settings.align_logo == 'left' %} border-bottom logo--left{% else %} logo--center{% endif %}" role="banner">
+    <div class="grid grid--no-gutters grid--table site-header__mobile-nav">
+      
+      {%- assign logo_classes = 'medium-up--one-quarter logo-align--left' -%}
+
+      <div class="header-left-column hide_mobile">
+        <div class="site-header__icons-wrapper">
+          <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
+            {% include 'icon-search' %}
+            <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
+          </button>
+          <a href="pages/store-locator" class="hide_mobile site-header__icon site-header__store-locator">
+            {% include 'icon-store-locator' %}
+            <span class="icon__fallback-text">Store Locator</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="grid__item {{ logo_classes }} hide_mobile logo-item">
+        {% comment %}
+          Use the uploaded logo from theme settings if enabled.
+          Site name gets precedence with H1 tag on homepage, div on other pages.
+        {% endcomment %}
+        {% if request.page_type == 'index' %}
+          <h1 class="h2 site-header__logo">
+        {% else %}
+          <div class="h2 site-header__logo">
+        {% endif %}
+          {% if section.settings.logo %}
+          {%- assign img_url = 'main-logo.svg' | file_url -%}  
+         {% comment  %} {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}{% endcomment %}
+            <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered 33{% endif %}" data-image-loading-animation>
+              {% capture logo_alt %}{{ section.settings.logo.alt | default: shop.name }}{% endcapture %}
+              <img class="lazyload js"
+                   src="{{ 'main-logo.svg'  | file_url }}"
+                   data-src="{{ img_url }}"
+                   data-widths="[720, 900, 1080, 1296, 1512, 1728, 2048]"
+                  data-aspectratio="{{ section.settings.logo.aspect_ratio }}"
+                  data-sizes="auto"
+                   alt="{{ logo_alt | escape }}"
+                   style="max-width: {{ section.settings.logo_max_width }}px">
+              <noscript>
+                //{% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
+                <!-- <img src="{{ section.settings.logo | img_url: image_size }}"
+                     srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                     alt="{{ section.settings.logo.alt | default: shop.name }}"
+                     style="max-width: {{ section.settings.logo_max_width }}px;"> -->
+              </noscript>
+            </a>
+          {% else %}
+            <a class="site-header__logo-link" href="{{ routes.root_url }}">{{ shop.name }}</a>
+          {% endif %}
+        {% if request.page_type == 'index' %}
+          </h1>
+        {% else %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="grid__item {% if section.settings.align_logo == 'left' %}medium-up--one-quarter{% else %}medium-up--one-third medium-up--push-one-third{% endif %} text-right site-header__icons{% if shop.customer_accounts_enabled %} site-header__icons--plus{% endif %}">
+        <div class="site-header__icons-wrapper">
+          
+          {% unless linklists[section.settings.main_linklist] == blank %}
+            <button type="button" class="btn--link site-header__icon site-header__menu js-mobile-nav-toggle mobile-nav--open" aria-controls="MobileNav"  aria-expanded="false" aria-label="{{ 'layout.navigation.menu' | t }}">
+              {% include 'icon-hamburger' %}
+              {% include 'icon-close' %}
+            </button>
+          {% endunless %}
+          
+          <button type="button" class="show_mobile btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
+            {% include 'icon-search' %}
+            <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
+          </button>
+
+          <div class="grid__item {{ logo_classes }} show_mobile">
+            {% comment %}
+              Use the uploaded logo from theme settings if enabled.
+              Site name gets precedence with H1 tag on homepage, div on other pages.
+            {% endcomment %}
+            {% if request.page_type == 'index' %}
+              <h1 class="h2 site-header__logo">
+            {% else %}
+              <div class="h2 site-header__logo">
+            {% endif %}
+              {% if section.settings.mobile_logo %}
+                <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered 11{% endif %}" data-image-loading-animation>
+                  {% if request.page_type == 'index' %}
+                  <img class="header_sm_logo" src="{{ 'small_logo.png' | asset_url }}" alt="Diamond2">
+                  {% endif %}
+                  <img class="lazyload" src="{{ section.settings.mobile_logo | img_url: '300x300' }}" data-src="{{ section.settings.mobile_logo | img_url: 'master' }}" alt="{{ section.settings.mobile_logo.alt }}">
+                </a>
+              {% else %}
+              <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered 22{% endif %}" data-image-loading-animation>
+                <img class="lazyload" src="{{ section.settings.logo | img_url: '300x300' }}" data-src="{{ section.settings.logo | img_url: 'master' }}" alt="{{ section.settings.logo.alt }}">
+              </a>
+              {% endif %}
+            {% if request.page_type == 'index' %}
+              </h1>
+            {% else %}
+              </div>
+            {% endif %}
+          </div>
+
+          {% if shop.customer_accounts_enabled %}
+            {% if customer %}
+              <a href="{{ routes.account_url }}" class="site-header__icon site-header__account">
+                {% include 'icon-login' %}
+                <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
+              </a>
+            {% else %}
+              <a href="{{ routes.account_login_url }}" class="site-header__icon site-header__account">
+                {% include 'icon-login' %}
+                <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}</span>
+              </a>
+            {% endif %}
+          {% endif %}
+
+          <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart">
+            {% include 'icon-cart' %}
+            <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+            <div id="CartCount" class="site-header__cart-count{% if cart.item_count == 0 %} hide{% endif %} critical-hidden" data-cart-count-bubble>
+              <span data-cart-count>{{ cart.item_count }}</span>
+              <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
+            </div>
+          </a>
+
+          <div class="currency-box-wrapper hide_mobile">
+            <ul>
+              <li>
+                <a href="javascript:void(0)" class="currency-trigger"><span class="selected_currency">SGD</span></a>
+                <ul class="currency-box-child">
+                  <li><a href="javascript:void(0)">INR</a></li>
+                  <li><a href="javascript:void(0)">SGD</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <nav class="mobile-nav-wrapper critical-hidden" role="navigation">
+      <div class="mobile-nav-wrapper-2">
+        <ul id="MobileNav" class="mobile-nav">
+          <div class="back-menu-item">
+            <span class="back-menu-arrow">{% include 'icon-back-menu' %}</span>
+            <span class="back-menu-text"><img data-src="{{ 'diamond2-logo-2-mobile.png' | asset_img_url: 'master' }}" class="lazyload" alt="diamond2"></span>
+            <span class="back-menu-close">{% include 'icon-close-back-menu' %}</span>
+          </div>
+          <div class="mobile_nav_inner">
+            {% for link in linklists[section.settings.main_linklist].links %}
+              {%- assign outerLoopIndex = forloop.index -%}
+              <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %}">
+                {% if link.links != blank %}
+                  {% capture child_list_handle %}{{ link.handle }}-{{ outerLoopIndex }}{% endcapture %}
+                  <a type="button" class="btn--link js-toggle-submenu mobile-nav__link{% if link.child_active %} mobile-nav__link--active{% endif %}" data-target="{{ child_list_handle }}" data-level="1" aria-expanded="false">
+                    <span class="mobile-nav__label">{{ link.title | escape | replace: '®', '<sup>®</sup>' }}</span>
+                    <div class="mobile-nav__icon">
+                      {% include 'icon-chevron-right-mobile' %}
+                    </div>
+                  </a>
+                  <ul class="mobile-nav__dropdown" data-parent="{{ child_list_handle }}" data-level="2">
+                    <li class="visually-hidden" tabindex="-1" data-menu-title="2">
+                      {{- link.title }} {{ 'layout.navigation.menu' | t -}}
+                    </li>
+                    <div class="back-menu-item">
+                      <span class="back-menu-arrow btn--link js-toggle-submenu mobile-nav__return-btn" aria-expanded="true" aria-label="{{ link.title }}">{% include 'icon-back-menu' %}</span>
+                      <a class="back-menu-text">{{ link.title | escape | replace: '®', '<sup>®</sup>' }}</a>
+                      <span class="back-menu-close">{% include 'icon-close-back-menu' %}</span>
+                    </div>
+                    <div class="mobile_nav_child_inner lebel-2 {% if link.title contains 'INTRODUCING DIAMOND2' %}flex_mb_col{% endif %}">
+                      {% for childlink in link.links %}
+                        <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %}  {% if childlink.links == blank %}not_child_menu{% endif %}">
+                          {% if childlink.links != blank %}
+                            {% capture grandchild_list_handle %}{{ childlink.handle }}-{{ outerLoopIndex }}-{{ forloop.index }}{% endcapture %}
+                            <a class="mobile-nav__sublist-link" href="{{ childlink.url }}">{{ childlink.title | escape | replace: '®', '<sup>®</sup>' }}</a>
+                            <ul class="mobile-nav__dropdown" data-parent="{{ grandchild_list_handle }}" data-level="3">
+                              <li class="visually-hidden" tabindex="-1" data-menu-title="3">
+                                {{- childlink.title }} {{ 'layout.navigation.menu' | t -}}
+                              </li>
+                            
+                              <div class="mobile_nav_child_inner lebel-3">
+                                {% for grandchildlink in childlink.links %}
+                                  <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %} {% if grandchildlink.title contains 'all' %}last_menu{% endif %}">
+                                    <a href="{{ grandchildlink.url }}"
+                                      class="mobile-nav__sublist-link {% if grandchildlink.title contains ' all ' %}active_color{% endif %}"
+                                      {% if grandchildlink.current %} aria-current="page"{% endif %}
+                                    >
+                                      <span class="mobile-nav__label">{{ grandchildlink.title | escape | replace: '®', '<sup>®</sup>' }}</span>
+                                    </a>
+                                  </li>
+                                {% endfor %}
+
+                              </div>
+                            </ul>
+                          {% else %}
+                            <a href="{{ childlink.url }}"
+                              class="mobile-nav__sublist-link"
+                              {% if childlink.current %} aria-current="page"{% endif %}
+                            >
+                              <span class="mobile-nav__label">{{ childlink.title | escape | replace: '®', '<sup>®</sup>' }}</span>
+                            </a>
+                          {% endif %}
+                        </li>
+                      {% endfor %}
+
+                      {% if link.title contains 'INTRODUCING DIAMOND2' %}
+                      <ul class="custom-menu-mb">
+                        <li><a href="#">SHOP LOOSE DIAMOND2<sup>®</sup></a></li>
+                        <li><a href="#">SHOP Jewellery CollectionS</a></li>
+                      </ul>
+                      {% endif %}
+
+                    </div>
+                  </ul>
+                {% else %}
+                  <a href="{{ link.url }}"
+                    class="mobile-nav__link{% if link.active %} mobile-nav__link--active{% endif %}"
+                    {% if link.current %} aria-current="page"{% endif %}
+                  >
+                    <span class="mobile-nav__label">{{ link.title | escape | replace: '®', '<sup>®</sup>' }}</span>
+                  </a>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </div>
+        </ul>
+      <!-- Header Mobile Login Details -->
+      <div class="header-mb-login-details-wrapper">
+        <div class="header-mb-login-details">
+          <ul>
+            <li><a href="/"><span class="icon_hold">{% include 'icon-ambassador' %}</span><span class="tex_">Diamond2<sup>®</sup> Ambassador</span></a></li>
+            <li><a href="/pages/store-locator"><span class="icon_hold">{% include 'icon-location-mobile' %}</span><span class="tex_">Store Locator</span></a></li>
+            <li><a href="tel:+1234567890"><span class="icon_hold">{% include 'icon-phone' %}</span><span class="tex_">Help/Contact Us</span></a></li>
+            <li><a href="/sign-in"><span class="icon_hold">{% include 'icon-user' %}</span><span class="tex_">Sign Up / Sign In</span></a></li>
+          </ul>
+        </div>
+
+        <div class="currency-box-wrapper">
+          <ul>
+            <li>
+              <a href="javascript:void(0)" class="currency-trigger"><span class="selected_currency"><span class="flag">{{ 'sgd-flag.png' | asset_url | img_tag :'SGD' }}</span>SGD</span><span class="caret_down">{% include 'caret-down' %}</span></a>
+              <ul class="currency-box-child">
+                <li><a href="javascript:void(0)"><span class="flag">{{ 'sgd-flag.png' | asset_url | img_tag :'SGD' }}</span>INR</a></li>
+                <li><a href="javascript:void(0)"><span class="flag">{{ 'sgd-flag.png' | asset_url | img_tag :'SGD' }}</span>SGD</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+      
+
+    </nav>
+
+    
+  </header>
+
+  <nav class="small--hide centered-header-nav hide_tab" id="AccessibleNav" role="navigation">
     {% include 'site-nav', linklist: section.settings.main_linklist, wrapper_class: 'site-nav--centered' %}
   </nav>
+
   {% endif %}
+
 </div>
 
 

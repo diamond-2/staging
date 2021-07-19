@@ -9927,6 +9927,16 @@ window.addEventListener("resize", function() {
     $(this).parent().parent().siblings().find('.ac-heading').removeClass('active');
     $(this).parent().parent().siblings().find('.ac-body').slideUp();
   });
+
+  // sidebar tabber
+  $('.sidebar-nav li a').click(function(e){
+    e.preventDefault();
+    $(this).addClass('active');
+    $(this).parent().siblings().find('a').removeClass('active');
+    let hasId = $(this).attr('href');
+    $(hasId).addClass('show');
+    $(hasId).siblings().removeClass('show');
+  });
   
 });
 

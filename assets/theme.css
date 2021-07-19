@@ -309,13 +309,15 @@ small {
 
 sub,
 sup {
-  font-size: 75%;
+  font-size: 50%;
   line-height: 0;
   position: relative;
   vertical-align: baseline; }
 
 sup {
-  top: -0.5em; }
+  top: -0.5em; 
+  top: -12px;
+}
 
 sub {
   bottom: -0.25em; }
@@ -2055,7 +2057,7 @@ textarea {
   text-align: left;
   border: 1px solid var(--color-border);
   background: var(--color-bg);
-  left: -1px;
+  left: 0;
   top: 100%!important;
   border:none;
 }
@@ -3729,7 +3731,7 @@ hr {
     }
     .header-bg .site-header {
       padding-top: 16.5px;
-      padding-bottom: 16.5px;
+      padding-bottom: 0;
     }
     .site-header.logo--center {
       padding-top: 30px; 
@@ -7067,7 +7069,10 @@ body.has_top_banner #shopify-section-header .site-header__mobile-nav {
 body.has_top_banner #shopify-section-header.header-bg {
   background-color: var(--color-body);
 }
-
+#shopify-section-header sup, .slide-overaly-heading sup, h1 sup, h2 sup, #shopify-section-footer sup {
+  font-size: 70%;
+  top: -10px;
+}
 
 
 @media(min-width: 750px) {
@@ -7075,7 +7080,7 @@ body.has_top_banner #shopify-section-header.header-bg {
     margin-top:0;
   }
   #shopify-section-header.header-bg {
-    top: -54px !important;
+    top: -43px !important;
   }
   .mobile_view_show .site-header {
     padding-top: 0;

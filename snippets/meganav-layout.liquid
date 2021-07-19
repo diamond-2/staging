@@ -47,7 +47,7 @@
                         {% endif %}
                         
                         <li>
-                            <a {% if featuredImg != blank %}data-handle="{{ imgSrc }}"{% endif %} href="{{ subnav.url }}" class="site-nav__link site-nav__child-link {% if subnav.title contains 'all' %}active_color{% endif %}">
+                            <a {% if featuredImg != blank %}data-handle="{{ imgSrc }}"{% endif %} href="{{ subnav.url }}" class="site-nav__link site-nav__child-link {% if subnav.title contains ' all ' %}active_color{% endif %}">
                                 <span class="site-nav__label">{{ subnav.title | escape | replace: '®', '<sup>®</sup>' }} </span>
                             </a>
                         </li>
