@@ -1136,11 +1136,11 @@ body.landing-exist.scroll-start #shopify-section-landing {
   -o-transform: translate3d(0px, -100%, 0px);
   -ms-transform: translate3d(0px, -100%, 0px);
   transform: translate3d(0px, -100%, 0px);
-  -webkit-transition: 1s ease-in-out;
-  -moz-transition: 1s ease-in-out;
-  -o-transition: 1s ease-in-out;
-  -ms-transition: 1s ease-in-out;
-  transition: 1s ease-in-out; }
+  -webkit-transition: 1.5s ease-in-out;
+  -moz-transition: 1.5s ease-in-out;
+  -o-transition: 1.5s ease-in-out;
+  -ms-transition: 1.5s ease-in-out;
+  transition: 1.5s ease-in-out; }
 
 /* Home page section -- Image with Video */
 @keyframes pulse-border {
