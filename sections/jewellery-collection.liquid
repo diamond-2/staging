@@ -10,11 +10,28 @@
         <!-- Layout 1 -->
         <div class="jewellary-collection-row jewellary-collection-layout-1">
             <div class="jewellary-collection-header">
-                {% if mainCollection.image %}
+
                 <div class="show_mobile mobile_featured_image">
-                    <img class="lazyload" data-src="{{ mainCollection.image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
+                    {% if collection.settings.featured_image %}
+                    {% if collection.settings.featured_image_mobile %}
+                    <a href="{{ collection.settings.featured_image_link }}">
+                        <img class="lazyload" data-src="{{ collection.settings.featured_image_mobile | img_url: 'master' }}" alt="{{ mainCollection.title }}">
+                    </a>
+                    {% else %}
+                    <a href="{{ collection.settings.featured_image_link }}">
+                        <img class="lazyload" data-src="{{ collection.settings.featured_image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
+                    </a>
+                    {% endif %}
+                    {% else %}
+                    {% if mainCollection.image %}
+                    <a href="{{ mainCollection.url }}">
+                        <img class="lazyload" data-src="{{ mainCollection.image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
+                    </a>
+                    {% endif %}
+                    {% endif %}
                 </div>
-                {% endif %}
+                
+
                 {%- if mainCollection.title != blank or mainCollection.description != blank -%}
                 <div class="content_holder">
                     {%- if mainCollection.title != blank -%}<h2>{{ mainCollection.title }}</h2>{%- endif -%}
@@ -29,7 +46,6 @@
                     {% for sub in subs limit: 2 %}
                     {% assign subitem_handle = sub.title | handle %}
                     
-                   
                     {% if collections[subitem_handle].title != blank %}
                     <div class="jewellary-collection-card">
                         <a class="full_link" href="{{ collections[subitem_handle].url }}"></a>
@@ -50,10 +66,16 @@
                 <div class="jewellary-collection-block big_column">
                     <div class="jewellary-collection-card has_only_image hide_mobile">
                         <div class="image_holder">
+                            {% if collection.settings.featured_image %}
+                            <a href="{{ collection.settings.featured_image_link }}">
+                                <img class="lazyload" data-src="{{ collection.settings.featured_image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
+                            </a>
+                            {% else %}
                             {% if mainCollection.image %}
                             <a href="{{ mainCollection.url }}">
                                 <img class="lazyload" data-src="{{ mainCollection.image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
                             </a>
+                            {% endif %}
                             {% endif %}
                         </div>
                     </div>
@@ -118,11 +140,25 @@
                     {%- if mainCollection.description != blank -%}{{ mainCollection.description }}{%- endif -%}
                 </div>
                 {% endif %}
-                {% if mainCollection.image %}
                 <div class="show_mobile mobile_featured_image">
-                    <img class="lazyload" data-src="{{ mainCollection.image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
+                    {% if collection.settings.featured_image %}
+                    {% if collection.settings.featured_image_mobile %}
+                    <a href="{{ collection.settings.featured_image_link }}">
+                        <img class="lazyload" data-src="{{ collection.settings.featured_image_mobile | img_url: 'master' }}" alt="{{ mainCollection.title }}">
+                    </a>
+                    {% else %}
+                    <a href="{{ collection.settings.featured_image_link }}">
+                        <img class="lazyload" data-src="{{ collection.settings.featured_image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
+                    </a>
+                    {% endif %}
+                    {% else %}
+                    {% if mainCollection.image %}
+                    <a href="{{ mainCollection.url }}">
+                        <img class="lazyload" data-src="{{ mainCollection.image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
+                    </a>
+                    {% endif %}
+                    {% endif %}
                 </div>
-                {% endif %}
             </div>
             {%- assign subs = linklists[collection_name].links -%}
             {%- if subs != blank -%}
@@ -130,13 +166,19 @@
  
                  <div class="jewellary-collection-block big_column">
                      <div class="jewellary-collection-card has_only_image hide_mobile">
-                         <div class="image_holder">
-                             {% if mainCollection.image %}
-                             <a href="{{ mainCollection.url }}">
-                                 <img class="lazyload" data-src="{{ mainCollection.image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
-                             </a>
-                             {% endif %}
-                         </div>
+                        <div class="image_holder">
+                            {% if collection.settings.featured_image %}
+                            <a href="{{ collection.settings.featured_image_link }}">
+                                <img class="lazyload" data-src="{{ collection.settings.featured_image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
+                            </a>
+                            {% else %}
+                            {% if mainCollection.image %}
+                            <a href="{{ mainCollection.url }}">
+                                <img class="lazyload" data-src="{{ mainCollection.image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
+                            </a>
+                            {% endif %}
+                            {% endif %}
+                        </div>
                      </div>
                      {% for sub in subs limit: 1 %}
                      {% assign subitem_handle = sub.title | handle %}
@@ -410,6 +452,21 @@
                     "type": "link_list",
                     "label": "Select Menu",
                     "id": "select_menu"
+                },
+                {
+                    "type": "image_picker",
+                    "label": "Featured Image (Desktop)",
+                    "id": "featured_image"
+                },
+                {
+                    "type": "image_picker",
+                    "label": "Featured Image (Mobile)",
+                    "id": "featured_image_mobile"
+                },
+                {
+                    "type": "url",
+                    "label": "Featured Image Link",
+                    "id": "featured_image_link"
                 }
             ]
         },
@@ -421,6 +478,21 @@
                     "type": "link_list",
                     "label": "Select Menu",
                     "id": "select_menu"
+                },
+                {
+                    "type": "image_picker",
+                    "label": "Featured Image (Desktop)",
+                    "id": "featured_image"
+                },
+                {
+                    "type": "image_picker",
+                    "label": "Featured Image (Mobile)",
+                    "id": "featured_image_mobile"
+                },
+                {
+                    "type": "url",
+                    "label": "Featured Image Link",
+                    "id": "featured_image_link"
                 }
             ]
         },
