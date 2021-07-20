@@ -190,8 +190,9 @@ $xxl: 1600px;
 $siteWidth: 1920px;
 $tabOrient: 1023px;
 $tab:1099px;
-$tabview: 1356px;
+$tabview: 1355px;
 
+$posttabview: $tabview +  $viewportIncrement;
 $postSm: $sm +  $viewportIncrement;
 $postTab: $tab +  $viewportIncrement;
 $postTabOrient: $tabOrient + $viewportIncrement;
@@ -573,6 +574,9 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
           @media(max-width: $xxl) and (min-width: $postMd) {
             max-width: 30vw !important;
           }
+          @media(max-width: $xxl) and (min-width: $posttabview) {
+            max-width: 280px !important;
+          }          
         }
       }
     }
@@ -6454,7 +6458,7 @@ body[data-template="common-layout-1"] {
             transition: all 0.4s;
           }
         }
-        &:hover, &.active {
+        &.active {
           color: #6C1D45;
           .menu_text {
             &:after {
@@ -6583,6 +6587,9 @@ body[data-template="common-layout-1"] {
           }
       }
   }
+  .map {
+    padding-top: 20px;
+  }
   .custom-row {
       display: flex;
       flex-wrap: wrap;
@@ -6627,6 +6634,11 @@ body[data-template="common-layout-1"] {
     margin-bottom: 20px;
     display: block;
     width: 100%;
+  }
+  .error {
+    .input-box {
+      border-color:red ;
+    }
   }
   textarea {
     height: 130px !important;

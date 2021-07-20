@@ -289,6 +289,9 @@
   @media (max-width: 1600px) and (min-width: 750px) {
     .centered-header .site-header__mobile-nav .site-header__logo .site-header__logo-image img {
       max-width: 30vw !important; } }
+  @media (max-width: 1600px) and (min-width: 1356px) {
+    .centered-header .site-header__mobile-nav .site-header__logo .site-header__logo-image img {
+      max-width: 280px !important; } }
   @media (max-width: 1600px) and (min-width: 750px) {
     .centered-header .site-header__icons-wrapper svg {
       width: 1.3vw !important;
@@ -5243,9 +5246,9 @@ body[data-template="common-layout-1"].has_no_banner #shopify-section-header {
           width: 0;
           background: currentColor;
           transition: all 0.4s; }
-      .sidebar-nav ul li a:hover, .sidebar-nav ul li a.active {
+      .sidebar-nav ul li a.active {
         color: #6C1D45; }
-        .sidebar-nav ul li a:hover .menu_text:after, .sidebar-nav ul li a.active .menu_text:after {
+        .sidebar-nav ul li a.active .menu_text:after {
           width: 100%; }
 
 .ac-item {
@@ -5337,6 +5340,8 @@ body[data-template="common-layout-1"].has_no_banner #shopify-section-header {
         margin-right: 24px; }
       .contact-us-section-wrapper .contcat-address-details li:last-child {
         margin-bottom: 0; }
+  .contact-us-section-wrapper .map {
+    padding-top: 20px; }
   .contact-us-section-wrapper .custom-row {
     display: flex;
     flex-wrap: wrap;
@@ -5375,6 +5380,9 @@ body[data-template="common-layout-1"].has_no_banner #shopify-section-header {
   margin-bottom: 20px;
   display: block;
   width: 100%; }
+
+.sp-form .error .input-box {
+  border-color: red; }
 
 .sp-form textarea {
   height: 130px !important; }
@@ -5429,13 +5437,13 @@ body[data-template="common-layout-1"].has_no_banner #shopify-section-header {
     .jewellery-pdp-col-slider-md .collection-slider-wrapper {
       padding-top: 60px; } }
 
-@media (max-width: 1356px) and (min-width: 750px) {
+@media (max-width: 1355px) and (min-width: 750px) {
   .hide_tab {
     display: none !important; }
   .centered-header {
     padding-bottom: 7px !important; } }
 
-@media (max-width: 1356px) and (min-width: 750px) {
+@media (max-width: 1355px) and (min-width: 750px) {
   .centered-header .site-header__menu {
     display: block;
     order: 10;

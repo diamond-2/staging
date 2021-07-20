@@ -1,4 +1,4 @@
-<div class="contact-us-section-wrapper">
+<div class="contact-us-section-wrapper tabSection" data-heading="{{ section.settings.heading }}">
     <div class="contact-us-top-row">
         {%- if section.settings.title != blank -%}<h3>{{ section.settings.title }}</h3>{%- endif -%}
         <h6>OFFICE ADDRESS</h6>
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="custom-form-group">
-                            <label for="{{ formId }}-email">{{ 'contact.form.email' | t }} <span aria-hidden="true">*</span></label>
+                            <label for="{{ formId }}-email">{{ 'contact.form.email' | t }}</label>
                             <input class="input-box required"
                             type="email"
                             id="{{ formId }}-email"
@@ -71,7 +71,7 @@
             
                         <div class="custom-form-group">
                             <label for="{{ formId }}-phone">{{ 'contact.form.phone' | t }}</label>
-                            <input class="input-box required" type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+                            <input class="input-box required" type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" maxlength="10" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
                             <span class="error_msg"></span>
                         </div>
 
@@ -108,6 +108,12 @@
 {
     "name": "Contact Us",
     "settings": [
+        {
+            "type": "text",
+            "label": "Heading",
+            "id": "heading",
+            "default": "Contact Us"
+        },
         {
             "type": "text",
             "label": "Title",
