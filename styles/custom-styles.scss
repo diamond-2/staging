@@ -1728,11 +1728,10 @@ body{
     &.scroll-start{
       #shopify-section-landing {
         -webkit-transform: translate3d(0px, -100%, 0px);
-      -moz-transform: translate3d(0px, -100%, 0px);;
-      -o-transform: translate3d(0px, -100%, 0px);;
-      -ms-transform: translate3d(0px, -100%, 0px);;
-      transform: translate3d(0px, -100%, 0px);;
-      
+      -moz-transform: translate3d(0px, -100%, 0px);
+      -o-transform: translate3d(0px, -100%, 0px);
+      -ms-transform: translate3d(0px, -100%, 0px);
+      transform: translate3d(0px, -100%, 0px);
       -webkit-transition:  1s ease-in-out;
       -moz-transition:  1s ease-in-out;
       -o-transition:  1s ease-in-out;
@@ -1742,7 +1741,6 @@ body{
     }
   }
 }
-
    /* Home page section -- Image with Video */
    @keyframes pulse-border {
     0% {
