@@ -1078,6 +1078,8 @@ body.js-menu--is-open {
         @media (max-width: 749px) {
           #shopify-section-landing #main-landing-page .landing-content .landing-content-item.landing-bottom-content {
             padding-bottom: 70px; } }
+        #shopify-section-landing #main-landing-page .landing-content .landing-content-item.landing-bottom-content svg {
+          cursor: pointer; }
         #shopify-section-landing #main-landing-page .landing-content .landing-content-item.landing-bottom-content .landing-bottom-animation .large-circle {
           position: relative;
           width: 30px;
@@ -5080,10 +5082,12 @@ body.layout_jewellery h2 {
       @media (max-width: 749px) {
         .custom-row .custom-content-column .content-holder h2 {
           margin-bottom: 25px; } }
-    @media (max-width: 749px) {
-      .custom-row .custom-content-column .content-holder p {
-        font-size: 18px;
-        line-height: 19.44px; } }
+    .custom-row .custom-content-column .content-holder p {
+      font-weight: 300; }
+      @media (max-width: 749px) {
+        .custom-row .custom-content-column .content-holder p {
+          font-size: 18px;
+          line-height: 19.44px; } }
     @media (max-width: 1199px) and (min-width: 750px) {
       .custom-row .custom-content-column .content-holder .glb-btn-with-arrow {
         font-size: 13px; } }

@@ -1666,6 +1666,9 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
             @media(max-width: $md) {
               padding-bottom: 70px;
             }
+            svg {
+              cursor: pointer;
+            }
             .landing-bottom-animation {
               .large-circle{
                 position: relative;
@@ -6247,6 +6250,7 @@ body.layout_jewellery {
         }
       }
       p {
+        font-weight: 300;
         @media(max-width: $md) {
           font-size: 18px;
           line-height: 19.44px;
@@ -6259,6 +6263,7 @@ body.layout_jewellery {
       } 
     }
   }
+
   .custom-image-column {
     width: 61%;
     text-align: center;
