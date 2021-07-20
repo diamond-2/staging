@@ -43,40 +43,52 @@
 <script>
     document.addEventListener('DOMContentLoaded', function(event) {
         if($.cookie('landingpage') == null) {
-          $('body').prepend('<div id="landing-illusion"></div>');
+        //   $('body').prepend('<div id="landing-illusion"></div>');
           $('#shopify-section-landing').slideDown();
           $('body').addClass('landing-exist');
           
         }
         var lastScrollTop = 0;
-        $(window).on('scroll', function(){
-            let windowScrolled = $(window).scrollTop(); console.log(windowScrolled)
+        $(window).on('scroll', function(){            
+            let windowScrolled = $(window).scrollTop(); console.log(windowScrolled);
+            if(windowScrolled > 10){
+                $('body').addClass('scroll-start');
+                $.cookie('landingpage',2);
+                // $('#shopify-section-landing').css('transform','translateY(-9999px)');
+                setTimeout(function(){
+                    $('#shopify-section-landing').remove();
+                    $('body').removeClass('scroll-start landing-exist');
+
+                    // $('#shopify-section-landing').remove();
+                //$.cookie('landingpage',2);
+                },2000)
+            }
             let windowHeight = window.innerHeight;
             // let landingOffset = $('#shopify-section-162365259171b8a08b').offset().top; console.log(landingOffset);
             
-            var st = $(this).scrollTop();
-            if (st > lastScrollTop){
-                if($('body').hasClass('landing-exist')){
-                $('#shopify-section-landing').css('transform','translateY(-'+windowScrolled+'px)');
-                $('#landing-illusion').css('transform','translateY('+windowScrolled+'px)')
-                // downscroll code
-            }
-            } else {
-                // upscroll code
-            }
-            lastScrollTop = st;
+            // var st = $(this).scrollTop();
+            // if (st > lastScrollTop){
+            //     if($('body').hasClass('landing-exist')){
+            //     $('#shopify-section-landing').css('transform','translateY(-9999px)');
+            //     //$('#landing-illusion').css('transform','translateY('+windowScrolled+'px)')
+            //     // downscroll code
+            // }
+            // } else {
+            //     // upscroll code
+            // }
+            // lastScrollTop = st;
             
 
             
-            if(windowScrolled >= windowHeight) {
-                $('#shopify-section-landing').remove();
-                $('body').removeClass('landing-exist');
-                $.cookie('landingpage',2);
-            }
+            // if(windowScrolled >= windowHeight) {
+            //     $('#shopify-section-landing').remove();
+            //     $('body').removeClass('landing-exist');
+            //     $.cookie('landingpage',2);
+            // }
         });
     });
     $(window).on('load', function(){
-        $('#landing-illusion').css('transform','translateY('+window.innerHeight+'px)');
+        // $('#landing-illusion').css('transform','translateY('+window.innerHeight+'px)');
 
     })
 </script>

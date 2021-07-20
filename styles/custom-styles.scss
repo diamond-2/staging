@@ -1725,12 +1725,20 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
 
 body{
   &.landing-exist{
-    #landing-illusion {     
-        content: '';
-        height: 100vh;
-        position: relative;
-        width: 100%;
-        display: block;
+    &.scroll-start{
+      #shopify-section-landing {
+        -webkit-transform: translate3d(0px, -100%, 0px);
+      -moz-transform: translate3d(0px, -100%, 0px);;
+      -o-transform: translate3d(0px, -100%, 0px);;
+      -ms-transform: translate3d(0px, -100%, 0px);;
+      transform: translate3d(0px, -100%, 0px);;
+      
+      -webkit-transition:  1s ease-in-out;
+      -moz-transition:  1s ease-in-out;
+      -o-transition:  1s ease-in-out;
+      -ms-transition:  1s ease-in-out;
+      transition:  1s ease-in-out;
+      }
     }
   }
 }
