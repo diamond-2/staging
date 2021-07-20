@@ -34,8 +34,8 @@
                 {% endif %}
 
                 <div class="contact-form sp-form">
-                    {%- assign formId = 'ContactForm1' -%}
-                    <form method="post" action="/contact#ContactForm1" id="ContactForm1" accept-charset="UTF-8" class="contact-form" >
+                    {%- assign formId = 'ContactForm' -%}
+                    <form method="post" action="/contact#ContactForm" id="ContactForm" accept-charset="UTF-8" class="contact-form" >
             
                         <div class="custom-form-group">
                             <label for="{{ formId }}-name">{{ 'contact.form.name' | t }}</label>
@@ -52,7 +52,7 @@
                             autocorrect="off"
                             autocapitalize="off"
                             value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
-                            aria-required="true"
+                            
                             {%- if form.errors contains 'email' -%}
                                 class="input--error"
                                 aria-invalid="true"

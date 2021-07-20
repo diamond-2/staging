@@ -17,7 +17,8 @@
             <div class="landing-top-content landing-content-item">
                 <div class="landing-logo-holder">
                     <div class="landing-logo">
-                        <img data-src="{{ 'landing_logo_desktop.png' |  asset_url }}" alt="diamond2" class="lazyload" />
+                        <img data-src="{{ 'landing_logo_desktop.png' |  asset_url }}" alt="diamond2" class="lazyload hide_mobile" />
+                        <img src="{{ 'landing_mobile_logo.png' |  asset_url }}" alt="diamond2" class="lazyload show_mobile" />
                     </div>
                 </div>
                 {% if bannerToptext != blank %}

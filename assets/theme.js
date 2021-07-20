@@ -9937,6 +9937,28 @@ window.addEventListener("resize", function() {
     $(hasId).addClass('show');
     $(hasId).siblings().removeClass('show');
   });
+
+  // Announcement slick
+  $(".announcement-bar .announcement-bar__message").slick({
+      dots: false,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      navigation: false,
+      arrows:false,
+      infinite: false,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            fade: true,
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+  });
   
 });
 
