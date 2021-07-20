@@ -7068,6 +7068,8 @@ body.has_top_banner #shopify-section-header .site-header__mobile-nav {
 
 body.has_top_banner #shopify-section-header.header-bg {
   background-color: var(--color-body);
+  top: -43px !important;
+  
 }
 #shopify-section-header sup, .slide-overaly-heading sup, h1 sup, h2 sup, #shopify-section-footer sup {
   font-size: 70%;
