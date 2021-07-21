@@ -7068,14 +7068,11 @@ body.has_top_banner #shopify-section-header .site-header__mobile-nav {
 
 body.has_top_banner #shopify-section-header.header-bg {
   background-color: var(--color-body);
-  top: -43px !important;
-  
 }
 #shopify-section-header sup, .slide-overaly-heading sup, h1 sup, h2 sup, #shopify-section-footer sup {
   font-size: 70%;
   top: -10px;
 }
-
 
 @media(min-width: 750px) {
   #shopify-section-header {
@@ -7105,9 +7102,6 @@ body.layout_jewellery-plp .main-content {
     background:#fff;
     position: sticky;
     top:0;
-  }
-  body.has_top_banner #shopify-section-header.header-bg {
-    top: -22px !important;
   }
 }
 
