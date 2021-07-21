@@ -1,0 +1,107 @@
+<div class="top-collections-wrapper">
+  <div class="dia-container">
+    {%- if section.settings.heading != blank -%}
+    <div class="top-collections-sec-header">
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+    {%- endif -%}
+    <div class="top-collections-grid">
+      {%- comment -%}
+      {%- for item in section.blocks -%}
+      {% assign collection_name = item.settings.collection %}
+      {% assign mainCollection = collections[collection_name] %}
+      {% assign collectionImage = mainCollection.image %}
+      {% assign collectionTitle = mainCollection.title %}
+      {% assign collectionlink = mainCollection.url %}
+      {% assign collectionDes = mainCollection.content %}
+      <div class="top-collections-item">
+        <div class="glb-collection-card">
+          {% if collectionImage %}
+          <div class="glb-collection-img">
+            <a href="{{ collectionlink }}"><img class="lazyload" data-src="{{ collectionImage | img_url: '500x438' }}" alt="{{ collectionTitle }}"></a>
+          </div>
+          {% endif %}
+
+          <div class="glb-collection-body">
+            <h4>
+              <a href="{{ collectionlink }}">{{ collectionTitle }}</a>
+            </h4>
+            <div class="glb-collection-des">{{ collectionDes }}</div>
+            <a href="{{ collectionlink }}" class="glb-btn-with-arrow">DISCOVER MORE</a>
+          </div>
+        </div>
+      </div>
+      {%- endfor -%}
+      {%- endcomment -%}
+
+      {%- for item in section.blocks -%}
+      {% assign collectionImage = item.settings.image %}
+      {% assign collectionTitle = item.settings.title %}
+      {% assign collectionlink = item.settings.link %}
+      {% assign collectionDes = item.settings.description %}
+      <div class="top-collections-item">
+        <div class="glb-collection-card">
+          {% if collectionImage %}
+          <div class="glb-collection-img">
+            <a href="{{ collectionlink }}"><img class="lazyload" data-src="{{ collectionImage | img_url: '500x438' }}" alt="{{ collectionTitle }}"></a>
+          </div>
+          {% endif %}
+          <div class="glb-collection-body">
+            {% if collectionTitle != blank %}
+            <h4>
+              <a href="{{ collectionlink }}">{{ collectionTitle }}</a>
+            </h4>
+            {% endif %}
+            {% if collectionDes != blank %}<div class="glb-collection-des">{{ collectionDes }}</div>{% endif %}
+           {% if collectionlink != blank %} <a href="{{ collectionlink }}" class="glb-btn-with-arrow">DISCOVER MORE</a>{% endif %}
+          </div>
+        </div>
+      </div>
+      {%- endfor -%}
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Top Collections",
+  "settings": [
+    {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+        "default": "Discover Our Top Collections"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "image_picker",
+          "label": "Select Image",
+          "id": "image"
+        },
+        {
+          "type": "text",
+          "label": "Title",
+          "id": "title"
+        },
+        {
+          "type": "text",
+          "label": "Description",
+          "id": "description"
+        },
+        {
+          "type": "url",
+          "label": "Link",
+          "id": "link"
+        }
+      ]
+    }
+  ]
+  
+}
+{% endschema %} 

@@ -9930,17 +9930,55 @@ window.addEventListener("resize", function() {
 
   // sidebar tabber
   let commonLayoutHeader = $('.common-layout-wrapper .custom-section-header h1');
+  let clDefaultText = $(commonLayoutHeader).text();
   $('.sidebar-nav li a').click(function(e){
-    e.preventDefault();
+    $('html, body').animate({scrollTop:0}, '1000');
     $(this).addClass('active');
     $(this).parent().siblings().find('a').removeClass('active');
     let hasId = $(this).attr('href');
     $(hasId).addClass('show');
     $(hasId).siblings().removeClass('show');
-    let pageHeading = $(hasId).find('.tabSection').attr('data-heading');
-    if(pageHeading !=undefined) {
-      $(commonLayoutHeader).html(pageHeading);
+    let pageHeading = $(this).text();
+    $(commonLayoutHeader).text(pageHeading);
+    $('.sidebar-column').addClass('sidebar_nav_active');
+  });
+  $('.back_to_page').click(function(){
+    $(commonLayoutHeader).text(clDefaultText);
+    $('.sidebar-column').removeClass('sidebar_nav_active');
+    $('.sidebar-nav li a').removeClass('active');
+    $('.commaon-layout-section').removeClass('show');
+    if(window.history.pushState) {
+        window.history.pushState('', '/', window.location.pathname)
+    } else {
+        window.location.hash = '';
     }
+  });
+  function sidebarColumnHeight() {
+    $('.sidebar-column').css('max-height',$('.sidebar-column').outerHeight());
+  }
+  sidebarColumnHeight();
+  window.addEventListener("resize", function() {
+    sidebarColumnHeight();
+  });
+  // show tabber if there is hash link in url
+  $(window).on('load', function(){
+    let $hasId = window.location.hash;
+    if($hasId) {
+        $('.commaon-layout-section-wrapper').find($hasId).addClass('show');
+        $('.commaon-layout-section-wrapper').find($hasId).siblings().removeClass('show');
+        $('.sidebar-nav li a[href="'+$hasId+'"]').addClass('active');
+        $('.sidebar-nav li a[href="'+$hasId+'"]').parent().siblings().find('a').removeClass('active');
+        $('.sidebar-column').addClass('sidebar_nav_active');
+    }
+  });
+  // contact mobile tabber
+  $('.tabber-nav a').click(function(e){
+    e.preventDefault();
+    $(this).parent().addClass('active');
+    $(this).parent().siblings().removeClass('active');
+    let thisTabId = $(this).attr('href');
+    $(thisTabId).addClass('show_tab');
+    $(thisTabId).siblings().removeClass('show_tab');
   });
 
   // Announcement slick

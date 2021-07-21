@@ -1,5 +1,5 @@
 
-<div class="accordion-wrapper tabSection" data-heading="{{ section.settings.heading }}">
+<div class="accordion-wrapper">
     <div class="ac-grid">
         {% for item in section.blocks %}
         {%- if item.settings.question != blank or item.settings.answer != blank -%}
@@ -24,12 +24,6 @@
 {
     "name": "Privacy Policy",
     "settings": [
-        {
-            "type": "text",
-            "label": "Heading",
-            "id": "heading",
-            "default": "Privacy Policy"
-        }
     ],
     "blocks": [
         {

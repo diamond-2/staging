@@ -1,0 +1,42 @@
+<!-- Do not Style with class 'top_banner' -->
+<div class="error_banner top_banner">
+    <div class="error_image_holder">
+        {% if section.settings.image_desktop %}
+            <img data-src="{{ section.settings.image_desktop | img_url: '1920x' }}" class="lazyload hide_mobile" alt="404">
+            {% if section.settings.image_mobile %}
+            <img data-src="{{ section.settings.image_mobile | img_url: '750x' }}" class="lazyload show_mobile" alt="404">
+            {% else %}
+            <img data-src="{{ section.settings.image_desktop | img_url: '1920x' }}" class="lazyload show_mobile" alt="404">
+            {% endif %}
+        {% endif %}
+    </div>
+ 
+    <div class="error-banner-content-holder">
+        <div class="error-banner-content">
+            <h2>Page Not Found</h2>
+            <p>Sorry, we couldn’t find that page.</p>
+            <a href="{{ routes.root_url }}" class="glb-btn">{{ 'general.404.link' | t }}</a>
+        </div>
+    </div>
+</div>
+
+
+{% schema %}
+{
+    "name": "404 Banner",
+    "class": "top_banner_section",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image_desktop",
+            "label": "Image Desktop(1920x970)"
+        },
+        {
+            "type": "image_picker",
+            "id": "image_mobile",
+            "label": "Image Mobile(750x600)"
+        }
+    ]
+    
+}
+{% endschema %} 
