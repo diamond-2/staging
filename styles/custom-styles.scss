@@ -2571,6 +2571,15 @@ body{
             margin-bottom: 20px;
           }
         }
+        .shop-loose-diamond2-slider-top-des {
+          p {
+            br {
+              @media(max-width: $md) {
+                display: none;
+              }
+            }
+          }
+        }
       }   
       .shop-loose-diamond2-slider {
         position: relative;
@@ -3677,7 +3686,6 @@ body[data-template="know-your-diamond"] {
       padding-left: 40px;
     }
     .content_holder p {
-        line-height: 30px;
         @media(max-width: $md) {
           line-height: 18px;
         }
@@ -3963,6 +3971,11 @@ body[data-template="know-your-diamond"] {
   .collection-slider-bottom-btn-holder {
     text-align: center;
     padding-top: 50px;
+    .glb-btn {
+      @media(min-width: $postMd) {
+        padding: 20px 46px;
+      }
+    }
     @media(max-width: $md) {
       padding-top: 16px;
     }
@@ -3978,9 +3991,22 @@ body[data-template="know-your-diamond"] {
   }
   .collection-card {
     text-align: center;
-    margin: 0 10px;
+    margin: 15px 10px 0;
+    &:hover {
+      .collection-image-title {
+        a {
+          &:after {
+            transform: scale(1);
+          }
+        }
+      }
+      .collection-image-holder {
+        @include cardHover();
+      }
+    }
     .collection-image-holder {
       background: #f1f1f1;
+      @include transition();
       @media(max-width: $md) {
         position: relative;
         overflow: hidden;
@@ -4008,9 +4034,19 @@ body[data-template="know-your-diamond"] {
       }
       a {
         color: $textcolor-phanton;
-        text-decoration: underline;
+        display: inline-block;
         &:hover {
           color: #000;
+        }
+        &:after {
+          content: "";
+          display: block;
+          height: 1px;
+          width: 100%;
+          background-color: currentColor;
+          @include transition();
+          transform: scale(0);
+          transform-origin: center;
         }
       }
     }
@@ -5873,6 +5909,7 @@ body.layout_jewellery {
     }
   }
 }
+
 .solitaire-collection-wrapper {
   padding-left: 90px;
   padding-right: 90px;
@@ -5880,8 +5917,15 @@ body.layout_jewellery {
     padding-left:0;
     padding-right:0;
   }
+  &.jewellery-plp-collection-layout {
+    .glb-sec-header {
+      @media(min-width: $postMd) {
+        margin-bottom: 50px;
+      }
+    }
+  }
   .glb-sec-header {
-    margin-bottom: 50px;
+    margin-bottom: 57.48px;
     @media(max-width: $md) {
       margin-top: 20px;
       margin-bottom: 20px;
