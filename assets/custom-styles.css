@@ -2658,7 +2658,7 @@ body[data-template="know-your-diamond"] .main-content p {
   padding-bottom: 40.64%; }
   @media (max-width: 749px) {
     .full_width_slider_wrapper .full_width_slider_image_holder {
-      padding-bottom: 375px; } }
+      padding-bottom: 431px; } }
   .full_width_slider_wrapper .full_width_slider_image_holder img {
     height: 100%;
     width: 100%;
@@ -2691,7 +2691,7 @@ body[data-template="know-your-diamond"] .main-content p {
         position: static;
         color: #000;
         text-align: center !important;
-        padding-top: 13px;
+        padding-top: 20px;
         padding-bottom: 0; } }
     .full_width_slider_wrapper .full_width_slide_item .slider-caption-wrapper .dia-container {
       width: 100%; }
@@ -2790,7 +2790,7 @@ body[data-template="know-your-diamond"] .main-content p {
   @media (max-width: 749px) {
     .full_width_slider_wrapper ul.slick-dots {
       bottom: auto;
-      top: 323px; } }
+      top: 390px; } }
   .full_width_slider_wrapper ul.slick-dots li {
     width: auto;
     height: auto;
@@ -4406,6 +4406,12 @@ body.layout_jewellery h2 {
       max-width: 1332px; }
     .jewellary-collection-wrapper .jewellary-collection-row.jewellary-collection-layout-3 .jewellary-collection-header {
       max-width: 1218px; }
+      @media (max-width: 749px) {
+        .jewellary-collection-wrapper .jewellary-collection-row.jewellary-collection-layout-3 .jewellary-collection-header .content_holder p {
+          padding: 0 30px; } }
+    @media (max-width: 749px) {
+      .jewellary-collection-wrapper .jewellary-collection-row.jewellary-collection-layout-3 .jewellary-collection-btn-holder .glb-btn {
+        padding: 7.6px 7px; } }
     .jewellary-collection-wrapper .jewellary-collection-row .jewellary-collection-header {
       max-width: 1520px;
       margin: 0 auto;
@@ -4420,7 +4426,7 @@ body.layout_jewellery h2 {
         position: relative;
         overflow: hidden;
         padding-bottom: 112%;
-        margin-bottom: 25px; }
+        margin-bottom: 20px; }
         .jewellary-collection-wrapper .jewellary-collection-row .jewellary-collection-header .mobile_featured_image img {
           position: absolute;
           height: 100%;
@@ -4512,7 +4518,7 @@ body.layout_jewellery h2 {
             .jewellary-collection-wrapper .jewellary-collection-row .jewellary-collection-grid .jewellary-collection-block .jewellary-collection-card {
               width: 50%;
               padding: 0 7.5px;
-              margin-bottom: 17px; } }
+              margin-bottom: 20px; } }
           .jewellary-collection-wrapper .jewellary-collection-row .jewellary-collection-grid .jewellary-collection-block .jewellary-collection-card:hover .image_holder {
             box-shadow: 0 5px 14px 3px rgba(0, 0, 0, 0.35);
             -webkit-box-shadow: 0 5px 14px 3px rgba(0, 0, 0, 0.35); }
@@ -4586,9 +4592,9 @@ body.layout_jewellery h2 {
               @media (max-width: 749px) {
                 .jewellary-collection-wrapper .jewellary-collection-row .jewellary-collection-grid .jewellary-collection-block .jewellary-collection-card .content_holder .title {
                   font-size: 12px;
-                  line-height: 18px;
+                  line-height: 12.96px;
                   margin-top: 6px;
-                  margin-bottom: 4px; } }
+                  margin-bottom: 8px; } }
             .jewellary-collection-wrapper .jewellary-collection-row .jewellary-collection-grid .jewellary-collection-block .jewellary-collection-card .content_holder .more_btn {
               color: #6c1d45;
               font-size: 18px;
@@ -5217,17 +5223,24 @@ body.layout_jewellery h2 {
     .back-to-top .back_top_arrow svg path {
       fill: currentColor; }
 
-body[data-template="common-layout-1"] .main-content {
+body[data-template="common-layout-1"] .main-content, body[data-template="sitemap"] .main-content {
   padding-top: 50px;
   padding-bottom: 50px; }
   @media (max-width: 749px) {
-    body[data-template="common-layout-1"] .main-content {
+    body[data-template="common-layout-1"] .main-content, body[data-template="sitemap"] .main-content {
       padding-top: 20px;
       padding-bottom: 0; } }
 
 @media (min-width: 750px) {
-  body[data-template="common-layout-1"].has_no_banner #shopify-section-header {
+  body[data-template="common-layout-1"].has_no_banner #shopify-section-header, body[data-template="sitemap"].has_no_banner #shopify-section-header {
     border-bottom: 1px solid #E5E5E5; } }
+
+.common-layout-wrapper.sp-sitemap-layout .custom-section-header h1 {
+  margin-bottom: 58px;
+  letter-spacing: normal; }
+  @media (max-width: 749px) {
+    .common-layout-wrapper.sp-sitemap-layout .custom-section-header h1 {
+      margin: 0 0 20px; } }
 
 .common-layout-wrapper .custom-section-header h1 {
   font-family: 'Spectral', serif;
@@ -5957,6 +5970,45 @@ body[data-template="404"] .main-content {
     .glb-collection-card .glb-collection-body .glb-btn-with-arrow:before {
       background-size: 6px 9px;
       height: 13px; } }
+
+.sitemap-wrapper .sitemap-row h3 {
+  font-family: 'Spectral', serif;
+  font-weight: 200;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #6C1D45;
+  font-size: 24px;
+  line-height: 37px;
+  margin: 0 0 37px; }
+
+.sitemap-wrapper .sitemap-row:not(:first-child) {
+  margin-top: 43px; }
+
+.sitemap-wrapper .sitemap-menu-grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -20px; }
+  .sitemap-wrapper .sitemap-menu-grid > li {
+    padding: 0 20px; }
+    .sitemap-wrapper .sitemap-menu-grid > li > a {
+      font-size: 22px;
+      font-family: 'Spectral';
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #6C1D45;
+      line-height: 23.76px;
+      display: block;
+      margin: 0 0 30px; }
+  .sitemap-wrapper .sitemap-menu-grid ul {
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+    .sitemap-wrapper .sitemap-menu-grid ul li {
+      font-size: 18px;
+      line-height: 40px; }
 
 @media (max-width: 1355px) and (min-width: 750px) {
   .hide_tab {

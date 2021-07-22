@@ -3425,7 +3425,7 @@ body[data-template="know-your-diamond"] {
     position: relative;
     padding-bottom: 40.64%;
     @media(max-width: $md) {
-      padding-bottom: 375px;
+      padding-bottom: 431px;
     }
     img {
       height: 100%;
@@ -3463,7 +3463,7 @@ body[data-template="know-your-diamond"] {
         position: static;
         color: #000;
         text-align: center !important;
-        padding-top:13px;
+        padding-top:20px;
         padding-bottom:0;
       }
       .dia-container {
@@ -3550,7 +3550,7 @@ body[data-template="know-your-diamond"] {
     width: 100%;
     @media(max-width: $md) {
       bottom: auto;
-      top: 323px;
+      top: 390px;
     }
     li {
       width: auto;
@@ -5455,6 +5455,20 @@ body.layout_jewellery {
     &.jewellary-collection-layout-3 {
       .jewellary-collection-header {
         max-width: 1218px;
+        .content_holder {
+          p {
+            @media(max-width: $md) {
+              padding: 0 30px;
+            }
+          }
+        }
+      }
+      .jewellary-collection-btn-holder  {
+        .glb-btn {
+          @media(max-width: $md) {
+            padding: 7.6px 7px;
+          }
+        }
       }
     }
     .jewellary-collection-header {
@@ -5475,7 +5489,7 @@ body.layout_jewellery {
         position: relative;
         overflow: hidden;
         padding-bottom: 112%;
-        margin-bottom: 25px;
+        margin-bottom: 20px;
         img {
           position: absolute;
           height: 100%;
@@ -5580,7 +5594,7 @@ body.layout_jewellery {
           @media(max-width: $md) {
             width: 50%;
             padding: 0 7.5px;
-            margin-bottom: 17px;
+            margin-bottom: 20px;
           }
           &:hover {
             .image_holder {
@@ -5665,9 +5679,9 @@ body.layout_jewellery {
               }
               @media(max-width: $md) {
                 font-size: 12px;
-                line-height: 18px;
+                line-height: 12.96px;
                 margin-top: 6px;
-                margin-bottom: 4px;
+                margin-bottom: 8px;
               }
             }
             .more_btn {
@@ -6423,7 +6437,7 @@ body.layout_jewellery {
 // Solitaire PLP End
 
 // Common Layout 1 ( privacy-policy ) Start
-body[data-template="common-layout-1"] {
+body[data-template="common-layout-1"], body[data-template="sitemap"] {
   .main-content {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -6441,6 +6455,17 @@ body[data-template="common-layout-1"] {
   }
 }
 .common-layout-wrapper {
+  &.sp-sitemap-layout {
+    .custom-section-header {
+      h1 {
+        margin-bottom: 58px;
+        letter-spacing: normal;
+        @media(max-width: $md) {
+          margin: 0 0 20px;
+        }
+      }
+    }
+  }
   .custom-section-header {
     h1 {
       @include heading-fonts();
@@ -7289,6 +7314,55 @@ body[data-template="404"] {
   }
 }
 // 404 End
+
+// sitemap start
+.sitemap-wrapper {
+  .sitemap-row {
+    h3 {
+      @include heading-fonts();
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #6C1D45;
+      font-size: 24px;
+      line-height: 37px;
+      margin: 0 0 37px;
+    }
+    &:not(:first-child) {
+      margin-top: 43px;
+    }
+  }
+  .sitemap-menu-grid {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -20px;
+    > li {
+      padding: 0 20px;
+      > a {
+        font-size: 22px;
+        font-family: 'Spectral';
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #6C1D45;
+        line-height: 23.76px;
+        display: block;
+        margin: 0 0 30px;
+      }
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      li {
+        font-size: 18px;
+        line-height: 40px;
+      }
+    }
+  }
+}
+// sitemap end
 
 
 // Responsive
