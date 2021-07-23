@@ -613,13 +613,19 @@ div#PageContainer.js-menu--is-open {
               display: block;
               width: 490px; }
           #AccessibleNav .site-nav .site-nav__dropdown .site-nav__childlist .site-nav__childlist-grid .site-nav__childlist--group .site-nav__childlist-item ul.site-nav__childlist--split-2-columns {
-            display: flex;
-            flex-direction: column;
-            max-height: 362px;
+            width: 246px;
+            column-count: 2;
             flex-wrap: wrap;
-            width: 246px; }
+            position: relative;
+            padding-bottom: 59px; }
             #AccessibleNav .site-nav .site-nav__dropdown .site-nav__childlist .site-nav__childlist-grid .site-nav__childlist--group .site-nav__childlist-item ul.site-nav__childlist--split-2-columns li {
-              width: 140px; }
+              width: 140px;
+              display: inline-block; }
+              #AccessibleNav .site-nav .site-nav__dropdown .site-nav__childlist .site-nav__childlist-grid .site-nav__childlist--group .site-nav__childlist-item ul.site-nav__childlist--split-2-columns li:last-child.last_menu_item {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0; }
 
 .currency-box-wrapper {
   position: relative;
@@ -1863,10 +1869,10 @@ body.landing-exist.scroll-start #shopify-section-landing {
         display: none; } }
   .home-sld .shop-loose-diamond2-slider {
     position: relative;
-    margin-top: 50px; }
+    margin-top: 30px; }
     @media screen and (max-width: 749px) {
       .home-sld .shop-loose-diamond2-slider {
-        margin-top: 20px; } }
+        margin-top: 0; } }
     .home-sld .shop-loose-diamond2-slider .slick-arrow {
       width: 25px;
       height: 60px;
@@ -1925,21 +1931,21 @@ body.landing-exist.scroll-start #shopify-section-landing {
             right: -18px; } }
     .home-sld .shop-loose-diamond2-slider .shop-loose-diamond2-slide .shop-loose-diamond2-slide-inner {
       text-align: center;
-      padding: 0 30px; }
+      padding: 20px 30px 0; }
       .home-sld .shop-loose-diamond2-slider .shop-loose-diamond2-slide .shop-loose-diamond2-slide-inner a:hover .img_holder {
-        border-color: #6C1D45; }
+        box-shadow: 0 5px 14px 3px rgba(0, 0, 0, 0.35);
+        -webkit-box-shadow: 0 5px 14px 3px rgba(0, 0, 0, 0.35); }
       .home-sld .shop-loose-diamond2-slider .shop-loose-diamond2-slide .shop-loose-diamond2-slide-inner a:hover .caption_holder:after {
         transform: scale(1); }
       @media screen and (max-width: 749px) {
         .home-sld .shop-loose-diamond2-slider .shop-loose-diamond2-slide .shop-loose-diamond2-slide-inner {
-          padding: 0 15px; } }
+          padding: 20px 15px 0; } }
       .home-sld .shop-loose-diamond2-slider .shop-loose-diamond2-slide .shop-loose-diamond2-slide-inner .img_holder {
         min-height: 1px;
         padding-bottom: 81%;
         position: relative;
         max-width: 185px;
         margin: 0 auto;
-        border: 2px solid transparent;
         transition: all 0.4s;
         -o-transition: all 0.4s;
         -ms-transition: all 0.4s;
@@ -2095,6 +2101,15 @@ body.landing-exist.scroll-start #shopify-section-landing {
         line-height: 10.8px;
         padding: 8px 13px 6px;
         font-weight: 300; } }
+    @media (max-width: 576px) {
+      .site-footer .site-footer__newsletter .input-group__field::-webkit-input-placeholder {
+        text-transform: uppercase; } }
+    @media (max-width: 576px) {
+      .site-footer .site-footer__newsletter .input-group__field:-ms-input-placeholder {
+        text-transform: uppercase; } }
+    @media (max-width: 576px) {
+      .site-footer .site-footer__newsletter .input-group__field::placeholder {
+        text-transform: uppercase; } }
   @media (max-width: 1600px) and (min-width: 750px) {
     .site-footer .site-footer__content {
       padding-left: 0;
@@ -2206,9 +2221,10 @@ body.landing-exist.scroll-start #shopify-section-landing {
               letter-spacing: 0.05em; }
               @media (max-width: 749px) {
                 .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="link_list"] .site-footer__item-inner--link_list .site-footer__linklist .site-footer__linklist-item .site-footer__sub-linklist .site-footer__sub-linklist-item {
-                  font-size: 11px;
-                  line-height: 11.88px;
-                  margin-bottom: 13px; } }
+                  font-size: 12px;
+                  line-height: 26.4px;
+                  margin-bottom: 0;
+                  letter-spacing: normal; } }
               .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="link_list"] .site-footer__item-inner--link_list .site-footer__linklist .site-footer__linklist-item .site-footer__sub-linklist .site-footer__sub-linklist-item:last-child {
                 margin-bottom: 0; }
               .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="link_list"] .site-footer__item-inner--link_list .site-footer__linklist .site-footer__linklist-item .site-footer__sub-linklist .site-footer__sub-linklist-item a {
@@ -2262,7 +2278,8 @@ body.landing-exist.scroll-start #shopify-section-landing {
             font-size: 16px;
             line-height: 17.28px;
             letter-spacing: normal;
-            margin-bottom: 20px; } }
+            margin-bottom: 20px;
+            font-weight: 400; } }
       .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] .site-footer__item-inner--newsletter > p {
         font-size: 14px;
         letter-spacing: 0.05em;
@@ -2276,15 +2293,15 @@ body.landing-exist.scroll-start #shopify-section-landing {
             letter-spacing: normal; } }
       .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] .site-footer__item-inner--newsletter .footer-social__icns {
         display: flex;
-        padding-top: 20px;
-        align-items: baseline; }
+        padding-top: 30px;
+        align-items: center; }
         @media (max-width: 749px) {
           .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] .site-footer__item-inner--newsletter .footer-social__icns {
             flex-wrap: wrap; } }
         .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] .site-footer__item-inner--newsletter .footer-social__icns .footer-social-icns-label {
           flex: 1 1 31%;
-          min-width: 78px;
-          max-width: 78px; }
+          min-width: 100px;
+          max-width: 100px; }
           @media (max-width: 749px) {
             .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] .site-footer__item-inner--newsletter .footer-social__icns .footer-social-icns-label {
               max-width: 100%;
@@ -2295,25 +2312,25 @@ body.landing-exist.scroll-start #shopify-section-landing {
               display: none; } }
           .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] .site-footer__item-inner--newsletter .footer-social__icns .footer-social-icns-label > span {
             text-transform: uppercase;
-            font-size: 14px;
+            font-size: 18px;
             color: #6C1D45;
             display: block;
-            line-height: 15.12px;
-            text-align: right;
+            line-height: 20.7px;
             position: relative; }
             @media (max-width: 749px) {
               .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] .site-footer__item-inner--newsletter .footer-social__icns .footer-social-icns-label > span {
                 text-align: left; } }
             .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] .site-footer__item-inner--newsletter .footer-social__icns .footer-social-icns-label > span.small-text {
-              font-size: 10px;
-              display: none; }
+              font-size: 14px;
+              line-height: 1; }
         .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] .site-footer__item-inner--newsletter .footer-social__icns .site-footer__social-icons {
           flex: 1 1 69%;
           display: flex;
           justify-content: space-between;
           align-items: center;
           padding-left: 15px;
-          padding-bottom: 0; }
+          padding-bottom: 0;
+          padding-top: 0; }
           @media (max-width: 749px) {
             .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] .site-footer__item-inner--newsletter .footer-social__icns .site-footer__social-icons {
               flex: 1 1 100%;
@@ -2338,7 +2355,12 @@ body.landing-exist.scroll-start #shopify-section-landing {
               @media (max-width: 749px) {
                 .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] .site-footer__item-inner--newsletter .footer-social__icns .site-footer__social-icons .social-icons__item .social-icons__link {
                   width: 20px;
-                  height: 20px; } }
+                  height: 20px;
+                  padding: 4px; } }
+              @media (max-width: 749px) {
+                .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] .site-footer__item-inner--newsletter .footer-social__icns .site-footer__social-icons .social-icons__item .social-icons__link svg {
+                  width: 100%;
+                  height: 100%; } }
               .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] .site-footer__item-inner--newsletter .footer-social__icns .site-footer__social-icons .social-icons__item .social-icons__link .icon {
                 width: 20px;
                 height: 20px;
@@ -2443,9 +2465,10 @@ body.landing-exist.scroll-start #shopify-section-landing {
             padding: 0;
             text-align: center;
             margin-bottom: 16px;
-            font-size: 9px;
-            line-height: 9.72px;
-            width: 25%; } }
+            font-size: 10px;
+            line-height: 10.8px;
+            width: 25%;
+            font-weight: 300; } }
         .site-footer .footer-bottom__nav .footer_bottom__nav--list-items .footer_bottom__nav--list-item:first-child {
           text-align: left; }
         .site-footer .footer-bottom__nav .footer_bottom__nav--list-items .footer_bottom__nav--list-item:nth-child(4) {
@@ -2627,7 +2650,7 @@ body[data-template="know-your-diamond"] .main-content p {
     @media (max-width: 749px) {
       .full_width_slider_wrapper.jewellery-collection-slider .full_width_slide_item .slider-caption-wrapper .slider-caption-holder h2 {
         font-size: 28px;
-        line-height: 35.24px;
+        line-height: 30.24px;
         color: #6c1d45; } }
     .full_width_slider_wrapper.jewellery-collection-slider .full_width_slide_item .slider-caption-wrapper .slider-caption-holder h2:last-child {
       margin: 0; }
@@ -2730,7 +2753,7 @@ body[data-template="know-your-diamond"] .main-content p {
             font-size: 28px;
             line-height: 35.24px;
             color: #6C1D45;
-            margin-bottom: 9px; } }
+            margin-bottom: 20px; } }
       .full_width_slider_wrapper .full_width_slide_item .slider-caption-wrapper .slider-caption-holder .cap_content {
         margin-bottom: 90px; }
         @media (max-width: 1199px) {
@@ -2738,14 +2761,15 @@ body[data-template="know-your-diamond"] .main-content p {
             margin-bottom: 30px; } }
         @media (max-width: 749px) {
           .full_width_slider_wrapper .full_width_slide_item .slider-caption-wrapper .slider-caption-holder .cap_content {
-            margin-bottom: 18px; } }
+            margin-bottom: 20px; } }
         .full_width_slider_wrapper .full_width_slide_item .slider-caption-wrapper .slider-caption-holder .cap_content p {
           font-family: Montserrat;
           font-size: 26px;
           line-height: 28.08px;
           margin-bottom: 194px;
           color: inherit;
-          margin: 0; }
+          margin: 0;
+          font-weight: 300; }
           @media (max-width: 1600px) {
             .full_width_slider_wrapper .full_width_slide_item .slider-caption-wrapper .slider-caption-holder .cap_content p {
               font-size: 16px;
@@ -3114,7 +3138,7 @@ body[data-template="know-your-diamond"] .main-content p {
   padding-bottom: 100px; }
   @media (max-width: 749px) {
     .collection-slider-wrapper {
-      padding-bottom: 60px;
+      padding-bottom: 45px;
       padding-top: 0; } }
   .collection-slider-wrapper .collection-slider-header h2 {
     text-align: center;
@@ -4626,14 +4650,16 @@ body.layout_jewellery h2 {
                   .jewellary-collection-wrapper .jewellary-collection-row .jewellary-collection-grid .jewellary-collection-block .jewellary-collection-card .content_holder .more_btn:before {
                     width: 0.5vw;
                     height: 0.7vw;
-                    background-size: 0.5vw; } }
+                    background-size: 0.5vw;
+                    top: 0.1vw; } }
                 @media (max-width: 749px) {
                   .jewellary-collection-wrapper .jewellary-collection-row .jewellary-collection-grid .jewellary-collection-block .jewellary-collection-card .content_holder .more_btn:before {
                     width: 7px;
                     height: 5.75px;
                     background-size: 5px;
                     right: -6px;
-                    margin-top: -2px; } }
+                    margin-top: -2px;
+                    top: 5px; } }
               .jewellary-collection-wrapper .jewellary-collection-row .jewellary-collection-grid .jewellary-collection-block .jewellary-collection-card .content_holder .more_btn:after {
                 content: "";
                 height: 1px;
@@ -4815,10 +4841,11 @@ body.layout_jewellery h2 {
     @media (max-width: 749px) {
       .solitaire-collection-wrapper .glb-sec-header {
         margin-top: 20px;
-        margin-bottom: 20px; } }
+        margin-bottom: 60px; } }
     @media (max-width: 749px) {
       .solitaire-collection-wrapper .glb-sec-header h2 {
-        margin-bottom: 26px; } }
+        margin-bottom: 20px;
+        padding: 0 20px; } }
     .solitaire-collection-wrapper .glb-sec-header p {
       font-weight: 300; }
   .solitaire-collection-wrapper .filters-toolbar-wrapper {
@@ -5123,7 +5150,7 @@ body.layout_jewellery h2 {
           margin-bottom: 30px; } }
       @media (max-width: 749px) {
         .custom-row .custom-content-column .content-holder h2 {
-          margin-bottom: 25px; } }
+          margin-bottom: 20px; } }
     .custom-row .custom-content-column .content-holder p {
       font-weight: 300; }
       @media (max-width: 749px) {
@@ -5169,7 +5196,7 @@ body.layout_jewellery h2 {
       .loadmore-btn-holder .loadMore-btn {
         font-size: 12px;
         line-height: 12.96px;
-        padding: 10px 15px; } }
+        padding: 8px 15px; } }
   .loadmore-btn-holder .loder-spiner {
     margin: 0 auto;
     width: 30px;
@@ -5766,7 +5793,7 @@ body[data-template="common-layout-1"] .main-content, body[data-template="sitemap
   padding-bottom: 0; }
   @media (max-width: 749px) {
     .jewellery-pdp-col-slider-md .collection-slider-wrapper {
-      padding-top: 60px; } }
+      padding-top: 45px; } }
 
 body[data-template="404"] .main-content {
   padding: 0; }

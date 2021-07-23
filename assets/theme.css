@@ -7047,7 +7047,7 @@ hr {
 
 body[data-template="index"] #shopify-section-header,
 body.has_top_banner #shopify-section-header {
-  position: fixed;
+  position: absolute;
   width: 100%;
   top:0px;
   left: 0px;
@@ -7068,12 +7068,14 @@ body.has_top_banner #shopify-section-header .site-header__mobile-nav {
 
 body #shopify-section-header.header-bg {
   background-color: var(--color-body);
-  top: -43px !important;
-  
+  position: fixed;
 }
 #shopify-section-header sup, .slide-overaly-heading sup, h1 sup, h2 sup, #shopify-section-footer sup {
   font-size: 70%;
   top: -10px;
+}
+sup, .slide-overaly-heading sup, h1 sup, h2 sup {
+  top:-15px;
 }
 @media(min-width: 750px) {
   #shopify-section-header {
@@ -7084,6 +7086,9 @@ body #shopify-section-header.header-bg {
   }
   .mobile_view_show .header-bg .site-header {
     padding-top: 16.5px;
+  }
+  .header-bg .announcement-bar {
+    display: none;
   }
 }
 
