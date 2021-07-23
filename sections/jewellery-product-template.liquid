@@ -1,3 +1,12 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- if product.variant.size == 1 and product.has_only_default_variant -%}
+{%- assign delivery_days_instock = product.metafields.global.delivery_days_instock -%}
+{%- else -%}
+{%- assign delivery_days_instock = product.metafields.global.delivery_days_instock -%}
+
+
+{%- endif -%}
+
 <div class="product-template__container" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}"
     data-section-type="product" data-enable-history-state="true" data-ajax-enabled="{{ settings.enable_ajax }}">
     <div class="dia-container">
@@ -5,7 +14,7 @@
         Get first variant, or deep linked one
         {% endcomment %}
 
-        {%- assign current_variant = product.selected_or_first_available_variant -%}
+        
         {%- assign product_image_zoom_size = '1024x1024' -%}
         {%- assign product_image_scale = '2' -%}
         {%- assign enable_image_zoom = section.settings.enable_image_zoom -%}
@@ -93,13 +102,18 @@
                 <div class="product-single__meta">
                     {%- assign current_variant = product.selected_or_first_available_variant -%}
                     <h1 class="product-single__title">{{ product.title }}</h1>
+                    {%- if template contains 'loose-stone' -%}
+                    {%- else -%}
                     <div class="product-sku-wrapper">
+                        {%- if current_variant.sku != blank -%}
                         <div class="p_sku">SKU: {{ current_variant.sku }}</div>
                         <div class="p_weight_guide"><a href="javascript:void(0);">Carat Weight Guide</a></div>
+                        {%- endif -%}
                     </div>
+                    {%- endif -%}
                     <div class="product-wishlist">
-                        <div class="wishlist-icon"><img src="{{ 'Vector.png' | asset_url }}"  alt="SAVE TO WISHLIST"></div>
                         <div class="wishlist-text">SAVE TO WISHLIST</div>
+                        <div class="wishlist-icon"><img class="lazyload" data-src="{{ 'Vector.png' | asset_url }}"  alt="SAVE TO WISHLIST"></div>
                     </div>
                    
                     {%- if cart.taxes_included or shop.shipping_policy.body != blank -%}
@@ -135,8 +149,8 @@
                                 {% for value in option.values %}
                                 <div class="custom-checkbox">
                                     <input class="single-option-selector-{{ section.id }}" id="color-{{ forloop.index }}" type="radio" value="{{ value | escape }}"  data-index="option{{ indexVal }}" name="color" {% if option.selected_value==value %}checked{% endif %}>
-                                    <span class="custom_check {{ value | downcase | replace:'gold','' | escape }}">14k</span>
-                                    <label for="color-{{ forloop.index }}">14k {{ value }}</label>
+                                    <span class="custom_check {{ value | downcase | replace:'gold','' | escape }}">{{ value | slice: 0, 3}}</span>
+                                    <label for="color-{{ forloop.index }}">{{ value }}</label>
                                 </div>
                                 {% endfor %}
                             </div>
@@ -237,7 +251,9 @@
                         </span>
                         <input type="text" id="delivery-check" placeholder="Enter pincode">
                     </div>
-                    <div class="delivery-check-date">Delivery by Wed, Jan 30 for Pincode</div>
+                    {%- if delivery_days_instock != blank -%}
+                    <div class="delivery-check-date">{{ delivery_days_instock }}</div>
+                    {%- endif -%}
                 </div>
 
                 <div class="product-details-btn-grid">

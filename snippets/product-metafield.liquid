@@ -1,4 +1,5 @@
 <!-- Product Metafield Code -->
+{%- comment -%}
 <div class="product-details-wrapper">
     <p>PRODUCT DETAILS</p>
     {% assign productMetafield = product.metafields.global %}
@@ -30,6 +31,13 @@
         </div>
     </div>
     {% endif %}
+    {% endfor %}
+</div>
+{%- endcomment -%}
+
+<div class="product-details-wrapper">
+    <p>PRODUCT DETAILS</p>
+    {% assign productMetafield = product.metafields.global %}
     {% endfor %}
 </div>
 
