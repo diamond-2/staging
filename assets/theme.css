@@ -7077,6 +7077,16 @@ body #shopify-section-header.header-bg {
 sup, .slide-overaly-heading sup, h1 sup, h2 sup {
   top:-15px;
 }
+@media(max-width: 1600px) {
+  sup, .slide-overaly-heading sup, h1 sup, h2 sup {
+    top:-12px;
+  }
+}
+@media(max-width: 1460px) {
+  sup, .slide-overaly-heading sup, h1 sup, h2 sup {
+    top:-10px;
+  }
+}
 @media(min-width: 750px) {
   #shopify-section-header {
     margin-top:0;

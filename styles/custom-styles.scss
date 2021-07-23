@@ -21,7 +21,7 @@ $input-field-border-color:#6679CC;
     line-height: 1.8;
   }
   @media(max-width: $md) {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 18px;
   }
 }
@@ -1960,7 +1960,6 @@ body{
           .slide-overaly-heading {
             @include heading-fonts();
             @include font-range-45to25();
-            line-height: 1.25;
             letter-spacing: 0;
             margin-bottom: 90px;
             text-transform: uppercase;
@@ -1973,9 +1972,9 @@ body{
             }
           }
           .slide-overaly-subheading {
-            line-height: 33.08px;
+            line-height: 28.08px;
             @media(max-width:$md) {
-              font-size: 12px;
+              font-size: 14px;
               line-height: 18px;
             }
             br {
@@ -2021,16 +2020,6 @@ body{
               right: initial;
               text-align: center;
             }
-            // .slide-overaly-heading {
-            //   @media(min-width: $xxl) {
-            //     margin-bottom: 90px;
-            //   }
-            // }
-            // .slide-overlay-link {
-            //   @media(min-width: $xxl) {
-            //     margin-top: 194px;
-            //   }
-            // }
           }
         }
       }
@@ -2067,7 +2056,6 @@ body{
       }
     }
   }
-
   /* Home page section --  image with text */
   .homepage-image-text {
     .feature-row {
@@ -2579,7 +2567,7 @@ body{
         }
         h2 {
           text-transform: uppercase;
-          margin-bottom: 44px;;
+          margin-bottom: 53px;;
           @media screen and (max-width: $md) {
             margin-bottom: 20px;
           }
@@ -2612,9 +2600,6 @@ body{
           -o-transform: translateY(-50%);
           transform: translateY(-50%);
           background-image: none !important;
-          @media(max-width: $md) {
-            margin-top: -12px;
-          }
           &.slick-disabled {
             opacity: 0;
             visibility: hidden;
@@ -2752,9 +2737,9 @@ body{
       }   
       .sld-collection-link {
         text-align: center;
-        padding: 60px 0px 0px;
+        padding: 50px 0px 0px;
         @media(max-width: $md) {
-          padding: 16px 0 0;
+          padding: 22px 0 0;
         }
       } 
   }
@@ -2937,6 +2922,7 @@ body{
                     display: block;
                     padding-bottom: 29px;
                     letter-spacing: 0.05em;
+                    line-height: 17.28px;
                     position: relative;
                     @media(max-width: $md) {
                       padding-top: 0;
@@ -3303,7 +3289,7 @@ body{
 body[data-template="know-your-diamond"] {
   .home-sld {
     padding-top: 55px;
-    padding-bottom: 100px;
+    padding-bottom: 90px;
     @media(max-width: $md) {
       padding-top: 0;
       padding-bottom: 60px;
@@ -3330,7 +3316,7 @@ body[data-template="know-your-diamond"] {
         .slide-item {
           .slide-overlay {
             @media(max-width: $md) {
-              padding-top: 22px;
+              padding-top: 20px;
             }
             .slide-overaly-subheading {
               @media(max-width: $md) {
@@ -3339,7 +3325,7 @@ body[data-template="know-your-diamond"] {
             }
             .slide-overlay-link {
               @media(max-width: $md) {
-                margin-top: 13px;
+                margin-top: 5px;
               }
             }
           }
@@ -3552,6 +3538,9 @@ body[data-template="know-your-diamond"] {
               text-transform: uppercase;
             }
           }
+          .glb-btn {
+            font-weight: 400;
+          }
         }
       }
     }
@@ -3635,7 +3624,7 @@ body[data-template="know-your-diamond"] {
     padding-bottom: 60px;
   }
   .content-with-image-diamond-section-row:not(:last-child) {
-    margin-bottom: 100px;
+    margin-bottom: 107px;
     @media(max-width: $xxl) and (min-width: $postMd) {
       margin-bottom: 50px;
     }
@@ -3766,7 +3755,7 @@ body[data-template="know-your-diamond"] {
         text-align: center;
       }
       h2 {
-        margin-bottom: 84px;
+        margin-bottom: 91px;
         @media(max-width: $xxl) and (min-width: $postMd) {
           margin-bottom: 20px;
         }
@@ -3884,7 +3873,7 @@ body[data-template="know-your-diamond"] {
   }
 }
 .why-diamond2-section {
-  padding: 93px 0 96px;
+  padding: 100px 0 100px;
   @media(max-width: $xxl) {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -3894,7 +3883,7 @@ body[data-template="know-your-diamond"] {
     padding-bottom: 60px;
   }
   h2 {
-    margin-bottom: 44px;
+    margin-bottom: 51px;
     @media(max-width: $md) {
       margin-bottom: 20px;
       max-width: 230px;
@@ -3915,7 +3904,7 @@ body[data-template="know-your-diamond"] {
   }
 }
 .ethically-produced-section {
-  padding: 43px 0 103px;
+  padding: 50px 0 100px;
   @media(max-width: $xxl) {
     padding-top:50px;
     padding-bottom:50px;
@@ -3925,7 +3914,7 @@ body[data-template="know-your-diamond"] {
     padding-bottom:60px;
   }
   h2 {
-    margin-bottom: 46px;
+    margin-bottom: 50px;
     @media(max-width: $md) {
       margin-bottom: 20px;
       max-width: 245px;
@@ -3947,7 +3936,7 @@ body[data-template="know-your-diamond"] {
   }
 }
 .trust-for-life-section {
-  padding: 45px 0 51px;
+  padding: 50px 0 51px;
   @media(max-width: $xxl) {
     padding-top:50px;
     padding-bottom:50px;
@@ -3957,18 +3946,18 @@ body[data-template="know-your-diamond"] {
     padding-bottom: 60px;
   }
   h2 {
-    margin-bottom: 43px;
+    margin-bottom: 51px;
     @media(max-width: $md) {
-      margin-bottom: 13px;
+      margin-bottom: 20px;
       max-width: 200px;
       margin-left: auto;
       margin-right: auto;
     }
   }
   .trust-for-life-des:not(:last-child) {
-    margin-bottom: 54.5px;
+    margin-bottom: 50px;
     @media(max-width: $md) {
-      margin-bottom: 19px;
+      margin-bottom: 20px;
       padding: 0 10px
     }
   }
@@ -4012,6 +4001,7 @@ body[data-template="know-your-diamond"] {
     .glb-btn {
       @media(min-width: $postMd) {
         padding: 20px 46px;
+        font-weight: 400;
       }
     }
     @media(max-width: $md) {
@@ -4065,6 +4055,7 @@ body[data-template="know-your-diamond"] {
       line-height: 19.44px;
       font-family: Montserrat;
       text-transform: uppercase;
+      font-weight: 500;
       @media(max-width: $md) {
         font-size: 12px;
         line-height: 18px;
@@ -5466,7 +5457,7 @@ body.layout_jewellery {
 
 
 .jewellary-collection-wrapper {
-  padding-top: 93px;
+  padding-top: 100px;
   @media(max-width: $md) {
     padding-top: 60px;
   }
@@ -6260,8 +6251,7 @@ body.layout_jewellery {
       .img_holder {
         position: relative;
         overflow: hidden;
-        height: 90.9%;
-        padding-bottom: 100%;
+        padding-bottom: 109.6%;
         @media(max-width: $md) {
           height: auto;
           padding-bottom: 71.6%;
@@ -6314,7 +6304,7 @@ body.layout_jewellery {
         }
         .grid__item {
           width: 50%;
-          margin-bottom: 0;
+          margin-bottom: -9px;
           @media(max-width: $md) {
             margin-bottom: 10px;
           }
@@ -6343,7 +6333,7 @@ body.layout_jewellery {
     }
     .content-holder {
       h2 {
-        margin-bottom: 62px;
+        margin-bottom: 50px;
         @media(max-width: $xl) {
           margin-bottom: 30px;
         }
@@ -6404,6 +6394,7 @@ body.layout_jewellery {
     font-size: 22px;
     line-height: 23.76px;
     padding: 22px 31px;
+    font-weight: 400;
     @media(max-width: $md) {
       font-size: 12px;
       line-height: 12.96px;
@@ -6457,6 +6448,7 @@ body.layout_jewellery {
   line-height: 22px;
   letter-spacing: -0.02em;
   display: inline-block;
+  font-weight: 400;
   .back_top_text {
     min-width: 110px;
     display: inline-block;
