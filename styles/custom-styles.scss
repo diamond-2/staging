@@ -21,7 +21,7 @@ $input-field-border-color:#6679CC;
     line-height: 1.8;
   }
   @media(max-width: $md) {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 18px;
   }
 }
@@ -50,7 +50,7 @@ $input-field-border-color:#6679CC;
 
 @mixin base-font(){
   font-family: 'Montserrat', sans-serif;
-  font-weight:normal;
+  font-weight:300;
 }
 
 @mixin heading-fonts() {
@@ -179,6 +179,7 @@ $input-field-border-color:#6679CC;
   }
 }
 
+
 $viewportIncrement: 1px;
 
 $sm: 576px;
@@ -287,6 +288,9 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
 =================================================================================*/
 * {
   outline: none !important;
+}
+body {
+  font-weight: 300;
 }
 .main-content h2 {
     @include font-range-45to25();
@@ -1062,13 +1066,22 @@ div#PageContainer {
               .site-nav__childlist-item{
                 ul {
                   &.site-nav__childlist--split-2-columns{
-                    display: flex;
-                    flex-direction: column;
-                    max-height: 362px;
-                    flex-wrap: wrap;
                     width: 246px;
+                    column-count: 2;
+                    flex-wrap: wrap;
+                    position: relative;
+                    padding-bottom: 59px;
                     li {
                       width: 140px;
+                      display: inline-block;
+                      &:last-child {
+                        &.last_menu_item {
+                          position: absolute;
+                          bottom: 0;
+                          left: 0;
+                          right: 0;
+                        }
+                      }
                     }
                   }
                 }
@@ -1947,7 +1960,6 @@ body{
           .slide-overaly-heading {
             @include heading-fonts();
             @include font-range-45to25();
-            line-height: 1.25;
             letter-spacing: 0;
             margin-bottom: 90px;
             text-transform: uppercase;
@@ -1960,9 +1972,9 @@ body{
             }
           }
           .slide-overaly-subheading {
-            line-height: 33.08px;
+            line-height: 28.08px;
             @media(max-width:$md) {
-              font-size: 12px;
+              font-size: 14px;
               line-height: 18px;
             }
             br {
@@ -2008,16 +2020,6 @@ body{
               right: initial;
               text-align: center;
             }
-            // .slide-overaly-heading {
-            //   @media(min-width: $xxl) {
-            //     margin-bottom: 90px;
-            //   }
-            // }
-            // .slide-overlay-link {
-            //   @media(min-width: $xxl) {
-            //     margin-top: 194px;
-            //   }
-            // }
           }
         }
       }
@@ -2054,7 +2056,6 @@ body{
       }
     }
   }
-
   /* Home page section --  image with text */
   .homepage-image-text {
     .feature-row {
@@ -2566,7 +2567,7 @@ body{
         }
         h2 {
           text-transform: uppercase;
-          margin-bottom: 44px;;
+          margin-bottom: 53px;;
           @media screen and (max-width: $md) {
             margin-bottom: 20px;
           }
@@ -2583,9 +2584,9 @@ body{
       }   
       .shop-loose-diamond2-slider {
         position: relative;
-        margin-top: 50px;
+        margin-top: 30px;
         @media screen and (max-width: $md) {
-          margin-top: 20px;
+          margin-top: 0;
         }
         .slick-arrow{
           width: 25px;
@@ -2599,9 +2600,6 @@ body{
           -o-transform: translateY(-50%);
           transform: translateY(-50%);
           background-image: none !important;
-          @media(max-width: $md) {
-            margin-top: -12px;
-          }
           &.slick-disabled {
             opacity: 0;
             visibility: hidden;
@@ -2655,7 +2653,7 @@ body{
             a {
               &:hover {
                 .img_holder {
-                  border-color: $textcolor-phanton;
+                  @include cardHover();
                 }
                 .caption_holder {
                   &:after {
@@ -2665,9 +2663,9 @@ body{
               }
             }
             text-align: center;
-            padding: 0 30px;
+            padding: 20px 30px 0;
             @media screen and(max-width: $md) {
-              padding: 0 15px;              
+              padding: 20px 15px 0;              
             }
             .img_holder {
               min-height: 1px;
@@ -2675,7 +2673,6 @@ body{
               position: relative;
               max-width: 185px;
               margin: 0 auto;
-              border: 2px solid transparent;
               @include transition();
               overflow: hidden;
               &:hover {
@@ -2740,9 +2737,9 @@ body{
       }   
       .sld-collection-link {
         text-align: center;
-        padding: 60px 0px 0px;
+        padding: 50px 0px 0px;
         @media(max-width: $md) {
-          padding: 16px 0 0;
+          padding: 22px 0 0;
         }
       } 
   }
@@ -2848,6 +2845,21 @@ body{
           padding: 8px 13px 6px;
           font-weight: 300;
         }
+        &::-webkit-input-placeholder {
+          @media (max-width: $sm) {
+            text-transform: uppercase;
+          }
+        }
+        &:-ms-input-placeholder {
+          @media (max-width: $sm) {
+            text-transform: uppercase;
+          }
+        }
+        &::placeholder {
+          @media (max-width: $sm) {
+            text-transform: uppercase;
+          }
+        }
       }
     }
     .site-footer__content{
@@ -2910,6 +2922,7 @@ body{
                     display: block;
                     padding-bottom: 29px;
                     letter-spacing: 0.05em;
+                    line-height: 17.28px;
                     position: relative;
                     @media(max-width: $md) {
                       padding-top: 0;
@@ -2961,9 +2974,10 @@ body{
                         line-height: 15.12px;
                         letter-spacing: 0.05em;
                         @media(max-width: $md) {
-                          font-size: 11px;
-                          line-height: 11.88px;
-                          margin-bottom: 13px;
+                          font-size: 12px;
+                          line-height: 26.4px;
+                          margin-bottom: 0;
+                          letter-spacing: normal;
                         }
                         &:last-child {
                           margin-bottom: 0;
@@ -3020,6 +3034,7 @@ body{
                   line-height: 17.28px;
                   letter-spacing: normal;
                   margin-bottom: 20px;
+                  font-weight: 400;
                 }
               }
               > p{
@@ -3036,15 +3051,15 @@ body{
               }
               .footer-social__icns {
                 display: flex;
-                padding-top: 20px;
-                align-items: baseline;
+                padding-top: 30px;
+                align-items: center;
                 @media(max-width: $md) {
                   flex-wrap: wrap;
                 }
                 .footer-social-icns-label {
                   flex: 1 1 31%;
-                  min-width: 78px;
-                  max-width: 78px;
+                  min-width: 100px;
+                  max-width: 100px;
                   @media(max-width: $md) {
                     max-width: 100%;
                     min-width: 0;
@@ -3055,18 +3070,17 @@ body{
                   }
                   & > span {
                     text-transform: uppercase;
-                    font-size: 14px;
+                    font-size: 18px;
                     color:$textcolor-phanton;
                     display: block;
-                    line-height: 15.12px;
-                    text-align:right;
+                    line-height: 20.7px;
                     position: relative;
                     @media(max-width: $md) {
                       text-align: left;
                     }
                     &.small-text {
-                      font-size: 10px;
-                      display: none;;
+                      font-size: 14px;
+                      line-height: 1;
                     }
                   }
                 }
@@ -3077,6 +3091,7 @@ body{
                   align-items: center;
                   padding-left: 15px;
                   padding-bottom: 0;
+                  padding-top: 0;
                   @media(max-width: $md) {
                     flex: 1 1 100%;
                     width: 10%;
@@ -3101,6 +3116,13 @@ body{
                       @media(max-width: $md) {
                         width: 20px;
                         height: 20px;
+                        padding: 4px;
+                      }
+                      svg {
+                        @media(max-width: $md) {
+                          width: 100%;
+                          height: 100%;
+                        }
                       }
                       .icon {
                           width: 20px;
@@ -3220,9 +3242,10 @@ body{
             padding: 0;
             text-align: center;
             margin-bottom: 16px;
-            font-size: 9px;
-            line-height: 9.72px;
+            font-size: 10px;
+            line-height: 10.8px;
             width: 25%;
+            font-weight: 300;
           }
           &:first-child {
             text-align: left;
@@ -3266,7 +3289,7 @@ body{
 body[data-template="know-your-diamond"] {
   .home-sld {
     padding-top: 55px;
-    padding-bottom: 100px;
+    padding-bottom: 90px;
     @media(max-width: $md) {
       padding-top: 0;
       padding-bottom: 60px;
@@ -3293,7 +3316,7 @@ body[data-template="know-your-diamond"] {
         .slide-item {
           .slide-overlay {
             @media(max-width: $md) {
-              padding-top: 22px;
+              padding-top: 20px;
             }
             .slide-overaly-subheading {
               @media(max-width: $md) {
@@ -3302,7 +3325,7 @@ body[data-template="know-your-diamond"] {
             }
             .slide-overlay-link {
               @media(max-width: $md) {
-                margin-top: 13px;
+                margin-top: 5px;
               }
             }
           }
@@ -3380,7 +3403,7 @@ body[data-template="know-your-diamond"] {
             }
             @media(max-width: $md) {
               font-size: 28px;
-              line-height: 35.24px;
+              line-height: 30.24px;
               color: #6c1d45;
             }
             &:last-child {
@@ -3493,7 +3516,7 @@ body[data-template="know-your-diamond"] {
             font-size: 28px;
             line-height: 35.24px;
             color: $textcolor-phanton;
-            margin-bottom: 9px;
+            margin-bottom: 20px;
           }
         }
         .cap_content {
@@ -3502,7 +3525,7 @@ body[data-template="know-your-diamond"] {
             margin-bottom: 30px;
           }
           @media(max-width: $md) {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
           }
           p {
             font-family: $glbFontFamily;
@@ -3510,9 +3533,13 @@ body[data-template="know-your-diamond"] {
             margin-bottom: 194px;
             color: inherit;
             margin: 0;
+            font-weight: 300;
             @media(max-width: $md) {
               text-transform: uppercase;
             }
+          }
+          .glb-btn {
+            font-weight: 400;
           }
         }
       }
@@ -3597,7 +3624,7 @@ body[data-template="know-your-diamond"] {
     padding-bottom: 60px;
   }
   .content-with-image-diamond-section-row:not(:last-child) {
-    margin-bottom: 100px;
+    margin-bottom: 107px;
     @media(max-width: $xxl) and (min-width: $postMd) {
       margin-bottom: 50px;
     }
@@ -3728,7 +3755,7 @@ body[data-template="know-your-diamond"] {
         text-align: center;
       }
       h2 {
-        margin-bottom: 84px;
+        margin-bottom: 91px;
         @media(max-width: $xxl) and (min-width: $postMd) {
           margin-bottom: 20px;
         }
@@ -3846,7 +3873,7 @@ body[data-template="know-your-diamond"] {
   }
 }
 .why-diamond2-section {
-  padding: 93px 0 96px;
+  padding: 100px 0 100px;
   @media(max-width: $xxl) {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -3856,7 +3883,7 @@ body[data-template="know-your-diamond"] {
     padding-bottom: 60px;
   }
   h2 {
-    margin-bottom: 44px;
+    margin-bottom: 51px;
     @media(max-width: $md) {
       margin-bottom: 20px;
       max-width: 230px;
@@ -3877,7 +3904,7 @@ body[data-template="know-your-diamond"] {
   }
 }
 .ethically-produced-section {
-  padding: 43px 0 103px;
+  padding: 50px 0 100px;
   @media(max-width: $xxl) {
     padding-top:50px;
     padding-bottom:50px;
@@ -3887,7 +3914,7 @@ body[data-template="know-your-diamond"] {
     padding-bottom:60px;
   }
   h2 {
-    margin-bottom: 46px;
+    margin-bottom: 50px;
     @media(max-width: $md) {
       margin-bottom: 20px;
       max-width: 245px;
@@ -3909,7 +3936,7 @@ body[data-template="know-your-diamond"] {
   }
 }
 .trust-for-life-section {
-  padding: 45px 0 51px;
+  padding: 50px 0 51px;
   @media(max-width: $xxl) {
     padding-top:50px;
     padding-bottom:50px;
@@ -3919,18 +3946,18 @@ body[data-template="know-your-diamond"] {
     padding-bottom: 60px;
   }
   h2 {
-    margin-bottom: 43px;
+    margin-bottom: 51px;
     @media(max-width: $md) {
-      margin-bottom: 13px;
+      margin-bottom: 20px;
       max-width: 200px;
       margin-left: auto;
       margin-right: auto;
     }
   }
   .trust-for-life-des:not(:last-child) {
-    margin-bottom: 54.5px;
+    margin-bottom: 50px;
     @media(max-width: $md) {
-      margin-bottom: 19px;
+      margin-bottom: 20px;
       padding: 0 10px
     }
   }
@@ -3956,7 +3983,7 @@ body[data-template="know-your-diamond"] {
   padding-top: 42px;
   padding-bottom: 100px;
   @media(max-width: $md) {
-    padding-bottom: 60px;
+    padding-bottom: 45px;
     padding-top:0;
   }
   .collection-slider-header {
@@ -3974,6 +4001,7 @@ body[data-template="know-your-diamond"] {
     .glb-btn {
       @media(min-width: $postMd) {
         padding: 20px 46px;
+        font-weight: 400;
       }
     }
     @media(max-width: $md) {
@@ -4027,6 +4055,7 @@ body[data-template="know-your-diamond"] {
       line-height: 19.44px;
       font-family: Montserrat;
       text-transform: uppercase;
+      font-weight: 500;
       @media(max-width: $md) {
         font-size: 12px;
         line-height: 18px;
@@ -5430,7 +5459,7 @@ body.layout_jewellery {
 
 
 .jewellary-collection-wrapper {
-  padding-top: 93px;
+  padding-top: 100px;
   @media(max-width: $md) {
     padding-top: 60px;
   }
@@ -5717,6 +5746,7 @@ body.layout_jewellery {
                   width: 0.5vw;
                   height: 0.7vw;
                   background-size: 0.5vw;
+                  top: 0.1vw;
                 }
                 @media(max-width: $md) {
                   width: 7px;
@@ -5724,6 +5754,7 @@ body.layout_jewellery {
                   background-size: 5px;
                   right: -6px;
                   margin-top: -2px;
+                  top: 5px;
                 }
               }
               &:after {
@@ -5944,11 +5975,12 @@ body.layout_jewellery {
     margin-bottom: 57.48px;
     @media(max-width: $md) {
       margin-top: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 60px;
     }
     h2 {
       @media(max-width: $md) {
-        margin-bottom: 26px;
+        margin-bottom: 20px;
+        padding: 0 20px;
       }
     }
     p {
@@ -6221,8 +6253,7 @@ body.layout_jewellery {
       .img_holder {
         position: relative;
         overflow: hidden;
-        height: 90.9%;
-        padding-bottom: 100%;
+        padding-bottom: 109.6%;
         @media(max-width: $md) {
           height: auto;
           padding-bottom: 71.6%;
@@ -6275,7 +6306,7 @@ body.layout_jewellery {
         }
         .grid__item {
           width: 50%;
-          margin-bottom: 0;
+          margin-bottom: -9px;
           @media(max-width: $md) {
             margin-bottom: 10px;
           }
@@ -6304,12 +6335,12 @@ body.layout_jewellery {
     }
     .content-holder {
       h2 {
-        margin-bottom: 62px;
+        margin-bottom: 50px;
         @media(max-width: $xl) {
           margin-bottom: 30px;
         }
         @media(max-width: $md) {
-          margin-bottom: 25px;
+          margin-bottom: 20px;
         }
       }
       p {
@@ -6365,10 +6396,11 @@ body.layout_jewellery {
     font-size: 22px;
     line-height: 23.76px;
     padding: 22px 31px;
+    font-weight: 400;
     @media(max-width: $md) {
       font-size: 12px;
       line-height: 12.96px;
-      padding: 10px 15px;
+      padding: 8px 15px;
     }
   }
   .loder-spiner {
@@ -6418,6 +6450,7 @@ body.layout_jewellery {
   line-height: 22px;
   letter-spacing: -0.02em;
   display: inline-block;
+  font-weight: 400;
   .back_top_text {
     min-width: 110px;
     display: inline-block;
@@ -7078,7 +7111,7 @@ body[data-template="common-layout-1"], body[data-template="sitemap"] {
     padding-top: 100px;
     padding-bottom: 0;
     @media(max-width: $md) {
-      padding-top:60px;
+      padding-top:45px;
     }
   }
 }

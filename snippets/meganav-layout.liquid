@@ -45,8 +45,7 @@
                           {% assign imgSrc = featuredImg %}
                         {% else %}
                         {% endif %}
-                        
-                        <li>
+                        <li {% if subnav.title contains ' all ' %}class="last_menu_item"{% endif %}>
                             <a {% if featuredImg != blank %}data-handle="{{ imgSrc }}"{% endif %} href="{{ subnav.url }}" class="site-nav__link site-nav__child-link {% if subnav.title contains ' all ' %}active_color{% endif %}">
                                 <span class="site-nav__label">{{ subnav.title | escape | replace: '®', '<sup>®</sup>' }} </span>
                             </a>

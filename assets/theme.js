@@ -10050,7 +10050,7 @@ window.addEventListener("resize", function() {
 
 var showMobileNav = false;
 function fixedHeaderBg(scrollPosition) {
-  if(scrollPosition > 50) {
+  if(scrollPosition > 80) {
     $('#shopify-section-header').addClass('header-bg')
   } else {
     $('#shopify-section-header').removeClass('header-bg')
