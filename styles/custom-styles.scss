@@ -50,7 +50,7 @@ $input-field-border-color:#6679CC;
 
 @mixin base-font(){
   font-family: 'Montserrat', sans-serif;
-  font-weight:normal;
+  font-weight:300;
 }
 
 @mixin heading-fonts() {
@@ -288,6 +288,9 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
 =================================================================================*/
 * {
   outline: none !important;
+}
+body {
+  font-weight: 300;
 }
 .main-content h2 {
     @include font-range-45to25();

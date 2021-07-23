@@ -9,6 +9,9 @@
 * {
   outline: none !important; }
 
+body {
+  font-weight: 300; }
+
 .main-content h2 {
   font-size: calc(25px + (100vw - 750px)/1170 * 20);
   line-height: calc(28px + (100vw - 750px)/1170 * 20);
@@ -1045,7 +1048,7 @@ body.js-menu--is-open {
                 height: 7px; } }
       #shopify-section-landing #main-landing-page .landing-content .landing-content-item .landing-top-content-item {
         font-family: 'Montserrat', sans-serif;
-        font-weight: normal;
+        font-weight: 300;
         font-size: 16px;
         color: #ffffff;
         text-transform: uppercase;
@@ -1317,7 +1320,7 @@ body.landing-exist.scroll-start #shopify-section-landing {
         font-size: 26px;
         text-align: left;
         font-family: 'Montserrat', sans-serif;
-        font-weight: normal; }
+        font-weight: 300; }
         @media screen and (min-width: 750px) and (max-width: 1199px) {
           .home--slider .homepage-slider-wrapper .slide-item .slide-overlay {
             bottom: 40px;
@@ -2214,7 +2217,7 @@ body.landing-exist.scroll-start #shopify-section-landing {
                 display: none; } }
             .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="link_list"] .site-footer__item-inner--link_list .site-footer__linklist .site-footer__linklist-item .site-footer__sub-linklist .site-footer__sub-linklist-item {
               font-family: 'Montserrat', sans-serif;
-              font-weight: normal;
+              font-weight: 300;
               margin-bottom: 15px;
               font-size: 14px;
               line-height: 15.12px;
@@ -2454,7 +2457,7 @@ body.landing-exist.scroll-start #shopify-section-landing {
         padding: 0 70px;
         font-size: 14px;
         font-family: 'Montserrat', sans-serif;
-        font-weight: normal;
+        font-weight: 300;
         line-height: 15.12px;
         color: #000000; }
         @media (max-width: 1600px) and (min-width: 750px) {
@@ -4286,7 +4289,7 @@ body[data-template="product"] .main-content {
           font-size: 14px;
           line-height: 17px;
           font-family: 'Montserrat', sans-serif;
-          font-weight: normal;
+          font-weight: 300;
           color: #000000; }
           @media (max-width: 1600px) {
             .product-details-wrapper .product-info-gird .product-info-gird_column .product-info-holder .product-info-table .table table {
@@ -4738,7 +4741,7 @@ body.layout_jewellery h2 {
         display: block; }
     .loose-stone-block-items .loose-stone-item .loose-stone-item-content {
       font-family: 'Montserrat', sans-serif;
-      font-weight: normal;
+      font-weight: 300;
       height: 100%;
       display: flex;
       flex-direction: column;
