@@ -4326,15 +4326,14 @@ body[data-template="product"] .main-content {
                   right: 15px; } }
               .product-details-wrapper .product-info-gird .product-info-gird_column .product-info-holder .product-info-table .table table tr td .meta_tooltip[data-tooltip-title]:before {
                 content: attr(data-tooltip-title);
-                font-size: 14px;
+                font-size: 12px;
                 font-style: normal;
                 color: #fff;
                 background: #000;
                 padding: 10px;
                 position: absolute;
-                top: -50px;
-                left: 50%;
-                transform: translateX(-50%);
+                top: -49px;
+                right: 2px;
                 border-radius: 2px;
                 opacity: 0;
                 transition: all 0.4s;
@@ -4343,7 +4342,10 @@ body[data-template="product"] .main-content {
                 -moz-transition: all 0.4s;
                 -webkit-transition: all 0.4s;
                 text-transform: capitalize;
-                line-height: normal; }
+                line-height: normal;
+                width: max-content;
+                max-width: 190px;
+                font-weight: normal; }
               .product-details-wrapper .product-info-gird .product-info-gird_column .product-info-holder .product-info-table .table table tr td .meta_tooltip[data-tooltip-title]:after {
                 content: "";
                 display: block;

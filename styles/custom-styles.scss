@@ -5364,20 +5364,22 @@ body[data-template="product"] {
                     &[data-tooltip-title]{
                       &:before {
                         content: attr(data-tooltip-title);
-                        font-size: 14px;
+                        font-size: 12px;
                         font-style: normal;
                         color: #fff;
                         background: #000;
                         padding: 10px;
                         position: absolute;
-                        top: -50px;
-                        left: 50%;
-                        transform: translateX(-50%);
+                        top: -49px;
+                        right: 2px;
                         border-radius: 2px;
                         opacity: 0;
                         @include transition();
                         text-transform: capitalize;
                         line-height: normal;
+                        width: max-content;
+                        max-width: 190px;
+                        font-weight: normal;
                       }
                       &:after {
                         content: "";
