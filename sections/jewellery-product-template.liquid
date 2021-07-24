@@ -1,11 +1,21 @@
 {%- assign current_variant = product.selected_or_first_available_variant -%}
+{% assign productMetafield = product.metafields.global %}
+{% assign variantMetafield = current_variant.metafields.current_variant %}
+{%- comment -%}
 {%- if product.variant.size == 1 and product.has_only_default_variant -%}
 {%- assign delivery_days_instock = product.metafields.global.delivery_days_instock -%}
 {%- else -%}
 {%- assign delivery_days_instock = product.metafields.global.delivery_days_instock -%}
-
-
 {%- endif -%}
+{%- endcomment -%}
+{%- capture delivery_days_instock -%}delivery_days_instock{%- endcapture -%}
+{%- capture return_policy -%}return_policy{%- endcapture -%}
+{%- capture shipping -%}shipping{% endcapture %}
+{%- capture col1_tab1_mat_type -%}col1_tab1_mat_type{% endcapture %}
+{%- capture col1_tab1_mat_Purity_Color -%}col1_tab1_mat_Purity_Color{% endcapture %}
+{%- capture col1_tab1_dimension1  -%}col1_tab1_dimension1 {% endcapture %}
+{%- capture col1_tab1_dimension2  -%}col1_tab1_dimension2{% endcapture %}
+{%- capture col1_tab1_rhodium_plated -%}col1_tab1_rhodium_plated{% endcapture %}
 
 <div class="product-template__container" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}"
     data-section-type="product" data-enable-history-state="true" data-ajax-enabled="{{ settings.enable_ajax }}">
@@ -279,6 +289,8 @@
                         </div>
                     </div>
                     <div class="pdp-warranty-sec">
+
+
                         <div class="pdp-warranty-item _returns">
                             <span><img src="{{ 'returns.png' | asset_url  }}" alt="returns"></span>
                             <span class="text">free 15 day returns</span>

@@ -1,5 +1,5 @@
 <!-- Product Metafield Code -->
-{%- comment -%}
+
 <div class="product-details-wrapper">
     <p>PRODUCT DETAILS</p>
     {% assign productMetafield = product.metafields.global %}
@@ -33,12 +33,71 @@
     {% endif %}
     {% endfor %}
 </div>
-{%- endcomment -%}
 
 <div class="product-details-wrapper">
     <p>PRODUCT DETAILS</p>
-    {% assign productMetafield = product.metafields.global %}
-    {% endfor %}
+    <div class="prodcut-title">{{ product.title }} {% if variantMetafield[col1_tab1_mat_Purity_Color] != blank and productMetafield[col1_tab1_mat_type] != blank %} in {{ variantMetafield[col1_tab1_mat_Purity_Color] }} {{ productMetafield[col1_tab1_mat_type] }}{% endif %}</div>
+    <div class="product-details-row">
+        
+<div class="product-details-row">
+    <div class="product-info-gird">
+        {% for i in (1..2) %}
+        {% capture columnChecker %}col{{ i }}{% endcapture %}
+        
+            <div class="product-info-gird_column">
+                {% for j in (1..10) %}
+                {%- capture tableContent_mat_type -%}col{{ i }}_tab{{ j }}_mat_type{% endcapture %}
+                {%- capture tableContent_mat_Purity_Color -%}col{{ i }}_tab{{ j }}_mat_Purity_Color{% endcapture %}
+                {%- capture tableContent_dimension1  -%}col{{ i }}_tab{{ j }}_dimension1{% endcapture %}
+                {%- capture tableContent_dimension2  -%}col{{ i }}_tab{{ j }}_dimension2{% endcapture %}
+                {%- capture tableContent_rhodium_plated -%}col{{ i }}_tab{{ j }}_rhodium_plated{% endcapture %}
+                {%- capture tableContent_avg_clarity -%}col{{i}}_tab{{ j }}_avg_clarity{%- endcapture -%}
+                {%- capture tableContentstone_avg_color -%}col{{i}}_tab{{ j }}_stone_avg_color{%- endcapture -%}
+                {%- capture tableContent_stone_shape -%}col{{i}}_tab{{ j }}_stone_shape{%- endcapture -%}
+               
+                {% if productMetafield[tableContent_mat_type] != blank or variantMetafield[tableContent_mat_Purity_Color] != blank or variantMetafield[tableContent_dimension1] != blank or variantMetafield[tableContent_dimension2] != blank or productMetafield[tableContent_rhodium_plated] != blank or productMetafield[tableContent_stone_shape] != blank %}
+                <div class="product-info-item">
+                    <div class="product-info-holder">
+                        <h5>Ring Information</h5>
+                        <div class="product-info-table">
+                            <figure class="table">
+                                <table>
+                                    <tbody>
+                                        {% if variantMetafield[tableContent_dimension1] != blank %}
+                                        <tr>
+                                            <td>Height</td>
+                                            <td>{{ variantMetafield[tableContent_dimension1] }} <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
+                                        </tr>
+                                        {% endif %}
+                                        {% if productMetafield[tableContent_avg_clarity] != blank %}
+                                        <tr>
+                                            <td>Average Clarity</td>
+                                            <td>{{ productMetafield[tableContent_avg_clarity] }} <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
+                                        </tr>
+                                        {% endif %}
+                                        {% if productMetafield[tableContent_stone_shape] != blank %}
+                                        <tr>
+                                            <td>Number of {{ productMetafield[tableContent_stone_shape] }}</td>
+                                            <td>{{ productMetafield[tableContent_stone_shape] }} <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
+                                        </tr>
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+    </div>
+    
+    
+    
 </div>
 
 <script>
