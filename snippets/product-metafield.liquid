@@ -1,5 +1,5 @@
 <!-- Product Metafield Code -->
-
+{%- comment -%}
 <div class="product-details-wrapper">
     <p>PRODUCT DETAILS</p>
     {% assign productMetafield = product.metafields.global %}
@@ -33,7 +33,7 @@
     {% endif %}
     {% endfor %}
 </div>
-
+{%- endcomment -%}
 <div class="product-details-wrapper">
     <p>PRODUCT DETAILS</p>
     <h3>{{ product.title }} {% if variantMetafield[col1_tab1_mat_Purity_Color] != blank and productMetafield[col1_tab1_mat_type] != blank %} in {{ variantMetafield[col1_tab1_mat_Purity_Color] }} {{ productMetafield[col1_tab1_mat_type] }}{% endif %} </h3>
@@ -66,7 +66,6 @@
                 {%- capture tableContent_tooltip_metal -%}col{{i}}_tab{{ j }}_tooltip_metal{%- endcapture -%}
                 {%- capture tableContent_tooltip_avg_color -%}col{{i}}_tab{{ j }}_tooltip_avg_color{%- endcapture -%}
                 {%- capture tableContent_tooltip_avg_clarity -%}col{{i}}_tab{{ j }}_tooltip_avg_clarity{%- endcapture -%}
-
 
                 {% if
                     productMetafield[tableContent_title] != blank or 
@@ -110,12 +109,12 @@
                                         {% if productMetafield[tableContent_rhodium_plated] != blank %}
                                         <tr data-row="rhodium-plated">
                                             <td><span class="pdp-tab-label">Rhodium plated</span></td>
-                                            <td><span class="pdp-tab-val">{{ productMetafield[tableContent_rhodium_plated] }}</span> {% if productMetafield[tableContent_tooltip_rhodium] != blank %} <span class="meta_tooltip" data-tooltip-title="{{productMetafield[tableContent_tooltip_rhodium]}}"></span>{% endif %}</td>
+                                            <td><span class="pdp-tab-val">{{ productMetafield[tableContent_rhodium_plated] | truncate: 30, '...' }}</span> {% if productMetafield[tableContent_tooltip_rhodium] != blank %} <span class="meta_tooltip" data-tooltip-title="{{productMetafield[tableContent_tooltip_rhodium]}}"></span>{% endif %}</td>
                                         </tr>
                                         {% endif %}
                                         {% if productMetafield[tableContent_stone_shape] != blank or productMetafield[tableContent_stone_category ] != blank %}
-                                        <tr data-row="{{ productMetafield[tableContent_stone_shape] | prepend: 'Number of' | handleize }}{{ productMetafield[tableContent_stone_category ] | append: 'Gemstones' | handleize }}">
-                                            <td><span class="pdp-tab-label">{{ productMetafield[tableContent_stone_shape]  | prepend: 'Number of' }} {{ productMetafield[tableContent_stone_category ] | append: 'Gemstones' }}</span></td>
+                                        <tr data-row="{{ productMetafield[tableContent_stone_shape] | truncate: 30 | prepend: 'Number of ' | handleize }}{{ productMetafield[tableContent_stone_category ] | truncate: 30 | append: 'Gemstones' | handleize }}">
+                                            <td><span class="pdp-tab-label">{{ productMetafield[tableContent_stone_shape] | truncate: 30 | prepend: 'Number of ' }} {{ productMetafield[tableContent_stone_category ] | truncate: 30 | append: 'Gemstones' }}</span></td>
                                             <td><span class="pdp-tab-val">{{ productMetafield[tableContent_no_of_stones] }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip">{{ productMetafield[tableContent_tooltip_rhodium] }}</span></td>
                                         </tr>
                                         {% endif %}
@@ -128,7 +127,7 @@
                                         {% if productMetafield[tableContent_stone_avg_color] != blank %}
                                         <tr data-row="average-color">
                                             <td><span class="pdp-tab-label">Average Color</span></td>
-                                            <td><span class="pdp-tab-val">{{ productMetafield[tableContent_stone_avg_color] }}</span> {%- if productMetafield[tableContent_tooltip_avg_color] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_avg_color] }}"></span>{%- endif -%}</td>
+                                            <td><span class="pdp-tab-val">{{ productMetafield[tableContent_stone_avg_color] | truncate: 30 }}</span> {%- if productMetafield[tableContent_tooltip_avg_color] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_avg_color] }}"></span>{%- endif -%}</td>
                                         </tr>
                                         {% endif %}
                                         {% if productMetafield[tableContent_avg_clarity] != blank %}
@@ -140,7 +139,7 @@
                                         {% if productMetafield[tableContent_stone_type] != blank %}
                                         <tr data-row="setting-type">
                                             <td><span class="pdp-tab-label">Setting type</span></td>
-                                            <td><span class="pdp-tab-val">{{ productMetafield[tableContent_stone_type] | append: 'setting' }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
+                                            <td><span class="pdp-tab-val">{{ productMetafield[tableContent_stone_type] | truncate: 22 | append: ' setting' }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
                                         </tr>
                                         {% endif %}
                                     </tbody>

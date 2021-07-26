@@ -765,6 +765,7 @@ slate.Variants = (function() {
       this._updateMasterSelect(variant);
       this._updateImages(variant);
       this._updatePrice(variant);
+      this._updateMetafield(variant);
       this._updateSKU(variant);
       this.currentVariant = variant;
 
@@ -818,6 +819,35 @@ slate.Variants = (function() {
 
       this.container.dispatchEvent(
         new CustomEvent('variantPriceChange', {
+          detail: {
+            variant: variant
+          },
+          bubbles: true,
+          cancelable: true
+        })
+      );
+    },
+
+
+    /**
+     * Trigger event when variant Metafield changes.
+     *
+     * @param  {object} variant - Currently selected variant
+     * @return {event} variantMetafiedChange
+     */
+     _updateMetafield: function(variant) {
+       console.log('update metafield function hit');
+       console.log(variant);
+      if (
+        variant.price === this.currentVariant.price &&
+        variant.compare_at_price === this.currentVariant.compare_at_price &&
+        variant.unit_price === this.currentVariant.unit_price
+      ) {
+        return;
+      }
+
+      this.container.dispatchEvent(
+        new CustomEvent('variantMetafiedChange', {
           detail: {
             variant: variant
           },
@@ -8123,6 +8153,7 @@ theme.Product = (function() {
       );
       this.eventHandlers.updateMedia = this._updateMedia.bind(this);
       this.eventHandlers.updatePrice = this._updatePrice.bind(this);
+      this.eventHandlers.updateMetafield = this._updateMetafield.bind(this);
       this.eventHandlers.updateSKU = this._updateSKU.bind(this);
 
       this.container.addEventListener(
@@ -8135,6 +8166,10 @@ theme.Product = (function() {
       );
       this.container.addEventListener(
         'variantPriceChange',
+        this.eventHandlers.updatePrice
+      );
+      this.container.addEventListener(
+        'variantMetafiedChange',
         this.eventHandlers.updatePrice
       );
       this.container.addEventListener(
@@ -9060,6 +9095,10 @@ theme.Product = (function() {
           theme.moneyFormat
         );
       }
+    },
+
+    _updateMetafield: function(variant) {
+      console.log('updateVariant function Hit');
     },
 
     _getBaseUnit: function(variant) {
