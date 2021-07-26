@@ -10053,6 +10053,7 @@ window.addEventListener("resize", function() {
   }
   headerHeight();
   window.addEventListener("resize", headerHeight);
+  
 });
 
 var showMobileNav = false;
