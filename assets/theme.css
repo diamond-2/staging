@@ -7052,11 +7052,11 @@ body.has_top_banner #shopify-section-header {
   top:0px;
   left: 0px;
   background: rgba(255, 255, 255, 0.2);
-  -webkit-transition: 0.3s ease-in-out;
-  -moz-transition: 0.3s ease-in-out;
-  -o-transition: 0.3s ease-in-out;
-  -ms-transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out;
+  -webkit-transition: backgound .3s ease-in-out;
+  -moz-transition: backgound .3s ease-in-out;
+  -o-transition: backgound .3s ease-in-out;
+  -ms-transition: backgound .3s ease-in-out;
+  transition: backgound .3s ease-in-out;
 }
 
 
@@ -7068,7 +7068,13 @@ body.has_top_banner #shopify-section-header .site-header__mobile-nav {
 
 body #shopify-section-header.header-bg {
   background-color: var(--color-body);
+}
+.header-bg .sticky-header {
   position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-body);
 }
 #shopify-section-header sup, .slide-overaly-heading sup, h1 sup, h2 sup, #shopify-section-footer sup {
   font-size: 70%;
@@ -7088,6 +7094,9 @@ sup, .slide-overaly-heading sup, h1 sup, h2 sup {
   }
 }
 @media(min-width: 750px) {
+  .has_top_banner {
+    padding-top: 0 !important;
+  }
   #shopify-section-header {
     margin-top:0;
   }
@@ -7116,8 +7125,6 @@ body.layout_jewellery-plp .main-content {
 @media(max-width: 749px) {
   body.has_top_banner #shopify-section-header {
     background:#fff;
-    position: sticky;
-    top:0;
   }
   body #shopify-section-header.header-bg {
     top: -22px !important;

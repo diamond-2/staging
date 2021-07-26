@@ -705,17 +705,17 @@ div#PageContainer {
 
 #shopify-section-header{
   z-index: 999;
-  position: sticky;
+  position: absolute;
   width: 100%;
   top:0px;
   left: 0px;
   right: 0;
   background: #fff;
-  -webkit-transition: 0.3s ease-in-out;
-  -moz-transition: 0.3s ease-in-out;
-  -o-transition: 0.3s ease-in-out;
-  -ms-transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out;
+  -webkit-transition: backgound .3s ease-in-out;
+  -moz-transition: backgound .3s ease-in-out;
+  -o-transition: backgound .3s ease-in-out;
+  -ms-transition: backgound .3s ease-in-out;
+  transition: backgound .3s ease-in-out;
   @media screen and (max-width: $tabOrient) {
     background-color: $background-white;
   }
@@ -821,7 +821,6 @@ div#PageContainer {
             margin: 0 auto 6px;
             position: relative;
             left: -10px;
-            transition: all 0.4s;
           }
         }
       }
@@ -3798,6 +3797,15 @@ body[data-template="know-your-diamond"] {
     text-align: justify;
     @media(max-width: $md) {
       text-align: justify;
+    }
+  }
+  &.image_pos_left {
+    .content_holder_box {
+      p {
+        @media(min-width: $postMd) {
+          line-height: 30px;
+        }
+      }
     }
   }
 }

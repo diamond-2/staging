@@ -381,17 +381,17 @@ div#PageContainer.js-menu--is-open {
 
 #shopify-section-header {
   z-index: 999;
-  position: sticky;
+  position: absolute;
   width: 100%;
   top: 0px;
   left: 0px;
   right: 0;
   background: #fff;
-  -webkit-transition: 0.3s ease-in-out;
-  -moz-transition: 0.3s ease-in-out;
-  -o-transition: 0.3s ease-in-out;
-  -ms-transition: 0.3s ease-in-out;
-  transition: 0.3s ease-in-out; }
+  -webkit-transition: backgound .3s ease-in-out;
+  -moz-transition: backgound .3s ease-in-out;
+  -o-transition: backgound .3s ease-in-out;
+  -ms-transition: backgound .3s ease-in-out;
+  transition: backgound .3s ease-in-out; }
   @media screen and (max-width: 1023px) {
     #shopify-section-header {
       background-color: #ffffff; } }
@@ -455,8 +455,7 @@ div#PageContainer.js-menu--is-open {
     max-width: 22px;
     margin: 0 auto 6px;
     position: relative;
-    left: -10px;
-    transition: all 0.4s; }
+    left: -10px; }
   .site-header .site-header__mobile-nav #SiteNav {
     position: initial; }
     .site-header .site-header__mobile-nav #SiteNav .site-nav--active .site-nav__label {
@@ -2988,6 +2987,10 @@ body[data-template="know-your-diamond"] .main-content p {
   @media (max-width: 749px) {
     .image_col_size_medium .content_holder_box {
       text-align: justify; } }
+
+@media (min-width: 750px) {
+  .image_col_size_medium.image_pos_left .content_holder_box p {
+    line-height: 30px; } }
 
 .image_col_size_large.image_pos_left .content-with-image-diamond-content-column .content_holder {
   padding-right: 46px; }

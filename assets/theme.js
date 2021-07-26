@@ -10045,12 +10045,19 @@ window.addEventListener("resize", function() {
           $(phoneElement).parent().addClass('error');
       }
   });
-  
+
+  // header Height
+  function headerHeight() {
+      let headeHeight = $('#shopify-section-header').outerHeight();
+      $('body').css('padding-top',headeHeight);
+  }
+  headerHeight();
+  window.addEventListener("resize", headerHeight);
 });
 
 var showMobileNav = false;
 function fixedHeaderBg(scrollPosition) {
-  if(scrollPosition > 80) {
+  if(scrollPosition > 70) {
     $('#shopify-section-header').addClass('header-bg')
   } else {
     $('#shopify-section-header').removeClass('header-bg')
