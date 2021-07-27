@@ -23,9 +23,6 @@
             <table >
               <tbody data-cart-line-items>
                 {%- for item in cart.items -%}
-                <script>
-                  console.log('{{ item | json }}')
-                </script>
                   <tr class="cart__row custom_cart_row" data-cart-item data-cart-item-key="{{ item.key }}" data-cart-item-url="{{ item.url }}" data-cart-item-title="{{ item.title }}" data-cart-item-index="{{ forloop.index }}" data-cart-item-quantity="{{ item.quantity }}">
                     <td class="cart__meta small--text-left custom_cart_item_left_col" data-cart-table-cell>
                       <div class="cart__product-information">
@@ -40,17 +37,46 @@
                               </a>
                             </div>
 
+                            <!-- Cart Quentity -->
+                            {% capture cartQuentity %}
+                              <div class="cart__quantity-td">
+                                <div class="cart__qty">
+                                  <label for="updates_large_{{ item.key }}" class="cart-qty-label" data-quantity-label-desktop>{{ 'cart.label.quantity' | t }}</label>
+                                  <div class="cart__qty_iput_holder">
+                                    <span class="cart__qty_decre">-</span>
+                                    <input id="updates_large_{{ item.key }}" class="cart__qty-input" type="text"
+                                    name="updates[]" value="{{ item.quantity }}" min="0"
+                                    data-quantity-input data-quantity-item="{{ forloop.index }}" data-quantity-input-desktop data-role="product-quantity-desktop">
+                                    <span class="cart__qty_incre">+</span>
+                                  </div>
+                                </div>
+                                <div class="cart__qty-error-message-wrapper cart__qty-error-message-wrapper--desktop hide" role="alert" data-cart-quantity-error-message-wrapper>
+                                  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                                  {% include 'icon-error' %}
+                                  <span class="cart__qty-error-message" data-cart-quantity-error-message></span>
+                                </div>
+                              </div>
+                            {% endcapture %}
+
                             {%- assign variant_options = 'template ' | split: ' ' -%}
                             {%- if item.product.has_only_default_variant != true -%}
                               {%- assign variant_options = item.options_with_values -%}
                             {%- endif -%}
                             {%- assign property_size = item.properties | size -%}
       
-                            <ul class="product-details{% if item.product.has_only_default_variant and property_size == 0 and item.selling_plan_allocation == nil %} hide{% endif %}" data-cart-item-details aria-label="{{ 'cart.label.product_details' | t }}">
+                            <ul class="product-details{% if item.product.has_only_default_variant and property_size == 0 and item.selling_plan_allocation == nil %} show_mobile{% endif %}" data-cart-item-details aria-label="{{ 'cart.label.product_details' | t }}">
+                              
                               {%- for option in variant_options -%}
-                                <li class="v_{{ option.name }} product-details__item product-details__item--variant-option{% if item.product.has_only_default_variant %} hide{% endif %}" data-cart-item-option>
-                                  {{ option.name }}: {{ option.value }}
-                                </li>
+                              {% if option.name =='Color' %}  
+                              <li class="v_{{ option.name }} product-details__item product-details__item--variant-option{% if item.product.has_only_default_variant %} hide{% endif %}" data-cart-item-option>
+                                  <span class="cart-gld-label">Gold {{ option.name }}</span>
+                                  <span class="cart-gld-text {{ option.value | downcase  | replace: ' ', '_' }}"><span class="gold_colr">18k</span>{{ option.value }}</span>
+                              </li>
+                              {% else %}
+                              <li class="v_{{ option.name }} product-details__item product-details__item--variant-option{% if item.product.has_only_default_variant %} hide{% endif %}" data-cart-item-option>
+                                <div class="v_item_inner"><span>{{ option.name }}</span> <span>{{ option.value }}</span></div>
+                              </li>
+                              {% endif %}
                               {%- endfor -%}
       
                               <li class="product-details__item product-details__item--property{% if item.selling_plan_allocation == empty %} hide {% endif %}"data-cart-item-selling-plan-name>{{ item.selling_plan_allocation.selling_plan.name }}</li>
@@ -88,32 +114,25 @@
                                   </span>
                                 </li>
                               {%- endfor -%}
+                              <!-- Mobile Quentity -->
+                              <div class="show_mobile">
+                                {{ cartQuentity }}
+                              </div>
                             </ul>
 
-                            <div class="cart__quantity-td ">
-                              <div class="cart__qty">
-                                <label for="updates_large_{{ item.key }}" class="cart-qty-label" data-quantity-label-desktop>{{ 'cart.label.quantity' | t }}</label>
-                                <div class="cart__qty_iput_holder">
-                                  <span class="cart__qty_decre">-</span>
-                                  <input id="updates_large_{{ item.key }}" class="cart__qty-input" type="text"
-                                  name="updates[]" value="{{ item.quantity }}" min="0"
-                                  data-quantity-input data-quantity-item="{{ forloop.index }}" data-quantity-input-desktop data-role="product-quantity-desktop">
-                                  <span class="cart__qty_incre">+</span>
-                                </div>
-                              </div>
-                              <div class="cart__qty-error-message-wrapper cart__qty-error-message-wrapper--desktop hide" role="alert" data-cart-quantity-error-message-wrapper>
-                                <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
-                                {% include 'icon-error' %}
-                                <span class="cart__qty-error-message" data-cart-quantity-error-message></span>
-                              </div>
+                            
+
+                            <!-- Desktop Quentity -->
+                            <div class="hide_mobile">
+                              {{ cartQuentity }}
                             </div>
+                            
 
                             <div class="cart__final-price" data-cart-item-line-price>
                               <span class="org_price">{{ item.original_price | money }}</span>
-                              <span class="org_price">{{ item.compare_at_price | money }}</span>
+                              {% if item.variant.compare_at_price %}<span class="compare_price">{{ item.variant.compare_at_price | money_without_trailing_zeros }}</span>{% endif %}
                               <span class="price_inclusive_tex">Price is Inclusive of Taxes</span>
                             </div>
-
 
                           </div>
                           <div class="cart__product-body-right">
@@ -303,7 +322,7 @@
                   value="{{ 'cart.general.update' | t }}">
                 {%- endunless -%}
                 <input type="submit" name="checkout"
-                  class="cart__submit btn btn--small-wide glb-btn"
+                  class="cart__submit glb-btn"
                   value="{{ 'cart.general.checkout' | t }}">
               </div>
 
@@ -320,8 +339,10 @@
             <div class="agree-terms-sec">
               <div class="custom-checkbox-holder">
                 <div class="custom-checkbox-input-box">
-                  <span></span>
                   <input type="checkbox" name="agree-terms" id="agree-tems">
+                  <span>
+                    <i><svg width="23" height="17" viewBox="0 0 23 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.63448 14.8756L8 15.2672L8.36553 14.8756L21.6345 0.658845C21.8229 0.456969 22.1393 0.446059 22.3412 0.634476L22.6823 0.268948L22.3412 0.634476C22.543 0.822893 22.5539 1.13929 22.3655 1.34116L8.36553 16.3412C8.27097 16.4425 8.1386 16.5 8 16.5C7.86141 16.5 7.72904 16.4425 7.63448 16.3412L7.26895 16.6823L7.63448 16.3412L0.634476 8.84116C0.446059 8.63929 0.456969 8.32289 0.658845 8.13448C0.86072 7.94606 1.17711 7.95697 1.36553 8.15885L7.63448 14.8756Z" stroke="#6679CC"/></svg></i>
+                  </span>
                 </div>
                 <label for="agree-tems">I agree with the terms and conditions.</label>
               </div>
@@ -374,6 +395,15 @@
           }
       }
   });
+
+  // agree terms input
+  // $('.custom-checkbox-holder').on('click', function(){
+  //   if ($('.custom-checkbox-input-box input').prop('checked')) {
+  //       $(this).closest('.custom-checkbox-holder').addClass('input-checked');
+  //   } else {
+  //       $(this).closest('.custom-checkbox-holder').removeClass('input-checked');
+  //   }
+  // });
 
 </script>
 
