@@ -10085,7 +10085,7 @@ window.addEventListener("resize", function() {
       }
   });
 
-  // header Height
+  // Header Height
   function headerHeight() {
       let headeHeight = $('#shopify-section-header').outerHeight();
       $('body').css('padding-top',headeHeight);

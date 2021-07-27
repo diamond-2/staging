@@ -117,9 +117,11 @@
 
                           </div>
                           <div class="cart__product-body-right">
-                            <p class="cart__remove">
-                              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove">close</a>
-                            </p>
+                            <div class="cart_remove_flex">
+                              <p class="cart__remove">
+                                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove">close</a>
+                              </p>
+                            </div>
                           </div>
     
                           
@@ -238,76 +240,98 @@
               </div>
             </div>
             <div class="cart_sum_title">Cart Summary</div>
-          </div>
-        </div>
-
-        <div class="cart__footer">
-          <div class="grid">
-            {%- if section.settings.cart_notes_enable -%}
-              <div class="grid__item medium-up--one-half cart-note">
-                <label for="CartSpecialInstructions" class="cart-note__label small--text-center">{{ 'cart.general.note' | t }}</label>
-                <textarea name="note" id="CartSpecialInstructions" class="cart-note__input" data-cart-notes>{{ cart.note }}</textarea>
-              </div>
-            {%- endif -%}
-            <div class="grid__item text-right small--text-center{% if section.settings.cart_notes_enable %} medium-up--one-half{% endif %}">
-
-              {%- assign cartDiscounts = 'template ' | split: ' ' -%}
-              {%- if cart.cart_level_discount_applications.size > 0 -%}
-                {%- assign cartDiscounts = cart.cart_level_discount_applications -%}
-              {%- endif -%}
-              <div{% if cart.cart_level_discount_applications.size == 0 %} class="hide"{% endif %} data-cart-discount-wrapper>
-                <div class="order-discount-card-wrapper" data-cart-discount>
-                  {%- for discount_application in cartDiscounts -%}
-                    <span class="order-discount order-discount--title order-discount--cart">
-                      {% include 'icon-saletag' %}<span class="visually-hidden">{{ 'customer.order.discount' | t }}:</span><span data-cart-discount-title>{{- discount_application.title -}}</span>
-                    </span>
-                    <span class="order-discount order-discount--cart order-discount--cart-total">
-                      -<span data-cart-discount-amount>{{ discount_application.total_allocated_amount | money }}</span>
-                    </span>
-                  {%- endfor -%}
-                </div>
-              </div>
-
-              <div class="cart-subtotal">
-                <span class="cart-subtotal__title">{{ 'cart.general.subtotal' | t }}</span>
-                <span class="cart-subtotal__price" data-cart-subtotal>{{ cart.total_price | money_with_currency }}</span>
-              </div>
-
-              {%- capture taxes_shipping_checkout -%}
-                {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
-                  {{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
-                {%- elsif cart.taxes_included -%}
-                  {{ 'cart.general.taxes_included_but_shipping_at_checkout' | t }}
-                {%- elsif shop.shipping_policy.body != blank -%}
-                  {{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
-                {%- else -%}
-                  {{ 'cart.general.taxes_and_shipping_at_checkout' | t }}
+            <div class="cart__footer">
+              <div class="grid">
+                {%- if section.settings.cart_notes_enable -%}
+                  <div class="grid__item medium-up--one-half cart-note">
+                    <label for="CartSpecialInstructions" class="cart-note__label small--text-center">{{ 'cart.general.note' | t }}</label>
+                    <textarea name="note" id="CartSpecialInstructions" class="cart-note__input" data-cart-notes>{{ cart.note }}</textarea>
+                  </div>
                 {%- endif -%}
-              {%- endcapture -%}
-              <div class="cart__shipping rte">{{ taxes_shipping_checkout }}</div>
-              <div class="cart__buttons-container">
-                <div class="cart__submit-controls">
-                  {%- unless section.settings.cart_ajax_enable -%}
-                  <input type="submit" name="update"
-                    class="cart__submit btn btn--secondary"
-                    value="{{ 'cart.general.update' | t }}">
-                  {%- endunless -%}
-                  <input type="submit" name="checkout"
-                    class="cart__submit btn btn--small-wide"
-                    value="{{ 'cart.general.checkout' | t }}">
+                <div class="grid__item delivery-notes">
+                  <span class="delivery-notes-heading">DELIVERY</span>
+                  <span class="delivery-notes-subheading">CALCULATED AT CHECKOUT</span>
                 </div>
-
-                <div class="cart__error-message-wrapper hide" role="alert" data-cart-error-message-wrapper>
-                  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
-                  {% include 'icon-error' %}
-                  <span class="cart__error-message" data-cart-error-message></span>
+                <div class="grid__item cart_total_item {% if section.settings.cart_notes_enable %} medium-up--one-half{% endif %}">
+                  {%- assign cartDiscounts = 'template ' | split: ' ' -%}
+                  {%- if cart.cart_level_discount_applications.size > 0 -%}
+                    {%- assign cartDiscounts = cart.cart_level_discount_applications -%}
+                  {%- endif -%}
+                  <div{% if cart.cart_level_discount_applications.size == 0 %} class="hide"{% endif %} data-cart-discount-wrapper>
+                    <div class="order-discount-card-wrapper" data-cart-discount>
+                      {%- for discount_application in cartDiscounts -%}
+                        <span class="order-discount order-discount--title order-discount--cart">
+                          {% include 'icon-saletag' %}<span class="visually-hidden">{{ 'customer.order.discount' | t }}:</span><span data-cart-discount-title>{{- discount_application.title -}}</span>
+                        </span>
+                        <span class="order-discount order-discount--cart order-discount--cart-total">
+                          -<span data-cart-discount-amount>{{ discount_application.total_allocated_amount | money }}</span>
+                        </span>
+                      {%- endfor -%}
+                    </div>
+                  </div>
+    
+                  <div class="cart-subtotal">
+                    <span class="cart-subtotal__title">{{ 'cart.general.subtotal' | t }}</span>
+                    <span class="cart-subtotal__price" data-cart-subtotal>{{ cart.total_price | money_with_currency }}</span>
+                  </div>
+    
+                  {%- capture taxes_shipping_checkout -%}
+                    {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+                      {{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                    {%- elsif cart.taxes_included -%}
+                      {{ 'cart.general.taxes_included_but_shipping_at_checkout' | t }}
+                    {%- elsif shop.shipping_policy.body != blank -%}
+                      {{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+                    {%- else -%}
+                      {{ 'cart.general.taxes_and_shipping_at_checkout' | t }}
+                    {%- endif -%}
+                  {%- endcapture -%}
+                  <div class="cart__shipping rte">{{ taxes_shipping_checkout }}</div>
+                  
                 </div>
-
-                {%- if additional_checkout_buttons -%}
-                  <div class="additional-checkout-buttons">{{ content_for_additional_checkout_buttons }}</div>
-                {%- endif -%}
               </div>
             </div>
+
+            <div class="cart__buttons-container">
+              <div class="cart__continue-controls">
+                <a href="/" class="glb-btn">CONTINUE SHOPPING</a>
+              </div>
+              <div class="cart__submit-controls">
+                {%- unless section.settings.cart_ajax_enable -%}
+                <input type="submit" name="update"
+                  class="cart__submit btn btn--secondary"
+                  value="{{ 'cart.general.update' | t }}">
+                {%- endunless -%}
+                <input type="submit" name="checkout"
+                  class="cart__submit btn btn--small-wide glb-btn"
+                  value="{{ 'cart.general.checkout' | t }}">
+              </div>
+
+              <div class="cart__error-message-wrapper hide" role="alert" data-cart-error-message-wrapper>
+                <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                {% include 'icon-error' %}
+                <span class="cart__error-message" data-cart-error-message></span>
+              </div>
+              
+              {%- if additional_checkout_buttons -%}
+                <div class="additional-checkout-buttons hide">{{ content_for_additional_checkout_buttons }}</div>
+              {%- endif -%}
+            </div>
+            <div class="agree-terms-sec">
+              <div class="custom-checkbox-holder">
+                <div class="custom-checkbox-input-box">
+                  <span></span>
+                  <input type="checkbox" name="agree-terms" id="agree-tems">
+                </div>
+                <label for="agree-tems">I agree with the terms and conditions.</label>
+              </div>
+              <div class="estimate-delivery-box">
+                <div class="estimate-delivery-heading">Estimated Delivery Date</div>
+                <div class="estimate-delivery-content">Most orders are delivered in within 5-15 working days, if stones and mountings are available.<br>Europe 8-20 working days. Rest of World 10-20 working days.
+                  Otherwise, orders will be put on special order and shipped within 9-10 weeks. If you need an order urgently, please contact us.</div>
+              </div>
+            </div>
+
           </div>
         </div>
       </form>
