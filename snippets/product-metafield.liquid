@@ -1,39 +1,4 @@
 <!-- Product Metafield Code -->
-{%- comment -%}
-<div class="product-details-wrapper">
-    <p>PRODUCT DETAILS</p>
-    {% assign productMetafield = product.metafields.global %}
-    {% for i in (1..10) %}
-    {% capture blockTitle %}block_{{ i }}_title{% endcapture %}
-    {% if productMetafield[blockTitle] !=blank %}
-    <div class="product-details-row">
-        {% if productMetafield[blockTitle] !=blank %}<h3>{{ productMetafield[blockTitle] }}</h3>{% endif %}
-        <div class="product-info-gird">
-            {% for k in (1..2) %}
-            {% capture columnDivider %}block_{{ i }}_column_{{ k }}{% endcapture %}
-            {% if columnDivider %}
-            <div class="product-info-gird_column">
-                {% for j in (1..10) %}
-                {% capture columnTitle %}block_{{ i }}_column_{{ k }}_title_{{ j }}{% endcapture %}
-                {% capture columnContent %}block_{{ i }}_column_{{ k }}_content_{{ j }}{% endcapture %}
-                {% if productMetafield[columnTitle] !=blank or productMetafield[columnTitle] !=blank %}
-                <div class="product-info-item">
-                    <div class="product-info-holder">
-                        <h5>{{ productMetafield[columnTitle] }}</h5>
-                        <div class="product-info-table">{{ productMetafield[columnContent] }}</div>
-                    </div>
-                </div>
-                {% endif %}
-                {% endfor %}
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-    </div>
-    {% endif %}
-    {% endfor %}
-</div>
-{%- endcomment -%}
 <div class="product-details-wrapper">
     <p>PRODUCT DETAILS</p>
     <h3>{{ product.title }} {% if variantMetafield[col1_tab1_mat_Purity_Color] != blank and productMetafield[col1_tab1_mat_type] != blank %} in <span data-table-title="col1_tab1_mat_Purity_Color" class="pdp_table_title_mat_purity_color">{{ variantMetafield[col1_tab1_mat_Purity_Color] }}</span> <span data-table-title="col1_tab1_mat_type" class="pdp_table_title_mat_type">{{ productMetafield[col1_tab1_mat_type] }}</span>{% endif %} {% if template.suffix contains 'loose-stone'%}<a class="product-view-report" href="javascript:;" aria-label="">View report&gt;</a>{% endif %}</h3>
@@ -41,8 +6,7 @@
     <div class="product-details-row">
         <div class="product-info-gird">
             {% for i in (1..2) %}
-            {% capture columnChecker %}col{{ i }}{% endcapture %}
-            
+            {% capture columnChecker %}col{{ i }}{% endcapture %}            
                 <div class="product-info-gird_column">
                     {% for j in (1..10) %}
                     {%- capture tableContent_title -%}col{{ i }}_tab{{ j }}_title{%- endcapture -%}
@@ -278,13 +242,6 @@
 <script>
 
     $(document).ready(function(){
-        // convert 'i' tag into tooltip
-        // $('.product-info-holder .product-info-table tr td').each(function(){
-        //     var toolTipText = $(this).find('.meta_tooltip').text();
-        //     $(this).find('.meta_tooltip').attr('data-tooltip-title',toolTipText);
-        //     // $(this).find('.meta_tooltip').html('');
-        // });
-        // td length
         $('.product-info-holder .product-info-table tr').each(function(){
             var tdlength = $(this).find('td').length || $(this).find('th').length;
             if(tdlength > 2) {

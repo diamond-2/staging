@@ -852,16 +852,14 @@ slate.Variants = (function() {
           var productData = (data.results.length ? data.results[0]: {} );
           var productMetafield =  productData.productMetafield;
           var variantMetaFields = productData.variantMetafileds;
-          productMetafield.forEach(function(ele){
-            console.log(ele);
+          productMetafield.forEach(function(ele){ //console.log(ele);
             for(var key in ele) {
               if(key.indexOf('col1_tab1_mat_type') > -1){
                 $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val .mat_purity_type').text(ele[key]);
                 $(document).find('[data-table-title="'+key+'"]').text(ele[key]);
               } else {
                 $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val').text(ele[key]);
-              }
-              
+              }              
             }
           });
           for(var variantKey in variantMetaFields) {   //console.log(variantKey);
