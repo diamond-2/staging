@@ -67,6 +67,7 @@
 {% endcomment %}
 
 <div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card">
+  {% include 'product-badge' %}
   <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="{{ product.url }}" style="display: none;">
     <span class="visually-hidden">{{ product.title }}</span>
   </a>

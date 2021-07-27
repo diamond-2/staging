@@ -1,0 +1,47 @@
+{%- assign badgeTagExist = false -%} 
+{%- if  product.tags.size > 0 -%}
+  {%- for tag in product.tags -%}
+    {%- if tag contains 'badge:' -%}
+        {%- assign badgeTagExist = true -%} 
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{% assign date_published = product.published_at | date:' %s ' %}
+{% assign date_now = 'now' | date:' %s ' %}
+{% assign date_difference = date_now | minus: date_published | divided_by: 3600 | divided_by: 24 %}
+
+{% assign available = product.available %}
+
+<dl class="porduct-badge
+  {%- if available == false %} price--sold-out {% endif -%}
+  {%- if product.compare_at_price > product.price %} price--on-sale {% endif -%}
+  {%- if product.price_varies == false and product.compare_at_price_varies %} price--compare-price-hidden {% endif -%}
+  {%- if variant.unit_price_measurement %} price--unit-available {% endif -%}
+           {% if date_difference < 30 %} price-on-new{% endif %}
+           {% if badgeTagExist %} tag-base-badge {% endif %}
+           "
+  data-price
+>
+<div class="price__badges price__badges--listing">
+  <span class="price__badge price__badge--sale" aria-hidden="true">
+    <span>{{ 'products.product.on_sale' | t }}</span>
+  </span>
+  <span class="price__badge price__badge--sold-out {%if variant.inventory_quantity ==0 %} showSoldOutBadge{%endif%}" aria-hidden="true">
+    <span>{{ 'products.product.sold_out' | t }}</span>
+  </span>
+  <span class="price__badge price__badge--new" aria-hidden="true">
+    <span>New</span>
+  </span>
+  {%- if badgeTagExist -%}
+ {%- for tag in product.tags -%}
+    {%- if tag contains 'badge:' -%}
+        {%- assign badges = tag | split: 'badge:' -%}       
+          <span class="price__badge price__badge--tagbase" aria-hidden="true">
+            <span>{{ badges[1] | truncate: 15, "" }}</span>
+          </span>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+</div>
+</dl>
