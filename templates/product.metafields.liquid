@@ -1,0 +1,41 @@
+{%- layout none -%}
+{% comment %}
+{% capture result %}
+{% for metafield in product.metafields.global %}{
+    {{ metafield | first | json  }}: {{ metafield | last | json }}
+}{% unless forloop.last %},{% endunless %}
+{% endfor %}
+{% endcapture %}
+
+{% capture variantResult %}
+{% for variant in product.variants %}
+{% for metafield in variant.metafields.current_variant %}{
+    {{ metafield | first | json  }}: {{ metafield | last | json }}
+},
+{% endfor %}
+{% endfor %}
+{% endcapture %}
+
+{% endcomment %}
+
+
+{% capture output %}
+{
+    "productMetafield":  [{% for metafield in product.metafields.global %}{
+        {{ metafield | first | json   }}: {{ metafield | last | json  }}
+    }{% unless forloop.last %},{% endunless %}{% endfor %}],
+    "variantMetafileds": {
+    {% for variant in product.variants %}    
+    {% assign varaintMetaSize = variant.metafields.current_variant | size %}
+    {% unless forloop.first %}{%if varaintMetaSize > 0 %},{% endif %}{% endunless %}
+    {%if varaintMetaSize > 0 %}
+    "{{variant.id}}": [
+    {% for metafield in variant.metafields.current_variant %}{
+        {{ metafield | first | json }}: {{ metafield | last | json  }}
+    }{% unless forloop.last %},{% endunless %}{% endfor %}]
+    {% endif %}
+    {% endfor %}}
+}
+{% endcapture %}
+
+{"results":[{{ output | strip_newlines }}]}

@@ -838,13 +838,49 @@ slate.Variants = (function() {
      _updateMetafield: function(variant) {
        console.log('update metafield function hit');
        console.log(variant);
-      if (
-        variant.price === this.currentVariant.price &&
-        variant.compare_at_price === this.currentVariant.compare_at_price &&
-        variant.unit_price === this.currentVariant.unit_price
-      ) {
-        return;
-      }
+       var element = document.querySelector('body');
+       var dataAttribute = element.getAttribute('data-handle');
+      console.log(dataAttribute);
+       $.ajax({
+        url: dataAttribute+'/?view=metafields',
+        cache: false,
+        success: function(response) {
+          // console.log(response);
+          var data = JSON.parse(response);
+          //console.log(JSON.parse(data));
+
+          var productData = (data.results.length ? data.results[0]: {} );
+          var productMetafield =  productData.productMetafield;
+          var variantMetaFields = productData.variantMetafileds;
+          productMetafield.forEach(function(ele){
+            console.log(ele);
+            for(var key in ele) {
+              if(key.indexOf('col1_tab1_mat_type') > -1){
+                $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val .mat_purity_type').text(ele[key]);
+                $(document).find('[data-table-title="'+key+'"]').text(ele[key]);
+              } else {
+                $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val').text(ele[key]);
+              }
+              
+            }
+          });
+          for(var variantKey in variantMetaFields) {   //console.log(variantKey);
+            var selectedVariant = $('select[name="id"]').val(); //console.log(selectedVariant);
+            if(selectedVariant != variantKey) continue 
+            variantMetaFields[variantKey].forEach(function(ele){ //console.log(ele);
+              for(var key in ele) {
+                if(key.indexOf('col1_tab1_mat_Purity_Color') > -1){
+                  $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val .mat_purity_color').text(ele[key]);
+                  $(document).find('[data-table-title="'+key+'"]').text(ele[key]);
+                }else {
+                  $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val').text(ele[key]);
+                }
+                
+              }
+            });           
+          }
+        }
+       });
 
       this.container.dispatchEvent(
         new CustomEvent('variantMetafiedChange', {
