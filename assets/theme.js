@@ -6736,6 +6736,7 @@ theme.Cart = (function() {
 
     this.container.addEventListener('click', this._handleThumbnailClick);
     this.container.addEventListener('change', this._handleInputQty);
+    
 
     this.mql = window.matchMedia(mediumUpQuery);
     this.mql.addListener(this.setQuantityFormControllers);
@@ -6817,7 +6818,6 @@ theme.Cart = (function() {
         this._showQuantityErrorMessages(itemElement);
         return;
       }
-
       if (isValidValue && this.ajaxEnabled) {
         this._updateItemQuantity(itemIndex, itemElement, itemQtyInputs, value);
       }
@@ -10119,7 +10119,7 @@ window.addEventListener("resize", function() {
       }
   });
 
-  // header Height
+  // Header Height
   function headerHeight() {
       let headeHeight = $('#shopify-section-header').outerHeight();
       $('body').css('padding-top',headeHeight);
