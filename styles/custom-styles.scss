@@ -4650,6 +4650,16 @@ body[data-template="product"] {
         }
     }
   }
+  .stone-granding-options {
+    display: flex;
+    margin-bottom: 40px;
+    li {
+      margin-right: 40px;
+      &.stone_color_granding {
+        text-transform: uppercase;
+      }
+    }
+  }
   .product-form__controls-group {
     .product-form__item {
       width: 100%;
@@ -5297,6 +5307,7 @@ body[data-template="product"] {
     }
   }
   h3 {
+    max-width: 50%;
     font-size: 24px;
     line-height: 29px;
     color: #000000;
@@ -5311,6 +5322,12 @@ body[data-template="product"] {
       line-height: 14.04px;
       text-transform: uppercase;
     }
+    a.product-view-report {
+      float: right;
+      text-transform: uppercase;
+      text-decoration: underline;
+      color: #6d2445;
+  }
   }
   .product-info-gird {
     display: flex;
