@@ -10,12 +10,20 @@
 {%- endcomment -%}
 {%- capture delivery_days_instock -%}delivery_days_instock{%- endcapture -%}
 {%- capture return_policy -%}return_policy{%- endcapture -%}
-{%- capture shipping -%}shipping{% endcapture %}
-{%- capture col1_tab1_mat_type -%}col1_tab1_mat_type{% endcapture %}
-{%- capture col1_tab1_mat_Purity_Color -%}col1_tab1_mat_Purity_Color{% endcapture %}
-{%- capture col1_tab1_dimension1  -%}col1_tab1_dimension1 {% endcapture %}
-{%- capture col1_tab1_dimension2  -%}col1_tab1_dimension2{% endcapture %}
-{%- capture col1_tab1_rhodium_plated -%}col1_tab1_rhodium_plated{% endcapture %}
+{%- capture shipping -%}shipping{%- endcapture -%}
+{%- capture col1_tab1_mat_type -%}col1_tab1_mat_type{%- endcapture -%}
+{%- capture col1_tab1_mat_Purity_Color -%}col1_tab1_mat_Purity_Color{%- endcapture -%}
+{%- capture col1_tab1_dimension1  -%}col1_tab1_dimension1 {%- endcapture -%}
+{%- capture col1_tab1_dimension2  -%}col1_tab1_dimension2{%- endcapture -%}
+{%- capture col1_tab1_rhodium_plated -%}col1_tab1_rhodium_plated{%- endcapture -%}
+{%- capture product_category -%}product_category{%- endcapture -%}
+{%- capture jewelery_category -%}jewelery_category{%- endcapture -%}
+{%- capture stone_category -%}stone_category{%- endcapture -%}
+{%- capture stone_coating -%}col1_tab1_stone_coating{%- endcapture -%}
+{%- capture stone_color_granding -%}stone_color_granding{%- endcapture -%}
+{%- capture shipping -%}shipping{%- endcapture -%}
+{%- capture return_policy -%}return_policy{%- endcapture -%}
+{%- capture warranty -%}warranty{% endcapture %}
 
 <div class="product-template__container" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}"
     data-section-type="product" data-enable-history-state="true" data-ajax-enabled="{{ settings.enable_ajax }}">
@@ -104,15 +112,26 @@
             <div class="product-detail-content-column">
                 <div class="product-detail-breadcrumb">
                     <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/">Solitaire Rings</a></li>
-                        <li><span class="breadcrumb_text">Helo Rings</span></li>
+                        <p style="display: none;">{{ template.suffix }}</p>
+                        <li><a href="{{ routes.root_url }}">Home</a></li>
+                        {%- if productMetafield[product_category] != blank -%}
+                        <li><a href="{{ routes.collections_url }}/{{ productMetafield[product_category] | append: '-collections' | downcase | handleize }}">{{ productMetafield[product_category] }}</a></li>
+                        {%- endif -%}
+                        {% if template.suffix contains 'loose-stone' %}
+                        {% if productMetafield[stone_category] != blank %}
+                        <li><span class="breadcrumb_text">{{ productMetafield[stone_category] }}</span></li>
+                        {% endif %}
+                        {% else %}
+                        {% if productMetafield[jewelery_category] != blank %}
+                        <li><span class="breadcrumb_text">{{ productMetafield[jewelery_category] }}</span></li>
+                        {% endif %}
+                        {% endif %}
                     </ul>
                 </div>
                 <div class="product-single__meta">
                     {%- assign current_variant = product.selected_or_first_available_variant -%}
                     <h1 class="product-single__title">{{ product.title }}</h1>
-                    {%- if template contains 'loose-stone' -%}
+                    {%- if template.suffix contains 'loose-stone' -%}
                     {%- else -%}
                     <div class="product-sku-wrapper">
                         {%- if current_variant.sku != blank -%}
@@ -147,6 +166,25 @@
                     {% form 'product', product, class:form_classes, novalidate: 'novalidate', data-product-form: '' %}
                     {{ form | payment_terms }}
 
+                    {% if template.suffix contains 'loose-stone' and  product.has_only_default_variant %}
+                    {% if productMetafield[stone_coating] != blank or productMetafield[stone_color_granding] != blank  %}
+                    <ul class="stone-granding-options">
+                        {% if productMetafield[stone_coating] != blank %}
+                        <li class="stone_coating">
+                            <span class="stone_coating_label">Color - </span>
+                            <span class="stone_coating_val">{{ productMetafield[stone_coating] }}</span>
+                        </li>
+                        {% endif %}
+                        {% if productMetafield[stone_color_granding] != blank %}
+                        <li class="stone_color_granding">
+                            <span class="stone_color_granding_label">Clarity - </span>
+                            <span class="stone_color_granding_val">{{ productMetafield[stone_color_granding] }}</span>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+                    {% endif %}
+
                     {% unless product.has_only_default_variant %}
                     <div class="product-form__controls-group">
                         {% for option in product.options_with_values %}
@@ -168,7 +206,7 @@
                             {% else %}
                             <div class="custom-select-holder">
                                 <label for="SingleOptionSelector-{{ forloop.index0 }}">
-                                    Select {{ option.name }}
+                                    Select {% if product.metafields.global.jewelery_category != blank %}{{ product.metafields.global.jewelery_category }}{% endif %} {{ option.name }}
                                 </label>
                                 <select
                                     class="single-option-selector single-option-selector-{{ section.id }} product-form__input"
@@ -261,8 +299,8 @@
                         </span>
                         <input type="text" id="delivery-check" placeholder="Enter pincode">
                     </div>
-                    {%- if delivery_days_instock != blank -%}
-                    <div class="delivery-check-date">{{ delivery_days_instock }}</div>
+                    {%- if productMetafield[delivery_days_instock] != blank -%}
+                    <div class="delivery-check-date">{{ productMetafield[delivery_days_instock] }}</div>
                     {%- endif -%}
                 </div>
 
@@ -289,20 +327,42 @@
                         </div>
                     </div>
                     <div class="pdp-warranty-sec">
-
-
+                        {% if variantMetafield[return_policy] != blank  or productMetafield[return_policy] != blank %}
                         <div class="pdp-warranty-item _returns">
                             <span><img src="{{ 'returns.png' | asset_url  }}" alt="returns"></span>
-                            <span class="text">free 15 day returns</span>
+                            {% if variantMetafield[return_policy] != blank %}
+                                <span class="text return_policy_val">{{ variantMetafield[return_policy] }}</span>
+                            {% else %}
+                                {% if productMetafield[return_policy] != blank %}
+                                    <span class="text return_policy_val">{{ productMetafield[return_policy] }}</span>
+                                {% endif %}
+                            {% endif %}
                         </div>
+                        {% endif %}
+                        {% if variantMetafield[warranty] != blank  or productMetafield[warranty] != blank %}
                         <div class="pdp-warranty-item _warranty">
                             <span><img src="{{ 'warranty.png' | asset_url  }}" alt="warranty"></span>
-                            <span class="text">limited lifetime warranty</span>
+                            {% if variantMetafield[warranty] != blank %}
+                            <span class="text warranty_val">{{ variantMetafield[warranty] }}</span>
+                        {% else %}
+                            {% if productMetafield[warranty] != blank %}
+                                <span class="text warranty_val">{{ productMetafield[warranty] }}</span>
+                            {% endif %}
+                        {% endif %}
                         </div>
+                        {% endif %}
+                        {% if variantMetafield[shipping] != blank  or productMetafield[shipping] != blank %}
                         <div class="pdp-warranty-item _shipping">
                             <span><img src="{{ 'shipping.png' | asset_url  }}" alt="shipping"></span>
-                            <span class="text">free shipping</span>
+                            {% if variantMetafield[shipping] != blank %}
+                                <span class="text shipping_val">{{ variantMetafield[shipping] }}</span>
+                            {% else %}
+                                {% if productMetafield[shipping] != blank %}
+                                    <span class="text shipping_val">{{ productMetafield[shipping] }}</span>
+                                {% endif %}
+                            {% endif %}
                         </div>
+                        {% endif %}
                     </div>
                 </div>
 
