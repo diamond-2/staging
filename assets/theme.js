@@ -10118,14 +10118,6 @@ window.addEventListener("resize", function() {
           $(phoneElement).parent().addClass('error');
       }
   });
-
-  // Header Height
-  function headerHeight() {
-      let headeHeight = $('#shopify-section-header').outerHeight();
-      $('body').css('padding-top',headeHeight);
-  }
-  headerHeight();
-  window.addEventListener("resize", headerHeight);
   
 });
 

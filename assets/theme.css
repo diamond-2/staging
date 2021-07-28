@@ -7083,14 +7083,36 @@ body #shopify-section-header.header-bg {
 sup, .slide-overaly-heading sup, h1 sup, h2 sup {
   top:-15px;
 }
+body.has_no_banner {
+  padding-top: 223px;
+}
+
 @media(max-width: 1600px) {
   sup, .slide-overaly-heading sup, h1 sup, h2 sup {
     top:-12px;
+  }
+  body.has_no_banner {
+    padding-top: 192.137px;
   }
 }
 @media(max-width: 1460px) {
   sup, .slide-overaly-heading sup, h1 sup, h2 sup {
     top:-10px;
+  }
+}
+@media(max-width: 1356px) {
+  body.has_no_banner {
+    padding-top: 14vw;
+  }
+}
+@media(max-width: 1355px) {
+  body.has_no_banner {
+    padding-top: 12vw;
+  }
+}
+@media(max-width: 991px) {
+  body.has_no_banner {
+    padding-top: 16.2vw;
   }
 }
 @media(min-width: 750px) {
@@ -7128,6 +7150,12 @@ body.layout_jewellery-plp .main-content {
   }
   body #shopify-section-header.header-bg {
     top: -22px !important;
+  }
+  body, body.has_no_banner {
+    padding-top: 82.800px;
+  }
+  body[data-template="index"] {
+    padding-top:114.800px;
   }
 }
 

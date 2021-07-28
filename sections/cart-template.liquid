@@ -41,7 +41,10 @@
                             {% capture cartQuentity %}
                               <div class="cart__quantity-td">
                                 <div class="cart__qty">
-                                  <label for="updates_large_{{ item.key }}" class="cart-qty-label" data-quantity-label-desktop>{{ 'cart.label.quantity' | t }}</label>
+                                  <label for="updates_large_{{ item.key }}" class="cart-qty-label" data-quantity-label-desktop>
+                                    <span class="hide_mobile">QUANTITY: </span>
+                                    <span class="show_mobile">QTY.</span>
+                                  </label>
                                   <div class="cart__qty_iput_holder">
                                     <span class="cart__qty_decre">-</span>
                                     <input id="updates_large_{{ item.key }}" class="cart__qty-input" type="text"
@@ -115,7 +118,7 @@
                                 </li>
                               {%- endfor -%}
                               <!-- Mobile Quentity -->
-                              <div class="show_mobile">
+                              <div class="show_mobile quentity_mb">
                                 {{ cartQuentity }}
                               </div>
                             </ul>
@@ -130,7 +133,7 @@
 
                             <div class="cart__final-price" data-cart-item-line-price>
                               <span class="org_price">{{ item.original_price | money }}</span>
-                              {% if item.variant.compare_at_price %}<span class="compare_price">{{ item.variant.compare_at_price | money_without_trailing_zeros }}</span>{% endif %}
+                              {% if item.variant.compare_at_price %}<span class="compare_price hide_mobile">{{ item.variant.compare_at_price | money_without_trailing_zeros }}</span>{% endif %}
                               <span class="price_inclusive_tex">Price is Inclusive of Taxes</span>
                             </div>
 

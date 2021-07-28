@@ -21,7 +21,7 @@
             {%- if section.settings.phone_number -%}
             <li class="phone-item">
                 <span class="icon_s">{% include 'contact-phone-icon' %}</span>
-                <span class="text"><a href="tel:{{ section.settings.phone_number }}">{{ section.settings.phone_number }}</a></span>
+                <span class="text"><a href="tel:{{ section.settings.phone_number }}">+{{ section.settings.phone_number }}</a></span>
             </li>
             {%- endif -%}
         </ul>
@@ -84,14 +84,14 @@
                         </div>
             
                         <div class="custom-form-group">
-                            <label for="{{ formId }}-phone">{{ 'contact.form.phone' | t }}</label>
+                            <label for="{{ formId }}-phone">Phone No.</label>
                             <input class="input-box required" type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" maxlength="10" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
                             <span class="error_msg"></span>
                         </div>
 
                         <div class="custom-form-group">
                             <label for="{{ formId }}-message">{{ 'contact.form.message' | t }}</label>
-                            <textarea class="input-box required" rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+                            <textarea maxlength="250" class="input-box required" rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
                             <span class="error_msg"></span>
                         </div>
                         <div class="actions">
