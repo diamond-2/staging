@@ -5,10 +5,9 @@
 {% comment %}
 {% section 'collection-template' %}
 {% endcomment %}
-
-
+{% comment %}
 {% include 'searchanise-navigation' %}
-
+{% endcomment %}
 
 
 {% section 'solitaire-banner-slider' %}
@@ -21,7 +20,7 @@
 
 
 
-
+<link rel="stylesheet" href="{{'filter-layout.css' | asset_url }}">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
@@ -30,19 +29,152 @@
   $(function(){
     var maxResults = 48;
     var defFilterName = 'restrictBy[collections]={{ collection.title | replace: ',' , '\,' | url_encode }}';
-      var searchsortby = $(document).find("#SortBy option:selected").val();
-      var searchBaseUrl = 'https://www.searchanise.com/getresults?api_key=7r9L5P8L4h'; 
-      var queryString = '&output=jsonp&sortBy=' + searchsortby + '&startIndex=0&maxResults=' + maxResults + '&restrictBy[quantity]=1&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
+      var searchsortby = $(document).find("#sortByFilter option:selected").attr('value'); console.log('sortyBy==> '+ searchsortby);
+      var searchBaseUrl = 'https://www.searchanise.com/getresults?api_key=7r9L5P8L4h';
+
+      var queryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&restrictBy[quantity]=1&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
       var searchData = '';
     var filters = '';
     $.ajax({	
         url: searchBaseUrl + queryString,
-        dataType: 'json',
+        dataType: 'jsonp',
         success: function(data){		
           searchData = data;
           console.log('\n\n----------------');
+          console.log(searchData);    
+          console.log('----------------\n\n');
+          if(data.hasOwnProperty('error') ==  true){
+          // $('.sn-loader, .filter-loader-icn').fadeOut();
+          $('[data-collection-listing-container]').addClass('full-width').prepend('<p class="no-result">There are currently no products in this collection, please check back later</p>');
+        } else {
+          $('.collection-header').data('limit');
+          if($('.collection-header').attr('data-limit') < searchData.totalItems){
+            //console.log('less then Search limit -- show pagination');
+            ///$('.collection-header-result-per-page').closest('.collection-bottom-pagination-data').removeClass('hidepaginate');
+              //$('.collection-header-result-per-page').css('opacity', 1).css('pointer-events', 'initial');;
+          }else{
+           // console.log('greater thene Search limit -- hide pagination');
+            // $('.collection-header-result-per-page').css('opacity', 0).css('pointer-events', 'none');
+            // $('.collection-header-result-per-page').closest('.collection-bottom-pagination-data').addClass('hidepaginate');
+          }   
+          filters = searchData.facets;  
+          
+          //Init
+          //var getmaxitemperpage = $('select.result-per-page option:selected').attr('data-count');
+          createFilters();
+
         }
+
+        }       
       });
 
+      //Create Filters
+    	function createFilters(){ 
+          $('.collection-filters').empty();
+          $.each(filters, function(key, val){ 
+            //console.log(val);
+            var filterName = val.attribute;
+            var filterTitle = val.title;
+            var filterVal = val.buckets;
+            var sidebarHtml = '';
+            //console.log(filterTitle);
+            // if(filterTitle != 'Custom-Filters'){             
+            //     var sidebarHtml = '<div class="collection-content-area-left-heading">' + filterTitle + '<span class="collapse"></span></div>';                             
+            //   }else{
+            //     var sidebarHtml = '<div class="collection-content-area-left-heading" style="padding-bottom: 5px; pointer-events: none;"></div>'; 
+            //   }
+
+            if(filterTitle == 'Product type'){
+             // console.log('Product Typeee')
+              	  var counter = 0;
+                  var selectOption = '';	
+              	  var checked = '';
+                  var checkVal = '';
+                  selectOption += '<select name="product-type" id="productType" class="filters-toolbar__input">';
+                  selectOption += '<option data-opt-val="" value="" selected="selected">Product Type</option>';          
+                  $.each(filterVal, function(key, val){
+                    console.log('SelectDropDown');
+                    console.log(val);
+                    if(val.count >= 0){
+                        var show = 'toShow';
+                        filterName=filterName.toLowerCase().replace(' ', '-'); console.log('Filtername==>'+filterName);
+                        var thisVal = val.value;
+                        console.log('thisVal == >  ' + thisVal);
+                        var filterVal = '&restrictBy[' + filterName + ']=' + val.value;
+                        if(val.selected != undefined && val.selected != '' && val.selected == 'true'){
+                          var selected = 'selected=selected';
+                              checked = 'checked=checked';
+                          	  checkVal = thisVal;
+                        }
+                        selectOption += '<option data-opt-val="' + thisVal + '" ' + selected + ' value="' + filterVal + '" >' + thisVal + '</option>';
+                        counter++;
+                        
+                    }
+                  });
+                  selectOption  += '</select><input type="checkbox" id="loc-filter" value="' + checkVal + '" ' + checked + ' class="visually-hidden" />'
+                  
+                  if(counter >= 1){
+                    sidebarHtml+= '<div class="collection-content-area-left-content"><div class="collection-content-area-left-content-wrapper" data-filter="&restrictBy[' + filterName + ']"><div class="collection-near-location-input">' + selectOption +'</div></div></div>';
+                    console.log(sidebarHtml);
+                  	$('[data-collection-filter-section]').append(sidebarHtml);
+
+                  }
+
+            }
+            else if(filterTitle == 'Price') {
+              var minPrice = parseFloat(filterVal[0].from).toFixed(2);
+              var highestPrice = parseFloat(filterVal[0].to).toFixed(2);
+              var selectedMinPrice = parseFloat(filterVal[0].left).toFixed(2);
+              var SelectedHighestPrice = parseFloat(filterVal[0].right).toFixed(2);
+              if(filterVal[0].selected != undefined && filterVal[0].selected != '' && filterVal[0].selected == 'true'){
+                var checked = 'checked=checked';
+              }
+              // optionsHtml+='<div id="slider-range"></div><span id="collection-price-min"></span> <span id="collection-price-max"></span>';
+              // optionsHtml+='<input ' + checked + ' type="checkbox" data-opt-val="&restrictBy[price]=' + minPrice + ','+ highestPrice +'" value="&restrictBy[price]=' + minPrice + ','+ highestPrice +'" id="price-val-range" class="visually-hidden" />';          	
+              // sidebarHtml+= '<div class="collection-content-area-left-content price__filter" style="max-width: 280px;"><div class="collection-content-area-left-content-wrapper"><div class="collection-other-list">' + optionsHtml +'</div></div></div>';
+              // if(minPrice != highestPrice){ $('.collection-filters').append(sidebarHtml); };
+              // if($('#slider-range .ui-slider-range').length <= 0){
+              //   // initializingPriceSlider(minPrice, highestPrice, selectedMinPrice, SelectedHighestPrice);
+              // }  
+
+            }
+            
+          });
+      }
+
+
+      //Initialize Price Slider
+    	function initializingPriceSlider(minPrice, highestPrice, selectedMin, selectedMax){
+          var getMinAmt = minPrice;
+          var getMaxAmt = highestPrice;
+            $('#price-min-val').val(minPrice);
+            $('#price-max-val').val(highestPrice);      	
+            $( "#slider-range" ).slider({
+            range: true,
+            min: parseFloat(minPrice),
+            max: parseFloat(highestPrice),
+            values: [ selectedMin, selectedMax ],
+            slide: function( event, ui ) { 
+              // $( "#collection-price-min" ).text("$" + minPrice);
+              // $( "#collection-price-max" ).text("$" + highestPrice);
+              // $('.price__filter').prev('.collection-content-area-left-heading').find('.selRange').remove();
+    			// if(parseFloat(ui.values[ 0 ].toFixed(2)) > parseFloat(minPrice) || parseFloat(ui.values[ 1 ].toFixed(2)) < parseFloat(highestPrice)){
+                // $('.price__filter').prev('.collection-content-area-left-heading').append('<i class="selRange">($' + ui.values[ 0 ].toFixed(2) +' - $' + ui.values[ 1 ].toFixed(2) + ')</i>');
+               priceSelected = '&restrictBy[price]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ];
+    			// }    
+            },
+            stop: function( event, ui ) {
+              // $('#price-val-range').attr('data-opt-val', '&restrictBy[price]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ]).val('&restrictBy[price]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ]).attr('checked', 'checked').change(); 
+            }
+          });
+          // $( "#collection-price-min" ).text( "$" + minPrice);
+          // $( "#collection-price-max" ).text( "$" + highestPrice);
+          // $('.price__filter').prev('.collection-content-area-left-heading').find('.selRange').remove();
+
+          if(parseFloat(selectedMin) > parseFloat(minPrice) || parseFloat(selectedMax) < parseFloat(highestPrice)){
+            // $('.price__filter').prev('.collection-content-area-left-heading').append('<i class="selRange">($' + selectedMin +' - $' + selectedMax + ')</i>');
+          }      
+        }
+    	//Initialize Price Slider Ends
   });
   </script>

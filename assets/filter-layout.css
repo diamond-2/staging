@@ -1,0 +1,13 @@
+.filters-toolbar{}
+.filters-toolbar > div {
+    width: 100%;
+}
+.collection-sort-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+.filters-toolbar__item-wrapper {
+    align-items: center;
+}
