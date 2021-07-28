@@ -46,11 +46,11 @@
                                     <span class="show_mobile">QTY.</span>
                                   </label>
                                   <div class="cart__qty_iput_holder">
-                                    <span class="cart__qty_decre">-</span>
-                                    <input id="updates_large_{{ item.key }}" class="cart__qty-input" type="text"
+                                    <span class="cart__qty_decre js-change-quantity" data-func="minus">-</span>
+                                    <input data-inventry=""{{ item.variant_id }}" data-id="{{ item.variant_id }}" id="updates_large_{{ item.key }}" class="cart__qty-input" type="text"
                                     name="updates[]" value="{{ item.quantity }}" min="0"
                                     data-quantity-input data-quantity-item="{{ forloop.index }}" data-quantity-input-desktop data-role="product-quantity-desktop">
-                                    <span class="cart__qty_incre">+</span>
+                                    <span class="cart__qty_incre js-change-quantity" data-func="plus">+</span>
                                   </div>
                                 </div>
                                 <div class="cart__qty-error-message-wrapper cart__qty-error-message-wrapper--desktop hide" role="alert" data-cart-quantity-error-message-wrapper>
@@ -117,23 +117,16 @@
                                   </span>
                                 </li>
                               {%- endfor -%}
-                              <!-- Mobile Quentity -->
-                              <div class="show_mobile quentity_mb">
-                                {{ cartQuentity }}
-                              </div>
                             </ul>
 
-                            
-
-                            <!-- Desktop Quentity -->
-                            <div class="hide_mobile">
+                            <div class="">
                               {{ cartQuentity }}
                             </div>
                             
 
                             <div class="cart__final-price" data-cart-item-line-price>
-                              <span class="org_price">{{ item.original_price | money }}</span>
-                              {% if item.variant.compare_at_price %}<span class="compare_price hide_mobile">{{ item.variant.compare_at_price | money_without_trailing_zeros }}</span>{% endif %}
+                              <span class="org_price">{{ item.original_line_price | money }}</span>
+                              {% if item.variant.compare_at_price %}<span class="compare_price">{{ item.variant.compare_at_price | money_without_trailing_zeros }}</span>{% endif %}
                               <span class="price_inclusive_tex">Price is Inclusive of Taxes</span>
                             </div>
 
@@ -141,7 +134,7 @@
                           <div class="cart__product-body-right">
                             <div class="cart_remove_flex">
                               <p class="cart__remove">
-                                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove">close</a>
+                                <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="text-link text-link--accent" aria-label="{{ 'cart.label.remove' | t: product: item.title }}" data-cart-remove data-role="product-remove"><img src="{{ 'cart-close.png' | asset_img_url: 'master' }}"></a>
                               </p>
                             </div>
                           </div>
@@ -377,6 +370,8 @@
   </div>
 </div>
 
+
+
 <script>
   $(".cart__qty-input").on('input', function(e) {
     $(this).val($(this).val().replace(/[^0-9]/g, ''));
@@ -390,23 +385,27 @@
       decrementBtn.addEventListener('click',decrementValue);
       
       function incrementValue(e){
-          quantityInput.value++
+          quantityInput.value++;
       }
       function decrementValue(e){
-          if(quantityInput.value > 0) {
+          if(quantityInput.value > 1) {
             quantityInput.value--
           }
       }
   });
 
-  // agree terms input
-  // $('.custom-checkbox-holder').on('click', function(){
-  //   if ($('.custom-checkbox-input-box input').prop('checked')) {
-  //       $(this).closest('.custom-checkbox-holder').addClass('input-checked');
-  //   } else {
-  //       $(this).closest('.custom-checkbox-holder').removeClass('input-checked');
-  //   }
-  // });
+  $('.js-change-quantity').click(function(){
+      let varrientId = $(this).siblings('.cart__qty-input').attr('data-id');
+      let varrientQty = $(this).siblings('.cart__qty-input').val();
+      jQuery.post('/cart/update.js', {
+        updates: {
+          [varrientId]: varrientQty
+        }
+      }, function(data){
+        location.reload();
+      });
+  });
+
 
 </script>
 

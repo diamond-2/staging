@@ -7083,7 +7083,7 @@ body #shopify-section-header.header-bg {
 sup, .slide-overaly-heading sup, h1 sup, h2 sup {
   top:-15px;
 }
-body.has_no_banner {
+body {
   padding-top: 223px;
 }
 
@@ -7091,7 +7091,7 @@ body.has_no_banner {
   sup, .slide-overaly-heading sup, h1 sup, h2 sup {
     top:-12px;
   }
-  body.has_no_banner {
+  body  {
     padding-top: 192.137px;
   }
 }
@@ -7101,17 +7101,17 @@ body.has_no_banner {
   }
 }
 @media(max-width: 1356px) {
-  body.has_no_banner {
+  body {
     padding-top: 14vw;
   }
 }
 @media(max-width: 1355px) {
-  body.has_no_banner {
+  body {
     padding-top: 12vw;
   }
 }
 @media(max-width: 991px) {
-  body.has_no_banner {
+  body {
     padding-top: 16.2vw;
   }
 }
