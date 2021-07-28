@@ -293,6 +293,22 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
 body {
   font-weight: 300;
 }
+::-webkit-input-placeholder {
+  color: $textcolor-black;
+  opacity: 1;
+}
+::-moz-placeholder {
+  color: $textcolor-black;
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  color: $textcolor-black;
+  opacity: 1;
+}
+:-moz-placeholder {
+  color: $textcolor-black;
+  opacity: 1;
+}
 .main-content h2 {
     @include font-range-45to25();
     @include heading-fonts();
@@ -1870,13 +1886,13 @@ body{
             padding-top: 160px;
           }
           @media(max-width: $md) {
-            padding-bottom: 440px;
+            padding-bottom: 442px;
           }
         }
         .slick-dots {
           @media(max-width: $md) {
             bottom: auto;
-            top: 394px;
+            top: 396px;
           }
         }
         .slide-item {
@@ -2740,7 +2756,7 @@ body{
               }
               @media(max-width: $md) {
                 font-size: 12px;
-                line-height: 18px;
+                line-height: 12.96px;
               }
             }
           }
@@ -2963,10 +2979,11 @@ body{
                     > a {
                       @media(max-width: $md) {
                         display: block;
-                        margin-bottom: 13px;
+                        margin-bottom: 22px;
                         font-size: 13px;
                         letter-spacing: normal;
                         font-weight: 200;
+                        line-height: 14.04px;
                       }
                     }
                     a {
@@ -2978,11 +2995,12 @@ body{
                         padding-top: 0 ;
                         padding-left: 10px;
                         padding-right: 10px;
-                        padding-bottom: 18px;
+                        padding-bottom: 22px;
                         display: none;
                       }
                       .site-footer__sub-linklist-item {
                         @include base-font();
+                        font-weight: 400;
                         margin-bottom: 15px;
                         font-size: 14px;
                         line-height: 15.12px;
@@ -3056,7 +3074,7 @@ body{
                 font-size: 14px;
                 letter-spacing: 0.05em;
                 line-height: 15.12px;
-                font-weight: 400;
+                font-weight: 300;
                 margin-bottom: 25px;
                 @media(max-width: $md) {
                   font-size: 12px;
@@ -3474,6 +3492,18 @@ body[data-template="know-your-diamond"] {
       }
     }
   }
+  &.full_width_slider3_wrapper {
+    .full_width_slider_image_holder {
+      @media(max-width: $md) {
+        padding-bottom: 395px;
+      }
+    }
+    ul.slick-dots {
+      @media(max-width: $md) {
+        top: 340px;
+      }
+    }
+  }
 
   .full_width_slider_image_holder {
     background-repeat: no-repeat;
@@ -3485,7 +3515,7 @@ body[data-template="know-your-diamond"] {
     position: relative;
     padding-bottom: 40.64%;
     @media(max-width: $md) {
-      padding-bottom: 431px;
+      padding-bottom: 265px;
     }
     img {
       height: 100%;
@@ -3551,7 +3581,6 @@ body[data-template="know-your-diamond"] {
           }
           @media(max-width: $md) {
             font-size: 28px;
-            line-height: 35.24px;
             color: $textcolor-phanton;
             margin-bottom: 20px;
           }
@@ -3617,7 +3646,7 @@ body[data-template="know-your-diamond"] {
     width: 100%;
     @media(max-width: $md) {
       bottom: auto;
-      top: 390px;
+      top: 212px;
     }
     li {
       width: auto;
@@ -3865,9 +3894,10 @@ body[data-template="know-your-diamond"] {
     }
     @media(max-width: $md) {
       margin-bottom: 20px !important;
-      max-width: 200px;
+      max-width: 260px;
       margin-left: auto;
       margin-right: auto;
+      text-align: center;
     }
   }
   p:not(:last-child) {
@@ -4109,8 +4139,8 @@ body[data-template="know-your-diamond"] {
       font-weight: 500;
       @media(max-width: $md) {
         font-size: 12px;
-        line-height: 18px;
-        margin-top: 6px;
+        line-height: 12.96px;
+        margin-top: 10px;
         font-weight: 400;
       }
       a {
@@ -5560,7 +5590,7 @@ body.layout_jewellery {
         .content_holder {
           p {
             @media(max-width: $md) {
-              padding: 0 30px;
+              padding: 0 5px;
             }
           }
         }
@@ -6017,12 +6047,12 @@ body.layout_jewellery {
   &.solitaire-banner-slider-wrapper {
     .full_width_slider_image_holder {
       @media(max-width: $md) {
-        padding-bottom: 440px;
+        padding-bottom: 460px;
       }
     }
     ul.slick-dots {
       @media(max-width: $md) {
-        top: 389px;
+        top: 408px;
       }
     }
   }
@@ -6545,6 +6575,11 @@ body.layout_jewellery {
 
 // Common Layout 1 ( privacy-policy ) Start
 body[data-template="common-layout-1"], body[data-template="sitemap"] {
+  .site-footer {
+    @media(max-width: $md) {
+      padding-top:60px;
+    }
+  }
   .main-content {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -6788,6 +6823,10 @@ body {
           transform: translateY(-50%);
         }
         svg {
+          @media(max-width: $md) {
+            width: 9px;
+            height: 12px;
+          }
           path {
             fill: currentColor;
           }
@@ -6797,8 +6836,15 @@ body {
     &.active {
       a {
         color: #6C1D45;
+        font-weight: 700;
+        @media(max-width: $md) {
+          font-weight: 600;
+        }
         .icon_s {
           transform: rotate(-180deg);
+          @media(max-width: $md) {
+            transform: translateY(-50%) rotate(-180deg);
+          }
         }
       }
     }
@@ -6905,7 +6951,7 @@ body {
       }
       @media(max-width: $md) {
         font-size: 14px;
-        line-height: 25px;
+        line-height: 24px;
         margin-bottom: 15px;
       }
   }
@@ -6944,10 +6990,30 @@ body {
           &:last-child {
               margin-bottom: 0;
           }
+          &.address-item {
+            svg {
+              @media(max-width: $md) {
+                width: 16px;
+                height: 22.8px;
+              }
+            }
+          }
+          &.email-item {
+            svg {
+              @media(max-width: $md) {
+                width: 20px;
+                height: 14px;
+              }
+            }
+          }
           &.phone-item {
             svg {
               width: 16px;
               height: 25px;
+              @media(max-width: $md) {
+                width: 13px;
+                height: 20px;
+              }
             }
           }
       }
@@ -7014,7 +7080,7 @@ body {
                   }
                   @media(max-width: $md) {
                     font-size: 14px;
-                    line-height: 15px;
+                    line-height: 24px;
                     margin: 0 0 20px;
                   }
               }
@@ -7146,6 +7212,16 @@ body {
     &.show_tab {
       @media(max-width: $md) {
         display: block;
+      }
+    }
+    &#location-map {
+      .contact_to_sec {
+        p {
+          @media(max-width: $md) {
+            font-size: 12px;
+            line-height: 18px;
+          }
+        }
       }
     }
   }
@@ -8301,6 +8377,23 @@ body[data-template="cart"] {
 }
 // Cart Page End
 
+// jewellery plp
+.layout_jewellery-plp {
+  .full_width_slider_wrapper {
+    &.solitaire-banner-slider-wrapper {
+      .full_width_slider_image_holder {
+        @media(max-width: $md) {
+          padding-bottom: 406px;
+        }
+      }
+      ul.slick-dots {
+        @media(max-width: $md) {
+          top: 354px;
+        }
+      }
+    }
+  }
+}
 
 // Responsive
 
