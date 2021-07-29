@@ -47,7 +47,7 @@
                                   </label>
                                   <div class="cart__qty_iput_holder">
                                     <span class="cart__qty_decre js-change-quantity" data-func="minus">-</span>
-                                    <input data-inventry=""{{ item.variant_id }}" data-id="{{ item.variant_id }}" id="updates_large_{{ item.key }}" class="cart__qty-input" type="text"
+                                    <input data-inventry="{{- item.variant.inventory_quantity -}}" data-id="{{ item.variant_id }}" id="updates_large_{{ item.key }}" class="cart__qty-input" type="text"
                                     name="updates[]" value="{{ item.quantity }}" min="0"
                                     data-quantity-input data-quantity-item="{{ forloop.index }}" data-quantity-input-desktop data-role="product-quantity-desktop">
                                     <span class="cart__qty_incre js-change-quantity" data-func="plus">+</span>
@@ -264,7 +264,7 @@
                   </div>
                 {%- endif -%}
                 <div class="grid__item delivery-notes">
-                  <span class="delivery-notes-heading">DELIVERY</span>
+                  <span class="delivery-notes-heading">Shipping</span>
                   <span class="delivery-notes-subheading">CALCULATED AT CHECKOUT</span>
                 </div>
                 <div class="grid__item cart_total_item {% if section.settings.cart_notes_enable %} medium-up--one-half{% endif %}">
@@ -298,7 +298,7 @@
                     {%- elsif shop.shipping_policy.body != blank -%}
                       {{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
                     {%- else -%}
-                      {{ 'cart.general.taxes_and_shipping_at_checkout' | t }}
+                    Got a discount code or gift voucher? Apply it in the next step.
                     {%- endif -%}
                   {%- endcapture -%}
                   <div class="cart__shipping rte">{{ taxes_shipping_checkout }}</div>
@@ -381,11 +381,14 @@
       let quantityInput = item.querySelector('.cart__qty-input');
       let incrementBtn = item.querySelector('.cart__qty_incre');
       let decrementBtn = item.querySelector('.cart__qty_decre');
+
+      let inventryVal = quantityInput.getAttribute('data-inventry');
+
       incrementBtn.addEventListener('click',incrementValue);
       decrementBtn.addEventListener('click',decrementValue);
       
       function incrementValue(e){
-          quantityInput.value++;
+        quantityInput.value++;
       }
       function decrementValue(e){
           if(quantityInput.value > 1) {

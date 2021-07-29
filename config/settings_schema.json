@@ -1635,5 +1635,15 @@
           "default": true
         }
       ]
+    },
+    {
+      "name": "Create Account",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "account_right_image",
+          "label": "Account Right Image"
+        }
+      ]
     }
   ]
