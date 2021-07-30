@@ -130,6 +130,7 @@ $input-field-border-color:#6679CC;
     text-transform: uppercase;
     transition: all 0.3s;
     font-weight: 400;
+    border-radius: 0;
     &:hover, &:focus {
       color: $textcolor-white;
       border-color:$textcolor-phanton;
@@ -3345,7 +3346,7 @@ body{
   
 // Know Your Diamond Page
 
-.glb-btn, a.glb-btn {
+.glb-btn, a.glb-btn, .btn {
   @include globalBtn();
 }
 
@@ -7368,14 +7369,6 @@ body[data-template="404"] {
     overflow: hidden;
     padding-bottom: 50.5%;
     background-color: #dbdbdb;
-    @media(max-width: $xxl) and (min-width: $postMd) {
-      padding: 0;
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      top: 0;
-      left: 0;
-    }
     img {
       position: absolute;
       height: 100%;
@@ -7388,32 +7381,21 @@ body[data-template="404"] {
     }
   }
   .error-banner-content-holder {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     max-width: 680px;
     margin: 0 auto;
     min-height: 300px;
     text-align: center;
     padding: 70px 20px;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
     z-index: 2;
-    transform: translateY(-50%);
-    @media(max-width: $xxl) and (min-width: $postMd) {
-      min-height: 0;
-      position: relative;
-      transform: none;
-      top: 0;
-      bottom: 0;
-      margin: 18% auto 12%;
-    }
+    position: relative;
+    margin-top: -54px;
     @media(max-width: $md) {
-      position: static;
-      transform: none;
-      background: transparent;
       padding: 30px 20px;
       min-height: 0;
+      margin-left: 20px;
+      margin-right: 20px;
+      margin-bottom: 20px;
     }
     h2 {
       font-size: 48px;
@@ -7457,7 +7439,7 @@ body[data-template="404"] {
   }
 }
 .top-collections-wrapper {
-  padding-top: 100px;
+  padding-top: 50px;
   padding-left:70px;
   padding-right:70px;
   @media(max-width: $xxl) {
@@ -7469,7 +7451,7 @@ body[data-template="404"] {
   }
   .top-collections-sec-header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
     @media(max-width: $md) {
       margin-bottom: 30px;
     }
@@ -7671,6 +7653,9 @@ body[data-template="cart"] {
     padding-top: 0;
     padding-bottom: 0;
   }
+  .home-sld {
+    padding-top:108px;
+  }
 }
 .cart-template-wrapper {
   padding-top: 30px;
@@ -7678,8 +7663,8 @@ body[data-template="cart"] {
     padding-top:15px;
   }
   .dia-container {
-    padding-left: 50px;
-    padding-right: 50px;
+    // padding-left: 50px;
+    // padding-right: 50px;
     @media(max-width: $md) {
       padding-left:15px;
       padding-right:15px;
@@ -8609,9 +8594,21 @@ body[data-template="cart"] {
 }
 
 // Sign Up Page Start
-body[data-template="customers/register"] {
-  #shopify-section-header {
+body[data-template="customers/register"],
+body[data-template="customers/login"],
+body[data-template="customers/reset_password"] {
+  // #shopify-section-header {
+  //   display: none !important;
+  // }
+  padding-top:0 !important;
+  .announcement-bar {
     display: none !important;
+  }
+  #shopify-section-header {
+    position: relative !important;
+  }
+  .sticky-header {
+    position: static !important;
   }
   .main-content {
     padding-top:0;
@@ -8645,6 +8642,7 @@ body[data-template="customers/register"] {
         .register-form-column-inner {
           max-width: 518px;
           margin-left: auto;
+          height: 100%;
         }
       }
       &.register-image-column {
@@ -8669,7 +8667,7 @@ body[data-template="customers/register"] {
       .form__input-wrapper {
         position: relative;
         margin-bottom: 20px;
-        .msg-error {
+        .msg-error, .form__error-message-wrapper {
           margin-top: 5px;
           display: none;
           padding: 15px 13px 10px;
@@ -8695,6 +8693,9 @@ body[data-template="customers/register"] {
             border-left: 1px solid rgba(255, 0, 0, 0.5);
             transform: rotate(45deg);
           }
+        }
+        .form__error-message-wrapper {
+          display: block;
         }
         .input_icon {
           position: absolute;
@@ -8911,8 +8912,43 @@ body[data-template="customers/register"] {
     .or-line-with-text {
       margin-bottom: 40px;
     }
+    .forget-form-wrapper {
+      .register-page-inner-wrapper {
+        max-width: 100%;
+      }
+    }
+    .register_image_box {
+      img {
+        border-radius: 25px;
+      }
+    }
   }
 }
+.form-flex-end {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  height: 100%;
+  form {
+    margin-top: auto;
+  }
+}
+.custom-sec-header2 {
+  .heading {
+    font-size: 36px;
+    line-height: 38.88px;
+    @include heading-fonts();
+    color: $textcolor-phanton;
+    text-transform: capitalize;
+    margin: 0 0 50px;
+  }
+  p {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+}
+
 .form-switch-wrapper {
   border: 1px solid rgba(0,0,0,.3);
   display: flex;
@@ -8925,6 +8961,16 @@ body[data-template="customers/register"] {
     align-items: center;
     cursor: pointer;
     height: 48px;
+    &.active {
+      .custom-radio {
+        span {
+          border-color: #6679CC;
+          &:before {
+            transform: scale(1);
+          }
+        }
+      }
+    }
     label {
       font-size: 14px;
       line-height: 15.12px;
@@ -8962,18 +9008,51 @@ body[data-template="customers/register"] {
         left: 0;
         right: 0;
         opacity: 0;
-        &:checked {
-          & ~ span {
-            border-color: #6679CC;
-            &:before {
-              transform: scale(1);
-            }
-          }
-        }
       }
     }
   }
 }
+.forgot-pass-link {
+  text-align: center;
+  margin: 20px 0 30px;
+  font-size: 18px;
+  line-height: 19.44px;
+  font-weight: 500;
+  a {
+    color: $textcolor-phanton;
+  }
+}
+.form-message--error {
+  background: rgba(255,0,0,.1);
+  border: 1px solid rgba(255,0,0,.5);
+  padding: 15px;
+  .form-message__title {
+    color: #000;
+    font-size: 20px;
+    line-height: normal;
+    margin: 0 0 10px;
+  }
+}
+.request-otp {
+  text-align: right;
+  font-size: 18px;
+  line-height: 19.44px;
+  font-weight: 500;
+  margin-top: 10px;
+  color:$textcolor-phanton;
+  a {
+    color: inherit;
+  }
+}
+.swith-form-tabber {
+  .form-wrapper {
+    display: none;
+    &.show-swith-form {
+      display: block;
+    }
+  }
+}
+
 
 // Sign Up Page End
 
