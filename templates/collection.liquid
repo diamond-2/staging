@@ -59,9 +59,11 @@
           }   
           filters = searchData.facets;  
           
+          
           //Init
           //var getmaxitemperpage = $('select.result-per-page option:selected').attr('data-count');
           createFilters();
+          printProducts(searchData.items);
 
         }
 
@@ -75,53 +77,11 @@
             //console.log(val);
             var filterName = val.attribute;
             var filterTitle = val.title;
+            var filterId = filterTitle.toLowerCase().replace(' ', '-');
             var filterVal = val.buckets;
             var sidebarHtml = '';
-            //console.log(filterTitle);
-            // if(filterTitle != 'Custom-Filters'){             
-            //     var sidebarHtml = '<div class="collection-content-area-left-heading">' + filterTitle + '<span class="collapse"></span></div>';                             
-            //   }else{
-            //     var sidebarHtml = '<div class="collection-content-area-left-heading" style="padding-bottom: 5px; pointer-events: none;"></div>'; 
-            //   }
-
-            if(filterTitle == 'Product type'){
-             // console.log('Product Typeee')
-              	  var counter = 0;
-                  var selectOption = '';	
-              	  var checked = '';
-                  var checkVal = '';
-                  selectOption += '<select name="product-type" id="productType" class="filters-toolbar__input">';
-                  selectOption += '<option data-opt-val="" value="" selected="selected">Product Type</option>';          
-                  $.each(filterVal, function(key, val){
-                    console.log('SelectDropDown');
-                    console.log(val);
-                    if(val.count >= 0){
-                        var show = 'toShow';
-                        filterName=filterName.toLowerCase().replace(' ', '-'); console.log('Filtername==>'+filterName);
-                        var thisVal = val.value;
-                        console.log('thisVal == >  ' + thisVal);
-                        var filterVal = '&restrictBy[' + filterName + ']=' + val.value;
-                        if(val.selected != undefined && val.selected != '' && val.selected == 'true'){
-                          var selected = 'selected=selected';
-                              checked = 'checked=checked';
-                          	  checkVal = thisVal;
-                        }
-                        selectOption += '<option data-opt-val="' + thisVal + '" ' + selected + ' value="' + filterVal + '" >' + thisVal + '</option>';
-                        counter++;
-                        
-                    }
-                  });
-                  selectOption  += '</select><input type="checkbox" id="loc-filter" value="' + checkVal + '" ' + checked + ' class="visually-hidden" />'
-                  
-                  if(counter >= 1){
-                    sidebarHtml+= '<div class="collection-content-area-left-content"><div class="collection-content-area-left-content-wrapper" data-filter="&restrictBy[' + filterName + ']"><div class="collection-near-location-input">' + selectOption +'</div></div></div>';
-                    console.log(sidebarHtml);
-                  	$('[data-collection-filter-section]').append(sidebarHtml);
-
-                  }
-
-            }
-            else if(filterTitle == 'Price') {
+            // Range type layout for price filter
+            if(filterTitle == 'Price') {
               var minPrice = parseFloat(filterVal[0].from).toFixed(2);
               var highestPrice = parseFloat(filterVal[0].to).toFixed(2);
               var selectedMinPrice = parseFloat(filterVal[0].left).toFixed(2);
@@ -137,11 +97,42 @@
               //   // initializingPriceSlider(minPrice, highestPrice, selectedMinPrice, SelectedHighestPrice);
               // }  
 
-            }
-            
+            } else {
+              // Common layout for print dropdown filter 
+              var counter = 0;
+                  var selectOption = '';	
+              	  var checked = '';
+                  var checkVal = '';
+                  selectOption += '<select name="product-type" id="'+filterId+'" class="filters-toolbar__input">';
+                  selectOption += '<option data-opt-val="" value="" selected="selected">'+filterTitle+'</option>';          
+                  $.each(filterVal, function(key, val){
+                    if(val.count >= 0){
+                        var show = 'toShow';
+                        filterName=filterName.toLowerCase().replace(' ', '-'); //console.log('Filtername==>'+filterName);
+                        var thisVal = val.value;//console.log('thisVal == >  ' + thisVal);
+                        var filterVal = '&restrictBy[' + filterName + ']=' + val.value;
+                        if(val.selected != undefined && val.selected != '' && val.selected == 'true'){
+                          var selected = 'selected=selected';
+                              checked = 'checked=checked';
+                          	  checkVal = thisVal;
+                        }
+                        selectOption += '<option data-opt-val="' + thisVal + '" ' + selected + ' value="' + filterVal + '" >' + thisVal + '</option>';
+                        counter++;                        
+                    }
+                  });
+                  selectOption  += '</select><input type="checkbox" id="'+filterId+'-filter" value="' + checkVal + '" ' + checked + ' class="visually-hidden" />';
+                  if(counter >= 1){
+                    sidebarHtml+= '<div class="collection-filter-wrapper" data-filter="&restrictBy[' + filterName + ']">' + selectOption +'</div>';
+                  	$('[data-collection-filter-section]').append(sidebarHtml);
+                  }
+                }            
           });
       }
 
+      // Print Product 
+      function printProducts(prodObj){
+        console.log(prodObj);
+      }
 
       //Initialize Price Slider
     	function initializingPriceSlider(minPrice, highestPrice, selectedMin, selectedMax){

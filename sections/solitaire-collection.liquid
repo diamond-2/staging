@@ -120,7 +120,7 @@
     {% endif %}
   </header>
 
-  <div class="dia-container" id="Collection" data-collection-listing-container>
+  <div class="dia-container css" id="Collection" data-collection-listing-container>
     {% if section.settings.layout == 'grid' %}
       
     {%- if paginate.current_page == 1 -%}
@@ -130,7 +130,7 @@
       <!-- First Row -->
       <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
         {% for product in collection.products limit: 4 %}
-          <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+          <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }} aaa">
             {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
           </li>
         {% else %}
