@@ -1,36 +1,29 @@
 <div class="register-page-wrapper login-page-wrapper">
   <div class="dia-container">
-    <div class="register-page-inner-wrapper">
-      <div class="register-form-header">
-        <h1>{{ 'Sign In' }}</h1>
-        <p>Sign in using</p>
-      </div>
-      <!-- Login with Social App -->
-      {% include 'login-with-social' %}
-      <div class="or-line-with-text"><span>OR SIGN UP WITH </span></div>
-      <div class="register-form-column">
-        <div class="register-form-column-inner">
-          <div class="form-wrapper">
-            {%- assign formId = 'LoginForm' -%}
-            {% form 'create_customer', id: formId, class: 'form-validation-login'  %}
-              {% include 'form-status', form: form, form_id: formId %}
 
-              {%- if form.errors -%}
-                <div class="form-message form-message--error">
-                  <h2 class="h3 form-message__title " tabindex="-1" data-form-status>{{ 'contact.form.error_heading' | t }}</h2>
-                  {{ form.errors | default_errors }}
-                </div>
-              {%- endif -%}
+    <div class="customer-form-all-wrap">
+
+      <div class="login-form-wrapper customer-form" id="CustomerLoginForm">
+        <div class="register-page-inner-wrapper">
+          <div class="register-form-header">
+            <h1>{{ 'Sign In' }}</h1>
+            <p>Sign in using</p>
+          </div>
+          <!-- Login with Social App -->
+          {% include 'login-with-social' %}
+          <div class="or-line-with-text"><span>OR SIGN UP WITH </span></div>
+          <div class="register-form-column">
+            <div class="register-form-column-inner swith-form-tabber">
               
               <div class="form-switch-wrapper">
-                <div class="custom-radio-item">
+                <div class="custom-radio-item active" data-swith-id="#loginWithEmail">
                   <div class="custom-radio">
                     <input type="radio" id="emailTab" checked name="swichRadioTab" value="emailTab">
                     <span></span>
                   </div>
                   <label for="emailTab">Email Address</label>
                 </div>
-                <div class="custom-radio-item">
+                <div class="custom-radio-item" data-swith-id="#loginWithPhone">
                   <div class="custom-radio">
                     <input type="radio" id="mobileOtpTab" name="swichRadioTab" value="mobileOtpTab">
                     <span></span>
@@ -39,85 +32,180 @@
                 </div>
               </div>
 
-              <div class="form__input-wrapper" data-form-input-wrapper>
-                <span class="input_icon">
-                  {% include 'input-email-icon' %}
-                </span>
-                <input class="form__input" placeholder="{{ 'customer.login.email' | t }}"
-                type="email"
-                name="customer[email]"
-                id="CustomerEmail"
-                autocomplete="email"
-                autocorrect="off"
-                autocapitalize="off"
-                {%- if form.errors contains 'form' -%}
-                  class="input--error"
-                  aria-invalid="true"
-                {%- endif -%}
-                >
-                <span class="msg-error"></span>
-              </div>
-              
-              <div class="form__input-wrapper" data-form-input-wrapper>
-                <span class="input_icon">
-                  {% include 'input-lock-icon' %}
-                </span>
-                <input  class="form__input" placeholder="{{ 'customer.login.password' | t }}"
-                type="password"
-                name="customer[password]"
-                id="{{ formId }}-password"
-                aria-required="true"
-                {%- if form.errors contains 'password' -%}
-                  class="input--error"
-                  aria-invalid="true"
-                  aria-describedby="{{ formId }}-password-error"
-                {%- endif -%}
-                >
-                <span class="msg-error"></span>
-              </div>              
+              <div class="form-wrapper show-swith-form" id="loginWithEmail">
+                {%- assign formId = 'LoginForm' -%}
+                {% form 'customer_login', class: 'form-validation-login'  %}
+                  {%- if form.errors -%}
+                  <div class="form-message form-message--error">
+                    <h2 class="h3 form-message__title " tabindex="-1" data-form-status>{{ 'contact.form.error_heading' | t }}</h2>
+                    {{ form.errors | default_errors }}
+                  </div>
+                  {%- endif -%}
+                
+                  <div class="form__input-wrapper" data-form-input-wrapper>
+                    <span class="input_icon">
+                      {% include 'input-email-icon' %}
+                    </span>
+                    <input class="form__input" placeholder="{{ 'customer.login.email' | t }}"
+                    type="email"
+                    name="customer[email]"
+                    id="CustomerEmail"
+                    autocomplete="email"
+                    autocorrect="off"
+                    autocapitalize="off"
+                    {%- if form.errors contains 'form' -%}
+                      class="input--error"
+                      aria-invalid="true"
+                    {%- endif -%}
+                    >
+                    <span class="msg-error"></span>
+                  </div>
+                  
+                  <div class="form__input-wrapper" data-form-input-wrapper>
+                    <span class="input_icon">
+                      {% include 'input-lock-icon' %}
+                    </span>
+                    <input  class="form__input" placeholder="{{ 'customer.login.password' | t }}"
+                    type="password"
+                    name="customer[password]"
+                    id="{{ formId }}-password"
+                    aria-required="true"
+                    {%- if form.errors contains 'password' -%}
+                      class="input--error"
+                      aria-invalid="true"
+                      aria-describedby="{{ formId }}-password-error"
+                    {%- endif -%}
+                    >
+                    <span class="msg-error"></span>
+                  </div>              
 
-              <div class="btn-actions-wrapper">
-                <button type="button" class="customer__button glb-btn">
-                  <span>{{ 'customer.login.sign_in' | t }}</span>
-                </button>
+                  <div class="btn-actions-wrapper">
+                    <button type="button" class="customer__button glb-btn">
+                      <span>{{ 'customer.login.sign_in' | t }}</span>
+                    </button>
+                  </div>
+                  <div class="forgot-pass-link">
+                    <a href="#">Forgot Password?</a>
+                  </div>
+                  <div class="already-account-sec">Do not have an account with us?  <a href="/account/register">Sign Up</a></div>
+                {% endform %}
               </div>
-              <div class="forgot-pass-link">
-                <a href="#">Forgot Password?</a>
+              <div class="form-wrapper" id="loginWithPhone">
+                <form class="form-login-with-phoneotp">
+                  <div class="form__input-wrapper" data-form-input-wrapper>
+                    <span class="input_icon">
+                      {% include 'input-email-icon' %}
+                    </span>
+                    <input class="form__input" placeholder ="Enter Mobile Number" type="tel" name="customer[phone_number]" id="{{ formId }}-PhoneNumber" value="{{ form.phone_number }}" pattern="[789][0-9]{9}" title="Please enter your 10-digit mobile number" >
+                    <span class="msg-error"></span>
+                    <div class="request-otp">
+                      <a href="javascript:void(0)">Request OTP</a>
+                    </div>
+                  </div>
+                  <div class="btn-actions-wrapper">
+                    <button type="button" class="customer__button glb-btn">
+                      <span>{{ 'customer.login.sign_in' | t }}</span>
+                    </button>
+                  </div>
+                  <div class="forgot-pass-link">
+                    <a href="#">Forgot Password?</a>
+                  </div>
+                  <div class="already-account-sec">Do not have an account with us?  <a href="/account/register">Sign Up</a></div>
+                </form>
               </div>
-              <div class="already-account-sec">Do not have an account with us?  <a href="/account/register">Sign Up</a></div>
-            {% endform %}
+
+            </div>
           </div>
         </div>
       </div>
+
+      {% assign forgetPasswordImage = settings.account_right_image %}
+      <div class="forget-form-wrapper customer-form hide" id="RecoverPasswordForm">
+        <div class="register-page-inner-wrapper">
+          <div class="register-page-two-col-row {% if forgetPasswordImage == blank %}has_not_right_image{% endif %}">
+            <div class="register-form-column">
+              <div class="register-form-column-inner">
+                <div class="form-wrapper form-flex-end">
+                  <div class="custom-sec-header2">
+                    <div class="heading">Forgot Password</div>
+                    <p class="para">Please enter your registered email address and press Submit.
+                      You will receive an email on your registered email address to reset your password.</p>
+                  </div>
+                  {% assign formId = 'forget_password_form' %}
+                  {%- form 'recover_customer_password', class: 'form form-validation-recover', data-form: '', id: formId -%}
+                  {% comment %}
+                    Add a hidden span to indicate the form was submitted succesfully.
+                  {% endcomment %}
+                  {%- if form.posted_successfully? -%}
+                    <span class="hidden" data-reset-password-success></span>
+                  {%- endif -%}
+                  <div class="form__input-wrapper{% if form.errors contains 'form' %} form__input-wrapper--error{% endif %}" data-form-input-wrapper>
+                    <span class="input_icon">
+                      {% include 'input-email-icon' %}
+                    </span>
+                    <input type="email" value="" name="email" id="RecoverEmail" placeholder="{{ 'customer.recover_password.email' | t }}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$" class="form__input email-address {% if form.errors %} input--error{% endif %}" autocorrect="off" autocapitalize="off" {% if form.errors %} aria-invalid="true" aria-describedby="RecoverEmail-email-error"{% endif %} >
+                    <span class="msg-error"></span>
+                    {%- if form.errors -%}
+                      <span  id="RecoverEmail-email-error" class="form__error-message-wrapper form__error-message-wrapper--input">
+                        <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                        {% render 'icon-error' %}
+                        <span class="form__error-message">{{ form.errors.messages['form'] }}</span>
+                      </span>
+                    {%- endif -%}
+                  </div>
+                  
+                  <div class="btn-actions-wrapper">
+                    <button type="button" class="customer__button glb-btn">
+                      <span>{{ 'customer.recover_password.submit' | t }}</span>
+                    </button>
+                  </div>
+          
+                {%- endform -%}
+
+                </div>
+              </div>
+            </div>
+            {% if forgetPasswordImage %}
+              <div class="register-image-column">
+                <div class="register-image-column">
+                  <div class="register_image_box">
+                    <img src="{{ forgetPasswordImage | img_url: 'master' }}" alt="Image">
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+          </div>
+        </div>
+      </div>
+
     </div>
+
   </div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function(event) {
+
+    // swith Tab start
+    $('.form-switch-wrapper .custom-radio-item').click(function(){
+        let swithTabId = $(this).attr('data-swith-id');
+        $(swithTabId).addClass('show-swith-form');
+        $(swithTabId).siblings('.form-wrapper').removeClass('show-swith-form');
+        $(this).addClass('active');
+        $(this).siblings().removeClass('active');
+    });
+    // swith Tab End
+
+    // show forget passwordd form
+    $('.forgot-pass-link a').click(function(e){
+        e.preventDefault();
+        $('#CustomerLoginForm').addClass('hide');
+        $('#RecoverPasswordForm').removeClass('hide');
+    });
+
+
     /*form validation start*/
-    function validateForm($this) {
-      var firstName = $this.find('input[name="customer[first_name]"]').val().trim();
-      var lastName = $this.find('input[name="customer[last_name]"]').val().trim();
-      var thisPhone = $this.find('input[name="customer[phone_number]"]').val().trim();
-      var regmm='^([0|+[0-9]{1,5})?([7-9][0-9]{9})$';
-      var regmob = new RegExp(regmm);
-      if (firstName == "" || firstName == null) {
-        $this.find('input[name="customer[first_name]"]').addClass('form-error').next('.msg-error').text("Enter Your First Name").css('display','block');
-      } else {
-        $this.find('input[name="customer[first_name]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
-      }
-      if (lastName == "" || lastName == null) {
-        $this.find('input[name="customer[last_name]"]').addClass('form-error').next('.msg-error').text("Enter Your Last Name").css('display','block');
-      } else {
-        $this.find('input[name="customer[last_name]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
-      }
-      if (thisPhone.length != 10 || thisPhone == null || regmob.test(thisPhone) == false) {
-        $this.find('input[name="customer[phone_number]"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Phone Number").css('display','block');
-      } else {
-        $this.find('input[name="customer[phone_number]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
-      }
-    }
+
     function validateEmail($this) {
       var thisEmail = $this.find('input[name="customer[email]"]').val();
       const reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -128,46 +216,38 @@
         $this.find('input[name="customer[email]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
       }
     }
-    function validateCreatePassword($this) {
-      var passw =  /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,16}$/; 
-       var thisPassword = $this.find('input[name="customer[password]"]').val();
+
+    function validateRecoverEmail($this) {
+      var thisRecoverEmail = $this.find('input[name="email"]').val();
+      const reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var proceed =  reg.test(thisRecoverEmail);
+      if (thisRecoverEmail == "" || thisRecoverEmail == null || proceed == false) {
+        $this.find('input[name="email"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Email Address").css('display','block');;
+      } else {
+        $this.find('input[name="email"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+      }
+    }
+
+    function validatePassword($this) {
+      var thisPassword = $this.find('input[name="customer[password]"]').val();
+      console.log(thisPassword);
       if (thisPassword == '' || thisPassword == null) {
         $this.find('input[name="customer[password]"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Password").css('display','block');
       } else {
-        if(thisPassword.match(passw)){
-          console.log('matchrejecx');
-          $this.find('input[name="customer[password]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
-        }else {
-          $this.find('input[name="customer[password]"]').addClass('form-error').next('.msg-error').text("Enter Password at least 8 characters, one lowercase letter, one uppercase letter, one numeric digit, and one special character").css('display','block');
-          return false;
-        } 
+        $this.find('input[name="customer[password]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
       }
-    }
-    function validateConfirmPassword($this) {
-      var $password = $this.find('input[name="customer[password]"]').val();
-      var $confirmPassword = $this.find('input[name="customer-confirm-[password]').val();
-      if($confirmPassword == '' || $confirmPassword == null || $confirmPassword != $password) {
-        $this.find('input[name="customer-confirm-[password]"]').addClass('form-error').next('.msg-error').text("Password not matched").css('display','block');
-      } else {
-        $this.find('input[name="customer[password]"], input[name="customer-confirm-[password]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
-      }
-    }
-    function validateGender($this) {
-      var $password = $this.find('select[name="customer-[gender]"]').val();
-      if($password == null) {
-        $this.find('select[name="customer-[gender]"]').addClass('form-error').next('.msg-error').text("Plese Select Gender").css('display','block');
-      } else {
-        $this.find('select[name="customer-[gender]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
-      }
-    }
+    } 
     $(document).on('click', 'button[type="button"]', function(e) {
       var $this = $(this).closest('form');
       //Write here your validations
       //And use this to prevent the form from submiting in case validations are not met.
       if($this.hasClass('form-validation-login')) {
         validateEmail($this);
-        validateCreatePassword($this);
+        validatePassword($this);
+      } else if ($this.hasClass('form-validation-recover')) {
+        validateRecoverEmail($this);
       }
+
       if($this.find('input.form-error').length > 0) {
         return false;
       } else {
