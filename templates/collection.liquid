@@ -132,6 +132,21 @@
       // Print Product 
       function printProducts(prodObj){
         console.log(prodObj);
+        var getcollection = "{{ collection.handle }}";
+        $.each(prodObj, function(i) {   
+            var getprodlink = prodObj[i].link;
+            getprodlink = '/collections/'+getcollection+''+getprodlink.split('.com')[1];
+            var _thistags = prodObj[i].tags;
+            _thistags = _thistags.split('[:ATTR:]');
+            var _this_variants = prodObj[i].shopify_variants;
+            var _variantComparePrice = [];
+            var _variantRegularPrice = [];
+            var _variant_ComparePrice_Max = '';
+            var _variant_ComparePrice_Min = '';
+            var _variant_RegularPrice_Max = '';
+            var _variant_RegularPrice_Min = '';
+            
+        });
       }
 
       //Initialize Price Slider
