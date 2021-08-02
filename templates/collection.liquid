@@ -131,12 +131,24 @@
 
       // Print Product 
       function printProducts(prodObj){
+        var productGrid = '';
         console.log(prodObj);
         var getcollection = "{{ collection.handle }}";
         $.each(prodObj, function(i) {   
-            var getprodlink = prodObj[i].link;
+            var getprodlink = prodObj[i].link,
+                prodLink = prodObj[i].link,
+                prodQty = prodObj[i].quantity,
+                prodTitle = prodObj[i].title,
+                prodTags = prodObj[i].tags,
+                prodImages = prodObj[i].shopify_images,
+                prodPrice = prodObj[i].price,
+                prodComparePrice = prodObj[i].list_price,
+                prodId = prodObj[i].id;
+
+                console.log('imagesLenght' + prodImages.length);
+
             getprodlink = '/collections/'+getcollection+''+getprodlink.split('.com')[1];
-            var _thistags = prodObj[i].tags;
+            var _thistags = prodTags;
             _thistags = _thistags.split('[:ATTR:]');
             var _this_variants = prodObj[i].shopify_variants;
             var _variantComparePrice = [];
@@ -145,6 +157,57 @@
             var _variant_ComparePrice_Min = '';
             var _variant_RegularPrice_Max = '';
             var _variant_RegularPrice_Min = '';
+
+            if(prodQty <= 0 ){
+              var prodAvaibility = 'grid-view-item--sold-out';
+            }
+            if(prodComparePrice != '') {
+              var noDiscount = 'no_discount';
+
+            }       
+            if(prodImages.length > 1 ){
+              var prodImgSlider = 'product_images_slider';
+            }    
+
+            // productGrid += '{% if product.compare_at_price %}<div class="compare_at_price">{{ product.compare_at_price | money | remove: '.00' }}</div>{% endif %}'
+            //       productGrid += '{% assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price %}'
+            //       productGrid += '{% if product.compare_at_price %}<div class="product_discount">{{ discount | floor }}% OFF</div>{% endif %}'
+
+
+            productGrid += '<div class="grid-view-item '+prodAvaibility+' product-card">';
+            productGrid += '<a class="grid-view-item__link grid-view-item__image-container full-width-link" href="'+getprodlink+'" style="display: none;"><span class="visually-hidden">'+prodTitle+'</span></a>';
+
+            productGrid += '<div class="product-images-wrapper '+prodImgSlider+'">';
+              if(prodImages.length > 1 ){
+                for (let j = 0; j < prodImages.length; j++) {
+                  productGrid += '<div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation><div id="" class="grid-view-item__image-wrapper product-card__image-wrapper js"><div class="product_img_holder"><img data-src="'+prodImages[j]+'" alt="'+ prodTitle+'" class="grid-view-item__image lazyload"></div></div></div>'
+                }
+              }
+
+            productGrid += '<div class="prodct_card_body">' 
+              productGrid += '<div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="'+ prodLink +'">'+ prodTitle+'</a></div>'
+              productGrid += '<span style="display: none;"></span>';
+
+              productGrid += '<div class="product-price-card">'
+
+                productGrid += '<div class="product-price-card-row">'
+                productGrid += '<div class="product_weight">1 1/3 CTW.</div>'
+                productGrid += '<div class="product_def">DEF</div>'
+                productGrid += '<div class="product_compare">COMPARE</div>'
+                productGrid += '</div>'
+
+
+                productGrid += '<div class="product-price-card-row price_row '+noDiscount+'">'
+                  productGrid += '<div class="ragular_price">'+ prodPrice +'</div>'
+                  productGrid += '</div>'
+              
+                
+                productGrid += '</div>'  
+              productGrid += '</div>'
+            productGrid += '</div>'
+            productGrid += '</div>'
+
+
             
         });
       }
