@@ -18,7 +18,7 @@
 {% paginate collection.products by limit %}
 
 <div data-section-id="{{ section.id }}" data-section-type="collection-template" class="solitaire-collection-wrapper">
-  <header class="collection-header">
+  <header class="collection-header" data-limit="{{ limit }}">
     {%- assign is_filter_by_available = false -%}
     {%- if section.settings.tags_enable and collection.all_tags.size > 0 -%}
       {%- assign is_filter_by_available = true -%}
@@ -47,7 +47,27 @@
             <div class="img_box">{{ 'diomand_40x40.svg' | asset_url | img_tag :'Diamond2' }}</div>
           </div>
           <div class="filters-toolbar">
+            <div class="collection-filter-wrapper-main" data-collection-filter-section></div>
+            <div class="collection-sort-wrapper">            
             <div class="filters-toolbar__item-wrapper">
+              {% if section.settings.sort_enable %}
+              <div class="collection-sort">
+                <span class="collection-sort-label">Sort</span>
+                <span class="select-sort-by-content">
+                  <select id="sortByFilter" class="select-sort-by">              
+                    <option value="sales_amount&sortOrder=desc" >Best Selling</option>
+                    <option value="price&sortOrder=asc">Price (Low to High)</option>
+                    <option value="price&sortOrder=desc">Price (High to Low)</option>
+                    <option value="title&sortOrder=asc">Alphabetically (A-Z)</option>
+                    <option value="title&sortOrder=desc">Alphabetically (Z-A)</option>
+                    <option value="created&sortOrder=asc">Oldest</option>
+                    <option value="created&sortOrder=desc" selected>Newest</option>
+                    <option value="relevance&sortOrder=desc">Relevance</option>
+                  </select>
+                </span>
+              </div>
+              {% endif %}
+
               {% if section.settings.tags_enable %}
                 {% unless collection.all_tags.size == 0 %}
                   <div class="filters-toolbar__item-child">
@@ -65,12 +85,14 @@
                   </div>
                 {% endunless %}
               {% endif %}
-
+                {% comment %}
               {% if section.settings.sort_enable %}
                 <div class="filters-toolbar__item-child">
                   {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
                   <label class="filters-toolbar__label select-label" for="SortBy">{{ 'collections.sorting.title' | t }}</label>
                   <div class="filters-toolbar__input-wrapper select-group">
+
+                    
                     <select name="sort_by" id="SortBy"
                       class="filters-toolbar__input hidden"
                       aria-describedby="a11y-refresh-page-message a11y-selection-message"
@@ -85,18 +107,20 @@
                   </div>
                 </div>
               {% endif %}
+              {% endcomment %}
             </div>
 
             <div class="filters-toolbar__item filters-toolbar__item--count">
               <span class="filters-toolbar__product-count">{{ 'collections.general.items_with_count' | t: count: collection.products_count }}</span>
             </div>
           </div>
+          </div>
         </div>
       </div>
     {% endif %}
   </header>
 
-  <div class="dia-container" id="Collection">
+  <div class="dia-container css" id="Collection" data-collection-listing-container>
     {% if section.settings.layout == 'grid' %}
       
     {%- if paginate.current_page == 1 -%}
@@ -106,7 +130,7 @@
       <!-- First Row -->
       <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
         {% for product in collection.products limit: 4 %}
-          <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+          <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }} aaa">
             {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
           </li>
         {% else %}
