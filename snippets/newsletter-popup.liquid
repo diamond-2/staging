@@ -1,0 +1,98 @@
+
+{% assign newsletterBg = 'newesletter-bg.jpg' | asset_img_url: 'master' %}
+<div class="newsletter-popup-wrapper">
+    <div class="newsletter-popup-holder">
+        <div class="newsletter-popup" style="background-image: url({{ newsletterBg }});">
+            <div class="newsletter-popup-header">
+                <h2>Get 20% off on your first purchase</h2>
+            </div>
+            <div class="newsletter-popup-form">
+                {%- assign formId = 'newsletterForm' -%}
+                {% form 'customer', id: formId, novalidate: 'novalidate', class: 'newsletter-form contact-form' %}
+                {%- if form.posted_successfully? -%}
+                    <p class="form-message form-message--success hide" tabindex="-1" data-form-status>
+                        Thanks you!
+                    </p>
+                {%- endif -%}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <div class="input-group {% if form.errors %} input-group--error{% endif %}">
+                    <input type="email"
+                    name="contact[email]"
+                    id="{{ formId }}-email"
+                    class="input-group__field newsletter__input{% if form.errors %} input--error{% endif %}"
+                    value="{{ form.email }}"
+                    placeholder="Enter Your Email"
+                    aria-label="Email"
+                    aria-required="true"
+                    required
+                    autocorrect="off"
+                    autocapitalize="off"
+                    {% if form.errors %}
+                        aria-invalid="true"
+                        aria-describedby="{{ formId }}-email-error"
+                        data-form-status
+                    {% endif %}>
+                    <span class="input-group__btn">
+                    <button type="submit" class="glb-btn newsletter__submit" name="commit" disabled>
+                        <span class="newsletter__submit-text--large">SUBMIT</span>
+                    </button>
+                    </span>
+                </div>
+                <p class="form-message form-message--error custom-error"></p>
+                {% if form.errors contains 'email' %}
+                    <span id="{{ formId }}-email-error" class="input-error-message">
+                    <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                    {% include 'icon-error' %}
+                    <span class="site-footer__newsletter-error">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+                    </span>
+                {% endif %}
+                {% endform %}
+            </div>
+            <div class="newsletter-popup-footer">
+                <a class="newsletter-pop-remove">Enter Site ></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cookies -->
+<script src="{{ 'cookie.js' | asset_url }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function(event) {
+        if($.cookie('newesletterPopup') == null) {
+            setTimeout(function(){
+                $('.newsletter-popup-wrapper').show();
+                $('body').addClass('newsletterPopup-exist');
+            },2000);
+        }
+        $('.newsletter-pop-remove').click(function(){
+            $.cookie('newesletterPopup',2);
+            $('.newsletter-popup-wrapper').hide();
+            setTimeout(function(){
+                $('.newsletter-popup-wrapper').remove();
+            },500);
+            $('body').removeClass('newsletterPopup-exist');
+        });
+        var challengePage = window.location.pathname;
+        if(challengePage == '/challenge'){
+            setTimeout(function(){
+                $('.newsletter-popup-wrapper').hide();
+                $('body').removeClass('newsletterPopup-exist');
+                console.log(challengePage);
+            },2000);
+        }
+
+        $(window).on('load', function(){  
+            var check = window.location.search;
+            if($('.form-message--success').length > 0){
+                if(check.indexOf('customer_posted=true') > -1){
+                    setTimeout(function(){
+                        $.cookie('newesletterPopup',2);
+                        $('.newsletter-popup-wrapper').remove();
+                        $('body').removeClass('newsletterPopup-exist');
+                    },500);
+                }
+            }
+        });
+    });
+</script>

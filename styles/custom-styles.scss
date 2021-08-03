@@ -147,6 +147,36 @@ $input-field-border-color:#6679CC;
       padding: 7.6px 10px;
     }
   }
+
+  @mixin errorMsg() {
+    margin-top: 5px;
+    display: none;
+    padding: 15px 13px 10px;
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.5);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 12.96px;
+    position: relative;
+    margin-top: 15px;
+    width: 100%;
+    color: $textcolor-black;
+  }
+  @mixin errorMsgArrow() {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -6px;
+    left: 12px;
+    right: 0;
+    height: 10px;
+    width: 10px;
+    background: rgba(255, 229, 229,1);
+    border-top: 1px solid rgba(255, 0, 0, 0.5);
+    border-left: 1px solid rgba(255, 0, 0, 0.5);
+    transform: rotate(45deg);
+  }
+
   /*============================================================================
 #Breakpoint
 ==============================================================================*/
@@ -310,7 +340,8 @@ body {
   color: $textcolor-black;
   opacity: 1;
 }
-.main-content h2 {
+.main-content h2,
+.newsletter-popup-header h2 {
     @include font-range-45to25();
     @include heading-fonts();
     color: $textcolor-phanton;
@@ -6898,13 +6929,21 @@ body {
   }
 }
 .newsletter-form {
+  &#becomeEntrepreneur {
+    .form-message--error {
+      &:after {
+        background-color: #e3c9c9;
+      }
+    }
+  }
   .form-message--error {
-    display: none;
-    border: none;
-    padding: 0;
-    background: transparent;
-    color: red;
-    margin:0;
+    @include errorMsg();
+    &:empty {
+      display: none !important;
+    }
+    &:after {
+      @include errorMsgArrow();
+    }
     &.show {
       display: block;
     }
@@ -6913,6 +6952,7 @@ body {
     display: none;
   }
 }
+
 .slick-dots {
   > li {
     &:only-child {
@@ -8322,13 +8362,14 @@ body[data-template="cart"] {
             line-height: 0;
             font-size: 0;
             a {
+              cursor: pointer;
               text-decoration: none;
-              // font-size: 0;
+              font-size: 0;
               height: 20px;
               width: 21px;
               display: inline-block;
               border: none;
-              // background-image: url(https://cdn.shopify.com/s/files/1/0575/2681/2840/files/Closecart-remove.png?v=1627360402);
+              background-image: url(https://cdn.shopify.com/s/files/1/0575/2681/2840/files/Closecart-remove.png?v=1627360402);
               background-size: cover;
               background-position: center;
               @media(max-width: $md) {
@@ -8617,9 +8658,21 @@ body[data-template="customers/reset_password"] {
 }
 .register-page-wrapper {
   padding: 100px 0 0;
+  @media(max-width: $md) {
+    padding: 28px 0 0;
+  }
   .register-form-header {
     width: 50%;
     padding-right: 53px;
+    @media(max-width: $xl) and (min-width: $postMd) {
+      width: 66%;
+      padding-right: 15px;
+    }
+    @media(max-width: $md) {
+      width: 100%;
+      padding:0;
+      text-align: center;
+    }
     h1 {
       @include heading-fonts();
       font-size: 38px;
@@ -8629,6 +8682,15 @@ body[data-template="customers/reset_password"] {
       margin:0 0 40px;
       max-width: 518px;
       margin-left: auto;
+      @media(max-width: $xl) and (min-width: $postMd) {
+        max-width: 100%;
+      }
+      @media(max-width: $md) {
+        margin-bottom: 30px;
+        max-width: 100%;
+        font-size: 24px;
+        line-height: 25.92px;
+      }
     }
   }
   .register-page-two-col-row {
@@ -8636,17 +8698,42 @@ body[data-template="customers/reset_password"] {
     flex-wrap: wrap;
     > div {
       width: 50%;
+      @media(max-width: $md) {
+        width: 100%;
+      }
       &.register-form-column {
         border-right:1px solid $textcolor-phanton;
         padding-right:53px;
+        @media(max-width: $xl) and (min-width: $postMd) {
+          padding-right: 15px;
+          width: 66%;
+        }
+        @media(max-width: $md) {
+          padding:0;
+          border:none;
+          margin-bottom: 20px;
+        }
         .register-form-column-inner {
           max-width: 518px;
           margin-left: auto;
           height: 100%;
+          @media(max-width: $xl) and (min-width: $postMd) {
+            max-width: 100%;
+          }
+          @media(max-width: $md) {
+            max-width: 100%;
+          }
         }
       }
       &.register-image-column {
         padding-left: 50px;
+        @media(max-width: $xl) and (min-width: $postMd) {
+          padding-left: 15px;
+          width: 34%;
+        }
+        @media(max-width: $md) {
+          padding: 0;
+        }
       }
     }
     &.has_not_right_image {
@@ -8668,30 +8755,9 @@ body[data-template="customers/reset_password"] {
         position: relative;
         margin-bottom: 20px;
         .msg-error, .form__error-message-wrapper {
-          margin-top: 5px;
-          display: none;
-          padding: 15px 13px 10px;
-          background: rgba(255, 0, 0, 0.1);
-          border: 1px solid rgba(255, 0, 0, 0.5);
-          font-weight: 400;
-          font-size: 12px;
-          line-height: 12.96px;
-          position: relative;
-          margin-top: 15px;
-          width: 100%;
+          @include errorMsg();
           &:before {
-            content: "";
-            display: block;
-            position: absolute;
-            top: -6px;
-            left: 12px;
-            right: 0;
-            height: 10px;
-            width: 10px;
-            background: rgba(255, 229, 229,1);
-            border-top: 1px solid rgba(255, 0, 0, 0.5);
-            border-left: 1px solid rgba(255, 0, 0, 0.5);
-            transform: rotate(45deg);
+            @include errorMsgArrow();
           }
         }
         .form__error-message-wrapper {
@@ -8701,11 +8767,19 @@ body[data-template="customers/reset_password"] {
           position: absolute;
           height: 52px;
           padding: 16px 20px;
+          @media(max-width: $md) {
+            height: 40px;
+            padding: 0 19px;
+            line-height: 40px;
+          }
           svg {
             vertical-align: middle;
           }
           & ~ .form__input {
             padding-left: 58px;
+            @media(max-width: $md){
+              padding-left: 49px;
+            }
           }
         }
         .form__input {
@@ -8718,6 +8792,12 @@ body[data-template="customers/reset_password"] {
           font-weight: 400;
           padding:18px;
           border-radius: 0;
+          @media(max-width: $md){
+            height: 40px;
+            padding: 10px;
+            font-size: 13px;
+            line-height: 14.04px;
+          }
           &.form-error {
             border-color: red;
           }
@@ -8742,6 +8822,9 @@ body[data-template="customers/reset_password"] {
       }
       .btn-actions-wrapper  {
         padding-top: 10px;
+        @media(max-width: $md) {
+          padding-top:0;
+        }
         .glb-btn {
           width: 100%;
           height: auto;
@@ -8750,15 +8833,28 @@ body[data-template="customers/reset_password"] {
           font-size: 18px;
           line-height: 24px;
           letter-spacing: 1px;
+          @media(max-width: $md) {
+            font-size: 12px;
+            line-height: 12.96px;
+            font-weight: 400;
+            padding: 8px 10px 8px;
+            min-height: 0;
+          }
         }
       }
       .fidget-column-2 {
         display: flex;
         flex-wrap: wrap;
         margin:0 -19.5px;
+        @media(max-width: $md) {
+          margin:0 -10px;
+        }
         .form-field {
           padding:0 19.5px;
           width: 100%;
+          @media(max-width: $md) {
+            padding:0 10px;
+          }
           &.small_field {
             width: 30.4%;
           }
@@ -8775,9 +8871,15 @@ body[data-template="customers/reset_password"] {
             width: 90px;
             border-right: none;
             padding: 10px;
+            @media(max-width: $md) {
+              width: 60px;
+            }
           }
           .form__input {
             width: calc(100% - 90px);
+            @media(max-width: $md) {
+              width: calc(100% - 60px);
+            }
           }
         }
       }
@@ -8808,6 +8910,11 @@ body[data-template="customers/reset_password"] {
             line-height: 24px;
             letter-spacing: 1px;
             font-weight: 300;
+            @media(max-width: $md) {
+              font-weight: 400;
+              font-size: 13px;
+              line-height: 14.04px;
+            }
           }
         }
       }
@@ -8821,6 +8928,12 @@ body[data-template="customers/reset_password"] {
     letter-spacing: 0.01em;
     text-transform: uppercase;
     position: relative;
+    @media(max-width: $md) {
+      font-size: 13px;
+      line-height: 19.5px;
+      font-weight: 400;
+      letter-spacing: normal;
+    }
     span {
       display: inline-block;
       background: #fff;
@@ -8851,10 +8964,17 @@ body[data-template="customers/reset_password"] {
       align-items: center;
       justify-content: space-around;
       justify-content: space-evenly;
+      @media(max-width: $md) {
+        margin:0 -7.5px;
+      }
       li {
         width: 153px;
         height: 50px;
         margin: 0 5px;
+        @media(max-width: $md) {
+          margin: 0 7.5px;
+          width: 165px;
+        }
         a {
           border: 1px solid rgba(0, 0, 0, 0.1);
           display: flex;
@@ -8881,6 +9001,11 @@ body[data-template="customers/reset_password"] {
     line-height: 17.28px;
     font-weight: 500;
     text-align: center;
+    @media(max-width: $md) {
+      font-size: 13px;
+      line-height: 14.04px;
+      font-weight: 400;
+    }
     a {
       color: $textcolor-phanton;
     }
@@ -8897,6 +9022,9 @@ body[data-template="customers/reset_password"] {
       text-align: center;
       h1 {
         max-width: 100%;
+        @media(max-width: $md) {
+          margin-bottom: 20px;
+        }
       }
       p {
         font-size: 14px;
@@ -8904,13 +9032,25 @@ body[data-template="customers/reset_password"] {
         font-weight: 300;
         text-transform: uppercase;
         margin-bottom: 20px;
+        @media(max-width: $md) {
+          font-weight: 400;
+          font-size: 13px;
+          line-height: 19.5px;
+          margin-bottom: 30px;
+        }
       }
     }
     .sign-up-with-social {
       margin-top: 0;
+      @media(max-width: $md) {
+        margin-bottom: 30px;
+      }
     }
     .or-line-with-text {
       margin-bottom: 40px;
+      @media(max-width: $md) {
+        margin-bottom: 30px;
+      }
     }
     .forget-form-wrapper {
       .register-page-inner-wrapper {
@@ -8934,6 +9074,10 @@ body[data-template="customers/reset_password"] {
   }
 }
 .custom-sec-header2 {
+  @media(max-width: $md) {
+    text-align: center;
+    margin-bottom: 52px;
+  }
   .heading {
     font-size: 36px;
     line-height: 38.88px;
@@ -8941,11 +9085,25 @@ body[data-template="customers/reset_password"] {
     color: $textcolor-phanton;
     text-transform: capitalize;
     margin: 0 0 50px;
+    @media(max-width: $md) {
+      margin:0 0 20px;
+      font-size: 24px;
+      line-height: 25.92px;
+    }
+    &:last-child {
+      @media(max-width: $md) {
+        margin:0 ;
+      }
+    }
   }
   p {
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
+    @media(max-width: $md) {
+      font-size: 12px;
+      line-height: 12.96px;
+    }
   }
 }
 
@@ -8955,16 +9113,26 @@ body[data-template="customers/reset_password"] {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
+  @media(max-width: $md) {
+    border:none;
+    margin:0 -5px 20px;
+  }
   .custom-radio-item {
     margin: 0 25px;
     display: flex;
     align-items: center;
     cursor: pointer;
     height: 48px;
+    @media(max-width: $md) {
+      margin: 0;
+      padding: 0 5px;
+      height: auto;
+    }
     &.active {
       .custom-radio {
         span {
           border-color: #6679CC;
+          border: none;
           &:before {
             transform: scale(1);
           }
@@ -8977,10 +9145,18 @@ body[data-template="customers/reset_password"] {
       font-weight: 400;
       letter-spacing: 0.05em;
       margin: 0;
+      @media(max-width: $md) {
+        font-size: 13px;
+        line-height: 14.04px;
+        letter-spacing: normal;
+      }
     }
     .custom-radio {
       position: relative;
       margin-right: 15px;
+      @media(max-width: $md) {
+        margin-right: 10px;
+      }
       span {
         border: 1px solid #000000;
         display: block;
@@ -8989,6 +9165,7 @@ body[data-template="customers/reset_password"] {
         border-radius: 50%;
         position: relative;
         overflow: hidden;
+        
         &:before {
           position: absolute;
           height: 100%;
@@ -9018,6 +9195,11 @@ body[data-template="customers/reset_password"] {
   font-size: 18px;
   line-height: 19.44px;
   font-weight: 500;
+  @media(max-width: $md) {
+    font-size: 12px;
+    line-height: 14px;
+    margin-bottom: 10px;
+  }
   a {
     color: $textcolor-phanton;
   }
@@ -9040,6 +9222,11 @@ body[data-template="customers/reset_password"] {
   font-weight: 500;
   margin-top: 10px;
   color:$textcolor-phanton;
+  @media(max-width: $md) {
+    font-size: 12px;
+    line-height: 12.96px;
+    font-weight: 400;
+  }
   a {
     color: inherit;
   }
@@ -9055,6 +9242,272 @@ body[data-template="customers/reset_password"] {
 
 
 // Sign Up Page End
+
+// newsletter Popup Start
+.landing-exist {
+  overflow: auto !important;
+}
+.newsletterPopup-exist {
+  overflow: hidden;
+}
+.newsletter-popup-wrapper {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  .newsletter-popup-holder {
+    max-width: 1024px;
+    width: 95%;
+    margin: 0 auto;
+    overflow: auto;
+    position: absolute;
+    height: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .newsletter-popup {
+    background-color: #6c1d45;
+    background-size: cover;
+    background-position: center;
+    min-height: 568px;
+    color: #fff;
+    padding: 75px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    @media(max-width: $md) {
+      padding: 30px;
+    }
+    .newsletter-popup-header {
+      h2 {
+        text-transform: uppercase;
+        margin: 0 0 30px;
+        max-width: 505px;
+        letter-spacing: normal;
+        color: #fff;
+      }
+    }
+    .newsletter-popup-form {
+      max-width: 648px;
+      .input-group  {
+        justify-content: flex-start;
+        .newsletter__input {
+          border-radius: 2px 0px 0px 2px;
+          background: #FFFFFF;
+          border: 1px solid rgba(0, 0, 0, 0.4);
+          height: 61px;
+          min-height: 0;
+          font-size: 24px;
+          line-height: 25.92px;
+          font-weight: 400;
+          color: $textcolor-black;
+          margin: 0;
+          width: 68.209%;
+          flex-basis: 68.209%;
+          padding: 18px 21px;
+          @media(max-width: $md) {
+            height: 50px;
+            font-size: 14px;
+          }
+          &::-webkit-input-placeholder, &::-moz-placeholder, &:-ms-input-placeholder, &:-moz-placeholder {
+            color: rgba(0, 0, 0, 0.8);
+            opacity: 1;
+          }
+        }
+        .input-group__btn {
+          width: 31.791%;
+          .glb-btn {
+            font-size: 18px;
+            line-height: 24px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 17.5px 5px;
+            min-height: 0;
+            border-radius: 0px 2px 2px 0px;
+            width: 100%;
+            @media(max-width: $md) {
+              font-size: 12px;
+              line-height: normal;
+              padding: 13px 5px;
+              height: 100%;
+            }
+          }
+        }
+      }
+      .form-message--error {
+        background: rgba(255,0,0,.3);
+        color: #fff;
+        &:after {
+          background: #6a0f17;
+        }
+      }
+    }
+    .newsletter-popup-footer {
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 1;
+      margin-top: auto;
+      padding-top: 20px;
+      @media(max-width: $md) {
+        font-size: 14px;
+      }
+      a {
+        color: inherit;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+// newsletter Popup End
+
+// Remove Cart Item Popup
+
+.remove_cart_popup_show {
+  .cart-remove-popup-wrapper {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+.cart-remove-popup-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  height: 100%;
+  width: 100%;
+  background: rgba(196, 196, 196, 0.75);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s;
+  .cart-remove-popup-holder {
+    max-width: 350px;
+    margin: 0 auto;
+    width: 95%;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    .cart-remove-popup {
+      background: #FFFFFF;
+      padding: 35px 20px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      min-height: 340px;
+      position: relative;
+      .cart-remove-header {
+        margin: 0 -3px;
+        font-size: 11px;
+        line-height: 13.41px;
+        font-weight: 400;
+        text-align: center;
+      }
+      .cart-remove-item-footer {
+          margin-top: auto;
+          padding-top: 30px;
+      }
+      .cart-remove-item-bt-wrap {
+          display: flex;
+          flex-wrap: wrap;
+          margin: 0 -15px;
+          .cart-btn-item {
+            width: 50%;
+            padding: 0 15px;
+            .glb-btn {
+              font-size: 11px;
+              line-height: 13.41px;
+              text-align: center;
+              padding: 6px;
+              width: 100%;
+          }
+        }
+      }
+    }
+  }
+  .close_cart_pop {
+    width: 10px;
+    height: 10px;
+    background-image: url(https://cdn.shopify.com/s/files/1/0575/2681/2840/files/Close-small.png?v=1627915414);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+  }
+  .cart-remove-item {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    .cart_image_column {
+	    width: 105px;
+	    .cart__image {
+		    max-height: initial;
+		  }
+	  }
+    .cart_image_content {
+        width: calc(100% - 105px);
+        padding-left: 10px;
+        .cart_item-title {
+          font-size: 16px;
+          line-height: 24.35px;
+          font-family: 'Spectral';
+          font-weight: 200;
+          margin: 0;
+          .cart__product-title {
+            color: #6C1D45;
+            text-decoration: none;
+            border: none !important;
+          }
+        }
+      .cart_item-price {
+          font-size: 13px;
+          line-height: 15.85px;
+          font-weight: 400;
+          color: #6C1D45;
+          text-transform: capitalize;
+      }
+    }
+  }
+  .product-details {
+    margin:0;
+    padding:0;
+  }
+  .product-details__item, .cart_item-quantity {
+    font-size: 11px;
+    line-height: 13.41px;
+    font-weight: 400;
+    margin:0 0 10px;
+    &:empty {
+      display: none;
+    }
+    .gold_colr {
+      display: none;
+    }
+  }
+  
+
+}
+
+// Remove Cart Item Popup End
+
 
 // Responsive
 
