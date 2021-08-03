@@ -175,7 +175,7 @@
 </head>
 <body class="layout_{{ template.suffix }} template-{{ request.page_type | handle }} " data-template="{{ template | replace: 'page.', '' }}" {% if request.page_type == 'product' %}data-handle="{{ product.handle }}" {% endif %}>
   
-  <!-- {% section 'mini-cart' %} -->
+  {%- comment -%}{% section 'mini-cart' %}{%- endcomment -%}
 
   <!-- newsletter Popup Start -->
   {% include 'newsletter-popup' %}

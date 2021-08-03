@@ -10119,6 +10119,21 @@ window.addEventListener("resize", function() {
       }
   });
   
+  // Product Listing Product card Images slider
+  let plpImageSLider = document.querySelector('.product_images_slider');
+  if(plpImageSLider){
+    $('.product_images_slider').slick({ 
+      autoplay: false,
+      autoplaySpeed: 500,
+      arrows: true,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      Infinite: false,
+      loop: false,
+      dots: false
+    });
+  }
+
 });
 
 var showMobileNav = false;
