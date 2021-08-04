@@ -35,6 +35,9 @@
       var queryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&restrictBy[quantity]=1&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
       var searchData = '';
     var filters = '';
+
+    searchaniseProducts(queryString);
+    function searchaniseProducts(queryString) {
     $.ajax({	
         url: searchBaseUrl + queryString,
         dataType: 'jsonp',
@@ -69,7 +72,7 @@
 
         }       
       });
-
+    }
       //Create Filters
     	function createFilters(){ 
           $('.collection-filters').empty();
@@ -129,11 +132,18 @@
           });
       }
 
+      // Filter on Select event
+      function filterOnSelect(){   
+
+      }
+
       // Print Product 
-      function printProducts(prodObj){
+      function printProducts(prodObj){        
         var productGrid = '';
         console.log(prodObj);
         var getcollection = "{{ collection.handle }}";
+        // $('[data-collection-listing-container]').html('');
+        productGrid += '<ul class="grid grid--uniform grid--view-items">';
         $.each(prodObj, function(i) {   
             var getprodlink = prodObj[i].link,
                 prodLink = prodObj[i].link,
@@ -141,13 +151,13 @@
                 prodTitle = prodObj[i].title,
                 prodTags = prodObj[i].tags,
                 prodImages = prodObj[i].shopify_images,
-                prodPrice = prodObj[i].price,
-                prodComparePrice = prodObj[i].list_price,
+                prodPrice = parseInt(prodObj[i].price)*100,
+                prodPrice = theme.Currency.formatMoney(prodPrice, theme.moneyFormat).replace('.00',''),                
+                prodComparePrice = parseInt(prodObj[i].list_price)*100,
+                prodPrice = theme.Currency.formatMoney(prodComparePrice, theme.moneyFormat).replace('.00',''),
                 prodId = prodObj[i].id;
 
-                console.log('imagesLenght' + prodImages.length);
-
-            getprodlink = '/collections/'+getcollection+''+getprodlink.split('.com')[1];
+            getprodlink = '/collections/'+getcollection;
             var _thistags = prodTags;
             _thistags = _thistags.split('[:ATTR:]');
             var _this_variants = prodObj[i].shopify_variants;
@@ -173,17 +183,17 @@
             //       productGrid += '{% assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price %}'
             //       productGrid += '{% if product.compare_at_price %}<div class="product_discount">{{ discount | floor }}% OFF</div>{% endif %}'
 
-
+            productGrid += '<li class="grid__item grid__item--solitaire-collection  aaa">';
             productGrid += '<div class="grid-view-item '+prodAvaibility+' product-card">';
             productGrid += '<a class="grid-view-item__link grid-view-item__image-container full-width-link" href="'+getprodlink+'" style="display: none;"><span class="visually-hidden">'+prodTitle+'</span></a>';
 
             productGrid += '<div class="product-images-wrapper '+prodImgSlider+'">';
-              if(prodImages.length > 1 ){
+             
                 for (let j = 0; j < prodImages.length; j++) {
                   productGrid += '<div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation><div id="" class="grid-view-item__image-wrapper product-card__image-wrapper js"><div class="product_img_holder"><img data-src="'+prodImages[j]+'" alt="'+ prodTitle+'" class="grid-view-item__image lazyload"></div></div></div>'
                 }
-              }
-
+              
+                productGrid += '</div>'
             productGrid += '<div class="prodct_card_body">' 
               productGrid += '<div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="'+ prodLink +'">'+ prodTitle+'</a></div>'
               productGrid += '<span style="display: none;"></span>';
@@ -206,10 +216,29 @@
               productGrid += '</div>'
             productGrid += '</div>'
             productGrid += '</div>'
+            productGrid += '</li>'
 
-
+              
             
         });
+        
+            productGrid += '</ul>';
+
+            // console.log(productGrid);
+                $('[data-collection-listing-container]').append(productGrid);
+                setTimeout(function(){
+                  let collSlider = $('.product_images_slider');
+                  collSlider.slick({ 
+                  autoplay: false,
+                  autoplaySpeed: 500,
+                  arrows: true,
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                  Infinite: false,
+                  loop: false,
+                  dots: false
+                  });
+                },500);             
       }
 
       //Initialize Price Slider
