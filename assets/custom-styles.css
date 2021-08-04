@@ -1588,6 +1588,10 @@ body.landing-exist.scroll-start #shopify-section-landing {
         text-align: center; } }
     .homepage-image-text .feature-row__item.feature-row__text.feature-row__text--left {
       padding-left: 80px; }
+      @media (max-width: 1600px) {
+        .homepage-image-text .feature-row__item.feature-row__text.feature-row__text--left {
+          padding-top: 0;
+          padding-bottom: 0; } }
       @media screen and (max-width: 991px) {
         .homepage-image-text .feature-row__item.feature-row__text.feature-row__text--left {
           padding-left: 50px; } }

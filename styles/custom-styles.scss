@@ -2266,6 +2266,10 @@ body{
         }
         &.feature-row__text--left {
           padding-left: 80px;
+          @media(max-width: $xxl) {
+            padding-top:0;
+            padding-bottom:0;
+          }
           @media screen and (max-width: $lg){
             padding-left: 50px;
           }
