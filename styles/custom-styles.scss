@@ -4247,18 +4247,20 @@ body[data-template="know-your-diamond"] {
     .collection-image-holder {
       background: #f1f1f1;
       @include transition();
+      padding-bottom: 100%;
+      position: relative;
+      overflow: hidden;
       @media(max-width: $md) {
         position: relative;
         overflow: hidden;
         padding-bottom: 80%;
       }
       img {
-        @media(max-width: $md) {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-        }
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
       }
     }
     .collection-image-title {
@@ -6487,6 +6489,9 @@ body.layout_jewellery {
         position: relative;
         overflow: hidden;
         padding-bottom: 109.6%;
+        @media(max-width: $xxl) {
+          padding-bottom: 111.4%;
+        }
         @media(max-width: $md) {
           height: auto;
           padding-bottom: 71.6%;
@@ -7497,6 +7502,34 @@ body {
 
 // Common Layout 1 ( privacy-policy ) End
 
+// Contact Us Start
+body[data-template="contact"] {
+  .main-content {
+    padding:0;
+  }
+}
+.contact-us-layout {
+  padding-top:100px;
+  @media(max-width: $md) {
+    padding-top:60px;
+  }
+  .two-col-layout {
+    justify-content: center;
+    .main-column {
+      padding-left:0;
+      border:none;
+      .commaon-layout-section {
+        display: block;
+      }
+    }
+  }
+  .contact-us-section-wrapper {
+    padding-top: 0;
+  }
+  .back_to_page {
+    display: none !important;
+  }
+}
 
 // Jewellery PLP Start
 
@@ -9719,6 +9752,7 @@ body[data-template="customers/reset_password"] {
   
 
 }
+
 
 // Remove Cart Item Popup End
 

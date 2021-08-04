@@ -3321,18 +3321,21 @@ body[data-template="know-your-diamond"] .main-content p {
       -o-transition: all 0.4s;
       -ms-transition: all 0.4s;
       -moz-transition: all 0.4s;
-      -webkit-transition: all 0.4s; }
+      -webkit-transition: all 0.4s;
+      padding-bottom: 100%;
+      position: relative;
+      overflow: hidden; }
       @media (max-width: 749px) {
         .collection-slider .collection-card .collection-image-holder {
           position: relative;
           overflow: hidden;
           padding-bottom: 80%; } }
-      @media (max-width: 749px) {
-        .collection-slider .collection-card .collection-image-holder img {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%); } }
+      .collection-slider .collection-card .collection-image-holder img {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center; }
     .collection-slider .collection-card .collection-image-title {
       margin-top: 30px;
       font-size: 18px;
@@ -5228,6 +5231,9 @@ body.layout_jewellery h2 {
         position: relative;
         overflow: hidden;
         padding-bottom: 109.6%; }
+        @media (max-width: 1600px) {
+          .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .img_holder {
+            padding-bottom: 111.4%; } }
         @media (max-width: 749px) {
           .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .img_holder {
             height: auto;
@@ -6064,6 +6070,26 @@ body.has_top_banner .main-content {
   .contact-tabber-panal-wrapper .contact-tabber-panal#location-map .contact_to_sec p {
     font-size: 12px;
     line-height: 18px; } }
+
+body[data-template="contact"] .main-content {
+  padding: 0; }
+
+.contact-us-layout {
+  padding-top: 100px; }
+  @media (max-width: 749px) {
+    .contact-us-layout {
+      padding-top: 60px; } }
+  .contact-us-layout .two-col-layout {
+    justify-content: center; }
+    .contact-us-layout .two-col-layout .main-column {
+      padding-left: 0;
+      border: none; }
+      .contact-us-layout .two-col-layout .main-column .commaon-layout-section {
+        display: block; }
+  .contact-us-layout .contact-us-section-wrapper {
+    padding-top: 0; }
+  .contact-us-layout .back_to_page {
+    display: none !important; }
 
 .porduct-badge {
   margin: 0;
