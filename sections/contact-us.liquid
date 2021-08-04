@@ -49,12 +49,12 @@
 
                 <div class="contact-form sp-form">
                     {%- assign formId = 'ContactForm' -%}
-                    <form method="post" action="/contact#ContactForm" id="ContactForm" accept-charset="UTF-8" class="contact-form" >
-            
+                    {% form 'contact', id: formId %}
+                        {% include 'form-status', form: form, form_id: formId %}
                         <div class="custom-form-group">
                             <label for="{{ formId }}-name">{{ 'contact.form.name' | t }}</label>
                             <input class="input-box required" type="text" id="{{ formId }}-name" name="contact[{{ 'contact.form.name' | t }}]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
-                            <span class="error_msg"></span>
+                            <span class="msg-error"></span>
                         </div>
 
                         <div class="custom-form-group">
@@ -80,24 +80,24 @@
                                 <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
                             </span>
                             {%- endif -%}
-                            <span class="error_msg"></span>
+                            <span class="msg-error"></span>
                         </div>
             
                         <div class="custom-form-group">
                             <label for="{{ formId }}-phone">Phone No.</label>
                             <input class="input-box required" type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" maxlength="10" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
-                            <span class="error_msg"></span>
+                            <span class="msg-error"></span>
                         </div>
 
                         <div class="custom-form-group">
                             <label for="{{ formId }}-message">{{ 'contact.form.message' | t }}</label>
                             <textarea maxlength="250" class="input-box required" rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
-                            <span class="error_msg"></span>
+                            <span class="msg-error"></span>
                         </div>
                         <div class="actions">
-                            <input type="submit" class="glb-btn" value="Submit">
+                            <button type="button" class="glb-btn">Submit</button>
                         </div>
-                    </form>
+                    {% endform %}
                 </div>
 
             </div>
@@ -117,6 +117,62 @@
     </div>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function(event) {
+        // contact form validation
+        $("input[type='tel']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^0-9]/g, ''));
+        }); 
+
+        function $validateForm($this) {
+            var firstName = $this.find('input[name="contact[Name]"]').val().trim();
+            var nameRegx = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z0-9]*)*$/;
+            var thisPhone = $this.find('input[name="contact[Phone Number]"]').val().trim();
+            var regmm='^[0-9]{10}$';
+            var regmob = new RegExp(regmm);
+            if (firstName == "" || firstName == null ) {
+                $this.find('input[name="contact[Name]"]').addClass('form-error').next('.msg-error').text("Enter Your Name Name").css('display','block');
+            } else if (nameRegx.test(firstName) == false ){
+                $this.find('input[name="contact[Name]"]').addClass('form-error').next('.msg-error').text("Please Enter Valid Name").css('display','block');
+            } else {
+                $this.find('input[name="contact[Name]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+            }
+            if (thisPhone.length != 10 || thisPhone == null || regmob.test(thisPhone) == false) {
+                $this.find('input[name="contact[Phone Number]"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Phone Number").css('display','block');
+            } else {
+                $this.find('input[name="contact[Phone Number]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+            }
+        }
+        function $validateEmail($this) {
+            var thisEmail = $this.find('input[name="contact[email]"]').val();
+            const reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            var proceed =  reg.test(thisEmail);
+            if (thisEmail == "" || thisEmail == null || proceed == false) {
+                $this.find('input[name="contact[email]"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Email Address").css('display','block');
+            } else {
+                $this.find('input[name="contact[email]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+            }
+        }
+        
+        $(document).on('click', 'button[type="button"]', function(e) {
+            var $this = $(this).closest('form');
+            console.log($this)
+            //Write here your validations
+            //And use this to prevent the form from submiting in case validations are not met.
+            if($this.hasClass('contact-form')) {
+                $validateForm($this);
+                $validateEmail($this);
+            }
+            if($this.find('input.form-error').length > 0) {
+                return false;
+            } else {
+                $this.submit();
+            }
+            removeMessage();
+        });
+    });
+
+</script>
 
 
 {% schema %}
