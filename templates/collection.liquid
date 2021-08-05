@@ -32,11 +32,66 @@
       var searchsortby = $(document).find("#sortByFilter option:selected").attr('value'); console.log('sortyBy==> '+ searchsortby);
       var searchBaseUrl = 'https://www.searchanise.com/getresults?api_key=7r9L5P8L4h';
 
-      var queryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&restrictBy[quantity]=1&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
+      var queryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
       var searchData = '';
     var filters = '';
 
-    searchaniseProducts(queryString);
+    $(document).on('change', '[data-collection-filter-section] select', function(){
+      console.log('select changes');
+      var getSelectedVal = $(this).val();
+      $(this).find('option:selected').attr('selected','selected').siblings().removeAttr('selected');
+      var getId = $(this).attr('id'); console.log(getId);
+      $(document).find('[data-collection-filter-section] input[id="'+getId+'-filter"]').val(getSelectedVal).attr('checked', 'checked');
+      $(this).next(':checkbox').trigger('change');
+    })
+
+    $('body').on('change','[data-collection-filter-section] input[type="checkbox"]', function(){     
+      console.log('input changess'); 
+      var newQueryString = filterOnSelect();     
+      console.log('New Query Stirng --------------')
+      console.log(newQueryString); 	
+      console.log('New Query Stirng --------------')
+      searchaniseProducts(newQueryString);  
+    });
+
+    searchaniseFiltersOnload(queryString);
+    function searchaniseFiltersOnload(queryString) {
+    $.ajax({	
+        url: searchBaseUrl + queryString,
+        dataType: 'jsonp',
+        success: function(data){		
+          searchData = data;
+          console.log('\n\n----------------');
+          console.log(searchData);    
+          console.log('----------------\n\n');
+          if(data.hasOwnProperty('error') ==  true){
+          // $('.sn-loader, .filter-loader-icn').fadeOut();
+          $('[data-collection-listing-container]').addClass('full-width').prepend('<p class="no-result">There are currently no products in this collection, please check back later</p>');
+        } else {
+          $('.collection-header').data('limit');
+          if($('.collection-header').attr('data-limit') < searchData.totalItems){
+            //console.log('less then Search limit -- show pagination');
+            ///$('.collection-header-result-per-page').closest('.collection-bottom-pagination-data').removeClass('hidepaginate');
+              //$('.collection-header-result-per-page').css('opacity', 1).css('pointer-events', 'initial');;
+          }else{
+           // console.log('greater thene Search limit -- hide pagination');
+            // $('.collection-header-result-per-page').css('opacity', 0).css('pointer-events', 'none');
+            // $('.collection-header-result-per-page').closest('.collection-bottom-pagination-data').addClass('hidepaginate');
+          }   
+          filters = searchData.facets;  
+          
+          
+          //Init
+          //var getmaxitemperpage = $('select.result-per-page option:selected').attr('data-count');
+          createFilters();
+          // printProducts(searchData.items);
+
+        }
+
+        }       
+      });
+    }
+
     function searchaniseProducts(queryString) {
     $.ajax({	
         url: searchBaseUrl + queryString,
@@ -73,9 +128,14 @@
         }       
       });
     }
-      //Create Filters
+    
+    
+     
+
+    
+    //Create Filters
     	function createFilters(){ 
-          $('.collection-filters').empty();
+          $('[data-collection-filter-section]').empty();
           $.each(filters, function(key, val){ 
             //console.log(val);
             var filterName = val.attribute;
@@ -100,6 +160,9 @@
               //   // initializingPriceSlider(minPrice, highestPrice, selectedMinPrice, SelectedHighestPrice);
               // }  
 
+            } else if(filterTitle == 'Collections'){
+
+
             } else {
               // Common layout for print dropdown filter 
               var counter = 0;
@@ -119,7 +182,7 @@
                               checked = 'checked=checked';
                           	  checkVal = thisVal;
                         }
-                        selectOption += '<option data-opt-val="' + thisVal + '" ' + selected + ' value="' + filterVal + '" >' + thisVal + '</option>';
+                        selectOption += '<option data-opt-val="' + encodeURIComponent(thisVal) + '" ' + selected + ' value="' + filterVal + '" >' + thisVal + '</option>';
                         counter++;                        
                     }
                   });
@@ -130,15 +193,56 @@
                   }
                 }            
           });
+
+          //Show open the selected filters
+          var totSelectedFilters = 0;
+          $('[data-collection-filter-section] .collection-filter-wrapper').each(function(){
+            var selectedFils = $(this).find('input:checked').length; console.log('selectedFils==>' + selectedFils)
+            if(selectedFils > 0){
+              // $(this).prev('.collection-content-area-left-heading').find('span').attr('class', 'expend');
+              // $(this).css('display', 'block');
+              totSelectedFilters++;
+            }
+          });
+          if(totSelectedFilters > 0){
+            // $('.resetFilters').css('display', 'inline-block');
+          }else{
+            // $('.resetFilters').css('display', 'none');
+          }
       }
 
+     
       // Filter on Select event
-      function filterOnSelect(){   
-
+     function filterOnSelect(){   
+        searchsortby = $(document).find("#sortByFilter option:selected").attr('value');
+        var fil = $('[data-collection-filter-section] input[type="checkbox"]:checked'); console.log('fil==>' + fil);  console.log(fil);
+      var newQueryString = queryString
+      $(document).find('[data-collection-filter-section] .collection-filter-wrapper').each(function(){
+        var thisFilterName = $(this).data('filter'); console.log('thisFilterName==> ' + thisFilterName);
+        var filValues = $(this).find('input[type="checkbox"]:checked');  console.log(filValues.length);
+        var filSelected = '';
+        if(filValues.length > 0){
+          filValues.each(function(i){ 
+            filSelected+=$(this).closest('.collection-filter-wrapper').find('select.filters-toolbar__input option:selected').attr('data-opt-val');
+            console.log('filSelected==>>>>');
+            console.log(filSelected);
+            if(i+1 < filValues.length){
+              filSelected += '|';
+            }  
+          });
+        }
+        var selFils = thisFilterName+'='+filSelected;
+        if(filSelected!=''){
+          newQueryString+=selFils.replace('undefined=', '');          
+        } 
+      });
+      newQueryString+='&maxResults='+maxResults;
+      return newQueryString;
       }
-
+      
       // Print Product 
-      function printProducts(prodObj){        
+      function printProducts(prodObj){   
+        $('[data-collection-listing-container]').empty();     
         var productGrid = '';
         console.log(prodObj);
         var getcollection = "{{ collection.handle }}";
@@ -184,10 +288,10 @@
             //       productGrid += '{% if product.compare_at_price %}<div class="product_discount">{{ discount | floor }}% OFF</div>{% endif %}'
 
             productGrid += '<li class="grid__item grid__item--solitaire-collection  aaa">';
-            productGrid += '<div class="grid-view-item '+prodAvaibility+' product-card">';
+            productGrid += '<div class="grid-view-item product-card">';
             productGrid += '<a class="grid-view-item__link grid-view-item__image-container full-width-link" href="'+getprodlink+'" style="display: none;"><span class="visually-hidden">'+prodTitle+'</span></a>';
 
-            productGrid += '<div class="product-images-wrapper '+prodImgSlider+'">';
+            productGrid += '<div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider>';
              
                 for (let j = 0; j < prodImages.length; j++) {
                   productGrid += '<div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation><div id="" class="grid-view-item__image-wrapper product-card__image-wrapper js"><div class="product_img_holder"><img data-src="'+prodImages[j]+'" alt="'+ prodTitle+'" class="grid-view-item__image lazyload"></div></div></div>'
@@ -225,21 +329,23 @@
             productGrid += '</ul>';
 
             // console.log(productGrid);
-                $('[data-collection-listing-container]').append(productGrid);
-                setTimeout(function(){
-                  let collSlider = $('.product_images_slider');
-                  collSlider.slick({ 
-                  autoplay: false,
-                  autoplaySpeed: 500,
-                  arrows: true,
-                  slidesToShow: 1,
-                  slidesToScroll: 1,
-                  Infinite: false,
-                  loop: false,
-                  dots: false
-                  });
-                },500);             
+                $('[data-collection-listing-container]').append(productGrid);   
+                  sliderInit();                           
+                
       }
+
+      function sliderInit(){
+        $('[data-col-images-slider]').slick({
+          autoplay: false,
+          autoplaySpeed: 500,
+          arrows: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          Infinite: false,
+          loop: false,
+          dots: false
+        });
+      };
 
       //Initialize Price Slider
     	function initializingPriceSlider(minPrice, highestPrice, selectedMin, selectedMax){
