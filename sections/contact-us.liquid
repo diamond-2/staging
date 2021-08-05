@@ -168,8 +168,24 @@
             } else {
                 $this.submit();
             }
-            removeMessage();
         });
+        $('form').on('keyup', 'input', function() {
+            $(this).removeClass('form-error').next('.msg-error').css('display','none');
+        });
+
+        // Remove Message After 3s
+        function removeSuccessMessage() {
+            setTimeout(function(){
+                var uri = window.location.toString();
+                if (uri.indexOf("?contact_posted") > 0) {
+                    var clean_uri = uri.substring(0, uri.indexOf("?"));
+                    window.history.replaceState({}, document.title, clean_uri);
+                }
+                $('.form-message').remove();
+            },3000)
+        }
+        removeSuccessMessage();
+
     });
 
 </script>
