@@ -53,6 +53,31 @@
                         {% endfor %}   
                         </ul>
                       {% endif %}
+
+                      {%- if block.settings.menu_1_text != blank or block.settings.menu_2_text != blank or block.settings.menu_3_text != blank -%}
+                      <div class="bottom-custom-menu-links">
+                        <ul>
+                          {%- if block.settings.menu_1_text != blank -%}
+                          <li>
+                            <a href="{{ block.settings.menu_1_link }}">{{ block.settings.menu_1_text }}</a>
+                          </li>
+                          {%- endif -%}
+
+                          {%- if block.settings.menu_2_text != blank -%}
+                          <li>
+                            <a href="{{ block.settings.menu_2_link }}">{{ block.settings.menu_2_text }}</a>
+                          </li>
+                          {%- endif -%}
+
+                          {%- if block.settings.menu_3_text != blank -%}
+                          <li>
+                            <a href="{{ block.settings.menu_3_link }}">{{ block.settings.menu_3_text }}</a>
+                          </li>
+                          {%- endif -%}
+                        </ul>
+                      </div>
+                      {%- endif -%}
+
                 </li>
                 {% endif %}
 

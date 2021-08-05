@@ -10075,49 +10075,8 @@ window.addEventListener("resize", function() {
       ]
   });
 
-  // contact form validation
-  $("input[type='tel']").on('input', function(e) {
-      $(this).val($(this).val().replace(/[^0-9]/g, ''));
-  });
-  $('#ContactForm').on('submit', function(e) {
-      $(this).find('.error_msg').removeClass('hide');
-      const emailElement = $(this).find('#ContactForm-email');
-      const email = $(emailElement).val();
-      const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      if (regex.test(email)) {
-          $(emailElement).next('.error_msg').removeClass('show').text('');
-          $(emailElement).parent().removeClass('error');
-      } else {
-          e.preventDefault();
-          $(emailElement).next('.error_msg').addClass('show').text(email + ' is not valid Email');
-          $(emailElement).parent().addClass('error');
-      }
 
-      const userElement = $(this).find('#ContactForm-name');
-      const userName = $(userElement).val();
-      const userRegex = /^[a-zA-Z\-]+$/;
-      if (userRegex.test(userName)) {
-          $(userElement).next('.error_msg').removeClass('show').text('');
-          $(userElement).parent().removeClass('error');
-      } else {
-          e.preventDefault();
-          $(userElement).next('.error_msg').addClass('show').text(userName + ' is not valid Name');
-          $(userElement).parent().addClass('error');
-      }
 
-      const phoneElement = $(this).find('#ContactForm-phone');
-      const phoneNumber = $(phoneElement).val();
-      const phoneRegex = /^[0-9]{10}$/;
-      if (phoneRegex.test(phoneNumber)) {
-          $(phoneElement).next('.error_msg').removeClass('show').text('');
-          $(phoneElement).parent().removeClass('error');
-      } else {
-          e.preventDefault();
-          $(phoneElement).next('.error_msg').addClass('show').text(phoneNumber + ' is not valid Phone Number');
-          $(phoneElement).parent().addClass('error');
-      }
-  });
-  
   // Product Listing Product card Images slider
   let plpImageSLider = document.querySelector('.product_images_slider');
   if(plpImageSLider){

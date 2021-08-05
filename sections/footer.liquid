@@ -174,8 +174,8 @@
                 {%- if social_icons -%}
                   <div class="footer-social__icns">
                     <div class="footer-social-icns-label">
-                      <span class="small-text">Follow us</span>
-                      <span>Be Social</span>
+                      {%- comment -%}<span class="small-text">Follow us</span>{%- endcomment -%}
+                      <span>Follow us</span>
                     </div>
                   <ul class="list--inline site-footer__social-icons social-icons site-footer__icon-list">
                     {%- for social in socials -%}

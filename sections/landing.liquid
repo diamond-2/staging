@@ -27,12 +27,14 @@
             </div>
             <div class="landing-bottom-content landing-content-item">
                 <div class="landing-page-button">
-                    <a href="javascript:void(0);" class="landing-btn discover-btn"><span class="btn_text">Discover</span></a>
+                    <a href="javascript:void(0);" class="landing-btn discover-btn remove_landing_cookie"><span class="btn_text">Discover</span></a>
                 </div>
                 {% if bannerBottomtext != blank %}
                     <div class="landing-bottom-content-item">{{ bannerBottomtext }}</div>    
-                {% endif %}   
-                {% include 'langing-button-arrow' %}             
+                {% endif %}  
+                <div class="remove_landing_cookie">
+                    {% include 'langing-button-arrow' %}      
+                </div>        
             </div>
         </div>
     </div>    
@@ -60,6 +62,21 @@
                 },2000)
             }
         });
+
+        function removeCookies() {
+            $('body').addClass('scroll-start');
+            $.cookie('landingpage',2);
+            setTimeout(function(){
+                $('#shopify-section-landing').remove();
+                $('body').removeClass('scroll-start landing-exist');
+            },2000)
+        }
+        $('.remove_landing_cookie').click(function(e){
+            e.preventDefault();
+            removeCookies();
+        });
+
+
     });
 </script>
 {% schema %}
