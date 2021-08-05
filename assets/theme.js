@@ -9823,10 +9823,26 @@ window.addEventListener("resize", function() {
 
   // HeaderNav image change on mouseenter event
 
-  $(document).on('mouseenter', '.site-nav__childlist-item .site-nav__link', function(){
-    let handle = $(this).data('handle'); console.log(handle);
-    handle != undefined ? $(document).find('#nav-img-block img').attr('src', handle).fadeIn():'';//$(document).find('#nav-img-block img').fadeOut();
+  // $(document).on('mouseenter', '.site-nav__childlist-item .site-nav__link', function(){
+  //   let handle = $(this).data('handle');
+  //   console.log(handle);
+  //   handle != undefined ? $(document).find('#nav-img-block img').attr('src', handle).fadeIn():'';//$(document).find('#nav-img-block img').fadeOut();
+  // });
+
+  // HeaderNav image change on Hover
+  $('#AccessibleNav .site-nav__childlist-grid').each(function(){
+    var defaultSetImage = $(this).find('.nav-image-wrapper img').attr('data-src');
+    var menuImageItem = $(this).find('.nav-image-wrapper img');
+    $(this).find('a[data-handle]').hover(function(){
+        let hoveImage = $(this).attr('data-handle');
+        $(menuImageItem).attr('src',hoveImage)
+        $(menuImageItem).attr('data-src',hoveImage);
+    },function(){
+        $(menuImageItem).attr('src',defaultSetImage)
+        $(menuImageItem).attr('data-src',defaultSetImage);
+    });
   });
+
 
   // add class after page load
   $(window).on('load', function(){ 
