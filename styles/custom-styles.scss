@@ -1466,8 +1466,8 @@ div#PageContainer {
         li {
           a {
             display: block;
-            font-size: 12px;
-            line-height: 1;
+            font-size: 13px;
+            line-height: normal;
           }
         }
       }
@@ -1508,16 +1508,16 @@ div#PageContainer {
       > li {
         > a {
           color:$textcolor-phanton;
-          font-size: 13px;
-          line-height: 19.5px;
+          font-size: 14px;
+          line-height: normal;
           font-family: 'Spectral';
           text-transform: uppercase;
         }
         &.not_child_menu {
           a {
             color: $textcolor-black;
-            font-size: 12px;
-            line-height:12.96px;
+            font-size: 13px;
+            line-height:normal;
             font-family: Montserrat;
           }
         }
@@ -1539,7 +1539,8 @@ div#PageContainer {
               order: 40;
             }
            a {
-              line-height: 18px;
+              line-height: normal;
+              font-size: 13px;
               padding: 6px 0 !important;
               text-transform: uppercase;
               &.active_color {
@@ -9750,6 +9751,11 @@ body[data-template="customers/reset_password"] {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    @media(max-width: $md) {
+      width: 100%;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
   }
   .newsletter-popup {
     background-color: #6c1d45;
@@ -9763,7 +9769,8 @@ body[data-template="customers/reset_password"] {
     flex-direction: column;
     width: 100%;
     @media(max-width: $md) {
-      padding: 30px;
+      padding: 40px 30px;
+      min-height: 0;
     }
     .newsletter-popup-header {
       h2 {
@@ -9772,10 +9779,20 @@ body[data-template="customers/reset_password"] {
         max-width: 505px;
         letter-spacing: normal;
         color: #fff;
+        @media(max-width: $md) {
+          font-size: 18px;
+          line-height: 19.44px;
+          max-width: 245px;
+          margin-bottom: 20px;
+        }
       }
     }
     .newsletter-popup-form {
       max-width: 648px;
+      @media(max-width: $md) {
+        max-width: 219px;
+        max-width: 77%;
+      }
       .input-group  {
         justify-content: flex-start;
         .newsletter__input {
@@ -9793,8 +9810,13 @@ body[data-template="customers/reset_password"] {
           flex-basis: 68.209%;
           padding: 18px 21px;
           @media(max-width: $md) {
-            height: 50px;
-            font-size: 14px;
+            height: 45px;
+            font-size: 11px;
+            line-height: 16.5px;
+            font-weight: 300;
+            padding: 10px;
+            flex-basis: calc(100% - 70px);
+            width: calc(100% - 70px);
           }
           &::-webkit-input-placeholder, &::-moz-placeholder, &:-ms-input-placeholder, &:-moz-placeholder {
             color: rgba(0, 0, 0, 0.8);
@@ -9803,6 +9825,9 @@ body[data-template="customers/reset_password"] {
         }
         .input-group__btn {
           width: 31.791%;
+          @media(max-width: $md) {
+            width: 70px;
+          }
           .glb-btn {
             font-size: 18px;
             line-height: 24px;
@@ -9838,7 +9863,12 @@ body[data-template="customers/reset_password"] {
       margin-top: auto;
       padding-top: 20px;
       @media(max-width: $md) {
-        font-size: 14px;
+        font-size: 12px;
+        line-height: 21.6px;
+        letter-spacing: 0.07em;
+        font-weight: 400;
+        margin-top: 0;
+        padding-top: 43px;
       }
       a {
         color: inherit;

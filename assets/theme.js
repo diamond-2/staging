@@ -9843,6 +9843,31 @@ window.addEventListener("resize", function() {
   //   });
   // });
 
+  function checkIfImageExists(url, callback) {
+    const img = new Image();
+    img.src = url;
+    if (img.complete) {
+      callback(true);
+    } else {
+      img.onload = () => {
+        callback(true);
+      };
+      img.onerror = () => {
+        callback(false);
+      };
+    }
+  }
+
+  let menuItem = document.querySelectorAll('#AccessibleNav a[data-handle2]');
+  menuItem.forEach(function(item){
+      let dataHandle2 = item.getAttribute('data-handle2');
+      checkIfImageExists(dataHandle2, (exists) => {
+          if (exists) {
+            item.setAttribute('data-handle',dataHandle2);
+          }
+      });
+  });
+
   $('#AccessibleNav #SiteNav > li').each(function(){
     var defaultSetImage = $(this).find('.nav-image-wrapper img').attr('data-src');
     var menuImageItem = $(this).find('.nav-image-wrapper img');
@@ -9857,6 +9882,8 @@ window.addEventListener("resize", function() {
       $(menuImageItem).attr('data-src',defaultSetImage);
     });
   });
+
+
 
   // add class after page load
   $(window).on('load', function(){ 
@@ -9936,7 +9963,13 @@ window.addEventListener("resize", function() {
           e.preventDefault();
           $(this).find('.custom-error').addClass('show').text(email+' is not valid email.');
       }
+      setTimeout(function(){
+        $('.custom-error').addClass('hide');
+        $('.custom-error').removeClass('show');
+      },3000)
     });
+    
+
   })
   
   var challengePage = window.location.pathname;
@@ -10066,6 +10099,10 @@ window.addEventListener("resize", function() {
   $(window).on('load', function(){
     let $hasId = window.location.hash;
     if($hasId) {
+        let tabSecEx = $('.commaon-layout-section-wrapper').find($hasId);
+        if(tabSecEx) {
+          $('html, body').animate({scrollTop:0}, '1000');
+        }
         $('.commaon-layout-section-wrapper').find($hasId).addClass('show');
         $('.commaon-layout-section-wrapper').find($hasId).siblings().removeClass('show');
         $('.sidebar-nav li a[href="'+$hasId+'"]').addClass('active');

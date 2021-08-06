@@ -399,6 +399,7 @@
   $('.js-change-quantity').click(function(){
       let varrientId = $(this).siblings('.cart__qty-input').attr('data-id');
       let varrientQty = $(this).siblings('.cart__qty-input').val();
+      
       jQuery.post('/cart/update.js', {
         updates: {
           [varrientId]: varrientQty
@@ -406,6 +407,7 @@
       }, function(data){
         location.reload();
       });
+      
   });
 
   // Agree Checkbox Validation Start
