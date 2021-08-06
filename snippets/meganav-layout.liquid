@@ -26,7 +26,7 @@
                 {% if block.settings[subnavmenu] != blank %}
                 <li class="site-nav__childlist-item {% if block.settings[subnavtitle] == blank %}has_not_top_heading{% endif %}">
                   {% if block.settings[subnavtitle] != blank %}
-                  {% if block.settings[subnavtitlelink] != blank %}<a href="{{ block.settings[subnavtitlelink] }}" class="site-nav__link site-nav__child-link site-nav__child-link--parent"> {% endif %}
+                  {% if block.settings[subnavtitlelink] != blank %}<a href="{{ block.settings[subnavtitlelink] }}" class="site-nav__link site-nav__child-link site-nav__child-link--parent" {% if block.settings[subnavimage] %}data-handle="{{ block.settings[subnavimage] | img_url: 'master' }}"{% endif %}> {% endif %}
                       <span class="site-nav__label">{{  block.settings[subnavtitle] | replace: '®', '<sup>®</sup>' }}</span>
                       {% if  block.settings[subnavtitlelink] != blank %} </a> {% endif %}
                   {% endif %}
@@ -59,19 +59,19 @@
                         <ul>
                           {%- if block.settings.menu_1_text != blank -%}
                           <li>
-                            <a href="{{ block.settings.menu_1_link }}">{{ block.settings.menu_1_text }}</a>
+                            <a href="{{ block.settings.menu_1_link }}" {% if block.settings.bottom_links_featured_image %}data-handle="{{ block.settings.bottom_links_featured_image | img_url: 'master' }}"{% endif %}>{{ block.settings.menu_1_text }}</a>
                           </li>
                           {%- endif -%}
 
                           {%- if block.settings.menu_2_text != blank -%}
                           <li>
-                            <a href="{{ block.settings.menu_2_link }}">{{ block.settings.menu_2_text }}</a>
+                            <a href="{{ block.settings.menu_2_link }}" {% if block.settings.bottom_links_featured_image %}data-handle="{{ block.settings.bottom_links_featured_image | img_url: 'master' }}"{% endif %}>{{ block.settings.menu_2_text }}</a>
                           </li>
                           {%- endif -%}
 
                           {%- if block.settings.menu_3_text != blank -%}
                           <li>
-                            <a href="{{ block.settings.menu_3_link }}">{{ block.settings.menu_3_text }}</a>
+                            <a href="{{ block.settings.menu_3_link }}" {% if block.settings.bottom_links_featured_image %}data-handle="{{ block.settings.bottom_links_featured_image | img_url: 'master' }}"{% endif %}>{{ block.settings.menu_3_text }}</a>
                           </li>
                           {%- endif -%}
                         </ul>
@@ -113,7 +113,7 @@
               {% endif %}
                 <li class="site-nav__childlist-item" data-childCount="{{ mainchildCount }}">
                   <a href="{{ childlink.url }}" 
-                    class="site-nav__link site-nav__child-link site-nav__child-link--parent "
+                    class="site-nav__link site-nav__child-link site-nav__child-link--parent"
                     {% if childlink.current %} aria-current="page"{% endif %}
                   >
                     <span class="site-nav__label">{{ childlink.title | escape | replace: '®', '<sup>®</sup>' }}</span>

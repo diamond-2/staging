@@ -173,8 +173,12 @@
 
   {{ content_for_header }}
 </head>
+
 <body class="layout_{{ template.suffix }} template-{{ request.page_type | handle }} " data-template="{{ template | replace: 'page.', '' }}" {% if request.page_type == 'product' %}data-handle="{{ product.handle }}" {% endif %}>
   
+  <!-- Loader -->
+  <div id="preloader"><span class="loader"></span></div>
+
   {%- comment -%}{% section 'mini-cart' %}{%- endcomment -%}
 
   <!-- newsletter Popup Start -->
@@ -208,6 +212,8 @@
 
   <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script>
+  <!-- // loader js -->
+  <script src="{{ 'loader.js' | asset_url }}"></script>
 
   {% if template contains 'collection' %}
   <script src="{{ 'collection-loadmore.js' | asset_url }}" async="async"></script>

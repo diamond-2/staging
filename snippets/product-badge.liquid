@@ -20,9 +20,7 @@
   {%- if variant.unit_price_measurement %} price--unit-available {% endif -%}
            {% if date_difference < 30 %} price-on-new{% endif %}
            {% if badgeTagExist %} tag-base-badge {% endif %}
-           "
-  data-price
->
+           ">
 <div class="price__badges price__badges--listing">
   <span class="price__badge price__badge--sale" aria-hidden="true">
     <span>{{ 'products.product.on_sale' | t }}</span>

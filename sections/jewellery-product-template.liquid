@@ -56,7 +56,7 @@
                                 {% elsif mediaSlide.media_type == 'video' %}
                                 <div class="product-detail-slide-inner media_type_video" >
                                     <div class="product-detail-slide-img-holder">
-                                        <video class="abc" controls muted>
+                                        <video loop muted>
                                             {% for video in mediaSlide.sources %}
                                             <source src="{{ video.url }}" type="{{ video.mime_type }}">
                                             {% endfor %}
@@ -69,6 +69,17 @@
                             {%- endif -%}
                             {% endfor %}
                         </div>
+                        <div class="hide_mobile">{% include 'product-badge' %}</div>
+                        {% for mediaThumb in product.media %}
+                        {% assign videoIndexValue = forloop.index0 %}
+                        {% if mediaThumb.media_type == 'video' %}
+                        <div class="show_mobile">
+                            <div class="mobile-3d-img" data-index="{{ videoIndexValue }}">
+                                {% include 'icon-view-360-mobile' %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
                     </div>
                     <div class="product-detail-slider-thumbnail-wrapper hide_mobile">
                         <div class="right-border-line"></div>
@@ -142,7 +153,9 @@
                     {%- endif -%}
                     <div class="product-wishlist">
                         <div class="wishlist-text">SAVE TO WISHLIST</div>
-                        <div class="wishlist-icon"><img class="lazyload" data-src="{{ 'Vector.png' | asset_url }}"  alt="SAVE TO WISHLIST"></div>
+                        <div class="wishlist-icon">
+                            {% include 'iocn-wislist' %}
+                        </div>
                     </div>
                    
                     {%- if cart.taxes_included or shop.shipping_policy.body != blank -%}
@@ -274,7 +287,7 @@
                                     {% unless current_variant.available %}
                                     {{ 'products.product.sold_out' | t }}
                                     {% else %}
-                                    {{ 'products.product.add_to_cart' | t }}
+                                    ADD TO BAG
                                     {% endunless %}
                                 </span>
                                 <span class="hide" data-loader>
@@ -294,9 +307,10 @@
                 <div class="delivery-check-sec">
                     <div class="delivery-check-title">check delivery date</div>
                     <div class="delivery-check-input">
-                        <span class="delivery-icon">
-                            <img src="{{ 'location.png' | asset_url  }}" alt="delivery">
-                        </span>
+                        <span class="delivery-icon"><svg width="10" height="16" viewBox="0 0 10 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5 15.8925L4.69231 15.5228C4.5 15.3174 0 9.64919 0 6.24003C0 3.28269 2.23077 0.900391 5 0.900391C7.76923 0.900391 10 3.28269 10 6.24003C10 9.64919 5.5 15.3174 5.30769 15.5639L5 15.8925ZM5 1.72187C2.65385 1.72187 0.769231 3.73451 0.769231 6.24003C0.769231 8.86878 4 13.3048 5 14.6192C6 13.3048 9.23077 8.86878 9.23077 6.24003C9.23077 3.73451 7.34615 1.72187 5 1.72187Z" fill="black"/>
+    <path d="M5.00024 8.39404C3.84729 8.39404 2.94141 7.43208 2.94141 6.20776C2.94141 4.98345 3.84729 4.02148 5.00024 4.02148C6.15319 4.02148 7.05908 4.98345 7.05908 6.20776C7.05908 7.43208 6.15319 8.39404 5.00024 8.39404ZM5.00024 4.896C4.30024 4.896 3.76494 5.46443 3.76494 6.20776C3.76494 6.9511 4.30024 7.51953 5.00024 7.51953C5.70025 7.51953 6.23555 6.9511 6.23555 6.20776C6.23555 5.46443 5.70025 4.896 5.00024 4.896Z" fill="black"/>
+    </svg></span>
                         <input type="text" id="delivery-check" placeholder="Enter pincode">
                     </div>
                     {%- if productMetafield[delivery_days_instock] != blank -%}
@@ -319,7 +333,11 @@
                 <div class="pdp-connect-section">
                     <div class="connect-with-phone">
                         <div class="left_col">
-                            <span><img src="{{ 'phone.png' | asset_url  }}" alt="phone"></span>
+                            <span>
+                                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M28.126 22.9376C27.0572 21.8609 24.4685 20.2895 23.2125 19.6563C21.5768 18.8326 21.4422 18.7653 20.1566 19.7202C19.2991 20.3575 18.729 20.9268 17.7254 20.7128C16.7218 20.4988 14.541 19.2922 12.6314 17.3891C10.7219 15.4859 9.44501 13.2423 9.2303 12.2423C9.01558 11.2423 9.59444 10.679 10.2258 9.81965C11.1156 8.60833 11.0483 8.40644 10.2877 6.77116C9.69473 5.49927 8.07729 2.93531 6.9963 1.87204C5.83993 0.73003 5.83993 0.931917 5.09481 1.24148C4.4882 1.49665 3.90624 1.80684 3.35621 2.16814C2.27926 2.88349 1.68156 3.47771 1.26356 4.37072C0.845574 5.26374 0.657781 7.3573 2.81639 11.2779C4.975 15.1986 6.48946 17.2033 9.62406 20.3285C12.7587 23.4537 15.169 25.1341 18.6926 27.1099C23.0516 29.5507 24.7236 29.075 25.6194 28.6577C26.5153 28.2405 27.1124 27.6483 27.8292 26.5716C28.1915 26.0226 28.5025 25.4414 28.7581 24.8353C29.0684 24.0931 29.2703 24.0931 28.126 22.9376Z" stroke="black" stroke-width="1.5" stroke-miterlimit="10"/>
+                                    </svg>                                    
+                            </span>
                             <span class="text">to order by  phone</span>
                         </div>
                         <div class="right_col">
@@ -329,7 +347,11 @@
                     <div class="pdp-warranty-sec">
                         {% if variantMetafield[return_policy] != blank  or productMetafield[return_policy] != blank %}
                         <div class="pdp-warranty-item _returns">
-                            <span><img src="{{ 'returns.png' | asset_url  }}" alt="returns"></span>
+                            <span>
+                                <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 4V0L3.375 5L9 10V6C12.7238 6 15.75 8.69 15.75 12C15.75 15.31 12.7238 18 9 18C5.27625 18 2.25 15.31 2.25 12H0C0 16.42 4.0275 20 9 20C13.9725 20 18 16.42 18 12C18 7.58 13.9725 4 9 4Z" fill="black"/>
+                                    </svg>                                    
+                            </span>
                             {% if variantMetafield[return_policy] != blank %}
                                 <span class="text return_policy_val">{{ variantMetafield[return_policy] }}</span>
                             {% else %}
@@ -341,7 +363,12 @@
                         {% endif %}
                         {% if variantMetafield[warranty] != blank  or productMetafield[warranty] != blank %}
                         <div class="pdp-warranty-item _warranty">
-                            <span><img src="{{ 'warranty.png' | asset_url  }}" alt="warranty"></span>
+                            <span>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.19705 1.988C4.8369 2.3158 3.48557 2.67235 2.14419 3.05733C2.0228 3.09093 1.91444 3.15454 1.83157 3.24086C1.7487 3.32719 1.69467 3.43272 1.6757 3.54533C0.882972 8.74133 2.71234 12.5333 4.89419 15.0307C5.98883 16.284 7.1742 17.212 8.16176 17.8213C8.65702 18.1253 9.0928 18.3467 9.43636 18.488C9.60889 18.5587 9.74869 18.6067 9.85578 18.6347C9.903 18.6483 9.9512 18.659 10 18.6667C10.0105 18.6653 10.0566 18.66 10.1443 18.636C10.2514 18.6067 10.3912 18.5587 10.5637 18.488C10.9058 18.3467 11.3446 18.1253 11.8383 17.8213C13.0767 17.0424 14.1781 16.1018 15.1059 15.0307C17.2878 12.5333 19.1171 8.74133 18.3244 3.54533C18.3054 3.43272 18.2514 3.32719 18.1685 3.24086C18.0856 3.15454 17.9773 3.09093 17.8559 3.05733C16.9249 2.79067 15.3543 2.356 13.803 1.988C12.2176 1.61333 10.7586 1.33333 10 1.33333C9.24153 1.33333 7.78399 1.61333 6.19705 1.988ZM5.8163 0.7C7.36755 0.332 9.01397 0 10 0C10.9846 0 12.6325 0.332 14.1838 0.7C15.5674 1.03303 16.942 1.39536 18.3065 1.78667C19.0918 2.01067 19.6838 2.61733 19.7983 3.36533C20.6505 8.96133 18.6739 13.108 16.2779 15.852C15.2568 17.0296 14.0446 18.0633 12.6816 18.9187C12.2077 19.2163 11.7067 19.4776 11.1839 19.7C10.7824 19.8653 10.354 20 10 20C9.64607 20 9.21773 19.8653 8.81616 19.7C8.29328 19.4778 7.79227 19.2165 7.31847 18.9187C5.95602 18.0632 4.7443 17.0295 3.72369 15.852C1.3247 13.108 -0.650422 8.96133 0.201794 3.36533C0.258773 3.00276 0.429121 2.66207 0.693121 2.38269C0.95712 2.1033 1.30398 1.89666 1.69354 1.78667C3.05805 1.39537 4.43269 1.03304 5.8163 0.7Z" fill="black"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M14.245 7.52789C14.3143 7.58982 14.3692 7.66339 14.4067 7.74438C14.4442 7.82538 14.4635 7.91221 14.4635 7.9999C14.4635 8.08759 14.4442 8.17442 14.4067 8.25541C14.3692 8.33641 14.3143 8.40998 14.245 8.47191L9.78322 12.472C9.71414 12.5341 9.63208 12.5833 9.54174 12.6169C9.4514 12.6505 9.35454 12.6678 9.25673 12.6678C9.15892 12.6678 9.06206 12.6505 8.97172 12.6169C8.88137 12.5833 8.79931 12.5341 8.73024 12.472L6.49933 10.4719C6.43019 10.41 6.37535 10.3364 6.33793 10.2554C6.30051 10.1744 6.28125 10.0876 6.28125 9.99993C6.28125 9.91227 6.30051 9.82547 6.33793 9.74448C6.37535 9.66349 6.43019 9.58991 6.49933 9.52792C6.56847 9.46594 6.65055 9.41677 6.74089 9.38322C6.83122 9.34968 6.92805 9.33241 7.02582 9.33241C7.1236 9.33241 7.22043 9.34968 7.31076 9.38322C7.4011 9.41677 7.48318 9.46594 7.55232 9.52792L9.25673 11.0573L13.192 7.52789C13.2611 7.46581 13.3432 7.41655 13.4335 7.38294C13.5239 7.34933 13.6207 7.33203 13.7185 7.33203C13.8164 7.33203 13.9132 7.34933 14.0035 7.38294C14.0939 7.41655 14.176 7.46581 14.245 7.52789Z" fill="black"/>
+                                </svg>
+                            </span>
                             {% if variantMetafield[warranty] != blank %}
                             <span class="text warranty_val">{{ variantMetafield[warranty] }}</span>
                         {% else %}
@@ -353,7 +380,11 @@
                         {% endif %}
                         {% if variantMetafield[shipping] != blank  or productMetafield[shipping] != blank %}
                         <div class="pdp-warranty-item _shipping">
-                            <span><img src="{{ 'shipping.png' | asset_url  }}" alt="shipping"></span>
+                            <span>
+                                <svg width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22.4 4H19.6V2.66667C19.6 1.95942 19.305 1.28115 18.7799 0.781048C18.2548 0.280951 17.5426 0 16.8 0H2.8C2.05739 0 1.3452 0.280951 0.820101 0.781048C0.294999 1.28115 0 1.95942 0 2.66667V16H2.8C2.8 16.5253 2.90864 17.0454 3.11971 17.5307C3.33078 18.016 3.64015 18.457 4.03015 18.8284C4.42016 19.1999 4.88316 19.4945 5.39273 19.6955C5.9023 19.8965 6.44845 20 7 20C7.55155 20 8.0977 19.8965 8.60727 19.6955C9.11684 19.4945 9.57984 19.1999 9.96985 18.8284C10.3599 18.457 10.6692 18.016 10.8803 17.5307C11.0914 17.0454 11.2 16.5253 11.2 16H16.8C16.8 17.0609 17.2425 18.0783 18.0302 18.8284C18.8178 19.5786 19.8861 20 21 20C22.1139 20 23.1822 19.5786 23.9698 18.8284C24.7575 18.0783 25.2 17.0609 25.2 16H28V9.33333L22.4 4ZM7 18C6.72413 17.9999 6.45098 17.9481 6.19615 17.8475C5.94132 17.7468 5.70979 17.5994 5.51479 17.4135C5.31978 17.2277 5.16512 17.0071 5.05964 16.7643C4.95415 16.5216 4.89991 16.2614 4.9 15.9987C4.90009 15.7359 4.95452 15.4758 5.06017 15.2331C5.16583 14.9904 5.32064 14.7699 5.51578 14.5842C5.71091 14.3985 5.94254 14.2512 6.19744 14.1507C6.45235 14.0502 6.72553 13.9986 7.0014 13.9987C7.55854 13.9988 8.09279 14.2098 8.48662 14.5851C8.88044 14.9604 9.10159 15.4694 9.1014 16C9.10122 16.5306 8.87971 17.0394 8.48562 17.4145C8.09153 17.7896 7.55714 18.0002 7 18ZM2.8 12V2.66667H16.8V12H2.8ZM21 18C20.7241 17.9999 20.451 17.9481 20.1961 17.8475C19.9413 17.7468 19.7098 17.5994 19.5148 17.4135C19.3198 17.2277 19.1651 17.0071 19.0596 16.7643C18.9542 16.5216 18.8999 16.2614 18.9 15.9987C18.9001 15.7359 18.9545 15.4758 19.0602 15.2331C19.1658 14.9904 19.3206 14.7699 19.5158 14.5842C19.7109 14.3985 19.9425 14.2512 20.1974 14.1507C20.4523 14.0502 20.7255 13.9986 21.0014 13.9987C21.5585 13.9988 22.0928 14.2098 22.4866 14.5851C22.8804 14.9604 23.1016 15.4694 23.1014 16C23.1012 16.5306 22.8797 17.0394 22.4856 17.4145C22.0915 17.7896 21.5571 18.0002 21 18Z" fill="black"/>
+                                </svg>
+                            </span>
                             {% if variantMetafield[shipping] != blank %}
                                 <span class="text shipping_val">{{ variantMetafield[shipping] }}</span>
                             {% else %}
@@ -445,7 +476,13 @@
             }
         ]
     }); 
-
+    
+    // Go to 360 view Slide Mobile
+    $('.mobile-3d-img').click(function(e) {
+        var slideno = $(this).attr('data-index');
+        $('.product-detail-slider').slick('slickGoTo', slideno);
+        $('.product-detail-slider .product-detail-slide[data-slick-index="'+slideno+'"]').find('video').get(0).play();
+    });
     
     function activeBorder() {
         setTimeout(function(){
