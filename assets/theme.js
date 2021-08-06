@@ -9830,19 +9830,33 @@ window.addEventListener("resize", function() {
   // });
 
   // HeaderNav image change on Hover
-  $('#AccessibleNav .site-nav__childlist-grid').each(function(){
+  // $('#AccessibleNav .site-nav__childlist-grid').each(function(){
+  //   var defaultSetImage = $(this).find('.nav-image-wrapper img').attr('data-src');
+  //   var menuImageItem = $(this).find('.nav-image-wrapper img');
+  //   $(this).find('a[data-handle]').hover(function(){
+  //       let hoveImage = $(this).attr('data-handle');
+  //       $(menuImageItem).attr('src',hoveImage)
+  //       $(menuImageItem).attr('data-src',hoveImage);
+  //   },function(){
+  //       $(menuImageItem).attr('src',defaultSetImage)
+  //       $(menuImageItem).attr('data-src',defaultSetImage);
+  //   });
+  // });
+
+  $('#AccessibleNav #SiteNav > li').each(function(){
     var defaultSetImage = $(this).find('.nav-image-wrapper img').attr('data-src');
     var menuImageItem = $(this).find('.nav-image-wrapper img');
-    $(this).find('a[data-handle]').hover(function(){
-        let hoveImage = $(this).attr('data-handle');
-        $(menuImageItem).attr('src',hoveImage)
-        $(menuImageItem).attr('data-src',hoveImage);
-    },function(){
-        $(menuImageItem).attr('src',defaultSetImage)
-        $(menuImageItem).attr('data-src',defaultSetImage);
+    $(this).hover(function(){
+      $(this).find('a[data-handle]').hover(function(){
+          let hoveImage = $(this).attr('data-handle');
+          $(menuImageItem).attr('src',hoveImage)
+          $(menuImageItem).attr('data-src',hoveImage);
+      });
+    }, function(){
+      $(menuImageItem).attr('src',defaultSetImage)
+      $(menuImageItem).attr('data-src',defaultSetImage);
     });
   });
-
 
   // add class after page load
   $(window).on('load', function(){ 

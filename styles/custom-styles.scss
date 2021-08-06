@@ -421,7 +421,7 @@ body {
     margin-top: 100px;
     margin-bottom: 50px;
     @media(max-width: $md) {
-      margin-top: 20px;
+      margin-top: 60px;
       margin-bottom: 20px;
     }
     h2 {
@@ -801,6 +801,7 @@ body {
               min-height: 19px;
               margin-top: 15px;
               font-weight: 400;
+              display: inline-block !important;
               @media(max-width: $xl) {
                 font-size: 10px;
                 line-height: normal;
@@ -2852,7 +2853,7 @@ body{
             a {
               &:hover {
                 .img_holder {
-                  @include cardHover();
+                  transform: scale(1.35);
                 }
                 .caption_holder {
                   &:after {
@@ -2912,6 +2913,8 @@ body{
               font-size: 18px;
               line-height: 27px;
               font-weight: 400;
+              position: relative;
+              z-index: 2;
               &:after {
                 content: "";
                 display: block;
@@ -4039,7 +4042,7 @@ body[data-template="know-your-diamond"] {
   .content-with-image-diamond-row {
     .content-with-image-diamond-image-column {
       margin-bottom: 0;
-      margin-top: 7px;
+      // margin-top: 7px;
       @media(max-width: $md) {
         width: auto !important;
         order: 2;
@@ -4254,7 +4257,7 @@ body[data-template="know-your-diamond"] {
   padding-top: 42px;
   padding-bottom: 100px;
   @media(max-width: $md) {
-    padding-bottom: 45px;
+    padding-bottom: 60px;
     padding-top:0;
   }
   .collection-slider-header {
@@ -6181,7 +6184,7 @@ body.layout_jewellery {
     padding-right: 90px;
   }
   @media(max-width: $md) {
-    padding-bottom: 11px;
+    padding-bottom: 40px;
   }
   .loose-stone-item {
     width: 33.333%;
@@ -6196,7 +6199,7 @@ body.layout_jewellery {
       flex-wrap: wrap;
       flex-direction: row;
       display: block;
-      margin-bottom: 19px;
+      margin-bottom: 20px;
     }
     &:after {
       @media(max-width: $md) {
@@ -6236,6 +6239,7 @@ body.layout_jewellery {
         color: $textcolor-phanton;
         margin-bottom: 20px;
         line-height: 34.13px;
+        font-weight: 400;
         @media(max-width: $md) {
           font-size: 12px;
           line-height: 12.96px;
@@ -6243,20 +6247,20 @@ body.layout_jewellery {
         }
       }
       .loose-stone-item-desc{
-        font-size: 26px;
+        // font-size: 26px;
+        // line-height: 28.8px;
         margin-bottom: 35px;
-        line-height: 28.8px;
         @media(max-width: $md) {
-          font-size: 11px;
-          line-height: 16.5px;
+          // font-size: 11px;
+          // line-height: 16.5px;
           margin-bottom: 17px;
         }
-        p {
-          @media(max-width: $md) {
-            font-size: inherit;
-            line-height: inherit;
-          }
-        }
+        // p {
+        //   @media(max-width: $md) {
+        //     font-size: inherit;
+        //     line-height: inherit;
+        //   }
+        // }
       }
       .loose-stone-item-link {
         font-size: 18px;
@@ -6269,7 +6273,10 @@ body.layout_jewellery {
   }
 }
 .custom-jewellary-collections-wrapper {
-  padding-bottom: 28px;
+  padding-bottom: 100px;
+  @media(max-width: $md) {
+    padding-bottom:60px;
+  }
   .custom-jewellary-collections-header {
     text-align: center;
     h2 {

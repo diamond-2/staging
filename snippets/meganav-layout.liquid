@@ -23,6 +23,8 @@
                 {% capture subnavmenu %}subnav_list_{{i}}{% endcapture %}
                 {% capture subnavimage %}subnav_img_{{i}}{% endcapture %}
 
+                {% assign secondLevelTitle = block.settings[subnavtitle] %}
+
                 {% if block.settings[subnavmenu] != blank %}
                 <li class="site-nav__childlist-item {% if block.settings[subnavtitle] == blank %}has_not_top_heading{% endif %}">
                   {% if block.settings[subnavtitle] != blank %}
@@ -33,23 +35,27 @@
                       {% if  block.settings[subnavmenu] != blank %}
                         {% assign subnavmenulist = block.settings[subnavmenu] %}
                         {% assign subnavmenulistitemcounts = linklists[subnavmenulist].links | size %}
+                        {% assign fileImage = false %}
                         <ul {% if subnavmenulistitemcounts > 7 %} class="site-nav__childlist--split-2-columns" {% endif %} data-count= "{{ subnavmenulistitemcounts }}">
                         {% for subnav in linklists[subnavmenulist].links %}
                         {% if subnav.url contains 'collection' %}
                           {% assign handle = subnav.url | replace: '/collections/', '' %}
                           {% assign featuredImg = collections[handle].image.src  %}
                           {% assign imgSrc = featuredImg | img_url: 'medium' %}
+                          {% assign collectionHandle = subnav.title | prepend: '-' | prepend: secondLevelTitle | prepend: '-'  | prepend: linkTitle | handleize | append: '.png' %}
                         {% elsif subnav.url contains 'page' %}
                         {% assign handle = subnav.url | replace: '/pages/', '' %}
                         {% assign featuredImg = pages[handle].metafields.global.nav_item_img %}
                           {% assign imgSrc = featuredImg %}
                         {% else %}
                         {% endif %}
+                        
                         <li {% if subnav.title contains ' all ' %}class="last_menu_item"{% endif %}>
-                            <a {% if featuredImg != blank %}data-handle="{{ imgSrc }}"{% endif %} href="{{ subnav.url }}" class="site-nav__link site-nav__child-link {% if subnav.title contains ' all ' %}active_color{% endif %}">
+                            <a data-handle2="{{ collectionHandle | file_url }}" {% if featuredImg != blank %}data-handle="{{ imgSrc }}" {% else %} {% if block.settings[subnavimage] %}data-handle="{{ block.settings[subnavimage] | img_url: 'master' }}"{% endif %} {% endif %}  href="{{ subnav.url }}" class="site-nav__link site-nav__child-link {% if subnav.title contains ' all ' %}active_color{% endif %}">
                                 <span class="site-nav__label">{{ subnav.title | escape | replace: '®', '<sup>®</sup>' }} </span>
                             </a>
                         </li>
+                        
                         {% endfor %}   
                         </ul>
                       {% endif %}
