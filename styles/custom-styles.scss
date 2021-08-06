@@ -144,7 +144,8 @@ $input-field-border-color:#6679CC;
     transition: all 0.3s;
     font-weight: 400;
     border-radius: 0;
-    &:hover, &:focus {
+    letter-spacing: normal;
+    &:hover, &:focus, &:not([disabled]):hover {
       color: $textcolor-white;
       border-color:$textcolor-phanton;
       background:$textcolor-phanton;
@@ -177,6 +178,7 @@ $input-field-border-color:#6679CC;
     margin-top: 15px;
     width: 100%;
     color: $textcolor-black;
+    word-break: break-all;
   }
   @mixin errorMsgArrow() {
     content: "";
@@ -1092,7 +1094,6 @@ div#PageContainer {
       }
     }
   }
-  
   .page-container, #shopify-section-header {
     opacity: 0;
     visibility: hidden;
@@ -1382,6 +1383,7 @@ div#PageContainer {
     padding:0;
     overflow-x: hidden;
     overflow-y: auto;
+    font-weight: 400;
     &::-webkit-scrollbar {
       width: 4px;
       height: 4px;
@@ -1421,6 +1423,11 @@ div#PageContainer {
       background: #6C1D45;
       border-radius:6px;
     }
+    .mobile-nav-wrapper-2 {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
     .mobile_nav_inner {
       min-height: 345px;
       @media(max-width: $md) {
@@ -1456,12 +1463,21 @@ div#PageContainer {
         margin-top: auto;
         padding-bottom: 13px;
         text-transform: uppercase;
+        li {
+          a {
+            display: block;
+            font-size: 12px;
+            line-height: 1;
+          }
+        }
       }
       li {
         border: none;
         .mobile-nav__link, a {
-          font-size: 12px;
-          line-height: 12.96px;
+          // font-size: 12px;
+          // line-height: 12.96px;
+          font-size: 14px;
+          line-height: normal;
           color: #000000;
           padding: 8px 0 !important;
           position: relative;
@@ -1580,6 +1596,9 @@ div#PageContainer {
       z-index: 3;
       margin-left: 30px;
       margin-right: 30px;
+      margin-top: auto;
+      text-transform: uppercase;
+      font-weight: 400;
       ul {
         margin: 0;
         padding: 0;
@@ -1593,8 +1612,10 @@ div#PageContainer {
               margin-bottom: 0px;
             }
             a {
-              font-size: 13px;
-              line-height: 19.5px;
+              // font-size: 13px;
+              // line-height: 19.5px;
+              font-size: 14px;
+              line-height: normal;
               display: flex;
               align-items: center;
               padding: 0 !important;
@@ -1616,8 +1637,10 @@ div#PageContainer {
         ul {
           li {
             a {
-              font-size: 13px;
-              line-height: 19.5px;
+              // font-size: 13px;
+              // line-height: 19.5px;
+              font-size: 14px;
+              line-height: normal;
               text-transform: uppercase;
               &.currency-trigger {
                 padding: 0;
@@ -8901,13 +8924,6 @@ body[data-template="cart"] {
   .custom-checkbox-holder {
     display: flex;
     align-items: center;
-    margin-bottom: 54px;
-    @media(max-width: $xxl) and (min-width: $postMd) {
-      margin-bottom: 30px;
-    }
-    @media(max-width: $md) {
-      margin-bottom: 30px;
-    }
     label {
       font-size: 18px;
       line-height: 27px;
@@ -8995,6 +9011,13 @@ body[data-template="cart"] {
     }
   }
   .estimate-delivery-box {
+    margin-top: 54px;
+    @media(max-width: $xxl) and (min-width: $postMd) {
+      margin-top: 30px;
+    }
+    @media(max-width: $md) {
+      margin-top: 30px;
+    }
     .estimate-delivery-heading {
       font-size: 18px;
       line-height: 20px;

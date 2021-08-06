@@ -341,6 +341,7 @@
                 </div>
                 <label for="agree-tems">I agree with the terms and conditions.</label>
               </div>
+              <span id="termsError" class="msg-error"></span>
               <div class="estimate-delivery-box">
                 <div class="estimate-delivery-heading">Estimated Delivery Date</div>
                 <div class="estimate-delivery-content">Most orders are delivered in within 5-15 working days, if stones and mountings are available.<br>Europe 8-20 working days. Rest of World 10-20 working days.
@@ -407,6 +408,32 @@
       });
   });
 
+  // Agree Checkbox Validation Start
+  const cartCheckoutform  = document.querySelector('form.cart');
+  const termsAgree = cartCheckoutform.querySelector('#agree-tems');
+  const termsAgreeErrorMsg = cartCheckoutform.querySelector('#termsError');
+  cartCheckoutform.addEventListener('submit', function (event) {
+      if(termsAgree.checked === false) {
+          termsAgreeErrorMsg.textContent = "** Please agree with terms and conditions.";
+          termsAgreeErrorMsg.style.display = "block";
+          event.preventDefault();
+      } else {
+          termsAgreeErrorMsg.textContent = '';
+          termsAgreeErrorMsg.style.display = "none";
+      }
+  });
+  termsAgree.addEventListener('change', function(e){
+      if(termsAgree.checked === false) {
+          termsAgreeErrorMsg.textContent = "** Please agree with terms and conditions.";
+          termsAgreeErrorMsg.style.display = "block";
+          event.preventDefault();
+      } else {
+          termsAgreeErrorMsg.textContent = '';
+          termsAgreeErrorMsg.style.display = "none";
+      }
+  });
+  // Agree Checkbox Validation End
+
 
 </script>
 
@@ -431,7 +458,7 @@
           $('.cart-remove-popup-wrapper .cart-remove-item').attr('data-product-id',productId);
       },100);
   });
-  $('.close_cart_pop').click(function(){
+  $('.close_cart_pop, .cart-remove-popup-wrapper').click(function(){
       $('body').removeClass('remove_cart_popup_show');
       $('.cart-remove-popup-wrapper .cart-remove-item .cart_image_column .cart_image-holder').html('');
       $('.cart-remove-popup-wrapper .cart-remove-item .cart_image_content .cart_item-title').html('');
@@ -440,6 +467,9 @@
       $('.cart-remove-popup-wrapper .cart-remove-item .cart_image_content .cart_item-price').html('');
       $('.cart-remove-popup-wrapper .cart-remove-item').attr('data-product-id','');
   });
+  $('.cart-remove-popup').click(function(e){
+    e.stopPropagation();
+  })
 
   // Remove Cart Item
   $('.remove_cart_item').click(function(e){
