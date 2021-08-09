@@ -1,113 +1,204 @@
 <!-- Product Metafield Code -->
 <div class="product-details-wrapper">
     <p>PRODUCT DETAILS</p>
-    <h3>{{ product.title }} {% if variantMetafield[col1_tab1_mat_Purity] != blank or variantMetafield[col1_tab1_mat_Color] != blank and productMetafield[col1_tab1_mat_type] != blank %} in <span data-table-title="col1_tab1_mat_Purity" class="pdp_table_title_mat_purity">{{ variantMetafield[col1_tab1_mat_Purity] }}</span> <span data-table-title="col1_tab1_mat_Color" class="pdp_table_title_mat_color">{{ variantMetafield[col1_tab1_mat_Color] }}</span> <span data-table-title="col1_tab1_mat_type" class="pdp_table_title_mat_type">{{ productMetafield[col1_tab1_mat_type] }}</span>{% endif %} {% if template.suffix contains 'loose-stone'%}<a class="product-view-report" href="javascript:;" aria-label="">View report&gt;</a>{% endif %}</h3>
-      
-    <div class="product-details-row">
-        <div class="product-info-gird">
-            {% for i in (1..2) %}
-            {% capture columnChecker %}col{{ i }}{% endcapture %}            
-                <div class="product-info-gird_column">
-                    {% for j in (1..10) %}
-                    {%- capture tableContent_title -%}col{{ i }}_tab{{ j }}_title{%- endcapture -%}
-                    {%- capture tableContent_mat_type -%}col{{ i }}_tab{{ j }}_mat_type{%- endcapture -%}
-                    {%- capture tableContent_mat_Purity -%}col{{ i }}_tab{{ j }}_mat_Purity{% endcapture %}
-                    {%- capture tableContent_mat_Color -%}col{{ i }}_tab{{ j }}_mat_Color{% endcapture %}
-                    {%- capture tableContent_dimension1  -%}col{{ i }}_tab{{ j }}_dimension1{% endcapture %}
-                    {%- capture tableContent_dimension2  -%}col{{ i }}_tab{{ j }}_dimension2{% endcapture %}
-                    {%- capture tableContent_rhodium_plated -%}col{{ i }}_tab{{ j }}_rhodium_plated{% endcapture %}
-                    {%- capture tableContent_avg_clarity -%}col{{i}}_tab{{ j }}_avg_clarity{%- endcapture -%}
-                    {%- capture tableContent_stone_category -%}col{{i}}_tab{{ j }}_stone_category{%- endcapture -%}
-                    {%- capture tableContent_stone_shape -%}col{{i}}_tab{{ j }}_stone_shape{%- endcapture -%}
-                    {%- capture tableContent_no_of_stones-%}col{{i}}_tab{{ j }}_no_of_stones{%- endcapture -%}
-                    {%- capture tableContent_min_stn_ttl_crt_wt-%}col{{i}}_tab{{ j }}_min_stn_ttl_crt_wt{%- endcapture -%}
-                    {%- capture tableContent_stone_avg_color -%}col{{i}}_tab{{ j }}_stone_avg_color{%- endcapture -%}
-                    {%- capture tableContent_stone_type -%}col{{i}}_tab{{ j }}_stone_type{%- endcapture -%}
-                    {%- capture tableContent_cert_cut -%}col{{i}}_tab{{ j }}_cert_cut{%- endcapture -%}
-                    {%- capture tableContent_stone_coating -%}col{{i}}_tab{{ j }}_stone_coating{%- endcapture -%}
-                    {%- capture tableContent_clarity_granding -%}col{{i}}_tab{{ j }}_clarity_granding{%- endcapture -%}
-                    {%- capture tableContent_cert_carats -%}col{{i}}_tab{{ j }}_cert_carats{%- endcapture -%}
-                    {%- capture tableContent_cert_fluorescence -%}col{{i}}_tab{{ j }}_cert_fluorescence{%- endcapture -%}
-                    {%- capture tableContent_cert_depth -%}col{{i}}_tab{{ j }}_cert_depth{%- endcapture -%}
-                    {%- capture tableContent_cert_table -%}col{{i}}_tab{{ j }}_cert_table{%- endcapture -%}
-                    {%- capture tableContent_cert_polish -%}col{{i}}_tab{{ j }}_cert_polish{%- endcapture -%}
-                    {%- capture tableContent_cert_symmentry -%}col{{i}}_tab{{ j }}_cert_symmentry{%- endcapture -%}
-                    {%- capture tableContent_cert_girdle -%}col{{i}}_tab{{ j }}_cert_girdle{%- endcapture -%}
-                    {%- capture tableContent_cert_culet -%}col{{i}}_tab{{ j }}_cert_culet{%- endcapture -%}
-                    {%- capture tableContent_cert_measurements -%}col{{i}}_tab{{ j }}_cert_measurements{%- endcapture -%}
-                    {%- capture tableContent_common_table-%}col{{i}}_tab{{j}}_common_table{%- endcapture -%}
+    <h3>{{ product.title }} {% if hide_default_title %} {% else %}in  <span class="variantColorTitle" data-variant-title>{{ product.selected_or_first_available_variant.option1  }}</span>{% endif %}{% if template.suffix contains 'loose-stone'%}<a class="product-view-report" href="javascript:;" aria-label="">View report&gt;</a>{% endif %}</h3>    
+        <div class="product-details-row">
+            <div class="product-info-gird">
+                {%- capture tableContent_title -%}prod_info_title{%- endcapture -%}
+                {%- capture tableContent_dimension1  -%}prod_info_dimension1{% endcapture %}
+                {%- capture tableContent_dimension2  -%}prod_info_dimension2{% endcapture %}
+                {%- capture tableContent_rhodium_plated -%}prod_info_rhodium_plated{% endcapture %}
+                {%- capture tableContent_avg_clarity -%}prod_info_avg_clarity{%- endcapture -%}
+                {%- capture tableContent_stone_category -%}prod_info_stone_category{%- endcapture -%}
+                {%- capture tableContent_stone_shape -%}prod_info_stone_shape{%- endcapture -%}
+                {%- capture tableContent_no_of_stones-%}prod_info_no_of_stones{%- endcapture -%} 
+                {% if template.suffix != 'loose-stone' %}
+                {% if
+                    productMetafield[tableContent_title] != blank or 
+                    variantMetafield[tableContent_dimension1] != blank or 
+                    variantMetafield[tableContent_dimension2] != blank or 
+                    productMetafield[tableContent_rhodium_plated] != blank 
+                %}       
+                <div class="product-info-gird_column">  
                     
-
-
-                    {%- capture tableContent_tooltip_rhodium -%}col{{i}}_tab{{ j }}_tooltip_rhodium{%- endcapture -%}
-                    {%- capture tableContent_tooltip_width -%}col{{i}}_tab{{ j }}_tooltip_width{%- endcapture -%}
-                    {%- capture tableContent_tooltip_height -%}col{{i}}_tab{{ j }}_tooltip_height{%- endcapture -%}
-                    {%- capture tableContent_tooltip_metal -%}col{{i}}_tab{{ j }}_tooltip_metal{%- endcapture -%}
-                    {%- capture tableContent_tooltip_avg_color -%}col{{i}}_tab{{ j }}_tooltip_avg_color{%- endcapture -%}
-                    {%- capture tableContent_tooltip_avg_clarity -%}col{{i}}_tab{{ j }}_tooltip_avg_clarity{%- endcapture -%}
-
                     {% if
                         productMetafield[tableContent_title] != blank or 
-                        productMetafield[tableContent_mat_type] != blank or 
-                        variantMetafield[tableContent_mat_Purity] != blank or 
-                        variantMetafield[tableContent_mat_Color] != blank or 
                         variantMetafield[tableContent_dimension1] != blank or 
                         variantMetafield[tableContent_dimension2] != blank or 
-                        productMetafield[tableContent_rhodium_plated] != blank or 
-                        productMetafield[tableContent_stone_category ] != blank or
-                        productMetafield[tableContent_stone_shape] != blank or 
-                        productMetafield[tableContent_no_of_stones] != blank or 
-                        productMetafield[tableContent_min_stn_ttl_crt_wt] != blank or
-                        productMetafield[tableContent_stone_avg_color] != blank or
-                        productMetafield[tableContent_stone_type] != blank or
-                        productMetafield[tableContent_stone_coating] != blank or
-                        productMetafield[tableContent_clarity_granding] != blank or
-                        productMetafield[tableContent_cert_carats] != blank or
-                        productMetafield[tableContent_cert_fluorescence] != blank or
-                        productMetafield[tableContent_cert_depth] != blank or
-                        productMetafield[tableContent_cert_table] != blank or
-                        productMetafield[tableContent_cert_polish] != blank or
-                        productMetafield[tableContent_cert_symmentry] != blank or
-                        productMetafield[tableContent_cert_girdle] != blank or
-                        productMetafield[tableContent_cert_culet] != blank or
-                        productMetafield[tableContent_cert_measurements] != blank or 
-                        productMetafield[tableContent_common_table] != blank
-                    %}
-                    
+                        productMetafield[tableContent_rhodium_plated] != blank 
+                    %}    
                     <div class="product-info-item">
                         <div class="product-info-holder">
                             {% if productMetafield[tableContent_title] != blank %}<h5>{{ productMetafield[tableContent_title] }}</h5>{% endif %}
+
                             <div class="product-info-table">
                                 <figure class="table">
                                     <table>
                                         <tbody>
-                                            {%- if productMetafield[tableContent_mat_type] != blank or variantMetafield[tableContent_mat_Purity] != blank or variantMetafield[tableContent_mat_Color] != blank -%}
-                                            <tr data-row="{{ tableContent_mat_Purity }}">
-                                                <td><span class="pdp-tab-label">Metal</span></td>
-                                                <td><span class="pdp-tab-val"><span class="mat_purity">{{ variantMetafield[tableContent_mat_Purity] }}</span> <span class="mat_color">{{ variantMetafield[tableContent_mat_Color] }}</span> <span class="mat_purity_type">{{ productMetafield[tableContent_mat_type]  }}</span></span> {%- if productMetafield[tableContent_tooltip_metal] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_metal] }}"></span>{%- endif -%}</td>
-                                            </tr>
+                                            {%- if hide_default_title -%}
+                                            {%- else -%}
+                                                <tr data-row="pdp-metal" > 
+                                                    <td><span class="pdp-tab-label">Metal</span></td>
+                                                    <td><span class="pdp-tab-val"><span class="variantColorTitle" data-variant-title>{{ product.selected_or_first_available_variant.option1  }}</span></span></td>
+                                                </tr>
                                             {% endif %}
+
                                             {% if variantMetafield[tableContent_dimension1] != blank %}
-                                            <tr data-row="{{ tableContent_dimension1 }}">
-                                                <td><span class="pdp-tab-label">Height</span></td>
-                                                <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_dimension1] }}</span>{%- if productMetafield[tableContent_tooltip_height] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_height] }}"></span>{%- endif -%}</td>
-                                            </tr>
-                                            {% endif %}
+                                                <tr data-row="{{ tableContent_dimension1 }}">
+                                                    <td><span class="pdp-tab-label">Height</span></td>
+                                                    <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_dimension1] }}</span>{%- if productMetafield[tableContent_tooltip_height] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_height] }}"></span>{%- endif -%}</td>
+                                                </tr>
+                                                {% endif %}
 
 
-                                            
-                                            {% if variantMetafield[tableContent_dimension2] != blank %}
-                                            <tr data-row="{{ tableContent_dimension2 }}">
-                                                <td><span class="pdp-tab-label">Width</span></td>
-                                                <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_dimension2] }}</span> {%- if productMetafield[tableContent_tooltip_width] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_width] }}"></span>{%- endif -%}</td>
-                                            </tr>
+                                                
+                                                {% if variantMetafield[tableContent_dimension2] != blank %}
+                                                <tr data-row="{{ tableContent_dimension2 }}">
+                                                    <td><span class="pdp-tab-label">Width</span></td>
+                                                    <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_dimension2] }}</span> {%- if productMetafield[tableContent_tooltip_width] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_width] }}"></span>{%- endif -%}</td>
+                                                </tr>
+                                                {% endif %}
+                                                {% if productMetafield[tableContent_rhodium_plated] != blank %}
+                                                <tr data-row="{{ tableContent_rhodium_plated }}">
+                                                    <td><span class="pdp-tab-label">Rhodium plated</span></td>
+                                                    <td><span class="pdp-tab-val">{{ productMetafield[tableContent_rhodium_plated] | truncate: 30, '...' }}</span> {% if productMetafield[tableContent_tooltip_rhodium] != blank %} <span class="meta_tooltip" data-tooltip-title="{{productMetafield[tableContent_tooltip_rhodium]}}"></span>{% endif %}</td>
+                                                </tr>
+                                                {% endif %}
+                                        </tbody>
+                                    </table>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    
+                    {%- capture tableContent_rstab_title-%}rstab_size1_title{%- endcapture -%}
+                    {%- capture tableContent_rstab1-%}rstab_size1_row1{%- endcapture -%}
+                    {%- capture tableContent_rstab_avg_color-%}rstab_size1_avg_color{%- endcapture -%}
+                    {%- capture tableContent_rstab_avg_clarity-%}rstab_size1_avg_clarity{%- endcapture -%}
+                    {%- capture tableContent_rstab_setting_type-%}rstab_size1_setting_type{%- endcapture -%}
+                    
+                    {% if
+                        productMetafield[tableContent_rstab_title] != blank or 
+                        productMetafield[tableContent_rstab1] != blank or 
+                        productMetafield[tableContent_rstab_avg_color] != blank or 
+                        productMetafield[tableContent_rstab_avg_clarity] != blank or 
+                        productMetafield[tableContent_rstab_setting_type] != blank 
+                    %}    
+                    <div class="product-info-item">
+                        <div class="product-info-holder">
+                            {% if productMetafield[tableContent_rstab_title] != blank %}<h5>{{ productMetafield[tableContent_rstab_title] }}</h5>{% endif %}
+
+                            <div class="product-info-table">
+                                <figure class="table">
+                                    <table>
+                                        <tbody>
+                                            {% for i in (1..30) %}
+                                            {%- capture tableContent_rstab-%}rstab_size1_row{{i}}{%- endcapture -%}
+
+                                            {% if productMetafield[tableContent_rstab] != blank %}
+                                                {% assign rsData =  productMetafield[tableContent_rstab] | split: '||' %}
+                                                <tr data-row="{{ productMetafield[tableContent_rstab] }}">
+                                                    <td>{{ rsData[0] }}</td>
+                                                    <td>{{ rsData[1] }}</td>
+                                                    <td>{{ rsData[2] }}</td>
+                                                </tr>
                                             {% endif %}
-                                            {% if productMetafield[tableContent_rhodium_plated] != blank %}
-                                            <tr data-row="{{ tableContent_rhodium_plated }}">
-                                                <td><span class="pdp-tab-label">Rhodium plated</span></td>
-                                                <td><span class="pdp-tab-val">{{ productMetafield[tableContent_rhodium_plated] | truncate: 30, '...' }}</span> {% if productMetafield[tableContent_tooltip_rhodium] != blank %} <span class="meta_tooltip" data-tooltip-title="{{productMetafield[tableContent_tooltip_rhodium]}}"></span>{% endif %}</td>
-                                            </tr>
+                                            {% endfor %}
+                                            {% if productMetafield[tableContent_rstab_avg_color] != blank %}
+                                                <tr data-row="{{ productMetafield[tableContent_rstab_avg_color] }}">
+                                                    <td><span class="pdp-tab-label">Average Color</span></td>
+                                                    <td> </td>
+                                                    <td><span class="pdp-tab-val">{{ productMetafield[tableContent_rstab_avg_color] }}</span></td>
+                                                </tr>
                                             {% endif %}
+                                            {% if productMetafield[tableContent_rstab_avg_clarity] != blank %}
+                                                <tr data-row="{{ productMetafield[tableContent_rstab_avg_clarity] }}">
+                                                    <td><span class="pdp-tab-label">Average Clarity</span></td>
+                                                    <td> </td>
+                                                    <td><span class="pdp-tab-val">{{ productMetafield[tableContent_rstab_avg_clarity] }}</span></td>
+                                                </tr>
+                                            {% endif %}
+                                            {% if productMetafield[tableContent_rstab_setting_type] != blank %}
+                                                <tr data-row="{{ productMetafield[tableContent_rstab_setting_type] }}">
+                                                    <td><span class="pdp-tab-label">Setting Type</span></td>
+                                                    <td> </td>
+                                                    <td><span class="pdp-tab-val">{{ productMetafield[tableContent_rstab_setting_type] }}</span></td>
+                                                </tr>
+                                            {% endif %}
+                                        </tbody>
+                                    </table>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+
+                </div>
+                {% endif %}   
+                {% endif %}
+
+                <div class="product-info-gird_column">
+                {% for j in (1..10) %}
+                {%- capture otherTableContent_title -%}dia_tab{{ j }}_title{%- endcapture -%}
+                {%- capture tableContent_avg_clarity -%}dia_tab{{ j }}_avg_clarity{%- endcapture -%}
+                {%- capture tableContent_stone_category -%}dia_tab{{ j }}_stone_category{%- endcapture -%}
+                {%- capture tableContent_stone_shape -%}dia_tab{{ j }}_stone_shape{%- endcapture -%}
+                {%- capture tableContent_no_of_stones-%}dia_tab{{ j }}_no_of_stones{%- endcapture -%}
+                {%- capture tableContent_min_stn_ttl_crt_wt-%}dia_tab{{ j }}_min_stn_ttl_crt_wt{%- endcapture -%}
+                {%- capture tableContent_stone_avg_color -%}dia_tab{{ j }}_stone_avg_color{%- endcapture -%}
+                {%- capture tableContent_stone_type -%}dia_tab{{ j }}_stone_type{%- endcapture -%}
+                {%- capture tableContent_cert_cut -%}dia_tab{{ j }}_cert_cut{%- endcapture -%}
+                {%- capture tableContent_stone_coating -%}dia_tab{{ j }}_stone_coating{%- endcapture -%}
+                {%- capture tableContent_clarity_granding -%}dia_tab{{ j }}_clarity_granding{%- endcapture -%}
+                {%- capture tableContent_cert_carats -%}dia_tab{{ j }}_cert_carats{%- endcapture -%}
+                {%- capture tableContent_cert_fluorescence -%}dia_tab{{ j }}_cert_fluorescence{%- endcapture -%}
+                {%- capture tableContent_cert_depth -%}dia_tab{{ j }}_cert_depth{%- endcapture -%}
+                {%- capture tableContent_cert_table -%}dia_tab{{ j }}_cert_table{%- endcapture -%}
+                {%- capture tableContent_cert_polish -%}dia_tab{{ j }}_cert_polish{%- endcapture -%}
+                {%- capture tableContent_cert_symmentry -%}dia_tab{{ j }}_cert_symmentry{%- endcapture -%}
+                {%- capture tableContent_cert_girdle -%}dia_tab{{ j }}_cert_girdle{%- endcapture -%}
+                {%- capture tableContent_cert_culet -%}dia_tab{{ j }}_cert_culet{%- endcapture -%}
+                {%- capture tableContent_cert_measurements -%}dia_tab{{ j }}_cert_measurements{%- endcapture -%}
+
+
+                {% if
+                    productMetafield[otherTableContent_title] != blank or 
+                    productMetafield[tableContent_mat_type] != blank or 
+                    variantMetafield[tableContent_mat_Purity] != blank or 
+                    variantMetafield[tableContent_mat_Color] != blank or 
+                    variantMetafield[tableContent_dimension1] != blank or 
+                    variantMetafield[tableContent_dimension2] != blank or 
+                    productMetafield[tableContent_rhodium_plated] != blank or 
+                    productMetafield[tableContent_stone_category ] != blank or
+                    productMetafield[tableContent_stone_shape] != blank or 
+                    productMetafield[tableContent_no_of_stones] != blank or 
+                    productMetafield[tableContent_min_stn_ttl_crt_wt] != blank or
+                    productMetafield[tableContent_stone_avg_color] != blank or
+                    productMetafield[tableContent_stone_type] != blank or
+                    productMetafield[tableContent_stone_coating] != blank or
+                    productMetafield[tableContent_clarity_granding] != blank or
+                    productMetafield[tableContent_cert_carats] != blank or
+                    productMetafield[tableContent_cert_fluorescence] != blank or
+                    productMetafield[tableContent_cert_depth] != blank or
+                    productMetafield[tableContent_cert_table] != blank or
+                    productMetafield[tableContent_cert_polish] != blank or
+                    productMetafield[tableContent_cert_symmentry] != blank or
+                    productMetafield[tableContent_cert_girdle] != blank or
+                    productMetafield[tableContent_cert_culet] != blank or
+                    productMetafield[tableContent_cert_measurements] != blank or 
+                    productMetafield[tableContent_common_table] != blank
+                %}
+                
+                    <div class="product-info-item">
+                        <div class="product-info-holder">
+                            {% if productMetafield[otherTableContent_title] != blank %}<h5>{{ productMetafield[otherTableContent_title] }}</h5>{% endif %}
+                            <div class="product-info-table">
+                                <figure class="table">
+                                    <table>
+                                        <tbody>
                                             {% if template.suffix contains 'loose-stone' %}
                                             {% if productMetafield[tableContent_stone_shape] != blank %}
                                                 <tr data-row="{{ productMetafield[tableContent_stone_shape] | truncate: 15 | handleize }}">
@@ -234,19 +325,20 @@
                                             {% endif %}
                                         </tbody>
                                     </table>
-                                    {% if productMetafield[tableContent_common_table] != blank %}
-                                    {{ productMetafield[tableContent_common_table] }}
-                                    {% endif %}
                                 </figure>
                             </div>
                         </div>
                     </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-            {% endfor %}
+                
+
+                {% endif %}
+                {% endfor %}
+            </div>
         </div>
     </div>
+
+
+
 </div>
 
 <script>

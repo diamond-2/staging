@@ -1,6 +1,12 @@
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 {% assign productMetafield = product.metafields.global %}
 {% assign variantMetafield = current_variant.metafields.current_variant %}
+
+{% assign hide_default_title = false %}
+{% if product.options.size <= 1 or product.options.first.title contains 'Default' %}
+  {% assign hide_default_title = true %}
+{% endif %}
+
 {%- comment -%}
 {%- if product.variant.size == 1 and product.has_only_default_variant -%}
 {%- assign delivery_days_instock = product.metafields.global.delivery_days_instock -%}
@@ -11,16 +17,13 @@
 {%- capture delivery_days_instock -%}delivery_days_instock{%- endcapture -%}
 {%- capture return_policy -%}return_policy{%- endcapture -%}
 {%- capture shipping -%}shipping{%- endcapture -%}
-{%- capture col1_tab1_mat_type -%}col1_tab1_mat_type{%- endcapture -%}
-{%- capture col1_tab1_mat_Purity -%}col1_tab1_mat_Purity{%- endcapture -%}
-{%- capture col1_tab1_mat_Color -%}col1_tab1_mat_Color{%- endcapture -%}
-{%- capture col1_tab1_dimension1  -%}col1_tab1_dimension1 {%- endcapture -%}
-{%- capture col1_tab1_dimension2  -%}col1_tab1_dimension2{%- endcapture -%}
-{%- capture col1_tab1_rhodium_plated -%}col1_tab1_rhodium_plated{%- endcapture -%}
+{%- capture prod_info_dimension1  -%}prod_info_dimension1 {%- endcapture -%}
+{%- capture prod_info_dimension2  -%}prod_info_dimension2{%- endcapture -%}
+{%- capture prod_info_rhodium_plated -%}prod_info_rhodium_plated{%- endcapture -%}
 {%- capture product_category -%}product_category{%- endcapture -%}
 {%- capture jewelery_category -%}jewelery_category{%- endcapture -%}
 {%- capture stone_category -%}stone_category{%- endcapture -%}
-{%- capture stone_coating -%}col1_tab1_stone_coating{%- endcapture -%}
+{%- capture prod_info_stone_coating -%}prod_info_stone_coating{%- endcapture -%}
 {%- capture stone_color_granding -%}stone_color_granding{%- endcapture -%}
 {%- capture shipping -%}shipping{%- endcapture -%}
 {%- capture return_policy -%}return_policy{%- endcapture -%}
@@ -181,12 +184,12 @@
                     {{ form | payment_terms }}
 
                     {% if template.suffix contains 'loose-stone' and  product.has_only_default_variant %}
-                    {% if productMetafield[stone_coating] != blank or productMetafield[stone_color_granding] != blank  %}
+                    {% if productMetafield[prod_info_stone_coating] != blank or productMetafield[stone_color_granding] != blank  %}
                     <ul class="stone-granding-options">
-                        {% if productMetafield[stone_coating] != blank %}
+                        {% if productMetafield[prod_info_stone_coating] != blank %}
                         <li class="stone_coating">
                             <span class="stone_coating_label">Color - </span>
-                            <span class="stone_coating_val">{{ productMetafield[stone_coating] }}</span>
+                            <span class="stone_coating_val">{{ productMetafield[prod_info_stone_coating] }}</span>
                         </li>
                         {% endif %}
                         {% if productMetafield[stone_color_granding] != blank %}
@@ -242,7 +245,7 @@
 
                     <select name="id" id="ProductSelect-{{ section.id }}" class="product-form__variants no-js">
                         {% for variant in product.variants %}
-                        <option value="{{ variant.id }}" {%- if variant==current_variant %} selected="selected" {%-
+                        <option data-color="{{ variant.option1 }}" data-size="{{ variant.option2 }}" value="{{ variant.id }}" {%- if variant==current_variant %} selected="selected" {%-
                             endif -%}>
                             {{ variant.title }} {%- if variant.available == false %} - {{ 'products.product.sold_out' |
                             t }}{% endif %}

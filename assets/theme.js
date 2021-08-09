@@ -839,7 +839,8 @@ slate.Variants = (function() {
        console.log(variant);
        var element = document.querySelector('body');
        var dataAttribute = element.getAttribute('data-handle');
-      console.log(dataAttribute);
+       var current_variantTitle = $('select[name="id"] option:selected').data('color');
+       $(document).find('[data-variant-title]').text(current_variantTitle);
        $.ajax({
         url: dataAttribute+'/?view=metafields',
         cache: false,
@@ -851,13 +852,8 @@ slate.Variants = (function() {
           var productMetafield =  productData.productMetafield;
           var variantMetaFields = productData.variantMetafileds;
           productMetafield.forEach(function(ele){ //console.log(ele);
-            for(var key in ele) {
-              if(key.indexOf('col1_tab1_mat_type') > -1){
-                $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val .mat_purity_type').text(ele[key]);
-                $(document).find('[data-table-title="'+key+'"]').text(ele[key]);
-              } else {
+            for(var key in ele) { 
                 $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val').text(ele[key]);
-              }              
             }
           });
           //console.log(variantMetaFields);
@@ -865,22 +861,9 @@ slate.Variants = (function() {
             var selectedVariant = $('select[name="id"]').val();console.log(selectedVariant);
             if(selectedVariant != variantKey) continue 
             variantMetaFields[variantKey].forEach(function(ele){ //console.log(ele);
-              for(var key in ele) {
-                console.log("key==>>>");
-                console.log(key);
-                if(key.indexOf('col1_tab1_mat_Purity') > -1 ){
-                  console.log('insertPuirty');
-                  console.log(ele[key]);
-                  $(document).find('[data-row="col1_tab1_mat_Purity"] .pdp-tab-val .mat_purity').text(ele[key]);
-                  $(document).find('[data-table-title="'+key+'"]').text(ele[key]);
-                } else if(key.indexOf('col1_tab1_mat_Color') > -1 ){
-                  console.log('insert Color');
-                  console.log(ele[key]);
-                  $(document).find('[data-row="col1_tab1_mat_Purity"] .pdp-tab-val .mat_color').text(ele[key]);
-                  $(document).find('[data-table-title="'+key+'"]').text(ele[key]);
-                } else {
-                  $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val').text(ele[key]);
-                }                
+              for(var key in ele) {                
+                  console.log('Enter currentvairant');
+                  $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val').text(ele[key]);                             
               }
             });           
           }
