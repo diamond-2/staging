@@ -12,7 +12,8 @@
 {%- capture return_policy -%}return_policy{%- endcapture -%}
 {%- capture shipping -%}shipping{%- endcapture -%}
 {%- capture col1_tab1_mat_type -%}col1_tab1_mat_type{%- endcapture -%}
-{%- capture col1_tab1_mat_Purity_Color -%}col1_tab1_mat_Purity_Color{%- endcapture -%}
+{%- capture col1_tab1_mat_Purity -%}col1_tab1_mat_Purity{%- endcapture -%}
+{%- capture col1_tab1_mat_Color -%}col1_tab1_mat_Color{%- endcapture -%}
 {%- capture col1_tab1_dimension1  -%}col1_tab1_dimension1 {%- endcapture -%}
 {%- capture col1_tab1_dimension2  -%}col1_tab1_dimension2{%- endcapture -%}
 {%- capture col1_tab1_rhodium_plated -%}col1_tab1_rhodium_plated{%- endcapture -%}
@@ -204,8 +205,8 @@
                         <div class="selector-wrapper js product-form__item pdp-select-item">
                             {% assign indexVal = forloop.index %}
 
-                            {% if option.name =='Color' %}
-                            <label>Select Gold {{ option.name }}</label>
+                            {% if option.name contains 'Color' or option.name contains 'Colour' or option.name contains 'COLOUR' %}
+                            <label>{{ option.name }}</label>
                             <div class="custom-checkbox-list">
                                 {% for value in option.values %}
                                 <div class="custom-checkbox">

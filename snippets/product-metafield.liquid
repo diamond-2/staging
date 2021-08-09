@@ -1,7 +1,8 @@
 <!-- Product Metafield Code -->
 <div class="product-details-wrapper">
     <p>PRODUCT DETAILS</p>
-    <h3>{{ product.title }} {% if variantMetafield[col1_tab1_mat_Purity_Color] != blank and productMetafield[col1_tab1_mat_type] != blank %} in <span data-table-title="col1_tab1_mat_Purity_Color" class="pdp_table_title_mat_purity_color">{{ variantMetafield[col1_tab1_mat_Purity_Color] }}</span> <span data-table-title="col1_tab1_mat_type" class="pdp_table_title_mat_type">{{ productMetafield[col1_tab1_mat_type] }}</span>{% endif %} {% if template.suffix contains 'loose-stone'%}<a class="product-view-report" href="javascript:;" aria-label="">View report&gt;</a>{% endif %}</h3>
+    <h2>{{ variantMetafield[col1_tab1_mat_Purity] }} {{ variantMetafield[col1_tab1_mat_Color] }}</h2>
+    <h3>{{ product.title }} {% if variantMetafield[col1_tab1_mat_Purity] != blank or variantMetafield[col1_tab1_mat_Color] != blank and productMetafield[col1_tab1_mat_type] != blank %} in <span data-table-title="col1_tab1_mat_Purity" class="pdp_table_title_mat_purity">{{ variantMetafield[col1_tab1_mat_Purity] }}</span> <span data-table-title="col1_tab1_mat_Color" class="pdp_table_title_mat_color">{{ variantMetafield[col1_tab1_mat_Color] }}</span> <span data-table-title="col1_tab1_mat_type" class="pdp_table_title_mat_type">{{ productMetafield[col1_tab1_mat_type] }}</span>{% endif %} {% if template.suffix contains 'loose-stone'%}<a class="product-view-report" href="javascript:;" aria-label="">View report&gt;</a>{% endif %}</h3>
       
     <div class="product-details-row">
         <div class="product-info-gird">
@@ -11,7 +12,8 @@
                     {% for j in (1..10) %}
                     {%- capture tableContent_title -%}col{{ i }}_tab{{ j }}_title{%- endcapture -%}
                     {%- capture tableContent_mat_type -%}col{{ i }}_tab{{ j }}_mat_type{%- endcapture -%}
-                    {%- capture tableContent_mat_Purity_Color -%}col{{ i }}_tab{{ j }}_mat_Purity_Color{% endcapture %}
+                    {%- capture tableContent_mat_Purity -%}col{{ i }}_tab{{ j }}_mat_Purity{% endcapture %}
+                    {%- capture tableContent_mat_Color -%}col{{ i }}_tab{{ j }}_mat_Color{% endcapture %}
                     {%- capture tableContent_dimension1  -%}col{{ i }}_tab{{ j }}_dimension1{% endcapture %}
                     {%- capture tableContent_dimension2  -%}col{{ i }}_tab{{ j }}_dimension2{% endcapture %}
                     {%- capture tableContent_rhodium_plated -%}col{{ i }}_tab{{ j }}_rhodium_plated{% endcapture %}
@@ -34,6 +36,7 @@
                     {%- capture tableContent_cert_girdle -%}col{{i}}_tab{{ j }}_cert_girdle{%- endcapture -%}
                     {%- capture tableContent_cert_culet -%}col{{i}}_tab{{ j }}_cert_culet{%- endcapture -%}
                     {%- capture tableContent_cert_measurements -%}col{{i}}_tab{{ j }}_cert_measurements{%- endcapture -%}
+                    {%- capture tableContent_common_table-%}col{{i}}_tab{{j}}_common_table{%- endcapture -%}
                     
 
 
@@ -47,7 +50,8 @@
                     {% if
                         productMetafield[tableContent_title] != blank or 
                         productMetafield[tableContent_mat_type] != blank or 
-                        variantMetafield[tableContent_mat_Purity_Color] != blank or 
+                        variantMetafield[tableContent_mat_Purity] != blank or 
+                        variantMetafield[tableContent_mat_Color] != blank or 
                         variantMetafield[tableContent_dimension1] != blank or 
                         variantMetafield[tableContent_dimension2] != blank or 
                         productMetafield[tableContent_rhodium_plated] != blank or 
@@ -67,7 +71,8 @@
                         productMetafield[tableContent_cert_symmentry] != blank or
                         productMetafield[tableContent_cert_girdle] != blank or
                         productMetafield[tableContent_cert_culet] != blank or
-                        productMetafield[tableContent_cert_measurements] != blank 
+                        productMetafield[tableContent_cert_measurements] != blank or 
+                        productMetafield[tableContent_common_table] != blank
                     %}
                     
                     <div class="product-info-item">
@@ -77,10 +82,10 @@
                                 <figure class="table">
                                     <table>
                                         <tbody>
-                                            {%- if productMetafield[tableContent_mat_type] != blank or variantMetafield[tableContent_mat_Purity_Color] -%}
-                                            <tr data-row="{{ tableContent_mat_Purity_Color }}">
+                                            {%- if productMetafield[tableContent_mat_type] != blank or variantMetafield[tableContent_mat_Purity] != blank or variantMetafield[tableContent_mat_Color] != blank -%}
+                                            <tr data-row="{{ tableContent_mat_Purity }}">
                                                 <td><span class="pdp-tab-label">Metal</span></td>
-                                                <td><span class="pdp-tab-val"><span class="mat_purity_color">{{ variantMetafield[tableContent_mat_Purity_Color] }}</span> <span class="mat_purity_type">{{ productMetafield[tableContent_mat_type]  }}</span></span> {%- if productMetafield[tableContent_tooltip_metal] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_metal] }}"></span>{%- endif -%}</td>
+                                                <td><span class="pdp-tab-val"><span class="mat_purity">{{ variantMetafield[tableContent_mat_Purity] }}</span> <span class="mat_color">{{ variantMetafield[tableContent_mat_Color] }}</span> <span class="mat_purity_type">{{ productMetafield[tableContent_mat_type]  }}</span></span> {%- if productMetafield[tableContent_tooltip_metal] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_metal] }}"></span>{%- endif -%}</td>
                                             </tr>
                                             {% endif %}
                                             {% if variantMetafield[tableContent_dimension1] != blank %}
@@ -89,6 +94,9 @@
                                                 <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_dimension1] }}</span>{%- if productMetafield[tableContent_tooltip_height] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_height] }}"></span>{%- endif -%}</td>
                                             </tr>
                                             {% endif %}
+
+
+                                            
                                             {% if variantMetafield[tableContent_dimension2] != blank %}
                                             <tr data-row="{{ tableContent_dimension2 }}">
                                                 <td><span class="pdp-tab-label">Width</span></td>
@@ -227,6 +235,9 @@
                                             {% endif %}
                                         </tbody>
                                     </table>
+                                    {% if productMetafield[tableContent_common_table] != blank %}
+                                    {{ productMetafield[tableContent_common_table] }}
+                                    {% endif %}
                                 </figure>
                             </div>
                         </div>
