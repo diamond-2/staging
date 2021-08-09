@@ -1,7 +1,6 @@
 <!-- Product Metafield Code -->
 <div class="product-details-wrapper">
     <p>PRODUCT DETAILS</p>
-    <h2>{{ variantMetafield[col1_tab1_mat_Purity] }} {{ variantMetafield[col1_tab1_mat_Color] }}</h2>
     <h3>{{ product.title }} {% if variantMetafield[col1_tab1_mat_Purity] != blank or variantMetafield[col1_tab1_mat_Color] != blank and productMetafield[col1_tab1_mat_type] != blank %} in <span data-table-title="col1_tab1_mat_Purity" class="pdp_table_title_mat_purity">{{ variantMetafield[col1_tab1_mat_Purity] }}</span> <span data-table-title="col1_tab1_mat_Color" class="pdp_table_title_mat_color">{{ variantMetafield[col1_tab1_mat_Color] }}</span> <span data-table-title="col1_tab1_mat_type" class="pdp_table_title_mat_type">{{ productMetafield[col1_tab1_mat_type] }}</span>{% endif %} {% if template.suffix contains 'loose-stone'%}<a class="product-view-report" href="javascript:;" aria-label="">View report&gt;</a>{% endif %}</h3>
       
     <div class="product-details-row">
