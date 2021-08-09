@@ -7075,6 +7075,7 @@ body #shopify-section-header.header-bg {
   left: 0;
   right: 0;
   background-color: var(--color-body);
+  z-index: 9999;
 }
 #shopify-section-header sup, .slide-overaly-heading sup, h1 sup, h2 sup, #shopify-section-footer sup {
   font-size: 70%;

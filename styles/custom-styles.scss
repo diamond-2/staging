@@ -144,7 +144,8 @@ $input-field-border-color:#6679CC;
     transition: all 0.3s;
     font-weight: 400;
     border-radius: 0;
-    &:hover, &:focus {
+    letter-spacing: normal;
+    &:hover, &:focus, &:not([disabled]):hover {
       color: $textcolor-white;
       border-color:$textcolor-phanton;
       background:$textcolor-phanton;
@@ -177,6 +178,7 @@ $input-field-border-color:#6679CC;
     margin-top: 15px;
     width: 100%;
     color: $textcolor-black;
+    word-break: break-all;
   }
   @mixin errorMsgArrow() {
     content: "";
@@ -421,7 +423,7 @@ body {
     margin-top: 100px;
     margin-bottom: 50px;
     @media(max-width: $md) {
-      margin-top: 20px;
+      margin-top: 60px;
       margin-bottom: 20px;
     }
     h2 {
@@ -801,6 +803,7 @@ body {
               min-height: 19px;
               margin-top: 15px;
               font-weight: 400;
+              display: inline-block !important;
               @media(max-width: $xl) {
                 font-size: 10px;
                 line-height: normal;
@@ -1091,7 +1094,6 @@ div#PageContainer {
       }
     }
   }
-  
   .page-container, #shopify-section-header {
     opacity: 0;
     visibility: hidden;
@@ -1381,6 +1383,7 @@ div#PageContainer {
     padding:0;
     overflow-x: hidden;
     overflow-y: auto;
+    font-weight: 400;
     &::-webkit-scrollbar {
       width: 4px;
       height: 4px;
@@ -1420,6 +1423,11 @@ div#PageContainer {
       background: #6C1D45;
       border-radius:6px;
     }
+    .mobile-nav-wrapper-2 {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
     .mobile_nav_inner {
       min-height: 345px;
       @media(max-width: $md) {
@@ -1455,12 +1463,21 @@ div#PageContainer {
         margin-top: auto;
         padding-bottom: 13px;
         text-transform: uppercase;
+        li {
+          a {
+            display: block;
+            font-size: 13px;
+            line-height: normal;
+          }
+        }
       }
       li {
         border: none;
         .mobile-nav__link, a {
-          font-size: 12px;
-          line-height: 12.96px;
+          // font-size: 12px;
+          // line-height: 12.96px;
+          font-size: 14px;
+          line-height: normal;
           color: #000000;
           padding: 8px 0 !important;
           position: relative;
@@ -1491,16 +1508,16 @@ div#PageContainer {
       > li {
         > a {
           color:$textcolor-phanton;
-          font-size: 13px;
-          line-height: 19.5px;
+          font-size: 14px;
+          line-height: normal;
           font-family: 'Spectral';
           text-transform: uppercase;
         }
         &.not_child_menu {
           a {
             color: $textcolor-black;
-            font-size: 12px;
-            line-height:12.96px;
+            font-size: 13px;
+            line-height:normal;
             font-family: Montserrat;
           }
         }
@@ -1522,7 +1539,8 @@ div#PageContainer {
               order: 40;
             }
            a {
-              line-height: 18px;
+              line-height: normal;
+              font-size: 13px;
               padding: 6px 0 !important;
               text-transform: uppercase;
               &.active_color {
@@ -1579,6 +1597,9 @@ div#PageContainer {
       z-index: 3;
       margin-left: 30px;
       margin-right: 30px;
+      margin-top: auto;
+      text-transform: uppercase;
+      font-weight: 400;
       ul {
         margin: 0;
         padding: 0;
@@ -1592,8 +1613,10 @@ div#PageContainer {
               margin-bottom: 0px;
             }
             a {
-              font-size: 13px;
-              line-height: 19.5px;
+              // font-size: 13px;
+              // line-height: 19.5px;
+              font-size: 14px;
+              line-height: normal;
               display: flex;
               align-items: center;
               padding: 0 !important;
@@ -1615,8 +1638,10 @@ div#PageContainer {
         ul {
           li {
             a {
-              font-size: 13px;
-              line-height: 19.5px;
+              // font-size: 13px;
+              // line-height: 19.5px;
+              font-size: 14px;
+              line-height: normal;
               text-transform: uppercase;
               &.currency-trigger {
                 padding: 0;
@@ -2852,7 +2877,7 @@ body{
             a {
               &:hover {
                 .img_holder {
-                  @include cardHover();
+                  transform: scale(1.35);
                 }
                 .caption_holder {
                   &:after {
@@ -2912,6 +2937,8 @@ body{
               font-size: 18px;
               line-height: 27px;
               font-weight: 400;
+              position: relative;
+              z-index: 2;
               &:after {
                 content: "";
                 display: block;
@@ -4039,7 +4066,7 @@ body[data-template="know-your-diamond"] {
   .content-with-image-diamond-row {
     .content-with-image-diamond-image-column {
       margin-bottom: 0;
-      margin-top: 7px;
+      // margin-top: 7px;
       @media(max-width: $md) {
         width: auto !important;
         order: 2;
@@ -4254,7 +4281,7 @@ body[data-template="know-your-diamond"] {
   padding-top: 42px;
   padding-bottom: 100px;
   @media(max-width: $md) {
-    padding-bottom: 45px;
+    padding-bottom: 60px;
     padding-top:0;
   }
   .collection-slider-header {
@@ -6181,7 +6208,7 @@ body.layout_jewellery {
     padding-right: 90px;
   }
   @media(max-width: $md) {
-    padding-bottom: 11px;
+    padding-bottom: 40px;
   }
   .loose-stone-item {
     width: 33.333%;
@@ -6196,7 +6223,7 @@ body.layout_jewellery {
       flex-wrap: wrap;
       flex-direction: row;
       display: block;
-      margin-bottom: 19px;
+      margin-bottom: 20px;
     }
     &:after {
       @media(max-width: $md) {
@@ -6236,6 +6263,7 @@ body.layout_jewellery {
         color: $textcolor-phanton;
         margin-bottom: 20px;
         line-height: 34.13px;
+        font-weight: 400;
         @media(max-width: $md) {
           font-size: 12px;
           line-height: 12.96px;
@@ -6243,20 +6271,20 @@ body.layout_jewellery {
         }
       }
       .loose-stone-item-desc{
-        font-size: 26px;
+        // font-size: 26px;
+        // line-height: 28.8px;
         margin-bottom: 35px;
-        line-height: 28.8px;
         @media(max-width: $md) {
-          font-size: 11px;
-          line-height: 16.5px;
+          // font-size: 11px;
+          // line-height: 16.5px;
           margin-bottom: 17px;
         }
-        p {
-          @media(max-width: $md) {
-            font-size: inherit;
-            line-height: inherit;
-          }
-        }
+        // p {
+        //   @media(max-width: $md) {
+        //     font-size: inherit;
+        //     line-height: inherit;
+        //   }
+        // }
       }
       .loose-stone-item-link {
         font-size: 18px;
@@ -6269,7 +6297,10 @@ body.layout_jewellery {
   }
 }
 .custom-jewellary-collections-wrapper {
-  padding-bottom: 28px;
+  padding-bottom: 100px;
+  @media(max-width: $md) {
+    padding-bottom:60px;
+  }
   .custom-jewellary-collections-header {
     text-align: center;
     h2 {
@@ -8894,13 +8925,6 @@ body[data-template="cart"] {
   .custom-checkbox-holder {
     display: flex;
     align-items: center;
-    margin-bottom: 54px;
-    @media(max-width: $xxl) and (min-width: $postMd) {
-      margin-bottom: 30px;
-    }
-    @media(max-width: $md) {
-      margin-bottom: 30px;
-    }
     label {
       font-size: 18px;
       line-height: 27px;
@@ -8988,6 +9012,13 @@ body[data-template="cart"] {
     }
   }
   .estimate-delivery-box {
+    margin-top: 54px;
+    @media(max-width: $xxl) and (min-width: $postMd) {
+      margin-top: 30px;
+    }
+    @media(max-width: $md) {
+      margin-top: 30px;
+    }
     .estimate-delivery-heading {
       font-size: 18px;
       line-height: 20px;
@@ -9720,6 +9751,11 @@ body[data-template="customers/reset_password"] {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    @media(max-width: $md) {
+      width: 100%;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
   }
   .newsletter-popup {
     background-color: #6c1d45;
@@ -9733,7 +9769,8 @@ body[data-template="customers/reset_password"] {
     flex-direction: column;
     width: 100%;
     @media(max-width: $md) {
-      padding: 30px;
+      padding: 40px 30px;
+      min-height: 0;
     }
     .newsletter-popup-header {
       h2 {
@@ -9742,10 +9779,20 @@ body[data-template="customers/reset_password"] {
         max-width: 505px;
         letter-spacing: normal;
         color: #fff;
+        @media(max-width: $md) {
+          font-size: 18px;
+          line-height: 19.44px;
+          max-width: 245px;
+          margin-bottom: 20px;
+        }
       }
     }
     .newsletter-popup-form {
       max-width: 648px;
+      @media(max-width: $md) {
+        max-width: 219px;
+        max-width: 77%;
+      }
       .input-group  {
         justify-content: flex-start;
         .newsletter__input {
@@ -9763,8 +9810,13 @@ body[data-template="customers/reset_password"] {
           flex-basis: 68.209%;
           padding: 18px 21px;
           @media(max-width: $md) {
-            height: 50px;
-            font-size: 14px;
+            height: 45px;
+            font-size: 11px;
+            line-height: 16.5px;
+            font-weight: 300;
+            padding: 10px;
+            flex-basis: calc(100% - 70px);
+            width: calc(100% - 70px);
           }
           &::-webkit-input-placeholder, &::-moz-placeholder, &:-ms-input-placeholder, &:-moz-placeholder {
             color: rgba(0, 0, 0, 0.8);
@@ -9773,6 +9825,9 @@ body[data-template="customers/reset_password"] {
         }
         .input-group__btn {
           width: 31.791%;
+          @media(max-width: $md) {
+            width: 70px;
+          }
           .glb-btn {
             font-size: 18px;
             line-height: 24px;
@@ -9808,7 +9863,12 @@ body[data-template="customers/reset_password"] {
       margin-top: auto;
       padding-top: 20px;
       @media(max-width: $md) {
-        font-size: 14px;
+        font-size: 12px;
+        line-height: 21.6px;
+        letter-spacing: 0.07em;
+        font-weight: 400;
+        margin-top: 0;
+        padding-top: 43px;
       }
       a {
         color: inherit;

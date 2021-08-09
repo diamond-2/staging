@@ -1,4 +1,4 @@
-<div class="full_width_slider_wrapper Jewellery-pdp-slider-wrapper">
+<div class="full_width_slider_wrapper diamond-ambasaador-slider">
     <div class="full_width_slider">
         {%- if section.blocks.size > 0 -%}
         {%- for slide in section.blocks -%}
@@ -38,7 +38,7 @@
 </div>
 {% schema %}
 {
-    "name": "Jewellery Product Slider",
+    "name": "Diamond Ambasaador Slider",
     "max_blocks": 6,
     "settings": [],
     "blocks": [
@@ -81,17 +81,20 @@
              {
                 "type": "text",
                 "label": "Heading",
-                "id": "heading"
+                "id": "heading",
+                "default": "DIAMOND2 <br>AMBASSADOR"
              },
              {
-                "type": "richtext",
+                "type": "html",
                 "label": "Content",
-                "id": "content"
+                "id": "content",
+                "default": "<p>Experience our Store <br>at your doorstep.</p>"
              },
              {
                 "type": "text",
                 "label": "Button Text",
-                "id": "button_text"
+                "id": "button_text",
+                "default": "BOOK YOUR APPOINTMENT"
              },
              {
                 "type": "url",
@@ -100,6 +103,13 @@
              }
           ]
        }
+    ],
+    "presets": [
+      {
+        "name": "Diamond Ambasaador Slider",
+        "category": "Full Width Slider"
+      }
     ]
+
 }
 {% endschema %} 
