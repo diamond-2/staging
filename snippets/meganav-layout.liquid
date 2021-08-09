@@ -1,5 +1,5 @@
 <li class="site-nav--has-dropdown {% if meganav %} meganav-dropdown {% endif %}{% if three_level_nav %} site-nav--has-centered-dropdown{% endif %}{% if link.active %} site-nav--active{% endif %}" data-has-dropdowns>
-    <a  class="site-nav__link site-nav__link--main site-nav__link--button{% if link.child_active %} site-nav__link--active{% endif %}" type="button" aria-expanded="false" aria-controls="SiteNavLabel-{{ child_list_handle }}">
+    <a href="{{ link.url }}" class="site-nav__link site-nav__link--main site-nav__link--button{% if link.child_active %} site-nav__link--active{% endif %}" aria-expanded="false" aria-controls="SiteNavLabel-{{ child_list_handle }}">
       <span class="site-nav__label">{{ link.title | escape | replace: '®', '<sup>®</sup>' }}</span>
     </a>
 
@@ -65,19 +65,19 @@
                         <ul>
                           {%- if block.settings.menu_1_text != blank -%}
                           <li>
-                            <a href="{{ block.settings.menu_1_link }}" {% if block.settings.bottom_links_featured_image %}data-handle="{{ block.settings.bottom_links_featured_image | img_url: 'master' }}"{% endif %}>{{ block.settings.menu_1_text }}</a>
+                            <a href="{{ block.settings.menu_1_link }}" {% if block.settings.bottom_links_featured_image %}data-handle="{{ block.settings.bottom_links_featured_image | img_url: 'master' }}"{% endif %}>{{ block.settings.menu_1_text | replace: '®', '<sup>®</sup>' }}</a>
                           </li>
                           {%- endif -%}
 
                           {%- if block.settings.menu_2_text != blank -%}
                           <li>
-                            <a href="{{ block.settings.menu_2_link }}" {% if block.settings.bottom_links_featured_image %}data-handle="{{ block.settings.bottom_links_featured_image | img_url: 'master' }}"{% endif %}>{{ block.settings.menu_2_text }}</a>
+                            <a href="{{ block.settings.menu_2_link }}" {% if block.settings.bottom_links_featured_image %}data-handle="{{ block.settings.bottom_links_featured_image | img_url: 'master' }}"{% endif %}>{{ block.settings.menu_2_text | replace: '®', '<sup>®</sup>' }}</a>
                           </li>
                           {%- endif -%}
 
                           {%- if block.settings.menu_3_text != blank -%}
                           <li>
-                            <a href="{{ block.settings.menu_3_link }}" {% if block.settings.bottom_links_featured_image %}data-handle="{{ block.settings.bottom_links_featured_image | img_url: 'master' }}"{% endif %}>{{ block.settings.menu_3_text }}</a>
+                            <a href="{{ block.settings.menu_3_link }}" {% if block.settings.bottom_links_featured_image %}data-handle="{{ block.settings.bottom_links_featured_image | img_url: 'master' }}"{% endif %}>{{ block.settings.menu_3_text | replace: '®', '<sup>®</sup>' }}</a>
                           </li>
                           {%- endif -%}
                         </ul>

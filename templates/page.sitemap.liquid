@@ -1,31 +1,56 @@
 <div class="common-layout-wrapper sp-sitemap-layout">
     <div class="dia-container">
-        <div class="custom-section-header"><h1>{{ page.title }}</h1></div>
-
+        <div class="custom-section-header">
+            <h1>{{ page.title }}</h1>
+        </div>
         <div class="sitemap-wrapper">
+            
             {% for link in linklists.main-menu.links %}
             <div class="sitemap-row">
-                <h3><a href="{{ link.url }}">{{ link.title | replace: '®', '<sup>®</sup>' }}</a></h3>
+                <h3>
+                    <a href="{{ link.url }}">{{ link.title | replace: '®', '<sup>®</sup>' }}</a>
+                    <div class="sitemap_accordion_trigger show_mobile {% if forloop.first %}active{% endif %}">{% include 'icon-sitemap-accoundion' %}</div>
+                </h3>
+
+                {% if  link.title contains 'INTRODUCING DIAMOND2®' %}
+                
+                <!-- INTRODUCING DIAMOND2 Menu -->
                 <ul class="sitemap-menu-grid">
-                    {% assign mainCollection = collections[link.title] %}
-                    {% if mainCollection != blank %}
                     <li class="sitemap-menu-column sitemap-collection-image">
                         <div class="sitemap-col-card">
-                            {% if mainCollection.image %}
-                            <div class="sitemap-col-img">
-                                <a href="{{ mainCollection.url }}"><img src="{{ mainCollection.image | img_url: '360x300'}}" alt="{{ mainCollection.title }}"></a>
-                            </div>
-                            {% endif %}
-                            {% if mainCollection.url %}
-                            <div class="sitemap-col-body">
-                                <a href="{{ mainCollection.url }}" class="glb-btn-with-arrow">Discover More</a>
-                            </div>
-                            {% endif %}
+                            <div class="sitemap-col-img"><a href="{{ link.url }}"></a></div>
+                            <div class="sitemap-col-body"><a href="{{ link.url }}" class="glb-btn-with-arrow">Discover More</a></div>
                         </div>
                     </li>
-                    {% endif %}
+                    <li>
+                        <ul>
+                            {% for childmenu in link.links %}
+                            <li class="sitemap-menu-column {% if childmenu.links.size < 1 %}has_not_children{% endif %}">
+                                {% if childmenu.title %}<a href="{{ childmenu.url }}">{{ childmenu.title | replace: '®', '<sup>®</sup>' }}</a>{% endif %}
+                                {% if childmenu.links.size > 0 %}
+                                <ul>
+                                    {% for subchild in childmenu.links %}
+                                    {% if subchild.title %}<li><a href="{{ subchild.url }}">{{ subchild.title | replace: '®', '<sup>®</sup>' }}</a></li>{% endif %}
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+                {% else %}
+
+
+                <ul class="sitemap-menu-grid">
+                    <li class="sitemap-menu-column sitemap-collection-image">
+                        <div class="sitemap-col-card">
+                            <div class="sitemap-col-img"><a href="{{ link.url }}"></a></div>
+                            <div class="sitemap-col-body"><a href="{{ link.url }}" class="glb-btn-with-arrow">Discover More</a></div>
+                        </div>
+                    </li>
                     {% for childmenu in link.links %}
-                    <li class="sitemap-menu-column">
+                    <li class="sitemap-menu-column" {% if childmenu.title contains 'by Shapes' or childmenu.title contains 'by Categories' %}child_split_column2{% endif %}>
                         {% if childmenu.title %}<a href="{{ childmenu.url }}">{{ childmenu.title | replace: '®', '<sup>®</sup>' }}</a>{% endif %}
                         {% if childmenu.links.size > 0 %}
                         <ul>
@@ -37,9 +62,16 @@
                     </li>
                     {% endfor %}
                 </ul>
+                {% endif %}
             </div>
             {% endfor %}
         </div>
-
     </div>
 </div>
+
+<script>
+    $('#AccessibleNav .site-nav--has-dropdown').each(function(e){
+        let imageS = $(this).find('.nav-image-wrapper img').clone();
+        $('.sitemap-row').eq(e).find('.sitemap-collection-image .sitemap-col-img a').append(imageS);
+    });
+</script>
