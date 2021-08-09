@@ -10150,6 +10150,19 @@ window.addEventListener("resize", function() {
     });
   }
 
+  // Product Table Toggle
+  $('.p_more_btn').click(function(e){
+    e.preventDefault();
+    $(this).toggleClass('active');
+    $(this).closest('.product-card').find('.more_product_datatable').slideToggle();
+  });
+
+  // sitemap mobile toggle
+  $('.sitemap_accordion_trigger').click(function(){
+    $(this).toggleClass('active');
+    $(this).parent().next('.sitemap-menu-grid').slideToggle();
+  });
+
 });
 
 var showMobileNav = false;

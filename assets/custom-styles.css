@@ -166,7 +166,7 @@ body {
       font-size: 11px;
       line-height: normal; } }
   .glb-btn-with-arrow:hover:after {
-    transform: scale(1); }
+    width: 100%; }
   .glb-btn-with-arrow:after {
     content: "";
     display: block;
@@ -174,7 +174,7 @@ body {
     background: currentColor;
     margin-top: 3px;
     transition: all 0.4s;
-    transform: scale(0);
+    width: 0;
     transform-origin: left; }
     @media (max-width: 749px) {
       .glb-btn-with-arrow:after {
@@ -2712,7 +2712,7 @@ body[data-template="know-your-diamond"] .home-sld {
   @media (max-width: 749px) {
     body[data-template="know-your-diamond"] .home-sld {
       padding-top: 0;
-      padding-bottom: 60px; } }
+      padding-bottom: 45px; } }
   body[data-template="know-your-diamond"] .home-sld .shop-loose-diamond2-slider-top-row {
     max-width: 878px;
     margin-bottom: 30px; }
@@ -3336,7 +3336,7 @@ body[data-template="know-your-diamond"] .main-content p {
     right: 0; }
 
 .collection-slider-wrapper {
-  padding-top: 42px;
+  padding-top: 51px;
   padding-bottom: 100px; }
   @media (max-width: 749px) {
     .collection-slider-wrapper {
@@ -3466,7 +3466,7 @@ body[data-template="know-your-diamond"] .main-content p {
 
 /*============ Jewellay Pdp Start ============*/
 body[data-template="product"] .main-content {
-  padding-top: 50px;
+  padding-top: 100px;
   font-weight: 400; }
   @media (max-width: 749px) {
     body[data-template="product"] .main-content {
@@ -4565,7 +4565,8 @@ body[data-template="product"] .main-content {
       .product-details-wrapper h3 {
         font-size: 13px;
         line-height: 14.04px;
-        text-transform: uppercase; } }
+        text-transform: uppercase;
+        max-width: 100%; } }
     .product-details-wrapper h3 a.product-view-report {
       float: right;
       text-transform: uppercase;
@@ -5041,7 +5042,8 @@ body.layout_jewellery h2 {
   display: flex;
   flex-wrap: wrap;
   margin: 0 -20.5px;
-  padding-bottom: 50px; }
+  padding-bottom: 50px;
+  justify-content: center; }
   @media (min-width: 1200px) {
     .loose-stone-block-items {
       padding-left: 90px;
@@ -5497,9 +5499,24 @@ body.layout_jewellery h2 {
           width: calc(100% - 40px);
           top: 22.5px;
           left: 20px; }
+          @media (max-width: 1600px) {
+            .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item:after {
+              height: calc(100% - 20px);
+              width: calc(100% - 20px);
+              top: 10px;
+              left: 10px; } }
+        @media (max-width: 1600px) {
+          .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item {
+            padding: 20px; } }
         .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item .product-images-wrapper {
           background: #fff;
           position: relative; }
+          .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item .product-images-wrapper .full_link {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0; }
           .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item .product-images-wrapper .product-image-body-row {
             position: absolute;
             bottom: 0;
@@ -5513,11 +5530,21 @@ body.layout_jewellery h2 {
             line-height: 17.28px;
             font-weight: 500;
             color: #6C1D45; }
+            @media (max-width: 1600px) {
+              .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item .product-images-wrapper .product-image-body-row {
+                font-size: 13px;
+                line-height: normal; } }
             .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item .product-images-wrapper .product-image-body-row a {
               color: inherit;
               cursor: pointer;
               display: inline-block;
               position: relative; }
+              .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item .product-images-wrapper .product-image-body-row a.p_more_btn .text_less {
+                display: none; }
+              .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item .product-images-wrapper .product-image-body-row a.p_more_btn.active .text_less {
+                display: block; }
+              .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item .product-images-wrapper .product-image-body-row a.p_more_btn.active .text_more {
+                display: none; }
               .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item .product-images-wrapper .product-image-body-row a:after {
                 content: "";
                 display: block;
@@ -5534,6 +5561,10 @@ body.layout_jewellery h2 {
           font-size: 15px;
           line-height: 16.2px;
           font-weight: 300; }
+          @media (max-width: 1600px) {
+            .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item .prodct_card_body .product-price-card {
+              font-size: 11px;
+              line-height: normal; } }
           .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item .prodct_card_body .product-price-card .product-price-card-row {
             margin-top: 0; }
             .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item .prodct_card_body .product-price-card .product-price-card-row.price_row {
@@ -5541,6 +5572,9 @@ body.layout_jewellery h2 {
     .solitaire-collection-wrapper.loose-stone-plp-layout .product-listing .content-with-image-wrapper {
       width: 50%;
       padding: 35px; }
+      @media (max-width: 1600px) {
+        .solitaire-collection-wrapper.loose-stone-plp-layout .product-listing .content-with-image-wrapper {
+          padding: 20px; } }
       .solitaire-collection-wrapper.loose-stone-plp-layout .product-listing .content-with-image-wrapper .custom-row .custom-image-column {
         width: 55.2%; }
       .solitaire-collection-wrapper.loose-stone-plp-layout .product-listing .content-with-image-wrapper .custom-row .custom-content-column {
@@ -5548,15 +5582,70 @@ body.layout_jewellery h2 {
         width: 44.8%; }
         .solitaire-collection-wrapper.loose-stone-plp-layout .product-listing .content-with-image-wrapper .custom-row .custom-content-column .content-holder h2 {
           margin-bottom: 59px; }
+          @media (min-width: 750px) {
+            .solitaire-collection-wrapper.loose-stone-plp-layout .product-listing .content-with-image-wrapper .custom-row .custom-content-column .content-holder h2 {
+              font-size: 45px;
+              line-height: 48.6px; } }
+          @media (max-width: 1600px) and (min-width: 750px) {
+            .solitaire-collection-wrapper.loose-stone-plp-layout .product-listing .content-with-image-wrapper .custom-row .custom-content-column .content-holder h2 {
+              font-size: 2.3vw;
+              line-height: normal;
+              margin-bottom: 1vw; } }
         .solitaire-collection-wrapper.loose-stone-plp-layout .product-listing .content-with-image-wrapper .custom-row .custom-content-column .content-holder p {
           font-weight: 300;
           font-size: 24px;
           line-height: 25.92px; }
+          @media (max-width: 1600px) and (min-width: 750px) {
+            .solitaire-collection-wrapper.loose-stone-plp-layout .product-listing .content-with-image-wrapper .custom-row .custom-content-column .content-holder p {
+              font-size: 14px;
+              line-height: normal; } }
         .solitaire-collection-wrapper.loose-stone-plp-layout .product-listing .content-with-image-wrapper .custom-row .custom-content-column .buttons-wrapper .button-item {
           margin-top: 30px; }
           .solitaire-collection-wrapper.loose-stone-plp-layout .product-listing .content-with-image-wrapper .custom-row .custom-content-column .buttons-wrapper .button-item .glb-btn-with-arrow {
             font-size: 18px;
             line-height: 19.44px; }
+
+.more_product_datatable {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.75);
+  z-index: 3;
+  font-size: 18px;
+  line-height: 47.34px;
+  font-weight: 400;
+  padding: 13px 29px 0;
+  bottom: 58px;
+  display: none;
+  height: calc(100% - 58px);
+  overflow: auto; }
+  .more_product_datatable::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    border-radius: 6px; }
+  .more_product_datatable::-webkit-scrollbar-track-piece {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 6px; }
+  .more_product_datatable::-webkit-scrollbar-thumb:vertical {
+    height: 30px;
+    background: #6C1D45;
+    border-radius: 6px; }
+  @media (max-width: 1600px) {
+    .more_product_datatable {
+      font-size: 13px;
+      line-height: 1.3; } }
+  .more_product_datatable table {
+    margin: 0;
+    padding: 0;
+    border: none; }
+    .more_product_datatable table td, .more_product_datatable table th {
+      border: none;
+      padding: 0; }
+      @media (max-width: 1600px) {
+        .more_product_datatable table td, .more_product_datatable table th {
+          padding: 10px 0; } }
+      .more_product_datatable table td:last-child, .more_product_datatable table th:last-child {
+        font-weight: 500; }
 
 .custom-row {
   display: flex;
@@ -5729,7 +5818,7 @@ body.has_top_banner .main-content {
   letter-spacing: normal; }
   @media (max-width: 749px) {
     .common-layout-wrapper.sp-sitemap-layout .custom-section-header h1 {
-      margin: 0 0 20px; } }
+      margin: 0 0 32px; } }
 
 .common-layout-wrapper .custom-section-header h1 {
   font-family: 'Spectral', serif;
@@ -6397,7 +6486,7 @@ body[data-template="contact"] .main-content {
       object-fit: cover; }
 
 .jewellery-pdp-col-slider-md .collection-slider-wrapper {
-  padding-top: 100px;
+  padding-top: 85px;
   padding-bottom: 0; }
   @media (max-width: 749px) {
     .jewellery-pdp-col-slider-md .collection-slider-wrapper {
@@ -6595,10 +6684,57 @@ body[data-template="404"] .main-content {
   color: #6C1D45;
   font-size: 24px;
   line-height: 37px;
-  margin: 0 0 37px; }
+  margin: 0 0 24px;
+  position: relative; }
+  @media (max-width: 1600px) {
+    .sitemap-wrapper .sitemap-row h3 {
+      font-size: 20px; } }
+  @media (max-width: 749px) {
+    .sitemap-wrapper .sitemap-row h3 {
+      font-size: 18px;
+      line-height: 19.44px;
+      letter-spacing: 0.02em;
+      margin-bottom: 20px; } }
+  .sitemap-wrapper .sitemap-row h3 a {
+    color: #6C1D45; }
+  .sitemap-wrapper .sitemap-row h3 sup {
+    font-size: 75%;
+    top: -10px; }
+  .sitemap-wrapper .sitemap-row h3 .sitemap_accordion_trigger {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer; }
+    .sitemap-wrapper .sitemap-row h3 .sitemap_accordion_trigger svg {
+      display: inline-block;
+      transform: rotate(0);
+      transition: all 0.4s;
+      -o-transition: all 0.4s;
+      -ms-transition: all 0.4s;
+      -moz-transition: all 0.4s;
+      -webkit-transition: all 0.4s; }
+    .sitemap-wrapper .sitemap-row h3 .sitemap_accordion_trigger.active svg {
+      display: inline-block;
+      transform: rotate(-180deg); }
 
 .sitemap-wrapper .sitemap-row:not(:first-child) {
   margin-top: 43px; }
+  @media (max-width: 749px) {
+    .sitemap-wrapper .sitemap-row:not(:first-child) {
+      margin-top: 0; } }
+
+@media (max-width: 749px) {
+  .sitemap-wrapper .sitemap-row:last-child .sitemap-menu-grid li:last-child {
+    margin-bottom: 0; } }
+
+@media (max-width: 749px) {
+  .sitemap-wrapper .sitemap-row:first-child .sitemap-menu-grid {
+    display: block; } }
 
 .sitemap-wrapper .sitemap-menu-grid {
   margin: 0;
@@ -6607,8 +6743,40 @@ body[data-template="404"] .main-content {
   display: flex;
   flex-wrap: wrap;
   margin: 0 -20px; }
+  @media (min-width: 750px) {
+    .sitemap-wrapper .sitemap-menu-grid {
+      display: flex !important;
+      height: auto !important; } }
+  @media (max-width: 749px) {
+    .sitemap-wrapper .sitemap-menu-grid {
+      margin: 0;
+      display: none; } }
+  @media (max-width: 1600px) {
+    .sitemap-wrapper .sitemap-menu-grid .glb-btn-with-arrow {
+      font-size: 14px; } }
+  @media (max-width: 1600px) {
+    .sitemap-wrapper .sitemap-menu-grid .glb-btn-with-arrow:before {
+      background-size: 7px 10px; } }
+  @media (max-width: 749px) {
+    .sitemap-wrapper .sitemap-menu-grid .glb-btn-with-arrow:before {
+      background-size: 6px 8px;
+      height: 100%;
+      right: 0; } }
+  .sitemap-wrapper .sitemap-menu-grid li[child_split_column2] > ul {
+    column-count: 2; }
+    .sitemap-wrapper .sitemap-menu-grid li[child_split_column2] > ul li a {
+      white-space: nowrap; }
+      @media (max-width: 1600px) {
+        .sitemap-wrapper .sitemap-menu-grid li[child_split_column2] > ul li a {
+          white-space: normal; } }
   .sitemap-wrapper .sitemap-menu-grid > li {
-    padding: 0 20px; }
+    padding: 0 20px;
+    width: 19.885%; }
+    @media (max-width: 749px) {
+      .sitemap-wrapper .sitemap-menu-grid > li {
+        padding: 0;
+        width: 100%;
+        margin-bottom: 30px; } }
     .sitemap-wrapper .sitemap-menu-grid > li > a {
       font-size: 22px;
       font-family: 'Spectral';
@@ -6616,15 +6784,98 @@ body[data-template="404"] .main-content {
       text-transform: uppercase;
       color: #6C1D45;
       line-height: 23.76px;
-      display: block;
-      margin: 0 0 30px; }
+      display: inline-block;
+      position: relative;
+      margin: 0 0 18px; }
+      @media (max-width: 1600px) {
+        .sitemap-wrapper .sitemap-menu-grid > li > a {
+          font-size: 18px; } }
+      @media (max-width: 749px) {
+        .sitemap-wrapper .sitemap-menu-grid > li > a {
+          font-size: 14px;
+          line-height: 15.12px;
+          margin-bottom: 20px; } }
+      .sitemap-wrapper .sitemap-menu-grid > li > a sup {
+        font-size: 75%;
+        top: -10px; }
+      .sitemap-wrapper .sitemap-menu-grid > li > a:after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0px;
+        height: 1px;
+        background-color: currentColor;
+        transition: all 0.4s;
+        -o-transition: all 0.4s;
+        -ms-transition: all 0.4s;
+        -moz-transition: all 0.4s;
+        -webkit-transition: all 0.4s; }
+      .sitemap-wrapper .sitemap-menu-grid > li > a:hover:after {
+        width: 100%; }
   .sitemap-wrapper .sitemap-menu-grid ul {
     margin: 0;
     padding: 0;
     list-style: none; }
     .sitemap-wrapper .sitemap-menu-grid ul li {
       font-size: 18px;
-      line-height: 40px; }
+      line-height: 40px;
+      font-weight: 400; }
+      @media (max-width: 1600px) {
+        .sitemap-wrapper .sitemap-menu-grid ul li {
+          font-size: 14px;
+          line-height: 30px; } }
+      @media (max-width: 749px) {
+        .sitemap-wrapper .sitemap-menu-grid ul li {
+          font-size: 12px;
+          line-height: 21.6px; } }
+      .sitemap-wrapper .sitemap-menu-grid ul li a {
+        position: relative;
+        display: inline-block; }
+        .sitemap-wrapper .sitemap-menu-grid ul li a:after {
+          content: "";
+          display: block;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0px;
+          height: 1px;
+          background-color: currentColor;
+          transition: all 0.4s;
+          -o-transition: all 0.4s;
+          -ms-transition: all 0.4s;
+          -moz-transition: all 0.4s;
+          -webkit-transition: all 0.4s; }
+        .sitemap-wrapper .sitemap-menu-grid ul li a:hover {
+          color: #6C1D45; }
+          .sitemap-wrapper .sitemap-menu-grid ul li a:hover:after {
+            width: 100%; }
+  .sitemap-wrapper .sitemap-menu-grid .sitemap-collection-image {
+    width: 20.46%; }
+    @media (max-width: 749px) {
+      .sitemap-wrapper .sitemap-menu-grid .sitemap-collection-image {
+        width: 100%;
+        margin-bottom: 30px; } }
+    .sitemap-wrapper .sitemap-menu-grid .sitemap-collection-image .sitemap-col-img {
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 94%;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px; }
+      @media (max-width: 749px) {
+        .sitemap-wrapper .sitemap-menu-grid .sitemap-collection-image .sitemap-col-img {
+          padding-bottom: 89%;
+          margin-bottom: 18px; } }
+      .sitemap-wrapper .sitemap-menu-grid .sitemap-collection-image .sitemap-col-img img {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        object-fit: cover;
+        object-position: center; }
 
 .min-slide-card {
   position: fixed;

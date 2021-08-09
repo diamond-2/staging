@@ -474,7 +474,7 @@ body {
     }
     &:hover {
       &:after {
-        transform: scale(1);
+        width: 100%;
       }
     }
     &:after {
@@ -484,7 +484,7 @@ body {
       background: currentColor;
       margin-top: 3px;
       transition: all 0.4s;
-      transform: scale(0);
+      width: 0;
       transform-origin: left;
       @media(max-width: $md) {
         margin-top: 0px;
@@ -3548,7 +3548,7 @@ body[data-template="know-your-diamond"] {
     padding-bottom: 90px;
     @media(max-width: $md) {
       padding-top: 0;
-      padding-bottom: 60px;
+      padding-bottom: 45px;
     }
     .shop-loose-diamond2-slider-top-row {
       max-width: 878px;
@@ -4278,7 +4278,7 @@ body[data-template="know-your-diamond"] {
   }
 }
 .collection-slider-wrapper {
-  padding-top: 42px;
+  padding-top: 51px;
   padding-bottom: 100px;
   @media(max-width: $md) {
     padding-bottom: 60px;
@@ -4438,7 +4438,7 @@ body[data-template="know-your-diamond"] {
 // need to remove above line code wahen page done
 body[data-template="product"] {
 	.main-content {
-    padding-top: 50px;
+    padding-top: 100px;
     font-weight: 400;
     @media(max-width: $md) {
       padding-top:0;
@@ -5651,6 +5651,7 @@ body[data-template="product"] {
       font-size: 13px;
       line-height: 14.04px;
       text-transform: uppercase;
+      max-width: 100%;
     }
     a.product-view-report {
       float: right;
@@ -6203,6 +6204,7 @@ body.layout_jewellery {
   flex-wrap: wrap;
   margin: 0 -20.5px;
   padding-bottom: 50px;
+  justify-content: center;
   @media(min-width: $PostXl) {
     padding-left: 90px;
     padding-right: 90px;
@@ -6761,11 +6763,27 @@ body.layout_jewellery {
           width: calc(100% - 40px);
           top: 22.5px;
           left: 20px;
+          @media(max-width: $xxl) {
+            height: calc(100% - 20px);
+            width: calc(100% - 20px);
+            top: 10px;
+            left: 10px;
+          }
         }
         padding:35px;
+        @media(max-width: $xxl) {
+          padding:20px;
+        }
         .product-images-wrapper {
           background: #fff;
           position: relative;
+          .full_link {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+          }
           .product-image-body-row {
             position: absolute;
             bottom: 0;
@@ -6779,7 +6797,24 @@ body.layout_jewellery {
             line-height: 17.28px;
             font-weight: 500;
             color: $textcolor-phanton;
+            @media(max-width: $xxl) {
+              font-size: 13px;
+              line-height: normal;
+            }
             a {
+              &.p_more_btn {
+                .text_less {
+                  display: none;
+                }
+                &.active {
+                  .text_less {
+                    display: block;
+                  }
+                  .text_more {
+                    display: none;
+                  }
+                }
+              }
               color: inherit;
               cursor: pointer;
               display: inline-block;
@@ -6811,6 +6846,10 @@ body.layout_jewellery {
             font-size: 15px;
             line-height: 16.2px;
             font-weight: 300;
+            @media(max-width: $xxl) {
+              font-size: 11px;
+              line-height: normal;
+            }
             .product-price-card-row {
               margin-top:0;
               &.price_row {
@@ -6824,6 +6863,9 @@ body.layout_jewellery {
     .product-listing .content-with-image-wrapper {
       width: 50%;
       padding: 35px;
+      @media(max-width: $xxl) {
+        padding:20px;
+      }
       .custom-row {
         .custom-image-column {
           width: 55.2%;
@@ -6834,11 +6876,24 @@ body.layout_jewellery {
           .content-holder {
             h2 {
               margin-bottom: 59px;
+              @media(min-width: $postMd) {
+                font-size: 45px;
+                line-height: 48.6px;
+              }
+              @media(max-width: $xxl) and (min-width: $postMd) {
+                font-size: 2.3vw;
+                line-height: normal;
+                margin-bottom: 1vw;
+              }
             }
             p {
               font-weight: 300;
               font-size: 24px;
               line-height: 25.92px;
+              @media(max-width: $xxl) and (min-width: $postMd) {
+                font-size: 14px;
+                line-height: normal;
+              }
             }
           }
           .buttons-wrapper {
@@ -6855,7 +6910,54 @@ body.layout_jewellery {
     }
   }
 }
-
+.more_product_datatable {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.75);
+  z-index: 3;
+  font-size: 18px;
+  line-height: 47.34px;
+  font-weight: 400;
+  padding: 13px 29px 0;
+  bottom: 58px;
+  display: none;
+  height: calc(100% - 58px);
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    border-radius:6px;
+  }
+  &::-webkit-scrollbar-track-piece {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius:6px;
+  }
+  &::-webkit-scrollbar-thumb:vertical {
+    height: 30px;
+    background: #6C1D45;
+    border-radius:6px;
+  }
+  @media(max-width:$xxl) {
+    font-size: 13px;
+    line-height: 1.3;
+  }
+  table {
+    margin: 0;
+    padding: 0;
+    border: none;
+    td,th {
+      border: none;
+      padding: 0;
+      @media(max-width: $xxl) {
+        padding: 10px 0;
+      }
+      &:last-child {
+        font-weight: 500;
+      }
+    }
+  }
+}
 
 .custom-row {
   display: flex;
@@ -7070,7 +7172,7 @@ body {
         margin-bottom: 58px;
         letter-spacing: normal;
         @media(max-width: $md) {
-          margin: 0 0 20px;
+          margin: 0 0 32px;
         }
       }
     }
@@ -7861,7 +7963,7 @@ body[data-template="contact"] {
 }
 .jewellery-pdp-col-slider-md {
   .collection-slider-wrapper {
-    padding-top: 100px;
+    padding-top: 85px;
     padding-bottom: 0;
     @media(max-width: $md) {
       padding-top:45px;
@@ -8094,10 +8196,70 @@ body[data-template="404"] {
       color: #6C1D45;
       font-size: 24px;
       line-height: 37px;
-      margin: 0 0 37px;
+      margin: 0 0 24px;
+      position: relative;
+      @media(max-width: $xxl) {
+        font-size: 20px;
+      }
+      @media(max-width: $md) {
+        font-size: 18px;
+        line-height: 19.44px;
+        letter-spacing: 0.02em;
+        margin-bottom: 20px;
+      }
+      a {
+        color: #6C1D45;
+      }
+      sup {
+        font-size: 75%;
+        top: -10px;
+      }
+      .sitemap_accordion_trigger {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        cursor: pointer;
+        svg {
+          display: inline-block;
+          transform: rotate(0);
+          @include transition();
+        }
+        &.active {
+          svg {
+            display: inline-block;
+            transform: rotate(-180deg);
+          }
+        }
+      }
     }
     &:not(:first-child) {
       margin-top: 43px;
+      @media(max-width: $md) {
+        margin-top: 0;
+      }
+    }
+    &:last-child {
+      .sitemap-menu-grid {
+        li {
+          &:last-child {
+            @media(max-width: $md) {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+    &:first-child {
+      .sitemap-menu-grid {
+        @media(max-width: $md) {
+          display: block;
+        }
+      }
     }
   }
   .sitemap-menu-grid {
@@ -8107,8 +8269,50 @@ body[data-template="404"] {
     display: flex;
     flex-wrap: wrap;
     margin: 0 -20px;
+    @media(min-width: $postMd) {
+      display: flex !important;
+      height: auto !important;
+    }
+    @media(max-width: $md) {
+      margin:0;
+      display: none;
+    }
+    .glb-btn-with-arrow {
+      @media(max-width: $xxl) {
+        font-size: 14px;
+      }
+      &:before {
+        @media(max-width: $xxl) {
+          background-size: 7px 10px;
+        }
+        @media(max-width: $md) {
+          background-size: 6px 8px;
+          height: 100%;
+          right: 0;
+        }
+      }
+    }
+    li[child_split_column2] {
+      > ul {
+        column-count: 2;
+        li {
+          a {
+            white-space: nowrap;
+            @media(max-width: $xxl) {
+              white-space: normal;
+            }
+          }
+        }
+      }
+    }
     > li {
       padding: 0 20px;
+      width: 19.885%;
+      @media(max-width: $md) {
+        padding:0;
+        width: 100%;
+        margin-bottom: 30px;
+      }
       > a {
         font-size: 22px;
         font-family: 'Spectral';
@@ -8116,8 +8320,37 @@ body[data-template="404"] {
         text-transform: uppercase;
         color: #6C1D45;
         line-height: 23.76px;
-        display: block;
-        margin: 0 0 30px;
+        display: inline-block;
+        position: relative;
+        margin: 0 0 18px;
+        @media(max-width: $xxl) {
+          font-size: 18px;
+        }
+        @media(max-width: $md) {
+          font-size: 14px;
+          line-height: 15.12px;
+          margin-bottom: 20px;
+        }
+        sup {
+          font-size: 75%;
+          top: -10px;
+        }
+        &:after {
+          content: "";
+          display: block;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0px;
+          height: 1px;
+          background-color: currentColor;
+          @include transition();
+        }
+        &:hover {
+          &:after {
+            width: 100%;
+          }
+        }
       }
     }
     ul {
@@ -8127,6 +8360,64 @@ body[data-template="404"] {
       li {
         font-size: 18px;
         line-height: 40px;
+        font-weight: 400;
+        @media(max-width: $xxl) {
+          font-size: 14px;
+          line-height: 30px;
+        }
+        @media(max-width: $md) {
+          font-size: 12px;
+          line-height: 21.6px;
+        }
+        a {
+          position: relative;
+          display: inline-block;
+          &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0px;
+            height: 1px;
+            background-color: currentColor;
+            @include transition();
+          }
+          &:hover {
+            color: $textcolor-phanton;
+            &:after {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+    .sitemap-collection-image {
+      width: 20.46%;
+      @media(max-width: $md) {
+        width: 100%;
+        margin-bottom: 30px;
+      }
+      .sitemap-col-img {
+        position: relative;
+        overflow: hidden;
+        padding-bottom: 94%;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+        @media(max-width: $md) {
+          padding-bottom: 89%;
+          margin-bottom: 18px;
+        }
+        img {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          top: 0;
+          left: 0;
+          right: 0;
+          object-fit: cover;
+          object-position: center;
+        }
       }
     }
   }
