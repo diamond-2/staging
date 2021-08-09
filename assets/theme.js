@@ -847,7 +847,6 @@ slate.Variants = (function() {
           // console.log(response);
           var data = JSON.parse(response);
           //console.log(JSON.parse(data));
-
           var productData = (data.results.length ? data.results[0]: {} );
           var productMetafield =  productData.productMetafield;
           var variantMetaFields = productData.variantMetafileds;
@@ -861,18 +860,27 @@ slate.Variants = (function() {
               }              
             }
           });
-          for(var variantKey in variantMetaFields) {   //console.log(variantKey);
-            var selectedVariant = $('select[name="id"]').val(); //console.log(selectedVariant);
+          //console.log(variantMetaFields);
+          for(var variantKey in variantMetaFields) { console.log('variantKey');   console.log(variantKey);
+            var selectedVariant = $('select[name="id"]').val();console.log(selectedVariant);
             if(selectedVariant != variantKey) continue 
             variantMetaFields[variantKey].forEach(function(ele){ //console.log(ele);
               for(var key in ele) {
-                if(key.indexOf('col1_tab1_mat_Purity_Color') > -1){
-                  $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val .mat_purity_color').text(ele[key]);
+                console.log("key==>>>");
+                console.log(key);
+                if(key.indexOf('col1_tab1_mat_Purity') > -1 ){
+                  console.log('insertPuirty');
+                  console.log(ele[key]);
+                  $(document).find('[data-row="col1_tab1_mat_Purity"] .pdp-tab-val .mat_purity').text(ele[key]);
                   $(document).find('[data-table-title="'+key+'"]').text(ele[key]);
-                }else {
+                } else if(key.indexOf('col1_tab1_mat_Color') > -1 ){
+                  console.log('insert Color');
+                  console.log(ele[key]);
+                  $(document).find('[data-row="col1_tab1_mat_Purity"] .pdp-tab-val .mat_color').text(ele[key]);
+                  $(document).find('[data-table-title="'+key+'"]').text(ele[key]);
+                } else {
                   $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val').text(ele[key]);
-                }
-                
+                }                
               }
             });           
           }
