@@ -6203,6 +6203,7 @@ body.layout_jewellery {
   flex-wrap: wrap;
   margin: 0 -20.5px;
   padding-bottom: 50px;
+  justify-content: center;
   @media(min-width: $PostXl) {
     padding-left: 90px;
     padding-right: 90px;
@@ -7861,7 +7862,7 @@ body[data-template="contact"] {
 }
 .jewellery-pdp-col-slider-md {
   .collection-slider-wrapper {
-    padding-top: 100px;
+    padding-top: 85px;
     padding-bottom: 0;
     @media(max-width: $md) {
       padding-top:45px;
