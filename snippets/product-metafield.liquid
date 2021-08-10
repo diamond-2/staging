@@ -163,21 +163,15 @@
                 {%- capture tableContent_cert_culet -%}dia_tab{{ j }}_cert_culet{%- endcapture -%}
                 {%- capture tableContent_cert_measurements -%}dia_tab{{ j }}_cert_measurements{%- endcapture -%}
 
-
                 {% if
                     productMetafield[otherTableContent_title] != blank or 
-                    productMetafield[tableContent_mat_type] != blank or 
-                    variantMetafield[tableContent_mat_Purity] != blank or 
-                    variantMetafield[tableContent_mat_Color] != blank or 
-                    variantMetafield[tableContent_dimension1] != blank or 
-                    variantMetafield[tableContent_dimension2] != blank or 
-                    productMetafield[tableContent_rhodium_plated] != blank or 
                     productMetafield[tableContent_stone_category ] != blank or
                     productMetafield[tableContent_stone_shape] != blank or 
                     productMetafield[tableContent_no_of_stones] != blank or 
                     productMetafield[tableContent_min_stn_ttl_crt_wt] != blank or
                     productMetafield[tableContent_stone_avg_color] != blank or
                     productMetafield[tableContent_stone_type] != blank or
+                    productMetafield[tableContent_cert_cut] != blank or
                     productMetafield[tableContent_stone_coating] != blank or
                     productMetafield[tableContent_clarity_granding] != blank or
                     productMetafield[tableContent_cert_carats] != blank or
@@ -188,8 +182,7 @@
                     productMetafield[tableContent_cert_symmentry] != blank or
                     productMetafield[tableContent_cert_girdle] != blank or
                     productMetafield[tableContent_cert_culet] != blank or
-                    productMetafield[tableContent_cert_measurements] != blank or 
-                    productMetafield[tableContent_common_table] != blank
+                    productMetafield[tableContent_cert_measurements] != blank
                 %}
                 
                     <div class="product-info-item">
@@ -236,6 +229,13 @@
                                             <tr data-row="{{ tableContent_stone_type }}">
                                                 <td><span class="pdp-tab-label">Setting type</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_stone_type] | truncate: 22 | append: ' setting' }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
+                                            </tr>
+                                            {% endif %}
+
+                                            {% if productMetafield[tableContent_cert_cut] != blank %}
+                                            <tr data-row="{{ tableContent_cert_cut }}">
+                                                <td><span class="pdp-tab-label">Cut</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[tableContent_cert_cut] | truncate: 15 }}</span></td>
                                             </tr>
                                             {% endif %}
 
