@@ -6706,6 +6706,18 @@ body.layout_jewellery {
         margin: 0;
         position: relative;
         z-index: 3;
+        .product-images-wrapper-holder {
+          position: relative;
+          .product-full-link {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1;
+          }
+        }
         .prodct_card_body {
           padding: 15px 0 0;
           @media(max-width: $md) {

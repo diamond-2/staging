@@ -72,16 +72,19 @@
     <span class="visually-hidden">{{ product.title }}</span>
   </a>
 
-  <div class="product-images-wrapper {% if product.images.size > 1 %}product_images_slider{% endif %}">
-    {% for slideImage in product.images %}
-    <div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation>
-      <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper product-card__image-wrapper js">
-        <div class="product_img_holder">
-          <img data-src="{{ slideImage.src | img_url: 'master' }}" alt="{{ product.title }}" class="grid-view-item__image lazyload">
+  <div class="product-images-wrapper-holder">
+    <a class="product-full-link" href="{{ product.url }}"></a>
+    <div class="product-images-wrapper {% if product.images.size > 1 %}product_images_slider{% endif %}">
+      {% for slideImage in product.images %}
+      <div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation>
+        <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper product-card__image-wrapper js">
+          <div class="product_img_holder">
+            <img data-src="{{ slideImage.src | img_url: 'master' }}" alt="{{ product.title }}" class="grid-view-item__image lazyload">
+          </div>
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
 
   <noscript>
@@ -110,21 +113,3 @@
   </div>
 
 </div>
-
-
-{% if product.images.size > 1 %}
-<script>
-  $(document).ready(function(){
-    $('.product_images_slider').slick({ 
-        autoplay: false,
-        autoplaySpeed: 500,
-        arrows: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        Infinite: false,
-        loop: false,
-        dots: false
-    });
-  });
-</script>
-{% endif %}
