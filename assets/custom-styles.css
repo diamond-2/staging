@@ -3549,7 +3549,8 @@ body[data-template="product"] .main-content {
         order: 2;
         width: 100%; } }
     .product-detail-slider-wrapper .product-detail-slider-thumbnail-wrapper .product-detail-slider-thumbnail .slick-list {
-      padding-right: 31%; }
+      padding-right: 31%;
+      margin-bottom: -10px; }
       @media (max-width: 991px) {
         .product-detail-slider-wrapper .product-detail-slider-thumbnail-wrapper .product-detail-slider-thumbnail .slick-list {
           padding-right: 0;
@@ -3590,6 +3591,8 @@ body[data-template="product"] .main-content {
       @media (max-width: 991px) {
         .product-detail-slider-wrapper .product-detail-slider-thumbnail-wrapper .product-detail-slider-thumbnail-slide .product-detail-slider-thumbnail-slide-inner {
           margin-right: 10px; } }
+    .product-detail-slider-wrapper .product-detail-slider-thumbnail-wrapper .product-detail-slider-thumbnail-slide.slick-current .product-detail-slider-thumbnail-slide-inner {
+      border-color: #6c1d45; }
     .product-detail-slider-wrapper .product-detail-slider-thumbnail-wrapper .product-detail-slider-thumbnail-slide:last-child .product-detail-slider-thumbnail-slide-inner {
       margin-bottom: 0; }
   .product-detail-slider-wrapper .product-detail-slider-holder {
@@ -3856,7 +3859,7 @@ body[data-template="product"] .main-content {
         margin: 14px -5px 19px;
         margin-bottom: 0;
         font-size: 12px;
-        line-height: 15px; } }
+        line-height: 26.4px; } }
     .product-section-row .product-sku-wrapper > div {
       min-height: 1px;
       width: 50%;
@@ -3869,8 +3872,7 @@ body[data-template="product"] .main-content {
           width: auto;
           padding: 0 5px; } }
     .product-section-row .product-sku-wrapper .p_weight_guide {
-      text-align: right;
-      text-transform: uppercase; }
+      text-align: right; }
       @media (max-width: 749px) {
         .product-section-row .product-sku-wrapper .p_weight_guide {
           text-transform: none; } }
@@ -4014,7 +4016,6 @@ body[data-template="product"] .main-content {
   .product-section-row .product-form__controls-group .ring-size-chart {
     margin-left: auto;
     text-align: center;
-    text-transform: uppercase;
     width: 120px;
     font-size: 13px;
     line-height: 15.85px; }
@@ -4176,7 +4177,6 @@ body[data-template="product"] .main-content {
         .product-section-row .product__price .price .price__sale .price-item.price-item--regular {
           font-size: 13px; } }
   .product-section-row .price_inclusive {
-    text-transform: uppercase;
     font-size: 13px;
     line-height: 15.85px; }
     @media (max-width: 1600px) {
@@ -4492,8 +4492,8 @@ body[data-template="product"] .main-content {
         transform: rotate(180deg); } }
     .product-content-section .product-desc-section .product-desc-title p {
       font-size: 16px;
-      line-height: 24px;
-      margin: 0 0 30px; }
+      line-height: 17.28px;
+      margin: 0 0 36px; }
       @media (max-width: 1600px) {
         .product-content-section .product-desc-section .product-desc-title p {
           font-size: 15px;
@@ -4543,8 +4543,8 @@ body[data-template="product"] .main-content {
       margin-top: 13px; } }
   .product-details-wrapper p {
     font-size: 16px;
-    line-height: 24px;
-    margin: 0 0 30px; }
+    line-height: 17.28px;
+    margin: 0 0 37px; }
     @media (max-width: 1600px) {
       .product-details-wrapper p {
         font-size: 15px;
@@ -4558,9 +4558,9 @@ body[data-template="product"] .main-content {
   .product-details-wrapper h3 {
     max-width: 50%;
     font-size: 24px;
-    line-height: 29px;
-    color: #000000;
-    margin-bottom: 48px; }
+    line-height: 25.92px;
+    color: #000;
+    margin-bottom: 50px; }
     @media (max-width: 1600px) {
       .product-details-wrapper h3 {
         font-size: 20px;
@@ -4606,8 +4606,8 @@ body[data-template="product"] .main-content {
       .product-details-wrapper .product-info-gird .product-info-gird_column .product-info-holder h5 {
         font-weight: 600;
         font-size: 18px;
-        line-height: 22px;
-        color: #000000;
+        line-height: 19.44px;
+        color: #000;
         font-family: Montserrat;
         text-transform: uppercase;
         margin-bottom: 30px; }
@@ -4634,7 +4634,8 @@ body[data-template="product"] .main-content {
           line-height: 17px;
           font-family: 'Montserrat', sans-serif;
           font-weight: 300;
-          color: #000000; }
+          color: #000000;
+          font-weight: 400; }
           @media (max-width: 1600px) {
             .product-details-wrapper .product-info-gird .product-info-gird_column .product-info-holder .product-info-table .table table {
               font-size: 12px;

@@ -11,10 +11,9 @@
         <div class="register-form-column">
           <div class="register-form-column-inner">
             <div class="form-wrapper">
-              {%- assign formId = 'RegisterForm' -%}
+              {%- assign formId = 'create_customer' -%}
               {% form 'create_customer', id: formId, class: 'form-validation'  %}
                 {% include 'form-status', form: form, form_id: formId %}
-
                 <div class="form__input-wrapper" data-form-input-wrapper>
                   <span class="input_icon">
                     {% include 'input-user-icon' %}
@@ -35,7 +34,7 @@
                   <span class="input_icon">
                     {% include 'input-email-icon' %}
                   </span>
-                  <input class="form__input" placeholder="{{ 'customer.register.email' | t }}"
+                  <input class="form__input" placeholder="Enter Email"
                   type="email"
                   name="customer[email]"
                   id="{{ formId }}-email"
@@ -117,7 +116,7 @@
 
                 <div class="btn-actions-wrapper">
                   <button type="button" class="customer__button glb-btn">
-                    <span>  {{ 'Sigh Up' }}</span>
+                    <span>  {{ 'Sign Up' }}</span>
                   </button>
                 </div>
 
@@ -156,21 +155,28 @@
 </div>
 
 <script>
+
   document.addEventListener('DOMContentLoaded', function(event) {
+
     /*form validation start*/
     function validateForm($this) {
       var firstName = $this.find('input[name="customer[first_name]"]').val().trim();
       var lastName = $this.find('input[name="customer[last_name]"]').val().trim();
       var thisPhone = $this.find('input[name="customer[phone_number]"]').val().trim();
+      var nameRegx = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z0-9]*)*$/;
       var regmm='^([0|+[0-9]{1,5})?([7-9][0-9]{9})$';
       var regmob = new RegExp(regmm);
       if (firstName == "" || firstName == null) {
         $this.find('input[name="customer[first_name]"]').addClass('form-error').next('.msg-error').text("Enter Your First Name").css('display','block');
+      } else if (nameRegx.test(firstName) == false ){
+        $this.find('input[name="customer[first_name]"]').addClass('form-error').next('.msg-error').text("Please Enter Valid First Name").css('display','block');
       } else {
         $this.find('input[name="customer[first_name]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
       }
       if (lastName == "" || lastName == null) {
         $this.find('input[name="customer[last_name]"]').addClass('form-error').next('.msg-error').text("Enter Your Last Name").css('display','block');
+      } else if (nameRegx.test(lastName) == false ){
+        $this.find('input[name="customer[last_name]"]').addClass('form-error').next('.msg-error').text("Please Enter Valid Last Name").css('display','block');
       } else {
         $this.find('input[name="customer[last_name]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
       }
@@ -224,6 +230,7 @@
     }
     $(document).on('click', 'button[type="button"]', function(e) {
       var $this = $(this).closest('form');
+      removeMessage();
       //Write here your validations
       //And use this to prevent the form from submiting in case validations are not met.
       if($this.hasClass('form-validation')) {
@@ -239,7 +246,6 @@
       } else {
         $this.submit();
       }
-      removeMessage();
     });
     $('form').on('keyup', 'input', function() {
       $(this).removeClass('form-error').next('.msg-error').css('display','none');
@@ -247,11 +253,18 @@
     function removeMessage(){    
       setTimeout(function(){
         $('.msg-error').css('display','none');
-        $('form input').removeClass('form-error');
-      },5000)
+        $('.form__input').removeClass('form-error');
+      },3000)
     }
     /*form validation end*/
   });
+
+  window.addEventListener('load',function(){
+    setTimeout(function(){
+      $('.form-message').css('display','none');
+    },3000);
+  });
+
 </script>
 
 

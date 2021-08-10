@@ -4541,6 +4541,7 @@ body[data-template="product"] {
     .product-detail-slider-thumbnail {
       .slick-list {
         padding-right: 31%;
+        margin-bottom: -10px;
         @media(max-width: $lg) {
           padding-right:0;
           padding-top:50px;
@@ -4589,6 +4590,11 @@ body[data-template="product"] {
         }
         @media(max-width: $lg) {
           margin-right: 10px;
+        }
+      }
+      &.slick-current {
+        .product-detail-slider-thumbnail-slide-inner {
+          border-color: #6c1d45;
         }
       }
       &:last-child {
@@ -4876,7 +4882,7 @@ body[data-template="product"] {
       margin: 14px -5px 19px;
       margin-bottom: 0;  
       font-size: 12px;
-      line-height: 15px;
+      line-height: 26.4px;
     }
     > div {
       min-height: 1px;
@@ -4892,7 +4898,6 @@ body[data-template="product"] {
     }
     .p_weight_guide {
         text-align: right;
-        text-transform: uppercase;
         @media(max-width: $md) {
           text-transform: none;
         }
@@ -5043,7 +5048,6 @@ body[data-template="product"] {
     .ring-size-chart {
       margin-left: auto;
       text-align: center;
-      text-transform: uppercase;
       width: 120px;
       @include pdpSmallFont();
       @media(max-width: $xl) and (min-width: $postLg) {
@@ -5226,7 +5230,6 @@ body[data-template="product"] {
     }
   }
   .price_inclusive {
-    text-transform: uppercase;
     @include pdpSmallFont();
     @media(max-width: $xxl) and (min-width: $postMd) {
       margin-top: 10px;
@@ -5571,8 +5574,8 @@ body[data-template="product"] {
       }
       p {
         font-size: 16px;
-        line-height: 24px;
-        margin: 0 0 30px;
+        line-height: 17.28px;
+        margin: 0 0 36px;
         @media(max-width: $xxl) {
           font-size: 15px;
           line-height: 1.8;
@@ -5632,8 +5635,8 @@ body[data-template="product"] {
   }
   p {
     font-size: 16px;
-    line-height: 24px;
-    margin: 0 0 30px;
+    line-height: 17.28px;
+    margin: 0 0 37px;
     @media(max-width: $xxl) {
       font-size: 15px;
       line-height: 1.8;
@@ -5648,9 +5651,9 @@ body[data-template="product"] {
   h3 {
     max-width: 50%;
     font-size: 24px;
-    line-height: 29px;
-    color: #000000;
-    margin-bottom: 48px;
+    line-height: 25.92px;
+    color: #000;
+    margin-bottom: 50px;
     @media(max-width: $xxl) {
       font-size: 20px;
       line-height: 1.4;
@@ -5701,8 +5704,8 @@ body[data-template="product"] {
         h5 {
           font-weight: 600;
           font-size: 18px;
-          line-height: 22px;
-          color: #000000;
+          line-height: 19.44px;
+          color: #000;
           font-family: Montserrat;
           text-transform: uppercase;
           margin-bottom: 30px;
@@ -5731,6 +5734,7 @@ body[data-template="product"] {
               line-height: 17px;
               @include base-font();
               color: $textcolor-black;
+              font-weight: 400;
               @media(max-width: $xxl) {
                 font-size: 12px;
                 line-height: 1.5;
