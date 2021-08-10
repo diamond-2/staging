@@ -746,6 +746,12 @@ slate.Variants = (function() {
      */
     _onSelectChange: function() {
       var variant = this._getVariantFromOptions();
+      //console.log(variant);
+   
+      let currentVariant = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('title');
+      let current_slideno = $(document).find('.product-detail-slider-thumbnail .product-detail-slider-thumbnail-slide[data-alt="'+currentVariant+'"]').data('slick-index');
+      //console.log(current_slideno);
+      $('.product-detail-slider-thumbnail').slick('slickGoTo', current_slideno);
 
       this.container.dispatchEvent(
         new CustomEvent('variantChange', {
@@ -782,6 +788,7 @@ slate.Variants = (function() {
     _updateImages: function(variant) {
       var variantImage = variant.featured_image || {};
       var currentVariantImage = this.currentVariant.featured_image || {};
+      console.log(currentVariantImage);
 
       if (
         !variant.featured_image ||
@@ -835,8 +842,8 @@ slate.Variants = (function() {
      * @return {event} variantMetafiedChange
      */
      _updateMetafield: function(variant) {
-       console.log('update metafield function hit');
-       console.log(variant);
+       //console.log('update metafield function hit');
+       //console.log(variant);
        var element = document.querySelector('body');
        var dataAttribute = element.getAttribute('data-handle');
        var current_variantTitle = $('select[name="id"] option:selected').data('color');
@@ -857,12 +864,12 @@ slate.Variants = (function() {
             }
           });
           //console.log(variantMetaFields);
-          for(var variantKey in variantMetaFields) { console.log('variantKey');   console.log(variantKey);
-            var selectedVariant = $('select[name="id"]').val();console.log(selectedVariant);
+          for(var variantKey in variantMetaFields) {// console.log('variantKey');   console.log(variantKey);
+            var selectedVariant = $('select[name="id"]').val();//console.log(selectedVariant);
             if(selectedVariant != variantKey) continue 
             variantMetaFields[variantKey].forEach(function(ele){ //console.log(ele);
               for(var key in ele) {                
-                  console.log('Enter currentvairant');
+                  //console.log('Enter currentvairant');
                   $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val').text(ele[key]);                             
               }
             });           
@@ -8777,10 +8784,7 @@ theme.Product = (function() {
       );
 
       var otherMedia = this.container.querySelectorAll(
-        this.selectors.productMediaWrapper +
-          ":not([data-media-id='" +
-          mediaId +
-          "'])"
+        this.selectors.productMediaWrapper + ":not([data-media-id='" +mediaId +"'])"
       );
 
       currentMedia.dispatchEvent(
