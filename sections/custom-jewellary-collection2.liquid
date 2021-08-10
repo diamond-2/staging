@@ -1,5 +1,5 @@
 
-<div class="custom-jewellary-collections-wrapper {% if section.settings.section_show_only_mobile == true %} show_mobile {% endif %}">
+<div class="custom-jewellary-collections-wrapper">
     <div class="dia-container">
 
         {%- if section.settings.heading != blank or section.settings.content != blank -%}
@@ -9,51 +9,62 @@
         </div>
         {%- endif -%}
 
-        <div class="custom-jewellary-collections-grid">
-
-            {%- for item in section.blocks -%}
-            {% if item.type == 'collection' %}
-            <div class="custom-jewellary-collections-item">
-                <div class="custom-jewellary-collections-card">
-                    {%- if item.settings.collection_image !=blank -%}
-                    <div class="collection-image-holder">
-                        <a href="{{ item.settings.collection_link }}">
-                            <img class="lazyload" data-src="{{ item.settings.collection_image | img_url: 'master' }}" alt="{{ item.settings.collection_image.alt | escape  }}">
-                        </a> 
-                    </div>
-                    {%- endif -%}
-                    {%- if item.settings.collection_title != blank or item.settings.collection_link != blank -%}
-                    <div class="collection-content-holder">
-                        {%- if item.settings.collection_title != blank -%}
-                        <div class="collection-image-title">
-                            <a href="{{ item.settings.collection_link }}">{{ item.settings.collection_title }}</a>
+        <div class="custom-jewellary-two-col-row">
+            {% if section.settings.featured_image %}
+            <div class="custom-jewellary-left-col">
+                <div class="image_holder">
+                    <img class="lazyload" data-src="{{ section.settings.featured_image | img_url: 'master' }}" alt="{{ section.settings.heading }}">
+                </div>
+            </div>
+            {% endif %}
+            <div class="custom-jewellary-right-col">
+                <div class="custom-jewellary-collections-grid">
+                    {%- for item in section.blocks -%}
+                    {% if item.type == 'collection' %}
+                    <div class="custom-jewellary-collections-item">
+                        <div class="custom-jewellary-collections-card">
+                            {%- if item.settings.collection_image !=blank -%}
+                            <div class="collection-image-holder">
+                                <a href="{{ item.settings.collection_link }}">
+                                    <img class="lazyload" data-src="{{ item.settings.collection_image | img_url: 'master' }}" alt="{{ item.settings.collection_image.alt | escape  }}">
+                                </a> 
+                            </div>
+                            {%- endif -%}
+                            {%- if item.settings.collection_title != blank or item.settings.collection_link != blank -%}
+                            <div class="collection-content-holder">
+                                {%- if item.settings.collection_title != blank -%}
+                                <div class="collection-image-title">
+                                    <a href="{{ item.settings.collection_link }}">{{ item.settings.collection_title }}</a>
+                                </div>
+                                {%- endif -%}
+                                {% if item.settings.collection_link != blank %}
+                                <a class="glb-btn-with-arrow" href="{{ item.settings.collection_link }}">DISCOVER MORE</a>
+                                {% endif %}
+                            </div>
+                            {%- endif -%}
                         </div>
-                        {%- endif -%}
-                        {% if item.settings.collection_link != blank %}
-                        <a class="glb-btn-with-arrow" href="{{ item.settings.collection_link }}">DISCOVER MORE</a>
-                        {% endif %}
                     </div>
-                    {%- endif -%}
+                    {% endif %}
+        
+                    {% if  item.type == 'image' %}
+                    <div class="custom-jewellary-collections-item img_block">
+                        <div class="custom-jewellary-collections-card">
+                            {%- if item.settings.image !=blank -%}
+                            <div class="collection-image-holder">
+                                <a {% if item.settings.image_link != blank %}href="{{ item.settings.image_link }}"{% endif %}>
+                                    <img class="lazyload" data-src="{{ item.settings.image | img_url: 'master' }}" alt="{{ item.settings.image.alt | escape  }}">
+                                </a> 
+                            </div>
+                            {%- endif -%}
+                        </div>
+                    </div>
+                    {% endif %}
+        
+                    {%- endfor -%}
                 </div>
             </div>
-            {% endif %}
-
-            {% if  item.type == 'image' %}
-            <div class="custom-jewellary-collections-item img_block">
-                <div class="custom-jewellary-collections-card">
-                    {%- if item.settings.image !=blank -%}
-                    <div class="collection-image-holder">
-                        <a {% if item.settings.image_link != blank %}href="{{ item.settings.image_link }}"{% endif %}>
-                            <img class="lazyload" data-src="{{ item.settings.image | img_url: 'master' }}" alt="{{ item.settings.image.alt | escape  }}">
-                        </a> 
-                    </div>
-                    {%- endif -%}
-                </div>
-            </div>
-            {% endif %}
-
-            {%- endfor -%}
         </div>
+        
         {%- if section.settings.button_text -%}
         <div class="custom-jewellary-collections-bottom-btn-holder">
             <a href="{{ section.settings.button_link }}" class="glb-btn">{{ section.settings.button_text }}</a>
@@ -64,13 +75,12 @@
 
 {% schema %}
   {
-    "name": "Custom Collection",
+    "name": "Jewellary",
     "settings": [
         {
-            "type": "checkbox",
-            "label": "Section Show Only Mobile",
-            "id": "section_show_only_mobile",
-            "default": true
+            "type": "image_picker",
+            "label": "Featured Image",
+            "id": "featured_image"
         },
         {
             "type": "text",
@@ -82,7 +92,7 @@
             "type": "html",
             "label": "heading",
             "id": "content",
-            "default": "<p>Defined by a fresh modern aesthetic developed by the Diamond2<sup>®</sup> creative team in Italy, our lab-grown gems enchant wearers in an elegant assortment of rings, earrings, pendants and bracelets..</p>"
+            "default": "<p>Defined by a fresh modern aesthetic developed by the Diamond2 creative team in Italy, our lab-grown gems enchant wearers in an elegant assortment of rings, earrings, pendants and bracelets..</p>"
         },
         {
             "type": "text",

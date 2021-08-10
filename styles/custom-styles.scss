@@ -4277,12 +4277,19 @@ body[data-template="know-your-diamond"] {
     right: 0;
   }
 }
+.shopify-section {
+  &:last-child {
+    .collection-slider-wrapper {
+      padding-bottom: 0;
+    }
+  }
+}
 .collection-slider-wrapper {
-  padding-top: 51px;
+  padding-top: 100px;
   padding-bottom: 100px;
   @media(max-width: $md) {
     padding-bottom: 60px;
-    padding-top:0;
+    padding-top:60px;
   }
   .collection-slider-header {
     h2 {
@@ -4358,6 +4365,11 @@ body[data-template="know-your-diamond"] {
       font-family: Montserrat;
       text-transform: uppercase;
       font-weight: 500;
+      @media(max-width: $xl) {
+        font-size: 14px;
+        line-height: normal;
+        margin-top: 15px;
+      }
       @media(max-width: $md) {
         font-size: 12px;
         line-height: 12.96px;
@@ -5678,6 +5690,9 @@ body[data-template="product"] {
       }
       .product-info-item {
         margin-bottom: 49px;
+        &:last-child {
+          margin-bottom: 0;
+        }
         @media(max-width: $md) {
           margin-bottom: 20px;
         }
@@ -6194,6 +6209,16 @@ body.layout_jewellery {
 
 
 // Loose Stone Start
+.loose-stone-cut-collection-slider {
+  .collection-slider-wrapper {
+    padding-top: 0 !important;
+    padding-bottom: 100px !important;
+    @media(max-width: $md) {
+      padding-top: 0 !important;
+      padding-bottom: 60px !important;
+    }
+  }
+}
 .title {
   @include font-range-45to25();
   @include heading-fonts();
@@ -6305,43 +6330,131 @@ body.layout_jewellery {
   }
   .custom-jewellary-collections-header {
     text-align: center;
-    h2 {
+    max-width: 984px;
+    margin: 0 auto 50px;
+    @media(max-width: $md) {
       margin-bottom: 20px;
     }
+    h2 {
+      margin-bottom: 50px;
+      @media(max-width: $md) {
+        margin-bottom: 20px;
+      }
+    }
     .sec_he_desc {
-      padding: 0 10px;
+      @media(max-width: $md) {
+        padding: 0 10px;
+      }
     }
   }
   .custom-jewellary-collections-grid {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -7.5px;
-    padding-top: 16px;
+    margin: 0 -15px -30px;
+    @media(max-width: $md) {
+      margin: 0 -7.5px;
+    }
     .custom-jewellary-collections-item {
       width: 50%;
-      padding: 0 7.5px;
-      margin-bottom: 13px;
+      padding:0 15px;
+      margin-bottom: 30px;
+      &.img_block {
+        .custom-jewellary-collections-card {
+          @media(max-width: $md) {
+            height: 100%;
+          }
+          .collection-image-holder {
+            @media(max-width: $md) {
+              height: 100%;
+            }
+          }
+        }
+      }
+      @media(max-width: $md) {
+        padding: 0 7.5px;
+        margin-bottom: 20px;
+      }
       .custom-jewellary-collections-card {
         text-align: center;
+        position: relative;
+        &:hover {
+          .collection-image-holder {
+            @include cardHover();
+          }
+          .collection-content-holder {
+            .glb-btn-with-arrow {
+              &:after {
+                width: 100%;
+              }
+            }
+          }
+        }
         .collection-image-holder {
+          position: relative;
+          overflow: hidden;
+          background: #f1f1f3;
+          padding-bottom: 100%;
+          padding-bottom: 75.1%;
+          @include transition();
           img {
             display: block;
             width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
           }
         }
         .collection-content-holder {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 40px;
+          @media(max-width: $desktopLg) and (min-width: $postMd) {
+            bottom: 1vw;
+          }
+          @media(max-width: $md) {
+            position: static;
+            margin-top: 10px;
+            line-height: 0;
+          }
           .collection-image-title {
-            font-size: 12px;
-            line-height: normal;
+            font-size: 22px;
+            line-height: 23.76px;
+            text-transform: uppercase;
             color: #000000;
             font-weight: 400;
-            margin-top: 7px;
+            margin-bottom: 15px;
+            @media(max-width: $desktopLg) and (min-width: $postMd) {
+              font-size: 1.8vw;
+              line-height: 1;
+              margin-bottom: 0.5vw;
+            }
+            @media(max-width: $md) {
+              font-size: 12px;
+              line-height: normal;
+              margin: 0 0 5px;
+            }
             a {
               color: inherit;
             }
           }
           .glb-btn-with-arrow {
             vertical-align: top;
+            @include transition();
+            @media(max-width: $desktopLg) and (min-width: $postMd) {
+              font-size: 1.3vw;
+            }
+            &:before {
+              @media(max-width: $desktopLg) and (min-width: $postMd) {
+                background-size: 0.6vw;
+                height: 100%;
+                margin-top: -0.4vw;
+              }
+            }
             @media (max-width: $md) {
               font-size: 10px;
             }
@@ -6352,6 +6465,60 @@ body.layout_jewellery {
   }
   .custom-jewellary-collections-bottom-btn-holder {
     text-align: center;
+  }
+}
+
+.layout_loose-stone-plp {
+  .shopify-section {
+    &:last-child {
+      .custom-jewellary-collections-wrapper {
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+.custom-jewellary-two-col-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+  margin-bottom: 50px;
+  @media(max-width: $md) {
+    margin:0;
+  }
+  .custom-jewellary-left-col {
+      width: 37.15%;
+      padding: 0 15px;
+      @media(max-width: $md) {
+        width: 100%;
+        padding:0;
+        display: none;
+      }
+      .image_holder {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        @include transition();
+        &:hover {
+          @include cardHover();
+        }
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+  }
+  .custom-jewellary-right-col {
+      padding: 0 15px;
+      width: 62.85%;
+      @media(max-width: $md) {
+        width: 100%;
+        padding:0;
+      }
   }
 }
 // Loose Stone End
@@ -6881,7 +7048,7 @@ body.layout_jewellery {
                 line-height: 48.6px;
               }
               @media(max-width: $xxl) and (min-width: $postMd) {
-                font-size: 2.3vw;
+                font-size: 2.1vw;
                 line-height: normal;
                 margin-bottom: 1vw;
               }
@@ -6902,6 +7069,15 @@ body.layout_jewellery {
               .glb-btn-with-arrow {
                 font-size: 18px;
                 line-height: 19.44px;
+                @media(max-width: $desktopLg) {
+                  font-size: 11px;
+                  line-height: 1;
+                }
+                &:before {
+                  @media(max-width: $desktopLg) {
+                    background-size: 8px 12px;
+                  }
+                }
               }
             }
           }
@@ -7171,6 +7347,9 @@ body {
       h1 {
         margin-bottom: 58px;
         letter-spacing: normal;
+        @media(max-width: $xl) and (min-width: $postMd) {
+          margin-bottom: 30px;
+        }
         @media(max-width: $md) {
           margin: 0 0 32px;
         }
@@ -8201,6 +8380,11 @@ body[data-template="404"] {
       @media(max-width: $xxl) {
         font-size: 20px;
       }
+      @media(max-width: $xl) and (min-width: $postMd) {
+        font-size: 15px;
+        line-height: normal;
+        margin-bottom: 20px;
+      }
       @media(max-width: $md) {
         font-size: 18px;
         line-height: 19.44px;
@@ -8269,6 +8453,9 @@ body[data-template="404"] {
     display: flex;
     flex-wrap: wrap;
     margin: 0 -20px;
+    @media(max-width: $xl) and (min-width: $postMd) {
+      margin: 0 -5px;
+    }
     @media(min-width: $postMd) {
       display: flex !important;
       height: auto !important;
@@ -8280,6 +8467,9 @@ body[data-template="404"] {
     .glb-btn-with-arrow {
       @media(max-width: $xxl) {
         font-size: 14px;
+      }
+      @media(max-width: $xl) and (min-width: $postMd) {
+        font-size: 10px;
       }
       &:before {
         @media(max-width: $xxl) {
@@ -8308,6 +8498,9 @@ body[data-template="404"] {
     > li {
       padding: 0 20px;
       width: 19.885%;
+      @media(max-width: $xl) and (min-width: $postMd) {
+        padding: 0 5px;
+      }
       @media(max-width: $md) {
         padding:0;
         width: 100%;
@@ -8325,6 +8518,11 @@ body[data-template="404"] {
         margin: 0 0 18px;
         @media(max-width: $xxl) {
           font-size: 18px;
+        }
+        @media(max-width: $xl) and (min-width: $postMd) {
+          font-size: 11px;
+          line-height: normal;
+          margin-bottom: 10px;
         }
         @media(max-width: $md) {
           font-size: 14px;
@@ -8365,6 +8563,11 @@ body[data-template="404"] {
           font-size: 14px;
           line-height: 30px;
         }
+        @media(max-width: $xl) and (min-width: $postMd) {
+          font-size: 10px;
+          line-height: 1.6;
+          margin-bottom: 10px;
+        }
         @media(max-width: $md) {
           font-size: 12px;
           line-height: 21.6px;
@@ -8404,6 +8607,9 @@ body[data-template="404"] {
         padding-bottom: 94%;
         border: 1px solid rgba(0, 0, 0, 0.1);
         margin-bottom: 30px;
+        @media(max-width: $xl) and (min-width: $postMd) {
+          margin-bottom: 10px;
+        }
         @media(max-width: $md) {
           padding-bottom: 89%;
           margin-bottom: 18px;
@@ -8464,14 +8670,13 @@ body[data-template="cart"] {
     padding-bottom: 0;
   }
   .home-sld {
-    padding-top:108px;
+    padding-top:100px;
+    @media(max-width: $md) {
+      padding-top:60px;
+    }
   }
 }
 .cart-template-wrapper {
-  padding-top: 30px;
-  @media(max-width: $md) {
-    padding-top:15px;
-  }
   .dia-container {
     // padding-left: 50px;
     // padding-right: 50px;

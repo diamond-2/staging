@@ -10163,6 +10163,16 @@ window.addEventListener("resize", function() {
     $(this).parent().next('.sitemap-menu-grid').slideToggle();
   });
 
+  // Header Height
+  // function headerHeight() {
+  //     let headeHeight = $('#shopify-section-header').outerHeight();
+  //     $('body').css('padding-top',headeHeight);
+  // }
+  // headerHeight();
+  // window.addEventListener("resize", headerHeight);
+
+
+  
 });
 
 var showMobileNav = false;

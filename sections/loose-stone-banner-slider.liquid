@@ -4,6 +4,7 @@
         {%- if section.blocks.size > 0 -%}
         {%- for slide in section.blocks -%}
 
+        {%- if slide.settings.slider_image_desktop !=blank -%}
         <div class="full_width_slide_item slide--{{ forloop.index }} caption_align_{{ slide.settings.caption_alignment }}" data-type="image">
             {%- if slide.settings.slider_image_desktop !=blank -%}
             <div class="full_width_slider_image_holder {% if slide.settings.slider_image_mobile != blank %}mobile_hide {% endif %}">
@@ -30,8 +31,8 @@
             </div>
             {%- endif -%}
             {%- endif -%}
-            
         </div>
+        {%- endif -%}
         
         {%- endfor -%}
         {%- endif -%}  
