@@ -156,7 +156,10 @@
         
         $(document).on('click', 'button[type="button"]', function(e) {
             var $this = $(this).closest('form');
-            console.log($this)
+
+            // remove Error Msg After 3s
+            removeError();
+
             //Write here your validations
             //And use this to prevent the form from submiting in case validations are not met.
             if($this.hasClass('contact-form')) {
@@ -185,6 +188,13 @@
             },3000)
         }
         removeSuccessMessage();
+
+        function removeError() {
+            setTimeout(function(){
+                $('.msg-error').css('display','none');
+                $('.sp-form .input-box').removeClass('form-error');
+            },3000)
+        }
 
     });
 
