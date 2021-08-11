@@ -151,7 +151,7 @@ $input-field-border-color:#6679CC;
       background:$textcolor-phanton;
     }
     @media(max-width: $xxl) and (min-width: $postMd) {
-      font-size: 16px;
+      font-size: 14px;
       line-height: 1.8;
       padding: 10px 25px;
     }
@@ -228,6 +228,20 @@ $input-field-border-color:#6679CC;
     padding-right: 20px;
   }
 }
+// large container
+@mixin full-container() {
+  padding-left: 50px;
+  padding-right: 50px;
+  margin: 0 auto;
+  @media screen and (max-width: $xl) {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  @media screen and (max-width: $md) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
 
 
 $viewportIncrement: 1px;
@@ -267,8 +281,14 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
 }
 
 @mixin font-range-45to25() {
-  font-size: calc(25px + (100vw - 750px)/1170 * 20);
-  line-height: calc(28px + (100vw - 750px)/1170 * 20);
+  // font-size: calc(25px + (100vw - 750px)/1170 * 20);
+  // line-height: calc(28px + (100vw - 750px)/1170 * 20);
+  font-size: 45px;
+  line-height: 48.6px;
+  @media(max-width: $xxl) {
+    font-size: 30px;
+    line-height: 1;
+  }
   @media screen and (max-width: $md){
     font-size: 28px;
     line-height: 30.24px;
@@ -277,6 +297,7 @@ $postSiteWidth: $siteWidth + $viewportIncrement;
     font-size: 2.916666666666667vw;
     line-height: 3.125vw;
   }
+
 }
 
 @mixin font-range-36to24() {
@@ -359,7 +380,9 @@ body {
   color: $textcolor-black;
   opacity: 1;
 }
-
+.container_fluid {
+  @include full-container();
+}
 .padding_tb {
   padding-top:100px !important;
   padding-bottom: 100px !important;
@@ -421,13 +444,13 @@ body {
 
   .glb-sec-header {
     margin-top: 100px;
-    margin-bottom: 50px;
+    margin-bottom: 36px;
     @media(max-width: $md) {
       margin-top: 60px;
       margin-bottom: 20px;
     }
     h2 {
-      margin-bottom: 50px;
+      margin-bottom: 36px;
     }
     > *:last-child {
       margin-bottom: 0;;
@@ -440,6 +463,7 @@ body {
       max-width: 1087.41px;
       margin-left: auto;
       margin-right: auto;
+      padding-bottom: 14px;
     }
   }
   .glb-btn-with-arrow {
@@ -451,11 +475,15 @@ body {
     padding-right: 17px;
     position: relative;
     text-transform: uppercase;
+    @media(max-width: $xxl) {
+      font-size: 14px;
+      line-height: 1;
+    }
     &.large_arrow_btn {
       font-size: 24px;
       line-height: 25.92px;
       @media(max-width: $xxl) {
-        font-size: 19px;
+        font-size: 14px;
         line-height: 1.2;
       }
       @media(max-width: $md) {
@@ -500,11 +528,16 @@ body {
       background-size: 11px 14px;
       background-position: center;
       background-repeat: no-repeat;
+      @media(max-width: $xxl) and (min-width: $postMd) {
+        background-size: 8px;
+        line-height: 0;
+        height: calc(100% - 6px);
+      }
       @media(max-width: $md) {
         width: 10px;
-        height: 10px;
-        background-size: 5px 6px;
+        background-size: 6px 8px;
         right: 4px;
+        height: 14px;
       }
     }
   }
@@ -2181,7 +2214,7 @@ body{
             @include heading-fonts();
             @include font-range-45to25();
             letter-spacing: 0;
-            margin-bottom: 90px;
+            margin-bottom: 76px;
             text-transform: uppercase;
             @media screen and (max-width: $tab) {
               margin-bottom: 20px; 
@@ -2204,7 +2237,7 @@ body{
             }
           }
           .slide-overlay-link {
-            margin-top: 90px;
+            margin-top: 84px;
             text-transform: uppercase;
             color: $textcolor-phanton;
             &.transparent {
@@ -2791,7 +2824,7 @@ body{
         }
         h2 {
           text-transform: uppercase;
-          margin-bottom: 53px;;
+          margin-bottom: 40px;;
           @media screen and (max-width: $md) {
             margin-bottom: 20px;
           }
@@ -2953,6 +2986,10 @@ body{
                 &:after {
                   transform: scale(1);
                 }
+              }
+              @media(max-width: $xxl) {
+                font-size: 14px;
+                line-height: normal;
               }
               @media(max-width: $md) {
                 font-size: 12px;
@@ -3154,6 +3191,9 @@ body{
                     letter-spacing: 0.05em;
                     line-height: 17.28px;
                     position: relative;
+                    @media(max-width: $xxl) {
+                      font-size: 14px;
+                    }
                     @media(max-width: $md) {
                       padding-top: 0;
                       padding-bottom: 0;
@@ -3262,6 +3302,9 @@ body{
                 min-height: 0;
                 letter-spacing: 0.05em;
                 margin-bottom: 26px;
+                @media(max-width: $xxl) {
+                  font-size: 14px;
+                }
                 @media(max-width: $md) {
                   font-size: 16px;
                   line-height: 17.28px;
@@ -3603,12 +3646,6 @@ body[data-template="know-your-diamond"] {
     margin-bottom: 42px;
     @media(max-width: $md) {
       margin-bottom: 20px;
-    }
-  }
-  .main-content {
-    p {
-      font-family:$glbFontFamily;
-      @include globalFontSize26();
     }
   }
 }
@@ -4043,7 +4080,7 @@ body[data-template="know-your-diamond"] {
         text-align: center;
       }
       h2 {
-        margin-bottom: 91px;
+        margin-bottom: 82px;
         @media(max-width: $xxl) and (min-width: $postMd) {
           margin-bottom: 20px;
         }
@@ -4107,7 +4144,7 @@ body[data-template="know-your-diamond"] {
 }
 .content-with-image-diamond-content-column {
   h2 {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     @media(max-width: $xxl) and (min-width: $postMd) {
       margin-bottom: 20px;
     }
@@ -4181,7 +4218,7 @@ body[data-template="know-your-diamond"] {
     padding-bottom: 60px;
   }
   h2 {
-    margin-bottom: 51px;
+    margin-bottom: 40px;
     @media(max-width: $md) {
       margin-bottom: 20px;
       max-width: 230px;
@@ -4212,7 +4249,7 @@ body[data-template="know-your-diamond"] {
     padding-bottom:60px;
   }
   h2 {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     @media(max-width: $md) {
       margin-bottom: 20px;
       max-width: 245px;
@@ -4244,7 +4281,7 @@ body[data-template="know-your-diamond"] {
     padding-bottom: 60px;
   }
   h2 {
-    margin-bottom: 51px;
+    margin-bottom: 40px;
     @media(max-width: $md) {
       margin-bottom: 20px;
       max-width: 200px;
@@ -4365,6 +4402,10 @@ body[data-template="know-your-diamond"] {
       font-family: Montserrat;
       text-transform: uppercase;
       font-weight: 500;
+      @media(max-width: $xxl) {
+        font-size: 14px;
+        margin-top: 15px;
+      }
       @media(max-width: $xl) {
         font-size: 14px;
         line-height: normal;
@@ -4518,7 +4559,7 @@ body[data-template="product"] {
     border-radius: 6px;
     background: #6c1d45;
     top: 0;
-    right: -23.5%;
+    right: -12%;
     position: absolute;
     transition: all .4s;
     @media(max-width: $lg) {
@@ -4531,16 +4572,17 @@ body[data-template="product"] {
     }
   }
   .product-detail-slider-thumbnail-wrapper {
-    width: 19.4%;
+    width: 19.24%;
     order: 1;
     position: relative;
+    overflow: hidden;
     @media(max-width: $lg) {
       order: 2;
       width: 100%;
     }
     .product-detail-slider-thumbnail {
       .slick-list {
-        padding-right: 31%;
+        padding-right: 29.5%;
         margin-bottom: -10px;
         @media(max-width: $lg) {
           padding-right:0;
@@ -4559,7 +4601,7 @@ body[data-template="product"] {
       position: absolute;
       height: 100%;
       width: 5px;
-      right: 14.8%;
+      right: 21%;
       background: rgba(224,224,224,.7);
       border-radius: 6px;
       @media(max-width: $lg) {
@@ -4594,7 +4636,9 @@ body[data-template="product"] {
       }
       &.slick-current {
         .product-detail-slider-thumbnail-slide-inner {
-          border-color: #6c1d45;
+          @media(max-width: $lg) {
+            border-color: #6c1d45;
+          }
         }
       }
       &:last-child {
@@ -4606,7 +4650,7 @@ body[data-template="product"] {
   }
   .product-detail-slider-holder {
     order: 2;
-    width: 80.6%;
+    width: 80.76%;
     position: relative;
     @media(max-width: $lg) {
       order: 1;
@@ -4617,10 +4661,16 @@ body[data-template="product"] {
       left: auto;
       .price__badge {
         padding:10px 13px 11px 10px;
+        @media(max-width: $md) {
+          padding: 4px 7px;
+          line-height: 1;
+        }
       }
     }
     .product-detail-slider {
       border: 1px solid #E0E0E0;
+      // height: 100%;
+      // background: #f1f1f1;
       @media(max-width: $md) {
         border: none;
         padding-bottom: 20px;
@@ -5148,6 +5198,8 @@ body[data-template="product"] {
         height: auto;
         min-height: 0;
         margin-bottom: 13px;
+        line-height: 11.88px;
+        font-weight: 400;
       }
       .price__badges {
         display: none;
@@ -5222,6 +5274,7 @@ body[data-template="product"] {
             }
             @media(max-width: $md) {
               font-size: 13px;
+              font-weight: 300;
             }
           }
 
@@ -5282,12 +5335,12 @@ body[data-template="product"] {
           left: 8px;
           line-height: 0;
           @media(max-width: $md) {
-            left: 1px;
-            margin-top: 2px;
+            left: 0;
           }
           svg {
             @media(max-width: $md) {
-              width: 15px;
+              width: 16px;
+              height: 23px;
             }
           }
       }
@@ -5440,20 +5493,28 @@ body[data-template="product"] {
           line-height: 11.88px;
           border: none;
           padding: 0;
-          margin-bottom: 11px;
+          margin-bottom: 10px;
           font-weight: 400;
         }
         .left_col {
           display: flex;
           align-items: center;
           text-transform: uppercase;
+          span {
+            &:first-child {
+              @media(max-width: $md) {
+                width: 34px;
+              }
+            }
+          }
           svg {
             margin-right: 9px;
             @media(max-width: $xxl) and (min-width: $postMd) {
               width: 20px;
             }
-            @media(max-width: $sm) {
+            @media(max-width: $md) {
               width: 20px;
+              margin-right: 0;
             }
           }
         }
@@ -5515,6 +5576,13 @@ body[data-template="product"] {
             margin-left: 0;
           }
         }
+        span {
+          &:first-child {
+            @media(max-width: $md) {
+              width: 34px;
+            }
+          }
+        }
         svg {
           margin-right: 16px;
           @media(max-width: $xxl) and (min-width: $postMd) {
@@ -5522,8 +5590,25 @@ body[data-template="product"] {
             width: 15px;
           }
           @media(max-width: $md) {
-            margin-right: 10px;
+            margin-right: 0;
             width: 18px;
+            height: 22px;
+          }
+        }
+        &._warranty {
+          svg {
+            @media(max-width: $md) {
+              width:17.93px;
+              height:20px;
+            }
+          }
+        }
+        &._shipping {
+          svg {
+            @media(max-width: $md) {
+              width:24px;
+              height:18px;
+            }
           }
         }
       }
@@ -5547,7 +5632,7 @@ body[data-template="product"] {
     @media(max-width: $md) {
       border-top: 2px solid $textcolor-phanton;
       border-bottom: 2px solid $textcolor-phanton;
-      padding: 19px 0;
+      padding: 20px 0;
     }
     &.content_showed {
       .product-desc-title {
@@ -5583,14 +5668,14 @@ body[data-template="product"] {
         }
         @media(max-width: $md) {
           font-size: 13px;
-	    	  line-height: 23px;
+	    	  line-height: 20px;
           margin-bottom: 0;
         }
       }
     }
     .product-desc-content {
       @media(max-width: $md) {
-        margin-top: 17px;
+        margin-top: 20px;
       }
       ul {
         margin:0;
@@ -5631,7 +5716,7 @@ body[data-template="product"] {
 .product-details-wrapper {
   margin-top: 51px;
   @media(max-width: $md) {
-    margin-top: 13px;
+    margin-top: 20px;
   }
   p {
     font-size: 16px;
@@ -5644,8 +5729,8 @@ body[data-template="product"] {
     }
     @media(max-width: $md) {
       font-size: 13px;
-      line-height: 23px;
-      margin-bottom: 12px;
+      line-height: 14.04px;
+      margin-bottom: 20px;
     }
   }
   h3 {
@@ -5694,7 +5779,9 @@ body[data-template="product"] {
       .product-info-item {
         margin-bottom: 49px;
         &:last-child {
-          margin-bottom: 0;
+          @media(min-width: $postMd) {
+            margin-bottom: 0;
+          }
         }
         @media(max-width: $md) {
           margin-bottom: 20px;
@@ -5716,8 +5803,9 @@ body[data-template="product"] {
           }
           @media(max-width: $md) {
             font-size: 13px;
-            line-height: 15.85px;
-            margin-bottom: 13px;
+            line-height: 14px;
+            margin-bottom: 15px;
+            font-weight: 500;
           }
         }
         .product-info-table {
@@ -5870,6 +5958,13 @@ body[data-template="product"] {
           }
         }
       }
+      &:last-child {
+        .product-info-item {
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
     }
   }
 }
@@ -5889,12 +5984,18 @@ body.layout_jewellery {
 
 .jewellary-collection-wrapper {
   padding-top: 100px;
+  @media(max-width: $xxl) {
+    padding-top: 94px;
+  }
   @media(max-width: $md) {
     padding-top: 60px;
   }
   .jewellary-collection-row {
     text-align: center;
     padding-bottom: 100px;
+    @media(max-width: $xxl) {
+      padding-bottom: 94px;
+    }
     @media(max-width: $md) {
       padding-bottom: 60px;
     }
@@ -5935,6 +6036,9 @@ body.layout_jewellery {
       max-width: 1520px;
       margin: 0 auto;
       margin-bottom: 50px;
+      @media(max-width: $xxl) {
+        margin-bottom: 35px;
+      }
       &.mb-image-bottom {
         .content_holder {
           @media(max-width: $md) {
@@ -5963,6 +6067,10 @@ body.layout_jewellery {
       }
       h2 {
         margin-bottom: 50px;
+        line-height: 34px;
+        @media(max-width: $xxl) {
+          margin-bottom: 35px;
+        }
         @media(max-width: $md) {
           margin-bottom: 20px;
           padding: 0 20px;
@@ -6175,7 +6283,7 @@ body.layout_jewellery {
                   width: 0.5vw;
                   height: 0.7vw;
                   background-size: 0.5vw;
-                  top: 0.1vw;
+                  top: -0.1vw;
                 }
                 @media(max-width: $md) {
                   width: 7px;
@@ -6213,6 +6321,15 @@ body.layout_jewellery {
 
 
 // Loose Stone Start
+
+body[data-template="loose-stone"] {
+  .glb-sec-header {
+    @media(min-width: $postMd) {
+      margin-bottom: 40px;
+    }
+  }
+}
+
 .loose-stone-cut-collection-slider {
   .collection-slider-wrapper {
     padding-top: 0 !important;
@@ -6265,10 +6382,14 @@ body.layout_jewellery {
     }
     .loose-stone-item-img {
       margin-bottom: 30px;
+      @include transition();
+      &:hover {
+        @include cardHover();
+      }
       @media(max-width: $md) {
         margin-bottom: 0;
         border: 1px solid #dad9d9;
-        width: 124px;
+        width: 126px;
         margin-right: 15px;
         float: left;
       }
@@ -6279,11 +6400,8 @@ body.layout_jewellery {
     .loose-stone-item-content {
       @include base-font();
       height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
       @media(max-width: $md) {
-        width: calc(100% - 139px);
+        width: calc(100% - 141px);
         display: block;
         height: auto;
         float: left;
@@ -6295,6 +6413,10 @@ body.layout_jewellery {
         margin-bottom: 20px;
         line-height: 34.13px;
         font-weight: 400;
+        @media(max-width: $xxl) {
+          font-size: 18px;
+          line-height: 1;
+        }
         @media(max-width: $md) {
           font-size: 12px;
           line-height: 12.96px;
@@ -6308,7 +6430,8 @@ body.layout_jewellery {
         @media(max-width: $md) {
           // font-size: 11px;
           // line-height: 16.5px;
-          margin-bottom: 17px;
+          margin-bottom: 0;
+          min-height: 81px;
         }
         // p {
         //   @media(max-width: $md) {
@@ -6550,15 +6673,7 @@ body.layout_jewellery {
     padding-left:0;
     padding-right:0;
   }
-  &.jewellery-plp-collection-layout {
-    .glb-sec-header {
-      @media(min-width: $postMd) {
-        margin-bottom: 50px;
-      }
-    }
-  }
   .glb-sec-header {
-    margin-bottom: 57.48px;
     @media(max-width: $md) {
       margin-top: 20px;
       margin-bottom: 60px;
@@ -6878,7 +6993,7 @@ body.layout_jewellery {
             line-height: 28.08px;
             margin-top: 30px;
             @media(max-width: $xxl) {
-              font-size: 20px;
+              font-size: 14px;
               line-height: normal;
             }
             @media(max-width: $xl) {
@@ -6929,10 +7044,6 @@ body.layout_jewellery {
     padding-left: 45px;
     padding-right: 45px;
     .glb-sec-header {
-      margin-bottom: 50px;
-      h2 {
-        margin-bottom: 54px;
-      }
       .glb-sec-desc {
         max-width: 1400px;
       }
@@ -7082,9 +7193,16 @@ body.layout_jewellery {
           .buttons-wrapper {
             .button-item {
               margin-top: 30px;
+              @media(max-width: $xxl) {
+                margin-top: 15px;
+              }
               .glb-btn-with-arrow {
                 font-size: 18px;
                 line-height: 19.44px;
+                @media(max-width: $xxl) {
+                  font-size: 14px;
+                  line-height: 1;
+                }
                 @media(max-width: $desktopLg) {
                   font-size: 11px;
                   line-height: 1;
@@ -7229,21 +7347,6 @@ body.layout_jewellery {
   text-align: center;
   .loadMore-btn {
     cursor: pointer;
-    font-size: 22px;
-    line-height: 23.76px;
-    padding: 22px 31px;
-    font-weight: 400;
-    @media(max-width: $lg) {
-      font-weight: 400;
-      font-size: 14px;
-      line-height: normal;
-      padding: 10px 15px;
-    }
-    @media(max-width: $md) {
-      font-size: 12px;
-      line-height: 12.96px;
-      padding: 8px 15px;
-    }
   }
   .loder-spiner {
     margin: 0 auto;
@@ -7297,6 +7400,9 @@ body.layout_jewellery {
   letter-spacing: -0.02em;
   display: inline-block;
   font-weight: 400;
+  @media(max-width: $xxl) {
+    font-size: 14px;
+  }
   @media(max-width: $lg) {
     font-size: 14px;
   }
@@ -7305,6 +7411,10 @@ body.layout_jewellery {
     display: inline-block;
     vertical-align: top;
     text-decoration: underline;
+    @media(max-width: $xxl) {
+      min-width: 0;
+      padding-right: 10px;
+    }
     @media(max-width: $lg) {
       min-width: 0;
       padding-right: 10px;
@@ -7314,10 +7424,16 @@ body.layout_jewellery {
     display: inline-block;
     line-height: 0;
     border-top: 2px solid currentColor;
+    @media(max-width: $xxl) and (min-width: $postMd) {
+      width: 15px;
+    }
     svg {
       @media(max-width: $lg) {
         width: 13px;
         height: 7px;
+      }
+      @media(max-width: $xxl) and (min-width: $postMd) {
+        width: 100%;
       }
       path {
         fill: currentColor;
@@ -7382,6 +7498,9 @@ body {
       text-transform: uppercase;
       font-weight: 200;
       margin-bottom: 50px;
+      @media(max-width: $xxl) {
+        font-size: 22px;
+      }
       @media(max-width: $md) {
         font-size: 18px;
         line-height: 19.44px;
@@ -7624,8 +7743,8 @@ body {
         line-height: 27px;
         letter-spacing: 0.5px;
         @media(max-width: $xxl) and (min-width: $postMd) {
-          font-size: 15px;
-          line-height: 1.5;
+          font-size: 14px;
+          line-height: 1.8;
         }
         @media(max-width: $xl) and (min-width: $postMd) {
           font-size: 12px;
@@ -8206,6 +8325,7 @@ body[data-template="404"] {
     z-index: 2;
     position: relative;
     margin-top: -54px;
+    filter: drop-shadow(0px -47px 63px rgba(168, 168, 168, 0.19));
     @media(max-width: $md) {
       padding: 30px 20px;
       min-height: 0;
@@ -8655,19 +8775,44 @@ body[data-template="404"] {
   background: #fff;
   width: 100%;
   height: 100%;
-  max-width: 638px;
+  max-width: 630px;
   @include transition();
   transform: translateX(100%);
   opacity: 0;
   visibility: hidden;
+  .close-mini-cart {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
   .minicart__header {
-    height: 124px;
-    background: #6679CC;
+    height: 100px;
+    background: #6679cc;
     color: #fff;
     display: flex;
     align-items: center;
-    padding: 0 58px;
-    justify-content: flex-end;
+    padding: 15px 45px;
+    ul {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      li {
+        margin-left: 32px;
+        line-height: 0;
+        a {
+          color: #fff;
+          @include transition();
+          &.active, &:hover {
+            color: #6C1D45;
+          }
+          svg {
+            path {
+              fill: currentColor;
+            }
+          }
+        }
+      }
+    }
   }
 }
 .min-slide-card-open {
@@ -10263,6 +10408,9 @@ body[data-template="customers/reset_password"] {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    @media(max-width: $xxl) {
+      max-width: 700px;
+    }
     @media(max-width: $md) {
       width: 100%;
       padding-left: 15px;
@@ -10280,9 +10428,26 @@ body[data-template="customers/reset_password"] {
     display: flex;
     flex-direction: column;
     width: 100%;
+    @media(max-width: $xxl) {
+      padding: 45px;
+      min-height: 400px;
+    }
     @media(max-width: $md) {
       padding: 40px 30px;
-      min-height: 0;
+      min-height: 225px;
+    }
+    .close_newsletter_icon {
+      position: absolute;
+      top: 31px;
+      right: 31px;
+      width: 17.5px;
+      height: 17.5px;
+      cursor: pointer;
+      svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
     }
     .newsletter-popup-header {
       h2 {
@@ -10301,6 +10466,9 @@ body[data-template="customers/reset_password"] {
     }
     .newsletter-popup-form {
       max-width: 648px;
+      @media(max-width: $xxl) {
+        max-width: 500px;
+      }
       @media(max-width: $md) {
         max-width: 219px;
         max-width: 77%;
@@ -10321,6 +10489,9 @@ body[data-template="customers/reset_password"] {
           width: 68.209%;
           flex-basis: 68.209%;
           padding: 18px 21px;
+          @media(max-width: $xxl) {
+            font-size: 16px;
+          }
           @media(max-width: $md) {
             height: 45px;
             font-size: 11px;
@@ -10351,6 +10522,9 @@ body[data-template="customers/reset_password"] {
             min-height: 0;
             border-radius: 0px 2px 2px 0px;
             width: 100%;
+            @media(max-width: $xxl) {
+              font-size: 14px;
+            }
             @media(max-width: $md) {
               font-size: 12px;
               line-height: normal;
@@ -10374,6 +10548,9 @@ body[data-template="customers/reset_password"] {
       line-height: 1;
       margin-top: auto;
       padding-top: 20px;
+      @media(max-width: $xxl) {
+        font-size: 16px;
+      }
       @media(max-width: $md) {
         font-size: 12px;
         line-height: 21.6px;
@@ -10560,7 +10737,111 @@ body[data-template="customers/reset_password"] {
     }
 }
 
-// Responsive
+/* ========== Customer Account Start ============== */
+body[data-template="customers/account"] {
+  .main-content {
+    padding-top:0;
+    padding-bottom:0;
+  }
+}
+.account_section-header {
+  margin-bottom: 60px;
+  p {
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    line-height: 32.4px;
+    margin: 0;
+  }
+  h1 {
+    font-weight: 200;
+    font-family: 'Spectral';
+    font-size: 36px;
+    line-height: 40px;
+    color: $textcolor-phanton;
+    margin: 0;
+  }
+}
+.account_nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid #C4C4C4;
+    margin-bottom: 40px;
+    li {
+      font-size: 24px;
+      font-weight: 300;
+      line-height: 25.92px;
+      text-align: center;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1.5px;
+      &.active {
+        font-weight: 400;
+        border-bottom-color: $textcolor-phanton;
+      }
+      a {
+        display: block;
+        text-align: center;
+        margin-bottom: 26px;
+        color: $textcolor-black !important;
+        min-width: 231px;
+      }
+    }
+  }
+}
+.account_section_wrapper {
+  h4 {
+    font-size: 24px;
+    line-height: 25.92px;
+    font-weight: 400;
+    font-family: 'Montserrat';
+    color: $textcolor-phanton;
+    margin-bottom: 30px;
+  }
+}
+.myaccount__order_history {
+  table {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0;
+    padding: 0 30px 20px;
+    border-collapse: initial;
+    font-size: 18px;
+    line-height: 27px;
+    font-weight: 300;
+    a {
+      text-decoration: none;
+      border: none;
+    }
+    thead {
+      th {
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+    }
+    tr {
+      td,th {
+        padding: 20px;
+        border: none;
+        text-align: center;
+        &:first-child {
+          text-align: left;
+        }
+      }
+    }
+    tbody td,
+    tbody th {
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+/* ========== Customer Account End ============== */
+
+
+
+// Media Global
 
 // min 750
 

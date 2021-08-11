@@ -1,0 +1,63 @@
+<div class="min-slide-card" id="minicart">
+    <div class="minicart__wrapper">
+        <div class="minicart__header">
+            <div class="close-mini-cart">         
+                {% include 'icon-close-mini-cart' %}
+            </div>
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon_holder"><svg width="32" height="30" viewBox="0 0 32 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 29.0029L15.4353 28.5147C3.29412 18.2622 0 14.6494 0 8.79081C0 3.90865 3.76471 0.00292969 8.47059 0.00292969C12.3294 0.00292969 14.4941 2.24872 16 4.0063C17.5059 2.24872 19.6706 0.00292969 23.5294 0.00292969C28.2353 0.00292969 32 3.90865 32 8.79081C32 14.6494 28.7059 18.2622 16.5647 28.5147L16 29.0029ZM8.47059 1.95579C4.8 1.95579 1.88235 4.98273 1.88235 8.79081C1.88235 13.7706 4.89412 17.0905 16 26.4642C27.1059 17.0905 30.1176 13.7706 30.1176 8.79081C30.1176 4.98273 27.2 1.95579 23.5294 1.95579C20.2353 1.95579 18.4471 4.0063 17.0353 5.66623L16 6.93559L14.9647 5.66623C13.5529 4.0063 11.7647 1.95579 8.47059 1.95579Z" fill="white"/></svg></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon_holder"><svg width="27" height="29" viewBox="0 0 27 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.046 18.7469C21.5756 17.1677 19.8254 15.9985 17.9159 15.2908C19.9611 13.7779 21.3047 11.2459 21.3047 8.38281C21.3047 3.76054 17.8035 0 13.5 0C9.19651 0 5.69531 3.76054 5.69531 8.38281C5.69531 11.2459 7.03893 13.7779 9.08413 15.2908C7.17462 15.9985 5.42447 17.1677 3.95408 18.7469C1.40426 21.4857 0 25.1269 0 29H2.10938C2.10938 22.2539 7.21918 16.7656 13.5 16.7656C19.7808 16.7656 24.8906 22.2539 24.8906 29H27C27 25.1269 25.5957 21.4857 23.046 18.7469ZM13.5 14.5C10.3596 14.5 7.80469 11.7559 7.80469 8.38281C7.80469 5.00975 10.3596 2.26562 13.5 2.26562C16.6404 2.26562 19.1953 5.00975 19.1953 8.38281C19.1953 11.7559 16.6404 14.5 13.5 14.5Z" fill="white"/></svg></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="active">
+                        <span class="icon_holder"><svg width="27" height="29" viewBox="0 0 27 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26.995 28.0468L24.624 7.05729C24.5742 6.61788 24.1758 6.28423 23.7005 6.28423H19.2441V5.33971C19.2441 2.3955 16.6672 0 13.5001 0C10.3328 0 7.75588 2.3955 7.75588 5.33971V6.28423H3.29949C2.8242 6.28423 2.42578 6.61788 2.37604 7.05729L0.00504092 28.0468C-0.0223296 28.29 0.0626379 28.5327 0.238523 28.7146C0.414646 28.8962 0.665503 29 0.928497 29H26.0713C26.3345 29 26.5853 28.8962 26.7612 28.7146C26.9376 28.5327 27.0223 28.29 26.995 28.0468ZM9.61279 5.33971C9.61279 3.34733 11.3566 1.72621 13.5001 1.72621C15.6433 1.72621 17.3872 3.34733 17.3872 5.33971V6.28423H9.61279V5.33971ZM1.95953 27.2738L4.1356 8.01044H7.75588V9.91255C7.75588 10.3891 8.17168 10.7757 8.68434 10.7757C9.197 10.7757 9.61279 10.3891 9.61279 9.91255V8.01044H17.3872V9.91255C17.3872 10.3891 17.803 10.7757 18.3157 10.7757C18.8283 10.7757 19.2441 10.3891 19.2441 9.91255V8.01044H22.8644L25.0405 27.2738H1.95953Z" fill="white"/></svg></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="minicart__content" id="cart__minicart">
+            <div id="cart__minicart_items">
+            </div>
+            <div style="margin-top: 50px">
+                <h4>Total: <span id="cart__total_price"></span></h4>
+                <a id="cart__checkout_btn" href="/checkout" class="btn btn--has-icon-after cart__continue-btn" style="width:100%;">Proceed Checkout</a>
+            </div>
+        </div>
+    </div>
+</div>
+  
+  <script>
+
+       $(document).ready(function(){
+        $('.minicart-btn').click(function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            $('body').addClass('min-slide-card-open');
+        });
+        $('.min-slide-card').click(function(e) {
+            e.stopPropagation();
+        })
+        $('body').click(function(){
+            $('body').removeClass('min-slide-card-open');
+        });
+       });
+        
+        // var nextUrl = '/cart';
+        // let miniCart = document.querySelector('#cart__minicart')
+        // $.ajax({
+        //     url: nextUrl,
+        //     type: 'GET',
+        //     dataType: 'html'
+        // }).done(function(next_page) {
+        //     var newProduct = $(next_page).find('form.cart');
+        //     console.log(newProduct)
+        //     $(miniCart).append(newProduct);
+        // });
+  </script>

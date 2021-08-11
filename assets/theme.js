@@ -10175,6 +10175,8 @@ window.addEventListener("resize", function() {
   // headerHeight();
   // window.addEventListener("resize", headerHeight);
 
+  // matchHeight Global Call
+  $('.matchHeight ').matchHeight();
 
   
 });
