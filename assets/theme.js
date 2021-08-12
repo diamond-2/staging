@@ -10178,6 +10178,101 @@ window.addEventListener("resize", function() {
   // matchHeight Global Call
   $('.matchHeight ').matchHeight();
 
+
+  /* update cart and minicart on increase or decrease quantity start */
+  $(document).on('click','.quantity-input__button, .remove_cart_item', function(e){
+      console.log('Remove Cart Clicked')   
+      if(!$(this).hasClass('pdp-button')) {
+        e.preventDefault();
+        var getDataQty = parseInt($(this).closest().find('.form__input cart__quantity').val());
+        if($('body').hasClass('template-cart')){
+          console.log('yes you are on cartpage');
+          var getDataId = $(this).closest('tr').attr('data-cart-item-key');//console.log(getDataId)
+        } else {
+          console.log('yes you are on others');
+          var getDataId = $(this).closest('tr').attr('data-cart-item-key');//console.log(getDataId)
+        }
+        var $thisName = $(this).attr('data-name'); //console.log($thisName);
+        var getDataQty = parseInt($(this).closest('.cart__qty_iput_holder').find('input[data-quantity]').val());
+        var avilable_qty= parseInt($(this).closest('.cart-drawer__item').attr('data-qty'));
+        var avilable_qty1= parseInt($(this).closest('.cart__table-row').attr('max-avail-prodcut'));
+        if($thisName == 'plus') {
+          if(getDataQty == avilable_qty || getDataQty ==avilable_qty1 || avilable_qty  ==0 || avilable_qty1== 0){
+            console.log('matchedQty')
+            return false;
+          }else{
+            getDataQty = getDataQty + 1;
+          }
+        } else if($thisName == 'minus' ) {
+          if(getDataQty > 0){
+            getDataQty = getDataQty - 1;
+          } 
+          else {
+            getDataQty = 1;
+            return false;
+          }    	
+        } else {
+          getDataQty = 0;
+        }
+        console.log(getDataId);
+        console.log(getDataQty);
+        $(this).closest('.cart__qty_iput_holder').find('input[data-quantity]').val(getDataQty);
+        updateCartItem (getDataId, getDataQty);
+      }
+  });
+  
+  $(document).find('#MainContent .update-cart .cart__table-row').each(function() {
+    var $pruduct_Avail = parseInt($(this).attr('max-avail-prodcut'));
+    console.log($pruduct_Avail);
+    if($pruduct_Avail == 0) {
+      var $pruduct_DataKey = $(this).attr('data-cart-item-key');
+      console.log($pruduct_DataKey);
+      updateCartItem($pruduct_DataKey, $pruduct_Avail);
+    }
+  });
+  
+  function updateCartItem (getDataId, getDataQty) {
+    $('#preloader').fadeIn();
+    $.ajax({
+      type: 'POST',
+      url: '/cart/update.js',
+      data: 'updates['+getDataId+']='+getDataQty,
+      dataType: "json",
+      cache: false,
+      success: function(response) {
+//         $('[data-cart-wrapper]').removeClass('hide');
+//         $('[data-empty-page-content]').addClass('hide');
+        console.log(response);
+        $('[data-cart-count]').text(response.item_count);
+        if(response.item_count === 0) {
+          $('.cart-drawer-container .empty-mini-cart').removeClass('hidden');
+          $('.template-cart .cart-page-item').addClass('hidden');
+          $('.template-cart .template-404').removeClass('hidden');
+          console.log('Cart Is Empty')
+        }
+        $.ajax({
+          url: '/cart/?view=miniCart',
+          cache: false,
+          success: function(response) {
+            $('.update-cart').empty().append(response);
+            $('#preloader').fadeOut();     
+          }
+        });
+      }
+    });
+  }
+  /* update cart and minicart on increase or decrease quantity end */
+
+  // show drawer
+  $('.minicart-btn').click(function(e){
+    e.preventDefault();
+    $('.drawer').addClass('show_drawer')
+  });
+  $('.close-mini-cart').click(function(){
+    $('.drawer').removeClass('show_drawer')
+  });
+
+  
   
 });
 

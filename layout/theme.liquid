@@ -192,6 +192,12 @@
   {% include 'remove_cart_popup' %}
   <!-- Remove Cart Item Popup End -->
 
+
+<!-- Cart Drawer -->
+{%- if page.request_type != 'cart' -%}
+  {% render 'cart-drawer' %}
+{%- endif -%}
+
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
   {% if template == 'index' %}
     {% section 'landing' %}

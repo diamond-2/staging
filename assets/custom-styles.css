@@ -4238,9 +4238,6 @@ body[data-template="product"] .main-content {
       .product-section-row .price_inclusive {
         font-size: 11px;
         line-height: 11.88px; } }
-    @media (max-width: 1600px) and (min-width: 750px) {
-      .product-section-row .price_inclusive {
-        margin-top: 10px; } }
     @media (max-width: 749px) {
       .product-section-row .price_inclusive {
         font-size: 10px;
@@ -4260,6 +4257,9 @@ body[data-template="product"] .main-content {
       .product-section-row .delivery-check-sec {
         font-size: 11px;
         line-height: 11.88px; } }
+    @media (max-width: 1600px) {
+      .product-section-row .delivery-check-sec {
+        align-items: flex-start; } }
     @media (max-width: 749px) {
       .product-section-row .delivery-check-sec {
         flex-wrap: wrap;
@@ -5704,7 +5704,8 @@ body.layout_jewellery h2 {
         @media (max-width: 1600px) {
           .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder .glb-btn-with-arrow.large_arrow_btn {
             font-size: 14px;
-            line-height: normal; } }
+            line-height: normal;
+            margin-top: 15px; } }
         @media (max-width: 1199px) {
           .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder .glb-btn-with-arrow.large_arrow_btn {
             font-size: 14px; } }
@@ -6002,6 +6003,9 @@ body.layout_jewellery h2 {
   justify-content: center;
   position: relative;
   min-height: 54px; }
+  @media (max-width: 1600px) {
+    .bottom-pagination-row {
+      margin-top: 50px; } }
   @media (max-width: 991px) {
     .bottom-pagination-row {
       margin-top: 50px;
@@ -7230,6 +7234,83 @@ body[data-template="404"] .main-content {
   visibility: visible;
   transform: none; }
 
+.drawer {
+  display: block;
+  top: 0;
+  right: -630px;
+  max-width: 630px;
+  background: #FFF;
+  z-index: 99999;
+  width: 100%;
+  transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -webkit-transition: all 0.4s; }
+  .drawer.show_drawer {
+    right: 0; }
+  .drawer .close-mini-cart {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-image: url(https://cdn.shopify.com/s/files/1/0575/2681/2840/files/Close.png?v=1628785372);
+    font-size: 0;
+    line-height: 0;
+    background-size: contain; }
+  .drawer .cart__headline {
+    height: 100px;
+    background: #6679cc;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 15px 45px; }
+    .drawer .cart__headline ul {
+      display: flex;
+      align-items: center;
+      margin-left: auto; }
+      .drawer .cart__headline ul li {
+        margin-left: 32px;
+        line-height: 0; }
+        .drawer .cart__headline ul li a {
+          color: #fff;
+          transition: all 0.4s;
+          -o-transition: all 0.4s;
+          -ms-transition: all 0.4s;
+          -moz-transition: all 0.4s;
+          -webkit-transition: all 0.4s; }
+          .drawer .cart__headline ul li a.active, .drawer .cart__headline ul li a:hover {
+            color: #6C1D45; }
+          .drawer .cart__headline ul li a svg path {
+            fill: currentColor; }
+  .drawer .template-404 {
+    padding: 74px 100px;
+    max-height: calc(100vh - 100px);
+    overflow: auto; }
+  .drawer p {
+    font-size: 26px;
+    line-height: 28.08px; }
+    @media (max-width: 1600px) {
+      .drawer p {
+        font-size: 16px;
+        line-height: 1.8; } }
+    @media (max-width: 749px) {
+      .drawer p {
+        font-size: 14px;
+        line-height: 18px; } }
+  .drawer h2 {
+    font-family: 'Spectral', serif;
+    font-weight: 200;
+    font-size: 38px;
+    line-height: 41.04px;
+    margin-bottom: 0;
+    color: #6c1d45;
+    letter-spacing: normal;
+    text-transform: none; }
+  .drawer .content_holder {
+    padding: 96px 0 100px; }
+    .drawer .content_holder p::not(:last-child) {
+      margin-bottom: 36px; }
+
 body[data-template="cart"] .main-content {
   padding-top: 0;
   padding-bottom: 0; }
@@ -7715,6 +7796,8 @@ body[data-template="cart"] .home-sld {
                 display: flex;
                 align-items: center;
                 text-align: center; }
+                .custom_cart_row td.custom_cart_item_left_col .cart__product-body .cart__product-body-left .cart__quantity-td .cart__qty .cart__qty_iput_holder a {
+                  border: none; }
                 .custom_cart_row td.custom_cart_item_left_col .cart__product-body .cart__product-body-left .cart__quantity-td .cart__qty .cart__qty_iput_holder .cart__qty_decre {
                   width: 22px;
                   cursor: pointer; }
@@ -8062,27 +8145,11 @@ body[data-template="cart"] .home-sld {
   .layout_jewellery-plp .full_width_slider_wrapper.solitaire-banner-slider-wrapper ul.slick-dots {
     top: 354px; } }
 
-body[data-template="customers/register"],
-body[data-template="customers/login"],
-body[data-template="customers/reset_password"] {
-  padding-top: 0 !important; }
-  body[data-template="customers/register"] .announcement-bar,
-  body[data-template="customers/login"] .announcement-bar,
-  body[data-template="customers/reset_password"] .announcement-bar {
-    display: none !important; }
-  body[data-template="customers/register"] #shopify-section-header,
-  body[data-template="customers/login"] #shopify-section-header,
-  body[data-template="customers/reset_password"] #shopify-section-header {
-    position: relative !important; }
-  body[data-template="customers/register"] .sticky-header,
-  body[data-template="customers/login"] .sticky-header,
-  body[data-template="customers/reset_password"] .sticky-header {
-    position: static !important; }
-  body[data-template="customers/register"] .main-content,
-  body[data-template="customers/login"] .main-content,
-  body[data-template="customers/reset_password"] .main-content {
-    padding-top: 0;
-    padding-bottom: 0; }
+body[data-template="customers/register"] .main-content,
+body[data-template="customers/login"] .main-content,
+body[data-template="customers/reset_password"] .main-content {
+  padding-top: 0;
+  padding-bottom: 0; }
 
 .register-page-wrapper {
   padding: 100px 0 0; }

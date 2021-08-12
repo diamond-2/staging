@@ -5284,9 +5284,6 @@ body[data-template="product"] {
   }
   .price_inclusive {
     @include pdpSmallFont();
-    @media(max-width: $xxl) and (min-width: $postMd) {
-      margin-top: 10px;
-    }
     @media(max-width: $md) {
       font-size: 10px;
       line-height: 1.1;
@@ -5298,6 +5295,9 @@ body[data-template="product"] {
       align-items: center;
       margin-top: 20px;
       @include pdpSmallFont();
+      @media(max-width: $xxl) {
+        align-items: flex-start;
+      }
       @media(max-width: $md) {
         flex-wrap: wrap;
         font-size: 12px;
@@ -5312,7 +5312,7 @@ body[data-template="product"] {
         @media(max-width: $md) {
           display: none;
         }
-    }
+      }
       .delivery-check-input {
         // width: calc(27% - 24px);
         position: relative;
@@ -6995,6 +6995,7 @@ body[data-template="loose-stone"] {
             @media(max-width: $xxl) {
               font-size: 14px;
               line-height: normal;
+              margin-top: 15px;
             }
             @media(max-width: $xl) {
               font-size: 14px;
@@ -7374,6 +7375,9 @@ body[data-template="loose-stone"] {
   justify-content: center;
   position: relative;
   min-height: 54px;
+  @media(max-width: $xxl) {
+    margin-top:50px;
+  }
   @media(max-width: $lg) {
     margin-top:50px;
     min-height: 40px;
@@ -8822,6 +8826,86 @@ body[data-template="404"] {
     transform: none;
   }
 }
+
+
+// *****
+.drawer {
+  display: block;
+  top: 0;
+  right: -630px;
+  max-width: 630px;
+  background: #FFF;
+  z-index: 99999;
+  width: 100%;
+  @include transition();
+  &.show_drawer {
+    right:0;
+  }
+  .close-mini-cart {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-image: url(https://cdn.shopify.com/s/files/1/0575/2681/2840/files/Close.png?v=1628785372);
+    font-size: 0;
+    line-height: 0;
+    background-size: contain;
+  }
+  .cart__headline {
+    height: 100px;
+    background: #6679cc;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 15px 45px;
+    ul {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      li {
+        margin-left: 32px;
+        line-height: 0;
+        a {
+          color: #fff;
+          @include transition();
+          &.active, &:hover {
+            color: #6C1D45;
+          }
+          svg {
+            path {
+              fill: currentColor;
+            }
+          }
+        }
+      }
+    }
+  }
+  .template-404 {
+    padding: 74px 100px;
+    max-height: calc(100vh - 100px);
+    overflow: auto;
+  }
+  p {
+    @include globalFontSize26();
+  }
+  h2 {
+    @include heading-fonts();
+    font-size: 38px;
+    line-height: 41.04px;
+    margin-bottom: 0;
+    color: #6c1d45;
+    letter-spacing: normal;
+    text-transform: none;
+  }
+  .content_holder {
+    padding: 96px 0 100px;
+    p {
+      &::not(:last-child) {
+        margin-bottom: 36px;
+      }
+    }
+  }
+}
+
 // Mini Cart End
 
 // Cart Page Start
@@ -9353,6 +9437,9 @@ body[data-template="cart"] {
                 display: flex;
                 align-items: center;
                 text-align: center;
+                a {
+                  border: none;
+                }
                 .cart__qty_decre {
                   width: 22px;
                   cursor: pointer;
@@ -9777,16 +9864,16 @@ body[data-template="customers/reset_password"] {
   // #shopify-section-header {
   //   display: none !important;
   // }
-  padding-top:0 !important;
-  .announcement-bar {
-    display: none !important;
-  }
-  #shopify-section-header {
-    position: relative !important;
-  }
-  .sticky-header {
-    position: static !important;
-  }
+  // padding-top:0 !important;
+  // .announcement-bar {
+  //   display: none !important;
+  // }
+  // #shopify-section-header {
+  //   position: relative !important;
+  // }
+  // .sticky-header {
+  //   position: static !important;
+  // }
   .main-content {
     padding-top:0;
     padding-bottom: 0;
@@ -10838,6 +10925,8 @@ body[data-template="customers/account"] {
   }
 }
 /* ========== Customer Account End ============== */
+
+
 
 
 
