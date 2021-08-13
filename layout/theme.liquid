@@ -188,10 +188,6 @@
   {% include 'newsletter-popup' %}
   <!-- newsletter Popup End -->
 
-  <!-- Remove Cart Item Popup Start -->
-  {% include 'remove_cart_popup' %}
-  <!-- Remove Cart Item Popup End -->
-
 
 <!-- Cart Drawer -->
 {%- if page.request_type != 'cart' -%}
@@ -223,6 +219,8 @@
   <script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script>
   <!-- // loader js -->
   <script src="{{ 'loader.js' | asset_url }}"></script>
+  <!-- Custom JS -->
+  <script src="{{ 'custom.js' | asset_url }}"></script>
 
   {% if template contains 'collection' %}
   <script src="{{ 'collection-loadmore.js' | asset_url }}" async="async"></script>
