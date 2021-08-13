@@ -169,10 +169,13 @@
                   var selectOption = '';	
               	  var checked = '';
                   var checkVal = '';
+                  if(filterTitle == 'global.metal_type'){
+                    filterTitle = 'Metal Type';
+                  }
                   selectOption += '<select name="product-type" id="'+filterId+'" class="filters-toolbar__input">';
                   selectOption += '<option data-opt-val="" value="" selected="selected">'+filterTitle+'</option>';          
                   $.each(filterVal, function(key, val){
-                    if(val.count >= 0){
+                    if(val.count > 0){
                         var show = 'toShow';
                         filterName=filterName.toLowerCase().replace(' ', '-'); //console.log('Filtername==>'+filterName);
                         var thisVal = val.value;//console.log('thisVal == >  ' + thisVal);
@@ -290,7 +293,6 @@
             productGrid += '<li class="grid__item grid__item--solitaire-collection  aaa">';
             productGrid += '<div class="grid-view-item product-card">';
             productGrid += '<a class="grid-view-item__link grid-view-item__image-container full-width-link" href="'+getprodlink+'" style="display: none;"><span class="visually-hidden">'+prodTitle+'</span></a>';
-
             productGrid += '<div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider>';
              
                 for (let j = 0; j < prodImages.length; j++) {

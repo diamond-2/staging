@@ -6842,6 +6842,7 @@ theme.Cart = (function() {
 
       fetch(this.cartRoutes.cartChangeUrl + '.js', request)
         .then(function(response) {
+          console
           return response.json();
         })
         .then(
