@@ -5426,7 +5426,7 @@ hr {
     padding: 0.25rem 0.55rem; }
 
 /*================ Module | Filters and Sort toolbar and selection ================*/
-.filters-toolbar-wrapper {
+/* .filters-toolbar-wrapper {
   border-bottom: 1px solid var(--color-border);
   border-top: 1px solid var(--color-border);
   margin-bottom: 22px; }
@@ -5582,7 +5582,8 @@ hr {
   @media only screen and (max-width: 749px) {
     .filters-toolbar__product-count {
       font-size: calc(((var(--font-size-base) - 2) / (var(--font-size-base))) * 1em);
-      line-height: 46px; } }
+      line-height: 46px; } 
+} */
 
 .site-footer {
   margin-top: 55px;

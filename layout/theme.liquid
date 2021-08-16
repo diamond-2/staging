@@ -190,7 +190,7 @@
 
 
 <!-- Cart Drawer -->
-{%- if page.request_type != 'cart' -%}
+{%- if request.page_type != 'cart' -%}
   {% render 'cart-drawer' %}
 {%- endif -%}
 

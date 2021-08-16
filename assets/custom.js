@@ -21,11 +21,13 @@ $(document).on('click', '.product-form__cart-submit', function(e){
       data:  formData,
       success: function(data, status){
         slideCart();
+        agreeCartCondiotn();
         console.log(data);console.log(status);
         console.log(currentBtn);
         currentBtn.removeAttr('aria-disabled');
         currentBtn.find('[data-add-to-cart-text]').removeClass('hidden');
         currentBtn.find('[data-loader]').addClass('hidden');
+        $('.drawer_inner').addClass('has_cart_items');
         if($('body').hasClass('template-cart')) {
           location.reload();
         } else {
@@ -74,6 +76,7 @@ $(document).on('click', '.product-form__cart-submit', function(e){
           success: function(response) {
             $('#preloader').fadeOut();
             $('.update-cart').empty().append(response);
+            caretRemovePopup();
           }
         });
       }
@@ -161,7 +164,10 @@ $(document).on('click', '.product-form__cart-submit', function(e){
           $('.template-cart .cart-page-item').addClass('hidden');
           $('.template-cart .template-404').removeClass('hidden');
           $('.template-cart .glb-breadcrumb').addClass('hide');
+          $('.drawer_inner').removeClass('has_cart_items');
           console.log('Cart Is Empty')
+        } else {
+          $('.drawer_inner').addClass('has_cart_items');
         }
         $.ajax({
           url: '/cart/?view=miniCart',
@@ -224,6 +230,33 @@ function caretRemovePopup() {
 }
 // Remove Cart Popup Start
   
+// Agree condition checkobx validation Start
+function agreeCartCondiotn() {
+  $('form.cart').submit(function(e){
+    let termsAgree = $(this).find('#agree-tems');
+    let termsAgreeErrorMsg = $(this).find('#termsError');
+    if($(termsAgree).prop('checked') == false){
+        e.preventDefault();
+        $(termsAgreeErrorMsg).css('display','block');
+        $(termsAgreeErrorMsg).text('** Please agree with terms and conditions.');
+    } else {
+        $(termsAgreeErrorMsg).text('');
+        $(termsAgreeErrorMsg).css('display','none');
+    }
+  });
+  $('form.cart #agree-tems').change(function(){
+    let termsAgreeErrorMsg2 = $(this).closest('form.cart').find('#termsError');
+    if($(this).prop('checked') == false){
+        $(termsAgreeErrorMsg2).css('display','block');
+        $(termsAgreeErrorMsg2).text('** Please agree with terms and conditions.');
+    } else {
+        $(termsAgreeErrorMsg2).text('');
+        $(termsAgreeErrorMsg2).css('display','none');
+    }
+  });
+}
+agreeCartCondiotn();
+// Agree condition checkobx validation End
 
   // show drawer
   $('.minicart-btn').click(function(e){
