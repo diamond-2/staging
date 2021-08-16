@@ -6620,6 +6620,159 @@ body[data-template="loose-stone"] {
     }
   }
 }
+.list-view-section  {
+  display: none;
+  margin-top: 35px;
+  table {
+    margin:0;
+    &.list-view-items {
+      tr {
+        th,td {
+          text-align: center;
+          border: none;
+          padding:11px 16px;
+          font-size: 14px;
+          line-height: 15.12px;
+          font-weight: 400;
+          letter-spacing: 0.05em;
+          color: $textcolor-black;
+          a {
+            text-decoration: none;
+            color: inherit !important;
+            border: none;
+          }
+        }
+        th {
+          border: 1px solid #6C1D45;
+          background: #ECE2E7;
+          line-height: 17.07px;
+          letter-spacing: -0.02em;
+          text-transform: uppercase;
+          color: $textcolor-phanton;
+          .down_icon {
+            svg  {
+              display: inline-block;
+              vertical-align: middle;
+            }
+          }
+        }
+        &.list-view-item {
+          background: #FFFFFF;
+          border: none;
+          padding: 0;
+          margin:0;
+          &:nth-child(even) {
+            background: #F0F0F0;
+          }
+          td {
+            padding: 19.5px 16px;
+            &.wishlist_td {
+              width: 6.2%;
+            }
+            &.shape_td {
+              width: 15.15%;
+              .text {
+                vertical-align: middle;
+                width: calc(100% - 70px);
+                display: inline-block;
+                margin-left: 48px;
+              }
+              img {
+                vertical-align: middle;
+                width: 22px;
+              }
+            }
+            &.price_td {
+
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.filters-toolbar__item-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 400;
+  .filters-toolbar__item--count {
+    color: #6C1D45;
+  }
+  .filter_right_column {
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    .filter_wishlist_item {
+      padding: 0 54px;
+      display: flex;
+      align-items: center;
+      svg {
+        margin-right: 6px;
+      }
+    }
+    .product_view_item_grp {
+      margin-left: 30px;
+      background: #F3F3F3;
+      padding: 3px;
+      display: flex;
+      align-items: center;
+      .product_view {
+        width: 34px;
+        height: 34px;
+        background: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        a {
+          color: $textcolor-black;
+        }
+        &.active {
+          background-color: #fff;
+          a {
+            color: #6C1D45;
+          }
+        }
+        a {
+          svg {
+            display: block;
+            path {
+              fill: currentColor;
+            }
+          }
+        }
+      }
+    }
+  }
+  .select-group {
+    label {
+      margin: 0;
+      font-size: inherit;
+      display: flex;
+      align-items: center;
+      svg {
+        margin-left: 6.5px;
+      }
+    }
+    .filters-toolbar__input {
+      background: transparent;
+      border: none;
+      padding: 8px 5px;
+      width: 90px !important;
+      position: relative;
+      z-index: 1;
+    }
+    svg {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0;
+    }
+  }
+}
 .custom-jewellary-two-col-row {
   display: flex;
   flex-wrap: wrap;
@@ -8968,7 +9121,10 @@ body[data-template="404"] {
       max-height: calc(100vh - 50px);
     }
     &.has_cart_items {
-      padding:62px 50px;
+      padding: 20px 50px 45px;
+      @media(max-width: $xxl) {
+        padding: 20px 20px 45px;
+      }
       @media(max-width: $md) {
         padding:50px 15px 38px;
         .cart-page-se-header {
@@ -9044,6 +9200,7 @@ body[data-template="404"] {
                     line-height: 24.35px;
                     min-height: 0;
                     margin:0 0 7px;
+                    padding-right: 50px;
                   }
                 }
                 .product-details {

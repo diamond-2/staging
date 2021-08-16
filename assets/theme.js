@@ -10179,6 +10179,15 @@ window.addEventListener("resize", function() {
   // matchHeight Global Call
   $('.matchHeight ').matchHeight();
 
+  // Grid List View Tab
+  $('.product_view_item_grp a').click(function(e){
+    e.preventDefault();
+    let viewTab = $(this).attr('data-view');
+    $(this).parent().addClass('active');
+    $(this).parent().siblings().removeClass('active');
+    $('.product_view_tab[data-view="'+viewTab+'"]').fadeIn();
+    $('.product_view_tab[data-view="'+viewTab+'"]').siblings('.product_view_tab').fadeOut();
+  });
 
   
 
