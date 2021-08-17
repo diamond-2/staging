@@ -2062,7 +2062,7 @@ textarea {
   border:none;
 }
 .site-nav--has-centered-dropdown .site-nav__dropdown {
-  min-height: 276px;
+  min-height: 380px;
 }
   .site-nav__dropdown .site-nav__link {
     padding: 4px 15px 5px;

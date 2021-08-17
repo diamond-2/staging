@@ -343,7 +343,7 @@
           {% endif %}
             {% if section.settings.logo %}
             {%- assign img_url = 'main-logo.svg' | file_url -%}  
-          {% comment  %} {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}{% endcomment %}
+            {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
               <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered 33{% endif %}" data-image-loading-animation>
                 {% capture logo_alt %}{{ section.settings.logo.alt | default: shop.name }}{% endcapture %}
                 <img class="lazyload js"

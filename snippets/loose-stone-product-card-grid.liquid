@@ -67,13 +67,8 @@
 {% endcomment %}
 
 <div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card">
-    {% include 'product-badge' %}
-    <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="{{ product.url }}" style="display: none;">
-      <span class="visually-hidden">{{ product.title }}</span>
-    </a>
-  
     <div class="product-images-wrapper">
-
+      {% include 'product-badge' %}
       <div class="{% if product.images.size > 1 %}product_images_slider{% endif %}">
         {% for slideImage in product.images %}
         <div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation>
@@ -86,40 +81,46 @@
         {% endfor %}
       </div>
       <a href="{{ product.url }}" class="full_link"></a>
-      <div class="product-image-body-row">
-        <a class="compare_btn">COMPARE</a>
-        <a class="p_more_btn"><span class="text_more">MORE</span><span class="text_less">LESS</span></a>
-      </div>
-      <div class="more_product_datatable">
-        <table>
-          <tbody>
-            <tr>
-              <td>Depth:</td>
-              <td>62.6%</td>
-            </tr>
-            <tr>
-              <td>Table:</td>
-              <td>60.0%</td>
-            </tr>
-            <tr>
-              <td>Fluorescence:</td>
-              <td>Strong</td>
-            </tr>
-            <tr>
-              <td>Polish:</td>
-              <td>Excellent</td>
-            </tr>
-            <tr>
-              <td>Symmetry:</td>
-              <td>EX</td>
-            </tr>
-            <tr>
-              <td>CLARITY:</td>
-              <td>SI2</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <!-- capture More Data Table and Buttons -->
+      
+      {% capture showMoreData %}
+        <div class="product-image-body-row">
+          <a class="compare_btn">COMPARE</a>
+          <a class="p_more_btn"><span class="text_more">MORE</span><span class="text_less">LESS</span></a>
+        </div>
+        <div class="more_product_datatable">
+          <table>
+            <tbody>
+              <tr>
+                <td>Depth:</td>
+                <td>62.6%</td>
+              </tr>
+              <tr>
+                <td>Table:</td>
+                <td>60.0%</td>
+              </tr>
+              <tr>
+                <td>Fluorescence:</td>
+                <td>Strong</td>
+              </tr>
+              <tr>
+                <td>Polish:</td>
+                <td>Excellent</td>
+              </tr>
+              <tr>
+                <td>Symmetry:</td>
+                <td>EX</td>
+              </tr>
+              <tr>
+                <td>CLARITY:</td>
+                <td>SI2</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      {% endcapture %}
+      <!-- capture More Data Table Close -->
+      <div class="hide_mobile">{{ showMoreData }}</div>
     </div>
   
     <noscript>
@@ -133,13 +134,24 @@
         {% include 'product-price-listing', product: product, show_vendor: show_vendor %}
       </span>
       <div class="product-price-card">
-        <div class="product-price-card-row">
+        <div class="product-price-card-row hide_mobile">
           <div class="product_b_tex">1.09 CT</div>
           <div class="product_b_tex">Round H&A</div>
           <div class="product_b_tex">Excellent</div>
           <div class="product_b_tex">H</div>
           <span class="divider"></span>
           <div class="product_b_tex">IF-VS</div>
+        </div>
+        <div class="product-price-card-row show_mobile">
+          <div class="r1">
+            <div class="product_b_tex">1.09 CT</div>
+            <div class="product_b_tex">Round H&A</div>
+          </div>
+          <div class="r2">
+            <div class="product_b_tex">Excellent</div>
+            <div class="product_b_tex">H</div>
+            <div class="product_b_tex">IF-VS</div>
+          </div>
         </div>
         <div class="product-price-card-row price_row {% if product.compare_at_price == blank %}no_discount{% endif %}">
           <div class="ragular_price">{{ product.price | money | remove: '.00' }}</div>
@@ -148,7 +160,11 @@
           {% if product.compare_at_price %}<div class="product_discount">{{ discount | floor }}% OFF</div>{% endif %}
         </div>
       </div>
+      <div class="show_mobile">{{ showMoreData }}</div>
     </div>
+    
+
+
   
   </div>
   

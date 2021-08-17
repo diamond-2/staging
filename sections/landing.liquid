@@ -44,28 +44,57 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function(event) {
-        if($.cookie('landingpage') == null) {
-        //   $('body').prepend('<div id="landing-illusion"></div>');
-          $('#shopify-section-landing').slideDown();
-          $('body').addClass('landing-exist');
+        // if($.cookie('landingpage') == null) {
+        // //   $('body').prepend('<div id="landing-illusion"></div>');
+        //   $('#shopify-section-landing').slideDown();
+        //   $('body').addClass('landing-exist');
           
+        // }
+        // var lastScrollTop = 0;
+        // $(window).on('scroll', function(){            
+        //     let windowScrolled = $(window).scrollTop(); console.log(windowScrolled);
+        //     if(windowScrolled > 10){
+        //         $('body').addClass('scroll-start');
+        //         $.cookie('landingpage',2);
+        //         setTimeout(function(){
+        //             $('#shopify-section-landing').remove();
+        //             $('body').removeClass('scroll-start landing-exist');
+        //         },2000)
+        //     }
+        // });
+
+        // function removeCookies() {
+        //     $('body').addClass('scroll-start');
+        //     $.cookie('landingpage',2);
+        //     setTimeout(function(){
+        //         $('#shopify-section-landing').remove();
+        //         $('body').removeClass('scroll-start landing-exist');
+        //     },2000)
+        // }
+        // $('.remove_landing_cookie').click(function(e){
+        //     e.preventDefault();
+        //     removeCookies();
+        // });
+
+        if(sessionStorage.getItem("landingSession") == null){
+            $('#shopify-section-landing').slideDown();
+            $('body').addClass('landing-exist');
         }
         var lastScrollTop = 0;
         $(window).on('scroll', function(){            
-            let windowScrolled = $(window).scrollTop(); console.log(windowScrolled);
+            let windowScrolled = $(window).scrollTop();
+            $('body').addClass('scroll-start');
             if(windowScrolled > 10){
-                $('body').addClass('scroll-start');
-                $.cookie('landingpage',2);
+                sessionStorage.setItem("landingSession", "2");
                 setTimeout(function(){
                     $('#shopify-section-landing').remove();
                     $('body').removeClass('scroll-start landing-exist');
                 },2000)
             }
         });
-
-        function removeCookies() {
+        function removeSession() {
             $('body').addClass('scroll-start');
-            $.cookie('landingpage',2);
+            sessionStorage.setItem("landingSession", "2");
             setTimeout(function(){
                 $('#shopify-section-landing').remove();
                 $('body').removeClass('scroll-start landing-exist');
@@ -73,9 +102,8 @@
         }
         $('.remove_landing_cookie').click(function(e){
             e.preventDefault();
-            removeCookies();
+            removeSession();
         });
-
 
     });
 </script>

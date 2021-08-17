@@ -219,7 +219,7 @@
               <div class="loder-spiner"></div>
             </div>
           {%- endif -%}
-          <div class="back-to-top-holder hide_mobile">
+          <div class="back-to-top-holder">
             <a class="back-to-top"><span class="back_top_text">Back to Top</span><span class="back_top_arrow">{% include 'back-top-icon' %}</span></a>
           </div>
         </div>
@@ -246,7 +246,7 @@
           <tbody>
             {% for product in collection.products %}
               <tr class="list-view-item">
-                {% include 'loose-diamond-product-card-list', product: product, show_vendor: section.settings.show_vendor %}
+                {% include 'loose-stone-product-card-list', product: product, show_vendor: section.settings.show_vendor %}
               </tr>
             
               {%- comment -%}
@@ -296,7 +296,7 @@
             <div class="loder-spiner"></div>
           </div>
         {%- endif -%}
-        <div class="back-to-top-holder hide_mobile">
+        <div class="back-to-top-holder">
           <a class="back-to-top"><span class="back_top_text">Back to Top</span><span class="back_top_arrow">{% include 'back-top-icon' %}</span></a>
         </div>
       </div>

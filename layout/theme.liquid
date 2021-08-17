@@ -55,8 +55,9 @@
   {%- if page_description -%}
     <meta name="description" content="{{ page_description | escape }}">
   {%- endif -%}
-
+{%- comment -%}
   <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@200;300&display=swap" rel="stylesheet">
+{%- endcomment -%}
   {% include 'social-meta-tags' %}
   {% include 'css-variables' %}
 
