@@ -199,9 +199,11 @@
   {% if template == 'index' %}
     {% section 'landing' %}
   {% endif %}
+  {%- comment -%}
   {%- if settings.enable_ajax -%}
     {% include 'cart-popup' %}
   {%- endif -%}
+  {%- endcomment -%}
   {% section 'header' %}
 
   <div class="page-container drawer-page-content" id="PageContainer">

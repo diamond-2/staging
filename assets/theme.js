@@ -9878,6 +9878,10 @@ window.addEventListener("resize", function() {
       $(menuImageItem).attr('data-src',defaultSetImage);
     });
   });
+  
+  $('#AccessibleNav #SiteNav > li > a.site-nav__link--button').click(function(e){
+    e.preventDefault();
+  });
 
 
 
@@ -9929,6 +9933,8 @@ window.addEventListener("resize", function() {
     $('.mobile-nav-wrapper').removeClass('js-menu--is-open');
     $('.mobile-nav-wrapper').removeClass('sub-nav--is-open');
     $('body').removeClass('js-menu--is-open');
+    $('.mobile-nav__dropdown').removeClass('is-closing');
+    $('.js-toggle-submenu').removeClass('is-active')
   }); 
 
   // newesletter validation
@@ -9974,6 +9980,9 @@ window.addEventListener("resize", function() {
   }
   
   $(window).on('load', function(){  
+    setTimeout(function(){
+      $('.form-message').hide();
+    },3000);
     var check = window.location.search;
     var getFormId = localStorage.getItem('form-Id');
     if(getFormId !=null) {

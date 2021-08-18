@@ -1,33 +1,8 @@
 <div class="account_section_wrapper padding_t">
   <div class="container_fluid">
 
-    <div class="glb-breadcrumb">
-      <ul>
-        <li>
-          <a href="/">Home</a>
-          {% include 'icon-breadcrumb' %}
-        </li>
-        <li><span class="bred_tex">Account</span></li>
-      </ul>
-    </div>
-
-    <div class="account_section-header">
-      <p>Welcome, {{ customer.first_name }}</p>
-      <h1>{{ 'Your Account' }}</h1>
-      {%- comment -%}<h1>{{ 'customer.account.title' | t }}</h1>{%- endcomment -%}
-      {%- comment -%}{{ 'layout.customer.log_out' | t | customer_logout_link }}{%- endcomment -%}
-    </div>
-
-    <div class="account_nav">
-      <ul>
-        <li><a href="#">Profile</a></li>
-        <li><a href="#">Wishlist</a></li>
-        <li class="active"><a href="#">Orders</a></li>
-        <li><a href="#">Appointments</a></li>
-        <li><a href="/account/addresses">Address</a></li>
-        <li><a href="#">Help</a></li>
-      </ul>
-    </div>
+    <!-- Top Section 'Breadcrumbs', 'Welocome User', 'Top Nav' -->
+    {% include 'account-top-section' %}
 
     <div class="myaccount_order_wrapper">
       <div class="myaccount__order_history">

@@ -520,12 +520,35 @@
                           </li>
                         {% endfor %}
 
-                        {% if link.title contains 'INTRODUCING DIAMOND2' %}
-                        <ul class="custom-menu-mb">
-                          <li><a href="#">SHOP LOOSE DIAMOND2<sup>®</sup></a></li>
-                          <li><a href="#">SHOP Jewellery CollectionS</a></li>
-                        </ul>
+                        {% for block in section.blocks %}
+                        {% assign matchParent  = block.settings.meganav_parent | downcase | strip %}
+                        {% assign linkTitle = link.title | downcase | strip %}
+                        {% if matchParent == linkTitle %}
+                        {%- if block.settings.menu_1_text != blank or block.settings.menu_2_text != blank or block.settings.menu_3_text != blank -%}
+                        <div class="bottom-custom-menu-links">
+                          <ul>
+                            {%- if block.settings.menu_1_text != blank -%}
+                            <li>
+                              <a href="{{ block.settings.menu_1_link }}" {% if block.settings.bottom_links_featured_image %}data-handle="{{ block.settings.bottom_links_featured_image | img_url: 'master' }}"{% endif %}>{{ block.settings.menu_1_text | replace: '®', '<sup>®</sup>' }}</a>
+                            </li>
+                            {%- endif -%}
+
+                            {%- if block.settings.menu_2_text != blank -%}
+                            <li>
+                              <a href="{{ block.settings.menu_2_link }}" {% if block.settings.bottom_links_featured_image %}data-handle="{{ block.settings.bottom_links_featured_image | img_url: 'master' }}"{% endif %}>{{ block.settings.menu_2_text | replace: '®', '<sup>®</sup>' }}</a>
+                            </li>
+                            {%- endif -%}
+
+                            {%- if block.settings.menu_3_text != blank -%}
+                            <li>
+                              <a href="{{ block.settings.menu_3_link }}" {% if block.settings.bottom_links_featured_image %}data-handle="{{ block.settings.bottom_links_featured_image | img_url: 'master' }}"{% endif %}>{{ block.settings.menu_3_text | replace: '®', '<sup>®</sup>' }}</a>
+                            </li>
+                            {%- endif -%}
+                          </ul>
+                        </div>
+                        {%- endif -%}
                         {% endif %}
+                        {% endfor %}
 
                       </div>
                     </ul>

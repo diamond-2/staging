@@ -46,22 +46,21 @@
                                     <span class="show_mobile">QTY.</span>
                                   </label>
                                   <div class="cart__qty_iput_holder">
-                                    <a href="javascript:;" class="cart__qty_decre js-change-quantity quantity-input__button plus" data-template="cart"
+                                    <a href="javascript:;" class="cart__qty_decre js-change-quantity quantity-input__button minus" data-template="cart"
                                     data-name="minus"
                                     aria-label="{{ 'products.product.decrease_quantity' | t: title: product.title }}"
                                     data-quantity-selector
-                                    data-product-id="{{ product.id }}">-</a>
+                                    data-product-id="{{ product.id }}"><svg width="10" height="2" viewBox="0 0 10 2" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 1.66667V0H10V1.66667H0Z" /></svg></a>
 
                                     
                                     <input class="form__input cart__quantity cart__qty-input"type="tel" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0" aria-label="{{ 'cart.general.item_quantity' | t }}" data-quantity>
 
-                                    <a href="javascript:;" class="cart__qty_incre js-change-quantity quantity-input__button minus" data-name="plus"
+                                    <a href="javascript:;" class="cart__qty_incre js-change-quantity quantity-input__button plus" data-name="plus"
                                     data-template="cart"
                                   aria-label="{{ 'products.product.increase_quantity' | t: title: product.title }}"
                                   data-quantity-selector
                                   data-quantity-selector-increase
-                                  data-product-id="{{ product.id }}"
-                                  >+</a>
+                                  data-product-id="{{ product.id }}"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 4.16667H5.83333V0H4.16667V4.16667H0V5.83333H4.16667V10H5.83333V5.83333H10V4.16667Z" /></svg></a>
                                   </div>
                                 </div>
                                 <div class="cart__qty-error-message-wrapper cart__qty-error-message-wrapper--desktop hide" role="alert" data-cart-quantity-error-message-wrapper>
@@ -135,9 +134,9 @@
                             </div>
                             
                             <div class="cart__final-price" data-cart-item-line-price>
-                              <span class="org_price">{{ item.original_line_price | money_without_trailing_zeros }}</span>
                               {% if item.variant.compare_at_price %}<span class="compare_price">{{ item.variant.compare_at_price | money_without_trailing_zeros }}</span>{% endif %}
-                              <span class="price_inclusive_tex">Price is Inclusive of Taxes</span>
+                              <span class="org_price">{{ item.original_line_price | money_without_trailing_zeros }}</span>
+                              <span class="price_inclusive_tex">Price inclusive of taxes</span>
                             </div>
 
                           </div>

@@ -239,6 +239,10 @@ function agreeCartCondiotn() {
         e.preventDefault();
         $(termsAgreeErrorMsg).css('display','block');
         $(termsAgreeErrorMsg).text('** Please agree with terms and conditions.');
+        setTimeout(function(){
+          $(termsAgreeErrorMsg).text('');
+          $(termsAgreeErrorMsg).css('display','none');
+        },3000);
     } else {
         $(termsAgreeErrorMsg).text('');
         $(termsAgreeErrorMsg).css('display','none');
@@ -249,6 +253,10 @@ function agreeCartCondiotn() {
     if($(this).prop('checked') == false){
         $(termsAgreeErrorMsg2).css('display','block');
         $(termsAgreeErrorMsg2).text('** Please agree with terms and conditions.');
+        setTimeout(function(){
+          $(termsAgreeErrorMsg2).text('');
+          $(termsAgreeErrorMsg2).css('display','none');
+        },3000);
     } else {
         $(termsAgreeErrorMsg2).text('');
         $(termsAgreeErrorMsg2).css('display','none');

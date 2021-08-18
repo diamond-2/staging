@@ -90,10 +90,15 @@
                     setTimeout(function(){
                         $.cookie('newesletterPopup',2);
                         $('.newsletter-popup-wrapper').remove();
-                        $('body').removeClass('newsletterPopup-exist');
+                        setTimeout(function(){
+                            $('body').removeClass('newsletterPopup-exist');
+                        },2000);
                     },500);
                 }
             }
+           
+            
         });
+
     });
 </script>
