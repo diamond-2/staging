@@ -19,9 +19,9 @@
     <ul>
       <li><a href="#">Profile</a></li>
       <li><a href="#">Wishlist</a></li>
-      <li class="active"><a href="#">Orders</a></li>
+      <li {% if request.page_type == 'customers/account' %}class="active"{% endif %}><a href="/account">Orders</a></li>
       <li><a href="#">Appointments</a></li>
-      <li><a href="/account/addresses">Address</a></li>
+      <li {% if request.page_type == 'customers/addresses' %}class="active"{% endif %}><a href="/account/addresses">Address</a></li>
       <li><a href="#">Help</a></li>
     </ul>
   </div>

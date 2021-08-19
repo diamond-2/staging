@@ -145,7 +145,7 @@ $input-field-border-color:#6679CC;
     font-weight: 400;
     border-radius: 0;
     letter-spacing: normal;
-    &:hover, &:focus, &:not([disabled]):hover {
+    &:hover {
       color: $textcolor-white;
       border-color:$textcolor-phanton;
       background:$textcolor-phanton;
@@ -178,7 +178,7 @@ $input-field-border-color:#6679CC;
     font-weight: 400;
     border-radius: 0;
     letter-spacing: normal;
-    &:hover, &:focus, &:not([disabled]):hover {
+    &:hover {
       color: $textcolor-white;
       border-color:$color-primary;
       background:$color-primary;
@@ -12273,6 +12273,10 @@ body[data-template="customers/addresses"] {
       }
     }
   }
+  .edit_address_form {
+    width: 100%;
+    margin-top:30px;
+  }
   .address_item_grid {
     .address_item {
       border: 1px solid rgba(0, 0, 0, 0.1);
@@ -12280,6 +12284,25 @@ body[data-template="customers/addresses"] {
       padding: 28px 30px;
       margin-bottom: 40px;
       .address {
+        .address_title_flex {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 20px;
+          h5 {
+            margin:0;
+          }
+          h6 {
+            margin:0;
+            font-size: 14px;
+            line-height: 15.12px;
+            font-weight: 400;
+            font-family: $glbFontFamily;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+          }
+        }
         margin: 0;
         h5 {
           color: $textcolor-phanton;
