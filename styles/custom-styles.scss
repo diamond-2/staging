@@ -12245,6 +12245,15 @@ body[data-template="customers/addresses"] {
           border: 1px solid rgba(0, 0, 0, 0.1);
           height: 50px;
           margin:0;
+          &.form-error {
+            border-color: red;
+          }
+        }
+        select {
+          background-image: url(https://cdn.shopify.com/s/files/1/0575/2681/2840/files/select_arrow.png?v=1629377332);
+          background-repeat: no-repeat;
+          background-size: 16px;
+          background-position: calc(100% - 20px) center;
         }
       }
     }

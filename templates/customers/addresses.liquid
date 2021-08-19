@@ -1,9 +1,7 @@
 {% paginate customer.addresses by 5 %}
 
-
 <div class="account_section_wrapper address_section_wrapper padding_t">
   <div class="container_fluid">
-    
     <!-- Top Section 'Breadcrumbs', 'Welocome User', 'Top Nav' -->
     {% include 'account-top-section' %}
 
@@ -26,11 +24,13 @@
                 <div class="grid__item medium-up--one-half">
                   <label for="AddressFirstNameNew">{{ 'customer.addresses.first_name' | t }}</label>
                   <input type="text" id="AddressFirstNameNew" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name">
+                  <div class="msg-error"></div>
                 </div>
 
                 <div class="grid__item medium-up--one-half">
                   <label for="AddressLastNameNew">{{ 'customer.addresses.last_name' | t }}</label>
                   <input type="text" id="AddressLastNameNew" name="address[last_name]" value="{{ form.last_name }}" autocomplete="family-name">
+                  <div class="msg-error"></div>
                 </div>
               </div>
 
@@ -38,10 +38,12 @@
                 <div class="grid__item medium-up--one-half">
                   <label for="AddressCompanyNew">{{ 'customer.addresses.company' | t }}</label>
                   <input type="text" id="AddressCompanyNew" name="address[company]" value="{{ form.company }}" autocomplete="organization">
+                  <div class="msg-error"></div>
                 </div>
                 <div class="grid__item medium-up--one-half">
                   <label for="AddressAddress1New">{{ 'customer.addresses.address1' | t }}</label>
                   <input type="text" id="AddressAddress1New" name="address[address1]" value="{{ form.address1 }}" autocomplete="street-address address-line1">
+                  <div class="msg-error"></div>
                 </div>
               </div>
 
@@ -49,10 +51,12 @@
                 <div class="grid__item medium-up--one-half">
                   <label for="AddressAddress2New">{{ 'customer.addresses.address2' | t }}</label>
                   <input type="text" id="AddressAddress2New" name="address[address2]" value="{{ form.address2 }}" autocomplete="street-address address-line2">
+                  <div class="msg-error"></div>
                 </div>
                 <div class="grid__item medium-up--one-half">
                   <label for="AddressCityNew">{{ 'customer.addresses.city' | t }}</label>
                   <input type="text" id="AddressCityNew" name="address[city]" value="{{ form.city }}" autocomplete="address-level2">
+                  <div class="msg-error"></div>
                 </div>
               </div>
 
@@ -73,10 +77,12 @@
                 <div class="grid__item medium-up--one-half">
                   <label for="AddressZipNew">{{ 'customer.addresses.zip' | t }}</label>
                   <input type="text" id="AddressZipNew" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters" autocomplete="postal-code">
+                  <div class="msg-error"></div>
                 </div>
                 <div class="grid__item medium-up--one-half">
                   <label for="AddressPhoneNew">{{ 'customer.addresses.phone' | t }}</label>
                   <input type="tel" id="AddressPhoneNew" name="address[phone]" value="{{ form.phone }}" autocomplete="phone">
+                  <div class="msg-error"></div>
                 </div>
               </div>
               
@@ -147,20 +153,24 @@
                       <div class="grid__item medium-up--one-half">
                         <label for="AddressFirstName_{{ form.id }}">{{ 'customer.addresses.first_name' | t }}</label>
                         <input type="text" id="AddressFirstName_{{ form.id }}" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name">
+                        <div class="msg-error"></div>
                       </div>
                       <div class="grid__item medium-up--one-half">
                         <label for="AddressLastName_{{ form.id }}">{{ 'customer.addresses.last_name' | t }}</label>
                         <input type="text" id="AddressLastName_{{ form.id }}" name="address[last_name]" value="{{ form.last_name }}" autocomplete="family-name">
+                        <div class="msg-error"></div>
                       </div>
                     </div>
                     <div class="grid">
                       <div class="grid__item medium-up--one-half">
                         <label for="AddressCompany_{{ form.id }}">{{ 'customer.addresses.company' | t }}</label>
                         <input type="text" id="AddressCompany_{{ form.id }}" name="address[company]" value="{{ form.company }}" autocomplete="organization">
+                        <div class="msg-error"></div>
                       </div>
                       <div class="grid__item medium-up--one-half">
                         <label for="AddressAddress1_{{ form.id }}">{{ 'customer.addresses.address1' | t }}</label>
                         <input type="text" id="AddressAddress1_{{ form.id }}" name="address[address1]" value="{{ form.address1 }}" autocomplete="street-address address-line1">
+                        <div class="msg-error"></div>
                       </div>
                     </div>
 
@@ -168,10 +178,12 @@
                       <div class="grid__item medium-up--one-half">
                         <label for="AddressAddress2_{{ form.id }}">{{ 'customer.addresses.address2' | t }}</label>
                         <input type="text" id="AddressAddress2_{{ form.id }}" name="address[address2]" value="{{ form.address2 }}" autocomplete="street-address address-line2">
+                        <div class="msg-error"></div>
                       </div>
                       <div class="grid__item medium-up--one-half">
                         <label for="AddressCity_{{ form.id }}">{{ 'customer.addresses.city' | t }}</label>
                         <input type="text" id="AddressCity_{{ form.id }}" name="address[city]" value="{{ form.city }}" autocomplete="address-level2">
+                        <div class="msg-error"></div>
                       </div>
                     </div>
 
@@ -192,11 +204,13 @@
                       <div class="grid__item medium-up--one-half">
                         <label for="AddressZip_{{ form.id }}">{{ 'customer.addresses.zip' | t }}</label>
                         <input type="text" id="AddressZip_{{ form.id }}" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters" autocomplete="postal-code">
+                        <div class="msg-error"></div>
                       </div>
 
                       <div class="grid__item medium-up--one-half">
                         <label for="AddressPhone_{{ form.id }}">{{ 'customer.addresses.phone' | t }}</label>
                         <input type="tel" id="AddressPhone_{{ form.id }}" name="address[phone]" value="{{ form.phone }}" autocomplete="phone">
+                        <div class="msg-error"></div>
                       </div>
                     </div>
 
@@ -216,7 +230,7 @@
                     </div>
 
                   {% endform %}
-                  <hr>
+                  
                 </div>
               </li>
             {% endfor %}
@@ -231,3 +245,81 @@
   </div>
 </div>
 {% endpaginate %}
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(event) {
+    function validateForm($this) {
+      var firstName = $this.find('input[name="address[first_name]"]').val().trim();
+      var lastName = $this.find('input[name="address[last_name]').val().trim();
+      var thisPhone = $this.find('input[name="address[phone]"]').val().trim();
+      var addressVlidation = $this.find('input[name="address[address1]"]').val().trim();
+      var cityVlidation = $this.find('input[name="address[city]"]').val().trim();
+      var zipValidation = $this.find('input[name="address[zip]"]').val().trim();
+      var nameRegx = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z0-9]*)*$/;
+      var regmm='^([0|+[0-9]{1,5})?([7-9][0-9]{9})$';
+      var regmob = new RegExp(regmm);
+      if (firstName == "" || firstName == null) {
+        $this.find('input[name="address[first_name]"]').addClass('form-error').next('.msg-error').text("Enter Your First Name").css('display','block');
+      } else if (nameRegx.test(firstName) == false ){
+        $this.find('input[name="address[first_name]"]').addClass('form-error').next('.msg-error').text("Please Enter Valid First Name").css('display','block');
+      } else {
+        $this.find('input[name="address[first_name]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+      }
+      if (lastName == "" || lastName == null) {
+        $this.find('input[name="address[last_name]').addClass('form-error').next('.msg-error').text("Enter Your Last Name").css('display','block');
+      } else if (nameRegx.test(lastName) == false ){
+        $this.find('input[name="address[last_name]').addClass('form-error').next('.msg-error').text("Please Enter Valid Last Name").css('display','block');
+      } else {
+        $this.find('input[name="address[last_name]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+      }
+      if (thisPhone.length != 10 || thisPhone == null || regmob.test(thisPhone) == false) {
+        $this.find('input[name="address[phone]"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Phone Number").css('display','block');
+      } else {
+        $this.find('input[name="address[phone]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+      }
+      if (addressVlidation == "" || addressVlidation == null) {
+        $this.find('input[name="address[address1]').addClass('form-error').next('.msg-error').text("Field cannot be blank").css('display','block');
+      } else {
+        $this.find('input[name="address[address1]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+      }
+      if (cityVlidation == "" || cityVlidation == null) {
+        $this.find('input[name="address[city]').addClass('form-error').next('.msg-error').text("Field cannot be blank").css('display','block');
+      } else {
+        $this.find('input[name="address[city]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+      }
+      if (zipValidation == "" || zipValidation == null) {
+        $this.find('input[name="address[zip]').addClass('form-error').next('.msg-error').text("Field cannot be blank").css('display','block');
+      } else {
+        $this.find('input[name="address[zip]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+      }
+      
+    }
+    
+
+    $('input[type="submit"]').click(function(e){
+      removeMessage();
+      e.preventDefault();
+      var $this = $(this).closest('form');
+      validateForm($this);
+      if($this.find('input.form-error').length > 0) {
+        return false;
+      } else {
+        $this.submit();
+      }
+      
+    });
+    $('form').on('keyup', 'input', function() {
+      $(this).removeClass('form-error').next('.msg-error').empty().css('display','none');
+    });
+    function removeMessage(){    
+      setTimeout(function(){
+        $('.msg-error').empty().css('display','none');
+        $('form input').removeClass('form-error');
+      },3000)
+    }
+
+  });
+</script>
+

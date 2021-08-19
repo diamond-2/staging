@@ -10110,6 +10110,13 @@ body[data-template="customers/addresses"] .main-content {
         border: 1px solid rgba(0, 0, 0, 0.1);
         height: 50px;
         margin: 0; }
+        .address_section_wrapper .account_glb_form .grid .grid__item input.form-error, .address_section_wrapper .account_glb_form .grid .grid__item select.form-error {
+          border-color: red; }
+      .address_section_wrapper .account_glb_form .grid .grid__item select {
+        background-image: url(https://cdn.shopify.com/s/files/1/0575/2681/2840/files/select_arrow.png?v=1629377332);
+        background-repeat: no-repeat;
+        background-size: 16px;
+        background-position: calc(100% - 20px) center; }
   .address_section_wrapper .account_glb_form .custom-checkbox-holder {
     margin-bottom: 30px; }
     .address_section_wrapper .account_glb_form .custom-checkbox-holder .custom-checkbox-input-box input {
