@@ -10210,6 +10210,15 @@ window.addEventListener("resize", function() {
     });
   });
 
+  // Show Password Event
+  $('.show_passowrd').on('click', function(e) {
+    $(this).toggleClass('active');
+    if($(this).hasClass('active')) {
+      $(this).closest('.form__input-wrapper').find('input').attr('type', 'text')
+    } else {
+      $(this).closest('.form__input-wrapper').find('input').attr('type', 'password')
+    }
+  });
   
 
   

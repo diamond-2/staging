@@ -330,9 +330,9 @@
                     class="cart__submit btn glb-btn"
                     value="{{ 'cart.general.update' | t }}">
                   {%- endif -%}
-                  <input type="submit" name="checkout"
+                  <button type="submit" name="checkout"
                     class="cart__submit glb-btn"
-                    value="{{ 'cart.general.checkout' | t }}">
+                    ><span class="cart-text">{{ 'cart.general.checkout' | t }}</span><span class="mini_cart_text">{{ 'CHECK OUT NOW' }}</span></button>
                 </div>
 
                 <div class="cart__error-message-wrapper hide" role="alert" data-cart-error-message-wrapper>

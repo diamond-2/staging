@@ -113,13 +113,6 @@
                   </div>
                 </div>
                 
-
-                <div class="btn-actions-wrapper">
-                  <button type="button" class="customer__button glb-btn">
-                    <span>  {{ 'Sign Up' }}</span>
-                  </button>
-                </div>
-
                 <div class="agree-terms-sec">
                   <div class="custom-checkbox-holder">
                     <div class="custom-checkbox-input-box">
@@ -128,7 +121,15 @@
                     </div>
                     <label for="agree-tems">I agree to the Terms & Conditions</label>
                   </div>
+                  <span class="msg-error" id="termsErrorMsg"></span>
                 </div>
+
+                <div class="btn-actions-wrapper">
+                  <button type="submit" class="customer__button glb-btn">
+                    <span>  {{ 'Sign Up' }}</span>
+                  </button>
+                </div>
+                
                 <div class="or-line-with-text"><span>OR SIGN UP WITH </span></div>
                 <!-- Login with Social App -->
                 {% include 'login-with-social' %}
@@ -159,7 +160,10 @@
   document.addEventListener('DOMContentLoaded', function(event) {
 
     /*form validation start*/
-    function validateForm($this) {
+    
+    $('.form-validation').submit(function(e){
+      removeMessage();
+      let $this = $(this);
       var firstName = $this.find('input[name="customer[first_name]"]').val().trim();
       var lastName = $this.find('input[name="customer[last_name]"]').val().trim();
       var thisPhone = $this.find('input[name="customer[phone_number]"]').val().trim();
@@ -167,87 +171,110 @@
       var regmm='^([0|+[0-9]{1,5})?([7-9][0-9]{9})$';
       var regmob = new RegExp(regmm);
       if (firstName == "" || firstName == null) {
+        e.preventDefault();
         $this.find('input[name="customer[first_name]"]').addClass('form-error').next('.msg-error').text("Enter Your First Name").css('display','block');
       } else if (nameRegx.test(firstName) == false ){
+        e.preventDefault();
         $this.find('input[name="customer[first_name]"]').addClass('form-error').next('.msg-error').text("Please Enter Valid First Name").css('display','block');
       } else {
         $this.find('input[name="customer[first_name]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
       }
       if (lastName == "" || lastName == null) {
+        e.preventDefault();
         $this.find('input[name="customer[last_name]"]').addClass('form-error').next('.msg-error').text("Enter Your Last Name").css('display','block');
       } else if (nameRegx.test(lastName) == false ){
+        e.preventDefault();
         $this.find('input[name="customer[last_name]"]').addClass('form-error').next('.msg-error').text("Please Enter Valid Last Name").css('display','block');
       } else {
         $this.find('input[name="customer[last_name]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
       }
       if (thisPhone.length != 10 || thisPhone == null || regmob.test(thisPhone) == false) {
+        e.preventDefault();
         $this.find('input[name="customer[phone_number]"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Phone Number").css('display','block');
       } else {
         $this.find('input[name="customer[phone_number]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
       }
-    }
-    function validateEmail($this) {
+      // Email Validation
       var thisEmail = $this.find('input[name="customer[email]"]').val();
       const reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       var proceed =  reg.test(thisEmail);
       if (thisEmail == "" || thisEmail == null || proceed == false) {
+        e.preventDefault();
         $this.find('input[name="customer[email]"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Email Address").css('display','block');
       } else {
         $this.find('input[name="customer[email]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
       }
-    }
-    function validateCreatePassword($this) {
+
+      // Create Password Validation
       var passw =  /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,16}$/; 
-       var thisPassword = $this.find('input[name="customer[password]"]').val();
+      var thisPassword = $this.find('input[name="customer[password]"]').val();
       if (thisPassword == '' || thisPassword == null) {
+        e.preventDefault();
         $this.find('input[name="customer[password]"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Password").css('display','block');
       } else {
         if(thisPassword.match(passw)){
           console.log('matchrejecx');
           $this.find('input[name="customer[password]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
         }else {
+          e.preventDefault();
           $this.find('input[name="customer[password]"]').addClass('form-error').next('.msg-error').text("Enter Password at least 8 characters, one lowercase letter, one uppercase letter, one numeric digit, and one special character").css('display','block');
           return false;
         } 
       }
-    }
-    function validateConfirmPassword($this) {
+
+      // Confirm Password
       var $password = $this.find('input[name="customer[password]"]').val();
       var $confirmPassword = $this.find('input[name="customer-confirm-[password]').val();
       if($confirmPassword == '' || $confirmPassword == null || $confirmPassword != $password) {
+        e.preventDefault();
         $this.find('input[name="customer-confirm-[password]"]').addClass('form-error').next('.msg-error').text("Password not matched").css('display','block');
       } else {
         $this.find('input[name="customer[password]"], input[name="customer-confirm-[password]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
       }
-    }
-    function validateGender($this) {
+
+      // Gender
       var $password = $this.find('select[name="customer-[gender]"]').val();
       if($password == null) {
+        e.preventDefault();
         $this.find('select[name="customer-[gender]"]').addClass('form-error').next('.msg-error').text("Plese Select Gender").css('display','block');
       } else {
         $this.find('select[name="customer-[gender]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
       }
-    }
-    $(document).on('click', 'button[type="button"]', function(e) {
-      var $this = $(this).closest('form');
-      removeMessage();
-      //Write here your validations
-      //And use this to prevent the form from submiting in case validations are not met.
-      if($this.hasClass('form-validation')) {
-        console.log('create');
-        validateForm($this);
-        validateEmail($this);
-        validateCreatePassword($this);
-        validateConfirmPassword($this);
-        validateGender($this);
-      }
-      if($this.find('input.form-error').length > 0) {
-        return false;
+
+      // Terms Agree
+      var $termsAgree = $this.find('#agree-tems');
+      let $termsAgreeError = $this.find('#termsErrorMsg');
+      if($($termsAgree).prop('checked') == false){
+          e.preventDefault();
+          $($termsAgreeError).text('** Please agree with terms and conditions.').css('display','block');
       } else {
-        $this.submit();
+          $($termsAgreeError).text('').css('display','none');
+      }
+
+    });
+    setInterval(function(){
+      let getForm = $('.form-validation');
+      let getEvent = $(getForm).attr('onsubmit');
+      if(getEvent !='') {
+        $(getForm).removeAttr('onsubmit');
+      }
+    },200);
+    // Remove Error After Checked
+    $('form #agree-tems').change(function(){
+      let $this2 = $(this).closest('form');
+      console.log($this2)
+      var $termsAgree = $this2.find('#agree-tems');
+      let $termsAgreeError = $this2.find('#termsErrorMsg');
+      if($($termsAgree).prop('checked') == false){
+          $($termsAgreeError).text('** Please agree with terms and conditions.').css('display','block');
+      } else {
+          $($termsAgreeError).text('').css('display','none');
       }
     });
     $('form').on('keyup', 'input', function() {
+      $(this).removeClass('form-error').next('.msg-error').css('display','none');
+    });
+    $('form').on('change', 'select', function() {
       $(this).removeClass('form-error').next('.msg-error').css('display','none');
     });
     function removeMessage(){    
