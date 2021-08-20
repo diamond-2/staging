@@ -11054,6 +11054,12 @@ body[data-template="customers/reset_password"] {
           align-items: center;
           padding: 0 30px;
           cursor: pointer;
+          @media(max-width: $md) {
+            height: 40px;
+            padding:0 15px;
+            font-size: 13px;
+            font-weight: 14.04px;
+          }
           &.active {
             color: red;
           }
@@ -11223,6 +11229,7 @@ body[data-template="customers/reset_password"] {
     letter-spacing: 0.01em;
     text-transform: uppercase;
     position: relative;
+    margin-top:30px;
     @media(max-width: $md) {
       font-size: 13px;
       line-height: 19.5px;
@@ -11540,7 +11547,17 @@ body[data-template="customers/reset_password"] {
     }
   }
 }
-
+.form-validation {
+  .msg-error {
+    &#termsErrorMsg {
+      text-align: center;
+      &:before {
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+      }
+    }
+  }
+}
 
 // Sign Up Page End
 

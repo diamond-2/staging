@@ -70,6 +70,7 @@
                     <span class="input_icon">
                       {% include 'input-lock-icon' %}
                     </span>
+                    {% include 'show-password' %}
                     <input  class="form__input" placeholder="{{ 'customer.login.password' | t }}"
                     type="password"
                     name="customer[password]"
@@ -85,7 +86,7 @@
                   </div>              
 
                   <div class="btn-actions-wrapper">
-                    <button type="button" class="customer__button glb-btn">
+                    <button type="submit" class="customer__button glb-btn">
                       <span>{{ 'customer.login.sign_in' | t }}</span>
                     </button>
                   </div>
@@ -162,7 +163,7 @@
                   </div>
                   
                   <div class="btn-actions-wrapper">
-                    <button type="button" class="forgotbutton customer__button glb-btn">
+                    <button type="submit" class="forgotbutton customer__button glb-btn">
                       <span>{{ 'customer.recover_password.submit' | t }}</span>
                     </button>
                   </div>
@@ -211,64 +212,58 @@
     });
 
     /*form validation start*/
-    function validateEmail($this) {
+    $('.form-validation-login').submit(function(e){
+
+      let $this = $(this);
+      console.log($this)
       var thisEmail = $this.find('input[name="customer[email]"]').val();
       const reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       var proceed =  reg.test(thisEmail);
       if (thisEmail == "" || thisEmail == null || proceed == false) {
+        e.preventDefault();
         $this.find('input[name="customer[email]"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Email Address").css('display','block');
       } else {
         $this.find('input[name="customer[email]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
       }
-    }
-
-    function validateRecoverEmail($this) {
-      var thisRecoverEmail = $this.find('input[name="email"]').val();
-      const reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      var proceed =  reg.test(thisRecoverEmail);
-      if (thisRecoverEmail == "" || thisRecoverEmail == null || proceed == false) {
-        $this.find('input[name="email"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Email Address").css('display','block');;
-      } else {
-        $this.find('input[name="email"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
-      }
-    }
-
-    function validatePassword($this) {
       var thisPassword = $this.find('input[name="customer[password]"]').val();
-      console.log(thisPassword);
       if (thisPassword == '' || thisPassword == null) {
+        e.preventDefault();
         $this.find('input[name="customer[password]"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Password").css('display','block');
       } else {
         $this.find('input[name="customer[password]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
       }
-    } 
-    $(document).on('click', 'button[type="button"]', function(e) {
-      removeMessage();
-      var $this = $(this).closest('form');
-      //Write here your validations
-      //And use this to prevent the form from submiting in case validations are not met.
-      if($this.hasClass('form-validation-login')) {
-        validateEmail($this);
-        validatePassword($this);
-      } else if ($this.hasClass('form-validation-recover')) {
-        validateRecoverEmail($this);
-      }
+    });
 
-      if($this.find('input.form-error').length > 0) {
-        return false;
+    $('.form-validation-recover').submit(function(e){
+ 
+      let $this = $(this);
+      var thisRecoverEmail = $this.find('input[name="email"]').val();
+      const reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var proceed =  reg.test(thisRecoverEmail);
+      if (thisRecoverEmail == "" || thisRecoverEmail == null || proceed == false) {
+        e.preventDefault();
+        $this.find('input[name="email"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Email Address").css('display','block');;
       } else {
-        $this.submit();
+        $this.find('input[name="email"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
       }
     });
    
+    setInterval(function(){
+      let getForm = $('.form-validation-login, .form-validation-recover');
+      let getEvent = $(getForm).attr('onsubmit');
+      if(getEvent !='') {
+        $(getForm).removeAttr('onsubmit');
+      }
+    },200);
 
+    // Remove Error After 3s
     $('form').on('keyup', 'input', function() {
       $(this).removeClass('form-error').next('.msg-error').css('display','none');
     });
     function removeMessage(){    
       setTimeout(function(){
         $('.msg-error').css('display','none');
-        $('form input').removeClass('form-error');
+        $('.form__input').removeClass('form-error');
       },3000)
     }
     /*form validation end*/
