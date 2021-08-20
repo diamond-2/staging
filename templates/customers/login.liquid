@@ -34,7 +34,9 @@
 
               <div class="form-wrapper show-swith-form" id="loginWithEmail">
                 <div class="form-message form-message--success hide" id="ResetSuccess" tabindex="-1">
-                  {{ 'customer.recover_password.success' | t }}
+                  <div class="message-pop-holder">
+                    <div class="message-pop-contnet">{{ 'customer.recover_password.success' | t }}</div>
+                  </div>
                 </div>
                 {%- assign formId = 'LoginForm' -%}
                 {% form 'customer_login', class: 'form-validation-login'  %}
@@ -49,7 +51,7 @@
                     <span class="input_icon">
                       {% include 'input-email-icon' %}
                     </span>
-                    <input class="form__input" placeholder="{{ 'customer.login.email' | t }}"
+                    <input class="form__input" placeholder="Enter Email"
                     type="email"
                     name="customer[email]"
                     id="CustomerEmail"
@@ -124,9 +126,6 @@
 
       {% assign forgetPasswordImage = settings.account_right_image %}
       <div class="forget-form-wrapper customer-form hide" id="RecoverPasswordForm">
-        <div class="form-status-message form-status-message--success hidden" data-reset-password-success-message tabindex="-1">
-          {{ 'customer.recover_password.success' | t }}
-        </div>
         <div class="register-page-inner-wrapper">
           <div class="register-page-two-col-row {% if forgetPasswordImage == blank %}has_not_right_image{% endif %}">
             <div class="register-form-column">
@@ -142,9 +141,11 @@
                   {% comment %}
                     Add a hidden span to indicate the form was submitted succesfully.
                   {% endcomment %}
-                  {%- if form.posted_successfully? -%}
-                    <span class="hidden" data-reset-password-success></span>
-                  {%- endif -%}
+
+                  {% if form.posted_successfully? %}
+                    <span class="hide reset-password-success"></span>
+                  {% endif %}
+
                   <div class="form__input-wrapper{% if form.errors contains 'form' %} form__input-wrapper--error{% endif %}" data-form-input-wrapper>
                     <span class="input_icon">
                       {% include 'input-email-icon' %}
@@ -209,8 +210,6 @@
         $('#RecoverPasswordForm').removeClass('hide');
     });
 
-
-
     /*form validation start*/
     function validateEmail($this) {
       var thisEmail = $this.find('input[name="customer[email]"]').val();
@@ -244,6 +243,7 @@
       }
     } 
     $(document).on('click', 'button[type="button"]', function(e) {
+      removeMessage();
       var $this = $(this).closest('form');
       //Write here your validations
       //And use this to prevent the form from submiting in case validations are not met.
@@ -259,7 +259,6 @@
       } else {
         $this.submit();
       }
-      removeMessage();
     });
    
 
@@ -270,7 +269,7 @@
       setTimeout(function(){
         $('.msg-error').css('display','none');
         $('form input').removeClass('form-error');
-      },5000)
+      },3000)
     }
     /*form validation end*/
   });
