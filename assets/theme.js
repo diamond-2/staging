@@ -749,7 +749,7 @@ slate.Variants = (function() {
       //console.log(variant);
    
       let currentVariant = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('title');
-      let current_slideno = $(document).find('.product-detail-slider-thumbnail .product-detail-slider-thumbnail-slide[data-alt="'+currentVariant+'"]').data('slick-index');
+      let current_slideno = $(document).find('.product-detail-slider-thumbnail .product-detail-slider-thumbnail-slide[data-alt^="'+currentVariant+'"]').data('slick-index');
       //console.log(current_slideno);
       $('.product-detail-slider-thumbnail').slick('slickGoTo', current_slideno);
 
