@@ -10537,17 +10537,10 @@ body.template-product .product-single__media {
 
 body.template-product .pdp-zoom-gallery {
   position: fixed;
-<<<<<<< HEAD
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100vh;
-=======
   top: 20vh;
   left: 0px;
   width: 100%;
   height: 80vh;
->>>>>>> Development-Store
   z-index: -99999;
   background: #ffffff;
   visibility: hidden;
@@ -10557,28 +10550,16 @@ body.template-product .pdp-zoom-gallery {
   -ms-transition: 0.05s ease-in-out;
   -moz-transition: 0.05s ease-in-out;
   -webkit-transition: 0.05s ease-in-out; }
-<<<<<<< HEAD
-=======
   @media screen and (max-width: 1199px) {
     body.template-product .pdp-zoom-gallery {
       top: 11vh;
       height: 89vh; } }
->>>>>>> Development-Store
   body.template-product .pdp-zoom-gallery.visible-zoom-gallery {
     z-index: 99999;
     visibility: visible;
     opacity: 1; }
   body.template-product .pdp-zoom-gallery .product-single__media {
-<<<<<<< HEAD
-    position: relative;
-    /*       	overflow: hidden; */
-    /*       img {
-      	width: 100%!important;
-        height: 100%!important;
-      } */ }
-=======
     position: relative; }
->>>>>>> Development-Store
   body.template-product .pdp-zoom-gallery button {
     min-width: initial;
     padding: 20px;
@@ -10592,35 +10573,6 @@ body.template-product .pdp-zoom-gallery {
     body.template-product .pdp-zoom-gallery button.slick-arrow.slick-next {
       display: block;
       right: 20px; }
-<<<<<<< HEAD
-  body.template-product .pdp-zoom-gallery .zoomHolder {
-    width: 100%;
-    height: auto;
-    position: relative;
-    overflow: hidden; }
-  body.template-product .pdp-zoom-gallery .zoom-gallery-container {
-    height: 100%; }
-    body.template-product .pdp-zoom-gallery .zoom-gallery-container .product-single__media-group {
-      padding-left: 0px;
-      height: 100%; }
-      body.template-product .pdp-zoom-gallery .zoom-gallery-container .product-single__media-group .slick-list,
-      body.template-product .pdp-zoom-gallery .zoom-gallery-container .product-single__media-group .slick-track {
-        height: 100% !important; }
-        body.template-product .pdp-zoom-gallery .zoom-gallery-container .product-single__media-group .slick-list .product-single__media,
-        body.template-product .pdp-zoom-gallery .zoom-gallery-container .product-single__media-group .slick-track .product-single__media {
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%) scale(0.8); }
-          @media screen and (max-width: 200px) {
-            body.template-product .pdp-zoom-gallery .zoom-gallery-container .product-single__media-group .slick-list .product-single__media,
-            body.template-product .pdp-zoom-gallery .zoom-gallery-container .product-single__media-group .slick-track .product-single__media {
-              top: 70%; } }
-          body.template-product .pdp-zoom-gallery .zoom-gallery-container .product-single__media-group .slick-list .product-single__media img,
-          body.template-product .pdp-zoom-gallery .zoom-gallery-container .product-single__media-group .slick-track .product-single__media img {
-            /*               top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%); */ }
-=======
   body.template-product .pdp-zoom-gallery .zoom-gallery-container {
     height: 100%; }
     body.template-product .pdp-zoom-gallery .zoom-gallery-container [data-product-single-media-group] {
@@ -10644,4 +10596,3 @@ body.template-product .pdp-zoom-gallery {
               top: 60%;
               transform: translateY(-40%) scale(1);
               left: 0; } }
->>>>>>> Development-Store
