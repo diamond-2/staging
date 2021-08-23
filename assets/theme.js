@@ -10216,12 +10216,14 @@ window.addEventListener("resize", function() {
       url: handle+'/?view=featuredZoomImg',
       cache: false,
       success: function(response) {
-        // console.log("Dta finalAlt" + finalAlt);
+        console.log('FeaturedZoomImag Respon == >')
+        console.log(response);
+        console.log("Dta finalAlt" + finalAlt);
         $(document).find('#pdp-Zoom-Gallery .zoom-gallery-container').prepend(response);
-        // setTimeout(function(){
-        //   $(document).find('#pdp-Zoom-Gallery [data-product-single-media-group] .product-single__media-wrapper').not('[data-alt="'+finalAlt+'"]').remove();
+        setTimeout(function(){
+          // $(document).find('#pdp-Zoom-Gallery [data-product-single-media-group] .product-single__media-wrapper').not('[data-alt="'+finalAlt+'"]').remove();
 
-        // },100); 
+        },100); 
       }
       });
 
@@ -10245,6 +10247,7 @@ window.addEventListener("resize", function() {
                   $(document).find('pinch-zoom').attr('style', '');
                 }
               }); /* Initialize the slick again */;
+              $(document).find('#pdp-Zoom-Gallery .product-single__media-wrapper').removeClass('hide');
           $('#pdp-Zoom-Gallery .zoom-gallery-container').find('[data-product-single-media-group]').slick('slickGoTo', dataIndex );
         },100); 
       }
@@ -10257,6 +10260,13 @@ window.addEventListener("resize", function() {
     });
 
 
+    $(document).on('click', '#pdp-Zoom-Gallery button.btn', function() {
+      $('#pdp-Zoom-Gallery').removeClass('visible-zoom-gallery');
+      $('body').removeClass('overflow-hidden');
+      if($(document).find('pinch-zoom').length > 0) {
+        $(document).find('pinch-zoom').attr('style', '');
+      }
+    })
     
   });
 

@@ -21,6 +21,8 @@
   {%- endfor -%}
 {% endcomment %}
 <div class="product-single__media-group--full" data-product-single-media-group>
+    {%- for media in product.media -%}
+    {% unless media.media_type == 'video' or  media.media_type == 'model' media.media_type == 'external_video' %}
 {% capture media_id %}FeaturedMedia-product-template-{{ media.id }}{% endcapture %}
 {% capture media_class %}product-featured-media{% endcapture %}
 {% capture media_wrapper_id %}{{ media_id }}-wrapper{% endcapture %}
@@ -31,18 +33,19 @@
 {% capture image_size %}{{ height }}x{{ height }}{% endcapture %}
 
 <div id="{{ media_wrapper_id }}"
-    class="product-single__media-wrapper js{% unless featured_media == media %} hide{% endunless %}"
+    class="product-single__media-wrapper js{% unless featured_media == 'image' %} hide{% endunless %}"
     {% if media.media_type == 'video' or media.media_type == 'external_video' %} data-product-media-type-video data-enable-video-looping="{{ section.settings.enable_video_looping }}"{% endif %}
     {% if media.media_type == 'model' %} data-product-media-type-model{% endif %}
     {% if media.media_type == 'external_video' %} data-video-id="{{ media.external_id }}"{% endif %}
     data-product-single-media-wrapper
     data-media-id="{{ section.id }}-{{ media.id }}"
     tabindex="-1">
+    
   {% case media.media_type %}
     {% when 'image' %}
       {% capture zoom_media_id %}ImageZoom-product-template-{{ media.id }}{% endcapture %}
       {%- assign img_url = media | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-      {% include 'image-style', height: height, wrapper_id: media_wrapper_id, img_id: media_id, image: media.preview_image %}
+      {% comment %}{% include 'image-style', height: height, wrapper_id: media_wrapper_id, img_id: media_id, image: media.preview_image %}{% endcomment %}
       <div
         id="{{ zoom_media_id }}"
         data-elem="pinchzoomer"
@@ -58,6 +61,7 @@
           alt="{{ media.alt | escape }}">
         </pinch-zoom>
       </div>
+      {% comment %}
     {% when 'external_video' %}
       <div class="product-single__media 44" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;">
         {{ media | external_video_tag }}
@@ -74,6 +78,9 @@
       <div class="product-single__media 11" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;">
         {{ media | media_tag: class: 'media-item', image_size: image_size }}
       </div>
+      {% endcomment %}
   {% endcase %}
 </div>
+{% endunless %}
+{% endfor %}
 </div>
