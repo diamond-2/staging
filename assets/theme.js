@@ -10068,53 +10068,12 @@ window.addEventListener("resize", function() {
   });
 
   // sidebar tabber
-  let commonLayoutHeader = $('.common-layout-wrapper .custom-section-header h1');
-  let clDefaultText = $(commonLayoutHeader).text();
-  $('.sidebar-nav li a').click(function(e){
-    $('html, body').animate({scrollTop:0}, '1000');
-    $(this).addClass('active');
-    $(this).parent().siblings().find('a').removeClass('active');
-    let hasId = $(this).attr('href');
-    $(hasId).addClass('show');
-    $(hasId).siblings().removeClass('show');
-    let pageHeading = $(this).text();
-    $(commonLayoutHeader).text(pageHeading);
-    $('.sidebar-column').addClass('sidebar_nav_active');
-  });
+  
+  $('.sidebar-column').addClass('sidebar_nav_active');
   $('.back_to_page').click(function(){
-    $(commonLayoutHeader).text(clDefaultText);
-    $('.sidebar-column').removeClass('sidebar_nav_active');
     $('.sidebar-nav li a').removeClass('active');
-    $('.commaon-layout-section').removeClass('show');
-    if(window.history.pushState) {
-        window.history.pushState('', '/', window.location.pathname)
-    } else {
-        window.location.hash = '';
-    }
+    $('.sidebar-column').removeClass('sidebar_nav_active');
   });
-  function sidebarColumnHeight() {
-    $('.sidebar-column').css('max-height',$('.sidebar-column').outerHeight());
-  }
-  sidebarColumnHeight();
-  window.addEventListener("resize", function() {
-    sidebarColumnHeight();
-  });
-  // show tabber if there is hash link in url
-  $(window).on('load', function(){
-    let $hasId = window.location.hash;
-    if($hasId) {
-        let tabSecEx = $('.commaon-layout-section-wrapper').find($hasId);
-        if(tabSecEx) {
-          $('html, body').animate({scrollTop:0}, '1000');
-        }
-        $('.commaon-layout-section-wrapper').find($hasId).addClass('show');
-        $('.commaon-layout-section-wrapper').find($hasId).siblings().removeClass('show');
-        $('.sidebar-nav li a[href="'+$hasId+'"]').addClass('active');
-        $('.sidebar-nav li a[href="'+$hasId+'"]').parent().siblings().find('a').removeClass('active');
-        $('.sidebar-column').addClass('sidebar_nav_active');
-    }
-  });
-  // contact mobile tabber
   $('.tabber-nav a').click(function(e){
     e.preventDefault();
     $(this).parent().addClass('active');
