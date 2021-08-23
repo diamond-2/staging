@@ -11973,6 +11973,10 @@ body[data-template="customers/addresses"] {
 }
 .account_section-header {
   margin-bottom: 60px;
+  @media(max-width: $md) {
+    text-align: center;
+    margin-bottom: 5px;
+  }
   p {
     font-size: 18px;
     letter-spacing: 0.5px;
@@ -11981,6 +11985,10 @@ body[data-template="customers/addresses"] {
     @media(max-width: $xxl) {
       font-size: 16px;
       line-height: 1.8;
+    }
+    @media(max-width:$md) {
+      font-size: 14px;
+      line-height: 18px;
     }
   }
   h1 {
@@ -11994,6 +12002,10 @@ body[data-template="customers/addresses"] {
       font-size: 30px;
       line-height: 1;
     }
+    @media(max-width:$md) {
+      font-size: 18px;
+      line-height: 16px;
+    }
   }
 }
 .account_nav {
@@ -12005,6 +12017,12 @@ body[data-template="customers/addresses"] {
     justify-content: space-between;
     border-bottom: 1px solid #C4C4C4;
     margin-bottom: 40px;
+    @media(max-width: $md) {
+      flex-wrap: wrap;
+      border: none;
+      margin:0;
+      display: block;
+    }
     li {
       font-size: 24px;
       font-weight: 300;
@@ -12017,6 +12035,15 @@ body[data-template="customers/addresses"] {
         font-size: 18px;
         line-height: 1;
       }
+      @media(max-width: $md) {
+        text-align: left;
+        padding: 0;
+        margin: 0;
+        border: none;
+        width: auto;
+        font-size: 12px;
+        line-height: 12.96px;
+      }
       &.active {
         font-weight: 400;
         border-bottom-color: $textcolor-phanton;
@@ -12026,11 +12053,42 @@ body[data-template="customers/addresses"] {
         text-align: center;
         margin-bottom: 26px;
         color: $textcolor-black !important;
+        position: relative;
+        @media(max-width: $md) {
+          text-align: left;
+          min-height: 54px;
+          padding: 5px 0;
+          margin: 0;
+          border-bottom: 1px solid rgba(108, 29, 69, 0.5);
+          display: flex;
+          align-items: center;
+        }
+        .account_arrow_icon {
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+        .account_nav_icon {
+          color: $textcolor-phanton;
+          width: 24px;
+          margin-right: 10px;
+        }
+      }
+      &:last-child {
+        a {
+          border-bottom: none;
+        }
       }
     }
   }
 }
 .account_section_wrapper {
+  .glb-breadcrumb {
+    @media(max-width: $md) {
+      margin-bottom: 20px;
+    }
+  }
   h4 {
     font-size: 24px;
     line-height: 25.92px;
@@ -12380,6 +12438,9 @@ body[data-template="customers/addresses"] {
     @media(max-width: $xxl) {
       font-size: 18px;
       line-height: 1;
+    }
+    @media(max-width: $xl) {
+      width: 100%;
     }
     h3 {
       font-size: 24px;

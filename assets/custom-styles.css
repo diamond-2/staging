@@ -9892,6 +9892,10 @@ body[data-template="customers/addresses"] .main-content {
 
 .account_section-header {
   margin-bottom: 60px; }
+  @media (max-width: 749px) {
+    .account_section-header {
+      text-align: center;
+      margin-bottom: 5px; } }
   .account_section-header p {
     font-size: 18px;
     letter-spacing: 0.5px;
@@ -9901,6 +9905,10 @@ body[data-template="customers/addresses"] .main-content {
       .account_section-header p {
         font-size: 16px;
         line-height: 1.8; } }
+    @media (max-width: 749px) {
+      .account_section-header p {
+        font-size: 14px;
+        line-height: 18px; } }
   .account_section-header h1 {
     font-weight: 200;
     font-family: 'Spectral';
@@ -9912,6 +9920,10 @@ body[data-template="customers/addresses"] .main-content {
       .account_section-header h1 {
         font-size: 30px;
         line-height: 1; } }
+    @media (max-width: 749px) {
+      .account_section-header h1 {
+        font-size: 18px;
+        line-height: 16px; } }
 
 .account_nav ul {
   margin: 0;
@@ -9921,6 +9933,12 @@ body[data-template="customers/addresses"] .main-content {
   justify-content: space-between;
   border-bottom: 1px solid #C4C4C4;
   margin-bottom: 40px; }
+  @media (max-width: 749px) {
+    .account_nav ul {
+      flex-wrap: wrap;
+      border: none;
+      margin: 0;
+      display: block; } }
   .account_nav ul li {
     font-size: 24px;
     font-weight: 300;
@@ -9933,6 +9951,15 @@ body[data-template="customers/addresses"] .main-content {
       .account_nav ul li {
         font-size: 18px;
         line-height: 1; } }
+    @media (max-width: 749px) {
+      .account_nav ul li {
+        text-align: left;
+        padding: 0;
+        margin: 0;
+        border: none;
+        width: auto;
+        font-size: 12px;
+        line-height: 12.96px; } }
     .account_nav ul li.active {
       font-weight: 400;
       border-bottom-color: #6C1D45; }
@@ -9940,7 +9967,32 @@ body[data-template="customers/addresses"] .main-content {
       display: block;
       text-align: center;
       margin-bottom: 26px;
-      color: #000000 !important; }
+      color: #000000 !important;
+      position: relative; }
+      @media (max-width: 749px) {
+        .account_nav ul li a {
+          text-align: left;
+          min-height: 54px;
+          padding: 5px 0;
+          margin: 0;
+          border-bottom: 1px solid rgba(108, 29, 69, 0.5);
+          display: flex;
+          align-items: center; } }
+      .account_nav ul li a .account_arrow_icon {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%); }
+      .account_nav ul li a .account_nav_icon {
+        color: #6C1D45;
+        width: 24px;
+        margin-right: 10px; }
+    .account_nav ul li:last-child a {
+      border-bottom: none; }
+
+@media (max-width: 749px) {
+  .account_section_wrapper .glb-breadcrumb {
+    margin-bottom: 20px; } }
 
 .account_section_wrapper h4 {
   font-size: 24px;
@@ -10235,6 +10287,9 @@ body[data-template="customers/addresses"] .main-content {
     .address_section_wrapper .account_glb_form {
       font-size: 18px;
       line-height: 1; } }
+  @media (max-width: 1199px) {
+    .address_section_wrapper .account_glb_form {
+      width: 100%; } }
   .address_section_wrapper .account_glb_form h3 {
     font-size: 24px;
     line-height: 26px;
