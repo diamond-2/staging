@@ -12666,9 +12666,9 @@ body.template-product {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(.8);
-            @media screen and (max-width: $preLg) {
-              top: 70%;
-            }
+            // @media screen and (max-width: $preLg) {
+            //   top: 70%;
+            // }
             img {
 /*               top: 50%;
               left: 50%;

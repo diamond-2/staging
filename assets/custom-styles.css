@@ -10406,3 +10406,72 @@ body[data-template="customers/addresses"] .main-content {
 @media (max-width: 749px) {
   .hide_mobile {
     display: none !important; } }
+
+body.template-product.overflow-hidden {
+  overflow: hidden; }
+
+body.template-product .product-single__media {
+  cursor: pointer; }
+
+body.template-product .pdp-zoom-gallery {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  z-index: -99999;
+  background: #ffffff;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.05s ease-in-out;
+  -o-transition: 0.05s ease-in-out;
+  -ms-transition: 0.05s ease-in-out;
+  -moz-transition: 0.05s ease-in-out;
+  -webkit-transition: 0.05s ease-in-out; }
+  body.template-product .pdp-zoom-gallery.visible-zoom-gallery {
+    z-index: 99999;
+    visibility: visible;
+    opacity: 1; }
+  body.template-product .pdp-zoom-gallery .product-single__media {
+    position: relative;
+    /*       	overflow: hidden; */
+    /*       img {
+      	width: 100%!important;
+        height: 100%!important;
+      } */ }
+  body.template-product .pdp-zoom-gallery button {
+    min-width: initial;
+    padding: 20px;
+    right: 0;
+    position: absolute;
+    z-index: 999; }
+    body.template-product .pdp-zoom-gallery button.slick-arrow.slick-prev {
+      display: block;
+      left: 20px;
+      right: initial; }
+    body.template-product .pdp-zoom-gallery button.slick-arrow.slick-next {
+      display: block;
+      right: 20px; }
+  body.template-product .pdp-zoom-gallery .zoomHolder {
+    width: 100%;
+    height: auto;
+    position: relative;
+    overflow: hidden; }
+  body.template-product .pdp-zoom-gallery .zoom-gallery-container {
+    height: 100%; }
+    body.template-product .pdp-zoom-gallery .zoom-gallery-container .product-single__media-group {
+      padding-left: 0px;
+      height: 100%; }
+      body.template-product .pdp-zoom-gallery .zoom-gallery-container .product-single__media-group .slick-list,
+      body.template-product .pdp-zoom-gallery .zoom-gallery-container .product-single__media-group .slick-track {
+        height: 100% !important; }
+        body.template-product .pdp-zoom-gallery .zoom-gallery-container .product-single__media-group .slick-list .product-single__media,
+        body.template-product .pdp-zoom-gallery .zoom-gallery-container .product-single__media-group .slick-track .product-single__media {
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) scale(0.8); }
+          body.template-product .pdp-zoom-gallery .zoom-gallery-container .product-single__media-group .slick-list .product-single__media img,
+          body.template-product .pdp-zoom-gallery .zoom-gallery-container .product-single__media-group .slick-track .product-single__media img {
+            /*               top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%); */ }

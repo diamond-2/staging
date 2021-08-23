@@ -10210,6 +10210,51 @@ window.addEventListener("resize", function() {
     });
 
     // Pdp pinchzoom gallery
+    var handle = $('body').attr('data-handle'); console.log(handle);
+    $(document).find('.product-top-section, #pdp-Zoom-Gallery .zoom-gallery-container').find('[data-product-single-media-group]').remove()
+    $.ajax({
+      url: handle+'/?view=featuredZoomImg',
+      cache: false,
+      success: function(response) {
+        // console.log("Dta finalAlt" + finalAlt);
+        $(document).find('#pdp-Zoom-Gallery .zoom-gallery-container').prepend(response);
+        // setTimeout(function(){
+        //   $(document).find('#pdp-Zoom-Gallery [data-product-single-media-group] .product-single__media-wrapper').not('[data-alt="'+finalAlt+'"]').remove();
+
+        // },100); 
+      }
+      });
+
+
+    $(document).on('click', '.product-detail-slide-img-holder', function(){
+    console.log('ImageHolder event hit');
+    var handle = $('body').attr('data-handle'); console.log(handle)
+    var dataIndex = $(this).closest('.product-detail-slide').attr('data-slick-index'); console.log(dataIndex);
+    $(document).find('#pdp-Zoom-Gallery .zoom-gallery-container').find('[data-product-single-media-group]').remove();
+    $.ajax({
+      url: handle+'/?view=featuredZoomImg',
+      cache: false,
+      success: function(response) {
+        $(document).find('#pdp-Zoom-Gallery .zoom-gallery-container').prepend(response);
+        setTimeout(function(){
+          //         $(document).find('#pdp-Zoom-Gallery [data-product-single-media-group] .product-single__media-wrapper').not('[data-alt="'+finalAlt+'"]').remove();
+          $('#pdp-Zoom-Gallery .zoom-gallery-container').find('[data-product-single-media-group]').slick({
+          	infinite: false
+          }).on('beforeChange', function(event, slick, currentSlide, nextSlide){
+                if($(document).find('pinch-zoom').length > 0) {
+                  $(document).find('pinch-zoom').attr('style', '');
+                }
+              }); /* Initialize the slick again */;
+          $('#pdp-Zoom-Gallery .zoom-gallery-container').find('[data-product-single-media-group]').slick('slickGoTo', dataIndex );
+        },100); 
+      }
+    });
+
+    setTimeout(function() {
+      $('body').addClass('overflow-hidden');
+      $('#pdp-Zoom-Gallery').addClass('visible-zoom-gallery');
+    },100);
+    });
 
 
     
