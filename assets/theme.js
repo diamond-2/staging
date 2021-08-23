@@ -9883,8 +9883,6 @@ window.addEventListener("resize", function() {
     e.preventDefault();
   });
 
-
-
   // add class after page load
   $(window).on('load', function(){ 
     setTimeout(function(){
@@ -9915,6 +9913,7 @@ window.addEventListener("resize", function() {
   } else {
     document.body.classList.add('has_no_banner');
   }
+
 
   //Back To Top
   $('.back-to-top').click(function(e){

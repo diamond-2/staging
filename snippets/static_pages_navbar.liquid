@@ -1,0 +1,11 @@
+<div class="sidebar-column">
+    <div class="sidebar-nav">
+        {% if linklists.privacy-policy-menu.links.size > 0 %}
+        <ul>
+        {% for link in linklists.privacy-policy-menu.links %}
+        {% if link.title %}<li datta="{{ page.url }}"><a href="{{ link.url }}" ><span class="menu_text">{{ link.title }}</span></a></li>{% endif %}
+        {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</div>

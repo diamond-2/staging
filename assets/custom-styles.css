@@ -2897,6 +2897,13 @@ body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3 
     margin-bottom: 39px; }
 
 /* Full Slider Global css */
+.full_width_slider_wrapper {
+  opacity: 0; }
+
+.page-loaded .full_width_slider_wrapper {
+  opacity: 1;
+  transition: opacity 0.5s; }
+
 .full_width_slider_wrapper.jewellery-collection-slider .full_width_slider_image_holder {
   padding-bottom: 50.55%; }
   @media (max-width: 749px) {
@@ -10440,7 +10447,18 @@ body[data-template="customers/addresses"] .main-content {
 .cart-popup-wrapper {
   display: none !important; }
 
-/* ========== Address Pgae End ============== */
+/* ========== Address Page End ============== */
+/* ========== Static Pages Start ============== */
+.custom_banner {
+  position: relative;
+  overflow: hidden; }
+  .custom_banner .custom_banner_image {
+    padding-bottom: 40.64%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; }
+
+/* ========== Static Pages End ============== */
 @media (max-width: 1355px) and (min-width: 750px) {
   .hide_tab {
     display: none !important; }

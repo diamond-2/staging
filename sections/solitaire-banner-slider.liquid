@@ -1,15 +1,29 @@
 
 {% assign sliderImage = collection.metafields.global.banner_slider_images | split: ',' %}
+
+{% assign sliderImageMobile = collection.metafields.global.banner_slider_images_mobile | split: ',' %}
+
 {% if sliderImage.size > 0 %}
 <!-- DO Not style With 'top_banner' Class -->
 <div class="full_width_slider_wrapper solitaire-banner-slider-wrapper top_banner">
     <div class="full_width_slider">
         {% for item in sliderImage %}
         {%- if item !=blank -%}
+
+        {% assign mobileImage = item | split: '~' %}
         <div class="full_width_slide_item slide--{{ forloop.index }}">
-            <div class="full_width_slider_image_holder">
+            <div class="full_width_slider_image_holder hide_mobile">
                 <img data-src="{{ item }}" class="lazyload"  alt="{{ collection.title }}" />
-            </div>      
+            </div> 
+            {% if mobileImage[1] !=blank %}
+            <div class="full_width_slider_image_holder show_mobile">
+                <img data-src="{{ mobileImage[1] }}" class="lazyload"  alt="{{ collection.title }}" />
+            </div>  
+            {% else %}
+            <div class="full_width_slider_image_holder show_mobile">
+                <img data-src="{{ item }}" class="lazyload"  alt="{{ collection.title }}" />
+            </div> 
+            {% endif %}
         </div>
         {%- endif -%}   
         {% endfor %}
