@@ -76,6 +76,7 @@ $(document).on('click', '.product-form__cart-submit', function(e){
           success: function(response) {
             $('#preloader').fadeOut();
             $('.update-cart').empty().append(response);
+            $(document).find('.cart-popup-wrapper').remove();
             caretRemovePopup();
           }
         });

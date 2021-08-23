@@ -10208,6 +10208,11 @@ window.addEventListener("resize", function() {
       $('.product_view_tab[data-view="'+viewTab+'"]').siblings('.product_view_tab').fadeOut();
       localStorage.setItem('productListingView', viewTab);
     });
+
+    // Pdp pinchzoom gallery
+
+
+    
   });
 
   // Show Password Event
