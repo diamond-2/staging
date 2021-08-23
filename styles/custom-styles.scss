@@ -12,6 +12,8 @@ $glbFontFamily: Montserrat;
 $small-container: 1455px;
 $input-field-background:#fff;
 $input-field-border-color:#6679CC;
+$preLg: 200px;
+
 
 @mixin globalFontSize26() {
   font-size: 26px;
@@ -12617,6 +12619,9 @@ body[data-template="customers/addresses"] {
       line-height: 1;
     }
   }
+}
+.cart-popup-wrapper {
+  display: none !important;
 }
 /* ========== Address Pgae End ============== */
 
