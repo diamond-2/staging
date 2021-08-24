@@ -37,79 +37,10 @@
       {% endif %}
     </div>
   </div>
-
-    {% if is_filter_by_available or section.settings.sort_enable %}
-      <div class="filters-toolbar-wrapper filter_type2{% if is_filter_by_available %} filters-toolbar--has-filter{% endif %}">
-        <div class="dia-container">
-          <div class="filter-top-row">
-            <div class="img_box">{{ 'diomand_40x40.svg' | asset_url | img_tag :'Diamond2' }}</div>
-          </div>
-          <div class="filters-toolbar">
-            <div class="filters-toolbar__item-wrapper">
-
-              <div class="filters-toolbar__item filters-toolbar__item--count">
-                <span class="filters-toolbar__product-count">Showing {% if collection.products_count > 0 %}1{% else %}0{% endif %} - {{ limit }} of {{ collection.products_count }}</span>
-              </div>
-
-              <div class="filter_right_column">
-                <div class="filter_compare_item"><a href="#">Compare (3)</a></div>
-                <div class="filter_wishlist_item">{% include 'icon-wishlist-fill' %}<a href="#">Wishlist (25)</a></div>
-                {% if section.settings.tags_enable %}
-                  {% unless collection.all_tags.size == 0 %}
-                    <div class="filters-toolbar__item-child">
-                      <div class="filters-toolbar__input-wrapper select-group">
-                        <label class="filters-toolbar__label select-label" for="FilterTags">{{ 'collections.filters.title_tags' | t }} {% include 'icon-chevron-down' %}</label>
-                        <select class="filters-toolbar__input hidden" name="FilterTags" id="FilterTags" aria-describedby="a11y-refresh-page-message a11y-selection-message" data-select-input>
-                          <option value="{{ collection.url }}">{{ 'collections.filters.all_tags' | t }}</option>
-                          {% for tag in collection.all_tags %}
-                            {%- assign new_url = tag | link_to_tag: tag | split: 'href="' | last | split: '"' | first -%}
-                            <option value="{{ new_url }}"{% if current_tags contains tag %} selected="selected"{% endif %}>{{ tag }}</option>
-                          {% endfor %}
-                        </select>
-                      </div>
-                    </div>
-                  {% endunless %}
-                {% endif %}
-
-                {% if section.settings.sort_enable %}
-                  <div class="filters-toolbar__item-child">
-                    {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
-                    <div class="filters-toolbar__input-wrapper select-group">
-                      <select name="sort_by" id="SortBy"
-                        class="filters-toolbar__input hidden"
-                        aria-describedby="a11y-refresh-page-message a11y-selection-message"
-                        data-default-sortby="{{ collection.default_sort_by }}"
-                        data-select-input
-                      >
-                      <option selected>{{ 'collections.sorting.title' | t | upcase }}</option>
-                        {%- for option in collection.sort_options -%}
-                          <option value="{{ option.value }}" >{{ option.name }}</option>
-                        {%- endfor -%}
-                      </select>
-                      {% include 'icon-chevron-down' %}
-                    </div>
-                  </div>
-                {% endif %}
-
-                <div class="product_view_item_grp">
-                  <div class="product_view grid_view active">
-                    <a data-view="grid" href="#">{% include 'icon-grid' %}</a>
-                  </div>
-                  <div class="product_view list_view">
-                    <a data-view="list" href="#">{% include 'icon-list' %}</a>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    {% endif %}
+  {% include 'collection-sorting' %}
   </header>
 
-  <div class="dia-container " id="Collection">
+  <div class="dia-container " id="Collection" data-collection-listing-container>
     {% if section.settings.layout == 'grid' %}
 
       <!-- MetaField Section -->

@@ -10218,6 +10218,7 @@ window.addEventListener("resize", function() {
     });
 
 
+    // Hide zoom overlay event
     $(document).on('click', '#pdp-Zoom-Gallery button.btn', function() {
       $('#pdp-Zoom-Gallery').removeClass('visible-zoom-gallery');
       $('body').removeClass('overflow-hidden');

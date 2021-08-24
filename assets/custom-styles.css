@@ -3686,6 +3686,8 @@ body[data-template="product"] .main-content {
       .product-detail-slider-wrapper .product-detail-slider-thumbnail-wrapper {
         order: 2;
         width: 100%; } }
+    .product-detail-slider-wrapper .product-detail-slider-thumbnail-wrapper .product-detail-slider-thumbnail[data-size] .slick-track {
+      transform: translate3d(0, 0, 0) !important; }
     .product-detail-slider-wrapper .product-detail-slider-thumbnail-wrapper .product-detail-slider-thumbnail .slick-list {
       padding-right: 29.5%;
       margin-bottom: -10px; }

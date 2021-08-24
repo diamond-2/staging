@@ -21,6 +21,9 @@
 .filters-toolbar__item-wrapper {
     align-items: center;
 }
+.collection-sort-wrapper > div {
+    justify-content: flex-end;
+}
 [data-collection-filter-section] {
     display: flex;
     flex-wrap: nowrap;
@@ -36,4 +39,90 @@
     padding-left: 5px;
     text-transform: uppercase;
     font-size: calc(((12) / (var(--font-size-base))) * 1em);
+}
+select#sortByFilter {
+    border: none;
+    max-width: 150px;
+    font-family: var(--font-stack-body);
+    font-weight: var(--font-weight-body);
+    text-transform: uppercase;
+    font-size: calc(((12) / (var(--font-size-base))) * 1em);
+}
+.collection-sort-label {
+    display: none;
+}
+
+@media screen and (max-width: 749px) {
+    .filters-toolbar-wrapper {
+        position: fixed;
+        width: 100%;
+        height: 75vh;
+        background: whitesmoke;
+        left: 0;
+        padding: 30px 5px;
+        z-index: 4;
+        border-radius: 40px 40px 0 0;
+        box-shadow: 0 0 25px rgb(0 0 0 / 30%);
+        align-items: baseline;
+        display: block;
+        bottom:-20px;
+    }
+    [data-collection-filter-section] {
+        flex-wrap: wrap;
+    }
+    .filters-toolbar-wrapper .dia-container {
+        display: flex;
+    flex-wrap: wrap;
+    }
+    .filters-toolbar__item-wrapper {
+        order: 2;
+    }
+    .filters-toolbar {
+        order: 3;
+    }
+    .filters-toolbar-label {
+        order:1;
+    }
+    .filters-toolbar__item--count {
+        display: none;
+    }
+    .collection-filter-wrapper {
+        max-width: 48%;
+        min-width: 48%;
+        text-align: text;
+        text-align: center;
+        margin: 0 auto;
+    }
+    
+    .collection-filter-wrapper:last-child {
+        margin: 0px;
+    }    
+    .filters-toolbar__item-wrapper,
+    .collection-sort {
+        width: 100%;
+    }
+    .filters-toolbar__input {
+        width:100%;
+        margin-bottom: 10px;
+    }
+    .collection-sort-label {
+        width: 50%;
+        display: inline-block;
+        text-transform: uppercase;
+    }
+    .select-sort-by-content {
+        width: 48%;
+    display: inline-block;
+    }
+    select#sortByFilter {
+        max-width: initial;
+    }
+    .filters-toolbar-wrapper .dia-container > div {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    .filter_right_column {
+        margin: 0px;
+        width: 100%;
+    }
 }

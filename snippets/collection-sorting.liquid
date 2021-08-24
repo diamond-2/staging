@@ -1,0 +1,56 @@
+   {% if is_filter_by_available or section.settings.sort_enable %}
+      <div class="filters-toolbar-wrapper filter_type2{% if is_filter_by_available %} filters-toolbar--has-filter{% endif %}">
+        <div class="dia-container">
+          <div class="filter-top-row">
+            <div class="img_box">{{ 'diomand_40x40.svg' | asset_url | img_tag :'Diamond2' }}</div>
+          </div>
+          <div class="filters-toolbar-label">
+            <div class="filter-by-label">Filter by</div>
+            <div class="clear-filters" style="display: none;"><a href="javascript:;" aria-label="Clear filters">Clear Filters</a></div>
+          </div>
+          <div class="filters-toolbar">
+            <div class="collection-filter-wrapper-main" data-collection-filter-section></div>
+          </div>
+          <div class="filters-toolbar__item-wrapper">
+
+            <div class="filters-toolbar__item filters-toolbar__item--count">
+              <span class="filters-toolbar__product-count">Showing {% if collection.products_count > 0 %}1{% else %}0{% endif %} - {{ limit }} of {{ collection.products_count }}</span>
+            </div>
+
+            <div class="filter_right_column">
+              <div class="filter_compare_item hide"><a href="#">Compare (3)</a></div>
+              <div class="filter_wishlist_item hide">{% include 'icon-wishlist-fill' %}<a href="#">Wishlist (25)</a></div>
+              <div class="filters-toolbar__item-wrapper">
+                  {% if section.settings.sort_enable %}
+                  <div class="collection-sort">
+                    <span class="collection-sort-label">Sort by</span>
+                    <span class="select-sort-by-content">
+                      <select id="sortByFilter" class="select-sort-by">
+                        <option value="relevance&sortOrder=desc" selected>Sort by</option>
+                        <option value="sales_amount&sortOrder=desc" >Best Selling</option>
+                        <option value="price&sortOrder=asc">Price (Low to High)</option>
+                        <option value="price&sortOrder=desc">Price (High to Low)</option>
+                        <option value="title&sortOrder=asc">Alphabetically (A-Z)</option>
+                        <option value="title&sortOrder=desc">Alphabetically (Z-A)</option>
+                        <option value="created&sortOrder=asc">Oldest</option>
+                        <option value="created&sortOrder=desc">Newest</option>                    
+                      </select>
+                    </span>
+                  </div>
+                  {% endif %}
+                </div>
+
+              <div class="product_view_item_grp hide">
+                <div class="product_view grid_view active">
+                  <a data-view="grid" href="#">{% include 'icon-grid' %}</a>
+                </div>
+                <div class="product_view list_view">
+                  <a data-view="list" href="#">{% include 'icon-list' %}</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}

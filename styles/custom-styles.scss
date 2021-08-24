@@ -4698,6 +4698,11 @@ body[data-template="product"] {
       width: 100%;
     }
     .product-detail-slider-thumbnail {
+      &[data-size] {
+        .slick-track {
+          transform: translate3d(0,0,0)!important;
+        }
+      }
       .slick-list {
         padding-right: 29.5%;
         margin-bottom: -10px;
