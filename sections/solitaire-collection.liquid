@@ -170,27 +170,22 @@
       </ul>
       <!-- second Row -->
       {% capture bigImage %}custom_image_1{% endcapture %}
-      {% assign plploop = productMetafield[bigImage] | split: '~' %}
-      {% assign imageUrl = plploop[0] %}
-      {% assign imageLink = plploop[1] %}
-
-      <!-- Get Images for Mobile Or Desktop -->
-      {% assign block1Image = plploop[0] | split: '?mobile=' %}
-
+      {% assign blockImage = productMetafield[bigImage].image %}
+      {% assign blockMobileImage = productMetafield[bigImage].mobileImage %}
+      {% assign blockLink = productMetafield[bigImage].link %}
+      
       <!-- show section if there is more then 6 product avil -->
       {%- if collection.products.size > 6 -%}
       <div class="{% if productMetafield[bigImage] != blank %}solitaire-two-col-row{% endif %}">
-        {% if imageUrl != blank or imageLink %}
+        {% if blockLink != blank or blockImage %}
         <div class="static_image_column">
           <div class="img_holder">
-            <img class="hide_mobile" src="{{ block1Image[0] }}" alt="SHOP THE LOOK">
-            {% if block1Image[1] !=blank %}
-            <img class="show_mobile" src="{{ block1Image[1] }}" alt="SHOP THE LOOK">
-            {% else %}
-            <img class="show_mobile" src="{{ block1Image[0] }}" alt="SHOP THE LOOK">
+            <img {% if blockMobileImage !=blank %}class="hide_mobile"{% endif %} src="{{ blockImage }}" alt="SHOP THE LOOK">
+            {% if blockMobileImage !=blank %}
+            <img class="show_mobile" src="{{ blockMobileImage }}" alt="SHOP THE LOOK">
             {% endif %}
           </div>
-          <div class="btn-holder"><a class="glb-btn-with-arrow large_arrow_btn" href="{{ imageLink }}">SHOP THE LOOK</a></div>
+          <div class="btn-holder"><a class="glb-btn-with-arrow large_arrow_btn" href="{{ blockLink }}">SHOP THE LOOK</a></div>
         </div>
         {% endif %}
         <div class="pd_column">
@@ -274,27 +269,22 @@
       </ul>
       <!-- Fourth Row -->
       {% capture bigImage2 %}custom_image_2{% endcapture %}
-      {% assign plploop2 = productMetafield[bigImage2] | split: '~' %}
-      {% assign imageUrl2 = plploop2[0] %}
-      {% assign imageLink2 = plploop2[1] %}
+      {% assign block2Image = productMetafield[bigImage2].image %}
+      {% assign block2MobileImage = productMetafield[bigImage2].mobileImage %}
+      {% assign block2Link = productMetafield[bigImage2].link %}
       
-      <!-- Get Images for Mobile Or Desktop -->
-      {% assign block2Image = plploop2[0] | split: '?mobile=' %}
-
       <!-- show section if there is more then 15 product avil -->
       {%- if collection.products.size > 15 -%}
       <div class="{% if productMetafield[bigImage2] != blank %}solitaire-two-col-row img_pos_right{% endif %}">
-        {% if imageUrl2 != blank or imageLink2 != blank  %}
+        {% if block2Image != blank or block2Link != blank  %}
         <div class="static_image_column">
           <div class="img_holder">
-            <img class="hide_mobile" src="{{ block2Image[0] }}" alt="SHOP THE LOOK">
-            {% if block2Image[1] !=blank %}
-            <img class="show_mobile" src="{{ block2Image[1] }}" alt="SHOP THE LOOK">
-            {% else %}
-            <img class="show_mobile" src="{{ block2Image[0] }}" alt="SHOP THE LOOK">
+            <img {% if block2MobileImage !=blank %}class="hide_mobile"{% endif %} src="{{ block2Image }}" alt="SHOP THE LOOK">
+            {% if block2MobileImage !=blank %}
+            <img class="show_mobile" src="{{ block2MobileImage }}" alt="SHOP THE LOOK">
             {% endif %}
           </div>
-          <div class="btn-holder"><a class="glb-btn-with-arrow large_arrow_btn" href="{{ imageLink2 }}">SHOP THE LOOK</a></div>
+          <div class="btn-holder"><a class="glb-btn-with-arrow large_arrow_btn" href="{{ block2Link }}">SHOP THE LOOK</a></div>
         </div>
         {% endif %}
         <div class="pd_column">

@@ -1,28 +1,21 @@
 
-{% assign sliderImage = collection.metafields.global.banner_slider_images | split: ',' %}
+{% assign sliderImages = collection.metafields.bannerData.banner_slider_images %}
 
-{% assign sliderImageMobile = collection.metafields.global.banner_slider_images_mobile | split: ',' %}
+{% if sliderImages.size > 0 %}
 
-{% if sliderImage.size > 0 %}
 <!-- DO Not style With 'top_banner' Class -->
 <div class="full_width_slider_wrapper solitaire-banner-slider-wrapper top_banner">
     <div class="full_width_slider">
-        {% for item in sliderImage %}
+        {% for item in sliderImages %}
         {%- if item !=blank -%}
-
-        {% assign mobileImage = item | split: '~' %}
         <div class="full_width_slide_item slide--{{ forloop.index }}">
-            <div class="full_width_slider_image_holder hide_mobile">
-                <img data-src="{{ item }}" class="lazyload"  alt="{{ collection.title }}" />
+            <div class="full_width_slider_image_holder {% if item.mobileImage !=blank %}hide_mobile{% endif %}">
+                <img data-src="{{ item.image }}" class="lazyload"  alt="{{ collection.title }}" />
             </div> 
-            {% if mobileImage[1] !=blank %}
+            {% if item.mobileImage !=blank %}
             <div class="full_width_slider_image_holder show_mobile">
-                <img data-src="{{ mobileImage[1] }}" class="lazyload"  alt="{{ collection.title }}" />
-            </div>  
-            {% else %}
-            <div class="full_width_slider_image_holder show_mobile">
-                <img data-src="{{ item }}" class="lazyload"  alt="{{ collection.title }}" />
-            </div> 
+                <img data-src="{{ item.mobileImage }}" class="lazyload"  alt="{{ collection.title }}" />
+            </div>   
             {% endif %}
         </div>
         {%- endif -%}   
@@ -30,6 +23,9 @@
     </div>
 </div>
 {% endif %}
+
+
+
 {% schema %}
 {
     "name": "Solitaire Banner Slider",
