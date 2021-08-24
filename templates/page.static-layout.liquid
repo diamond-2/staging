@@ -1,6 +1,10 @@
 <div class="static-layout-wrapper">
-    {% include 'banner' %}
+    <div class="top_banner_section">
+        {% include 'banner' %}
+    </div>
     <section class="padding_t">
-        <div class="dia-container">{{ page.content }}</div>
+        <div class="dia-container">
+            <div class="rte">{{ page.content }}</div>
+        </div>
     </section>
 </div>

@@ -103,12 +103,20 @@
       {% assign imageUrl = plploop[0] %}
       {% assign imageLink = plploop[1] %}
 
+      <!-- Get Images Path For Mobile or Deskhtop -->
+      {% assign block1Image = plploop[0] | split: '?mobile=' %}
+
       {% capture metaBlock1 %}
       {% if imageUrl %}
       <div class="static_image_column">
         <div class="img_holder">
           <a {% if imageLink %}href="{{ imageLink }}"{% endif %}>
-            <img src="{{ imageUrl }}" alt="{{ collection.title }}">
+            <img class="hide_mobile" src="{{ block1Image[0] }}" alt="{{ collection.title }}">
+            {% if block1Image[1] !=blank %}
+            <img class="show_mobile" src="{{ block1Image[1] }}" alt="{{ collection.title }}">
+            {% else %}
+            <img class="show_mobile" src="{{ block1Image[0] }}" alt="{{ collection.title }}">
+            {% endif %}
           </a>
         </div>
       </div>
@@ -121,12 +129,20 @@
       {% assign imageUrl2 = plploop2[0] %}
       {% assign imageLink2 = plploop2[1] %}
 
+      <!-- Get Images Path For Mobile or Deskhtop -->
+      {% assign block2Image = plploop2[0] | split: '?mobile=' %}
+
       {% capture metaBlock2 %}
       {% if imageLink2 %}
       <div class="static_image_column">
         <div class="img_holder">
           <a {% if imageLink2 %}href="{{ imageLink2 }}"{% endif %}>
-            <img src="{{ imageUrl2 }}" alt="{{ collection.title }}">
+            <img class="hide_mobile" src="{{ block2Image[0] }}" alt="{{ collection.title }}">
+            {% if block2Image[1] !=blank %}
+            <img class="show_mobile" src="{{ block2Image[1] }}" alt="{{ collection.title }}">
+            {% else %}
+            <img class="show_mobile" src="{{ block2Image[0] }}" alt="{{ collection.title }}">
+            {% endif %}
           </a>
         </div>
       </div>

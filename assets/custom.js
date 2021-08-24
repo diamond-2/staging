@@ -7,6 +7,7 @@ $(document).on('click', '.product-form__cart-submit', function(e){
     // $(document).find('.continue_shop').hide();
     // $this.find('[data-loader]').removeClass('hidden');
     var formData = $(this).closest('form').serialize();
+    $('.drawer').addClass('show_drawer');
     console.log(formData);
     __addTocart(formData, $this);
   });

@@ -174,13 +174,21 @@
       {% assign imageUrl = plploop[0] %}
       {% assign imageLink = plploop[1] %}
 
+      <!-- Get Images for Mobile Or Desktop -->
+      {% assign block1Image = plploop[0] | split: '?mobile=' %}
+
       <!-- show section if there is more then 6 product avil -->
       {%- if collection.products.size > 6 -%}
       <div class="{% if productMetafield[bigImage] != blank %}solitaire-two-col-row{% endif %}">
         {% if imageUrl != blank or imageLink %}
         <div class="static_image_column">
           <div class="img_holder">
-            <img src="{{ imageUrl }}">
+            <img class="hide_mobile" src="{{ block1Image[0] }}" alt="SHOP THE LOOK">
+            {% if block1Image[1] !=blank %}
+            <img class="show_mobile" src="{{ block1Image[1] }}" alt="SHOP THE LOOK">
+            {% else %}
+            <img class="show_mobile" src="{{ block1Image[0] }}" alt="SHOP THE LOOK">
+            {% endif %}
           </div>
           <div class="btn-holder"><a class="glb-btn-with-arrow large_arrow_btn" href="{{ imageLink }}">SHOP THE LOOK</a></div>
         </div>
@@ -270,13 +278,21 @@
       {% assign imageUrl2 = plploop2[0] %}
       {% assign imageLink2 = plploop2[1] %}
       
+      <!-- Get Images for Mobile Or Desktop -->
+      {% assign block2Image = plploop2[0] | split: '?mobile=' %}
+
       <!-- show section if there is more then 15 product avil -->
       {%- if collection.products.size > 15 -%}
       <div class="{% if productMetafield[bigImage2] != blank %}solitaire-two-col-row img_pos_right{% endif %}">
         {% if imageUrl2 != blank or imageLink2 != blank  %}
         <div class="static_image_column">
           <div class="img_holder">
-            <img src="{{ imageUrl2 }}">
+            <img class="hide_mobile" src="{{ block2Image[0] }}" alt="SHOP THE LOOK">
+            {% if block2Image[1] !=blank %}
+            <img class="show_mobile" src="{{ block2Image[1] }}" alt="SHOP THE LOOK">
+            {% else %}
+            <img class="show_mobile" src="{{ block2Image[0] }}" alt="SHOP THE LOOK">
+            {% endif %}
           </div>
           <div class="btn-holder"><a class="glb-btn-with-arrow large_arrow_btn" href="{{ imageLink2 }}">SHOP THE LOOK</a></div>
         </div>

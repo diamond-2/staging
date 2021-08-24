@@ -108,15 +108,15 @@ body {
       font-size: 2.916666666666667vw;
       line-height: 3.125vw; } }
 
-.main-content P {
+.main-content P, .rte {
   font-size: 26px;
   line-height: 28.08px; }
   @media (max-width: 1600px) {
-    .main-content P {
+    .main-content P, .rte {
       font-size: 16px;
       line-height: 1.8; } }
   @media (max-width: 749px) {
-    .main-content P {
+    .main-content P, .rte {
       font-size: 14px;
       line-height: 18px; } }
 
@@ -4175,28 +4175,18 @@ body[data-template="product"] .main-content {
       .product-section-row .product-form__controls-group .ring-size-chart {
         font-size: 11px;
         line-height: 11.88px; } }
-    @media (max-width: 1199px) and (min-width: 992px) {
-      .product-section-row .product-form__controls-group .ring-size-chart {
-        width: 100%;
-        margin: 0;
-        text-align: left; } }
     .product-section-row .product-form__controls-group .ring-size-chart a {
       text-decoration: underline; }
   .product-section-row .product-form__controls-group .custom-select-holder {
     display: flex;
     width: calc(100% - 120px);
     align-items: center; }
-    @media (max-width: 1199px) and (min-width: 992px) {
-      .product-section-row .product-form__controls-group .custom-select-holder {
-        width: 100%;
-        margin-bottom: 10px;
-        flex-wrap: nowrap; } }
     .product-section-row .product-form__controls-group .custom-select-holder label {
       width: 170px; }
       @media (max-width: 1600px) and (min-width: 750px) {
         .product-section-row .product-form__controls-group .custom-select-holder label {
           margin-right: 36px;
-          width: auto; } }
+          width: 97px; } }
       @media (max-width: 749px) {
         .product-section-row .product-form__controls-group .custom-select-holder label {
           width: auto;
@@ -7156,6 +7146,9 @@ body.has_top_banner .main-content {
   line-height: normal !important; }
 
 body[data-template="contact"] .main-content {
+  padding: 0; }
+
+body[data-template="static-layout"] .main-content {
   padding: 0; }
 
 .contact-us-layout {

@@ -468,7 +468,7 @@ body {
     letter-spacing: normal;
     text-transform: uppercase;
 }
-.main-content P {
+.main-content P, .rte {
   @include globalFontSize26();
 }
 .dia-container{
@@ -5223,11 +5223,6 @@ body[data-template="product"] {
       text-align: center;
       width: 120px;
       @include pdpSmallFont();
-      @media(max-width: $xl) and (min-width: $postLg) {
-        width: 100%;
-        margin: 0;
-        text-align: left;
-      }
       a {
         text-decoration: underline;
       }
@@ -5236,16 +5231,11 @@ body[data-template="product"] {
         display: flex;
         width: calc(100% - 120px);
         align-items: center;
-        @media(max-width: $xl) and (min-width: $postLg) {
-          width: 100%;
-          margin-bottom: 10px;
-          flex-wrap: nowrap;
-        }
         label {
           width: 170px;
           @media(max-width: $xxl) and (min-width: $postMd) {
             margin-right: 36px;
-            width: auto;
+            width: 97px;
           }
           @media(max-width: $md) {
             width: auto;
@@ -8744,6 +8734,11 @@ body {
 
 // Contact Us Start
 body[data-template="contact"] {
+  .main-content {
+    padding:0;
+  }
+}
+body[data-template="static-layout"] {
   .main-content {
     padding:0;
   }

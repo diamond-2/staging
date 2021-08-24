@@ -1,5 +1,7 @@
 {% assign bannerImage = page.metafields.global.banner_image %}
 
-<div class="custom_banner">
+{% if bannerImage %}
+<div class="custom_banner top_banner">
     <div class="custom_banner_image" style="background-image:url('{{ bannerImage }}')"></div>
 </div>
+{% endif %}
