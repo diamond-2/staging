@@ -300,6 +300,7 @@ $PostXl: $xl + $viewportIncrement;
 $postMd: $md + $viewportIncrement;
 $postLg: $lg + $viewportIncrement;
 $postSiteWidth: $siteWidth + $viewportIncrement;
+$postXXL: $xxl +  $viewportIncrement;
 
 @mixin font-range-56to26() {
   font-size: calc(26px + (100vw - 750px)/1170 * 30);
@@ -4608,11 +4609,18 @@ body[data-template="know-your-diamond"] {
 // need to remove above line code wahen page done
 body[data-template="product"] {
 	.main-content {
-    padding-top: 100px;
+    padding-top: 0;
     font-weight: 400;
     @media(max-width: $md) {
       padding-top:0;
     }
+  }
+}
+.product-pd-section {
+  padding-top: 100px;
+  font-weight: 400;
+  @media(max-width: $md) {
+    padding-top:0;
   }
 }
 @mixin pdp-mobile-font-size(){
@@ -5228,6 +5236,10 @@ body[data-template="product"] {
       text-align: center;
       width: 120px;
       @include pdpSmallFont();
+      @media(max-width: $md) {
+        width: auto;
+        margin-left: 10px;
+      }
       a {
         text-decoration: underline;
       }
@@ -5236,6 +5248,9 @@ body[data-template="product"] {
         display: flex;
         width: calc(100% - 120px);
         align-items: center;
+        @media(max-width: $md) {
+          width: auto;
+        }
         label {
           width: 170px;
           @media(max-width: $xxl) and (min-width: $postMd) {
@@ -5243,7 +5258,7 @@ body[data-template="product"] {
             width: 97px;
           }
           @media(max-width: $md) {
-            width: auto;
+            width: 150px;
             padding-top: 0;
             margin-right: 0;
           }
@@ -5257,7 +5272,6 @@ body[data-template="product"] {
             width: 53px;
             font-size: 14px;
             line-height: 17.07px;
-            margin-left: auto;
             font-weight: 300;
             border-radius: 0;
             border-color: #000000;
@@ -8744,8 +8758,13 @@ body[data-template="contact"] {
   }
 }
 body[data-template="static-layout"] {
-  .main-content {
+  .main-content  {
     padding:0;
+    p, .rte {
+      @media(min-width: $postXXL) {
+        line-height: 1.5;
+      }
+    }
   }
 }
 .contact-us-layout {
@@ -12700,6 +12719,12 @@ body[data-template="customers/addresses"] {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+  }
+}
+.section-header-glb {
+  h2 {
+    margin-bottom: 30px;
+    text-transform: none;
   }
 }
 /* ========== Static Pages End ============== */

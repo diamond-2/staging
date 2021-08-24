@@ -44,25 +44,21 @@
   <div class="dia-container " id="Collection" data-collection-listing-container>
     {% if section.settings.layout == 'grid' %}
       {% assign productMetafield = collection.metafields.meta %}
+      
       <!-- Metafield Block 1 -->
       {% capture bigImage %}custom_image_1{% endcapture %}
-      {% assign plploop = productMetafield[bigImage] | split: '~' %}
-      {% assign imageUrl = plploop[0] %}
-      {% assign imageLink = plploop[1] %}
-
-      <!-- Get Images Path For Mobile or Deskhtop -->
-      {% assign block1Image = plploop[0] | split: '?mobile=' %}
+      {% assign blockImage = productMetafield[bigImage].image %}
+      {% assign blockMobileImage = productMetafield[bigImage].mobileImage %}
+      {% assign blockLink = productMetafield[bigImage].link %}
 
       {% capture metaBlock1 %}
-      {% if imageUrl %}
+      {% if blockImage !=blank %}
       <div class="static_image_column">
         <div class="img_holder">
-          <a {% if imageLink %}href="{{ imageLink }}"{% endif %}>
-            <img class="hide_mobile" src="{{ block1Image[0] }}" alt="{{ collection.title }}">
-            {% if block1Image[1] !=blank %}
-            <img class="show_mobile" src="{{ block1Image[1] }}" alt="{{ collection.title }}">
-            {% else %}
-            <img class="show_mobile" src="{{ block1Image[0] }}" alt="{{ collection.title }}">
+          <a {% if blockLink %}href="{{ blockLink }}"{% endif %}>
+            <img {% if blockMobileImage !=blank %}class="hide_mobile"{% endif %} src="{{ blockImage }}" alt="{{ collection.title }}">
+            {% if blockMobileImage !=blank %}
+            <img class="show_mobile" src="{{ blockMobileImage }}" alt="{{ collection.title }}">
             {% endif %}
           </a>
         </div>
@@ -70,25 +66,21 @@
       {% endif %}
       {% endcapture %}
 
+      
       <!-- Metafield Block 2 -->
       {% capture bigImage2 %}custom_image_2{% endcapture %}
-      {% assign plploop2 = productMetafield[bigImage2] | split: '~' %}
-      {% assign imageUrl2 = plploop2[0] %}
-      {% assign imageLink2 = plploop2[1] %}
-
-      <!-- Get Images Path For Mobile or Deskhtop -->
-      {% assign block2Image = plploop2[0] | split: '?mobile=' %}
+      {% assign block2Image = productMetafield[bigImage2].image %}
+      {% assign block2MobileImage = productMetafield[bigImage2].mobileImage %}
+      {% assign block2Link = productMetafield[bigImage2].link %}
 
       {% capture metaBlock2 %}
-      {% if imageLink2 %}
+      {% if block2Image !=blank %}
       <div class="static_image_column">
         <div class="img_holder">
-          <a {% if imageLink2 %}href="{{ imageLink2 }}"{% endif %}>
-            <img class="hide_mobile" src="{{ block2Image[0] }}" alt="{{ collection.title }}">
-            {% if block2Image[1] !=blank %}
-            <img class="show_mobile" src="{{ block2Image[1] }}" alt="{{ collection.title }}">
-            {% else %}
-            <img class="show_mobile" src="{{ block2Image[0] }}" alt="{{ collection.title }}">
+          <a {% if block2Link %}href="{{ block2Link }}"{% endif %}>
+            <img {% if block2MobileImage !=blank %}class="hide_mobile"{% endif %} src="{{ block2Image }}" alt="{{ collection.title }}">
+            {% if block2MobileImage !=blank %}
+            <img class="show_mobile" src="{{ block2MobileImage }}" alt="{{ collection.title }}">
             {% endif %}
           </a>
         </div>
@@ -106,13 +98,18 @@
 
             <!-- will show only first page -->
             {%- if paginate.current_page == 1 -%}
-              {% if forloop.index == 4 %}
-                {{ metaBlock1 }}
+              {%- if collection.products.size > 5 -%}
+                {% if forloop.index == 4 %}
+                  {{ metaBlock1 }}
+                {% endif %}
               {% endif %}
 
-              {% if forloop.index == 10 %}
-                {{ metaBlock2 }}
+              {%- if collection.products.size > 10 -%}
+                {% if forloop.index == 10 %}
+                  {{ metaBlock2 }}
+                {% endif %}
               {% endif %}
+
             {%- endif -%}
 
           {% else %}
