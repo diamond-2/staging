@@ -1,5 +1,5 @@
-
 <div class="accordion-wrapper">
+    {% if section.settings.top_content !=blank %}<div class="rte top_content_section">{{ section.settings.top_content }}</div>{% endif %}
     <div class="ac-grid">
         {% for item in section.blocks %}
         {%- if item.settings.question != blank or item.settings.answer != blank -%}
@@ -10,7 +10,7 @@
             </div>
             {%- endif -%}
             {%- if item.settings.answer != blank -%}
-            <div class="rte ac-body">
+            <div class="ac-body rte">
                 <div class="ac-body-inner">{{ item.settings.answer }}</div>
             </div>
             {%- endif -%}
@@ -22,8 +22,13 @@
 
 {% schema %}
 {
-    "name": "FAQ",
+    "name": "Cookie Policy",
     "settings": [
+        {
+            "type": "html",
+            "label": "Top Content",
+            "id": "top_content"
+        }
     ],
     "blocks": [
         {
@@ -40,7 +45,7 @@
                     "type": "html",
                     "label": "Answer",
                     "id": "answer",
-                    "default": "Answer"
+                    "default": "content"
                 }
             ]
         }

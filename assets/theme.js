@@ -9776,7 +9776,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
   // Change header background on window scroll Event
   // Dom Load
   let initwindowScrolled = $(window).scrollTop();
-  fixedHeaderBg(initwindowScrolled);
+  setTimeout(function(){
+    fixedHeaderBg(initwindowScrolled);
+  },1000);
 
   // readystate update Navigation
   let navHeight = $('#SiteNav').innerHeight(); console.log (navHeight);
@@ -9789,10 +9791,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
     }
 
   // On scroll
-  $(window).on('scroll', function(){
-    let windowScrolled = $(window).scrollTop();
-    fixedHeaderBg(windowScrolled);    
-  });
+  setTimeout(function(){
+    $(window).on('scroll', function(){
+      let windowScrolled = $(window).scrollTop();
+      fixedHeaderBg(windowScrolled);    
+    });
+  },1000);
 
 var $header = document.getElementById("shopify-section-header");  
 var navParentEle = $(document).find('.site-header__mobile-nav').innerWidth()/2;
@@ -10074,6 +10078,12 @@ window.addEventListener("resize", function() {
     $('.sidebar-nav li a').removeClass('active');
     $('.sidebar-column').removeClass('sidebar_nav_active');
   });
+
+  // back to account page
+  $('.back-to-page-btn').click(function(){
+    $('.account_top_section_holder').removeClass('hide_mb_account_top');
+  });
+
   $('.tabber-nav a').click(function(e){
     e.preventDefault();
     $(this).parent().addClass('active');
@@ -10136,12 +10146,15 @@ window.addEventListener("resize", function() {
   });
 
   // Header Height
-  // function headerHeight() {
-  //     let headeHeight = $('#shopify-section-header').outerHeight();
-  //     $('body').css('padding-top',headeHeight);
-  // }
-  // headerHeight();
-  // window.addEventListener("resize", headerHeight);
+  function headerHeight() {
+      let headeHeight = $('#shopify-section-header').outerHeight();
+      $('body').css('padding-top',headeHeight);
+      $('.pdp-zoom-gallery').css({
+        "top": headeHeight
+      });
+  }
+  headerHeight();
+  window.addEventListener("resize", headerHeight);
 
   // matchHeight Global Call
   $('.matchHeight ').matchHeight();
@@ -10238,6 +10251,8 @@ window.addEventListener("resize", function() {
       $(this).closest('.form__input-wrapper').find('input').attr('type', 'password')
     }
   });
+
+  $('.common-layout-wrapper').closest('body').addClass('common_layout');
   
 
   
@@ -10246,9 +10261,9 @@ window.addEventListener("resize", function() {
 
 var showMobileNav = false;
 function fixedHeaderBg(scrollPosition) {
-  if(scrollPosition > 70) {
-    $('#shopify-section-header').addClass('header-bg')
-  } else {
-    $('#shopify-section-header').removeClass('header-bg')
-  } 
+    if(scrollPosition > 70) {
+      $('#shopify-section-header').addClass('header-bg')
+    } else {
+      $('#shopify-section-header').removeClass('header-bg')
+    } 
 }
