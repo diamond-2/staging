@@ -10253,7 +10253,6 @@ window.addEventListener("resize", function() {
   });
 
   $('.common-layout-wrapper').closest('body').addClass('common_layout');
-  
 
   
   

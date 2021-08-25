@@ -8,10 +8,15 @@
         <div class="container_fluid_inner">
           <div class="grid myaccount orderSection">
             <div class="grid__item myaccount__order-history">
-              <div class="order_sec2">
+              {%- assign order_date = order.created_at | date: format: 'abbreviated_date' -%}
+              <div class="account_sec_header_mobile show_mobile">
+                <div class="back-to-page-btn">{% include 'icon-back-arrow' %}</div>
+                <h4>{{ 'customer.order.title' | t: name: order.name }}</h4>
+                <p>{{ 'customer.order.date_html' | t: date: order_date | replace: 'Placed on', '' }}</p>
+              </div>
+              <div class="order_sec2 hide_mobile">
                 <h2>{{ 'customer.order.title' | t: name: order.name }}</h2>
                 <!-- {%- assign order_date = order.created_at | time_tag: format: "date_at_time" -%} -->
-                {%- assign order_date = order.created_at | date: format: 'abbreviated_date' -%}
                 <p>{{ 'customer.order.date_html' | t: date: order_date | replace: 'Placed on', '' }}</p>
               </div>
               {%- if order.cancelled -%}
