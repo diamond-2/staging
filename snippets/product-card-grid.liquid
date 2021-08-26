@@ -76,6 +76,7 @@
     <a class="product-full-link" href="{{ product.url }}"></a>
     <div class="product-images-wrapper {% if product.images.size > 1 %}product_images_slider{% endif %}">
       {% for slideImage in product.images %}
+      {% if  slideImage contains "_PLP" %}
       <div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation>
         <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper product-card__image-wrapper js">
           <div class="product_img_holder">
@@ -83,6 +84,7 @@
           </div>
         </div>
       </div>
+      {% endif %}
       {% endfor %}
     </div>
   </div>

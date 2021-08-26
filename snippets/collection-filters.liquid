@@ -5,7 +5,7 @@
 
 <script type="text/javascript">
   $(function(){
-    var maxResults = 48;
+    var maxResults = 16;
     var defFilterName = 'restrictBy[collections]={{ collection.title | replace: ',' , '\,' | url_encode }}';
       var searchsortby = $(document).find("#sortByFilter option:selected").attr('value'); console.log('sortyBy==> '+ searchsortby);
       var searchBaseUrl = 'https://www.searchanise.com/getresults?api_key=7r9L5P8L4h';
@@ -32,6 +32,19 @@
       searchaniseProducts(newQueryString);  
     });
 
+    $('body').on('change','#sortByFilter', function(){ 
+      var getSelectedVal = $(this).val();
+      $(this).find('option:selected').attr('selected','selected').siblings().removeAttr('selected');    
+      console.log('input changess'); 
+      var newQueryString = filterOnSelect();     
+      console.log('New Query Stirng --------------')
+      console.log(newQueryString); 	
+      console.log('New Query Stirng --------------')
+      searchaniseProducts(newQueryString);  
+    });
+
+
+
     searchaniseFiltersOnload(queryString);
     function searchaniseFiltersOnload(queryString) {
     $.ajax({	
@@ -46,6 +59,7 @@
           // $('.sn-loader, .filter-loader-icn').fadeOut();
           $('[data-collection-listing-container]').addClass('full-width').prepend('<p class="no-result">There are currently no products in this collection, please check back later</p>');
         } else {
+          $('#filter-cta-mob .filter-result-count').text(data.totalItems);
           $('.collection-header').data('limit');
           if($('.collection-header').attr('data-limit') < searchData.totalItems){
             //console.log('less then Search limit -- show pagination');
@@ -56,12 +70,12 @@
             // $('.collection-header-result-per-page').css('opacity', 0).css('pointer-events', 'none');
             // $('.collection-header-result-per-page').closest('.collection-bottom-pagination-data').addClass('hidepaginate');
           }   
-          filters = searchData.facets;  
-          
+          filters = searchData.facets;            
           
           //Init
           //var getmaxitemperpage = $('select.result-per-page option:selected').attr('data-count');
           createFilters();
+
           // printProducts(searchData.items);
 
         }
@@ -84,6 +98,7 @@
           $('[data-collection-listing-container]').addClass('full-width').prepend('<p class="no-result">There are currently no products in this collection, please check back later</p>');
         } else {
           $('.collection-header').data('limit');
+          $('#filter-cta-mob .filter-result-count').text(data.totalItems);
           if($('.collection-header').attr('data-limit') < searchData.totalItems){
             //console.log('less then Search limit -- show pagination');
             ///$('.collection-header-result-per-page').closest('.collection-bottom-pagination-data').removeClass('hidepaginate');
@@ -178,7 +193,7 @@
           //Show open the selected filters
           var totSelectedFilters = 0;
           $('[data-collection-filter-section] .collection-filter-wrapper').each(function(){
-            var selectedFils = $(this).find('input:checked').length; console.log('selectedFils==>' + selectedFils)
+            var selectedFils = $(this).find('input:checked').length; //('selectedFils==>' + selectedFils)
             if(selectedFils > 0){
               // $(this).prev('.collection-content-area-left-heading').find('span').attr('class', 'expend');
               // $(this).css('display', 'block');
@@ -197,16 +212,18 @@
      function filterOnSelect(){   
         searchsortby = $(document).find("#sortByFilter option:selected").attr('value');
         var fil = $('[data-collection-filter-section] input[type="checkbox"]:checked'); console.log('fil==>' + fil);  console.log(fil);
-      var newQueryString = queryString
+        '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
+      // var newQueryString = queryString
+      var newQueryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
       $(document).find('[data-collection-filter-section] .collection-filter-wrapper').each(function(){
-        var thisFilterName = $(this).data('filter'); console.log('thisFilterName==> ' + thisFilterName);
-        var filValues = $(this).find('input[type="checkbox"]:checked');  console.log(filValues.length);
+        var thisFilterName = $(this).data('filter'); //console.log('thisFilterName==> ' + thisFilterName);
+        var filValues = $(this).find('input[type="checkbox"]:checked');  //console.log(filValues.length);
         var filSelected = '';
         if(filValues.length > 0){
           filValues.each(function(i){ 
             filSelected+=$(this).closest('.collection-filter-wrapper').find('select.filters-toolbar__input option:selected').attr('data-opt-val');
-            console.log('filSelected==>>>>');
-            console.log(filSelected);
+            //console.log('filSelected==>>>>');
+            //console.log(filSelected);
             if(i+1 < filValues.length){
               filSelected += '|';
             }  
@@ -241,7 +258,7 @@
                 prodComparePrice = parseInt(prodObj[i].list_price)*100,
                 prodPrice = theme.Currency.formatMoney(prodComparePrice, theme.moneyFormat).replace('.00',''),
                 prodId = prodObj[i].id;
-                console.log(prodImages);
+               // console.log(prodImages);
 
             getprodlink = '/collections/'+getcollection;
             var _thistags = prodTags;
@@ -275,7 +292,9 @@
             productGrid += '<div class="product-images-wrapper-holder"><a class="product-full-link" href="'+getprodlink+'"></a> <div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider>';
              
                 for (let j = 0; j < prodImages.length; j++) {
-                  productGrid += '<div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation><div id="" class="grid-view-item__image-wrapper product-card__image-wrapper js"><div class="product_img_holder"><img data-src="'+prodImages[j]+'" alt="'+ prodTitle+'" class="grid-view-item__image lazyload"></div></div></div>'
+                  if(prodImages[j].indexOf('_PLP') > -1) {
+                    productGrid += '<div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation><div id="" class="grid-view-item__image-wrapper product-card__image-wrapper js"><div class="product_img_holder"><img data-src="'+prodImages[j]+'" alt="'+ prodTitle+'" class="grid-view-item__image lazyload"></div></div></div>'
+                  }
                 }
               
                 productGrid += '</div></div>'

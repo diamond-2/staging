@@ -1,5 +1,11 @@
    {% if is_filter_by_available or section.settings.sort_enable %}
-      <div class="filters-toolbar-wrapper filter_type2{% if is_filter_by_available %} filters-toolbar--has-filter{% endif %}">
+      <div class="filter-toolbar-wrapper-mobile desktop_hide">
+        <div class="dia-container">
+          <a href="javascript:;" id="filter-btn-mob" class="btn">Filter By</a>
+          <a href="javascript:;" id="sortby-btn-mob" class="btn">Sort By</a>
+        </div>
+      </div>
+      <div class="filters-toolbar-wrapper filter_type2{% if is_filter_by_available %} filters-toolbar--has-filter{% endif %}" data-filter-layout>
         <div class="dia-container">
           <div class="filter-top-row">
             <div class="img_box">{{ 'diomand_40x40.svg' | asset_url | img_tag :'Diamond2' }}</div>
@@ -39,7 +45,6 @@
                   </div>
                   {% endif %}
                 </div>
-
               <div class="product_view_item_grp hide">
                 <div class="product_view grid_view active">
                   <a data-view="grid" href="#">{% include 'icon-grid' %}</a>
@@ -48,9 +53,38 @@
                   <a data-view="list" href="#">{% include 'icon-list' %}</a>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
+
+        <div id="filter-cta-mob" class="desktop_hide">
+          <a class="btn" href="javascript:;">Show <span class="filter-result-count">29</span> Results</a>
+        </div>
       </div>
+
+      
+      <script>
+        $(function(){
+          $(document).on('click', '.filter-toolbar-wrapper-mobile a', function(){
+            $(document).find('[data-filter-layout]').addClass('visible-mob-filter');
+            $('body').addClass('overflow-hidden');
+          });
+
+          $(document).on('click', '#filter-cta-mob a', function(){
+            $(document).find('[data-filter-layout]').removeClass('visible-mob-filter');
+            $('body').removeClass('overflow-hidden');
+          });
+          // Filter button fixed on window scroll 
+          var offset = $('.filter-toolbar-wrapper-mobile').offset().top - 80;
+          $(window).on('scroll',function(){            
+            var s = $(window).scrollTop();//console.log(s)
+            if(s >= offset) {
+            $('.filter-toolbar-wrapper-mobile').addClass('postion-fixed');
+            }else {
+              $('.filter-toolbar-wrapper-mobile').removeClass('postion-fixed');
+            }
+          })
+        })
+
+      </script>
     {% endif %}

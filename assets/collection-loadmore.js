@@ -121,6 +121,4 @@ $(document).ready(function(){
     console.log('clicked')
     loadmoreList(this);
   });
-
-
 });
