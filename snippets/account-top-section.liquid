@@ -1,27 +1,29 @@
-<div class="glb-breadcrumb">
-  <ul>
-    <li>
-      <a href="/">Home</a>
-      {% include 'icon-breadcrumb' %}
-    </li>
-    <li><span class="bred_tex">Account</span></li>
-  </ul>
-</div>
-
-<div class="account_section-header">
-  <p>Welcome, {{ customer.first_name }}</p>
-  <h1>{{ 'Your Account' }}</h1>
-  {%- comment -%}<h1>{{ 'customer.account.title' | t }}</h1>{%- endcomment -%}
-  {%- comment -%}{{ 'layout.customer.log_out' | t | customer_logout_link }}{%- endcomment -%}
-</div>
-
-<div class="account_nav">
+<div class="account_top_section_holder hide_mb_account_top">
+  <div class="glb-breadcrumb">
     <ul>
-      <li class="profile_menu"><a href="#"><span class="account_nav_icon">{% include 'icon-account-profile' %}</span>Profile<span class="account_arrow_icon show_mobile">{% include 'icon-account-arrow' %}</span></a></li>
-      <li class="wishlist_menu"><a href="#"><span class="account_nav_icon">{% include 'icon-account-wishlist' %}</span>Wishlist<span class="account_arrow_icon show_mobile">{% include 'icon-account-arrow' %}</span></a></li>
-      <li {% if request.page_type == 'customers/account' or request.page_type == 'customers/order' %}class="order_menu active"{% endif %}><a href="/account"><span class="account_nav_icon">{% include 'icon-account-order' %}</span>Orders<span class="account_arrow_icon show_mobile">{% include 'icon-account-arrow' %}</span></a></li>
-      <li class="appointments_menu"><a href="#"><span class="account_nav_icon">{% include 'icon-account-appointment' %}</span>Appointments<span class="account_arrow_icon show_mobile">{% include 'icon-account-arrow' %}</span></a></li>
-      <li {% if request.page_type == 'customers/addresses' %}class="address_menu active"{% endif %}><a href="/account/addresses"><span class="account_nav_icon">{% include 'icon-account-address' %}</span>Address<span class="account_arrow_icon show_mobile">{% include 'icon-account-arrow' %}</span></a></li>
-      <li class="help_menu"><a href="#"><span class="account_nav_icon">{% include 'icon-account-help' %}</span>Help<span class="account_arrow_icon show_mobile">{% include 'icon-account-arrow' %}</span></a></li>
+      <li>
+        <a href="/">Home</a>
+        {% include 'icon-breadcrumb' %}
+      </li>
+      <li><span class="bred_tex">Account</span></li>
     </ul>
   </div>
+
+  <div class="account_section-header">
+    <p>Welcome, {{ customer.first_name }}</p>
+    <h1>{{ 'Your Account' }}</h1>
+    {%- comment -%}<h1>{{ 'customer.account.title' | t }}</h1>{%- endcomment -%}
+    {%- comment -%}{{ 'layout.customer.log_out' | t | customer_logout_link }}{%- endcomment -%}
+  </div>
+
+  <div class="account_nav">
+      <ul>
+        <li class="profile_menu"><a href="#"><span class="account_nav_icon show_mobile">{% include 'icon-account-profile' %}</span>Profile<span class="account_arrow_icon show_mobile">{% include 'icon-account-arrow' %}</span></a></li>
+        <li class="wishlist_menu"><a href="#"><span class="account_nav_icon show_mobile">{% include 'icon-account-wishlist' %}</span>Wishlist<span class="account_arrow_icon show_mobile">{% include 'icon-account-arrow' %}</span></a></li>
+        <li {% if request.page_type == 'customers/account' or request.page_type == 'customers/order' %}class="order_menu active"{% endif %}><a href="/account"><span class="account_nav_icon show_mobile">{% include 'icon-account-order' %}</span>Orders<span class="account_arrow_icon show_mobile">{% include 'icon-account-arrow' %}</span></a></li>
+        <li class="appointments_menu"><a href="#"><span class="account_nav_icon show_mobile">{% include 'icon-account-appointment' %}</span>Appointments<span class="account_arrow_icon show_mobile">{% include 'icon-account-arrow' %}</span></a></li>
+        <li {% if request.page_type == 'customers/addresses' %}class="address_menu active"{% endif %}><a href="/account/addresses"><span class="account_nav_icon show_mobile">{% include 'icon-account-address' %}</span>Address<span class="account_arrow_icon show_mobile">{% include 'icon-account-arrow' %}</span></a></li>
+        <li class="help_menu"><a href="#"><span class="account_nav_icon show_mobile">{% include 'icon-account-help' %}</span>Help<span class="account_arrow_icon show_mobile">{% include 'icon-account-arrow' %}</span></a></li>
+      </ul>
+  </div>
+</div>
