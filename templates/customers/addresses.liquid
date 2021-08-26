@@ -9,7 +9,12 @@
       <div class="sp-account-section">
         <div class="container_fluid_inner">
           <header class="addess_section_header">
-            <h2>{{ 'customer.addresses.title' | t }}</h2>
+            <h2 class="hide_mobile">{{ 'customer.addresses.title' | t }}</h2>
+            <div class="account_sec_header_mobile show_mobile">
+              <div class="back-to-page-btn">{% include 'icon-back-arrow' %}</div>
+              <p>Welcome, {{ customer.first_name }}</p>
+              <h4>{{ 'customer.addresses.title' | t }}</h4>
+            </div>
             <p><button type="button" class="btn address-new-toggle" id="AddressNewButton" aria-expanded="false" aria-owns="AddressNewForm">{{ 'customer.addresses.add_new' | t }}</button></p>
           </header>
 

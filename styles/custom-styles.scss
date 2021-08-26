@@ -1068,17 +1068,23 @@ div#PageContainer {
   .site-header__cart {
     svg {
       @media(max-width: $md) {
-        width: 13px;
-        height: 13px;
+        width: 13px !important;
+        height: 13px !important;
       }
     }
   }
 
   .site-header__account {
+    &.logout_account_btn {
+      svg {
+        width: 27px;
+        height: 30px;
+      }
+    }
     svg {
       @media(max-width: $md) {
-        width: 13px;
-        height: 13px;
+        width: 13px !important;
+        height: 13px !important;
         margin: 0 10px;
       }
     }
@@ -11666,6 +11672,9 @@ body[data-template="customers/reset_password"] {
     }
   }
 }
+#one-click-social-login-buttons-1 {
+  display: none;
+}
 
 // Sign Up Page End
 
@@ -13227,3 +13236,211 @@ body.template-product {
     }    
   }
 }
+
+// Global Popup
+.custom-modal-wrapper[data-modal="custom-modal"] {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0 15px;
+  visibility: hidden;
+  opacity: 0;
+  @include transition();
+  &.customModal_Show {
+    opacity: 1;
+    visibility: visible;
+  }
+  .custom-modal-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    position: relative;
+    @media(max-width: $xxl) {
+      width: 90%;
+    }
+    .custom-modal-box {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      .custom-modal-box-inner {
+        width: 100%;
+      }
+      .custom-modal-header {
+        height: 70px;
+        text-align: right;
+        background: #E8E8E8;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 25px 30px;
+        .modal_close {
+          cursor: pointer;
+        }
+      }
+      .custom-modal-content {
+        position: relative;
+        padding-bottom: 100%;
+        overflow: hidden;
+        iframe, embed, object {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          top: 0;
+          left: 0;
+          right: 0;
+        }
+      }
+    }
+  }
+}
+
+
+/// Chat App 
+#wa-chat-btn-root {
+  right: 100px;
+  opacity: 0;
+  visibility: hidden;
+}
+.chat-widget-wrapper {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  z-index: 99999;
+  width: 90px;
+  cursor: pointer;
+  ul {
+    margin: 0;
+    list-style: none;
+    padding: 0px 5px;
+    margin-bottom: 10px;
+    position: relative;
+    left: 55px;
+    li {
+      width: 36px;
+      height: 55px;
+      position: absolute;
+      top: 0px;
+      transform: translateY(0px);
+      opacity: 0;
+      transition: all 0.3s linear 0s;
+      margin: 10px 0px;
+      left: 60px;
+      display: block;
+      cursor: pointer;
+      a {
+        width: 36px;
+        background:#000000;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        &.whatsapp_trigger {
+          background-image: url(https://cdn.shopify.com/s/files/1/0575/2681/2840/files/1C_Custom.svg?v=1629985416);
+          background-size: 32px;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+        svg {
+          width: 15px !important;
+          path {
+            fill: #fff;
+            stroke:#fff;
+          }
+        }
+      }
+    }
+  }
+  .chat-trigger {
+    width: 55px;
+    transition: width 0.3s ease-in-out 0s;
+    background: $textcolor-phanton;
+    color: #ffffff;
+    font-size: 13px;
+    text-align: center;
+    height: 36px;
+    border-radius: 25px;
+    overflow: hidden;
+    white-space: nowrap;
+    position: absolute;
+    right: 0px;
+    min-height: 36px;
+    line-height: 36px;
+    font-size: 0;
+    &:after {
+      content: "Help";
+      font-size: 13px;
+    }
+    &:before {
+      content: "X";
+      font-size: 20px;
+      display: none;
+    }
+  }
+}
+.chat-widget-overlay {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  @include transition();
+}
+.chat_widget_opend {
+  .chat-widget-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+  .chat-widget-wrapper {
+    .chat-trigger {
+      width: 36px;
+      border-radius: 50%;
+      &:after {
+        display: none;
+      }
+      &:before {
+        display: block;
+      }
+    }
+    ul {
+      li {
+        opacity: 1;
+        left: 0;
+        &:nth-child(1) {
+          top: -90px;
+          transform: translateY(-90px);
+        }
+        &:nth-child(2) {
+          top: -60px;
+          transform: translateY(-60px);
+        }
+        &:nth-child(3) {
+          top: -30px;
+          transform: translateY(-30px);
+        }
+      }
+    }
+  }
+}
+
