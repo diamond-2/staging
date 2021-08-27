@@ -10200,14 +10200,7 @@ window.addEventListener("resize", function() {
       url: handle+'/?view=featuredZoomImg',
       cache: false,
       success: function(response) {
-        console.log('FeaturedZoomImag Respon == >')
-        console.log(response);
-        console.log("Dta finalAlt" + finalAlt);
         $(document).find('#pdp-Zoom-Gallery .zoom-gallery-container').prepend(response);
-        setTimeout(function(){
-          // $(document).find('#pdp-Zoom-Gallery [data-product-single-media-group] .product-single__media-wrapper').not('[data-alt="'+finalAlt+'"]').remove();
-
-        },100); 
       }
       });
 

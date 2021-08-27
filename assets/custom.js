@@ -276,3 +276,13 @@ agreeCartCondiotn();
   $('.close-mini-cart').click(function(){
     $('.drawer').removeClass('show_drawer')
   });
+
+  // show tooltip on load
+  $(document).find('span.meta_tooltip').remove();
+  $(window).on('load', function(){    
+    $(document).find('#common-tooltip p').each(function(){
+      let dataLabel = $(this).data('label');
+      $(document).find('[data-tooltip="'+dataLabel+'"] .pdp-tab-val').after('<span class="meta_tooltip" data-tooltip-title="'+$(this).text()+'"></span>');
+    });
+  });
+  

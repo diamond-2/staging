@@ -1,0 +1,35 @@
+{% if section.blocks.size > 0 %}
+<div id="common-tooltip" style="display: none !important;">
+{% for block in section.blocks %}
+    {% assign tooltipLabel = block.settings.tooltip_label %}
+    {% assign tooltipContent = block.settings.tooltip_content %}
+    {% if tooltipLabel != bland and tooltipContent != blank %}<p data-label="{{ tooltipLabel }}">{{ tooltipContent }}</p>{% endif %}
+{% endfor %}
+</div>
+{% endif %}
+
+{% schema %}
+{
+    "name": "Tooltip",
+    "settings": [
+    ],
+    "blocks": [
+        {
+            "type": "text",
+            "name": "Tooltip",
+            "settings": [
+                {
+                    "type": "text",
+                    "label": "Tooltip label",
+                    "id": "tooltip_label"
+                },
+                {
+                    "type": "textarea",
+                    "label": "Tooltip content",
+                    "id": "tooltip_content"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

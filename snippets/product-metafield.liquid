@@ -38,14 +38,14 @@
                                         <tbody>
                                             {%- if hide_default_title -%}
                                             {%- else -%}
-                                                <tr data-row="pdp-metal" > 
+                                                <tr data-tooltip="jewgoldktclr" data-row="pdp-metal" > 
                                                     <td><span class="pdp-tab-label">Metal</span></td>
                                                     <td><span class="pdp-tab-val"><span class="variantColorTitle" data-variant-title>{{ product.selected_or_first_available_variant.option1  }}</span></span></td>
                                                 </tr>
                                             {% endif %}
 
                                             {% if variantMetafield[tableContent_dimension1] != blank %}
-                                                <tr data-row="{{ tableContent_dimension1 }}">
+                                                <tr data-tooltip="jewdim1" data-row="{{ tableContent_dimension1 }}">
                                                     <td><span class="pdp-tab-label">Height</span></td>
                                                     <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_dimension1] }}</span>{%- if productMetafield[tableContent_tooltip_height] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_height] }}"></span>{%- endif -%}</td>
                                                 </tr>
@@ -54,13 +54,13 @@
 
                                                 
                                                 {% if variantMetafield[tableContent_dimension2] != blank %}
-                                                <tr data-row="{{ tableContent_dimension2 }}">
+                                                <tr data-tooltip="jewdim2" data-row="{{ tableContent_dimension2 }}">
                                                     <td><span class="pdp-tab-label">Width</span></td>
                                                     <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_dimension2] }}</span> {%- if productMetafield[tableContent_tooltip_width] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_width] }}"></span>{%- endif -%}</td>
                                                 </tr>
                                                 {% endif %}
                                                 {% if productMetafield[tableContent_rhodium_plated] != blank %}
-                                                <tr data-row="{{ tableContent_rhodium_plated }}">
+                                                <tr data-tooltip="jewrhodium" data-row="{{ tableContent_rhodium_plated }}">
                                                     <td><span class="pdp-tab-label">Rhodium plated</span></td>
                                                     <td><span class="pdp-tab-val">{{ productMetafield[tableContent_rhodium_plated] | truncate: 30, '...' }}</span> {% if productMetafield[tableContent_tooltip_rhodium] != blank %} <span class="meta_tooltip" data-tooltip-title="{{productMetafield[tableContent_tooltip_rhodium]}}"></span>{% endif %}</td>
                                                 </tr>
@@ -108,21 +108,21 @@
                                             {% endif %}
                                             {% endfor %}
                                             {% if productMetafield[tableContent_rstab_avg_color] != blank %}
-                                                <tr data-row="{{ productMetafield[tableContent_rstab_avg_color] }}">
+                                                <tr data-tooltip="jewstncoloura" data-row="{{ productMetafield[tableContent_rstab_avg_color] }}">
                                                     <td><span class="pdp-tab-label">Average Color</span></td>
                                                     <td> </td>
                                                     <td><span class="pdp-tab-val">{{ productMetafield[tableContent_rstab_avg_color] }}</span></td>
                                                 </tr>
                                             {% endif %}
                                             {% if productMetafield[tableContent_rstab_avg_clarity] != blank %}
-                                                <tr data-row="{{ productMetafield[tableContent_rstab_avg_clarity] }}">
+                                                <tr data-tooltip="jewstnclaritya" data-row="{{ productMetafield[tableContent_rstab_avg_clarity] }}">
                                                     <td><span class="pdp-tab-label">Average Clarity</span></td>
                                                     <td> </td>
                                                     <td><span class="pdp-tab-val">{{ productMetafield[tableContent_rstab_avg_clarity] }}</span></td>
                                                 </tr>
                                             {% endif %}
                                             {% if productMetafield[tableContent_rstab_setting_type] != blank %}
-                                                <tr data-row="{{ productMetafield[tableContent_rstab_setting_type] }}">
+                                                <tr data-tooltip="jewstnsetting" data-row="{{ productMetafield[tableContent_rstab_setting_type] }}">
                                                     <td><span class="pdp-tab-label">Setting Type</span></td>
                                                     <td> </td>
                                                     <td><span class="pdp-tab-val">{{ productMetafield[tableContent_rstab_setting_type] }}</span></td>
@@ -195,53 +195,53 @@
                                         <tbody>
                                             {% if template.suffix contains 'loose-stone' %}
                                             {% if productMetafield[tableContent_stone_shape] != blank %}
-                                                <tr data-row="{{ productMetafield[tableContent_stone_shape] | truncate: 15 | handleize }}">
+                                                <tr data-tooltip="stncertshape" data-row="{{ productMetafield[tableContent_stone_shape] | truncate: 15 | handleize }}">
                                                     <td><span class="pdp-tab-label">Shape</span></td>
                                                     <td><span class="pdp-tab-val">{{ productMetafield[tableContent_stone_shape] | truncate: 15 }}</span></td>
                                                 </tr>
                                                 {% endif %}                                            
                                             {% else %}
                                                 {% if productMetafield[tableContent_stone_shape] != blank or productMetafield[tableContent_stone_category ] != blank %}
-                                                <tr data-row="{{ productMetafield[tableContent_stone_shape] | truncate: 30 | prepend: 'Number of ' | handleize }}{{ productMetafield[tableContent_stone_category ] | truncate: 30 | append: 'Gemstones' | handleize }}">
+                                                <tr data-tooltip="jewstncnt" data-row="{{ productMetafield[tableContent_stone_shape] | truncate: 30 | prepend: 'Number of ' | handleize }}{{ productMetafield[tableContent_stone_category ] | truncate: 30 | append: 'Gemstones' | handleize }}">
                                                     <td><span class="pdp-tab-label">{{ productMetafield[tableContent_stone_shape] | truncate: 30 | prepend: 'Number of ' }} {{ productMetafield[tableContent_stone_category ] | truncate: 30 | append: 'Gemstones' }}</span></td>
                                                     <td><span class="pdp-tab-val">{{ productMetafield[tableContent_no_of_stones] }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip">{{ productMetafield[tableContent_tooltip_rhodium] }}</span></td>
                                                 </tr>
                                                 {% endif %}
                                             {% endif %}
                                             {% if productMetafield[tableContent_min_stn_ttl_crt_wt] != blank %}
-                                            <tr data-row="{{ tableContent_min_stn_ttl_crt_wt }}">
+                                            <tr data-tooltip="jewstntcw" data-row="{{ tableContent_min_stn_ttl_crt_wt }}">
                                                 <td><span class="pdp-tab-label">Minimum carat total weight (CT. TW.)</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_min_stn_ttl_crt_wt] }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
                                             </tr>
                                             {% endif %}
                                             {% if productMetafield[tableContent_stone_avg_color] != blank %}
-                                            <tr data-row="{{ tableContent_stone_avg_color }}">
+                                            <tr data-tooltip="jewstncolourm" data-row="{{ tableContent_stone_avg_color }}">
                                                 <td><span class="pdp-tab-label">Average Color</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_stone_avg_color] | truncate: 30 }}</span> {%- if productMetafield[tableContent_tooltip_avg_color] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_avg_color] }}"></span>{%- endif -%}</td>
                                             </tr>
                                             {% endif %}
                                             {% if productMetafield[tableContent_avg_clarity] != blank %}
-                                            <tr data-row="{{ tableContent_avg_clarity }}">
+                                            <tr data-tooltip="jewstnclaritym" data-row="{{ tableContent_avg_clarity }}">
                                                 <td><span class="pdp-tab-label">Average Clarity</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_avg_clarity] }}</span> {%- if productMetafield[tableContent_tooltip_avg_clarity] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_avg_clarity] }}"></span>{%- endif -%}</td>
                                             </tr>
                                             {% endif %}
                                             {% if productMetafield[tableContent_stone_type] != blank %}
-                                            <tr data-row="{{ tableContent_stone_type }}">
+                                            <tr data-tooltip="jewstnsetting" data-row="{{ tableContent_stone_type }}">
                                                 <td><span class="pdp-tab-label">Setting type</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_stone_type] | truncate: 22 | append: ' setting' }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
                                             </tr>
                                             {% endif %}
 
                                             {% if productMetafield[tableContent_cert_cut] != blank %}
-                                            <tr data-row="{{ tableContent_cert_cut }}">
+                                            <tr data-tooltip="stncertcut" data-row="{{ tableContent_cert_cut }}">
                                                 <td><span class="pdp-tab-label">Cut</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_cert_cut] | truncate: 15 }}</span></td>
                                             </tr>
                                             {% endif %}
 
                                             {% if productMetafield[tableContent_stone_coating] != blank %}
-                                            <tr data-row="{{ tableContent_stone_coating }}">
+                                            <tr data-tooltip="stncertclr" data-row="{{ tableContent_stone_coating }}">
                                                 <td><span class="pdp-tab-label">Color</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_stone_coating] | truncate: 30 }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
                                             </tr>
@@ -249,77 +249,77 @@
 
 
                                             {% if productMetafield[tableContent_clarity_granding] != blank %}
-                                            <tr data-row="{{ tableContent_clarity_granding }}">
+                                            <tr data-tooltip="stncertclarity" data-row="{{ tableContent_clarity_granding }}">
                                                 <td><span class="pdp-tab-label">Clarity</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_clarity_granding] | truncate: 15 }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
                                             </tr>
                                             {% endif %}
 
                                             {% if productMetafield[tableContent_cert_carats] != blank %}
-                                            <tr data-row="{{ tableContent_cert_carats }}">
+                                            <tr data-tooltip="stncertwt" data-row="{{ tableContent_cert_carats }}">
                                                 <td><span class="pdp-tab-label">Carat Weight</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_cert_carats] }}</span></td>
                                             </tr>
                                             {% endif %}
 
                                             {% if productMetafield[tableContent_cert_fluorescence] != blank %}
-                                            <tr data-row="{{ tableContent_cert_fluorescence }}">
+                                            <tr data-tooltip="stncertflr" data-row="{{ tableContent_cert_fluorescence }}">
                                                 <td><span class="pdp-tab-label">Fluorescence</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_cert_fluorescence] }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
                                             </tr>
                                             {% endif %}
 
                                             {% if productMetafield[tableContent_cert_depth] != blank %}
-                                            <tr data-row="{{ tableContent_cert_depth }}">
+                                            <tr data-tooltip="stncertdepth" data-row="{{ tableContent_cert_depth }}">
                                                 <td><span class="pdp-tab-label">Depth %</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_cert_depth] }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
                                             </tr>
                                             {% endif %}
 
                                             {% if productMetafield[tableContent_cert_table] != blank %}
-                                            <tr data-row="{{ tableContent_cert_table }}">
+                                            <tr data-tooltip="stncerttable" data-row="{{ tableContent_cert_table }}">
                                                 <td><span class="pdp-tab-label">Table %</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_cert_table] | truncate: 15 }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
                                             </tr>
                                             {% endif %}
 
                                             {% if productMetafield[tableContent_cert_polish] != blank %}
-                                            <tr data-row="{{ tableContent_cert_polish }}">
+                                            <tr data-tooltip="stncertpolish" data-row="{{ tableContent_cert_polish }}">
                                                 <td><span class="pdp-tab-label">Polish</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_cert_polish] | truncate: 15 }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
                                             </tr>
                                             {% endif %}
 
                                             {% if productMetafield[tableContent_cert_symmentry] != blank %}
-                                            <tr data-row="{{ tableContent_cert_symmentry }}">
+                                            <tr data-tooltip="stncertsymmetry" data-row="{{ tableContent_cert_symmentry }}">
                                                 <td><span class="pdp-tab-label">Symmetry</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_cert_symmentry] | truncate: 15 }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
                                             </tr>
                                             {% endif %}
 
                                             {% if productMetafield[tableContent_cert_girdle] != blank %}
-                                            <tr data-row="{{ tableContent_cert_girdle }}">
+                                            <tr data-tooltip="stncertgirdle" data-row="{{ tableContent_cert_girdle }}">
                                                 <td><span class="pdp-tab-label">Girdle</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_cert_girdle] | truncate: 15 }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
                                             </tr>
                                             {% endif %}
 
                                             {% if productMetafield[tableContent_cert_culet] != blank %}
-                                            <tr data-row="{{ tableContent_cert_culet }}">
+                                            <tr data-tooltip="stncertculet" data-row="{{ tableContent_cert_culet }}">
                                                 <td><span class="pdp-tab-label">Culet</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_cert_culet] | truncate: 15 }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
                                             </tr>
                                             {% endif %}
 
                                             {% if productMetafield[tableContent_cert_measurements] != blank %}
-                                            <tr data-row="{{ tableContent_cert_measurements }}">
+                                            <tr data-tooltip="stncertmesure" data-row="{{ tableContent_cert_measurements }}">
                                                 <td><span class="pdp-tab-label">Measurements</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_cert_measurements] | truncate: 30 }}</span></td>
                                             </tr>
                                             {% endif %}
 
                                             {% if template.suffix contains 'loose-stone' and  current_variant.sku != blank %}
-                                            <tr data-row="sku">
+                                            <tr data-tooltip="stncertserial" data-row="sku">
                                                 <td><span class="pdp-tab-label">Stock Number</span></td>
                                                 <td><span class="pdp-tab-val">{{ current_variant.sku }}</span></td>
                                             </tr>
@@ -329,8 +329,7 @@
                                 </figure>
                             </div>
                         </div>
-                    </div>
-                
+                    </div>                
 
                 {% endif %}
                 {% endfor %}
