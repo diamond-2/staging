@@ -10152,9 +10152,22 @@ window.addEventListener("resize", function() {
       $('.pdp-zoom-gallery').css({
         "top": headeHeight
       });
+      let stickyHeaderHeight = $('.sticky-header').outerHeight();
+      if($('#shopify-section-header').hasClass('header-bg')) {
+        $('body').css('padding-top',stickyHeaderHeight);
+        $('.pdp-zoom-gallery').css({
+          "top": stickyHeaderHeight
+        });
+      } else {
+        $('body').css('padding-top',headeHeight);
+        $('.pdp-zoom-gallery').css({
+          "top": headeHeight
+        });
+      }
   }
   headerHeight();
   window.addEventListener("resize", headerHeight);
+  window.addEventListener("scroll", headerHeight);
 
   // matchHeight Global Call
   $('.matchHeight ').matchHeight();

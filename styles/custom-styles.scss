@@ -13121,11 +13121,6 @@ body[data-template="customers/addresses"] {
 }
 
 // Product zoom styling
-.header-bg {
-  &~.pdp-zoom-gallery {
-    margin-top: -30px;
-  }
-}
 body.template-product {
   &.overflow-hidden {
   	overflow: hidden;

@@ -10859,9 +10859,6 @@ body[data-template="customers/addresses"] .main-content {
   .hide_mobile {
     display: none !important; } }
 
-.header-bg ~ .pdp-zoom-gallery {
-  margin-top: -30px; }
-
 body.template-product.overflow-hidden {
   overflow: hidden; }
 
