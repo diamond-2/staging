@@ -236,7 +236,14 @@
                                 </select>
                             </div>
                             {% if option.name =='Size' %}
-                            <div class="ring-size-chart"><a href="javascript:void(0;">Ring Size Guide</a></div>
+                            <!-- Set Ring Size Text in Variable and Pass that value on 'ring-size-poup' -->
+                            {% assign ringSizeText = 'Ring Size Guide' %}
+                            <div class="ring-size-chart"><a custom-modal="trigger" href="#{{ ringSizeText | downcase | replace: ' ', '_' }}">{{ ringSizeText }}</a></div>
+                            
+                            {% capture ringSizePopup %}
+                                {% include 'ring-size-popup', ring_size_text: ringSizeText %}
+                            {% endcapture %}
+
                             {% endif %}
                             {% endif %}
                         </div>
@@ -434,6 +441,9 @@
 
     </div>
 </div>
+
+<!-- Add Popup Capture Code Here -->
+{{ ringSizePopup }}
 
 
 <script>

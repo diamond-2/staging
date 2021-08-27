@@ -10133,7 +10133,7 @@ window.addEventListener("resize", function() {
   }
 
   // Product Table Toggle
-  $('.p_more_btn').click(function(e){
+  $(document).on('click', '.p_more_btn', function(e){
     e.preventDefault();
     $(this).toggleClass('active');
     $(this).parent().parent().find('.more_product_datatable').slideToggle();
@@ -10152,9 +10152,22 @@ window.addEventListener("resize", function() {
       $('.pdp-zoom-gallery').css({
         "top": headeHeight
       });
+      let stickyHeaderHeight = $('.sticky-header').outerHeight();
+      if($('#shopify-section-header').hasClass('header-bg')) {
+        $('body').css('padding-top',stickyHeaderHeight);
+        $('.pdp-zoom-gallery').css({
+          "top": stickyHeaderHeight
+        });
+      } else {
+        $('body').css('padding-top',headeHeight);
+        $('.pdp-zoom-gallery').css({
+          "top": headeHeight
+        });
+      }
   }
   headerHeight();
   window.addEventListener("resize", headerHeight);
+  window.addEventListener("scroll", headerHeight);
 
   // matchHeight Global Call
   $('.matchHeight ').matchHeight();
@@ -10244,8 +10257,39 @@ window.addEventListener("resize", function() {
       $(this).closest('.form__input-wrapper').find('input').attr('type', 'password')
     }
   });
-
   $('.common-layout-wrapper').closest('body').addClass('common_layout');
+
+  
+  // Global Custom Modal Popup
+  $('[custom-modal="trigger"]').click(function(e){
+    e.stopPropagation();
+    e.preventDefault();
+    let customModalId = $(this).attr('href');
+    $('[data-modal="custom-modal"]'+customModalId).addClass('customModal_Show');
+    $('body').addClass('custom_modal_open');
+  });
+  $('.close-custom-modal, body').click(function(){
+    $('[data-modal="custom-modal"]').removeClass('customModal_Show');
+    $('body').removeClass('custom_modal_open');
+  });
+  $('.custom-modal-container').click(function(e){
+    e.stopPropagation();
+  });
+
+  // Chat Trigger
+  $('.chat-trigger').click(function(){
+    $('body').toggleClass('chat_widget_opend');
+  });
+  $('.chat-widget-wrapper ul li a').click(function(){
+    $('body').removeClass('chat_widget_opend');
+  });
+  // WhatsApp Trigger
+  $('.whatsapp_trigger').click(function(){
+    $("#wa-chat-btn-root").click();
+  });
+
+
+
 
   
   
