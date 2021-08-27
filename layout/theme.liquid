@@ -189,7 +189,7 @@
   {% include 'newsletter-popup' %}
   <!-- newsletter Popup End -->
 
-
+  
 <!-- Cart Drawer -->
 {%- if request.page_type != 'cart' -%}
   {% render 'cart-drawer' %}
@@ -259,5 +259,9 @@
     <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
   </ul>
   {% if template contains 'product' %}{% include 'product-zoom-gallery' %}{% endif %}
+  
+  <!-- Tooltip content begin -->
+  {%- section 'common-tooltip' -%}
+<!-- Tooltip content end -->
 </body>
 </html>

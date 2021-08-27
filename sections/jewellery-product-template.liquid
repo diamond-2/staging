@@ -51,7 +51,7 @@
                         <div class="product-detail-slider">
                             {% for mediaSlide in product.media %}
                              
-                            {%- if mediaSlide contains "_PDP" -%}
+                            {%- if mediaSlide -%}
                             <div class="product-detail-slide {% if section.settings.enable_image_zoom == true %}image_zoom{% endif %}">
                                 
                                 {% if mediaSlide.media_type == 'image' %}
@@ -90,7 +90,7 @@
                         <div class="right-border-line"></div>
                         <div class="product-detail-slider-thumbnail" {% if product.media.size <  5 %} data-size="{{ product.media.size }}"{% endif %}>
                             {% for mediaThumb in product.media %}
-                            {%- if mediaThumb contains "_PDP" -%}
+                            {%- if mediaThumb -%}
                             <div class="product-detail-slider-thumbnail-slide" data-alt="{{ mediaThumb.alt }}">
                                 {% if mediaThumb.media_type == 'image' %}  
                                 <div class="product-detail-slider-thumbnail-slide-inner">
