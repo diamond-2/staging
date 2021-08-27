@@ -10295,6 +10295,20 @@ window.addEventListener("resize", function() {
     $("#wa-chat-btn-root").click();
   });
 
+  $('.product-meta-review-tabber-nav ul li a').click(function(e){
+    e.preventDefault();
+    $(this).parent().addClass('active');
+    $(this).parent().siblings().removeClass('active');
+    let $thisTab = $(this).attr('href');
+    $('.product-meta-review-tabber').find($thisTab).addClass('show_tab')
+    $('.product-meta-review-tabber').find($thisTab).siblings('.pdp-tabber').removeClass('show_tab')
+  });
+  $('.mobile-pdp-acc-trigger').click(function(){
+    $(this).next('.pdp-acc-body').slideToggle();
+    $(this).closest('.pdp-tabber').toggleClass('active_accordion');
+    $(this).closest('.pdp-tabber').siblings().removeClass('active_accordion');
+    $(this).closest('.pdp-tabber').siblings().find('.pdp-acc-body').slideUp();
+  });
 
 
 

@@ -436,7 +436,21 @@
             </div>
             {%- endif -%}
 
-            {% include 'product-metafield' %}
+            <div class="product-meta-review-tabber-nav hide_mobile">
+                <ul>
+                    <li class="prduct-metatab-trigger active"><a href="#productDetails">Product Details</a></li>
+                    <li class="prduct-review-trigger"><a href="#productReview">Review</a></li>
+                </ul>
+            </div>
+
+            <div class="product-meta-review-tabber">
+                <!-- Metafield Section -->
+                {% include 'product-metafield' %}
+
+                <!-- Review Section -->
+                {% include 'product-review' %}
+            </div>
+
         </div>
 
     </div>

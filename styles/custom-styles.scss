@@ -5769,7 +5769,6 @@ body[data-template="product"] {
   .product-desc-section {
     @media(max-width: $md) {
       border-top: 2px solid $textcolor-phanton;
-      border-bottom: 2px solid $textcolor-phanton;
       padding: 20px 0;
     }
     &.content_showed {
@@ -8752,21 +8751,22 @@ body {
         width: 50%;
         &.active {
           a {
-            background: #6C1D45;
+            background: $textcolor-phanton;
             color: #fff;
           }
         }
         a {
-          border: 1px solid #6C1D45;
+          border: 1px solid $textcolor-phanton;
           min-height: 35px;
           font-size: 12px;
           line-height: 12.96px;
           font-weight: 400;
           padding: 11px 15px;
-          color: #6C1D45;
+          color: $textcolor-phanton;
           cursor: pointer;
           display: block;
           text-align: center;
+          @include transition();
         }
       }
     }
@@ -13435,6 +13435,104 @@ body.template-product {
           transform: translateY(-30px);
         }
       }
+    }
+  }
+}
+
+// PDP Reviw Or Metafield Tabber
+.product-review-section {
+  margin-top: 50px;
+  @media(max-width: $md) {
+    margin-top:20px;
+  }
+}
+.product-meta-review-tabber {
+  .pdp-tabber {
+    display: none;
+    &.show_tab {
+      display: block;
+    }
+    @media(max-width: $md) {
+      display: block !important;
+    }
+  }
+}
+.product-meta-review-tabber-nav {
+  margin-top: 51px;
+  ul {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      a {
+        display: block;
+        border: 1px solid $textcolor-phanton;
+        padding: 15px 20px;
+        color: $textcolor-phanton;
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 17.28px;
+        text-transform: uppercase;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        @include transition();
+      }
+      &.active {
+        a {
+          color: #fff;
+          background: $textcolor-phanton;
+        }
+      }
+    }
+  }
+}
+.mobile-pdp-acc-trigger {
+  position: relative;
+  cursor: pointer;
+  text-transform: uppercase;
+  &:after {
+    position: absolute;
+    top: -1px;
+    right: 0;
+    transform: rotate(180deg);
+    @include transition();
+  }
+  p {
+    margin: 0;
+    line-height: 20px;
+  }
+  margin-bottom: 20px;
+}
+.pdp-tabber {
+  @media(max-width: $md) {
+    border-top: 2px solid $textcolor-phanton;
+    padding-top: 20px;
+    margin-top: 0;
+  }
+  .pdp-acc-body {
+    @media(min-width: $postMd) {
+      display: block !important;
+    }
+    @media(max-width: $md) {
+      display: none;
+      padding-bottom: 20px;
+    }
+  }
+}
+
+.active_accordion {
+  .mobile-pdp-acc-trigger {
+    &:after {
+      transform: none;
+    }
+  }
+  .pdp-acc-body {
+    @media(max-width: $md) {
+      display: block;
     }
   }
 }
