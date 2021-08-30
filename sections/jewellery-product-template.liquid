@@ -48,10 +48,12 @@
                 {% if product.media.size > 0 %}
                 <div class="product-detail-slider-wrapper">
                     <div class="product-detail-slider-holder">
-                        <div class="product-detail-slider">
+                        <div class="product-detail-slider erererer">
                             {% for mediaSlide in product.media %}
                              
                             {%- if mediaSlide -%}
+                            {% if  mediaSlide contains "_ZYXW" %}
+
                             <div class="product-detail-slide {% if section.settings.enable_image_zoom == true %}image_zoom{% endif %}">
                                 
                                 {% if mediaSlide.media_type == 'image' %}
@@ -72,6 +74,7 @@
                                 
                             </div>
                             {%- endif -%}
+                            {%- endif -%}
                             {% endfor %}
                         </div>
                         <div class="hide_mobile">{% include 'product-badge' %}</div>
@@ -90,7 +93,7 @@
                         <div class="right-border-line"></div>
                         <div class="product-detail-slider-thumbnail" {% if product.media.size <  5 %} data-size="{{ product.media.size }}"{% endif %}>
                             {% for mediaThumb in product.media %}
-                            {%- if mediaThumb -%}
+                            {% if  mediaThumb contains "_ZYXW" %}
                             <div class="product-detail-slider-thumbnail-slide" data-alt="{{ mediaThumb.alt }}">
                                 {% if mediaThumb.media_type == 'image' %}  
                                 <div class="product-detail-slider-thumbnail-slide-inner">

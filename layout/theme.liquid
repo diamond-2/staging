@@ -177,7 +177,7 @@
   {{ content_for_header }}
 </head>
 
-<body class="layout_{{ template.suffix }} template-{{ request.page_type | handle }} " data-template="{{ template | replace: 'page.', '' }}" {% if request.page_type == 'product' %}data-handle="{{ product.handle }}" {% endif %}>
+<body class="layout_{{ template.suffix }} template-{{ request.page_type | handle }} " data-template="{{ template.suffix }}" {% if request.page_type == 'product' %}data-handle="{{ product.handle }}" {% endif %}>
   
   <!-- Loader -->
   <div id="preloader"><span class="loader"></span></div>

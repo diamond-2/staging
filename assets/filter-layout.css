@@ -65,6 +65,55 @@ select#sortByFilter {
     border-color: #6c1d45;
     background-color: transparent;
 }
+.collection-filter-wrapper[data-filter-type="shape-filter"] {
+    width: 100%;
+    display: flex;
+    max-width: 100%;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.collection_filter_by_shape {
+    text-align: center;
+    padding: 0 5px;
+}
+.collection_filter_by_shape input:checked + label {
+    box-shadow: 0 0 2px rgb(0 0 0 / 30%);
+
+}
+.collection_filter_by_shape img {
+    max-width: 75%;
+}
+label.filter__label,
+.filter-by-label {
+    display: block;
+    font-family: var(--font-stack-body);
+    font-weight: var(--font-weight-body);
+    text-transform: uppercase;
+    font-size: calc(((12) / (var(--font-size-base))) * 1em);
+    padding: 0;
+    height: auto;
+}
+
+.filter-by-label span {
+    padding-left:  15px;
+    text-transform: capitalize;
+}
+.filter-by-label {
+    padding: 10px 0;
+}
+.filter-by-label span a {
+    color: #6c1d45;
+}
+
+label.filter__label  {
+    text-decoration: underline;
+    color: #6c1d45;
+    padding: 2px;
+    margin-bottom: 5px;
+}
+label.filter__label span {
+    display: block;
+}
 @media screen and (max-width: 749px) {
     .solitaire-collection-wrapper .glb-sec-header {
         margin-bottom: 10px;

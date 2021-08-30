@@ -16,15 +16,16 @@
 
     $(document).on('change', '[data-collection-filter-section] select', function(){
       console.log('select changes');
-      var getSelectedVal = $(this).val();
+      var getSelectedVal = $(this).val(); console.log(getSelectedVal);
       $(this).find('option:selected').attr('selected','selected').siblings().removeAttr('selected');
       var getId = $(this).attr('id'); console.log(getId);
       $(document).find('[data-collection-filter-section] input[id="'+getId+'-filter"]').val(getSelectedVal).attr('checked', 'checked');
       $(this).next(':checkbox').trigger('change');
-    })
+    });
 
     $('body').on('change','[data-collection-filter-section] input[type="checkbox"]', function(){     
-      console.log('input changess'); 
+      console.log('input changessssss'); 
+      // $(this).prop('checked', true);
       var newQueryString = filterOnSelect();     
       console.log('New Query Stirng --------------')
       console.log(newQueryString); 	
@@ -156,7 +157,51 @@
             } else if(filterTitle == 'Collections'){
 
 
-            } else {
+            } else if(filterTitle == 'global.dia_tab1_stone_shape'){
+              var counter = 0;
+                  var selectOptionLabel = '<div class="filter-by-label">Shape <span><a href="javascript:;" aria-label="Learn more about shapes">Learn More &gt;</a></span></div>'
+                  var selectOption = '';	
+              	  // var checked = '';
+                  var checkVal = '';
+                  var fileUrl = 'https://cdn.shopify.com/s/files/1/0575/2681/2840/files/';
+                  if(filterTitle == 'global.dia_tab1_stone_shape'){
+                    filterTitle = 'Shape';
+                  }
+                  filterId = filterId.replace('global.', '');
+                  $.each(filterVal, function(key, val){
+
+                    if(val.count > 0){
+                        var show = 'toShow';
+                        filterName=filterName.toLowerCase().replace(' ', '-'); //console.log('Filtername==>'+filterName);
+                        var thisVal = val.value;//console.log('thisVal == >  ' + thisVal);
+                        var filterVal = '&restrictBy[' + filterName + ']=' + val.value; console.log(val.selected);
+                        if(val.selected != undefined && val.selected != '' && val.selected == 'true'){
+                          var selected = 'selected=selected';
+                          var checked = 'checked=checked';
+                          	  checkVal = thisVal;
+                        }
+                        //https://cdn.shopify.com/s/files/1/0575/2681/2840/files/ld_shape_round.svg?v=1630333625
+                        //https://cdn.shopify.com/s/files/1/0575/2681/2840/files/order-cancel-banner.png?v=1630077920
+                        //https://cdn.shopify.com/s/files/1/0575/2681/2840/files/COPD_002_01_RG_2.png?v=1626872199
+                        //https://cdn.shopify.com/s/files/1/0575/2681/2840/files/COFJER_008_02_RG_1.jpg?v=1623885714
+                        selectOption += '<div class="collection_filter_by_shape" data-shape="shape_'+encodeURIComponent(thisVal).toLowerCase()+'">';
+                  selectOption += '<input type="checkbox"  id="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" ' + checked + ' class="visually-hidden" value="' + encodeURIComponent(thisVal) + '">';
+                  selectOption += '<label for="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" class="filter__label">';
+                    selectOption += '<img data-src="'+fileUrl+'ld_shape_'+encodeURIComponent(thisVal).toLowerCase()+'.svg" class="lazyload"><span>' + thisVal +'</span></label>';
+                  selectOption += '</div>';
+                        counter++;                        
+                    }
+
+                  
+                  });
+
+                  if(counter >= 1){
+                    sidebarHtml+= '<div class="collection-filter-wrapper" data-filter="&restrictBy[' + filterName + ']" data-filter-type="shape-filter">' + selectOption +'</div>';
+                  	$('[data-collection-filter-section]').prepend(sidebarHtml);
+                    $('[data-collection-filter-section]').prepend(selectOptionLabel);
+                  }
+
+            }else {
               // Common layout for print dropdown filter 
               var counter = 0;
                   var selectOption = '';	
@@ -178,13 +223,13 @@
                               checked = 'checked=checked';
                           	  checkVal = thisVal;
                         }
-                        selectOption += '<option data-opt-val="' + encodeURIComponent(thisVal) + '" ' + selected + ' value="' + filterVal + '" >' + thisVal + '</option>';
+                        selectOption += '<option data-opt-val="' + encodeURIComponent(thisVal) + '" ' + selected + ' value="' + filterVal + '">' + thisVal + '</option>';
                         counter++;                        
                     }
                   });
                   selectOption  += '</select><input type="checkbox" id="'+filterId+'-filter" value="' + checkVal + '" ' + checked + ' class="visually-hidden" />';
                   if(counter >= 1){
-                    sidebarHtml+= '<div class="collection-filter-wrapper" data-filter="&restrictBy[' + filterName + ']">' + selectOption +'</div>';
+                    sidebarHtml+= '<div class="collection-filter-wrapper" data-filter="&restrictBy[' + filterName + ']" data-filter-type="'+ filterName +'">' + selectOption +'</div>';
                   	$('[data-collection-filter-section]').append(sidebarHtml);
                   }
                 }            
@@ -217,13 +262,16 @@
       var newQueryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
       $(document).find('[data-collection-filter-section] .collection-filter-wrapper').each(function(){
         var thisFilterName = $(this).data('filter'); //console.log('thisFilterName==> ' + thisFilterName);
-        var filValues = $(this).find('input[type="checkbox"]:checked');  //console.log(filValues.length);
+        var filValues = $(this).find('input[type="checkbox"]:checked');
+        
+          //console.log(filValues.length);
         var filSelected = '';
         if(filValues.length > 0){
           filValues.each(function(i){ 
-            filSelected+=$(this).closest('.collection-filter-wrapper').find('select.filters-toolbar__input option:selected').attr('data-opt-val');
-            //console.log('filSelected==>>>>');
-            //console.log(filSelected);
+            console.log(i);
+            filSelected+=$(this).closest('.collection-filter-wrapper input[type="checkbox"]:checked ').val();
+            console.log('filSelected==>>>>');
+            console.log(filSelected);
             if(i+1 < filValues.length){
               filSelected += '|';
             }  
@@ -242,6 +290,7 @@
       function printProducts(prodObj){   
         $('[data-collection-listing-container]').empty();     
         var productGrid = '';
+       
         console.log(prodObj);
         var getcollection = "{{ collection.handle }}";
         // $('[data-collection-listing-container]').html('');
@@ -270,6 +319,61 @@
             var _variant_ComparePrice_Min = '';
             var _variant_RegularPrice_Max = '';
             var _variant_RegularPrice_Min = '';
+            var ldTableContent = '';
+            var ldGridContent = '';
+            var ldGridContentMob = '';
+            var jwGridTitle = '';
+            var jwGridContent = '';
+            if($('body').attr('data-template') == 'loose-stone-plp'){ 
+              ldGridContent += '<div class="product-price-card-row hide_mobile">';
+            $.each(_thistags, function(i){   
+              let tagVal = _thistags[i].split(':')[1];            
+              if(_thistags[i].includes('DEPTH:')){ldTableContent += '<tr><td>Depth:</td><td>'+tagVal+'</td></tr>';}
+              if(_thistags[i].includes('TABLE:')){ldTableContent += '<tr><td>Table:</td><td>'+tagVal+'</td></tr>';}
+              if(_thistags[i].includes('FLUORSCENCE:')){ldTableContent += '<tr><td>Fluorescence:</td><td>'+tagVal+'</td></tr>';}
+              if(_thistags[i].includes('POLISH:')){ldTableContent += '<tr><td>Polish:</td><td>'+tagVal+'</td></tr>';}
+              if(_thistags[i].includes('SYMMETRY:')){ldTableContent += '<tr><td>Symmetry:</td><td>'+tagVal+'</td></tr>';}
+              if(_thistags[i].includes('CLARITY:')){ldTableContent += '<tr><td>CLARITY:</td><td>'+tagVal+'</td></tr>';}
+
+              if(_thistags[i].includes('CT:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
+              if(_thistags[i].includes('SHAPE:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
+              if(_thistags[i].includes('POLISH:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
+              if(_thistags[i].includes('COLOR:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
+              if(_thistags[i].includes('CLARITY:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
+              // if()
+            })
+            ldGridContent += '</div>';
+            ldGridContentMob += '<div class="product-price-card-row show_mobile">';
+              ldGridContentMob += '<div class="r1">';
+                $.each(_thistags, function(i){ 
+                  let tagVal = _thistags[i].split(':')[1];  
+                if(_thistags[i].includes('CT:')){ldGridContentMob += '<div class="product_b_tex">'+tagVal+'</div>';}
+                if(_thistags[i].includes('SHAPE:')){ldGridContentMob += '<div class="product_b_tex">'+tagVal+'</div>';}
+                });
+              ldGridContentMob += '</div>'
+              ldGridContentMob += '<div class="r2">';
+                $.each(_thistags, function(i){ 
+                  let tagVal = _thistags[i].split(':')[1];  
+                if(_thistags[i].includes('POLISH:')){ldGridContentMob += '<div class="product_b_tex">'+tagVal+'</div>';}
+                if(_thistags[i].includes('COLOR:')){ldGridContentMob += '<div class="product_b_tex">'+tagVal+'</div>';}
+                if(_thistags[i].includes('CLARITY:')){ldGridContentMob += '<div class="product_b_tex">'+tagVal+'</div>';}
+                });
+              ldGridContentMob += '</div>';            
+            ldGridContentMob += '</div>';
+          } else {
+            jwGridTitle += '<div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="'+ prodLink +'">'+ prodTitle+'</a></div>';
+            jwGridContent += '<div class="product-price-card-row">';
+              $.each(_thistags, function(i){ 
+                let tagVal = _thistags[i].split(':')[1];  
+                if(_thistags[i].includes('CTW:')){jwGridContent += '<div class="product_weight">'+tagVal+'</div>';}
+                if(_thistags[i].includes('DEF:')){jwGridContent += '<div class="product_def">'+tagVal+'</div>';}
+              });
+              jwGridContent +='<div class="product_compare">Compare</div>';
+              jwGridContent +='</div>'
+          }              
+
+
+
 
             if(prodQty <= 0 ){
               var prodAvaibility = 'grid-view-item--sold-out';
@@ -285,30 +389,45 @@
             // productGrid += '{% if product.compare_at_price %}<div class="compare_at_price">{{ product.compare_at_price | money | remove: '.00' }}</div>{% endif %}'
             //       productGrid += '{% assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price %}'
             //       productGrid += '{% if product.compare_at_price %}<div class="product_discount">{{ discount | floor }}% OFF</div>{% endif %}'
-
-            productGrid += '<li class="grid__item grid__item--solitaire-collection  aaa">';
+            if($('body').attr('data-template') == 'loose-stone-plp'){ 
+              productGrid += '<li class="grid__item grid__item--loose-stone-plp-template  bbb">';
+            }else {
+              productGrid += '<li class="grid__item grid__item--solitaire-collection  aaa">';
+            }
+            
             productGrid += '<div class="grid-view-item product-card">';
             productGrid += '<a class="grid-view-item__link grid-view-item__image-container full-width-link" href="'+getprodlink+'" style="display: none;"><span class="visually-hidden">'+prodTitle+'</span></a>';
-            productGrid += '<div class="product-images-wrapper-holder"><a class="product-full-link" href="'+getprodlink+'"></a> <div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider>';
+            productGrid += '<div class="product-images-wrapper-holder"> <div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider>';
              
                 for (let j = 0; j < prodImages.length; j++) {
-                  if(prodImages[j].indexOf('_PLP') > -1) {
+                  if(prodImages[j].indexOf('_XYZG') > -1) {
                     productGrid += '<div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation><div id="" class="grid-view-item__image-wrapper product-card__image-wrapper js"><div class="product_img_holder"><img data-src="'+prodImages[j]+'" alt="'+ prodTitle+'" class="grid-view-item__image lazyload"></div></div></div>'
                   }
+                }              
+                productGrid += '</div>';
+                productGrid += '<a class="full_link" href="'+getprodlink+'"></a>';
+                if($('body').attr('data-template') == 'loose-stone-plp'){ 
+                  productGrid += '<div class="hide_mobile">';
+                  productGrid += '<div class="product-image-body-row">';
+                  productGrid += '<a class="compare_btn">COMPARE</a>';
+                  productGrid += '<a class="p_more_btn"><span class="text_more">MORE</span><span class="text_less">LESS</span></a>';
+                  productGrid += '</div>';
+                  productGrid += '<div class="more_product_datatable" style="display: none;">';
+                  productGrid += ' <table><tbody>';
+                  productGrid += ldTableContent;
+                  productGrid += '</tbody></table>';
+                  productGrid += '</div>'
+                  productGrid += '</div>';
                 }
-              
-                productGrid += '</div></div>'
-            productGrid += '<div class="prodct_card_body">' 
-              productGrid += '<div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="'+ prodLink +'">'+ prodTitle+'</a></div>'
-              productGrid += '<span style="display: none;"></span>';
-
-              productGrid += '<div class="product-price-card">'
-
-                productGrid += '<div class="product-price-card-row">'
-                productGrid += '<div class="product_weight">1 1/3 CTW.</div>'
-                productGrid += '<div class="product_def">DEF</div>'
-                productGrid += '<div class="product_compare">COMPARE</div>'
                 productGrid += '</div>'
+                productGrid += '<div class="prodct_card_body">' 
+                productGrid += jwGridTitle;
+                productGrid += '<span style="display: none;"></span>';
+                productGrid += '<div class="product-price-card">'
+                productGrid += ldGridContent;
+                productGrid += ldGridContentMob;
+
+                productGrid += jwGridContent;
 
 
                 productGrid += '<div class="product-price-card-row price_row '+noDiscount+'">'

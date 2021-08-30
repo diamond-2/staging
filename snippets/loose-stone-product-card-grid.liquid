@@ -66,12 +66,63 @@
     {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
 {% endcomment %}
 
+{% assign ctTag = false  %}
+{% assign shapeTag = false  %}
+{% assign polishTag = false  %}
+{% assign colorTag = false  %}
+{% assign clarityTag = false  %}
+{% assign depthTag = false  %}
+{% assign tableTag = false  %}
+{% assign fluorescenceTag = false  %}
+{% assign symmetryTag = false  %}
+{% for tag in product.tags %}
+{% if tag contains 'CT:' %}
+  {% assign ctTag = true  %}
+  {% if ctTag %}{% assign ctTagVal = tag | split: ':' | last  %}{% endif %}
+{% endif %}
+{% if tag contains 'SHAPE:' %}
+  {% assign shapeTag = true  %}
+  {% if shapeTag %}{% assign shapeTagVal = tag | split: ':' | last  %}{% endif %}
+{% endif %}
+{% if tag contains 'POLISH:' %}
+  {% assign polishTag = true  %}
+  {% if polishTag %}{% assign polishTagVal = tag | split: ':' | last  %}{% endif %}
+{% endif %}
+{% if tag contains 'COLOR:' %}
+  {% assign colorTag = true  %}
+  {% if colorTag %}{% assign colorTagVal = tag | split: ':' | last  %}{% endif %}
+{% endif %}
+{% if tag contains 'CLARITY:' %}
+  {% assign clarityTag = true  %}
+  {% if clarityTag %}{% assign clarityTagVal = tag | split: ':' | last  %}{% endif %}
+{% endif %}
+{% if tag contains 'DEPTH:' %}
+  {% assign depthTag = true  %}
+  {% if depthTag %}{% assign depthTagVal = tag | split: ':' | last  %}{% endif %}
+{% endif %}
+{% if tag contains 'TABLE:' %}
+  {% assign tableTag = true  %}
+  {% if tableTag %}{% assign tableTagVal = tag | split: ':' | last  %}{% endif %}
+{% endif %}
+{% if tag contains 'FLUORSCENCE:' %}
+  {% assign fluorescenceTag = true  %}
+  {% if fluorescenceTag %}{% assign fluorescenceTagVal = tag | split: ':' | last  %}{% endif %}
+{% endif %}
+{% if tag contains 'SYMMETRY:' %}
+  {% assign symmetryTag = true  %}
+  {% if symmetryTag %}{% assign symmetryTagVal = tag | split: ':' | last  %}{% endif %}
+{% endif %}
+
+
+
+{% endfor %}
+
 <div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card">
     <div class="product-images-wrapper">
       {% include 'product-badge' %}
       <div class="{% if product.images.size > 1 %}product_images_slider{% endif %}">
         {% for slideImage in product.images %}
-        {% if slideImage contains "_PLP" %}
+        {% if slideImage contains "_XYZG" %}
         <div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation>
           <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper product-card__image-wrapper js">
             <div class="product_img_holder">
@@ -93,30 +144,12 @@
         <div class="more_product_datatable">
           <table>
             <tbody>
-              <tr>
-                <td>Depth:</td>
-                <td>62.6%</td>
-              </tr>
-              <tr>
-                <td>Table:</td>
-                <td>60.0%</td>
-              </tr>
-              <tr>
-                <td>Fluorescence:</td>
-                <td>Strong</td>
-              </tr>
-              <tr>
-                <td>Polish:</td>
-                <td>Excellent</td>
-              </tr>
-              <tr>
-                <td>Symmetry:</td>
-                <td>EX</td>
-              </tr>
-              <tr>
-                <td>CLARITY:</td>
-                <td>SI2</td>
-              </tr>
+              {% if depthTag %}<tr><td>Depth:</td><td>{{ depthTagVal }}</td></tr>{% endif %}
+              {% if tableTag %}<tr><td>Table:</td><td>{{ tableTagVal }}</td></tr>{% endif %}
+              {% if fluorescenceTag %}<tr><td>Fluorescence:</td><td>{{ fluorescenceTagVal }}</td></tr>{% endif %}              
+              {% if polishTag %}<tr><td>Polish:</td><td>{{ polishTagVal }}</td></tr>{% endif %}
+              {% if symmetryTag %}<tr><td>Symmetry:</td><td>{{ symmetryTagVal }}</td></tr>{% endif %}
+              {% if clarityTag %}<tr><td>CLARITY:</td><td>{{ clarityTagVal }}</td></tr>{% endif %}
             </tbody>
           </table>
         </div>
@@ -137,22 +170,22 @@
       </span>
       <div class="product-price-card">
         <div class="product-price-card-row hide_mobile">
-          <div class="product_b_tex">1.09 CT</div>
-          <div class="product_b_tex">Round H&A</div>
-          <div class="product_b_tex">Excellent</div>
-          <div class="product_b_tex">H</div>
+          <div class="product_b_tex">{% if ctTag %}{{ ctTagVal }}{% endif %}</div>
+          <div class="product_b_tex">{% if shapeTag %}{{ shapeTagVal }}{% endif %}</div>
+          <div class="product_b_tex">{% if polishTag %}{{ polishTagVal }} {% endif %}</div>
+          <div class="product_b_tex">{% if colorTag %}{{ colorTagVal}}{% endif %}</div>
           <span class="divider"></span>
-          <div class="product_b_tex">IF-VS</div>
+          <div class="product_b_tex">{% if clarityTag %}{{ clarityTagVal }}{% endif %}</div>
         </div>
         <div class="product-price-card-row show_mobile">
           <div class="r1">
-            <div class="product_b_tex">1.09 CT</div>
-            <div class="product_b_tex">Round H&A</div>
+            <div class="product_b_tex">{% if ctTag %}{{ ctTagVal }}{% endif %}</div>
+            <div class="product_b_tex">{% if shapeTag %}{{ shapeTagVal }}{% endif %}</div>
           </div>
           <div class="r2">
-            <div class="product_b_tex">Excellent</div>
-            <div class="product_b_tex">H</div>
-            <div class="product_b_tex">IF-VS</div>
+            <div class="product_b_tex">{% if polishTag %}{{ polishTagVal }} {% endif %}</div>
+            <div class="product_b_tex">{% if colorTag %}{{ colorTagVal}}{% endif %}</div>
+            <div class="product_b_tex">{% if clarityTag %}{{ clarityTagVal }}{% endif %}</div>
           </div>
         </div>
         <div class="product-price-card-row price_row {% if product.compare_at_price == blank %}no_discount{% endif %}">
