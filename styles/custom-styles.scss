@@ -5851,7 +5851,7 @@ body[data-template="product"] {
 
 // product Metafield section
 .product-details-wrapper {
-  margin-top: 51px;
+  margin-top: 37px;
   @media(max-width: $md) {
     margin-top: 20px;
   }
@@ -13441,7 +13441,7 @@ body.template-product {
 
 // PDP Reviw Or Metafield Tabber
 .product-review-section {
-  margin-top: 50px;
+  margin-top: 37px;
   @media(max-width: $md) {
     margin-top:20px;
   }
@@ -13467,24 +13467,38 @@ body.template-product {
     padding: 0;
     list-style: none;
     li {
+      &:not(:last-child) {
+        padding-right:23px;
+      }
       a {
         display: block;
-        border: 1px solid $textcolor-phanton;
-        padding: 15px 20px;
-        color: $textcolor-phanton;
+        color: $textcolor-black;
         cursor: pointer;
         font-size: 16px;
         line-height: 17.28px;
         text-transform: uppercase;
         position: relative;
         z-index: 1;
-        overflow: hidden;
         @include transition();
+        &:after {
+          content: "";
+          display: block;
+          position: absolute;
+          bottom: -4px;
+          width: 100%;
+          height: 2px;
+          background-color: $textcolor-phanton;
+          transform: scale(0);
+          transform-origin: left;
+          @include transition();
+        }
       }
       &.active {
         a {
-          color: #fff;
-          background: $textcolor-phanton;
+          color: $textcolor-phanton;
+          &:after {
+            transform: scale(1);
+          }
         }
       }
     }
