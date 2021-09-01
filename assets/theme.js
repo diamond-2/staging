@@ -9971,7 +9971,7 @@ window.addEventListener("resize", function() {
       setTimeout(function(){
         $('.custom-error').addClass('hide');
         $('.custom-error').removeClass('show');
-      },3000)
+      },5000)
     });
     
 
@@ -9985,7 +9985,7 @@ window.addEventListener("resize", function() {
   $(window).on('load', function(){  
     setTimeout(function(){
       $('.form-message').hide();
-    },3000);
+    },5000);
     var check = window.location.search;
     var getFormId = localStorage.getItem('form-Id');
     if(getFormId !=null) {
@@ -10019,7 +10019,7 @@ window.addEventListener("resize", function() {
         $('html, body').animate({scrollTop: $('#'+getFormId).offset().top}, 'slow');
         $('#'+getFormId).find('.input-group__btn button').removeAttr('disabled');
       }
-    },500);
+    },5000);
   });
   
   $('#AccessibleNav #SiteNav > li').hover(function(e){

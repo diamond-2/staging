@@ -1,5 +1,5 @@
 // Add Item in Cart onClick Cart Button Start
-$(document).on('click', '.product-form__cart-submit', function(e){
+$(document).on('click', '.product-form__cart-submit:not([aria-label="Sold out"])', function(e){
     // e.preventDefault();
     var $this = $(this);
     // $this.attr('aria-disabled', true);

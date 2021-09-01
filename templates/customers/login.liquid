@@ -23,7 +23,7 @@
                   </div>
                   <label for="emailTab">Email Address</label>
                 </div>
-                <div class="custom-radio-item" data-swith-id="#loginWithPhone">
+                <div class="custom-radio-item hide" data-swith-id="#loginWithPhone">
                   <div class="custom-radio">
                     <input type="radio" id="mobileOtpTab" name="swichRadioTab" value="mobileOtpTab">
                     <span></span>
@@ -209,11 +209,12 @@
         e.preventDefault();
         $('#CustomerLoginForm').addClass('hide');
         $('#RecoverPasswordForm').removeClass('hide');
+        $('html, body').animate({scrollTop:0}, '1000');
     });
 
     /*form validation start*/
     $('.form-validation-login').submit(function(e){
-
+      removeMessage();
       let $this = $(this);
       console.log($this)
       var thisEmail = $this.find('input[name="customer[email]"]').val();
@@ -235,7 +236,7 @@
     });
 
     $('.form-validation-recover').submit(function(e){
- 
+      removeMessage();
       let $this = $(this);
       var thisRecoverEmail = $this.find('input[name="email"]').val();
       const reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -264,8 +265,14 @@
       setTimeout(function(){
         $('.msg-error').css('display','none');
         $('.form__input').removeClass('form-error');
-      },3000)
+      },5000)
     }
+    
+    setTimeout(function(){
+      $('.form__error-message-wrapper').addClass('hide');
+      $('input').removeClass('input--error');
+    },5000);
+    
     /*form validation end*/
   });
 </script>

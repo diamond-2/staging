@@ -281,15 +281,18 @@
       setTimeout(function(){
         $('.msg-error').css('display','none');
         $('.form__input').removeClass('form-error');
-      },3000)
+      },5000)
     }
     /*form validation end*/
   });
-
+  
   window.addEventListener('load',function(){
     setTimeout(function(){
       $('.form-message').css('display','none');
-    },3000);
+
+      $('.form__error-message-wrapper').addClass('hide');
+      $('input').removeClass('input--error');
+    },5000);
   });
 
 </script>
