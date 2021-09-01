@@ -5860,9 +5860,9 @@ body.layout_jewellery h2 {
         margin: 0;
         position: relative;
         z-index: 3; }
-        .solitaire-collection-wrapper .grid--view-items .grid__item .grid-view-item .product-images-wrapper-holder {
+        .solitaire-collection-wrapper .grid--view-items .grid__item .grid-view-item .product-images-wrapper {
           position: relative; }
-          .solitaire-collection-wrapper .grid--view-items .grid__item .grid-view-item .product-images-wrapper-holder .product-full-link {
+          .solitaire-collection-wrapper .grid--view-items .grid__item .grid-view-item .product-images-wrapper .product-full-link {
             position: absolute;
             height: 100%;
             width: 100%;

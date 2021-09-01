@@ -114,6 +114,19 @@ label.filter__label  {
 label.filter__label span {
     display: block;
 }
+.dynamic-loadmore-btn-holder {
+    text-align: center;
+}
+.dynamic-loadmore-btn-holder .dynamic-loader-spiner {
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    border: 5px solid #e6e6e6;
+    border-top-color: #6679cc;
+    border-radius: 50%;
+    animation: loderSpin 1s linear infinite;
+    display: none;
+}
 @media screen and (max-width: 749px) {
     .solitaire-collection-wrapper .glb-sec-header {
         margin-bottom: 10px;

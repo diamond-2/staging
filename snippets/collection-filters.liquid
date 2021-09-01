@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" href="{{'filter-layout.css' | asset_url }}">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -5,6 +6,7 @@
 
 <script type="text/javascript">
   $(function(){
+    {% include 'createpagination' %}
     var maxResults = 16;
     var defFilterName = 'restrictBy[collections]={{ collection.title | replace: ',' , '\,' | url_encode }}';
       var searchsortby = $(document).find("#sortByFilter option:selected").attr('value'); console.log('sortyBy==> '+ searchsortby);
@@ -23,7 +25,8 @@
       $(this).next(':checkbox').trigger('change');
     });
 
-    $('body').on('change','[data-collection-filter-section] input[type="checkbox"]', function(){     
+    $('body').on('change','[data-collection-filter-section] input[type="checkbox"]', function(){   
+      $('[data-collection-listing-container]').addClass('inital-load');    
       console.log('input changessssss'); 
       // $(this).prop('checked', true);
       var newQueryString = filterOnSelect();     
@@ -44,6 +47,21 @@
       searchaniseProducts(newQueryString);  
     });
 
+    function LoadMoreItems() {
+      $('.dynamicloadMore-btn').hide();
+      $('.dynamic-loader-spiner').show();
+    }
+
+    $(document).on('click', '.dynamicloadMore-btn', function(){
+      $('[data-collection-listing-container]').removeClass('inital-load');  
+      LoadMoreItems();
+      $('.dynamic-pagination span a.active').next().addClass('active').siblings().removeClass('active');
+      var newQueryString = filterOnSelect();
+      console.log(newQueryString); 
+      searchaniseProducts(newQueryString);  
+    })
+
+   
 
 
     searchaniseFiltersOnload(queryString);
@@ -113,8 +131,9 @@
           
           
           //Init
-          //var getmaxitemperpage = $('select.result-per-page option:selected').attr('data-count');
+          var getmaxitemperpage = 16;
           createFilters();
+          createPagination(searchData.totalItems, searchData.startIndex/getmaxitemperpage); 
           printProducts(searchData.items);
 
         }
@@ -254,17 +273,31 @@
 
      
       // Filter on Select event
-     function filterOnSelect(){   
+     function filterOnSelect(){ 
+        // $('.dynamic-loadmore-btn-box').show();
+        var currentPage = Number($('.dynamic-pagination span a.active').text());
+          
+          
+          if(currentPage > 1) {
+            currentPage = currentPage-1; 
+          console.log(currentPage);
+            var Startitems = maxResults*currentPage;
+      console.log("startItems==>>" + Startitems);
+      
+          } else {
+            var Startitems = 0;
+          }
+      
         searchsortby = $(document).find("#sortByFilter option:selected").attr('value');
         var fil = $('[data-collection-filter-section] input[type="checkbox"]:checked'); console.log('fil==>' + fil);  console.log(fil);
-        '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
+        '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex='+ Startitems +'&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
       // var newQueryString = queryString
-      var newQueryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
+      var newQueryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex='+ Startitems +'&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
       $(document).find('[data-collection-filter-section] .collection-filter-wrapper').each(function(){
         var thisFilterName = $(this).data('filter'); //console.log('thisFilterName==> ' + thisFilterName);
         var filValues = $(this).find('input[type="checkbox"]:checked');
         
-          //console.log(filValues.length);
+        //console.log(filValues.length);
         var filSelected = '';
         if(filValues.length > 0){
           filValues.each(function(i){ 
@@ -285,10 +318,36 @@
       newQueryString+='&maxResults='+maxResults;
       return newQueryString;
       }
+
+      function createPagination(totalNoOfProducts, startIndex){
+          $('.dynamic-pagination').empty();
+
+          var pageperview = 16;
+
+          var totalProducts = totalNoOfProducts;      	
+          var noOfPages = totalProducts/pageperview;
+          
+          if(totalProducts <= pageperview){
+            noOfPages = 0;
+          }
+          var x = Math.floor(noOfPages);
+          if(pageperview*x < totalProducts){
+            x++;
+          }
+          Pagination.Init($('.dynamic-pagination')[0], {
+              size: x, // pages size
+              page: startIndex+1,  // selected page
+              step: 3   // pages before and after current
+            });
+        }
       
       // Print Product 
       function printProducts(prodObj){   
-        $('[data-collection-listing-container]').empty();     
+        
+        if($('[data-collection-listing-container]').hasClass('inital-load')) {
+          $('[data-collection-listing-container] [data-view="grid"]').empty();     
+        }
+        
         var productGrid = '';
        
         console.log(prodObj);
@@ -309,7 +368,8 @@
                 prodId = prodObj[i].id;
                // console.log(prodImages);
 
-            getprodlink = '/collections/'+getcollection;
+            getcollectionlink = '/collections/'+getcollection;
+
             var _thistags = prodTags;
             _thistags = _thistags.split('[:ATTR:]');
             var _this_variants = prodObj[i].shopify_variants;
@@ -370,11 +430,7 @@
               });
               jwGridContent +='<div class="product_compare">Compare</div>';
               jwGridContent +='</div>'
-          }              
-
-
-
-
+          }
             if(prodQty <= 0 ){
               var prodAvaibility = 'grid-view-item--sold-out';
             }
@@ -397,7 +453,7 @@
             
             productGrid += '<div class="grid-view-item product-card">';
             productGrid += '<a class="grid-view-item__link grid-view-item__image-container full-width-link" href="'+getprodlink+'" style="display: none;"><span class="visually-hidden">'+prodTitle+'</span></a>';
-            productGrid += '<div class="product-images-wrapper-holder"> <div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider>';
+            productGrid += '<div class="product-images-wrapper"> <div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider>';
              
                 for (let j = 0; j < prodImages.length; j++) {
                   if(prodImages[j].indexOf('_XYZG') > -1) {
@@ -426,31 +482,33 @@
                 productGrid += '<div class="product-price-card">'
                 productGrid += ldGridContent;
                 productGrid += ldGridContentMob;
-
                 productGrid += jwGridContent;
-
-
                 productGrid += '<div class="product-price-card-row price_row '+noDiscount+'">'
-                  productGrid += '<div class="ragular_price">'+ prodPrice +'</div>'
-                  productGrid += '</div>'
-              
-                
+                productGrid += '<div class="ragular_price">'+ prodPrice +'</div>'
+                productGrid += '</div>'
                 productGrid += '</div>'  
-              productGrid += '</div>'
-            productGrid += '</div>'
-            productGrid += '</div>'
-            productGrid += '</li>'
-
-              
-            
+                productGrid += '</div>'
+                productGrid += '</div>'
+                productGrid += '</div>'
+                productGrid += '</li>'
         });
         
             productGrid += '</ul>';
 
             // console.log(productGrid);
-                $('[data-collection-listing-container]').append(productGrid);   
-                  sliderInit();                           
-                
+                $('[data-collection-listing-container] [data-view="grid"]').append(productGrid);   
+                 
+                var len = $('.dynamic-pagination span a').length;
+                var txt = Number($('.dynamic-pagination span a.active').text());
+                if(len === txt){
+                  console.log('yes matched len and txt')
+                  $('.dynamic-loadmore-btn-box, .dynamic-loader-spiner').hide();
+                  
+                }else {
+                  $('.dynamic-loadmore-btn-box').show();
+                  $('.dynamic-loader-spiner').hide();  
+                }
+                sliderInit();  
       }
 
       function sliderInit(){

@@ -40,7 +40,7 @@
   {% include 'collection-sorting' %}
   </header>
 
-  <div class="dia-container " id="Collection" data-collection-listing-container>
+  <div class="dia-container inital-load" id="Collection" data-collection-listing-container>
     {% if section.settings.layout == 'grid' %}
 
       <!-- MetaField Section -->
@@ -155,7 +155,7 @@
           </div>
         </div>
       </div>
-
+      
     {% else %}
     {% endif %}
 
@@ -220,7 +220,7 @@
           </tbody>
         </table>
       </div>
-      <div class="bottom-pagination-row">
+      <div class="bottom-pagination-row" data-view="list" style="display: none;">
         {%- if paginate.pages > 1 -%}
           <div class="loadmore-btn-holder" >
             <div class="loadmore-btn-box"><a class="loadMore-btn glb-btn loademore__list loademore__2">VIEW MORE</a></div>
@@ -232,6 +232,7 @@
         </div>
       </div>
     </div>
+    
 
     {% if is_empty_collection %}
       <div class="grid__item small--text-center">
@@ -239,7 +240,11 @@
       </div>
     {% endif %}
 
-    
+    <div class="dynamic-pagination" style="display: none;"></div>
+    <div class="dynamic-loadmore-btn-holder">
+      <div class="dynamic-loadmore-btn-box" style="display: none;"><a class="dynamicloadMore-btn glb-btn">VIEW MORE</a></div>
+      <div class="dynamic-loader-spiner" style="display: none;"></div>
+    </div>
     
   </div>
 </div>
