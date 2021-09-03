@@ -42,6 +42,9 @@
     {% include 'collection-sorting' %}    
   </header>
   <div class="dia-container css inital-load" id="Collection" data-collection-listing-container>
+    <div class="grid-view-section product_view_tab" data-view="grid">
+      <ul class="grid grid--uniform grid--view-items hide" data-list-item></ul>
+      <div class="product-listing" data-init-content>
     {% if section.settings.layout == 'grid' %}
       
     {%- if paginate.current_page == 1 -%}
@@ -415,8 +418,7 @@
         <p class="text-center">{{ 'collections.general.no_matches' | t }}</p>
       </div>
     {% endif %}
-    <div class="dynamic-pagination" style="display: none;"></div>
-
+  </div>
     <div class="bottom-pagination-row">
       {%- if paginate.pages > 1 -%}
         {%- comment -%}
@@ -432,7 +434,12 @@
       </div>
     </div>
     
-
+  </div>
+  <div class="dynamic-pagination" style="display: none;"></div>
+    <div class="dynamic-loadmore-btn-holder">
+      <div class="dynamic-loadmore-btn-box" style="display: none;"><a class="dynamicloadMore-btn glb-btn">VIEW MORE</a></div>
+      <div class="dynamic-loader-spiner" style="display: none;"></div>
+    </div>
   </div>
 </div>
 {% endpaginate %}

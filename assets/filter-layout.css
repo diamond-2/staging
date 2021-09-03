@@ -28,17 +28,19 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;    
+    justify-content: space-between;   
+    position: relative;
+    z-index: 9; 
 }
 .collection-filter-wrapper {
-    max-width: 145px;
-    min-width: 145px;
+    max-width: 140px;
+    min-width: 140px;
     text-align: text;
 }
 .filters-toolbar__input {
-    padding-left: 5px;
     text-transform: uppercase;
     font-size: calc(((12) / (var(--font-size-base))) * 1em);
+    height: 40px;
 }
 select#sortByFilter {
     border: none;
@@ -127,6 +129,84 @@ label.filter__label span {
     animation: loderSpin 1s linear infinite;
     display: none;
 }
+
+/* Custom Filter dropdown layout */
+.filter-option-name {
+    display: block;
+    padding: 10px 20px 10px 10px;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    position: relative;
+}
+.filter-option-name:after {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    line-height: 0;
+    transition: 50ms ease-in-out;
+    -o-transition: 50ms ease-in-out;
+    -ms-transition: 50ms ease-in-out;
+    -moz-transition: 50ms ease-in-out;
+    -webkit-transition: 50ms ease-in-out;
+    /* background: red; */
+    content: url(//cdn.shopify.com/s/files/1/0575/2681/2840/t/2/assets/down-arrow.png?v=1424509…);
+    transform: translateY(-50%);
+}
+ul.filter-dd {
+    background: #ffffff;
+    position: absolute;
+    top: 39px;
+    padding: 10px;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    min-width:180px;
+    width: max-content;
+    display: none;
+    max-height: 175px;
+    overflow: hidden;
+    overflow-y: auto;
+    z-index: 9;
+}
+ul.filter-dd .input-group {
+    justify-content: left;
+}
+.filters-toolbar__input.open-dd:after{
+    background-color: #fff;
+    content: " ";
+    display: block;
+    left: 1px;
+    bottom: -1px;
+    width: calc(100% - 2px);
+    height: 5px;
+    position: absolute;
+    z-index: 101;
+}
+ul.filter-dd .input-group label {
+    position: relative;
+    padding: 5px 5px 5px 20px;
+}
+ul.filter-dd .input-group label::before{
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 0px;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+}
+ul.filter-dd .input-group input[type="checkbox"]:checked + label::after{
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 1px;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    background-color: #6c1d45;
+}
+
 @media screen and (max-width: 749px) {
     .solitaire-collection-wrapper .glb-sec-header {
         margin-bottom: 10px;

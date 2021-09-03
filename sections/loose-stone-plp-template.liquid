@@ -97,7 +97,8 @@
       {% endcapture %}
 
       <div class="grid-view-section product_view_tab" data-view="grid">
-        <div data-pagination="{{ paginate.next.url }}" class="product-listing">
+        <ul class="grid grid--uniform grid--view-items hide" data-list-item></ul>
+        <div data-pagination="{{ paginate.next.url }}" class="product-listing" data-init-content>
           <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
             {% for product in collection.products %}
               <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
