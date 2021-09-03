@@ -1142,6 +1142,9 @@ div#PageContainer {
       .site-header__icon {
         padding: 10px 7px;
         margin: 0 10px;
+        &.site-header__account {
+          pointer-events: none;
+        }        
         @media(max-width: $xxl) {
           margin:0 3px;
         }

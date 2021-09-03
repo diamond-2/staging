@@ -257,16 +257,16 @@ ul.filter-dd .input-group input[type="checkbox"]:checked + label::after{
         display: none;
     }
     .collection-filter-wrapper {
-        max-width: 50%;
-        min-width: 50%;
+        max-width: 100%;
+        min-width: 100%;
         text-align: center;
         margin: 0 auto;
     }
     .collection-filter-wrapper:nth-child(odd) {
-        padding-right: 5px;
+        padding-right: 0px;
     }
     .collection-filter-wrapper:nth-child(even) {
-        padding-left: 5px;
+        padding-left: 0px;
     }
     
     .collection-filter-wrapper:last-child {
@@ -279,6 +279,7 @@ ul.filter-dd .input-group input[type="checkbox"]:checked + label::after{
     .filters-toolbar__input {
         width:100%;
         margin-bottom: 10px;
+        height: auto;
     }
     .collection-sort-label {
         width: 50%;
@@ -295,6 +296,7 @@ ul.filter-dd .input-group input[type="checkbox"]:checked + label::after{
     .filters-toolbar-wrapper .dia-container > div {
         margin-bottom: 15px;
         width: 100%;
+        align-items: flex-start;
     }
     .filter_right_column {
         margin: 0px;
@@ -326,4 +328,28 @@ ul.filter-dd .input-group input[type="checkbox"]:checked + label::after{
     .filter-toolbar-wrapper-mobile.postion-fixed .dia-container {
         margin-bottom: 0px;
     }
+    ul.filter-dd {
+        position: relative;
+        top: 0;
+        min-width: 100%;
+        max-height: initial;
+    }
+    .filters-toolbar__input.open-dd:after {
+        display: none;
+    }
+    .filters-toolbar>div {
+        width: 100%;
+        max-height: 410px;
+        overflow: hidden;
+        overflow-y: auto;
+        padding-right: 1px;
+    }
 }
+
+
+/* Hide filters on Live theme */
+.filter-toolbar-wrapper-mobile.desktop_hide,
+.filters-toolbar-label,
+.filters-toolbar {
+    display: none!important;
+}   

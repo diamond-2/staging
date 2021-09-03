@@ -646,6 +646,8 @@ div#PageContainer.js-menu--is-open {
   .site-header .site-header__mobile-nav .site-header__icons .site-header__icon {
     padding: 10px 7px;
     margin: 0 10px; }
+    .site-header .site-header__mobile-nav .site-header__icons .site-header__icon.site-header__account {
+      pointer-events: none; }
     @media (max-width: 1600px) {
       .site-header .site-header__mobile-nav .site-header__icons .site-header__icon {
         margin: 0 3px; } }
