@@ -5578,6 +5578,8 @@ body.layout_jewellery h2 {
       font-size: 12px;
       line-height: 18px;
       font-weight: 300; } }
+  .filter_type2 .filters-toolbar__item-wrapper .select-sort-by {
+    font-size: inherit !important; }
   .filter_type2 .filters-toolbar__item-wrapper .filters-toolbar__item--count {
     color: #6C1D45;
     flex: auto;

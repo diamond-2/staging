@@ -6871,6 +6871,9 @@ body[data-template="loose-stone"] {
       line-height: 18px;
       font-weight: 300;
     }
+    .select-sort-by {
+      font-size: inherit !important;
+    }
     .filters-toolbar__item--count {
       color: #6C1D45;
       flex: auto;
