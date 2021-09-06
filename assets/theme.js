@@ -10167,7 +10167,6 @@ window.addEventListener("resize", function() {
   }
   headerHeight();
   window.addEventListener("resize", headerHeight);
-  window.addEventListener("scroll", headerHeight);
 
   // matchHeight Global Call
   $('.matchHeight ').matchHeight();

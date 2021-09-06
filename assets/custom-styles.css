@@ -3180,19 +3180,12 @@ body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3 
 /* End Full Slider Global css End */
 .content-with-image-diamond-section-wrapper {
   padding: 100px 0; }
-  @media (max-width: 1600px) {
-    .content-with-image-diamond-section-wrapper {
-      padding-top: 50px;
-      padding-bottom: 50px; } }
   @media (max-width: 749px) {
     .content-with-image-diamond-section-wrapper {
       padding-top: 60px;
       padding-bottom: 60px; } }
   .content-with-image-diamond-section-wrapper .content-with-image-diamond-section-row:not(:last-child) {
     margin-bottom: 100px; }
-    @media (max-width: 1600px) and (min-width: 750px) {
-      .content-with-image-diamond-section-wrapper .content-with-image-diamond-section-row:not(:last-child) {
-        margin-bottom: 50px; } }
     @media (max-width: 749px) {
       .content-with-image-diamond-section-wrapper .content-with-image-diamond-section-row:not(:last-child) {
         margin-bottom: 60px; } }
@@ -3380,10 +3373,6 @@ body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3 
 
 .why-diamond2-section {
   padding: 100px 0; }
-  @media (max-width: 1600px) {
-    .why-diamond2-section {
-      padding-top: 50px;
-      padding-bottom: 50px; } }
   @media (max-width: 749px) {
     .why-diamond2-section {
       padding-top: 60px;
@@ -3407,10 +3396,6 @@ body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3 
 
 .ethically-produced-section {
   padding: 100px 0 100px; }
-  @media (max-width: 1600px) {
-    .ethically-produced-section {
-      padding-top: 50px;
-      padding-bottom: 50px; } }
   @media (max-width: 749px) {
     .ethically-produced-section {
       padding-top: 60px;
@@ -3435,10 +3420,6 @@ body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3 
 
 .trust-for-life-section {
   padding: 100px 0 45px; }
-  @media (max-width: 1600px) {
-    .trust-for-life-section {
-      padding-top: 50px;
-      padding-bottom: 50px; } }
   @media (max-width: 749px) {
     .trust-for-life-section {
       padding-top: 60px;
@@ -6529,11 +6510,8 @@ body.layout_jewellery h2 {
     padding-top: 60px; } }
 
 body[data-template="common-layout-1"] .main-content, body[data-template="sitemap"] .main-content {
-  padding-top: 100px;
+  padding-top: 0;
   padding-bottom: 0; }
-  @media (max-width: 749px) {
-    body[data-template="common-layout-1"] .main-content, body[data-template="sitemap"] .main-content {
-      padding-top: 60px; } }
 
 @media (min-width: 750px) {
   body.has_no_banner .sticky-header {

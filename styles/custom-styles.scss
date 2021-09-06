@@ -4067,19 +4067,12 @@ body[data-template="know-your-diamond"] {
 /* End Full Slider Global css End */
 .content-with-image-diamond-section-wrapper {
   padding: 100px 0;
-  @media(max-width: $xxl) {
-    padding-top:50px;
-    padding-bottom:50px;
-  }
   @media(max-width: $md) {
     padding-top: 60px;
     padding-bottom: 60px;
   }
   .content-with-image-diamond-section-row:not(:last-child) {
     margin-bottom: 100px;
-    @media(max-width: $xxl) and (min-width: $postMd) {
-      margin-bottom: 50px;
-    }
     @media(max-width: $md) {
       margin-bottom: 60px;
     }
@@ -4336,10 +4329,7 @@ body[data-template="know-your-diamond"] {
 }
 .why-diamond2-section {
   padding: 100px 0;
-  @media(max-width: $xxl) {
-    padding-top: 50px;
-    padding-bottom: 50px;
-  }
+
   @media(max-width: $md) {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -4367,10 +4357,6 @@ body[data-template="know-your-diamond"] {
 }
 .ethically-produced-section {
   padding: 100px 0 100px;
-  @media(max-width: $xxl) {
-    padding-top:50px;
-    padding-bottom:50px;
-  }
   @media(max-width: $md) {
     padding-top:60px;
     padding-bottom:60px;
@@ -4399,10 +4385,6 @@ body[data-template="know-your-diamond"] {
 }
 .trust-for-life-section {
   padding: 100px 0 45px;
-  @media(max-width: $xxl) {
-    padding-top:50px;
-    padding-bottom:50px;
-  }
   @media(max-width: $md) {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -8026,11 +8008,8 @@ body[data-template="common-layout-1"], body[data-template="sitemap"] {
     }
   }
   .main-content {
-    padding-top: 100px;
+    padding-top: 0;
     padding-bottom: 0;
-    @media(max-width: $md) {
-      padding-top:60px;
-    }
   }
 }
 body {
