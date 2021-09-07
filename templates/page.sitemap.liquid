@@ -82,6 +82,20 @@
                     {% endfor %}
                 </ul>
             </div>
+
+            <div class="sitemap-row">
+                <ul class="sitemap-menu-grid">
+                    <li class="sitemap-menu-column">
+                        <a>More Links</a>
+                        <ul>
+                            {% for footerBottomLink in linklists.footer-bottom.links %}
+                            {% if footerBottomLink.title %}<li><a href="{{ footerBottomLink.url }}">{{ footerBottomLink.title | replace: '®', '<sup>®</sup>' }}</a></li>{% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
         </div>
     </div>
 </div>

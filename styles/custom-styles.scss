@@ -4067,19 +4067,12 @@ body[data-template="know-your-diamond"] {
 /* End Full Slider Global css End */
 .content-with-image-diamond-section-wrapper {
   padding: 100px 0;
-  @media(max-width: $xxl) {
-    padding-top:50px;
-    padding-bottom:50px;
-  }
   @media(max-width: $md) {
     padding-top: 60px;
     padding-bottom: 60px;
   }
   .content-with-image-diamond-section-row:not(:last-child) {
     margin-bottom: 100px;
-    @media(max-width: $xxl) and (min-width: $postMd) {
-      margin-bottom: 50px;
-    }
     @media(max-width: $md) {
       margin-bottom: 60px;
     }
@@ -4336,10 +4329,7 @@ body[data-template="know-your-diamond"] {
 }
 .why-diamond2-section {
   padding: 100px 0;
-  @media(max-width: $xxl) {
-    padding-top: 50px;
-    padding-bottom: 50px;
-  }
+
   @media(max-width: $md) {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -4367,10 +4357,6 @@ body[data-template="know-your-diamond"] {
 }
 .ethically-produced-section {
   padding: 100px 0 100px;
-  @media(max-width: $xxl) {
-    padding-top:50px;
-    padding-bottom:50px;
-  }
   @media(max-width: $md) {
     padding-top:60px;
     padding-bottom:60px;
@@ -4399,10 +4385,6 @@ body[data-template="know-your-diamond"] {
 }
 .trust-for-life-section {
   padding: 100px 0 45px;
-  @media(max-width: $xxl) {
-    padding-top:50px;
-    padding-bottom:50px;
-  }
   @media(max-width: $md) {
     padding-top: 60px;
     padding-bottom: 60px;
@@ -8026,11 +8008,8 @@ body[data-template="common-layout-1"], body[data-template="sitemap"] {
     }
   }
   .main-content {
-    padding-top: 100px;
+    padding-top: 0;
     padding-bottom: 0;
-    @media(max-width: $md) {
-      padding-top:60px;
-    }
   }
 }
 body {
@@ -9753,6 +9732,13 @@ body[data-template="404"] {
                     display: none;
                   }
                 }
+                [data-cart-discount-wrapper] {
+                  .order-discount-card-wrapper {
+                    @media(min-width: $postMd) {
+                      font-size: 14px;
+                    }
+                  }
+                }
               }
               .cart__product-body-right {
                 position: absolute;
@@ -9815,6 +9801,7 @@ body[data-template="404"] {
           justify-content: flex-end;
           margin-bottom: 47px;
           padding-right: 50px;
+          margin-left: auto;
           @media(max-width: $md) {
             padding-right:0;
           }
@@ -10505,6 +10492,38 @@ body.template-cart {
                 font-weight: 300;
                 text-transform: uppercase;
                 margin: 5px 0;
+              }
+            }
+          }
+          [data-cart-discount-wrapper] {
+            .order-discount-card-wrapper {
+              justify-content: flex-start;
+              margin-top: 14px;
+              font-size: 20px;
+              @media(max-width: $xxl) {
+                font-size: 14px;
+              }
+              @media(max-width: $xl) {
+                font-size: 12px;
+              }
+              @media(max-width: $md) {
+                font-size: 11px;
+              }
+              .order-discount--cart {
+                font-size: inherit;
+                color: $textcolor-black;
+                line-height: normal;
+              }
+              .order-discount--cart-total {
+                padding-left: 0;
+                min-width: 0;
+                font-size: inherit;
+                color: $textcolor-black;
+                line-height: normal;
+              }
+              .icon-saletag {
+                height: 15px;
+                width: 15px;
               }
             }
           }
@@ -13607,3 +13626,14 @@ body.template-product {
   }
 }
 
+// Look Review App
+.loox-reviews-default {
+  max-width: 100% !important;
+}
+.loox-rating {
+  margin-bottom: 20px;
+  line-height: 1;
+  @media(max-width: $md) {
+    margin-bottom: 10px;
+  }
+}
