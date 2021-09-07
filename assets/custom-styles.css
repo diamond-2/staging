@@ -2825,42 +2825,43 @@ body.landing-exist.scroll-start #shopify-section-landing {
       line-height: 12.96px;
       padding: 7.6px 10px; } }
 
-body[data-template="know-your-diamond"] .home-sld {
+body[data-template="know-your-diamond"] .home-sld, body[data-template="about-us"] .home-sld {
   padding-top: 55px;
   padding-bottom: 90px; }
   @media (max-width: 749px) {
-    body[data-template="know-your-diamond"] .home-sld {
+    body[data-template="know-your-diamond"] .home-sld, body[data-template="about-us"] .home-sld {
       padding-top: 0;
       padding-bottom: 45px; } }
-  body[data-template="know-your-diamond"] .home-sld .shop-loose-diamond2-slider-top-row {
+  body[data-template="know-your-diamond"] .home-sld .shop-loose-diamond2-slider-top-row, body[data-template="about-us"] .home-sld .shop-loose-diamond2-slider-top-row {
     max-width: 878px;
     margin-bottom: 30px; }
     @media (max-width: 749px) {
-      body[data-template="know-your-diamond"] .home-sld .shop-loose-diamond2-slider-top-row {
+      body[data-template="know-your-diamond"] .home-sld .shop-loose-diamond2-slider-top-row, body[data-template="about-us"] .home-sld .shop-loose-diamond2-slider-top-row {
         margin-bottom: 19px; } }
     @media (max-width: 749px) {
-      body[data-template="know-your-diamond"] .home-sld .shop-loose-diamond2-slider-top-row p {
+      body[data-template="know-your-diamond"] .home-sld .shop-loose-diamond2-slider-top-row p, body[data-template="about-us"] .home-sld .shop-loose-diamond2-slider-top-row p {
         line-height: 18px;
         padding-left: 15px;
         padding-right: 15px; } }
 
 @media (max-width: 749px) {
-  body[data-template="know-your-diamond"] .home--slider:first-child .homepage-slider-wrapper .slide-item .slide-overlay {
+  body[data-template="know-your-diamond"] .home--slider:first-child .homepage-slider-wrapper .slide-item .slide-overlay, body[data-template="about-us"] .home--slider:first-child .homepage-slider-wrapper .slide-item .slide-overlay {
     padding-top: 20px; } }
 
 @media (max-width: 749px) {
-  body[data-template="know-your-diamond"] .home--slider:first-child .homepage-slider-wrapper .slide-item .slide-overlay .slide-overaly-subheading {
+  body[data-template="know-your-diamond"] .home--slider:first-child .homepage-slider-wrapper .slide-item .slide-overlay .slide-overaly-subheading, body[data-template="about-us"] .home--slider:first-child .homepage-slider-wrapper .slide-item .slide-overlay .slide-overaly-subheading {
     display: none; } }
 
 @media (max-width: 749px) {
-  body[data-template="know-your-diamond"] .home--slider:first-child .homepage-slider-wrapper .slide-item .slide-overlay .slide-overlay-link {
+  body[data-template="know-your-diamond"] .home--slider:first-child .homepage-slider-wrapper .slide-item .slide-overlay .slide-overlay-link, body[data-template="about-us"] .home--slider:first-child .homepage-slider-wrapper .slide-item .slide-overlay .slide-overlay-link {
     margin-top: 5px; } }
 
-body[data-template="know-your-diamond"] .collection-slider-wrapper {
+body[data-template="know-your-diamond"] .collection-slider-wrapper, body[data-template="about-us"] .collection-slider-wrapper {
   padding-top: 0; }
 
 body[data-template="know-your-diamond"] h2,
-body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3 {
+body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3, body[data-template="about-us"] h2,
+body[data-template="about-us"] .shop-loose-diamond2-slider-top-row .h3 {
   font-size: 45px;
   line-height: 48.6px;
   font-family: 'Spectral', serif;
@@ -2870,24 +2871,27 @@ body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3 
   text-transform: uppercase; }
   @media (max-width: 1600px) {
     body[data-template="know-your-diamond"] h2,
-    body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3 {
+    body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3, body[data-template="about-us"] h2,
+    body[data-template="about-us"] .shop-loose-diamond2-slider-top-row .h3 {
       font-size: 30px;
       line-height: 1; } }
   @media screen and (max-width: 749px) {
     body[data-template="know-your-diamond"] h2,
-    body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3 {
+    body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3, body[data-template="about-us"] h2,
+    body[data-template="about-us"] .shop-loose-diamond2-slider-top-row .h3 {
       font-size: 28px;
       line-height: 30.24px; } }
   @media screen and (min-width: 1921px) {
     body[data-template="know-your-diamond"] h2,
-    body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3 {
+    body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3, body[data-template="about-us"] h2,
+    body[data-template="about-us"] .shop-loose-diamond2-slider-top-row .h3 {
       font-size: 2.916666666666667vw;
       line-height: 3.125vw; } }
 
-body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3 {
+body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3, body[data-template="about-us"] .shop-loose-diamond2-slider-top-row .h3 {
   margin-bottom: 42px; }
   @media (max-width: 749px) {
-    body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3 {
+    body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3, body[data-template="about-us"] .shop-loose-diamond2-slider-top-row .h3 {
       margin-bottom: 20px; } }
 
 .dia-small-container {

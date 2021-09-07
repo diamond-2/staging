@@ -1,0 +1,135 @@
+<div class="content-with-image-diamond-section-wrapper global_section_bg">
+    {%- for item in section.blocks -%}
+    <div class="content-with-image-diamond-section-row image_pos_{{ item.settings.image_position }} image_col_size_{{ item.settings.image_size }}">
+        <div class="dia-container">
+            <div class="content-with-image-diamond-row">
+                {%- if item.settings.image !=blank -%}
+                <div class="content-with-image-diamond-image-column hide_mobile">
+                    <div class="image_holder">
+                        <img data-src="{{ item.settings.image | img_url: 'master' }}" class="lazyload" alt="{{  item.settings.image.alt }}">
+                    </div>
+                </div>
+
+                {%- if item.settings.mobile_image !=blank -%}
+                <div class="content-with-image-diamond-image-column show_mobile">
+                    <div class="image_holder">
+                        <img data-src="{{ item.settings.mobile_image | img_url: 'master' }}" class="lazyload" alt="{{  item.settings.image.mobile_image }}">
+                    </div>
+                    {%- if item.settings.bottom_text != blank -%}<div class="image_cap_b show_mobile"><p>{{ item.settings.bottom_text }}</p></div>{%- endif -%}
+                </div>
+                {%- else -%}
+                <div class="content-with-image-diamond-image-column show_mobile">
+                    <div class="image_holder">
+                        <img data-src="{{ item.settings.image | img_url: 'master' }}" class="lazyload" alt="{{  item.settings.image.alt }}">
+                    </div>
+                    {%- if item.settings.bottom_text != blank -%}<div class="image_cap_b show_mobile"><p>{{ item.settings.bottom_text }}</p></div>{%- endif -%}
+                </div>
+                {%- endif -%}
+
+                {%- endif -%}
+
+                {%- if item.settings.bottom_text != blank -%}
+                {% assign hasBottomContent = 'has_bottom_text' %}
+                {%- endif -%}
+
+                <div class="content-with-image-diamond-content-column  {{ hasBottomContent }}">
+                    {%- if item.settings.content != blank or item.settings.heading !=blank or item.settings.bottom_text != blank -%}
+                    <div class="content_holder">
+                        {%- if item.settings.content != blank or item.settings.heading !=blank -%}
+                        <div class="content_holder_box">
+                            {%- if item.settings.heading !=blank -%}<h2>{{ item.settings.heading }}</h2>{%- endif -%}
+                            {{ item.settings.content }}
+                        </div>
+                        {%- endif -%}
+                        {%- if item.settings.bottom_text != blank -%}<div class="image_cap_b hide_mobile"><p>{{ item.settings.bottom_text }}</p></div>{%- endif -%}
+                    </div>
+                    {%- endif -%}
+                </div>
+            </div>
+        </div>
+    </div>
+    {%- endfor -%}
+</div>
+ 
+
+{% schema %}
+{
+    "name": "About Content With Image",
+    "settings": [],
+    "blocks": [
+       {
+          "type": "image",
+          "name": "Item",
+          "settings": [
+                {
+                    "type": "header",
+                    "content": "Image Column"
+                },
+                {
+                    "type": "image_picker",
+                    "label": "Image",
+                    "id": "image"
+                },
+                {
+                    "type": "image_picker",
+                    "label": "Mobile Image",
+                    "id": "mobile_image"
+                },
+                {
+                    "type": "select",
+                    "label": "Image Position",
+                    "id": "image_position",
+                    "options": [
+                        {
+                            "value": "left",
+                            "label": "Left"
+                        },
+                        {
+                            "value": "right",
+                            "label": "Right"
+                        }
+                    ],
+                    "default": "right"
+                },
+                {
+                    "type": "select",
+                    "label": "Image Size",
+                    "id": "image_size",
+                    "options": [
+                        {
+                            "value": "medium",
+                            "label": "Medium"
+                        },
+                        {
+                            "value": "large",
+                            "label": "Large"
+                        }
+                    ],
+                    "default": "medium",
+                    "info": "Change Size of Column"
+                },
+                {
+                    "type": "header",
+                    "content": "Content Column"
+                },
+                {
+                    "type": "text",
+                    "label": "Heading",
+                    "id": "heading",
+                    "default": "what is diamond2 ?"
+                },
+                {
+                    "type": "html",
+                    "label": "Content",
+                    "id": "content"
+                },
+                {
+                    "type": "text",
+                    "label": "Bottom Text",
+                    "id": "bottom_text"
+                }
+          ]
+       }
+    ]
+ }
+{% endschema %}

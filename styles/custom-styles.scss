@@ -3678,7 +3678,7 @@ body{
   @include secondaryBtn();
 }
 
-body[data-template="know-your-diamond"] {
+body[data-template="know-your-diamond"], body[data-template="about-us"] {
   .home-sld {
     padding-top: 55px;
     padding-bottom: 90px;
