@@ -7,17 +7,22 @@
         <div class="product-details-row">
             <div class="product-info-gird">
                 {%- capture tableContent_title -%}prod_info_title{%- endcapture -%}
+                {%- capture tableContent_dimension1Label  -%}prod_info_dimension1_label{% endcapture %}
                 {%- capture tableContent_dimension1  -%}prod_info_dimension1{% endcapture %}
+                {%- capture tableContent_dimension2Label  -%}prod_info_dimension2_label{% endcapture %}
                 {%- capture tableContent_dimension2  -%}prod_info_dimension2{% endcapture %}
                 {%- capture tableContent_rhodium_plated -%}prod_info_rhodium_plated{% endcapture %}
                 {%- capture tableContent_avg_clarity -%}prod_info_avg_clarity{%- endcapture -%}
                 {%- capture tableContent_stone_category -%}prod_info_stone_category{%- endcapture -%}
                 {%- capture tableContent_stone_shape -%}prod_info_stone_shape{%- endcapture -%}
-                {%- capture tableContent_no_of_stones-%}prod_info_no_of_stones{%- endcapture -%} 
+                {%- capture tableContent_no_of_stones-%}prod_info_no_of_stones{%- endcapture -%}
+                
                 {% if template.suffix != 'loose-stone' %}
                 {% if
                     productMetafield[tableContent_title] != blank or 
+                    variantMetafield[tableContent_dimension1Label] != blank or
                     variantMetafield[tableContent_dimension1] != blank or 
+                    variantMetafield[tableContent_dimension1Label] != blank or
                     variantMetafield[tableContent_dimension2] != blank or 
                     productMetafield[tableContent_rhodium_plated] != blank 
                 %}       
@@ -25,7 +30,9 @@
                     
                     {% if
                         productMetafield[tableContent_title] != blank or 
+                        variantMetafield[tableContent_dimension1Label] != blank or
                         variantMetafield[tableContent_dimension1] != blank or 
+                        variantMetafield[tableContent_dimension1Label] != blank or
                         variantMetafield[tableContent_dimension2] != blank or 
                         productMetafield[tableContent_rhodium_plated] != blank 
                     %}    
@@ -47,16 +54,14 @@
 
                                             {% if variantMetafield[tableContent_dimension1] != blank %}
                                                 <tr data-tooltip="jewdim1" data-row="{{ tableContent_dimension1 }}">
-                                                    <td><span class="pdp-tab-label">Height</span></td>
+                                                    <td><span class="pdp-tab-label">{% if  variantMetafield[tableContent_dimension1Label] != blank %}{{  variantMetafield[tableContent_dimension1Label]}} {% else %}Height{% endif %}</span></td>
                                                     <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_dimension1] }}</span>{%- if productMetafield[tableContent_tooltip_height] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_height] }}"></span>{%- endif -%}</td>
                                                 </tr>
                                                 {% endif %}
-
-
                                                 
                                                 {% if variantMetafield[tableContent_dimension2] != blank %}
                                                 <tr data-tooltip="jewdim2" data-row="{{ tableContent_dimension2 }}">
-                                                    <td><span class="pdp-tab-label">Width</span></td>
+                                                    <td><span class="pdp-tab-label">{% if  variantMetafield[tableContent_dimension2Label] != blank %}{{  variantMetafield[tableContent_dimension2Label]}} {% else %}Width{% endif %}</span></td>
                                                     <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_dimension2] }}</span> {%- if productMetafield[tableContent_tooltip_width] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_width] }}"></span>{%- endif -%}</td>
                                                 </tr>
                                                 {% endif %}
@@ -148,6 +153,7 @@
                 {%- capture tableContent_avg_clarity -%}dia_tab{{ j }}_avg_clarity{%- endcapture -%}
                 {%- capture tableContent_stone_category -%}dia_tab{{ j }}_stone_category{%- endcapture -%}
                 {%- capture tableContent_stone_shape -%}dia_tab{{ j }}_stone_shape{%- endcapture -%}
+                {%- capture tableContent_stone_name -%}dia_tab{{ j }}stone_name{%- endcapture -%}
                 {%- capture tableContent_no_of_stones-%}dia_tab{{ j }}_no_of_stones{%- endcapture -%}
                 {%- capture tableContent_min_stn_ttl_crt_wt-%}dia_tab{{ j }}_min_stn_ttl_crt_wt{%- endcapture -%}
                 {%- capture tableContent_stone_avg_color -%}dia_tab{{ j }}_stone_avg_color{%- endcapture -%}
@@ -164,6 +170,8 @@
                 {%- capture tableContent_cert_girdle -%}dia_tab{{ j }}_cert_girdle{%- endcapture -%}
                 {%- capture tableContent_cert_culet -%}dia_tab{{ j }}_cert_culet{%- endcapture -%}
                 {%- capture tableContent_cert_measurements -%}dia_tab{{ j }}_cert_measurements{%- endcapture -%}
+                {%- capture tableContent_actual_stone_wt_carat -%}dia_tab{{ j }}_actual_stone_wt_carat{%- endcapture -%}
+                
 
                 {% if
                     productMetafield[otherTableContent_title] != blank or 
@@ -184,6 +192,8 @@
                     productMetafield[tableContent_cert_symmentry] != blank or
                     productMetafield[tableContent_cert_girdle] != blank or
                     productMetafield[tableContent_cert_culet] != blank or
+                    productMetafield[tableContent_stone_name] != blank or 
+                    productMetafield[tableContent_actual_stone_wt_carat] != blank or
                     productMetafield[tableContent_cert_measurements] != blank
                 %}
                 
@@ -221,12 +231,28 @@
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_stone_avg_color] | truncate: 30 }}</span> {%- if productMetafield[tableContent_tooltip_avg_color] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_avg_color] }}"></span>{%- endif -%}</td>
                                             </tr>
                                             {% endif %}
+
+                                            {% if productMetafield[tableContent_stone_name] != blank %}
+                                            <tr data-tooltip="jewstnname" data-row="{{ tableContent_stone_name }}">
+                                                <td><span class="pdp-tab-label">Stone Name</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[tableContent_stone_name] }}</span> {%- if productMetafield[tableContent_tooltip_avg_name] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_avg_name] }}"></span>{%- endif -%}</td>
+                                            </tr>
+                                            {% endif %}
+
+                                            {% if productMetafield[tableContent_actual_stone_wt_carat] != blank %}
+                                            <tr data-tooltip="jewstnname" data-row="{{ tableContent_actual_stone_wt_carat }}">
+                                                <td><span class="pdp-tab-label">Actual stone Wtc. </span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[tableContent_actual_stone_wt_carat] }}</span> {%- if productMetafield[tableContent_tooltip_actual_stone_wt_carat] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_actual_stone_wt_carat] }}"></span>{%- endif -%}</td>
+                                            </tr>
+                                            {% endif %}                                           
+
                                             {% if productMetafield[tableContent_avg_clarity] != blank %}
                                             <tr data-tooltip="jewstnclaritym" data-row="{{ tableContent_avg_clarity }}">
                                                 <td><span class="pdp-tab-label">Average Clarity</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_avg_clarity] }}</span> {%- if productMetafield[tableContent_tooltip_avg_clarity] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_avg_clarity] }}"></span>{%- endif -%}</td>
                                             </tr>
                                             {% endif %}
+
                                             {% if productMetafield[tableContent_stone_type] != blank %}
                                             <tr data-tooltip="jewstnsetting" data-row="{{ tableContent_stone_type }}">
                                                 <td><span class="pdp-tab-label">Setting type</span></td>
