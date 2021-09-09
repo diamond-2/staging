@@ -1,0 +1,54 @@
+<div class="pick-metal-section-wrapper">
+    <div class="dia-container">
+        {% if section.settings.heading !=blank %}<div class="pick-metal-sec-header"><h2>{{ section.settings.heading }}</h2></div>{% endif %}
+        <div class="pick-metal-item-container">
+            <div class="pick-metal-item-grid">
+                {% for item in section.blocks %}
+                <div class="pick-metal-item">
+                    <div class="pick-metal-card">
+                        {% if item.settings.image %}
+                        <div class="pick-metal-image-box">
+                            <a href="{{ item.settings.link }}">
+                                <img class="hide_mobile lazyload" data-src="{{ item.settings.image | img_url: 'master' }}" alt="{{ item.settings.title }}" >
+                                {% if item.settings.mobile_image %}
+                                <img class="show_mobile lazyload" data-src="{{ item.settings.mobile_image | img_url: 'master' }}" alt="{{ item.settings.title }}" >
+                                {% else %}
+                                <img class="show_mobile lazyload" data-src="{{ item.settings.image | img_url: 'master' }}" alt="{{ item.settings.title }}" >
+                                {% endif %}
+                            </a>
+                        </div>
+                        {% endif %}
+                        <div class="pick-metal-content-box">
+                            {% if item.settings.title !=blank %}<h4>{{ item.settings.title }}</h4>{% endif %}
+                            {% if item.settings.description !=blank %}<p>{{ item.settings.description }}</p>{% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Jewellery Products",
+    "settings": [
+    ],
+    "blocks": [
+       {
+          "type": "collection",
+          "name": "Collection",
+          "settings": [
+            {
+                "type": "collection",
+                "label": "Collection",
+                "id": "collection"
+            }
+          ]
+       }
+    ]
+  }
+{% endschema %}
