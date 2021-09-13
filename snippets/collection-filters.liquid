@@ -35,6 +35,13 @@
       $(this).closest('.collection-filter-wrapper').siblings().find('.filters-toolbar__input').removeClass('open-dd');
     })
 
+    // Clear filter Event
+    $(document).on('click', '[data-clear-filter]', function(){
+      var getKey = $(this).data('key');
+      $(this).remove();
+      $(document).find('[data-collection-filter-section] :checkbox:checked[id="'+getKey+'"]').prop('checked', false).trigger('change');
+    });
+
     $('body').on('change','[data-collection-filter-section] input[type="checkbox"]', function(){   
       $('[data-collection-listing-container]').addClass('inital-load');    
       // console.log('input changessssss'); 
@@ -65,11 +72,7 @@
       var newQueryString = filterOnSelect();
       //// console.log(newQueryString); 
       searchaniseProducts(newQueryString);  
-    })
-
-   
-
-
+    });
     searchaniseFiltersOnload(queryString);
     function searchaniseFiltersOnload(queryString) {
     $.ajax({	
@@ -100,8 +103,11 @@
           //Init
           //var getmaxitemperpage = $('select.result-per-page option:selected').attr('data-count');
           createFilters();
-
           // printProducts(searchData.items);
+
+          // setTimeout(function(){
+          //   location.reload();
+          // },7000);
 
         }
 
@@ -260,13 +266,19 @@
                         var show = 'toShow';
                         filterName=filterName.toLowerCase().replace(' ', '-'); //// console.log('Filtername==>'+filterName);
                         var thisVal = val.value;//// console.log('thisVal == >  ' + thisVal);
+                        if(val.value.indexOf(':') > -1) {
+                          var thisValContent = val.value.split(':')[1];  
+                        }else {
+                          var thisValContent = val.value;//// console.log('thisVal == >  ' + thisVal);
+                        }                       
+
                         var filterVal = '&restrictBy[' + filterName + ']=' + val.value;
                         if(val.selected != undefined && val.selected != '' && val.selected == 'true'){
                           var selected = 'selected=selected';
                           var checked = 'checked=checked';
                           	  checkVal = thisVal;                          
                         }
-                        selectOption += '<li class="input-group ' + show + '"><input type="checkbox" ' + checked +' id="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" value="' + thisVal + '" class="visually-hidden"/> <label for="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter">'+ thisVal +'</label></li>';
+                        selectOption += '<li class="input-group ' + show + '"><input type="checkbox" ' + checked +' id="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" value="' + thisVal + '" class="visually-hidden"/> <label for="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter">'+ thisValContent +'</label></li>';
                         
                         //<li class="input-group"> data-opt-val="' + encodeURIComponent(thisVal) + '"' + selected + '  data-value="' + filterVal + '">' + thisVal + '</li>';
                         counter++;                        
@@ -314,8 +326,19 @@
             var Startitems = 0;
           }
       
+
         searchsortby = $(document).find("#sortByFilter option:selected").attr('value');
-        var fil = $('[data-collection-filter-section] input[type="checkbox"]:checked'); // console.log('fil==>' + fil);  // console.log(fil);
+        var activeFilter = '';
+        var fil = $('[data-collection-filter-section] input[type="checkbox"]:checked');  console.log('fil==>' + fil);  console.log(fil);
+        if(fil.length > 0) {
+          $.each(fil, function(i, v){
+            console.log(i);
+            console.log(v.id);
+            console.log(v.value);
+            activeFilter += '<button data-clear-filter="" class="active-filter" data-value="'+v.value+'" data-key="'+v.id+'" aria-label="Clear '+v.value+' filter">'+v.value+'<span class="clear-filter" aria-hidden="true">x</span></button>';
+          });
+          $(document).find('[data-active-filters]').html(activeFilter);
+        }
         '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex='+ Startitems +'&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
       // var newQueryString = queryString
       var newQueryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex='+ Startitems +'&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;

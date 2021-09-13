@@ -1956,10 +1956,10 @@ div#PageContainer {
                 display: inline-block;
                 &.btn_text {
                   // border-bottom: 1px solid currentColor;
-                  margin-right: 10px;
+                  // margin-right: 10px;
                   @media(max-width: $md) {
                     padding-bottom: 1px;
-                    margin-right: 5px;
+                    // margin-right: 5px;
                   }
                 }
                 &.arrow_hold {

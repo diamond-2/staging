@@ -1240,12 +1240,9 @@ body.js-menu--is-open {
               line-height: 12.96px; } }
           #shopify-section-landing #main-landing-page .landing-content .landing-content-item .landing-page-button .landing-btn span {
             display: inline-block; }
-            #shopify-section-landing #main-landing-page .landing-content .landing-content-item .landing-page-button .landing-btn span.btn_text {
-              margin-right: 10px; }
-              @media (max-width: 749px) {
-                #shopify-section-landing #main-landing-page .landing-content .landing-content-item .landing-page-button .landing-btn span.btn_text {
-                  padding-bottom: 1px;
-                  margin-right: 5px; } }
+            @media (max-width: 749px) {
+              #shopify-section-landing #main-landing-page .landing-content .landing-content-item .landing-page-button .landing-btn span.btn_text {
+                padding-bottom: 1px; } }
             @media (max-width: 749px) {
               #shopify-section-landing #main-landing-page .landing-content .landing-content-item .landing-page-button .landing-btn span.arrow_hold svg {
                 width: 7px;
