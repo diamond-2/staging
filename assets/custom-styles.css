@@ -2969,7 +2969,7 @@ body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3,
   .full_width_slider_wrapper.diamond-ambasaador-slider ul.slick-dots {
     top: 379px; } }
 
-.full_width_slider_wrapper.jewellery_guide_banner .full_width_slide_item .slider-caption-wrapper .slider-caption-holder .cap_content {
+.full_width_slider_wrapper.jewellery_guide_banner .full_width_slide_item .slider-caption-wrapper .slider-caption-holder .cap_content, .full_width_slider_wrapper .diamond_guide_banner .full_width_slide_item .slider-caption-wrapper .slider-caption-holder .cap_content {
   margin-bottom: 0; }
 
 .full_width_slider_wrapper .full_width_slider_image_holder {
