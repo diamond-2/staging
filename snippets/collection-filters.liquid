@@ -35,6 +35,13 @@
       $(this).closest('.collection-filter-wrapper').siblings().find('.filters-toolbar__input').removeClass('open-dd');
     })
 
+    // Clear filter Event
+    $(document).on('click', '[data-clear-filter]', function(){
+      var getKey = $(this).data('key');
+      $(this).remove();
+      $(document).find('[data-collection-filter-section] :checkbox:checked[id="'+getKey+'"]').prop('checked', false).trigger('change');
+    });
+
     $('body').on('change','[data-collection-filter-section] input[type="checkbox"]', function(){   
       $('[data-collection-listing-container]').addClass('inital-load');    
       // console.log('input changessssss'); 
@@ -319,13 +326,18 @@
             var Startitems = 0;
           }
       
+
         searchsortby = $(document).find("#sortByFilter option:selected").attr('value');
+        var activeFilter = '';
         var fil = $('[data-collection-filter-section] input[type="checkbox"]:checked');  console.log('fil==>' + fil);  console.log(fil);
         if(fil.length > 0) {
           $.each(fil, function(i, v){
             console.log(i);
-            console.log(v);
+            console.log(v.id);
+            console.log(v.value);
+            activeFilter += '<button data-clear-filter="" class="active-filter" data-value="'+v.value+'" data-key="'+v.id+'" aria-label="Clear '+v.value+' filter">'+v.value+'<span class="clear-filter" aria-hidden="true">x</span></button>';
           });
+          $(document).find('[data-active-filters]').html(activeFilter);
         }
         '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex='+ Startitems +'&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
       // var newQueryString = queryString
