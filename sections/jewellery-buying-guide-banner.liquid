@@ -1,4 +1,5 @@
-<div class="full_width_slider_wrapper full_width_slider2_wrapper">
+<!-- Do not Style with class 'top_banner' -->
+<div class="full_width_slider_wrapper jewellery-collection-slider jewellery_guide_banner {% if section.blocks.size > 0 %}top_banner{% endif %}">
     <div class="full_width_slider">
         {%- if section.blocks.size > 0 -%}
         {%- for slide in section.blocks -%}
@@ -23,7 +24,6 @@
                     <div class="slider-caption-holder">
                         {%- if slide.settings.heading !=blank -%}<h2>{{ slide.settings.heading }}</h2>{%- endif -%}
                         {%- if slide.settings.content !=blank -%}<div class="cap_content">{{ slide.settings.content }}</div>{%- endif -%}
-                        {%- if slide.settings.button_text !=blank -%}<a href="{{ slide.settings.button_link }}" class="glb-btn">{{ slide.settings.button_text }}</a>{%- endif -%}
                     </div>
                 </div>
             </div>
@@ -36,9 +36,12 @@
         {%- endif -%}  
     </div>
 </div>
+
+
 {% schema %}
 {
-    "name": "Full Width Slider",
+    "name": "Banner",
+    "class": "top_banner_section",
     "settings": [],
     "blocks": [
        {
@@ -86,19 +89,11 @@
                 "type": "richtext",
                 "label": "Content",
                 "id": "content"
-             },
-             {
-                "type": "text",
-                "label": "Button Text",
-                "id": "button_text"
-             },
-             {
-                "type": "url",
-                "label": "Button Link",
-                "id": "button_link"
              }
           ]
        }
     ]
 }
 {% endschema %} 
+
+
