@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="jewellery-care-section-wrapper">
     <div class="dia-container">
         <div class="jewellery-care-section">
@@ -56,4 +57,64 @@
         }
     ]
   }
+=======
+<div class="jewellery-care-section-wrapper">
+    <div class="dia-container">
+        <div class="jewellery-care-section">
+            <div class="jewellery-care-image-column">
+                {% if section.settings.image %}
+                <img data-src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.title }}" class="hide_mobile lazyload">
+                {% if section.settings.mobile_image %}
+                <img data-src="{{ section.settings.mobile_image | img_url: 'master' }}" alt="{{ section.settings.title }}" class="show_mobile lazyload">
+                {% else %}
+                <img data-src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.title }}" class="show_mobile lazyload">
+                {% endif %}
+                {% endif %}
+            </div>
+            <div class="jewellery-care-content-column">
+                {% if section.settings.title !=blank %}<h2>{{ section.settings.title }}</h2>{% endif %}
+                {% if section.settings.content !=blank %}<div class="rte care_content">{{ section.settings.content }}</div>{% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Jewellery Care",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Image Column"
+        },
+        {
+            "type": "image_picker",
+            "label": "Image",
+            "id": "image"
+        },
+        {
+            "type": "image_picker",
+            "label": "Mobile Image",
+            "id": "mobile_image"
+        },
+        {
+            "type": "header",
+            "content": "Content Column"
+        },
+        {
+            "type": "text",
+            "label": "Title",
+            "id": "title",
+            "default": "Jewellery Care"
+        },
+        {
+            "type": "html",
+            "label": "Content",
+            "id": "content"
+        }
+    ]
+  }
+>>>>>>> dev-ayush
 {% endschema %}

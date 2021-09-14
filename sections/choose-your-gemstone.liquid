@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="choose-gemstone-section-wrapper padding_tb">
     <div class="dia-container">
         {% if section.settings.heading !=blank or section.settings.sec_description !=blank  %}
@@ -91,4 +92,99 @@
         }
     ]
   }
+=======
+<div class="choose-gemstone-section-wrapper padding_tb">
+    <div class="dia-container">
+        {% if section.settings.heading !=blank or section.settings.sec_description !=blank  %}
+        <div class="choose-gemstone-sec-header">
+            {% if section.settings.heading !=blank %}
+            <h2>{{ section.settings.heading }}</h2>
+            {% endif %}
+            {% if section.settings.sec_description !=blank %}
+            <p>{{ section.settings.sec_description }}</p>
+            {% endif %}
+        </div>
+        {% endif %}
+        <div class="choose-gemstone-image-container">
+            <div class="choose-gemstone-image-section">
+                {% if section.settings.image %}
+                <div class="choose-gemstone-image-holder">
+                    <img class="hide_mobile lazyload" data-src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.title }}" >
+                    {% if section.settings.mobile_image %}
+                    <img class="show_mobile lazyload" data-src="{{ section.settings.mobile_image | img_url: 'master' }}" alt="{{ section.settings.title }}" >
+                    {% else %}
+                    <img class="show_mobile lazyload" data-src="{{ section.settings.image | img_url: 'master' }}" alt="{{ section.settings.title }}" >
+                    {% endif %}
+                </div>
+                {% endif %}
+                <div class="choose-gemstone-image-caption">
+                    {% if section.settings.title !=blank %}<h2>{{ section.settings.title }}</h2>{% endif %}
+                    {% if section.settings.description !=blank %}<p>{{ section.settings.description }}</p>{% endif %}
+                    {% if section.settings.button_text !=blank %}<a href="{{ section.settings.button_link }}" class="glb-btn">{{ section.settings.button_text }}</a>{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Choose Your Gemstone",
+    "settings": [
+        {
+          "type": "header",
+          "content": "Section Header"
+        },
+        {
+            "type": "text",
+            "label": "Heading",
+            "id": "heading",
+            "default": "1. Pick the Right Metal"
+        },
+        {
+            "type": "text",
+            "label": "Description",
+            "id": "sec_description",
+            "default": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it ."
+        },
+        {
+            "type": "header",
+            "content": "Bottom Image With Content"
+        },
+        {
+            "type": "image_picker",
+            "label": "Image",
+            "id": "image"
+        },
+        {
+            "type": "image_picker",
+            "label": "Mobile Image",
+            "id": "mobile_image"
+        },
+        {
+            "type": "text",
+            "label": "Title",
+            "id": "title",
+            "default": "Diamond Selection"
+        },
+        {
+            "type": "text",
+            "label": "Description",
+            "id": "description",
+            "default": "Become a diamond expert in under 5 minutes"
+        },
+        {
+            "type": "text",
+            "label": "Button Text",
+            "id": "button_text",
+            "default": "DISCOVER MORE"
+        },
+        {
+            "type": "url",
+            "label": "Button Link",
+            "id": "button_link"
+        }
+    ]
+  }
+>>>>>>> dev-ayush
 {% endschema %}

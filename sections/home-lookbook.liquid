@@ -12,29 +12,33 @@
         {% if section.settings.scl-desc != blank %}<div class="scl-desc">{{ section.settings.scl-desc }}</div>{% endif %}
     </div>
     {% if section.blocks.size > 0%}
-    <div class="scl-collage">
-        {%- for block in section.blocks -%}    
-        {% capture blockIndex %}-{{ forloop.index }}{% endcapture %} 
-        <div class="block-{{ forloop.index }} {% if forloop.index == 2 %}big_block{% endif %} {% if block.settings.scl_image_1 == blank or block.settings.scl_image_2 == blank %} full-width {% endif %}">
-        {% for i in (1..2) %}
-        {% capture blockImg %}scl_image_{{ i }}{% endcapture %}
-        {% capture blockTitle %}scl_heading_{{ i }}{% endcapture %}
-        {% capture blockUrl %}scl_link_{{ i }}{% endcapture %}
-        {% if block.settings[blockImg] != blank %}
-        <div class="box-{{ blockIndex }}-{{ forloop.index }} {% if block.settings.scl_image_1 == blank or block.settings.scl_image_2 == blank %} full-width {% endif %}  {{ block.settings[blockTitle] | downcase | handleize }}">
-            {% if block.settings[blockUrl] != blank %}  <a href="{{ block.settings[blockUrl] }}" aria-label="" class="full_link"></a> {% endif %}
-            <div class="img-box"><img src="{{ block.settings[blockImg] | img_url: '480x'}}" class="lazyload" alt="" /></div>
-            <div class="content-box">
-                {% if block.settings[blockTitle] != blank %}  <h3> {{ block.settings[blockTitle] }}</h3> {% endif %}
-                {% if block.settings[blockUrl] != blank %}  <a href="{{ block.settings[blockUrl] }}" aria-label="" class="custom-link"> Discover more ></a> {% endif %}
-            </div>
+        <div class="scl-collage">
+            {%- for block in section.blocks -%}    
+                {% capture blockIndex %}-{{ forloop.index }}{% endcapture %} 
+                <div class="block-{{ forloop.index }} {% if forloop.index == 2 %}big_block{% endif %} {% if block.settings.scl_image_1 == blank or block.settings.scl_image_2 == blank %} full-width {% endif %}">
+                    {% for i in (1..2) %}
+                        {% capture blockImg %}scl_image_{{ i }}{% endcapture %}
+                        {% capture blockMobImg %}scl_mobile_image_{{ i }}{% endcapture %}
+                        {% capture blockTitle %}scl_heading_{{ i }}{% endcapture %}
+                        {% capture blockUrl %}scl_link_{{ i }}{% endcapture %}
+                        {% if block.settings[blockImg] != blank %}
+                        <div class="box-{{ blockIndex }}-{{ forloop.index }} {% if block.settings.scl_image_1 == blank or block.settings.scl_image_2 == blank %} full-width {% endif %}  {{ block.settings[blockTitle] | downcase | handleize }}">
+                            {% if block.settings[blockUrl] != blank %}
+                                <a href="{{ block.settings[blockUrl] }}" aria-label="" class="full_link"></a> {% endif %}
+                                <div class="img-box">
+                                    <img src="{{ block.settings[blockImg] | img_url: '480x'}}" class="mobile_hide lazyload" alt="" />
+                                    <img src="{{ block.settings[blockMobImg] | img_url: '480x'}}" class="desktop_hide lazyload" alt="" />
+                                </div>
+                            <div class="content-box">
+                                {% if block.settings[blockTitle] != blank %}  <h3> {{ block.settings[blockTitle] }}</h3> {% endif %}
+                                {% if block.settings[blockUrl] != blank %}  <a href="{{ block.settings[blockUrl] }}" aria-label="" class="custom-link"> Discover more ></a> {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %} 
+                </div>
+            {%- endfor -%}
         </div>
-        {% endif %}
-        {% endfor %} 
-    </div>
-
-        {%- endfor -%}
-    </div>
     {% endif %}
     {% if section.settings.scl_collection_link != blank and section.settings.scl_link_label != blank  %}
     <div class="scl-collection-link">
@@ -90,6 +94,11 @@
                     "label": "Collection Image"
                 },
                 {
+                    "type": "image_picker",
+                    "id": "scl_mobile_image_1",
+                    "label": "Collection Image (Mobile)"
+                },
+                {
                     "type": "text",
                     "id": "scl_heading_1",
                     "label": "Collection Caption"
@@ -103,6 +112,11 @@
                     "type": "image_picker",
                     "id": "scl_image_2",
                     "label": "Collection Image"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "scl_mobile_image_2",
+                    "label": "Collection Image (Mobile)"
                 },
                 {
                     "type": "text",

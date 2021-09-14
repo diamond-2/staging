@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="pick-metal-section-wrapper">
     <div class="dia-container">
         {% if section.settings.heading !=blank %}<div class="pick-metal-sec-header"><h2>{{ section.settings.heading }}</h2></div>{% endif %}
@@ -87,4 +88,95 @@
        }
     ]
   }
+=======
+<div class="pick-metal-section-wrapper">
+    <div class="dia-container">
+        {% if section.settings.heading !=blank %}<div class="pick-metal-sec-header"><h2>{{ section.settings.heading }}</h2></div>{% endif %}
+        <div class="pick-metal-item-container">
+            <div class="pick-metal-item-grid">
+                {% for item in section.blocks %}
+                <div class="pick-metal-item">
+                    <div class="pick-metal-card">
+                        {% if item.settings.image %}
+                        <div class="pick-metal-image-box">
+                            <a href="{{ item.settings.link }}">
+                                <img class="hide_mobile lazyload" data-src="{{ item.settings.image | img_url: 'master' }}" alt="{{ item.settings.title }}" >
+                                {% if item.settings.mobile_image %}
+                                <img class="show_mobile lazyload" data-src="{{ item.settings.mobile_image | img_url: 'master' }}" alt="{{ item.settings.title }}" >
+                                {% else %}
+                                <img class="show_mobile lazyload" data-src="{{ item.settings.image | img_url: 'master' }}" alt="{{ item.settings.title }}" >
+                                {% endif %}
+                            </a>
+                        </div>
+                        {% endif %}
+                        <div class="pick-metal-content-box">
+                            {% if item.settings.title !=blank %}<h4>{{ item.settings.title }}</h4>{% endif %}
+                            {% if item.settings.description !=blank %}<p>{{ item.settings.description }}</p>{% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Pick Metal",
+    "settings": [
+      {
+        "type": "text",
+        "label": "Heading",
+        "id": "heading",
+        "default": "1. Pick the Right Metal"
+      }
+    ],
+    "blocks": [
+       {
+          "type": "image",
+          "name": "Image",
+          "settings": [
+            {
+                "type": "header",
+                "content": "Image"
+            },
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            },
+            {
+                "type": "image_picker",
+                "id": "mobile_image",
+                "label": "Mobile Image"
+            },
+            {
+                "type": "url",
+                "label": "Link",
+                "id": "link"
+            },
+            {
+                "type": "header",
+                "content": "Content"
+            },
+            {
+                "type": "text",
+                "label": "Title",
+                "id": "title",
+                "default": "Rose Gold"
+            },
+            {
+                "type": "text",
+                "label": "Description",
+                "id": "description",
+                "default": "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it ."
+            }
+          ]
+       }
+    ]
+  }
+>>>>>>> dev-ayush
 {% endschema %}
