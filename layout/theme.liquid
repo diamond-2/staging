@@ -175,6 +175,8 @@
 <script src="{{ 'matchHeight.js' | asset_url }}"></script>
 
   {{ content_for_header }}
+
+	{{ shop.metafields.loox["global_html_head"] }}
 </head>
 
 <body class="layout_{% if template.suffix %}{{ template.suffix }}{% else %}{{ template }}{% endif %} template-{{ request.page_type | handle }} " data-template="{% if template.suffix %}{{ template.suffix }}{% else %}{{ template }}{% endif %}" {% if request.page_type == 'product' %}data-handle="{{ product.handle }}" {% endif %}>
@@ -206,7 +208,6 @@
   {% section 'header' %}
 
   <div class="page-container drawer-page-content" id="PageContainer">
-    
     <main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
@@ -267,5 +268,7 @@
   <!-- Login With Social App -->
   {% include 'social-login' %}
 
+
+	{{ shop.metafields.loox["global_html_body"] }}
 </body>
 </html>

@@ -13862,6 +13862,9 @@ body.template-product {
     }
   }
   .guide-jw-product-slider {
+    .slick-track {
+      margin: 0 auto;
+    }
     @media(max-width: $md) {
       padding: 0 10px;
     }
@@ -14073,3 +14076,353 @@ body.template-product {
   }
 }
 // Jewellery Guide End
+
+// Diamond Guide Start
+.diamond-tabber-wrapper {
+  .dia-container {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .diamond-tabber-sec-header {
+    max-width: 600px;
+    margin:0 auto;
+    text-align: center;
+    padding: 0 5px;
+    h2 {
+      &:last-child {
+        margin:0;
+      }
+    }
+  }
+  .diamond-tabber {
+    border-bottom: 1px solid #C4C4C4;
+    padding-top: 100px;
+    @media(max-width: $md) {
+      padding-top: 60px;
+    }
+    .diamond-tabber-nav {
+      border-bottom: 1px solid #C4C4C4;
+      ul {
+        margin:0;
+        padding:0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        li {
+          width: 12.75%;
+          a {
+            display: block;
+            padding: 0 25px 26px;
+            font-weight: 300;
+            font-size: 24px;
+            line-height: 25.92px;
+            color: #000000;
+            position: relative;
+            &:after {
+              content: "";
+              display: block;
+              position: absolute;
+              bottom: -1px;
+              height: 2px;
+              background: #6C1D45;
+              width: 100%;
+              left: 0;
+              transform: scale(0);
+              transform-origin: left center;
+              @include transition();
+            }
+          }
+          &.active {
+            a {
+              font-weight: 400;
+              &:after {
+                transform: scale(1);
+              }
+            }
+          }
+        }
+      }
+    }
+    .diamond-tabber-panal-wrapper {
+      padding: 49px 50px 0;
+      .diamond-tabber-panal {
+        display: none;
+        &.show_tab {
+          display: block;
+        }
+        .diamond-tabber-panal-inner {
+          .diamond-tabber-body-top {
+            h2 {
+              font-size: 38px;
+              line-height: 41px;
+              letter-spacing: normal;
+              margin:0 0 30px;
+            }
+          }
+          .diamond-tabber-body-bottom {
+            padding: 100px 0;
+            @media(max-width: $md) {
+              padding:60px 0;
+            }
+            .tooltip_with_img_contain {
+              max-width: 759px;
+              margin: 0 auto;
+            }
+            .two-col-tab-images {
+              display: flex;
+              gap: 20px;
+              justify-content: center;
+              margin-bottom: 37px;
+              img {
+                display: block;
+              }
+            }
+            .diamond-tabber-tooltips-sec {
+              ul {
+                display: flex;
+                flex-wrap: wrap;
+                margin: 0 -1.5px;
+                li {
+                  width: 20%;
+                  padding: 0 1.5px;
+                  a {
+                    display: block;
+                    .tooltip_title {
+                      display: block;
+                      text-align: center;
+                      font-size: 16px;
+                      line-height: 17.28px;
+                      font-weight: 400;
+                      color: rgba(0, 0, 0, 0.9);
+                    }
+                    .tol_line {
+                      display: block;
+                      height: 4px;
+                      background: #E0E0E0;
+                      border-radius: 5px;
+                      margin-bottom: 17px;
+                      position: relative;
+                      &:before {
+                        content: "";
+                        background: #6679CC;
+                        display: block;
+                        height: 18px;
+                        width: 18px;
+                        border-radius: 50%;
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%) translateX(-50%);
+                        left: 50%;
+                        opacity: 0;
+                        @include transition();
+                      }
+                    }
+                    &:hover, &.active {
+                      .tol_line {
+                        &:before {
+                          opacity: 1;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              .diamond-tabber-tooltips-box {
+                display: block;
+                padding: 12px 20px;
+                background: #FBF8E5;
+                border: 1px solid #CBC5A0;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 17.28px;
+                position: relative;
+                margin-top: 30px;
+                display: none;
+                &:before {
+                  content: "";
+                  border-right: 1px solid #CBC5A0;
+                  display: block;
+                  height: 15px;
+                  width: 15px;
+                  border-top: 1px solid #CBC5A0;
+                  position: absolute;
+                  top: -9px;
+                  transform: rotate(-45deg);
+                  background: #FBF8E5;
+                  left: 7.5%;
+                }
+              }
+            }
+            .more_column {
+              .diamond-tabber-tooltips-sec {
+                ul {
+                  li {
+                    width: 16.6666666667%;
+                    a {
+                      img {
+                        display: block;
+                        margin:0 auto;
+                        margin-bottom: 27px;
+                      }
+                    }
+                  }
+                }
+              }
+              &.seven_column_container {
+                max-width: 886px;
+                .diamond-tabber-tooltips-sec {
+                  ul {
+                    li {
+                      width: 14.2857142857%;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .diamond-tabber-five-col-sec {
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      li {
+        img {
+          display: block;
+          margin:0 auto;
+          margin-bottom: 20px;
+        }
+        .t_title {
+          display: block;
+          text-align: center;
+          font-size: 18px;
+          line-height: 19.44px;
+          font-weight: 300;
+          color: #6C1D45;
+        }
+      }
+    }
+  }
+}
+.diamond-shapes-section-wrapper {
+  .diamond-shape-sec-header {
+    text-align: center;
+    max-width: 1012px;
+    margin:0 auto;
+    h2 {
+      font-size: 36px;
+      margin:0 0 30px;
+      line-height: 1;
+    }
+  }
+  .diamond-shapes-slider {
+    padding: 0 45px;
+    .slick-list {
+      margin:0 -5px;
+    }
+    .diamond-shapes-card {
+      text-align: center;
+      padding: 50px 5px 0;
+      &:hover {
+        .image-holder {
+          img {
+            transform: scale(1.4);
+          }
+        }
+        .shape_title {
+          &:after {
+            transform: scale(1);
+          }
+        }
+      }
+      .image-holder {
+        img {
+          margin:0 auto;
+          margin-bottom: 10px;
+          @include transition();
+          transform: scale(1);
+        }
+      }
+      .shape_title {
+        color: #6C1D45;
+        font-size: 14px;
+        line-height: 15.12px;
+        font-weight: 400;
+        letter-spacing: 0.05em;
+        position: relative;
+        display: inline-block;
+        &:after {
+          content: "";
+          display: block;
+          height: 1px;
+          background-color: $textcolor-phanton;
+          transform: scale(0);
+          position: absolute;
+          bottom: -1px;
+          left:0;
+          right: 0;
+          @include transition();
+          transform-origin: center;
+        }
+      }
+    }
+  }
+}
+.diamond-guide-two-col-content-wrapper {
+  .custom-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin:0 -15px;
+    .custom-col-6 {
+      width: 50%;
+      padding: 0 15px;
+      &.column_1 {
+        .content-box {
+          padding-right: 70px;
+        }
+      }
+      &.column_2 {
+        .content-box {
+          padding-left: 70px;
+        }
+      }
+      h2 {
+        font-size: 36px;
+        line-height: 24px;
+        margin:0 0 30px;
+      }
+      p:not(:last-child) {
+        margin-bottom: 30px;
+      }
+      ul {
+        margin: 0;
+        list-style: none;
+        padding: 0;
+        li {
+          padding-left: 50px;
+          position: relative;
+          &:not(:last-child) {
+            margin-bottom: 30px;
+          }
+          &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 5px;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            background-color: #6c1d45;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Diamond Guide End
