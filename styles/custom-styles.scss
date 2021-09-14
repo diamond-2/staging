@@ -14358,6 +14358,10 @@ body.template-product {
                         display: block;
                         margin:0 auto;
                         margin-bottom: 27px;
+                        @media(max-width: $md) {
+                          width: 40px;
+                          margin-bottom: 10px;
+                        }
                       }
                     }
                   }
@@ -14369,6 +14373,13 @@ body.template-product {
                   ul {
                     li {
                       width: 14.2857142857%;
+                      a {
+                        img {
+                          @media(max-width: $md) {
+                            width: 30px;
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -14389,6 +14400,9 @@ body.template-product {
           display: block;
           margin:0 auto;
           margin-bottom: 20px;
+          @media(max-width: $md) {
+            margin-bottom: 10px;
+          }
         }
         .t_title {
           display: block;
@@ -14400,6 +14414,45 @@ body.template-product {
           @media(max-width: $xxl) {
             font-size: 14px;
             line-height: 1;
+          }
+          @media(max-width: $md) {
+            font-size: 13px;
+            line-height: 14.04px;
+          }
+        }
+        &:first-child {
+          img {
+            @media(max-width: $md) {
+              width: 30px;
+            }
+          }
+        }
+        &:nth-child(2) {
+          img {
+            @media(max-width: $md) {
+              width: 40px;
+            }
+          }
+        }
+        &:nth-child(3) {
+          img {
+            @media(max-width: $md) {
+              width: 50px;
+            }
+          }
+        }
+        &:nth-child(4) {
+          img {
+            @media(max-width: $md) {
+              width: 60px;
+            }
+          }
+        }
+        &:nth-child(5) {
+          img {
+            @media(max-width: $md) {
+              width: 70px;
+            }
           }
         }
       }

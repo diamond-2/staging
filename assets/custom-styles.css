@@ -11895,10 +11895,17 @@ body.template-product .pdp-zoom-gallery {
             display: block;
             margin: 0 auto;
             margin-bottom: 27px; }
+            @media (max-width: 749px) {
+              .diamond-tabber-wrapper .diamond-tabber .diamond-tabber-panal-wrapper .diamond-tabber-panal .diamond-tabber-panal-inner .diamond-tabber-body-bottom .more_column .diamond-tabber-tooltips-sec ul li a img {
+                width: 40px;
+                margin-bottom: 10px; } }
         .diamond-tabber-wrapper .diamond-tabber .diamond-tabber-panal-wrapper .diamond-tabber-panal .diamond-tabber-panal-inner .diamond-tabber-body-bottom .more_column.seven_column_container {
           max-width: 886px; }
           .diamond-tabber-wrapper .diamond-tabber .diamond-tabber-panal-wrapper .diamond-tabber-panal .diamond-tabber-panal-inner .diamond-tabber-body-bottom .more_column.seven_column_container .diamond-tabber-tooltips-sec ul li {
             width: 14.2857142857%; }
+            @media (max-width: 749px) {
+              .diamond-tabber-wrapper .diamond-tabber .diamond-tabber-panal-wrapper .diamond-tabber-panal .diamond-tabber-panal-inner .diamond-tabber-body-bottom .more_column.seven_column_container .diamond-tabber-tooltips-sec ul li a img {
+                width: 30px; } }
 
 .diamond-tabber-wrapper .diamond-tabber-five-col-sec ul {
   display: flex;
@@ -11908,6 +11915,9 @@ body.template-product .pdp-zoom-gallery {
     display: block;
     margin: 0 auto;
     margin-bottom: 20px; }
+    @media (max-width: 749px) {
+      .diamond-tabber-wrapper .diamond-tabber-five-col-sec ul li img {
+        margin-bottom: 10px; } }
   .diamond-tabber-wrapper .diamond-tabber-five-col-sec ul li .t_title {
     display: block;
     text-align: center;
@@ -11919,6 +11929,25 @@ body.template-product .pdp-zoom-gallery {
       .diamond-tabber-wrapper .diamond-tabber-five-col-sec ul li .t_title {
         font-size: 14px;
         line-height: 1; } }
+    @media (max-width: 749px) {
+      .diamond-tabber-wrapper .diamond-tabber-five-col-sec ul li .t_title {
+        font-size: 13px;
+        line-height: 14.04px; } }
+  @media (max-width: 749px) {
+    .diamond-tabber-wrapper .diamond-tabber-five-col-sec ul li:first-child img {
+      width: 30px; } }
+  @media (max-width: 749px) {
+    .diamond-tabber-wrapper .diamond-tabber-five-col-sec ul li:nth-child(2) img {
+      width: 40px; } }
+  @media (max-width: 749px) {
+    .diamond-tabber-wrapper .diamond-tabber-five-col-sec ul li:nth-child(3) img {
+      width: 50px; } }
+  @media (max-width: 749px) {
+    .diamond-tabber-wrapper .diamond-tabber-five-col-sec ul li:nth-child(4) img {
+      width: 60px; } }
+  @media (max-width: 749px) {
+    .diamond-tabber-wrapper .diamond-tabber-five-col-sec ul li:nth-child(5) img {
+      width: 70px; } }
 
 .diamond-shapes-section-wrapper .diamond-shape-sec-header {
   text-align: center;
