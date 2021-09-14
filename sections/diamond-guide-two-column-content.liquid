@@ -1,0 +1,58 @@
+<div class="diamond-guide-two-col-content-wrapper padding_tb">
+    <div class="dia-container">
+        <div class="custom-row">
+            <div class="custom-col-6 column_1">
+                <div class="content-box">
+                    {% if section.settings.column1_heading !=blank %}<h2>{{ section.settings.column1_heading }}</h2>{% endif %}
+                    {% if section.settings.column1_content !=blank %}<div class="content_des rte">{{ section.settings.column1_content }}</div>{% endif %}
+                </div>
+            </div>
+            <div class="custom-col-6 column_2">
+                <div class="content-box">
+                    {% if section.settings.column2_heading !=blank %}<h2>{{ section.settings.column2_heading }}</h2>{% endif %}
+                    {% if section.settings.column2_content !=blank %}<div class="content_des rte">{{ section.settings.column2_content }}</div>{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Two Column Content",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Column 1"
+        },
+    	{
+    		"type": "text",
+    		"label": "Heading",
+    		"id": "column1_heading",
+    		"default": "SHAPE"
+    	},
+    	{
+    		"type": "html",
+    		"label": "Content",
+    		"id": "column1_content",
+    		"default": "<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it .</p>"
+    	},
+        {
+            "type": "header",
+            "content": "Column 2"
+        },
+    	{
+    		"type": "text",
+    		"label": "Heading",
+    		"id": "column2_heading",
+    		"default": "Diamond Grading"
+    	},
+    	{
+    		"type": "html",
+    		"label": "Content",
+    		"id": "column2_content",
+    		"default": "<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it .</p> <ul><li>It has roots in a piece of classical Latin literature making it .</li><li>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical.</li><li>Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature.</li><li>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical.</li></ul>"
+    	}
+    ]
+  }
+{% endschema %}

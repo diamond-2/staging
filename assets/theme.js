@@ -10167,7 +10167,6 @@ window.addEventListener("resize", function() {
   }
   headerHeight();
   window.addEventListener("resize", headerHeight);
-  window.addEventListener("scroll", headerHeight);
 
   // matchHeight Global Call
   $('.matchHeight ').matchHeight();
@@ -10302,6 +10301,24 @@ window.addEventListener("resize", function() {
     $(this).closest('.pdp-tabber').siblings().removeClass('active_accordion');
     $(this).closest('.pdp-tabber').siblings().find('.pdp-acc-body').slideUp();
   });
+
+  // Diamond Guide Tooltip And Tabber Start
+  $('.diamond-tabber-nav ul li a').click(function(e){
+    $(this).parent().addClass('active');
+    $(this).parent().siblings().removeClass('active');
+    e.preventDefault();
+    let tabberId = $(this).attr('href');
+    $('.diamond-tabber-panal-wrapper').find(tabberId).addClass('show_tab');
+    $('.diamond-tabber-panal-wrapper').find(tabberId).siblings().removeClass('show_tab')
+  });
+  $('.diamond-tabber-tooltips-sec ul li a').click(function(e){
+    $(this).addClass('active');
+    $(this).parent().siblings('li').find('a').removeClass('active');
+    e.preventDefault();
+    let dataToopTip = $(this).attr('data-tooltip-content');
+    $(this).closest('.diamond-tabber-tooltips-sec').find('.diamond-tabber-tooltips-box').html(dataToopTip).show();
+  });
+  // Diamond Guide Tooltip And Tabber End
 
 
 

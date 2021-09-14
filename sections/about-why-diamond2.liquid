@@ -1,0 +1,32 @@
+{%- if section.settings.heading != blank or section.settings.content != blank -%}
+<div class="why-diamond2-section global_section_bg">
+	<div class="dia-container">
+		<div class="dia-small-container">
+			<div class="why-diamond2-content-holder text-center">
+				{%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
+				{%- if section.settings.content != blank -%}<div class="why-diamond2-des">{{ section.settings.content }}</div>{%- endif -%}
+			</div>
+		</div>
+	</div>
+</div> 
+{%- endif -%} 
+
+{% schema %}
+  {
+    "name": "About Why Diamond2",
+    "settings": [
+    	{
+    		"type": "text",
+    		"label": "Heading",
+    		"id": "heading",
+    		"default": "wHY diamond2<sup>®</sup> ?"
+    	},
+    	{
+    		"type": "html",
+    		"label": "Content",
+    		"id": "content",
+    		"default": "<p>For decades, the quest for precious gemstones has caused irreparable damage to our environment. Mining below ground for diamonds and other sought-after stones relies on invasive procedures that have negatively impacted pristine landscapes across our planet. Today, however,there is an ethical alternative thanks to the commitment of those at Diamond2  . <br>Using our advanced, patented technologies, Diamond2   is able to create a one-of-a-kind gem above ground in a controlled laboratory setting that has no harmful effects on nature. The result is an exceptionally sparkling gemstone upon which we can build a brighter, greener future.</p>"
+    	}
+    ]
+  }
+{% endschema %}

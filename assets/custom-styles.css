@@ -11283,3 +11283,16 @@ body.template-product .pdp-zoom-gallery {
 @media (max-width: 749px) {
   .active_accordion .pdp-acc-body {
     display: block; } }
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 749px) {
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: block;
+  }
+}

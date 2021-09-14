@@ -18,13 +18,17 @@
             <div class="block-{{ forloop.index }} {% if block.settings.scl_image_1 == blank or block.settings.scl_image_2 == blank %} big_block {% endif %}">
             {% for i in (1..2) %}
             {% capture blockImg %}scl_image_{{ i }}{% endcapture %}
+            {% capture blockMobImg %}scl_mobile_image_{{ i }}{% endcapture %}
             {% capture blockTitle %}scl_heading_{{ i }}{% endcapture %}
             {% capture blockUrl %}scl_link_{{ i }}{% endcapture %}
             {% if block.settings[blockImg] != blank %}
             
             <div class="box-{{ blockIndex }}-{{ forloop.index }} {% if block.settings.scl_image_1 == blank or block.settings.scl_image_2 == blank %} full-width {% endif %}  {{ block.settings[blockTitle] | downcase | handleize }} {% if block.settings[blockTitle] == blank or block.settings[blockUrl] == blank %}no_content_in_box{% endif %}">
                 {% if block.settings[blockUrl] != blank %}  <a href="{{ block.settings[blockUrl] }}" aria-label="" class="full_link"></a> {% endif %}
-                <div class="img-box"><img src="{{ block.settings[blockImg] | img_url: '480x'}}" class="lazyload" alt="" /></div>
+                <div class="img-box">
+                  <img src="{{ block.settings[blockImg] | img_url: '480x'}}" class="lazyload desktop-only" alt="" />
+                  <img src="{{ block.settings[blockMobImg] | img_url: '480x'}}" class="lazyload mobile-only" alt="" />
+                </div>
                 {% if block.settings[blockTitle] != blank or block.settings[blockUrl] != blank %}
                 <div class="content-box">
                     {% if block.settings[blockTitle] != blank %}  <h3> {{ block.settings[blockTitle] }}</h3> {% endif %}
@@ -94,6 +98,11 @@
                         "label": "Collection Image"
                     },
                     {
+                        "type": "image_picker",
+                        "id": "scl_mobile_image_1",
+                        "label": "Collection Image (Mobile)"
+                    },
+                    {
                         "type": "text",
                         "id": "scl_heading_1",
                         "label": "Collection Caption"
@@ -107,6 +116,11 @@
                         "type": "image_picker",
                         "id": "scl_image_2",
                         "label": "Collection Image"
+                    },
+                    {
+                        "type": "image_picker",
+                        "id": "scl_mobile_image_2",
+                        "label": "Collection Image (Mobile)"
                     },
                     {
                         "type": "text",

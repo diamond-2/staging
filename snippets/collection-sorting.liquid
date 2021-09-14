@@ -29,6 +29,7 @@
             </div>
           </div>
           <div class="filters-toolbar__item-wrapper">
+            <div class="selected-filer-options" data-active-filters></div>
 
             <div class="filters-toolbar__item filters-toolbar__item--count">
               <span class="filters-toolbar__product-count">Showing {% if collection.products_count > 0 %}1{% else %}0{% endif %} - {{ limit }} of {{ collection.products_count }}</span>
