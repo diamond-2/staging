@@ -13862,6 +13862,9 @@ body.template-product {
     }
   }
   .guide-jw-product-slider {
+    .slick-track {
+      margin: 0 auto;
+    }
     @media(max-width: $md) {
       padding: 0 10px;
     }
