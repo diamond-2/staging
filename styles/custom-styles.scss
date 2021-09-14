@@ -3864,13 +3864,18 @@ body[data-template="know-your-diamond"], body[data-template="about-us"] {
       }
     }
   }
-  &.jewellery_guide_banner, .diamond_guide_banner {
+  &.jewellery_guide_banner, &.diamond_guide_banner {
     .full_width_slide_item {
       .slider-caption-wrapper {
         .slider-caption-holder {
           .cap_content {
             margin-bottom: 0;
           }
+        }
+      }
+      .full_width_slider_image_holder  {
+        @media(max-width: $md) {
+          padding-bottom: 406px;
         }
       }
     }
@@ -14082,12 +14087,19 @@ body.template-product {
   .dia-container {
     padding-left: 50px;
     padding-right: 50px;
+    @media(max-width: $md) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
   }
   .diamond-tabber-sec-header {
     max-width: 600px;
     margin:0 auto;
     text-align: center;
     padding: 0 5px;
+    @media(max-width: $md) {
+      padding: 0 25px;
+    }
     h2 {
       &:last-child {
         margin:0;
@@ -14118,6 +14130,10 @@ body.template-product {
             line-height: 25.92px;
             color: #000000;
             position: relative;
+            @media(max-width: $xxl) {
+              font-size: 16px;
+              line-height: 1;
+            }
             &:after {
               content: "";
               display: block;
@@ -14145,6 +14161,9 @@ body.template-product {
     }
     .diamond-tabber-panal-wrapper {
       padding: 49px 50px 0;
+      @media(max-width: $md) {
+        padding:0;
+      }
       .diamond-tabber-panal {
         display: none;
         &.show_tab {
@@ -14157,6 +14176,10 @@ body.template-product {
               line-height: 41px;
               letter-spacing: normal;
               margin:0 0 30px;
+              @media(max-width: $xxl) {
+                font-size: 30px;
+                line-height: 1;
+              }
             }
           }
           .diamond-tabber-body-bottom {
@@ -14194,6 +14217,10 @@ body.template-product {
                       line-height: 17.28px;
                       font-weight: 400;
                       color: rgba(0, 0, 0, 0.9);
+                      @media(max-width: $xxl) {
+                        font-size: 14px;
+                        line-height: 1;
+                      }
                     }
                     .tol_line {
                       display: block;
@@ -14238,6 +14265,10 @@ body.template-product {
                 position: relative;
                 margin-top: 30px;
                 display: none;
+                @media(max-width: $xxl) {
+                  font-size: 14px;
+                  line-height: 1;
+                }
                 &:before {
                   content: "";
                   border-right: 1px solid #CBC5A0;
@@ -14287,7 +14318,6 @@ body.template-product {
   .diamond-tabber-five-col-sec {
     ul {
       display: flex;
-      flex-wrap: wrap;
       align-items: flex-end;
       justify-content: space-between;
       li {
@@ -14303,6 +14333,10 @@ body.template-product {
           line-height: 19.44px;
           font-weight: 300;
           color: #6C1D45;
+          @media(max-width: $xxl) {
+            font-size: 14px;
+            line-height: 1;
+          }
         }
       }
     }
@@ -14317,16 +14351,68 @@ body.template-product {
       font-size: 36px;
       margin:0 0 30px;
       line-height: 1;
+      @media(max-width: $xxl) {
+        font-size: 30px;
+      }
+      @media(max-width: $md) {
+        font-size: 28px;
+        line-height: 30.24px;
+        margin-bottom: 20px;
+      }
     }
   }
   .diamond-shapes-slider {
     padding: 0 45px;
+    @media(max-width: $xxl) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    @media(max-width: $md) {
+      padding-left: 10px;
+      padding-right: 10px;
+      margin: 0 -15px;
+    }
+    .slick-arrow {
+      z-index: 2;
+      margin-top: 20px;
+      @media(max-width: $md) {
+        margin-top: -17px;
+      }
+      &:before {
+        content: none;
+      }
+      &:after {
+        content: "";
+        display: block;
+        height: 100%;
+        width: 100%;
+        background-image: url(https://cdn.shopify.com/s/files/1/0575/2681/2840/files/slide_mb_arrow.png?v=1631615044);
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      &.slick-next {
+        @media(max-width: $md) {
+          right: 10px;
+        }
+        &:after {
+          transform: rotate(180deg);
+        }
+      }
+      &.slick-prev {
+        @media(max-width: $md) {
+          left: 10px;
+        }
+      }
+    }
     .slick-list {
       margin:0 -5px;
     }
     .diamond-shapes-card {
       text-align: center;
       padding: 50px 5px 0;
+      @media(max-width: $md) {
+        padding-top: 30px;
+      }
       &:hover {
         .image-holder {
           img {
@@ -14345,6 +14431,10 @@ body.template-product {
           margin-bottom: 10px;
           @include transition();
           transform: scale(1);
+          width: 55px;
+          @media(max-width: $md) {
+            width: 36px;
+          }
         }
       }
       .shape_title {
@@ -14355,6 +14445,11 @@ body.template-product {
         letter-spacing: 0.05em;
         position: relative;
         display: inline-block;
+        @media(max-width: $md) {
+          font-size: 12px;
+          line-height: 12.96px;
+          letter-spacing: normal;
+        }
         &:after {
           content: "";
           display: block;
@@ -14380,23 +14475,46 @@ body.template-product {
     .custom-col-6 {
       width: 50%;
       padding: 0 15px;
+      @media(max-width: $md) {
+        width: 100%;
+      }
       &.column_1 {
+        @media(max-width: $md) {
+          margin-bottom: 30px;
+        }
         .content-box {
           padding-right: 70px;
+          @media(max-width: $md) {
+            padding:0;
+          }
         }
       }
       &.column_2 {
         .content-box {
           padding-left: 70px;
+          @media(max-width: $md) {
+            padding:0;
+          }
         }
       }
       h2 {
         font-size: 36px;
         line-height: 24px;
         margin:0 0 30px;
+        @media(max-width: $xxl) {
+          font-size: 30px;
+        }
+        @media(max-width: $md) {
+          font-size: 28px;
+          line-height: 30.24px;
+          margin-bottom: 20px;
+        }
       }
       p:not(:last-child) {
         margin-bottom: 30px;
+        @media(max-width: $md) {
+          margin-bottom: 20px;
+        }
       }
       ul {
         margin: 0;
@@ -14405,8 +14523,14 @@ body.template-product {
         li {
           padding-left: 50px;
           position: relative;
+          @media(max-width: $md) {
+            padding-left: 22px;
+          }
           &:not(:last-child) {
             margin-bottom: 30px;
+            @media(max-width: $md) {
+              margin-bottom: 20px;
+            }
           }
           &::before {
             content: "";
@@ -14418,10 +14542,23 @@ body.template-product {
             height: 20px;
             background-color: #6c1d45;
             border-radius: 50%;
+            @media(max-width: $xxl) {
+              width: 15px;
+              height: 15px
+            }
+            @media(max-width: $md) {
+              width: 12px;
+              height: 12px;
+            }
           }
         }
       }
     }
+  }
+}
+.diamond_gude_top_section {
+  @media(max-width: $md) {
+    padding-top: 20px !important;
   }
 }
 
