@@ -11271,7 +11271,6 @@ body.template-product .pdp-zoom-gallery {
 
 @media (max-width: 749px) {
   .active_accordion .pdp-acc-body {
-<<<<<<< HEAD
     display: block; } }
 
 .loox-reviews-default {
@@ -12047,6 +12046,3 @@ body.template-product .pdp-zoom-gallery {
 @media (max-width: 749px) {
   .diamond_gude_top_section {
     padding-top: 20px !important; } }
-=======
-    display: block; } }
->>>>>>> dev-ayush
