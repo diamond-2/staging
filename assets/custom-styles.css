@@ -11267,7 +11267,6 @@ body.template-product .pdp-zoom-gallery {
 
 @media (max-width: 749px) {
   .active_accordion .pdp-acc-body {
-<<<<<<< HEAD
     display: block; } }
 
 .loox-reviews-default {
@@ -11920,21 +11919,3 @@ body.template-product .pdp-zoom-gallery {
           height: 20px;
           background-color: #6c1d45;
           border-radius: 50%; }
-<<<<<<< HEAD
-          @media (max-width: 1600px) {
-            .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6 ul li::before {
-              width: 15px;
-              height: 15px; } }
-          @media (max-width: 749px) {
-            .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6 ul li::before {
-              width: 12px;
-              height: 12px; } }
-
-@media (max-width: 749px) {
-  .diamond_gude_top_section {
-    padding-top: 20px !important; } }
-=======
-    display: block; } }
->>>>>>> dev-ayush
-=======
->>>>>>> parent of 50a6048... diamond guide chnages
