@@ -26,8 +26,8 @@
                             {% if block.settings[blockUrl] != blank %}
                                 <a href="{{ block.settings[blockUrl] }}" aria-label="" class="full_link"></a> {% endif %}
                                 <div class="img-box">
-                                    <img src="{{ block.settings[blockImg] | img_url: '480x'}}" class="desktop-only lazyload" alt="" />
-                                    <img src="{{ block.settings[blockMobImg] | img_url: '480x'}}" class="mobile-only lazyload" alt="" />
+                                    <img src="{{ block.settings[blockImg] | img_url: '480x'}}" class="mobile_hide lazyload" alt="" />
+                                    <img src="{{ block.settings[blockMobImg] | img_url: '480x'}}" class="desktop_hide lazyload" alt="" />
                                 </div>
                             <div class="content-box">
                                 {% if block.settings[blockTitle] != blank %}  <h3> {{ block.settings[blockTitle] }}</h3> {% endif %}
