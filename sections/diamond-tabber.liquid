@@ -8,7 +8,7 @@
 
         <div class="diamond-tabber">
             
-            <div class="diamond-tabber-nav">
+            <div class="diamond-tabber-nav hide_mobile">
                 <ul>
                     {% for item in section.blocks %}
                     {% if item.settings.title !=blank %}<li {% if forloop.first %}class="active"{% endif %}><a href="#diamond-tab{{ forloop.index }}">{{ item.settings.title }}</a></li>{% endif %}
@@ -18,7 +18,8 @@
             <div class="diamond-tabber-panal-wrapper">
                 {% for item in section.blocks %}
                 <div class="diamond-tabber-panal {% if forloop.first %}show_tab{% endif %}" id="diamond-tab{{ forloop.index }}">
-                    <div class="diamond-tabber-panal-inner">
+                    {% if item.settings.title !=blank %}<div class="diamond-ac-mobile show_mobile {% if forloop.first %}active{% endif %}">{{ item.settings.title }}<span class="ac_arrow">{% include 'icon-down' %}</span></div>{% endif %}
+                    <div class="diamond-tabber-panal-inner" {% if forloop.first %}style="display:block;"{% endif %}>
                         {% if item.settings.title !=blank or item.settings.content !=blank %}
                         <div class="diamond-tabber-body-top">
                             {% if item.settings.title !=blank %}<h2>{{ item.settings.title }}</h2>{% endif %}
