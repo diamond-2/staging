@@ -9,7 +9,7 @@
 
         <div class="diamond-tabber">
             
-            <div class="diamond-tabber-nav hide_mobile">
+            <div class="diamond-tabber-nav">
                 <ul>
                     {% for item in section.blocks %}
                     {% if item.settings.title !=blank %}<li {% if forloop.first %}class="active"{% endif %}><a href="#diamond-tab{{ forloop.index }}">{{ item.settings.title }}</a></li>{% endif %}

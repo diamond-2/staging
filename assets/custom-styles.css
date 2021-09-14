@@ -2966,12 +2966,8 @@ body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3,
   .full_width_slider_wrapper.diamond-ambasaador-slider ul.slick-dots {
     top: 379px; } }
 
-.full_width_slider_wrapper.jewellery_guide_banner .full_width_slide_item .slider-caption-wrapper .slider-caption-holder .cap_content, .full_width_slider_wrapper.diamond_guide_banner .full_width_slide_item .slider-caption-wrapper .slider-caption-holder .cap_content {
+.full_width_slider_wrapper.jewellery_guide_banner .full_width_slide_item .slider-caption-wrapper .slider-caption-holder .cap_content, .full_width_slider_wrapper .diamond_guide_banner .full_width_slide_item .slider-caption-wrapper .slider-caption-holder .cap_content {
   margin-bottom: 0; }
-
-@media (max-width: 749px) {
-  .full_width_slider_wrapper.jewellery_guide_banner .full_width_slide_item .full_width_slider_image_holder, .full_width_slider_wrapper.diamond_guide_banner .full_width_slide_item .full_width_slider_image_holder {
-    padding-bottom: 406px; } }
 
 .full_width_slider_wrapper .full_width_slider_image_holder {
   background-repeat: no-repeat;
@@ -11662,19 +11658,12 @@ body.template-product .pdp-zoom-gallery {
 .diamond-tabber-wrapper .dia-container {
   padding-left: 50px;
   padding-right: 50px; }
-  @media (max-width: 749px) {
-    .diamond-tabber-wrapper .dia-container {
-      padding-left: 20px;
-      padding-right: 20px; } }
 
 .diamond-tabber-wrapper .diamond-tabber-sec-header {
   max-width: 600px;
   margin: 0 auto;
   text-align: center;
   padding: 0 5px; }
-  @media (max-width: 749px) {
-    .diamond-tabber-wrapper .diamond-tabber-sec-header {
-      padding: 0 25px; } }
   .diamond-tabber-wrapper .diamond-tabber-sec-header h2:last-child {
     margin: 0; }
 
@@ -11702,10 +11691,6 @@ body.template-product .pdp-zoom-gallery {
           line-height: 25.92px;
           color: #000000;
           position: relative; }
-          @media (max-width: 1600px) {
-            .diamond-tabber-wrapper .diamond-tabber .diamond-tabber-nav ul li a {
-              font-size: 16px;
-              line-height: 1; } }
           .diamond-tabber-wrapper .diamond-tabber .diamond-tabber-nav ul li a:after {
             content: "";
             display: block;
@@ -11728,9 +11713,6 @@ body.template-product .pdp-zoom-gallery {
             transform: scale(1); }
   .diamond-tabber-wrapper .diamond-tabber .diamond-tabber-panal-wrapper {
     padding: 49px 50px 0; }
-    @media (max-width: 749px) {
-      .diamond-tabber-wrapper .diamond-tabber .diamond-tabber-panal-wrapper {
-        padding: 0; } }
     .diamond-tabber-wrapper .diamond-tabber .diamond-tabber-panal-wrapper .diamond-tabber-panal {
       display: none; }
       .diamond-tabber-wrapper .diamond-tabber .diamond-tabber-panal-wrapper .diamond-tabber-panal.show_tab {
@@ -11740,10 +11722,6 @@ body.template-product .pdp-zoom-gallery {
         line-height: 41px;
         letter-spacing: normal;
         margin: 0 0 30px; }
-        @media (max-width: 1600px) {
-          .diamond-tabber-wrapper .diamond-tabber .diamond-tabber-panal-wrapper .diamond-tabber-panal .diamond-tabber-panal-inner .diamond-tabber-body-top h2 {
-            font-size: 30px;
-            line-height: 1; } }
       .diamond-tabber-wrapper .diamond-tabber .diamond-tabber-panal-wrapper .diamond-tabber-panal .diamond-tabber-panal-inner .diamond-tabber-body-bottom {
         padding: 100px 0; }
         @media (max-width: 749px) {
@@ -11775,10 +11753,6 @@ body.template-product .pdp-zoom-gallery {
                 line-height: 17.28px;
                 font-weight: 400;
                 color: rgba(0, 0, 0, 0.9); }
-                @media (max-width: 1600px) {
-                  .diamond-tabber-wrapper .diamond-tabber .diamond-tabber-panal-wrapper .diamond-tabber-panal .diamond-tabber-panal-inner .diamond-tabber-body-bottom .diamond-tabber-tooltips-sec ul li a .tooltip_title {
-                    font-size: 14px;
-                    line-height: 1; } }
               .diamond-tabber-wrapper .diamond-tabber .diamond-tabber-panal-wrapper .diamond-tabber-panal .diamond-tabber-panal-inner .diamond-tabber-body-bottom .diamond-tabber-tooltips-sec ul li a .tol_line {
                 display: block;
                 height: 4px;
@@ -11816,10 +11790,6 @@ body.template-product .pdp-zoom-gallery {
           position: relative;
           margin-top: 30px;
           display: none; }
-          @media (max-width: 1600px) {
-            .diamond-tabber-wrapper .diamond-tabber .diamond-tabber-panal-wrapper .diamond-tabber-panal .diamond-tabber-panal-inner .diamond-tabber-body-bottom .diamond-tabber-tooltips-sec .diamond-tabber-tooltips-box {
-              font-size: 14px;
-              line-height: 1; } }
           .diamond-tabber-wrapper .diamond-tabber .diamond-tabber-panal-wrapper .diamond-tabber-panal .diamond-tabber-panal-inner .diamond-tabber-body-bottom .diamond-tabber-tooltips-sec .diamond-tabber-tooltips-box:before {
             content: "";
             border-right: 1px solid #CBC5A0;
@@ -11845,6 +11815,7 @@ body.template-product .pdp-zoom-gallery {
 
 .diamond-tabber-wrapper .diamond-tabber-five-col-sec ul {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between; }
   .diamond-tabber-wrapper .diamond-tabber-five-col-sec ul li img {
@@ -11858,10 +11829,6 @@ body.template-product .pdp-zoom-gallery {
     line-height: 19.44px;
     font-weight: 300;
     color: #6C1D45; }
-    @media (max-width: 1600px) {
-      .diamond-tabber-wrapper .diamond-tabber-five-col-sec ul li .t_title {
-        font-size: 14px;
-        line-height: 1; } }
 
 .diamond-shapes-section-wrapper .diamond-shape-sec-header {
   text-align: center;
@@ -11871,58 +11838,14 @@ body.template-product .pdp-zoom-gallery {
     font-size: 36px;
     margin: 0 0 30px;
     line-height: 1; }
-    @media (max-width: 1600px) {
-      .diamond-shapes-section-wrapper .diamond-shape-sec-header h2 {
-        font-size: 30px; } }
-    @media (max-width: 749px) {
-      .diamond-shapes-section-wrapper .diamond-shape-sec-header h2 {
-        font-size: 28px;
-        line-height: 30.24px;
-        margin-bottom: 20px; } }
 
 .diamond-shapes-section-wrapper .diamond-shapes-slider {
   padding: 0 45px; }
-  @media (max-width: 1600px) {
-    .diamond-shapes-section-wrapper .diamond-shapes-slider {
-      padding-left: 0;
-      padding-right: 0; } }
-  @media (max-width: 749px) {
-    .diamond-shapes-section-wrapper .diamond-shapes-slider {
-      padding-left: 10px;
-      padding-right: 10px;
-      margin: 0 -15px; } }
-  .diamond-shapes-section-wrapper .diamond-shapes-slider .slick-arrow {
-    z-index: 2;
-    margin-top: 20px; }
-    @media (max-width: 749px) {
-      .diamond-shapes-section-wrapper .diamond-shapes-slider .slick-arrow {
-        margin-top: -17px; } }
-    .diamond-shapes-section-wrapper .diamond-shapes-slider .slick-arrow:before {
-      content: none; }
-    .diamond-shapes-section-wrapper .diamond-shapes-slider .slick-arrow:after {
-      content: "";
-      display: block;
-      height: 100%;
-      width: 100%;
-      background-image: url(https://cdn.shopify.com/s/files/1/0575/2681/2840/files/slide_mb_arrow.png?v=1631615044);
-      background-repeat: no-repeat;
-      background-position: center; }
-    @media (max-width: 749px) {
-      .diamond-shapes-section-wrapper .diamond-shapes-slider .slick-arrow.slick-next {
-        right: 10px; } }
-    .diamond-shapes-section-wrapper .diamond-shapes-slider .slick-arrow.slick-next:after {
-      transform: rotate(180deg); }
-    @media (max-width: 749px) {
-      .diamond-shapes-section-wrapper .diamond-shapes-slider .slick-arrow.slick-prev {
-        left: 10px; } }
   .diamond-shapes-section-wrapper .diamond-shapes-slider .slick-list {
     margin: 0 -5px; }
   .diamond-shapes-section-wrapper .diamond-shapes-slider .diamond-shapes-card {
     text-align: center;
     padding: 50px 5px 0; }
-    @media (max-width: 749px) {
-      .diamond-shapes-section-wrapper .diamond-shapes-slider .diamond-shapes-card {
-        padding-top: 30px; } }
     .diamond-shapes-section-wrapper .diamond-shapes-slider .diamond-shapes-card:hover .image-holder img {
       transform: scale(1.4); }
     .diamond-shapes-section-wrapper .diamond-shapes-slider .diamond-shapes-card:hover .shape_title:after {
@@ -11935,11 +11858,7 @@ body.template-product .pdp-zoom-gallery {
       -ms-transition: all 0.4s;
       -moz-transition: all 0.4s;
       -webkit-transition: all 0.4s;
-      transform: scale(1);
-      width: 55px; }
-      @media (max-width: 749px) {
-        .diamond-shapes-section-wrapper .diamond-shapes-slider .diamond-shapes-card .image-holder img {
-          width: 36px; } }
+      transform: scale(1); }
     .diamond-shapes-section-wrapper .diamond-shapes-slider .diamond-shapes-card .shape_title {
       color: #6C1D45;
       font-size: 14px;
@@ -11948,11 +11867,6 @@ body.template-product .pdp-zoom-gallery {
       letter-spacing: 0.05em;
       position: relative;
       display: inline-block; }
-      @media (max-width: 749px) {
-        .diamond-shapes-section-wrapper .diamond-shapes-slider .diamond-shapes-card .shape_title {
-          font-size: 12px;
-          line-height: 12.96px;
-          letter-spacing: normal; } }
       .diamond-shapes-section-wrapper .diamond-shapes-slider .diamond-shapes-card .shape_title:after {
         content: "";
         display: block;
@@ -11977,39 +11891,16 @@ body.template-product .pdp-zoom-gallery {
   .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6 {
     width: 50%;
     padding: 0 15px; }
-    @media (max-width: 749px) {
-      .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6 {
-        width: 100%; } }
-    @media (max-width: 749px) {
-      .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6.column_1 {
-        margin-bottom: 30px; } }
     .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6.column_1 .content-box {
       padding-right: 70px; }
-      @media (max-width: 749px) {
-        .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6.column_1 .content-box {
-          padding: 0; } }
     .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6.column_2 .content-box {
       padding-left: 70px; }
-      @media (max-width: 749px) {
-        .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6.column_2 .content-box {
-          padding: 0; } }
     .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6 h2 {
       font-size: 36px;
       line-height: 24px;
       margin: 0 0 30px; }
-      @media (max-width: 1600px) {
-        .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6 h2 {
-          font-size: 30px; } }
-      @media (max-width: 749px) {
-        .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6 h2 {
-          font-size: 28px;
-          line-height: 30.24px;
-          margin-bottom: 20px; } }
     .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6 p:not(:last-child) {
       margin-bottom: 30px; }
-      @media (max-width: 749px) {
-        .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6 p:not(:last-child) {
-          margin-bottom: 20px; } }
     .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6 ul {
       margin: 0;
       list-style: none;
@@ -12017,14 +11908,8 @@ body.template-product .pdp-zoom-gallery {
       .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6 ul li {
         padding-left: 50px;
         position: relative; }
-        @media (max-width: 749px) {
-          .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6 ul li {
-            padding-left: 22px; } }
         .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6 ul li:not(:last-child) {
           margin-bottom: 30px; }
-          @media (max-width: 749px) {
-            .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6 ul li:not(:last-child) {
-              margin-bottom: 20px; } }
         .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6 ul li::before {
           content: "";
           display: block;
@@ -12035,6 +11920,7 @@ body.template-product .pdp-zoom-gallery {
           height: 20px;
           background-color: #6c1d45;
           border-radius: 50%; }
+<<<<<<< HEAD
           @media (max-width: 1600px) {
             .diamond-guide-two-col-content-wrapper .custom-row .custom-col-6 ul li::before {
               width: 15px;
@@ -12050,3 +11936,5 @@ body.template-product .pdp-zoom-gallery {
 =======
     display: block; } }
 >>>>>>> dev-ayush
+=======
+>>>>>>> parent of 50a6048... diamond guide chnages
