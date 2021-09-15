@@ -1462,11 +1462,11 @@ body.landing-exist.scroll-start #shopify-section-landing {
         padding-top: 160px; } }
     @media (max-width: 749px) {
       .home--slider:first-child .homepage-slider-wrapper .home_slide_item_inner {
-        padding-bottom: 442px; } }
+        padding-bottom: 390px; } }
   @media (max-width: 749px) {
     .home--slider:first-child .homepage-slider-wrapper .slick-dots {
       bottom: auto;
-      top: 396px; } }
+      top: 345px; } }
   @media (max-width: 749px) {
     .home--slider:first-child .homepage-slider-wrapper .slide-item .slide-overlay {
       padding-top: 40px; } }
