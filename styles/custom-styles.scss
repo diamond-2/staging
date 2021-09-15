@@ -2272,6 +2272,11 @@ body{
       .slide-item {
         position: relative;
         font-size: 0px;
+        &.slick-current {
+          .slide-overlay {
+            opacity: 1;
+          }
+        }
         .slide-overlay {
           position:absolute;
           left: 100px;
@@ -2279,6 +2284,9 @@ body{
           font-size: 26px;
           text-align: left;
           @include base-font();
+          @include transition();
+          opacity: 0;
+          transition-delay: 0.7s;
           @media screen and (min-width: $postMd) and (max-width: $xl) {
             bottom: 40px;
             left: 55px; 

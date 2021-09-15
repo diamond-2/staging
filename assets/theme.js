@@ -10327,7 +10327,8 @@ window.addEventListener("resize", function() {
   });
   // Diamond Guide Tooltip And Tabber End
 
-
+  $('.home-scl .mobile_featured_image').html($('.home-scl .scl-collage .box--2-1 .img-box').html());
+  $('.home-jcl .mobile_featured_image').html($('.home-jcl .scl-collage [class^=block-].big_block>div.full-width .img-box').html());
 
   
   

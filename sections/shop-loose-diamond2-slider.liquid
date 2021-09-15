@@ -19,7 +19,12 @@
                         <a href="{{ slide.settings.slide_link }}">
                             {%- if slide.settings.slide_image != blank -%}
                             <div class="img_holder">
-                                <img data-src="{{ slide.settings.slide_image | img_url: 'master' }}" class="lazyload">
+                                <img data-src="{{ slide.settings.slide_image | img_url: 'master' }}" class="hide_mobile lazyload">
+                                {% if slide.settings.slide_image_mobile !=blank  %}
+                                <img data-src="{{ slide.settings.slide_image_mobile | img_url: 'master' }}" class="show_mobile lazyload">
+                                {% else %}
+                                <img data-src="{{ slide.settings.slide_image | img_url: 'master' }}" class="show_mobile lazyload">
+                                {% endif %}
                             </div>
                             {%- endif -%}
                             {%- if slide.settings.image_title != blank -%}<div class="caption_holder">{{ slide.settings.image_title }}</div>{%- endif -%}
@@ -110,6 +115,11 @@
                     "id": "slide_image"
                 },
                 {
+                    "type": "image_picker",
+                    "label": "Image (Mobile)",
+                    "id": "slide_image_mobile"
+                },
+                {
                     "type": "text",
                     "label": "Image Title",
                     "id": "image_title"
@@ -121,12 +131,6 @@
                 }
             ]
         }
-    ],
-    "presets": [
-    {
-      "name": "Shop Loose Diamond",
-      "category": "Image"
-    }
-  ]
+    ]
   }
 {% endschema %}

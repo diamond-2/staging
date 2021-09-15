@@ -1515,6 +1515,8 @@ body.landing-exist.scroll-start #shopify-section-landing {
     .home--slider .homepage-slider-wrapper .slide-item {
       position: relative;
       font-size: 0px; }
+      .home--slider .homepage-slider-wrapper .slide-item.slick-current .slide-overlay {
+        opacity: 1; }
       .home--slider .homepage-slider-wrapper .slide-item .slide-overlay {
         position: absolute;
         left: 100px;
@@ -1522,7 +1524,14 @@ body.landing-exist.scroll-start #shopify-section-landing {
         font-size: 26px;
         text-align: left;
         font-family: 'Montserrat', sans-serif;
-        font-weight: 300; }
+        font-weight: 300;
+        transition: all 0.4s;
+        -o-transition: all 0.4s;
+        -ms-transition: all 0.4s;
+        -moz-transition: all 0.4s;
+        -webkit-transition: all 0.4s;
+        opacity: 0;
+        transition-delay: 0.7s; }
         @media screen and (min-width: 750px) and (max-width: 1199px) {
           .home--slider .homepage-slider-wrapper .slide-item .slide-overlay {
             bottom: 40px;

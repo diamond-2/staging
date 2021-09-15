@@ -3,11 +3,7 @@
 <div class="scl-{{ section.id }} home-scl">
     <div class="dia-container">
         <div class="scl-header"> 
-            {% if section.settings.mobile_featured_image  %}
-            <div class="mobile_featured_image show_mobile">
-                <img class="lazyload" data-src="{{ section.settings.mobile_featured_image | img_url: 'master' }}" alt="{{  section.settings.mobile_featured_image.alt }}">
-            </div>
-            {% endif %}
+            <div class="mobile_featured_image show_mobile"></div>
             {% if section.settings.scl-heading != blank %}<h2>{{ section.settings.scl-heading }}</h2>{% endif %}
             {% if section.settings.scl-desc != blank %}<div class="scl-desc">{{ section.settings.scl-desc }}</div>{% endif %}
         </div>
@@ -27,7 +23,11 @@
                                     <a href="{{ block.settings[blockUrl] }}" aria-label="" class="full_link"></a> {% endif %}
                                     <div class="img-box">
                                         <img src="{{ block.settings[blockImg] | img_url: '480x'}}" class="mobile_hide lazyload" alt="" />
+                                        {% if block.settings[blockMobImg] !=blank %}
                                         <img src="{{ block.settings[blockMobImg] | img_url: '480x'}}" class="desktop_hide lazyload" alt="" />
+                                        {% else %}
+                                        <img src="{{ block.settings[blockImg] | img_url: '480x'}}" class="desktop_hide lazyload" alt="" />
+                                        {% endif %}
                                     </div>
                                 <div class="content-box">
                                     {% if block.settings[blockTitle] != blank %}  <h3> {{ block.settings[blockTitle] }}</h3> {% endif %}
@@ -56,12 +56,6 @@
         "class": "solitaire-col-layout",
         "max_blocks": 3,
         "settings": [
-            {
-                "type": "image_picker",
-                "label": "Mobile Featured Image",
-                "id": "mobile_featured_image",
-                "info": "This image will visible on mobile"
-            },
             {
                 "type":"text",
                 "id":"scl-heading",
