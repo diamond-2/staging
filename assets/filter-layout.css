@@ -367,8 +367,8 @@ span.clear-filter {
     }
 }
 /* Hide filters on Live theme */
-/* .filter-toolbar-wrapper-mobile.desktop_hide,
+.filter-toolbar-wrapper-mobile.desktop_hide,
 .filters-toolbar-label,
 .filters-toolbar {
     display: none!important;
-}    */
+}   
