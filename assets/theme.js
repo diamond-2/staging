@@ -10318,9 +10318,17 @@ window.addEventListener("resize", function() {
     let dataToopTip = $(this).attr('data-tooltip-content');
     $(this).closest('.diamond-tabber-tooltips-sec').find('.diamond-tabber-tooltips-box').html(dataToopTip).show();
   });
+  //tabber to Accordion Mobile
+  $('.diamond-ac-mobile').click(function(){
+    $(this).addClass('active');
+    $(this).parent().siblings().find('.diamond-ac-mobile').removeClass('active');
+    $(this).next('.diamond-tabber-panal-inner').slideDown(300);
+    $(this).parent().siblings().find('.diamond-tabber-panal-inner').slideUp(300);
+  });
   // Diamond Guide Tooltip And Tabber End
 
-
+  $('.home-scl .mobile_featured_image').html($('.home-scl .scl-collage .box--2-1 .img-box').html());
+  $('.home-jcl .mobile_featured_image').html($('.home-jcl .scl-collage [class^=block-].big_block>div.full-width .img-box').html());
 
   
   

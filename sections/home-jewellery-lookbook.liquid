@@ -3,11 +3,7 @@
 <div class="jcl-{{ section.id }} home-jcl"> 
     <div class="dia-container">
         <div class="scl-header">
-            {% if section.settings.mobile_featured_image  %}
-            <div class="mobile_featured_image show_mobile">
-                <img class="lazyload" data-src="{{ section.settings.mobile_featured_image | img_url: 'master' }}" alt="{{  section.settings.mobile_featured_image.alt }}">
-            </div>
-            {% endif %}
+            <div class="mobile_featured_image show_mobile"></div>
             {% if section.settings.scl-heading != blank %}<h2>{{ section.settings.scl-heading }}</h2>{% endif %}
             {% if section.settings.scl-desc != blank %}<div class="scl-desc">{{ section.settings.scl-desc }}</div>{% endif %}
         </div>
@@ -27,7 +23,11 @@
                 {% if block.settings[blockUrl] != blank %}  <a href="{{ block.settings[blockUrl] }}" aria-label="" class="full_link"></a> {% endif %}
                 <div class="img-box">
                   <img src="{{ block.settings[blockImg] | img_url: '480x'}}" class="lazyload mobile_hide" alt="" />
+                  {% if block.settings[blockMobImg] !=blank %}
                   <img src="{{ block.settings[blockMobImg] | img_url: '480x'}}" class="lazyload desktop_hide" alt="" />
+                  {% else %}
+                  <img src="{{ block.settings[blockImg] | img_url: '480x'}}" class="lazyload desktop_hide" alt="" />
+                  {% endif %}
                 </div>
                 {% if block.settings[blockTitle] != blank or block.settings[blockUrl] != blank %}
                 <div class="content-box">
@@ -60,12 +60,6 @@
         "class": "jewellery-col-layout",
         "max_blocks": 3,
         "settings": [
-            {
-                "type": "image_picker",
-                "label": "Mobile Featured Image",
-                "id": "mobile_featured_image",
-                "info": "This image will visible on mobile"
-            },
             {
                 "type":"text",
                 "id":"scl-heading",
