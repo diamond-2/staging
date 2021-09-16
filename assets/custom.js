@@ -235,33 +235,33 @@ function caretRemovePopup() {
 // Agree condition checkobx validation Start
 function agreeCartCondiotn() {
   $('form.cart').submit(function(e){
-    let termsAgree = $(this).find('#agree-tems');
-    let termsAgreeErrorMsg = $(this).find('#termsError');
+    let termsAgree = $('#agree-tems');
+    let termsAgreeErrorMsg = $('#termsError');
     if($(termsAgree).prop('checked') == false){
         e.preventDefault();
-        $(termsAgreeErrorMsg).css('display','block');
-        $(termsAgreeErrorMsg).text('** Please agree with terms and conditions.');
+        // $(termsAgreeErrorMsg).css('display','block');
+        $(termsAgreeErrorMsg).text('** Please agree with terms and conditions.').css('display','block');
         setTimeout(function(){
-          $(termsAgreeErrorMsg).text('');
-          $(termsAgreeErrorMsg).css('display','none');
+          $(termsAgreeErrorMsg).text('').css('display','none');
+          // $(termsAgreeErrorMsg).css('display','none');
         },3000);
     } else {
-        $(termsAgreeErrorMsg).text('');
-        $(termsAgreeErrorMsg).css('display','none');
+        $(termsAgreeErrorMsg).text('').css('display','none');
+        // $(termsAgreeErrorMsg).css('display','none');
     }
   });
   $('form.cart #agree-tems').change(function(){
     let termsAgreeErrorMsg2 = $(this).closest('form.cart').find('#termsError');
     if($(this).prop('checked') == false){
-        $(termsAgreeErrorMsg2).css('display','block');
-        $(termsAgreeErrorMsg2).text('** Please agree with terms and conditions.');
+        // $(termsAgreeErrorMsg2).css('display','block');
+        $(termsAgreeErrorMsg2).text('** Please agree with terms and conditions.').css('display','block');
         setTimeout(function(){
-          $(termsAgreeErrorMsg2).text('');
-          $(termsAgreeErrorMsg2).css('display','none');
+          $(termsAgreeErrorMsg2).text('').css('display','none');
+          // $(termsAgreeErrorMsg2).css('display','none');
         },3000);
     } else {
-        $(termsAgreeErrorMsg2).text('');
-        $(termsAgreeErrorMsg2).css('display','none');
+        $(termsAgreeErrorMsg2).text('').css('display','none');
+        // $(termsAgreeErrorMsg2).css('display','none');
     }
   });
 }

@@ -94,7 +94,7 @@
                                 {%- for option in variant_options -%}
                                 {% if option.name =='Color' %}  
                                 <li class="v_{{ option.name }} product-details__item product-details__item--variant-option{% if item.product.has_only_default_variant %} hide{% endif %}" data-cart-item-option>
-                                    <span class="cart-gld-label">Gold {{ option.name }}</span>
+                                    <span class="cart-gld-label">Gold {{ option.name | replace: 'select', ''}}</span>
                                     <span class="cart-gld-text {{ option.value | downcase  | replace: ' ', '_' }}"><span class="gold_colr">18k</span>{{ option.value }}</span>
                                 </li>
                                 {% else %}
