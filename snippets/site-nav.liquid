@@ -73,8 +73,8 @@
                           <li>
                             {% if grandchildlink.url contains 'collection' %}
                               {% assign handle = grandchildlink.url | replace: '/collections/', '' %}
-                              {% assign featuredImg = collections[handle].image.src  %}
-                              {% assign imgSrc = featuredImg | img_url: 'medium' %}
+                              {% assign featuredImg = collections[handle].image.src %}
+                              {% assign imgSrc = featuredImg | img_url: '450x321' %}
                             {% elsif grandchildlink.url contains 'page' %}
                             {% assign handle = grandchildlink.url | replace: '/pages/', '' %}
                             {% assign featuredImg = pages[handle].metafields.global.nav_item_img %}

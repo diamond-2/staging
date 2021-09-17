@@ -99,7 +99,7 @@
           {% if matchParent == linkTitle %}
           {% if block.settings.subnav_img_1 != blank %}
           {% assign imgCounter = imgCounter | plus: 1 %}
-        <li id="nav-img-block" class="nav-image-wrapper"><img class="navItemsThumb lazyload" data-src="{% if matchParent == linkTitle %}{{ block.settings.subnav_img_1 | img_url: '600x' }}{% endif %}" alt="{{ collection.title | escape }}" /></li>
+        <li id="nav-img-block" class="nav-image-wrapper"><img class="navItemsThumb lazyload" data-src="{% if matchParent == linkTitle %}{{ block.settings.subnav_img_1 | img_url: '450x321' }}{% endif %}" alt="{{ collection.title | escape }}" /></li>
         {% if imgCounter == 1 %}
         {% break %}
         {% endif %}
@@ -134,7 +134,7 @@
                         {% if grandchildlink.url contains 'collection' %}
                           {% assign handle = grandchildlink.url | replace: '/collections/', '' %}
                           {% assign featuredImg = collections[handle].image.src  %}
-                          {% assign imgSrc = featuredImg | img_url: 'medium' %}
+                          {% assign imgSrc = featuredImg | img_url: '450x321' %}
                         {% elsif grandchildlink.url contains 'page' %}
                         {% assign handle = grandchildlink.url | replace: '/pages/', '' %}
                         {% assign featuredImg = pages[handle].metafields.global.nav_item_img %}
