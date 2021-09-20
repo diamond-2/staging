@@ -443,6 +443,14 @@ body {
     padding-bottom: 60px !important;
   }
 }
+.padding_tb93 {
+  padding-top:93px !important;
+  padding-bottom: 93px !important;
+  @media(max-width: $md) {
+    padding-top:53px !important;
+    padding-bottom: 53px !important;
+  }
+}
 .padding_t {
   padding-top:100px !important;
   @media(max-width: $md) {
@@ -14494,7 +14502,7 @@ body.template-product {
       padding-right: 0;
     }
     @media(max-width: $md) {
-      margin:0 -20px;
+      margin:0px;
       padding-left: 0;
       padding-right: 0;
     }
@@ -14512,15 +14520,14 @@ body.template-product {
         background-repeat: no-repeat;
         background-position: center;
       }
-      &.slick-prev {
-        @media(max-width: $md) {
-          left:0;
+      &.slick-prev,
+      &.slick-next {
+        top: calc(50% + 25px);
+        @media (max-width: $md) {
+          top: calc(50% + 20px);
         }
       }
-      &.slick-next {
-        @media(max-width: $md) {
-          right:0;
-        }
+      &.slick-next {       
         &:after {
           transform: rotate(180deg);
         }
