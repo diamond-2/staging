@@ -22,6 +22,7 @@
 {%- capture prod_info_stone_coating -%}prod_info_stone_coating{%- endcapture -%}
 {%- capture stone_color_granding -%}stone_color_granding{%- endcapture -%}
 {%- capture warranty -%}com_warranty{% endcapture %}
+{%- capture description -%}description{%- endcapture -%}
 
 <div class="product-template__container" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}"
     data-section-type="product" data-enable-history-state="true" data-ajax-enabled="{{ settings.enable_ajax }}">
@@ -439,10 +440,15 @@
 
         <div class="product-content-section">
 
-            {%- if product.description != blank -%}
+            {%- if variantMetafield[description] != blank or  product.description != blank -%}
             <div class="product-desc-section content_showed">
                 <div class="product-desc-title"><p>PRODUCT DESCRIPTION</p><span></span></div>
+                {% if variantMetafield[description] != blank %}
+                <div class="product-desc-content" data-row="{{ description}}"><div class="pdp-tab-val">{{ variantMetafield[description] }}</div></div>
+                {% else %}
                 <div class="product-desc-content">{{ product.description }}</div>
+                {% endif %}
+                
             </div>
             {%- endif -%}
 

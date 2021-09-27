@@ -144,7 +144,7 @@
           
           //Init
           var getmaxitemperpage = 16;
-          createFilters();
+          // createFilters();
           createPagination(searchData.totalItems, searchData.startIndex/getmaxitemperpage); 
           printProducts(searchData.items);
 
@@ -317,11 +317,8 @@
           
           
           if(currentPage > 1) {
-            currentPage = currentPage-1; 
-          // console.log(currentPage);
-            var Startitems = maxResults*currentPage;
-      // console.log("startItems==>>" + Startitems);
-      
+            currentPage = currentPage-1; // console.log(currentPage);
+            var Startitems = maxResults*currentPage;// console.log("startItems==>>" + Startitems);      
           } else {
             var Startitems = 0;
           }
@@ -420,10 +417,16 @@
                 // console.log(prodImages.length);
 
             getcollectionlink = '/collections/'+getcollection;
-
             var _thistags = prodTags;
+          
             _thistags = _thistags.split('[:ATTR:]');
+            console.log('TAGSS==>>>>>')
+            console.log(_thistags)
+            console.log('TAGSS==>>>>>')
             var _this_variants = prodObj[i].shopify_variants;
+            console.log('==============');
+            console.log(_this_variants);
+            console.log('==============');
             var _variantComparePrice = [];
             var _variantRegularPrice = [];
             var _variant_ComparePrice_Max = '';
@@ -511,6 +514,8 @@
               jwGridContent +='<div class="product_compare">Compare</div>';
               jwGridContent +='</div>'
           }
+          console.log(jwGridContent);
+          // return false;
             if(prodQty <= 0 ){
               var prodAvaibility = 'grid-view-item--sold-out';
             }     
