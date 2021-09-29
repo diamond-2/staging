@@ -400,7 +400,10 @@
                 </div>
               {% endif %}
             </div>
-
+            {%- comment -%} Header Wishlist icon  {%- endcomment -%}
+            <a href="#swym-wishlist" class="swym-wishlist site-header__icon site-header__wishlist">
+              {% render 'icon-account-wishlist' %}
+            </a>
             {% if shop.customer_accounts_enabled %}
               {% if customer %}
                 <a href="{{ routes.account_url }}/logout" class="site-header__icon site-header__account logout_account_btn">
