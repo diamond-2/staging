@@ -60,6 +60,13 @@
       searchaniseProducts(newQueryString);  
     });
 
+    // Hide dropdown when clicked outside
+    // $(document).click(function(e) {
+    //   if( e.target.class != 'collection-filter-wrapper') {
+    //     $(".filter-dd").hide();
+    //   }
+    // });
+
     function LoadMoreItems() {
       $('.dynamicloadMore-btn').hide();
       $('.dynamic-loader-spiner').show();
@@ -200,8 +207,12 @@
                   }
                   filterId = filterId.replace('global.', '');
                   $.each(filterVal, function(key, val){
+                    var disableItem = '';
 
-                    if(val.count > 0){
+                    if(val.count >= 0){
+                        if(val.count == 0){
+                          disableItem = 'toDisabled';
+                        }
                         var show = 'toShow';
                         filterName=filterName.toLowerCase().replace(' ', '-'); //// console.log('Filtername==>'+filterName);
                         var thisVal = val.value;//// console.log('thisVal == >  ' + thisVal);
@@ -211,7 +222,7 @@
                           var checked = 'checked=checked';
                           	  checkVal = thisVal;
                         }
-                        selectOption += '<div class="collection_filter_by_shape" data-shape="shape_'+encodeURIComponent(thisVal).toLowerCase()+'">';
+                        selectOption += '<div class="collection_filter_by_shape'+ show +' '+ disableItem +'" data-shape="shape_'+encodeURIComponent(thisVal).toLowerCase()+'">';
                   selectOption += '<input type="checkbox"  id="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" ' + checked + ' class="visually-hidden" value="' + encodeURIComponent(thisVal) + '">';
                   selectOption += '<label for="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" class="filter__label">';
                     selectOption += '<img data-src="'+fileUrl+'ld_shape_'+encodeURIComponent(thisVal).toLowerCase()+'.svg" class="lazyload"><span>' + thisVal +'</span></label>';
@@ -261,8 +272,12 @@
                     selectOption += '<span class="filter-option-name">'+filterTitle+'</span>';
                     selectOption += '<ul class="filter-dd">'
                     $.each(filterVal, function(key, val){
+                      var disableItem = '';
                       //console.log(val);
-                    if(val.count > 0){
+                    if(val.count >= 0){
+                      if(val.count == 0){
+                          disableItem = 'toDisabled';
+                        }
                         var show = 'toShow';
                         filterName=filterName.toLowerCase().replace(' ', '-'); //// console.log('Filtername==>'+filterName);
                         var thisVal = val.value;//// console.log('thisVal == >  ' + thisVal);
@@ -278,7 +293,7 @@
                           var checked = 'checked=checked';
                           	  checkVal = thisVal;                          
                         }
-                        selectOption += '<li class="input-group ' + show + '"><input type="checkbox" ' + checked +' id="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" value="' + thisVal + '" class="visually-hidden"/> <label for="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter">'+ thisValContent +'</label></li>';
+                        selectOption += '<li class="input-group ' + show +' '+ disableItem + '"><input type="checkbox" ' + checked +' id="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" value="' + thisVal + '" class="visually-hidden"/> <label for="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter">'+ thisValContent +'</label></li>';
                         
                         //<li class="input-group"> data-opt-val="' + encodeURIComponent(thisVal) + '"' + selected + '  data-value="' + filterVal + '">' + thisVal + '</li>';
                         counter++;                        
