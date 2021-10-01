@@ -433,7 +433,10 @@
 
             getcollectionlink = '/collections/'+getcollection;
             var _thistags = prodTags;
-          
+            console.log('TAGSSS');
+            console.log(_thistags);
+            console.log('TAGSSS');
+
             _thistags = _thistags.split('[:ATTR:]');
             console.log('TAGSS==>>>>>')
             console.log(_thistags)
@@ -449,15 +452,16 @@
             var _variant_RegularPrice_Max = '';
             var _variant_RegularPrice_Min = '';
             var ItemPrice = '';
-            var prodPrice = parseInt(prodObj[i].price)*100,
+            var prodPrice = parseInt(prodObj[i].price)*100;
                 //prodPrice = theme.Currency.formatMoney(prodPrice, theme.moneyFormat).replace('.00',''),                
-            prodComparePrice = parseInt(prodObj[i].list_price)*100,
-            productDiscount =  prodComparePrice / (prodComparePrice - prodPrice);
-            productDiscount = productDiscount.toFixed(2);
-            console.log(productDiscount);
+            var prodComparePrice = parseInt(prodObj[i].list_price)*100;
             //product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price 
                 //prodComparePrice = theme.Currency.formatMoney(prodComparePrice, theme.moneyFormat).replace('.00','')
                 if(prodComparePrice > prodPrice) {
+                  var productDiscount =  prodComparePrice / (prodComparePrice - prodPrice);
+                  productDiscount = productDiscount.toFixed(2);
+                  console.log(productDiscount);
+                  
                   ItemPrice += '<div class="product-price-card-row price_row">';
                   ItemPrice += '<div class="ragular_price">'+theme.Currency.formatMoney(prodPrice, theme.moneyFormat).replace('.00','')+'</div>';
                   ItemPrice += '<div class="compare_at_price">'+theme.Currency.formatMoney(prodComparePrice, theme.moneyFormat).replace('.00','')+'</div>';
@@ -469,16 +473,9 @@
                   ItemPrice += '<div class="compare_at_price"></div>';
                   ItemPrice += '<div class="product_discount"></div>';
                   ItemPrice += '</div>';
-
-
                 }
 
-                console.log('Regular Price = > ' + prodPrice +'==> Compare Price = > ' + prodComparePrice)
-                // console.log()
-
-                
-
-
+                  console.log('AAA');
 
             var ldTableContent = '';
             var ldGridContent = '';
@@ -486,9 +483,12 @@
             var jwGridTitle = '';
             var jwGridContent = '';
             if($('body').attr('data-template') == 'loose-stone-plp'){ 
+              console.log('inside Loosestone');
               ldGridContent += '<div class="product-price-card-row hide_mobile">';
-            $.each(_thistags, function(i){   
-              let tagVal = _thistags[i].split(':')[1];            
+            $.each(_thistags, function(i){  
+              console.log(_thistags[i]); 
+              if(_thistags[i].includes(':')){
+                let tagVal = _thistags[i].split(':')[1];            
               if(_thistags[i].includes('LDDEPTH:')){ldTableContent += '<tr><td>Depth:</td><td>'+tagVal+'</td></tr>';}
               if(_thistags[i].includes('LDTABLE:')){ldTableContent += '<tr><td>Table:</td><td>'+tagVal+'</td></tr>';}
               if(_thistags[i].includes('LDFLUORSCENCE:')){ldTableContent += '<tr><td>Fluorescence:</td><td>'+tagVal+'</td></tr>';}
@@ -498,33 +498,43 @@
               if(_thistags[i].includes('LDCT:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
               if(_thistags[i].includes('LDSHAPE:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
               if(_thistags[i].includes('LDCOLOR:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
-              // if()
+              }
             })
             ldGridContent += '</div>';
             ldGridContentMob += '<div class="product-price-card-row show_mobile">';
               ldGridContentMob += '<div class="r1">';
                 $.each(_thistags, function(i){ 
+                  if(_thistags[i].indexOf(':') > -1 ){
                   let tagVal = _thistags[i].split(':')[1];  
                 if(_thistags[i].includes('LDCT:')){ldGridContentMob += '<div class="product_b_tex">'+tagVal+'</div>';}
                 if(_thistags[i].includes('LDSHAPE:')){ldGridContentMob += '<div class="product_b_tex">'+tagVal+'</div>';}
+                  }
                 });
               ldGridContentMob += '</div>'
               ldGridContentMob += '<div class="r2">';
                 $.each(_thistags, function(i){ 
+                  if(_thistags[i].includes(':')){
                   let tagVal = _thistags[i].split(':')[1];  
                 if(_thistags[i].includes('LDPOLISH:')){ldGridContentMob += '<div class="product_b_tex">'+tagVal+'</div>';}
                 if(_thistags[i].includes('LDCOLOR:')){ldGridContentMob += '<div class="product_b_tex">'+tagVal+'</div>';}
                 if(_thistags[i].includes('LDCLARITY:')){ldGridContentMob += '<div class="product_b_tex">'+tagVal+'</div>';}
+                  }
                 });
               ldGridContentMob += '</div>';            
             ldGridContentMob += '</div>';
           } else {
+            console.log('inside jewellery');
             jwGridTitle += '<div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="'+ prodLink +'">'+ prodTitle+'</a></div>';
             jwGridContent += '<div class="product-price-card-row">';
               $.each(_thistags, function(i){ 
+                console.log('INdex==>' + i);
+                console.log(_thistags[i]);
+                return false;
+                if(_thistags[i].includes(':')){
                 let tagVal = _thistags[i].split(':')[1];  
                 if(_thistags[i].includes('JWCTW:')){jwGridContent += '<div class="product_weight">'+tagVal+'</div>';}
                 if(_thistags[i].includes('JWCOLOR:')){jwGridContent += '<div class="product_def">'+tagVal+'</div>';}
+                }
               });
               jwGridContent +='<div class="product_compare">Compare</div>';
               jwGridContent +='</div>'
