@@ -5,19 +5,6 @@
         {% assign mainCollection = collections[collection_name] %}
        
         {%- if collection.type == 'collection'-%}
-        <!-- Layout 1 -->
-        <!-- <div class="content_holder"> 
-            {% if collection.settings.featured_image_mobile != blank %}
-            <div class="mobile_featured_image show_mobile">
-                <a href="{{ collection.settings.featured_image_link }}">
-                    <img class="lazyload desktop_hide" data-src="{{ collection.settings.featured_image_mobile | img_url: 'master' }}" alt="{{ mainCollection.title }}">
-                </a>
-            </div>
-            {% endif %}
-            {% if collection.settings.block_heading != blank %}<h2>{{ collection.settings.block_heading }}</h2>{% endif %}
-            {% if collection.settings.block_desc != blank %}<div class="scl-desc">{{ collection.settings.block_desc }}</div>{% endif %}
-        </div> -->
-
         <div class="jewellary-collection-row jewellary-collection-layout-1">
             <div class="jewellary-collection-header">
 

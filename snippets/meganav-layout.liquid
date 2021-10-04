@@ -49,9 +49,12 @@
                           {% assign imgSrc = featuredImg %}
                         {% else %}
                         {% endif %}
-                        
+
+                        {%- comment -%}
+                        {% if secondLevelTitle contains 'by Shape' or secondLevelTitle contains 'by Category' %}data-handle2="{{ collectionHandle | file_url }}"{% endif %} 
+                        {%- endcomment -%}                        
                         <li {% if subnav.title contains ' all ' %}class="last_menu_item"{% endif %}>
-                            <a {% if secondLevelTitle contains 'by Shape' or secondLevelTitle contains 'by Category' %}data-handle2="{{ collectionHandle | file_url }}"{% endif %} {% if featuredImg != blank %}data-handle="{{ imgSrc }}" {% else %} {% if block.settings[subnavimage] %}data-handle="{{ block.settings[subnavimage] | img_url: 'master' }}"{% endif %} {% endif %}  href="{{ subnav.url }}" class="site-nav__link site-nav__child-link {% if subnav.title contains ' all ' %}active_color{% endif %}">
+                            <a {% if featuredImg != blank %}data-handle="{{ imgSrc }}" {% else %} {% if block.settings[subnavimage] %}data-handle="{{ block.settings[subnavimage] | img_url: 'master' }}"{% endif %} {% endif %}  href="{{ subnav.url }}" class="site-nav__link site-nav__child-link {% if subnav.title contains ' all ' %}active_color{% endif %}">
                                 <span class="site-nav__label">{{ subnav.title | escape | replace: '®', '<sup>®</sup>' }} </span>
                             </a>
                         </li>
