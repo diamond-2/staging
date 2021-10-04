@@ -475,6 +475,11 @@
     </div>
 </div>
 
+
+<div class="getCertificate">
+                        <input type="text" id="certificate-number" value="" />
+                        <button type="button" id="search-certificate">Get Certificate</button>
+</div>
 <!-- Add Popup Capture Code Here -->
 {{ ringSizePopup }}
 
@@ -528,6 +533,12 @@
         $('.product-detail-slider').slick('slickGoTo', slideno);
         $('.product-detail-slider .product-detail-slide[data-slick-index="'+slideno+'"]').find('video').get(0).play();
     });
+
+    // Get Certificate
+    $(document).on('click', '#search-certificate', function(){
+        let certNumber = 'cer'+$('#certificate-number').val();
+        window.location.href = "/pages/aryamond-certificate?getCert="+certNumber;
+    })
     
     function activeBorder() {
         setTimeout(function(){

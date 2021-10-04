@@ -1,0 +1,8 @@
+<center>
+<h1>{{ page.title }}</h1>
+{% assign pageurl = content_for_header | split:'"pageurl":"' | last | split:'"' | first %} 
+{% assign certNum = pageurl | split: '?getCert=' | last | append: '.jpg' %}
+<div class="certifcate-img-wrapper" style="max-width: 80%; margin: 0 auto;">
+    <img data-src="{{ certNum | file_url }}" class="lazyload" alt="" />
+</div>
+</center>
