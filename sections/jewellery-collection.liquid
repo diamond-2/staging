@@ -1,27 +1,43 @@
-
-
 <div class="jewellary-collection-wrapper">
-    <div class="dia-container">
+    <div class="dia-container">       
         {% for collection in section.blocks %}
         {% assign collection_name = collection.settings.select_menu | handle %}
         {% assign mainCollection = collections[collection_name] %}
-        
+       
         {%- if collection.type == 'collection'-%}
         <!-- Layout 1 -->
+        <!-- <div class="content_holder"> 
+            {% if collection.settings.featured_image_mobile != blank %}
+            <div class="mobile_featured_image show_mobile">
+                <a href="{{ collection.settings.featured_image_link }}">
+                    <img class="lazyload desktop_hide" data-src="{{ collection.settings.featured_image_mobile | img_url: 'master' }}" alt="{{ mainCollection.title }}">
+                </a>
+            </div>
+            {% endif %}
+            {% if collection.settings.block_heading != blank %}<h2>{{ collection.settings.block_heading }}</h2>{% endif %}
+            {% if collection.settings.block_desc != blank %}<div class="scl-desc">{{ collection.settings.block_desc }}</div>{% endif %}
+        </div> -->
+
         <div class="jewellary-collection-row jewellary-collection-layout-1">
             <div class="jewellary-collection-header">
 
-                <div class="show_mobile mobile_featured_image">
-                    {% if collection.settings.featured_image %}
-                    {% if collection.settings.featured_image_mobile %}
-                    <a href="{{ collection.settings.featured_image_link }}">
-                        <img class="lazyload" data-src="{{ collection.settings.featured_image_mobile | img_url: 'master' }}" alt="{{ mainCollection.title }}">
-                    </a>
-                    {% else %}
+                <div class="content_holder"> 
+                    {% if collection.settings.featured_image_mobile != blank %}
+                    <div class="mobile_featured_image show_mobile">
+                        <a href="{{ collection.settings.featured_image_link }}">
+                            <img class="lazyload desktop_hide" data-src="{{ collection.settings.featured_image_mobile | img_url: 'master' }}" alt="{{ mainCollection.title }}">
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% if collection.settings.block_heading != blank %}<h2>{{ collection.settings.block_heading }}</h2>{% endif %}
+                    {% if collection.settings.block_desc != blank %}<div class="scl-desc">{{ collection.settings.block_desc }}</div>{% endif %}
+                </div>
+
+                <div class="show_mobile mobile_featured_image aa mobile_hide">
+                    {% if collection.settings.featured_image != blank  %}
                     <a href="{{ collection.settings.featured_image_link }}">
                         <img class="lazyload" data-src="{{ collection.settings.featured_image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
                     </a>
-                    {% endif %}
                     {% else %}
                     {% if mainCollection.image %}
                     <a href="{{ mainCollection.url }}">
@@ -30,14 +46,6 @@
                     {% endif %}
                     {% endif %}
                 </div>
-                
-
-                {%- if mainCollection.title != blank or mainCollection.description != blank -%}
-                <div class="content_holder">
-                    {%- if mainCollection.title != blank -%}<h2>{{ mainCollection.title }}</h2>{%- endif -%}
-                    {%- if mainCollection.description != blank -%}{{ mainCollection.description }}{%- endif -%}
-                </div>
-                {% endif %}
             </div>
             {%- assign subs = linklists[collection_name].links -%}
             {%- if subs != blank -%}
@@ -138,6 +146,11 @@
                 <a href="{{ mainCollection.url }}" class="glb-btn">EXPLORE {{ mainCollection.title }}</a>
             </div>
             {%- endif -%}
+            {% if collection.settings.block_cta_link != blank and collection.settings.block_cta_label != blank  %}
+            <div class="scl-collection-link">
+            <a class="glb-btn" href="{{ collection.settings.block_cta_link }}" aria-label="{{ collection.settings.block_cta_label }}">{{ collection.settings.block_cta_label }}</a>
+            </div>
+            {% endif %}
         </div>
         {%- endif -%}
 
@@ -145,36 +158,36 @@
         <!-- Layout 2 -->
         <div class="jewellary-collection-row jewellary-collection-layout-2">
             <div class="jewellary-collection-header mb-image-bottom">
-                {%- if mainCollection.title != blank or mainCollection.description != blank -%}
+                
                 <div class="content_holder">
-                    {%- if mainCollection.title != blank -%}<h2>{{ mainCollection.title }}</h2>{%- endif -%}
-                    {%- if mainCollection.description != blank -%}{{ mainCollection.description }}{%- endif -%}
+                    {% if collection.settings.block_heading != blank %}
+                    <h2>{{ collection.settings.block_heading }}</h2>
+                    {% else %}
+                    <h2>{{ mainCollection.title }}</h2>
+                    {% endif %}
+
+                    {% if collection.settings.block_desc != blank %}
+                    <div class="scl-desc">{{ collection.settings.block_desc }}</div>
+                    {% else %}
+                    {{ mainCollection.description }}
+                    {% endif %}
                 </div>
-                {% endif %}
-                <div class="show_mobile mobile_featured_image">
-                    {% if collection.settings.featured_image %}
-                    {% if collection.settings.featured_image_mobile %}
-                    <a href="{{ collection.settings.featured_image_link }}">
-                        <img class="lazyload" data-src="{{ collection.settings.featured_image_mobile | img_url: 'master' }}" alt="{{ mainCollection.title }}">
-                    </a>
+                <div class="show_mobile mobile_featured_image bb">
+                    {% if collection.settings.featured_image != blank %}                       
+                        <a href="{{ collection.settings.featured_image_link }}">
+                            {% if collection.settings.featured_image_mobile != blank %}<img class="lazyload desktop_hide" data-src="{{ collection.settings.featured_image_mobile | img_url: 'master' }}" alt="{{ mainCollection.title }}">{% endif %}
+                            <img class="lazyload  {% if collection.settings.featured_image_mobile != blank %} mobile_hide {% endif %}" data-src="{{ collection.settings.featured_image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
+                        </a>
                     {% else %}
-                    <a href="{{ collection.settings.featured_image_link }}">
-                        <img class="lazyload" data-src="{{ collection.settings.featured_image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
-                    </a>
-                    {% endif %}
-                    {% else %}
-                    {% if mainCollection.image %}
-                    <a href="{{ mainCollection.url }}">
-                        <img class="lazyload" data-src="{{ mainCollection.image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
-                    </a>
-                    {% endif %}
+                        <a href="{{ mainCollection.url }}">
+                            <img class="lazyload" data-src="{{ mainCollection.image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
+                        </a>
                     {% endif %}
                 </div>
             </div>
             {%- assign subs = linklists[collection_name].links -%}
             {%- if subs != blank -%}
-             <div class="jewellary-collection-grid">
- 
+             <div class="jewellary-collection-grid"> 
                  <div class="jewellary-collection-block big_column">
                      <div class="jewellary-collection-card has_only_image hide_mobile">
                         <div class="image_holder">
@@ -271,6 +284,11 @@
                 <a href="{{ mainCollection.url }}" class="glb-btn">EXPLORE {{ mainCollection.title }}</a>
             </div>
             {%- endif -%}
+            {% if collection.settings.block_cta_link != blank and collection.settings.block_cta_label != blank  %}
+            <div class="scl-collection-link">
+                <a class="glb-btn" href="{{ collection.settings.block_cta_link }}" aria-label="{{ collection.settings.block_cta_label }}">{{ collection.settings.block_cta_label }}</a>
+            </div>
+            {% endif %}
         </div>
         {%- endif -%}
 
@@ -278,15 +296,23 @@
         <!-- Layout 3 -->
         <div class="jewellary-collection-row jewellary-collection-layout-3">
             <div class="jewellary-collection-header mb-image-bottom">
-                {%- if mainCollection.title != blank or mainCollection.description != blank -%}
                 <div class="content_holder">
-                    {%- if mainCollection.title != blank -%}<h2>{{ mainCollection.title }}</h2>{%- endif -%}
-                    {%- if mainCollection.description != blank -%}{{ mainCollection.description }}{%- endif -%}
+                    {% if collection.settings.block_heading != blank %}
+                    <h2>{{ collection.settings.block_heading }}</h2>
+                    {% else %}
+                    <h2>{{ mainCollection.title }}</h2>
+                    {% endif %}
+
+                    {% if collection.settings.block_desc != blank %}
+                    <div class="scl-desc">{{ collection.settings.block_desc }}</div>
+                    {% else %}
+                    {{ mainCollection.description }}
+                    {% endif %}
                 </div>
-                {% endif %}
-                {% if mainCollection.image %}
-                <div class="show_mobile mobile_featured_image">
-                    <img class="lazyload" data-src="{{ mainCollection.image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
+
+                {% if collection.settings.block_3_image_first_mobile != blank %}
+                <div class="mobile_featured_image cc desktop_hide">
+                    <img class="lazyload " data-src="{{collection.settings.block_3_image_first_mobile | img_url: 'master' }}" alt="{{ mainCollection.title }}">
                 </div>
                 {% endif %}
             </div>
@@ -298,7 +324,11 @@
 
                     <div class="jewellary-collection-card has_only_image_small hide_mobile">
                         <div class="image_holder">
-                            {% if mainCollection.image %}
+                            {% if collection.settings.block_3_image_first_mobile != blank %}
+                            <a href="{{ mainCollection.url }}">
+                                <img class="lazyload {% if collection.settings.block_3_image_first_mobile != blank %}mobile_hide{% endif %}" data-src="{{ collection.settings.block_3_image_first | img_url: 'master' }}" alt="{{ mainCollection.title }}">
+                            </a>
+                            {% else %}
                             <a href="{{ mainCollection.url }}">
                                 <img class="lazyload" data-src="{{ mainCollection.image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
                             </a>
@@ -372,7 +402,8 @@
                             {% if collection.settings.block_3_image %}
                             {%- if collection.settings.block_3_image_link !=blank -%}
                             <a href="{{ collection.settings.block_3_image_link }}">
-                                <img class="lazyload" data-src="{{ collection.settings.block_3_image | img_url: 'master' }}" alt="{{ sub.title }}">
+                                <img class="lazyload {% if collection.settings.block_3_image_mobile != blank %} mobile_hide{% endif %}" data-src="{{ collection.settings.block_3_image | img_url: 'master' }}" alt="{{ sub.title }}">
+                                {% if collection.settings.block_3_image_mobile != blank %}<img class="lazyload desktop_hide" data-src="{{ collection.settings.block_3_image_mobile | img_url: 'master' }}" alt="{{ sub.title }}">{% endif %}
                             </a>
                             {%- else -%}
                             <a href="{{ mainCollection.url }}">
@@ -464,6 +495,11 @@
                 <a href="{{ mainCollection.url }}" class="glb-btn">EXPLORE {{ mainCollection.title }}</a>
             </div>
             {%- endif -%}
+            {% if collection.settings.block_cta_link != blank and collection.settings.block_cta_label != blank  %}
+            <div class="scl-collection-link">
+            <a class="glb-btn" href="{{ collection.settings.block_cta_link }}" aria-label="{{ collection.settings.block_cta_label }}">{{ collection.settings.block_cta_label }}</a>
+            </div>
+            {% endif %}
         </div>
         {%- endif -%}
 
@@ -481,6 +517,26 @@
             "type": "collection",
             "name": "Layout 1",
             "settings": [
+                {
+                    "type":"text",
+                    "id":"block_heading",
+                    "label":"Section heading"
+                },
+                {
+                    "type":"richtext",
+                    "id":"block_desc",
+                    "label":"Section description"
+                },
+                {
+                    "type":"text",
+                    "id":"block_cta_label",
+                    "label":"Section link"
+                },
+                {
+                    "type":"url",
+                    "id":"block_cta_link",
+                    "label":"Section link"
+                },
                 {
                     "type": "link_list",
                     "label": "Select Menu",
@@ -508,6 +564,26 @@
             "name": "Layout 2",
             "settings": [
                 {
+                    "type":"text",
+                    "id":"block_heading",
+                    "label":"Section heading"
+                },
+                {
+                    "type":"richtext",
+                    "id":"block_desc",
+                    "label":"Section description"
+                },
+                {
+                    "type":"text",
+                    "id":"block_cta_label",
+                    "label":"Section link"
+                },
+                {
+                    "type":"url",
+                    "id":"block_cta_link",
+                    "label":"Section link"
+                },
+                {
                     "type": "link_list",
                     "label": "Select Menu",
                     "id": "select_menu"
@@ -534,14 +610,49 @@
             "name": "Layout 3",
             "settings": [
                 {
+                    "type":"text",
+                    "id":"block_heading",
+                    "label":"Section heading"
+                },
+                {
+                    "type":"richtext",
+                    "id":"block_desc",
+                    "label":"Section description"
+                },
+                {
+                    "type":"text",
+                    "id":"block_cta_label",
+                    "label":"Section link"
+                },
+                {
+                    "type":"url",
+                    "id":"block_cta_link",
+                    "label":"Section link"
+                },
+                {
                     "type": "link_list",
                     "label": "Select Menu",
                     "id": "select_menu"
                 },
                 {
                     "type": "image_picker",
-                    "label": "Block 3 Image",
+                    "label": "Block 3 First Image (Desktop)",
+                    "id": "block_3_image_first"
+                },
+                {
+                    "type": "image_picker",
+                    "label": "Featured First Image (Mobile)",
+                    "id": "block_3_image_first_mobile"
+                },
+                {
+                    "type": "image_picker",
+                    "label": "Block 3 Image (Desktop)",
                     "id": "block_3_image"
+                },
+                {
+                    "type": "image_picker",
+                    "label": "Featured Image (Mobile)",
+                    "id": "block_3_image_mobile"
                 },
                 {
                     "type": "url",
