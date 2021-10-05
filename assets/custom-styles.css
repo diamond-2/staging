@@ -1160,13 +1160,13 @@ body.js-menu--is-open {
     #shopify-section-landing #main-landing-page .landing-content .landing-logo-holder {
       text-align: center;
       color: #fff;
-      max-width: 508px;
+      max-width: 516px;
       margin: 0 auto; }
       @media (max-width: 749px) {
         #shopify-section-landing #main-landing-page .landing-content .landing-logo-holder {
           text-align: center;
           color: #fff;
-          max-width: 229px;
+          max-width: 255px;
           margin: 0 auto; } }
       #shopify-section-landing #main-landing-page .landing-content .landing-logo-holder .logo-top-text {
         font-size: 21px;
