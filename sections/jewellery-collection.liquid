@@ -36,19 +36,22 @@
             </div>
             {%- assign subs = linklists[collection_name].links -%}
             {%- if subs != blank -%}
+
             <div class="jewellary-collection-grid">
                 <div class="jewellary-collection-block">
                     {% for sub in subs limit: 2 %}
-                    {% assign subitem_handle = sub.url | handleize  | replace: 'collections-', '' %}
-                    {% assign collectionMobileImage = collections[subitem_handle].metafields.global.collection_mobile_image %}
+                    {% assign subitem_handle = sub.url | replace: '/collections/', '' %}
+                    {% assign data = collections[subitem_handle].metafields.global.collage_image | split: ',' %}
+                    {% assign imageDesktop = data | first %}
+                    {% assign imageMobile = data | last %}
                     {% if sub.title != blank %}
                     <div class="jewellary-collection-card" >
                         <a class="full_link" href="{{ sub.url }}"></a>
                         <div class="image_holder">
-                            {% if collections[subitem_handle].image %}
-                                <img class="lazyload {% if collectionMobileImage != blank %}mobile_hide{% endif %}" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ sub.title }}">
-                                {% if collectionMobileImage != blank %}
-                                  <img class="lazyload desktop_hide" data-src="{{ collectionMobileImage }}" alt="{{ sub.title }}"/>
+                            {% if imageDesktop != blank %}
+                                <img class="lazyload {% if imageMobile != blank %}mobile_hide{% endif %}" data-src="{{ imageDesktop }}" alt="{{ sub.title }}">
+                                {% if imageMobile != blank %}
+                                  <img class="lazyload desktop_hide" data-src="{{ imageMobile }}" alt="{{ sub.title }}"/>
                                 {% endif %}
                             {% endif %}
                         </div>
@@ -78,16 +81,20 @@
                         </div>
                     </div>
                     {% for sub in subs limit: 1 offset: continue %}
-                    {% assign subitem_handle = sub.url | handleize  | replace: 'collections-', '' %}
-                    {% assign collectionMobileImage = collections[subitem_handle].metafields.global.collection_mobile_image %}
+                    {% assign subitem_handle = sub.url | replace: '/collections/', '' %}
+                    {% assign data = collections[subitem_handle].metafields.global.collage_image | split: ',' %}
+                    {% assign imageDesktop = data | first %}
+                    {% assign imageMobile = data | last %}
+
+
                     {% if sub.title != blank %}
                     <div class="jewellary-collection-card">
                         <a class="full_link" href="{{ sub.url }}"></a>
                         <div class="image_holder">
-                            {% if collections[subitem_handle].image %}
-                                <img class="lazyload {% if collectionMobileImage != blank %}mobile_hide{% endif %}" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ sub.title }}">
-                                {% if collectionMobileImage != blank %}
-                                  <img class="lazyload desktop_hide" data-src="{{ collectionMobileImage }}" alt="{{ sub.title }}"/>
+                            {% if imageDesktop != blank %}
+                                <img class="lazyload {% if imageMobile != blank %}mobile_hide{% endif %}" data-src="{{ imageDesktop }}" alt="{{ sub.title }}">
+                                {% if imageMobile != blank %}
+                                  <img class="lazyload desktop_hide" data-src="{{ imageMobile }}" alt="{{ sub.title }}"/>
                                 {% endif %}
                             {% endif %}
                         </div>
@@ -103,16 +110,20 @@
 
                 <div class="jewellary-collection-block">
                     {% for sub in subs limit: 2 offset: continue %}
-                    {% assign subitem_handle = sub.url | handleize  | replace: 'collections-', '' %}
-                    {% assign collectionMobileImage = collections[subitem_handle].metafields.global.collection_mobile_image %}
+                    {% assign subitem_handle = sub.url | replace: '/collections/', '' %}
+                    {% assign data = collections[subitem_handle].metafields.global.collage_image | split: ',' %}
+                    {% assign imageDesktop = data | first %}
+                    {% assign imageMobile = data | last %}
+
+
                     {% if sub.title != blank %}
                     <div class="jewellary-collection-card">
                         <a class="full_link" href="{{ sub.url }}"></a>
                         <div class="image_holder">
-                            {% if collections[subitem_handle].image %}
-                                <img class="lazyload {% if collectionMobileImage != blank %}mobile_hide{% endif %}" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ sub.title }}">
-                                {% if collectionMobileImage != blank %}
-                                  <img class="lazyload desktop_hide" data-src="{{ collectionMobileImage }}" alt="{{ sub.title }}"/>
+                            {% if imageDesktop != blank %}
+                                <img class="lazyload {% if imageMobile != blank %}mobile_hide{% endif %}" data-src="{{ imageDesktop }}" alt="{{ sub.title }}">
+                                {% if imageMobile != blank %}
+                                  <img class="lazyload desktop_hide" data-src="{{ imageMobile }}" alt="{{ sub.title }}"/>
                                 {% endif %}
                             {% endif %}
                         </div>
@@ -182,26 +193,27 @@
                             <a href="{{ collection.settings.featured_image_link }}">
                                 <img class="lazyload" data-src="{{ collection.settings.featured_image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
                             </a>
-                            {% else %}
-                            {% if mainCollection.image %}
-                            <a href="{{ mainCollection.url }}">
-                                <img class="lazyload" data-src="{{ mainCollection.image | img_url: 'master' }}" alt="{{ mainCollection.title }}">
-                            </a>
-                            {% endif %}
                             {% endif %}
                         </div>
                      </div>
                      {% for sub in subs limit: 1 %}
-                     {% assign subitem_handle = sub.url | handleize  | replace: 'collections-', '' %}
-                     {% assign collectionMobileImage = collections[subitem_handle].metafields.global.collection_mobile_image %}
+                     {% comment %}
+                        {% assign subitem_handle = sub.url | handleize  | replace: 'collections-', '' %}
+                        {% assign collectionMobileImage = collections[subitem_handle].metafields.global.collection_mobile_image %}
+                     {% endcomment %}
+                     {% assign subitem_handle = sub.url | replace: '/collections/', '' %}
+                    {% assign data = collections[subitem_handle].metafields.global.collage_image | split: ',' %}
+                    {% assign imageDesktop = data | first %}
+                    {% assign imageMobile = data | last %}
+
                      {% if sub.title != blank %}
                      <div class="jewellary-collection-card">
                         <a class="full_link" href="{{ sub.url }}"></a>
                         <div class="image_holder">
-                            {% if collections[subitem_handle].image %}
-                                <img class="lazyload {% if collectionMobileImage != blank %}mobile_hide{% endif %}" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ sub.title }}">
-                                {% if collectionMobileImage != blank %}
-                                  <img class="lazyload desktop_hide" data-src="{{ collectionMobileImage }}" alt="{{ sub.title }}"/>
+                            {% if imageDesktop != blank %}
+                                <img class="lazyload {% if imageMobile != blank %}mobile_hide{% endif %}" data-src="{{ imageDesktop }}" alt="{{ sub.title }}">
+                                {% if imageMobile != blank %}
+                                  <img class="lazyload desktop_hide" data-src="{{ imageMobile }}" alt="{{ sub.title }}"/>
                                 {% endif %}
                             {% endif %}
                         </div>
@@ -217,16 +229,20 @@
  
                  <div class="jewellary-collection-block">
                      {% for sub in subs limit: 2 offset: continue %}
-                     {% assign subitem_handle = sub.url | handleize  | replace: 'collections-', '' %}
-                     {% assign collectionMobileImage = collections[subitem_handle].metafields.global.collection_mobile_image %}
+
+                     {% assign subitem_handle = sub.url | replace: '/collections/', '' %}
+                    {% assign data = collections[subitem_handle].metafields.global.collage_image | split: ',' %}
+                    {% assign imageDesktop = data | first %}
+                    {% assign imageMobile = data | last %}
+
                      {% if sub.title != blank %}
                      <div class="jewellary-collection-card">
                         <a class="full_link" href="{{ sub.url }}"></a>
                          <div class="image_holder">
-                            {% if collections[subitem_handle].image %}
-                                <img class="lazyload {% if collectionMobileImage != blank %}mobile_hide{% endif %}" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ sub.title }}">
-                                {% if collectionMobileImage != blank %}
-                                  <img class="lazyload desktop_hide" data-src="{{ collectionMobileImage }}" alt="{{ sub.title }}"/>
+                            {% if imageDesktop != blank %}
+                                <img class="lazyload {% if imageMobile != blank %}mobile_hide{% endif %}" data-src="{{ imageDesktop }}" alt="{{ sub.title }}">
+                                {% if imageMobile != blank %}
+                                  <img class="lazyload desktop_hide" data-src="{{ imageMobile }}" alt="{{ sub.title }}"/>
                                 {% endif %}
                             {% endif %}
                          </div>
@@ -242,16 +258,19 @@
  
                  <div class="jewellary-collection-block">
                      {% for sub in subs limit: 2 offset: continue %}
-                     {% assign subitem_handle = sub.url | handleize  | replace: 'collections-', '' %}
-                     {% assign collectionMobileImage = collections[subitem_handle].metafields.global.collection_mobile_image %}
+
+                     {% assign subitem_handle = sub.url | replace: '/collections/', '' %}
+                    {% assign data = collections[subitem_handle].metafields.global.collage_image | split: ',' %}
+                    {% assign imageDesktop = data | first %}
+                    {% assign imageMobile = data | last %}
                      {% if sub.title != blank %}
                      <div class="jewellary-collection-card">
                         <a class="full_link" href="{{ sub.url }}"></a>
                          <div class="image_holder">
-                            {% if collections[subitem_handle].image %}
-                                <img class="lazyload {% if collectionMobileImage != blank %}mobile_hide{% endif %}" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ sub.title }}">
-                                {% if collectionMobileImage != blank %}
-                                    <img class="lazyload desktop_hide" data-src="{{ collectionMobileImage }}" alt="{{ sub.title }}"/>
+                            {% if imageDesktop != blank %}
+                                <img class="lazyload {% if imageMobile != blank %}mobile_hide{% endif %}" data-src="{{ imageDesktop }}" alt="{{ sub.title }}">
+                                {% if imageMobile != blank %}
+                                    <img class="lazyload desktop_hide" data-src="{{ imageMobile }}" alt="{{ sub.title }}"/>
                                 {% endif %}
                             {% endif %}
                          </div>
@@ -324,13 +343,19 @@
                     </div>
 
                     {% for sub in subs limit: 1 %}
-                    {% assign subitem_handle = sub.url | handleize  | replace: 'collections-', '' %}
+
+                    {% assign subitem_handle = sub.url | replace: '/collections/', '' %}
+                    {% assign data = collections[subitem_handle].metafields.global.collage_image | split: ',' %}
+                    {% assign imageDesktop = data | first %}
+                    {% assign imageMobile = data | last %}
+
+
                     {% if sub.title != blank %}
                     <div class="jewellary-collection-card">
                         <a class="full_link" href="{{ sub.url }}"></a>
                         <div class="image_holder">
-                            {% if collections[subitem_handle].image %}
-                                <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ sub.title }}">
+                            {% if imageDesktop != blank %}
+                                <img class="lazyload" data-src="{{ imageDesktop }}" alt="{{ sub.title }}">
                             {% endif %}
                         </div>
                         
@@ -345,13 +370,17 @@
 
                 <div class="jewellary-collection-block">
                     {% for sub in subs limit: 2 offset: continue %}
-                    {% assign subitem_handle = sub.url | handleize  | replace: 'collections-', '' %}
+                    {% assign subitem_handle = sub.url | replace: '/collections/', '' %}
+                    {% assign data = collections[subitem_handle].metafields.global.collage_image | split: ',' %}
+                    {% assign imageDesktop = data | first %}
+                    {% assign imageMobile = data | last %}
+
                     {% if sub.title != blank %}
                     <div class="jewellary-collection-card">
                         <a class="full_link" href="{{ sub.url }}"></a>
                         <div class="image_holder">
-                            {% if collections[subitem_handle].image %}
-                                <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ sub.title }}">
+                            {% if imageDesktop != blank %}
+                                <img class="lazyload" data-src="{{ imageDesktop }}" alt="{{ sub.title }}">
                             {% endif %}
                         </div>
                         <div class="content_holder">
@@ -366,13 +395,17 @@
                 <div class="jewellary-collection-block big_column">
                     
                     {% for sub in subs limit: 1 offset: continue %}
-                    {% assign subitem_handle = sub.url | handleize  | replace: 'collections-', '' %}
+                    {% assign subitem_handle = sub.url | replace: '/collections/', '' %}
+                    {% assign data = collections[subitem_handle].metafields.global.collage_image | split: ',' %}
+                    {% assign imageDesktop = data | first %}
+                    {% assign imageMobile = data | last %}
+
                     {% if sub.title != blank %}
                     <div class="jewellary-collection-card">
                         <a class="full_link" href="{{ sub.url }}"></a>
                         <div class="image_holder">
-                           {% if collections[subitem_handle].image %}
-                               <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ sub.title }}">
+                           {% if imageDesktop != blank  %}
+                               <img class="lazyload" data-src="{{ imageDesktop }}" alt="{{ sub.title }}">
                            {% endif %}
                         </div>
 
@@ -407,19 +440,23 @@
             <div class="jewellary-collection-grid show_mobile">
                 <div class="jewellary-collection-block">
                     {% for sub in subs limit: 2 %}
-                    {% assign subitem_handle = sub.url | handleize  | replace: 'collections-', '' %}
-                    {% assign collectionMobileImage = collections[subitem_handle].metafields.global.collection_mobile_image %}
+                    {% assign subitem_handle = sub.url | replace: '/collections/', '' %}
+                    {% assign data = collections[subitem_handle].metafields.global.collage_image | split: ',' %}
+                    {% assign imageDesktop = data | first %}
+                    {% assign imageMobile = data | last %}
+
+
                     {% if sub.title != blank %}
                     <div class="jewellary-collection-card">
                         <a class="full_link" href="{{ sub.url }}"></a>
                         <div class="image_holder">
-                            {% if collections[subitem_handle].image %}
-                                {% if collectionMobileImage != blank %}
-                                    <img class="lazyload" data-src="{{ collectionMobileImage }}" alt="{{ sub.title }}"/>
-                                {% else %}
-                                    <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ sub.title }}">
+                            {% if imageDesktop != blank %}
+                                <img class="lazyload {% if imageMobile != blank %}mobile_hide{% endif %}" data-src="{{ imageDesktop }}" alt="{{ sub.title }}">
+                                {% if imageMobile != blank %}
+                                  <img class="lazyload desktop_hide" data-src="{{ imageMobile }}" alt="{{ sub.title }}"/>
                                 {% endif %}
                             {% endif %}
+
                         </div>
                         
                         <div class="content_holder">
@@ -433,17 +470,19 @@
 
                 <div class="jewellary-collection-block">
                     {% for sub in subs limit: 2 offset: continue %}
-                    {% assign subitem_handle = sub.url | handleize  | replace: 'collections-', '' %}
-                    {% assign collectionMobileImage = collections[subitem_handle].metafields.global.collection_mobile_image %}
+                    {% assign subitem_handle = sub.url | replace: '/collections/', '' %}
+                    {% assign data = collections[subitem_handle].metafields.global.collage_image | split: ',' %}
+                    {% assign imageDesktop = data | first %}
+                    {% assign imageMobile = data | last %}
+
                     {% if sub.title != blank %}
                     <div class="jewellary-collection-card">
                         <a class="full_link" href="{{ sub.url }}"></a>
                         <div class="image_holder">
-                            {% if collections[subitem_handle].image %}
-                                {% if collectionMobileImage != blank %}
-                                  <img class="lazyload" data-src="{{ collectionMobileImage }}" alt="{{ sub.title }}"/>
-                                {% else %}
-                                  <img class="lazyload" data-src="{{ collections[subitem_handle].image | img_url: 'master' }}" alt="{{ sub.title }}">
+                            {% if imageDesktop != blank %}
+                                <img class="lazyload {% if imageMobile != blank %}mobile_hide{% endif %}" data-src="{{ imageDesktop }}" alt="{{ sub.title }}">
+                                {% if imageMobile != blank %}
+                                  <img class="lazyload desktop_hide" data-src="{{ imageMobile }}" alt="{{ sub.title }}"/>
                                 {% endif %}
                             {% endif %}
                         </div>

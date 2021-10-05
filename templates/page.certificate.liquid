@@ -1,8 +1,20 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.7/pdfobject.min.js" integrity="sha512-g16L6hyoieygYYZrtuzScNFXrrbJo/lj9+1AYsw+0CYYYZ6lx5J3x9Yyzsm+D37/7jMIGh0fDqdvyYkNWbuYuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <center>
 <h1>{{ page.title }}</h1>
 {% assign pageurl = content_for_header | split:'"pageurl":"' | last | split:'"' | first %} 
-{% assign certNum = pageurl | split: '?getCert=' | last | append: '.jpg' %}
-<div class="certifcate-img-wrapper" style="max-width: 80%; margin: 0 auto;">
-    <img data-src="{{ certNum | file_url }}" class="lazyload" alt="" />
+{% assign certNum = pageurl | split: '?getCert=' | last | append: '.pdf' %}
+<div class="certifcate-img-wrapper" id="certificate-container" style="max-width: 80%; margin: 0 auto;">
+    <!-- <img data-src="{{ certNum | file_url }}" class="lazyload" alt="" /> -->
+    <!-- <iframe data-src="{{ certNum | file_url }}" class="lazyload"  width="100%">
+    This browser does not support PDFs. Please download the PDF to view it: 
+    <a href="../pdf/sample-3pp.pdf">Download PDF</a></iframe> -->
 </div>
 </center>
+<script type="text/javascript">
+var pdfUrl = `{{ certNum | file_url }}`;
+    var options = {
+   width: "100%",
+   height: "50vh"
+};
+PDFObject.embed(pdfUrl, "#certificate-container", options);
+</script>

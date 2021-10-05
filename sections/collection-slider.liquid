@@ -8,20 +8,20 @@
         {%- endif -%}
         <div class="collection-slider">
             {%- for slide in section.blocks -%}
-            {% assign collection = collections[slide.settings.select_collection] %}
-            {%- if collection != blank -%}
+            {% assign slideImg = slide.settings.col_slider_img %}
+            {% assign slideTitle = slide.settings.col_slider_title %}
+            {% assign slideLink = slide.settings.col_slider_url%}          
+            {%- if slideImg != blank and slideLink != blank -%}
             <div class="collection-slide">
-                <div class="collection-card">
-                    {%- if collection.featured_image !=blank -%}
+                <div class="collection-card">                   
                     <div class="collection-image-holder">
-                        <a href="{{ collection.url }}">
-                            <img class="lazyload" data-src="{{ collection.featured_image | img_url: 'master' }}" alt="{{ collection.title | escape  }}">
+                        <a href="{{ slideLink }}">
+                            <img class="lazyload" data-src="{{ slideImg | img_url: 'master' }}" alt="{{ slideTitle }}">
                         </a> 
                     </div>
-                    {%- endif -%}
-                    {%- if collection.title != blank -%}
+                    {%- if slideTitle != blank -%}
                     <div class="collection-image-title">
-                        <a href="{{ collection.url }}">{{ collection.title }}</a>
+                        <a href="{{ slideLink }}">{{ slideTitle }}</a>
                     </div>
                     {%- endif -%}
                 </div>
@@ -100,9 +100,20 @@
             "name": "Collection",
             "settings": [
                 {
-                    "type": "collection",
-                    "label": "Select Collection",
-                    "id": "select_collection"
+                    "type": "image_picker",
+                    "id": "col_slider_img",
+                    "label": "Collection Image"
+                },
+                {
+                    "type": "text",
+                    "id": "col_slider_title",
+                    "label": "Collection Title",
+                    "default": "Title Here..."
+                },
+                {
+                    "type": "url",
+                    "id": "col_slider_url",
+                    "label": "Colletion Link"
                 }
             ]
         }
