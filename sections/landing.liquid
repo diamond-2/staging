@@ -16,8 +16,8 @@
             <div class="landing-top-content landing-content-item">
                 <div class="landing-logo-holder">
                     <div class="landing-logo">
-                        {%- assign landinLogoDesktop = 'Diamond2_Landing_Logo.svg' | file_url -%}
-                        {%- assign landinLogoMobile = 'Diamond2_Landing_Logo_Mobile.svg' | file_url -%}
+                        {%- assign landinLogoDesktop = 'Final_D_LP_Logo.svg' | file_url -%}
+                        {%- assign landinLogoMobile = 'Final_M_LP_Logo.svg' | file_url -%}
                         <img data-src="{{ landinLogoDesktop }}" alt="diamond2" class="lazyload hide_mobile" />
                         <img src="{{ landinLogoMobile }}" alt="diamond2" class="lazyload show_mobile" />
                     </div>
@@ -45,38 +45,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function(event) {
-        // if($.cookie('landingpage') == null) {
-        // //   $('body').prepend('<div id="landing-illusion"></div>');
-        //   $('#shopify-section-landing').slideDown();
-        //   $('body').addClass('landing-exist');
-          
-        // }
-        // var lastScrollTop = 0;
-        // $(window).on('scroll', function(){            
-        //     let windowScrolled = $(window).scrollTop(); console.log(windowScrolled);
-        //     if(windowScrolled > 10){
-        //         $('body').addClass('scroll-start');
-        //         $.cookie('landingpage',2);
-        //         setTimeout(function(){
-        //             $('#shopify-section-landing').remove();
-        //             $('body').removeClass('scroll-start landing-exist');
-        //         },2000)
-        //     }
-        // });
-
-        // function removeCookies() {
-        //     $('body').addClass('scroll-start');
-        //     $.cookie('landingpage',2);
-        //     setTimeout(function(){
-        //         $('#shopify-section-landing').remove();
-        //         $('body').removeClass('scroll-start landing-exist');
-        //     },2000)
-        // }
-        // $('.remove_landing_cookie').click(function(e){
-        //     e.preventDefault();
-        //     removeCookies();
-        // });
-
         if(sessionStorage.getItem("landingSession") == null){
             $('#shopify-section-landing').slideDown();
             $('body').addClass('landing-exist');
