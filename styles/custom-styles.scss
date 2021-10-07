@@ -14689,7 +14689,9 @@ body.template-product {
 }
 
 // Diamond Guide End
-
+canvas#the-canvas {
+    max-width: 100%;
+}
 // Request Certificate Style
 .certifcate-img-wrapper a {
   margin-top: 40px;

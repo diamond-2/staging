@@ -12142,6 +12142,9 @@ body.template-product .pdp-zoom-gallery {
   .diamond_guide_to_section {
     padding-top: 20px !important; } }
 
+canvas#the-canvas {
+  max-width: 100%; }
+
 .certifcate-img-wrapper a {
   margin-top: 40px;
   display: inline-block;
