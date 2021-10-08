@@ -746,7 +746,7 @@ slate.Variants = (function() {
      */
     _onSelectChange: function() {
       var variant = this._getVariantFromOptions();
-      //console.log(variant);
+      console.log(variant);
    
       let currentVariant = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('title');
       let current_slideno = $(document).find('.product-detail-slider-thumbnail .product-detail-slider-thumbnail-slide[data-alt^="'+currentVariant+'"]').data('slick-index');
@@ -833,7 +833,6 @@ slate.Variants = (function() {
         })
       );
     },
-
 
     /**
      * Trigger event when variant Metafield changes.
@@ -9082,6 +9081,7 @@ theme.Product = (function() {
     },
 
     _updatePrice: function(evt) {
+      console.log(evt);
       var variant = evt.detail.variant;
 
       var regularPrices = this.priceContainer.querySelectorAll(

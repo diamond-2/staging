@@ -1749,6 +1749,7 @@ div#PageContainer {
                 margin-right: 7px;
                 svg {
                   display: block;
+                  width: 14px;
                 }
               }
             }
@@ -1758,7 +1759,8 @@ div#PageContainer {
       .currency-box-wrapper {
         margin: 0;
         padding: 0;
-        margin-top:53px;
+        // margin-top:53px;
+        margin-top:10px;
         margin-bottom: 20px;
         ul {
           li {
@@ -2770,33 +2772,61 @@ body{
             font-size: 16px;
             position: relative;
             padding-bottom: 5px;
-            @media(max-width: $xxl) and (min-width: $postMd) {
+            padding-right: 18px;
+            @media(max-width: $xl) and (min-width: $postMd) {
               font-size: 1.2vw;
               line-height: normal;
               padding-bottom: 0.2vw;
+            }
+            @media(max-width: $xl) and (min-width: $postLg) {
+              padding-right: 15px;
+            }
+            @media(max-width: $lg) and (min-width: $postMd) {
+              padding-right: 10px;
             }
             @media(max-width: $md) {
               font-size: 10px;
               line-height: normal;
               padding-bottom: 0;
+              padding-right: 10px;
             }
             &:after {
               content: "";
-              height: 1px;
-              display: block;
-              background: $textcolor-phanton;
-              width: 156px;
+              height: 18px;
+              background: url('https://cdn.shopify.com/s/files/1/0575/2681/2840/files/icon-right-arrow.svg') no-repeat center center;
+              background-size: contain;
               position: absolute;
-              top: 100%;
-              left: 0;
-              @include transition();
-              transform: scale(0);
-              transform-origin: left;
-              @media(max-width: $xxl) and (min-width: $postMd) {
-                width: 10.4vw;
+              right: 0;
+              width: 10px;
+              top: 0;
+              // height: 1px;
+              // display: block;
+              // background: $textcolor-phanton;
+              // width: 156px;
+              // position: absolute;
+              // top: 100%;
+              // left: 0;
+              // @include transition();
+              // transform: scale(0);
+              // transform-origin: left;
+              @media(max-width: $xl) and (min-width: $postLg) {
+                // width: 10.4vw;
+                width: 10px;
+                height: 10px;
+                top: 3px;
               }
+              @media(max-width: $lg) and (min-width: $postMd) {
+                // width: 10.4vw;
+                width: 8px;
+                height: 8px;
+                top: 2px;
+              }
+
               @media(max-width: $md) {
-                width: 86px;
+                // width: 86px;
+                width: 7px;
+                height: 7px;
+                top: 3px;
               }
             }
           }
@@ -5327,7 +5357,7 @@ body[data-template="product"] {
         background-color: $color-primary;
         border-color: $color-primary;
         color: #fff;
-        .price-item--sale {
+        .price-item--regular {
           color: inherit !important;
         }
       }
@@ -5376,11 +5406,11 @@ body[data-template="product"] {
       @media(max-width: $md) {
         font-size:inherit;
       }
-      .price-item--regular {
-        display: none;
+      .price-item--sale {
+         display: none;
       }
       &.price--on-sale {
-        .price-item--regular {
+        .price-item--sale {
           display: inline-block;
         }
       }
@@ -5389,7 +5419,7 @@ body[data-template="product"] {
         display: flex;
         align-items: center;
         .price-item {
-          &.price-item--sale {
+          &.price-item--regular {
             font-size: 24px;
             line-height: 32px;
             color: #6C1D45;
@@ -5407,7 +5437,7 @@ body[data-template="product"] {
               font-weight: 500;
             }
           }
-          &.price-item--regular {
+          &.price-item--sale {
             margin-right: 6px;
             font-size: 20px;
             line-height: 32px;

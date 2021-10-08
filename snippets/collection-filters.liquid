@@ -406,7 +406,7 @@
         }
       
       // Print Product 
-      function printProducts(prodObj){   
+      function printProducts(prodObj){
         $(document).find('[data-col-images-slider-init]').slick("unslick");
         if($('[data-collection-listing-container]').hasClass('inital-load')) {
           $('[data-collection-listing-container] [data-view="grid"] [data-init-content], .bottom-pagination-row').remove();
@@ -428,8 +428,8 @@
                 prodTags = prodObj[i].tags,
                 prodImages = prodObj[i].shopify_images,
                 prodId = prodObj[i].id;
-               // console.log('ImageLength:: === >');
-                // console.log(prodImages.length);
+               console.log('ImageLength:: === >');
+                console.log(prodImages.length);
 
             getcollectionlink = '/collections/'+getcollection;
             var _thistags = prodTags;
@@ -544,10 +544,10 @@
             if(prodQty <= 0 ){
               var prodAvaibility = 'grid-view-item--sold-out';
             }     
-            if(prodImages.length > 1 ){
+            // if(prodImages.length > 1 ){
               var prodImgSlider = 'product_images_slider';
               var prodImgSliderDyn = 'data-col-images-slider-init'
-            }    
+            // }    
 
             // productGrid += '{% if product.compare_at_price %}<div class="compare_at_price">{{ product.compare_at_price | money | remove: '.00' }}</div>{% endif %}'
             //       productGrid += '{% assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price %}'
@@ -561,9 +561,9 @@
             productGrid += '<div class="grid-view-item product-card">';
             productGrid += '<a class="grid-view-item__link grid-view-item__image-container full-width-link" href="'+getprodlink+'" style="display: none;"><span class="visually-hidden">'+prodTitle+'</span></a>';
             productGrid += '<div class="product-images-wrapper"> <div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider '+prodImgSliderDyn+'>';
-             
+             console.log()
                 for (let j = 0; j < prodImages.length; j++) {
-                  if(prodImages[j].indexOf('_XYZG') > -1) {
+                  if(prodImages[j].indexOf('xyzg') > -1) {
                     productGrid += '<div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation><div id="" class="grid-view-item__image-wrapper product-card__image-wrapper js"><div class="product_img_holder"><img data-src="'+prodImages[j]+'" alt="'+ prodTitle+'" class="grid-view-item__image lazyload"></div></div></div>'
                   }
                 }              

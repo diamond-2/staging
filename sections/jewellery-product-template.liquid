@@ -48,7 +48,7 @@
                              
                             {%- if mediaSlide -%}
                             {% assign mediaSlide = mediaThumb | downcase %}
-                            {% if  mediaSlide contains "_zyxw" %}
+                            {% if  mediaSlide contains "zyxw" %}
 
                             <div class="product-detail-slide {% if section.settings.enable_image_zoom == true %}image_zoom{% endif %}">
                                 
@@ -90,7 +90,7 @@
                         <div class="product-detail-slider-thumbnail" {% if product.media.size <  5 %} data-size="{{ product.media.size }}"{% endif %}>
                             {% for mediaThumb in product.media %}
                             {% assign mediaThumb = mediaThumb | downcase %}
-                            {% if  mediaThumb contains "_zyxw" %}
+                            {% if  mediaThumb contains "zyxw" %}
                             <div class="product-detail-slider-thumbnail-slide" data-alt="{{ mediaThumb.alt }}">
                                 {% if mediaThumb.media_type == 'image' %}  
                                 <div class="product-detail-slider-thumbnail-slide-inner">

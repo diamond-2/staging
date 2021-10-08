@@ -22,7 +22,7 @@
 {% endcomment %}
 <div class="product-single__media-group--full" data-product-single-media-group>
     {%- for media in product.media -%}
-    {% if media contains '_PDP' %}
+    {% if media contains 'zyxw' %}
     {% unless media.media_type == 'video' or  media.media_type == 'model' media.media_type == 'external_video' %}
 {% capture media_id %}FeaturedMedia-product-template-{{ media.id }}{% endcapture %}
 {% capture media_class %}product-featured-media{% endcapture %}
