@@ -406,8 +406,8 @@
             </a>
             {% if shop.customer_accounts_enabled %}
               {% if customer %}
-                <a href="{{ routes.account_url }}/logout" class="site-header__icon site-header__account logout_account_btn">
-                  {% include 'icon-logout' %}
+                <a href="{{ routes.account_url }}" class="site-header__icon site-header__account logout_account_btn">
+                  {% include 'icon-login' %}{% comment %}{% include 'icon-logout' %}{% endcomment %}
                   <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
                 </a>
               {% else %}

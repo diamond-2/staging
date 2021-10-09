@@ -10232,6 +10232,7 @@ window.addEventListener("resize", function() {
     setTimeout(function() {
       $('body').addClass('overflow-hidden');
       $('#pdp-Zoom-Gallery').addClass('visible-zoom-gallery');
+      headerHeight();
     },100);
     });
 

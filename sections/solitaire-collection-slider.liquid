@@ -29,7 +29,7 @@
             {%- endif -%}
             {%- endfor -%}
         </div>
-        {%- if section.settings.button_text -%}
+        {%- if section.settings.button_text != blank -%}
         <div class="collection-slider-bottom-btn-holder">
             <a href="{{ section.settings.button_link }}" class="glb-btn">{{ section.settings.button_text }}</a>
         </div>

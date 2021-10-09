@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  var productOnPgae = $('.product-listing');
+  var productOnPgae = $('[data-pagination].product-listing');
   var listProduct = $(productOnPgae).find('.grid--uniform');
   var nextUrl = $(productOnPgae).attr('data-pagination');
   var loadMoreBtn = $('.loadmore-btn-box');
@@ -17,9 +17,9 @@ $(document).ready(function(){
         }
     ).done(function(next_page){
         loadmoreSpiner.hide();
+        
         var newProduct = $(next_page).find('.product-listing .grid--uniform');
         var new_url = $(newProduct).closest('.product-listing').attr('data-pagination');
-        console.log(new_url)
         nextUrl = new_url;
         $(listProduct).append(newProduct.html());
         $(listProduct).find('.product_images_slider:not(.slick-initialized)').slick({ 
