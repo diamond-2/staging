@@ -13,8 +13,11 @@
 {% section 'product-recommendations' %}
 {%- endcomment -%}
 
+{% if template.suffix == 'loose-stone' %}
+{% section 'loose-stone-collection-slider' %}
+{% else %}
 {% section 'solitaire-collection-slider' %}
-
+{% endif %}
 {% section 'diamond-ambasaador-slider' %}
 
 <div id="backToCollection"></div>

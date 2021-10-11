@@ -530,12 +530,6 @@
         $('.product-detail-slider').slick('slickGoTo', slideno);
         $('.product-detail-slider .product-detail-slide[data-slick-index="'+slideno+'"]').find('video').get(0).play();
     });
-
-    // Get Certificate
-    $(document).on('click', '#search-certificate', function(){
-        let certNumber = 'cer'+$('#certificate-number').val();
-        window.location.href = "/pages/aryamond-certificate?getCert="+certNumber;
-    })
     
     function activeBorder() {
         setTimeout(function(){

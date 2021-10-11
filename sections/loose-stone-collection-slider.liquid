@@ -1,0 +1,119 @@
+
+{%- assign secHeading = section.settings.heading -%}
+{%- assign secCTALabel = section.settings.button_text -%}
+{%- assign secLink = section.settings.button_link -%}
+{%- assign selectedCol = section.settings.ls_collection -%}
+{%- assign currentProduct = product.handle -%}
+
+<div class="collection-slider-wrapper" data-product-slider>
+    <div class="dia-container">
+        {%- if  secHeading != blank -%}
+        <div class="collection-slider-header">
+            <h2>{{ secHeading }}</h2>
+        </div>
+        {%- endif -%}
+        <div class="pdp-collection-products">
+            <ul class="grid grid--uniform collection-slider">
+                {%- for product in collections[selectedCol].products -%}       
+                    {% unless product.handle == currentProduct %}         
+                        <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+                            {% include 'loose-stone-product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
+                        </li>
+                    {% endunless %}
+                {%- endfor -%}
+            </ul>
+            {% comment %}
+            {%- for slide in section.blocks -%}
+            {% assign slideImg = slide.settings.col_slider_img %}
+            {% assign slideTitle = slide.settings.col_slider_title %}
+            {% assign slideLink = slide.settings.col_slider_url%}          
+            {%- if slideImg != blank and slideLink != blank -%}
+            <div class="collection-slide">
+                <div class="collection-card">                   
+                    <div class="collection-image-holder">
+                        <a href="{{ slideLink }}">
+                            <img class="lazyload" data-src="{{ slideImg | img_url: 'master' }}" alt="{{ slideTitle }}">
+                        </a> 
+                    </div>
+                    {%- if slideTitle != blank -%}
+                    <div class="collection-image-title">
+                        <a href="{{ slideLink }}">{{ slideTitle }}</a>
+                    </div>
+                    {%- endif -%}
+                </div>
+            </div>
+            {%- endif -%}
+            {%- endfor -%}
+            {% endcomment %}
+        </div>
+        {%- if secCTALabel != blank -%}
+        <div class="collection-slider-bottom-btn-holder">
+            <a href="{{ secLink }}" class="glb-btn" aria-label="{{ secCTALabel }}">{{ secCTALabel }}</a>
+        </div>
+        {%- endif -%}
+    </div>
+</div>
+
+<script>
+    $(".collection-slider").slick({
+        dots: false,
+        autoplay: false,
+        autoplaySpeed: 5000,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        navigation: true,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: false
+                }
+            },
+            {
+                breakpoint: 767,
+                settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+                }
+            }
+        ]
+    });
+</script>
+
+{% schema %}
+  {
+    "name": "Collection Slider",
+    "settings": [
+        {
+            "type": "text",
+            "label": "heading",
+            "id": "heading"
+        },
+        {
+            "type": "collection",
+            "id": "ls_collection",
+            "label": "Choose  Collection"
+        },
+        {
+            "type": "text",
+            "label": "Button Text",
+            "id": "button_text"
+        },
+        {
+            "type": "url",
+            "label": "Button Link",
+            "id": "button_link"
+        }
+    ]
+  }
+{% endschema %}

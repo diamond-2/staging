@@ -6859,9 +6859,9 @@ body[data-template="loose-stone"] {
   }
 }
 .custom-jewellary-collections-wrapper {
-  padding-bottom: 100px;
+  padding-top: 100px;
   @media(max-width: $md) {
-    padding-bottom:60px;
+    padding-top:60px;
   }
   .custom-jewellary-collections-header {
     text-align: center;
@@ -7007,7 +7007,7 @@ body[data-template="loose-stone"] {
   .shopify-section {
     &:last-child {
       .custom-jewellary-collections-wrapper {
-        padding-bottom: 0;
+        padding-top: 0;
       }
     }
   }
@@ -14998,5 +14998,157 @@ canvas#the-canvas {
   }
   .content-with-image-wrapper {
     padding-top:0px;
+  }
+}
+.collection-slider-wrapper {
+  &[data-product-slider]{
+    .pdp-collection-products {
+      .grid__item {
+        padding: 35px;
+        margin-bottom: 6px;
+        position: relative;
+        width: 25%;
+        @media screen and (max-width: $xxl){
+          padding: 20px;
+        }
+        @media screen and (max-width: $xl) {
+          width: 50%;
+        }
+        @media screen and (max-width: $md) {
+          width: 100%;
+          padding: 0;
+          margin-bottom: 20px;
+        }
+        .grid-view-item {
+          text-align: center;
+          margin: 0;
+          position: relative;
+          z-index: 3;
+          .prodct_card_body {
+            padding: 15px 0 0;
+          }
+        }
+        .product-images-wrapper {
+          background: #fff;
+          position: relative;
+          border: 1px solid #e0e0e0;
+          overflow:hidden;
+          .full_link {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+          }
+        }
+        .grid-view-item__image-wrapper {          
+          margin-bottom: 0;
+          opacity: 1;
+          .product_img_holder {
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 100%;
+            .grid-view-item__image{
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+        .prodct_card_body {
+          .product-price-card {
+            font-size: 15px;
+            line-height: 16.2px;
+            font-weight: 300;
+            @media screen and (max-width: $xxl) {
+              font-size: 11px;
+              line-height: normal;
+            }
+            .product-price-card-row {
+              display: flex;
+              justify-content: space-between;
+              margin-top: 0px;
+              &.price_row {
+                font-size: 12px;
+                line-height: normal;
+                margin-top: 12px;
+                font-weight: 500;
+                .ragular_price {
+                  color: $textcolor-phanton;
+                }
+                .compare_at_price {
+                  text-decoration: line-through;
+                }
+              }
+            }
+          }
+        } 
+        .product-image-body-row {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          padding: 18px 10px;
+          font-size: 16px;
+          line-height: 17.28px;
+          font-weight: 500;
+          color: #6c1d45;
+          @media screen and (max-width: $xxl) {
+            font-size: 13px;
+            line-height: normal;            
+          }
+          a {
+            color: inherit;
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            &.p_more_btn {
+              .text_less {
+                display: none;
+              }
+              &.active {
+                .text_more {
+                  display: none;
+                }
+                .text_less {
+                  display: block;
+                }
+              }
+            }
+          }
+        }
+        &::after {
+          content: "";
+          display: block;
+          position: absolute;
+          height: calc(100% - 10px);
+          width: calc(100% - 10px);
+          top: 5px;
+          left: 5px;
+          background: #f8f8f8;
+          transition: all .4s;
+          -o-transition: all .4s;
+          -ms-transition: all .4s;
+          -moz-transition: all .4s;
+          -webkit-transition: all .4s;
+          transform: scale(0);
+          opacity: 0;
+          visibility: hidden;
+          height: calc(100% - 20px);
+          width: calc(100% - 20px);
+          top: 10px;
+          left: 10px;
+        }
+        &:hover{  
+          &:after {
+            transform: scale(1);
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+      }
+    }
   }
 }

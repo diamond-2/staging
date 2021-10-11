@@ -10142,7 +10142,10 @@ window.addEventListener("resize", function() {
   // sitemap mobile toggle
   $('.sitemap_accordion_trigger').click(function(){
     $(this).toggleClass('active');
+    $(this).closest('.sitemap-row').siblings().find('.sitemap_accordion_trigger').removeClass('active');
     $(this).parent().next('.sitemap-menu-grid').slideToggle();
+    $(this).closest('.sitemap-row').siblings().find('.sitemap-menu-grid').slideUp();
+
   });
 
   // Header Height
@@ -10331,7 +10334,11 @@ window.addEventListener("resize", function() {
   $('.home-scl .mobile_featured_image').html($('.home-scl .scl-collage .box--2-1 .img-box').html());
   $('.home-jcl .mobile_featured_image').html($('.home-jcl .scl-collage [class^=block-].big_block>div.full-width .img-box').html());
 
-  
+  // Get Certificate
+  // $(document).on('click', '#search-certificate', function(){
+  //   let certNumber = 'cer'+$('#certificate-number').val();
+  //   window.location.href = "/pages/aryamond-certificate?getCert="+certNumber;
+  // });
   
 });
 

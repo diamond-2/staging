@@ -5487,10 +5487,10 @@ body[data-template="loose-stone"] .product-content-section {
         display: inline-block; }
 
 .custom-jewellary-collections-wrapper {
-  padding-bottom: 100px; }
+  padding-top: 100px; }
   @media (max-width: 749px) {
     .custom-jewellary-collections-wrapper {
-      padding-bottom: 60px; } }
+      padding-top: 60px; } }
   .custom-jewellary-collections-wrapper .custom-jewellary-collections-header {
     text-align: center;
     max-width: 984px;
@@ -5610,7 +5610,7 @@ body[data-template="loose-stone"] .product-content-section {
     text-align: center; }
 
 .layout_loose-stone-plp .shopify-section:last-child .custom-jewellary-collections-wrapper {
-  padding-bottom: 0; }
+  padding-top: 0; }
 
 .layout_loose-stone-plp .solitaire-collection-wrapper .filters-toolbar-wrapper {
   margin-bottom: -5px; }
@@ -12341,3 +12341,122 @@ canvas#the-canvas {
 [data-template="jewellery-plp"] .content-with-image-wrapper,
 [data-template="collection"] .content-with-image-wrapper {
   padding-top: 0px; }
+
+.collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item {
+  padding: 35px;
+  margin-bottom: 6px;
+  position: relative;
+  width: 25%; }
+  @media screen and (max-width: 1600px) {
+    .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item {
+      padding: 20px; } }
+  @media screen and (max-width: 1199px) {
+    .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item {
+      width: 50%; } }
+  @media screen and (max-width: 749px) {
+    .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item {
+      width: 100%;
+      padding: 0;
+      margin-bottom: 20px; } }
+  .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .grid-view-item {
+    text-align: center;
+    margin: 0;
+    position: relative;
+    z-index: 3; }
+    .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .grid-view-item .prodct_card_body {
+      padding: 15px 0 0; }
+  .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .product-images-wrapper {
+    background: #fff;
+    position: relative;
+    border: 1px solid #e0e0e0;
+    overflow: hidden; }
+    .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .product-images-wrapper .full_link {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0; }
+  .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .grid-view-item__image-wrapper {
+    margin-bottom: 0;
+    opacity: 1; }
+    .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .grid-view-item__image-wrapper .product_img_holder {
+      overflow: hidden;
+      position: relative;
+      padding-bottom: 100%; }
+      .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .grid-view-item__image-wrapper .product_img_holder .grid-view-item__image {
+        height: 100%;
+        object-fit: cover; }
+  .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .prodct_card_body .product-price-card {
+    font-size: 15px;
+    line-height: 16.2px;
+    font-weight: 300; }
+    @media screen and (max-width: 1600px) {
+      .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .prodct_card_body .product-price-card {
+        font-size: 11px;
+        line-height: normal; } }
+    .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .prodct_card_body .product-price-card .product-price-card-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0px; }
+      .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .prodct_card_body .product-price-card .product-price-card-row.price_row {
+        font-size: 12px;
+        line-height: normal;
+        margin-top: 12px;
+        font-weight: 500; }
+        .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .prodct_card_body .product-price-card .product-price-card-row.price_row .ragular_price {
+          color: #6C1D45; }
+        .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .prodct_card_body .product-price-card .product-price-card-row.price_row .compare_at_price {
+          text-decoration: line-through; }
+  .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .product-image-body-row {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 10px;
+    font-size: 16px;
+    line-height: 17.28px;
+    font-weight: 500;
+    color: #6c1d45; }
+    @media screen and (max-width: 1600px) {
+      .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .product-image-body-row {
+        font-size: 13px;
+        line-height: normal; } }
+    .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .product-image-body-row a {
+      color: inherit;
+      cursor: pointer;
+      display: inline-block;
+      position: relative; }
+      .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .product-image-body-row a.p_more_btn .text_less {
+        display: none; }
+      .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .product-image-body-row a.p_more_btn.active .text_more {
+        display: none; }
+      .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .product-image-body-row a.p_more_btn.active .text_less {
+        display: block; }
+  .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item::after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: calc(100% - 10px);
+    width: calc(100% - 10px);
+    top: 5px;
+    left: 5px;
+    background: #f8f8f8;
+    transition: all .4s;
+    -o-transition: all .4s;
+    -ms-transition: all .4s;
+    -moz-transition: all .4s;
+    -webkit-transition: all .4s;
+    transform: scale(0);
+    opacity: 0;
+    visibility: hidden;
+    height: calc(100% - 20px);
+    width: calc(100% - 20px);
+    top: 10px;
+    left: 10px; }
+  .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item:hover:after {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible; }
