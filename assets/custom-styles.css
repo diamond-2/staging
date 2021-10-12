@@ -5310,7 +5310,7 @@ body[data-template="loose-stone"] .product-section-row .pdp-connect-section {
   padding-top: 75px;
   padding-left: 13px; }
   body[data-template="loose-stone"] .product-section-row .pdp-connect-section > div.connect-with-phone .left_col {
-    align-items: flex-start;
+    align-items: center;
     padding-top: 4px; }
   body[data-template="loose-stone"] .product-section-row .pdp-connect-section > div.connect-with-phone .right_col {
     padding-right: 0;
