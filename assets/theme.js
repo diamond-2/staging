@@ -747,11 +747,21 @@ slate.Variants = (function() {
     _onSelectChange: function() {
       var variant = this._getVariantFromOptions();
       console.log(variant);
-   
+      $(document).find('select[name="id"] option').removeAttr('selected');
+      let currentVariantQty = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('qty');
       let currentVariant = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('title');
       let current_slideno = $(document).find('.product-detail-slider-thumbnail .product-detail-slider-thumbnail-slide[data-alt^="'+currentVariant+'"]').data('slick-index');
+      $(document).find('select[name="id"] option[value="'+variant.id+'"]').attr('selected', 'selected');
       //console.log(current_slideno);
       $('.product-detail-slider-thumbnail').slick('slickGoTo', current_slideno);
+      // $('.cv-stock-left').text(currentVariantQty);
+      if($('body').hasClass('template-product')){
+        setTimeout(function(){
+          __cartData();
+        },500)
+        
+      }
+      
 
       this.container.dispatchEvent(
         new CustomEvent('variantChange', {

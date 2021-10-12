@@ -102,7 +102,7 @@
           {% if matchParent == linkTitle %}
           {% if block.settings.subnav_img_1 != blank %}
           {% assign imgCounter = imgCounter | plus: 1 %}
-        <li id="nav-img-block" class="nav-image-wrapper"><img class="navItemsThumb lazyload" data-src="{% if matchParent == linkTitle %}{{ block.settings.subnav_img_1 | img_url: '450x321' }}{% endif %}" alt="{{ collection.title | escape }}" /></li>
+        <li id="nav-img-block" class="nav-image-wrapper"><img class="navItemsThumb lazyload" data-src="{% if matchParent == linkTitle %}{{ block.settings.subnav_img_1 | img_url: 'master' }}{% endif %}" alt="{{ collection.title | escape }}" /></li>
         {% if imgCounter == 1 %}
         {% break %}
         {% endif %}

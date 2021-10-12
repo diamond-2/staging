@@ -431,7 +431,7 @@ body {
           line-height: normal; } }
     .centered-header-nav#AccessibleNav .site-nav .site-nav__dropdown {
       max-height: calc(100vh - 191.150px);
-      background: rgba(255, 255, 255, 0.95);
+      background: white;
       display: none; }
       @media (max-width: 1600px) {
         .centered-header-nav#AccessibleNav .site-nav .site-nav__dropdown {
@@ -3511,7 +3511,8 @@ body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3,
         padding-top: 16px; } }
 
 .collection-slider {
-  padding: 0 30px; }
+  padding: 0 30px;
+  margin-left: 0px; }
   @media (max-width: 749px) {
     .collection-slider {
       padding: 0 10px; } }
@@ -4360,7 +4361,10 @@ body[data-template="product"] .main-content {
           font-weight: 300; } }
   .product-section-row .price_inclusive {
     font-size: 13px;
-    line-height: 15.85px; }
+    line-height: 15.85px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; }
     @media (max-width: 1600px) {
       .product-section-row .price_inclusive {
         font-size: 10px;
@@ -4373,6 +4377,15 @@ body[data-template="product"] .main-content {
       .product-section-row .price_inclusive {
         font-size: 10px;
         line-height: 1.1; } }
+    @media (max-width: 749px) {
+      .product-section-row .price_inclusive span {
+        flex: 0 0 100%; } }
+    .product-section-row .price_inclusive span.cv-stock-left {
+      font-weight: 600; }
+      .product-section-row .price_inclusive span.cv-stock-left:before {
+        content: 'Only '; }
+      .product-section-row .price_inclusive span.cv-stock-left:after {
+        content: ' Stock left!'; }
   .product-section-row .delivery-check-sec {
     text-transform: uppercase;
     display: flex;

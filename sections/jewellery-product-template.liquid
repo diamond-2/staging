@@ -262,7 +262,7 @@
 
                     <select name="id" id="ProductSelect-{{ section.id }}" class="product-form__variants no-js">
                         {% for variant in product.variants %}
-                        <option data-title="{{ variant.title | handleize }}" data-color="{{ variant.option1 }}" data-size="{{ variant.option2 }}" value="{{ variant.id }}" {%- if variant==current_variant %} selected="selected" {%-endif -%}> {{ variant.title }} {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
+                        <option data-qty="{{ variant.inventory_quantity}}" data-title="{{ variant.title | handleize }}" data-color="{{ variant.option1 }}" data-size="{{ variant.option2 }}" value="{{ variant.id }}" {%- if variant==current_variant %} selected="selected" {%-endif -%}> {{ variant.title }} {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
                         </option>
                         {% endfor %}
                     </select>
@@ -321,7 +321,7 @@
 
                 </div>
 
-                <div class="price_inclusive">Price is Inclusive of Taxes</div>
+                <div class="price_inclusive"><span class="tax-msg">Price is Inclusive of Taxes</span><span class="cv-stock-left">{{current_variant.inventory_quantity }}</span></div>
                 <div class="delivery-check-sec">
                     <div class="delivery-check-title">check delivery date</div>
                     <div class="delivery-check-input">

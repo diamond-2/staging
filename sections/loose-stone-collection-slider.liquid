@@ -22,29 +22,6 @@
                     {% endunless %}
                 {%- endfor -%}
             </ul>
-            {% comment %}
-            {%- for slide in section.blocks -%}
-            {% assign slideImg = slide.settings.col_slider_img %}
-            {% assign slideTitle = slide.settings.col_slider_title %}
-            {% assign slideLink = slide.settings.col_slider_url%}          
-            {%- if slideImg != blank and slideLink != blank -%}
-            <div class="collection-slide">
-                <div class="collection-card">                   
-                    <div class="collection-image-holder">
-                        <a href="{{ slideLink }}">
-                            <img class="lazyload" data-src="{{ slideImg | img_url: 'master' }}" alt="{{ slideTitle }}">
-                        </a> 
-                    </div>
-                    {%- if slideTitle != blank -%}
-                    <div class="collection-image-title">
-                        <a href="{{ slideLink }}">{{ slideTitle }}</a>
-                    </div>
-                    {%- endif -%}
-                </div>
-            </div>
-            {%- endif -%}
-            {%- endfor -%}
-            {% endcomment %}
         </div>
         {%- if secCTALabel != blank -%}
         <div class="collection-slider-bottom-btn-holder">
@@ -53,7 +30,6 @@
         {%- endif -%}
     </div>
 </div>
-
 <script>
     $(".collection-slider").slick({
         dots: false,
