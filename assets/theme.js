@@ -758,8 +758,7 @@ slate.Variants = (function() {
       if($('body').hasClass('template-product')){
         setTimeout(function(){
           __cartData();
-        },500)
-        
+        },500);        
       }
       
 

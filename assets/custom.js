@@ -154,8 +154,8 @@ $(document).on('click', '.product-form__cart-submit:not([aria-label="Sold out"])
               $(this).closest('tr[data-cart-item]').find('[data-cart-quantity-error-message-wrapper]').removeClass('hide');
 
               setTimeout(function(){
-                $(this).closest('tr[data-cart-item]').find('[data-cart-quantity-error-message-wrapper] [data-cart-quantity-error-message]').text('');
-                $(this).closest('tr[data-cart-item]').find('[data-cart-quantity-error-message-wrapper]').addClass('hide');
+                $('tr[data-cart-item] [data-cart-quantity-error-message-wrapper] [data-cart-quantity-error-message]').text('');
+                $('tr[data-cart-item] [data-cart-quantity-error-message-wrapper]').addClass('hide');
               },3000);
             }
             
@@ -193,7 +193,7 @@ $(document).on('click', '.product-form__cart-submit:not([aria-label="Sold out"])
   
   // Remove Cart Item Start
   $('.remove_cart_item').click(function(e){
-    console.log('Remove Cart Clickedrr')   
+    console.log('Remove Cart Clicked')   
     if(!$(this).hasClass('pdp-button')) {
       e.preventDefault();
       var getDataId = $(this).closest('.cart-remove-popup').find('.cart-remove-item').attr('data-cart-item-key');
