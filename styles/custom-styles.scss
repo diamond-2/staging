@@ -5364,7 +5364,8 @@ body[data-template="product"] {
         }
       select.product-form__input {
           min-height: 0;
-          max-width: 75px;
+          min-width: 75px;
+          max-width: fit-content;
           padding: 2px 5px;
           font-size: 12px;
           margin-top: 5px;
@@ -13679,7 +13680,7 @@ body.template-product {
       }
       .custom-modal-content {
         position: relative;
-        padding-bottom: 100%;
+        // padding-bottom: 100%;
         overflow: hidden;
         iframe, embed, object {
           position: absolute;

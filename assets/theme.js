@@ -10274,15 +10274,20 @@ window.addEventListener("resize", function() {
   
   // Global Custom Modal Popup
   $('[custom-modal="trigger"]').click(function(e){
+    console.log('test');
     e.stopPropagation();
     e.preventDefault();
-    let customModalId = $(this).attr('href');
+    let customModalId = $(this).attr('href'); console.log(customModalId)
     $('[data-modal="custom-modal"]'+customModalId).addClass('customModal_Show');
     $('body').addClass('custom_modal_open');
+    setTimeout(function(){
+      $('.custom-modal-content').css('padding-bottom', '70%');
+    },300);    
   });
   $('.close-custom-modal, body').click(function(){
     $('[data-modal="custom-modal"]').removeClass('customModal_Show');
-    $('body').removeClass('custom_modal_open');
+    $('body').removeClass('custom_modal_open');    
+      $('.custom-modal-content').css('padding-bottom', '0');
   });
   $('.custom-modal-container').click(function(e){
     e.stopPropagation();

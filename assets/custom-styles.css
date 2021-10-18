@@ -4235,7 +4235,8 @@ body[data-template="product"] .main-content {
           margin-right: 0; } }
     .product-section-row .product-form__controls-group .custom-select-holder select.product-form__input {
       min-height: 0;
-      max-width: 75px;
+      min-width: 75px;
+      max-width: fit-content;
       padding: 2px 5px;
       font-size: 12px;
       margin-top: 5px;
@@ -11235,7 +11236,6 @@ body.template-product .pdp-zoom-gallery {
           cursor: pointer; }
       .custom-modal-wrapper[data-modal="custom-modal"] .custom-modal-container .custom-modal-box .custom-modal-content {
         position: relative;
-        padding-bottom: 100%;
         overflow: hidden; }
         .custom-modal-wrapper[data-modal="custom-modal"] .custom-modal-container .custom-modal-box .custom-modal-content iframe, .custom-modal-wrapper[data-modal="custom-modal"] .custom-modal-container .custom-modal-box .custom-modal-content embed, .custom-modal-wrapper[data-modal="custom-modal"] .custom-modal-container .custom-modal-box .custom-modal-content object {
           position: absolute;

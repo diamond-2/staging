@@ -1,9 +1,4 @@
-
-
-{% if ring_size_text !=blank %}
-    
 {% assign ringSizetb = ring_size_text | downcase | replace: ' ', '_' | append: '.pdf' %}
-{{ ringSizetb }}==
 {%- assign pdfURL = ringSizetb  -%}
 <div class="custom-modal-wrapper" data-modal="custom-modal" id="{{ ring_size_text | downcase | replace: ' ', '_' }}">
     <div class="custom-modal-container">
@@ -17,5 +12,3 @@
         </div>
     </div>
 </div>
-
-{% endif %}

@@ -158,7 +158,11 @@
                     <div class="product-sku-wrapper">
                         {%- if current_variant.sku != blank -%}
                         <div class="p_sku">SKU: {{ current_variant.sku }}</div>
-                        <div class="p_weight_guide"><a href="javascript:void(0);">Carat Weight Guide</a></div>
+                        {% assign caratWeightGuide = 'Carat Weight Guide' %}
+                        <div class="p_weight_guide"><a custom-modal="trigger" href="#{{ caratWeightGuide | downcase | replace: ' ', '_' }}">{{caratWeightGuide}}</a></div>        
+                        {% capture weightGuidePopup %}
+                            {% include 'weight_guide-popup', weight_guide_text: caratWeightGuide %}
+                        {% endcapture %}                    
                         {%- endif -%}
                     </div>
                     {%- endif -%}
@@ -244,7 +248,19 @@
                                     {% endfor %}
                                 </select>
                             </div>
+                            
                             {% if option.name =='Size' %}
+                            {% assign prodCategory = product.metafields.global.jewelery_category %}
+                            {% if prodCategory == 'Bangle' %}
+
+                            {% assign bangleSizeText = 'Bangle Size Guide' %}
+                            <div class="ring-size-chart"><a custom-modal="trigger" href="#{{ bangleSizeText | downcase | replace: ' ', '_' }}">{{ bangleSizeText }}</a></div>
+                            
+                            {% capture bangleSizePopup %}
+                                {% include 'bangle-size-popup', bangle_size_text: bangleSizeText %}
+                            {% endcapture %}
+
+                            {% else %}
                             <!-- Set Ring Size Text in Variable and Pass that value on 'ring-size-poup' -->
                             {% assign ringSizeText = 'Ring Size Guide' %}
                             <div class="ring-size-chart"><a custom-modal="trigger" href="#{{ ringSizeText | downcase | replace: ' ', '_' }}">{{ ringSizeText }}</a></div>
@@ -252,7 +268,7 @@
                             {% capture ringSizePopup %}
                                 {% include 'ring-size-popup', ring_size_text: ringSizeText %}
                             {% endcapture %}
-
+                            {% endif %}
                             {% endif %}
                             {% endif %}
                         </div>
@@ -478,7 +494,14 @@
     </div>
 </div>
 <!-- Add Popup Capture Code Here -->
+{% assign prodCategory = product.metafields.global.jewelery_category %}
+{% if prodCategory == 'Bangle' %}
+{{ bangleSizePopup }}
+{% else %}
 {{ ringSizePopup }}
+{% endif %}
+
+{{ weightGuidePopup }}
 
 
 <script>
