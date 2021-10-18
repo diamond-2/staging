@@ -171,7 +171,7 @@
                             {% comment %}{% include 'iocn-wislist' %} {% endcomment %}
                         </div>
                     </div>
-                   
+                   {% comment %}
                     {%- if cart.taxes_included or shop.shipping_policy.body != blank -%}
                     <div class="product__policies rte" data-product-policies>
                         {%- if cart.taxes_included -%}
@@ -182,7 +182,7 @@
                         {%- endif -%}
                     </div>
                     {%- endif -%}
-
+                    {% endcomment %}
                     {% capture "form_classes" -%}
                     product-form product-form-{{ section.id }}
                     {%- if section.settings.enable_payment_button and product.has_only_default_variant %}
