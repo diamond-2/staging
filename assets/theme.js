@@ -745,12 +745,30 @@ slate.Variants = (function() {
      * Event handler for when a variant input changes.
      */
     _onSelectChange: function() {
+      $('.product-detail-slider-grp').addClass('__updatingSlideImage');
+      $(document).find('.product-detail-slider-thumbnail .product-detail-slider-thumbnail-slide, .product-detail-slider .product-detail-slide').removeClass('showThis');
+      var featuredSlider = $('.product-detail-slider'),
+        thumbslider = $('.product-detail-slider-thumbnail');
+        featuredSlider.slick('unslick'); /* ONLY remove the classes and handlers added on initialize */
+        thumbslider.slick('unslick'); /* ONLY remove the classes and handlers added on initialize */  
+
       var variant = this._getVariantFromOptions();
-      console.log(variant);
       $(document).find('select[name="id"] option').removeAttr('selected');
       let currentVariantQty = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('qty');
       let currentVariant = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('title');
+      let currentVariantColor = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('color');
+      console.log(currentVariantColor);
       let current_slideno = $(document).find('.product-detail-slider-thumbnail .product-detail-slider-thumbnail-slide[data-alt^="'+currentVariant+'"]').data('slick-index');
+      
+      $(document).find('.product-detail-slider-thumbnail .product-detail-slider-thumbnail-slide[data-alt^="'+currentVariantColor+'"], .product-detail-slider .product-detail-slide[data-alt^="'+currentVariantColor+'"]').addClass('showThis');
+      setTimeout(function(){        
+        featuredSlider.slick(getFeaturedSliderSettings(thumbslider)); /* Initialize the slick again */
+        thumbslider.slick(getThumbSliderSettings(featuredSlider));
+        $('.product-detail-slider-grp').removeClass('__updatingSlideImage');
+      },1000);
+      
+
+
       $(document).find('select[name="id"] option[value="'+variant.id+'"]').attr('selected', 'selected');
       //console.log(current_slideno);
       $('.product-detail-slider-thumbnail').slick('slickGoTo', current_slideno);
@@ -797,8 +815,6 @@ slate.Variants = (function() {
     _updateImages: function(variant) {
       var variantImage = variant.featured_image || {};
       var currentVariantImage = this.currentVariant.featured_image || {};
-      console.log(currentVariantImage);
-
       if (
         !variant.featured_image ||
         variantImage.src === currentVariantImage.src

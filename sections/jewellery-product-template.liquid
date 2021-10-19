@@ -50,7 +50,7 @@
                             {% assign mediaSlide = mediaThumb | downcase %}
                             {% if  mediaSlide contains "zyxw" %}
 
-                            <div class="product-detail-slide {% if section.settings.enable_image_zoom == true %}image_zoom{% endif %}">
+                            <div class="product-detail-slide {% if section.settings.enable_image_zoom == true %}image_zoom{% endif %}" data-alt="{{ mediaSlide.alt }}">
                                 
                                 {% if mediaSlide.media_type == 'image' %}
                                 <div class="product-detail-slide-inner" data-scale="1.4">
@@ -505,47 +505,146 @@
 
 
 <script>
-    $('.product-detail-slider').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: true,
-        fade: true,
-        asNavFor: '.product-detail-slider-thumbnail',
-        draggable: false,
-        infinite: false,
-        autoplay:false,
-        responsive: [
-            {
-                breakpoint: 749,
-                settings: {
-                    dots: true
-                }
+
+// PDP Image slider 
+var featuredSlider = $('.product-detail-slider'),
+    thumbslider = $('.product-detail-slider-thumbnail');
+    featuredSlider.slick(getFeaturedSliderSettings(thumbslider)); /* Initialize the slick again */
+    thumbslider.slick(getThumbSliderSettings(featuredSlider));
+    // featuredSlider.slick({
+    //     slidesToShow: 1,
+    //     slidesToScroll: 1,
+    //     arrows: true,
+    //     fade: true,
+    //     asNavFor: thumbslider,
+    //     draggable: false,
+    //     infinite: false,
+    //     autoplay:false,
+    //     responsive: [
+    //         {
+    //             breakpoint: 749,
+    //             settings: {
+    //                 dots: true
+    //             }
+    //         }
+    //     ]
+    // });
+
+    
+
+// thumbslider.slick({
+//     slidesToShow: 5,
+//     slidesToScroll: 1,
+//     vertical:true,
+//     asNavFor: featuredSlider,
+//     dots: false,
+//     verticalSwiping:true,
+//     focusOnSelect: true,
+//     draggable: false,
+//     arrows: false,
+//     infinite: false,
+//     autoplay:false,
+//     centerMode: false,
+//     responsive: [
+//         {
+//             breakpoint: 991,
+//             settings: {
+//                 verticalSwiping:false,
+//                 vertical:false
+//             }
+//         }
+//     ]
+// });
+
+// Reinitialize slick slider
+function getFeaturedSliderSettings(thumbslider){
+  return {
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    fade: true,
+    asNavFor: thumbslider,
+    draggable: false,
+    infinite: false,
+    autoplay:false,
+    responsive: [
+        {
+            breakpoint: 749,
+            settings: {
+                dots: true
             }
-        ]
-    });
-    $('.product-detail-slider-thumbnail').slick({
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        vertical:true,
-        asNavFor: '.product-detail-slider',
-        dots: false,
-        verticalSwiping:true,
-        focusOnSelect: true,
-        draggable: false,
-        arrows: false,
-        infinite: false,
-        autoplay:false,
-        centerMode: false,
-        responsive: [
-            {
-                breakpoint: 991,
-                settings: {
-                    verticalSwiping:false,
-                    vertical:false
-                }
+        }
+    ]
+  }
+}
+
+// Reinitialize slick slider
+function getThumbSliderSettings(featuredSlider){
+  return {
+    infinite: false,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    asNavFor: featuredSlider,
+    dots: false,
+    arrows: true,
+    vertical: true,
+    verticalSwiping: true,
+    focusOnSelect: true,
+    responsive: [
+        {
+        breakpoint: 992,
+        settings: {
+            vertical: false,
+            adaptiveHeight: true            
             }
-        ]
-    }); 
+        }
+    ]
+  }
+}
+
+
+
+    // $('.product-detail-slider').slick({
+    //     slidesToShow: 1,
+    //     slidesToScroll: 1,
+    //     arrows: true,
+    //     fade: true,
+    //     asNavFor: '.product-detail-slider-thumbnail',
+    //     draggable: false,
+    //     infinite: false,
+    //     autoplay:false,
+    //     responsive: [
+    //         {
+    //             breakpoint: 749,
+    //             settings: {
+    //                 dots: true
+    //             }
+    //         }
+    //     ]
+    // });
+    // $('.product-detail-slider-thumbnail').slick({
+    //     slidesToShow: 5,
+    //     slidesToScroll: 1,
+    //     vertical:true,
+    //     asNavFor: '.product-detail-slider',
+    //     dots: false,
+    //     verticalSwiping:true,
+    //     focusOnSelect: true,
+    //     draggable: false,
+    //     arrows: false,
+    //     infinite: false,
+    //     autoplay:false,
+    //     centerMode: false,
+    //     responsive: [
+    //         {
+    //             breakpoint: 991,
+    //             settings: {
+    //                 verticalSwiping:false,
+    //                 vertical:false
+    //             }
+    //         }
+    //     ]
+    // }); 
     
     // Go to 360 view Slide Mobile
     $('.mobile-3d-img').click(function(e) {

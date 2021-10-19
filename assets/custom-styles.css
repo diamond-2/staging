@@ -3719,7 +3719,10 @@ body[data-template="product"] .main-content {
           padding-top: 20px; } }
     .product-detail-slider-wrapper .product-detail-slider-thumbnail-wrapper .product-detail-slider-thumbnail.slick-vertical .slick-slide {
       border: none;
-      cursor: pointer; }
+      cursor: pointer;
+      display: none; }
+      .product-detail-slider-wrapper .product-detail-slider-thumbnail-wrapper .product-detail-slider-thumbnail.slick-vertical .slick-slide.showThis {
+        display: block; }
     .product-detail-slider-wrapper .product-detail-slider-thumbnail-wrapper .right-border-line {
       position: absolute;
       height: 100%;
@@ -3780,6 +3783,10 @@ body[data-template="product"] .main-content {
         .product-detail-slider-wrapper .product-detail-slider-holder .product-detail-slider {
           border: none;
           padding-bottom: 20px; } }
+      .product-detail-slider-wrapper .product-detail-slider-holder .product-detail-slider .product-detail-slide {
+        display: none; }
+        .product-detail-slider-wrapper .product-detail-slider-holder .product-detail-slider .product-detail-slide.showThis {
+          display: block; }
       .product-detail-slider-wrapper .product-detail-slider-holder .product-detail-slider .product-detail-slide-inner {
         display: flex;
         align-items: center;
@@ -3940,6 +3947,19 @@ body[data-template="product"] .main-content {
         width: 100%;
         position: relative;
         z-index: 4; } }
+    .product-section-row .product-detail-slider-grp.__updatingSlideImage {
+      overflow: hidden;
+      max-height: 40vw; }
+      .product-section-row .product-detail-slider-grp.__updatingSlideImage:after {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        background: white url("//cdn.shopify.com/s/files/1/0575/2681/2840/t/2/assets/img_loader2.gif") no-repeat center;
+        left: 0;
+        z-index: 9999;
+        top: 0;
+        background-size: 50%; }
   .product-section-row .product-detail-content-column {
     width: 35.2%;
     padding-left: 68px; }
