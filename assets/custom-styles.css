@@ -4240,6 +4240,7 @@ body[data-template="product"] .main-content {
       padding: 2px 5px;
       font-size: 12px;
       margin-top: 5px;
+      padding-right: 15px;
       background-position: right 3px center; }
       @media (max-width: 749px) {
         .product-section-row .product-form__controls-group .custom-select-holder select.product-form__input {
