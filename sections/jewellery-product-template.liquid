@@ -655,28 +655,28 @@ function getThumbSliderSettings(featuredSlider){
     
     function activeBorder() {
         setTimeout(function(){
-            $(".slide-active-border").css({
-                height: $(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").height(),
-                top: $(".product-detail-slider-thumbnail .slick-slide.slick-current").position().top
+            $(document).find(".slide-active-border").css({
+                height: $(document).find(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").height(),
+                top: $(document).find(".product-detail-slider-thumbnail .slick-slide.slick-current").position().top
             });
         },100);
-        $(".product-detail-slider-thumbnail .slick-slide").click(function() {
+        $(document).on('click', '.product-detail-slider-thumbnail .slick-slide', function() {
             var borederHeight = $(this).children('.product-detail-slider-thumbnail-slide-inner').height();
                 borederPos = $(this).children('.product-detail-slider-thumbnail-slide-inner').position().top;
-            $(".slide-active-border").css({
+            $(document).find(".slide-active-border").css({
                 height: borederHeight,
                 top: borederPos
             })
         });
     }
     window.addEventListener("load", function(){
-        $('.product-detail-slider-thumbnail .slick-track').prepend('<div class="slide-active-border"></div>');
+        $(document).find('.product-detail-slider-thumbnail .slick-track').prepend('<div class="slide-active-border"></div>');
         activeBorder();
         // border mover on Arrow click
-        $(".product-detail-slider-wrapper .slick-arrow").click(function() {
+        $(document).on('click', '.product-detail-slider-wrapper .slick-arrow', function() {
             $(".slide-active-border").css({
-                height: $(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").height(),
-                top: $(".product-detail-slider-thumbnail .slick-slide.slick-current").position().top
+                height: $(document).find(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").height(),
+                top: $(document).find(".product-detail-slider-thumbnail .slick-slide.slick-current").position().top
             });
         });    
     });
