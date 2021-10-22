@@ -1,0 +1,54 @@
+{%- assign heading = section.settings.coa-heading -%}
+{%- assign content = section.settings.coa-content -%}
+{%- assign front_img = section.settings.coa_image_front -%}
+{%- assign back_img = section.settings.coa_image_back -%}
+<center>
+{%- if heading != blank -%}
+    <div class="section-header-glb text-center"><h2>{{ heading }}</h2></div>
+{% else %}
+    <div class="section-header-glb text-center"><h2>{{ page.title }}</h2></div>
+{% endif %}
+<div class="rte">
+    {%- if content != blank -%}
+    {{ content }}
+{%- else -%}
+    {{ page.content }}
+{%- endif -%}    
+</div>
+{%- if front_img != blank or back_img != blank -%}
+<div class="coa-img-wrapper">
+    {% if front_img != blank %}<div class="coa-img"><img data-src="{{ front_img | img_url: 'original' }}" class="lazyload coa-front" alt="" /></div>{% endif %}
+    {% if back_img != blank %}<div class="coa-img"><img data-src="{{ back_img | img_url: 'original' }}" class="lazyload coa-back" alt="" /></div>{% endif %}
+</div>
+{%- endif -%}
+
+</center>
+{% schema %}
+{
+    "name": "Warranty Page",
+    "class": "lw-coa",
+    "settings": [
+        {
+            "type": "text",
+            "id": "coa-heading",
+            "label": "Section heading"
+        },
+        {
+            "type": "html",
+            "id": "coa-content",
+            "label": "Section content"
+        },
+        {
+            "type": "image_picker",
+            "id": "coa_image_front",
+            "label": "Select Front Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "coa_image_back",
+            "label": "Select Back Image"
+        }
+    ]
+    
+}
+{% endschema %}
