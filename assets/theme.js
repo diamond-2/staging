@@ -10353,10 +10353,14 @@ window.addEventListener("resize", function() {
   $('.home-jcl .mobile_featured_image').html($('.home-jcl .scl-collage [class^=block-].big_block>div.full-width .img-box').html());
 
   // Get Certificate
-  // $(document).on('click', '#search-certificate', function(){
-  //   let certNumber = 'cer'+$('#certificate-number').val();
-  //   window.location.href = "/pages/aryamond-certificate?getCert="+certNumber;
-  // });
+  $(document).on('click', '#search-certificate', function(){
+    
+    if(window.innerWidth > 1024){
+      window.location.href = "/pages/aryamond-certificate?getCert="+certNumber;
+    }
+    let certNumber = 'cer'+$('#certificate-number').val();
+    
+  });
   
 });
 
