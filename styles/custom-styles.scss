@@ -1161,6 +1161,28 @@ div#PageContainer {
           padding:0;
           margin:0;
         }
+        &.site-header__wishlist {
+          @media screen and (max-width: $md) {
+            margin-top: 18px!important;
+          }
+          svg {
+            width: 36px;
+            height: auto;
+            @media screen and (max-width: $xxl) {
+              width: 1.7vw!important;              
+            }
+            @media screen and (max-width: $xl) {
+              width: 16px!important;              
+            }
+            @media screen and (max-width: $md) {
+              width: 15px!important;              
+            }            
+            path {
+              fill: none;
+              stroke-width: 1.2px;
+            }
+          }
+        }
       }
     }
   }
@@ -1831,7 +1853,7 @@ div#PageContainer {
     position: fixed;
     width: 100%;
     height: 100%;
-    z-index: 99999;
+    z-index: 999999;
     top: 0;
     display: none;
     // -webkit-transform: translateY(-100%);

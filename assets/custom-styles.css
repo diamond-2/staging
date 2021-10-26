@@ -660,6 +660,24 @@ div#PageContainer.js-menu--is-open {
       .site-header .site-header__mobile-nav .site-header__icons .site-header__icon {
         padding: 0;
         margin: 0; } }
+    @media screen and (max-width: 749px) {
+      .site-header .site-header__mobile-nav .site-header__icons .site-header__icon.site-header__wishlist {
+        margin-top: 18px !important; } }
+    .site-header .site-header__mobile-nav .site-header__icons .site-header__icon.site-header__wishlist svg {
+      width: 36px;
+      height: auto; }
+      @media screen and (max-width: 1600px) {
+        .site-header .site-header__mobile-nav .site-header__icons .site-header__icon.site-header__wishlist svg {
+          width: 1.7vw !important; } }
+      @media screen and (max-width: 1199px) {
+        .site-header .site-header__mobile-nav .site-header__icons .site-header__icon.site-header__wishlist svg {
+          width: 16px !important; } }
+      @media screen and (max-width: 749px) {
+        .site-header .site-header__mobile-nav .site-header__icons .site-header__icon.site-header__wishlist svg {
+          width: 15px !important; } }
+      .site-header .site-header__mobile-nav .site-header__icons .site-header__icon.site-header__wishlist svg path {
+        fill: none;
+        stroke-width: 1.2px; }
 
 .page-container {
   transform: none !important; }
@@ -1137,7 +1155,7 @@ body.js-menu--is-open {
   position: fixed;
   width: 100%;
   height: 100%;
-  z-index: 99999;
+  z-index: 999999;
   top: 0;
   display: none; }
   #shopify-section-landing #main-landing-page .landing-banner {
