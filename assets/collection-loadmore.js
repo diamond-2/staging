@@ -16,7 +16,20 @@ $(document).ready(function(){
           }
         }
     ).done(function(next_page){
-        console.log(next_page);
+        
+        let updateCountLimit = parseInt($('.__product-count__limit').text());
+        const prodCountInit = $('.__product-count__initial').data('pcinit'); console.log('prodCountInit--> ', prodCountInit)
+        const prodCountLimit = 16; console.log('prodCountLimit--> ', prodCountLimit)
+        const prodCountTotal = $('.__product-count__totalCount').data('tpcount'); console.log('prodCountTotal--> ', prodCountTotal);
+        let diffPcount = prodCountTotal - updateCountLimit;
+        if(prodCountTotal > updateCountLimit && diffPcount >= prodCountLimit) {
+          updateCountLimit = updateCountLimit + prodCountLimit
+          $('.__product-count__limit[data-pclimit]').text(updateCountLimit);
+
+        } else if(prodCountTotal > updateCountLimit && diffPcount < prodCountLimit)  {
+          updateCountLimit = updateCountLimit + diffPcount;
+          $('.__product-count__limit[data-pclimit]').text(updateCountLimit);
+        }
         loadmoreSpiner.hide();        
         var newProduct = $(next_page).find('.product-listing .grid--uniform');
         var new_url = $(newProduct).closest('.product-listing').attr('data-pagination');

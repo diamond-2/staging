@@ -32,7 +32,7 @@
             <div class="selected-filer-options" data-active-filters></div>
 
             <div class="filters-toolbar__item filters-toolbar__item--count">
-              <span class="filters-toolbar__product-count">Showing {% if collection.products_count > 0 %}<span class="__product-count__initial">1</span>{% else %}<span class="__product-count__initial">0</span>{% endif %} - <span class="__product-count__limit">{{ limit }}</span> of <span class="__product-count__totalCount">{{ collection.products_count }}</span></span>
+              <span class="filters-toolbar__product-count">Showing {% if collection.products_count > 0 %}<span class="__product-count__initial" data-pcinit="1">1</span>{% else %}<span class="__product-count__initial" data-pcinit="0">0</span>{% endif %} - <span class="__product-count__limit" data-pclimit="{{ limit }}">{{ limit }}</span> of <span class="__product-count__totalCount" data-tpcount="{{ collection.products_count }}">{{ collection.products_count }}</span></span>
             </div>
 
             <div class="filter_right_column">
