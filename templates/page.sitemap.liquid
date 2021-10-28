@@ -102,7 +102,9 @@
 
 <script>
     $('#AccessibleNav .site-nav--has-dropdown').each(function(e){
-        let imageS = $(this).find('.nav-image-wrapper img').clone();
-        $('.sitemap-row').eq(e).find('.sitemap-collection-image .sitemap-col-img a').append(imageS);
+        // let imageS = $(this).find('.nav-image-wrapper img').clone();
+        let imageSrc = $(this).find('.nav-image-wrapper img').data('sitemapimg');
+        let imgTag = '<img class="navItemsThumb lazyloaded" src="'+imageSrc+'" alt="">';
+        $('.sitemap-row').eq(e).find('.sitemap-collection-image .sitemap-col-img a').append(imgTag);
     });
 </script>
