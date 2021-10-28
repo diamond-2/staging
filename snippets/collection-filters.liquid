@@ -410,7 +410,7 @@
         $(document).find('[data-col-images-slider-init]').slick("unslick");
         if($('[data-collection-listing-container]').hasClass('inital-load')) {
           $('[data-collection-listing-container] [data-view="grid"] [data-init-content], .bottom-pagination-row').remove();
-          $('[data-collection-listing-container] [data-view="grid"] [data-list-item ]').empty();
+          $('[data-collection-listing-container] [data-view="grid"] [data-list-item ], [data-collection-listing-container] .list-view-items tbody').empty();
         }        
         var productGrid = '';
         var productList = '';
@@ -441,11 +441,13 @@
                 var prodComparePrice = parseInt(prodObj[i].list_price)*100;
             //product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price 
                 //prodComparePrice = theme.Currency.formatMoney(prodComparePrice, theme.moneyFormat).replace('.00','')
+                if($('body').attr('data-template') == 'loose-stone-plp'){ 
+                  ItemPrice += '<td class="price_td">'+theme.Currency.formatMoney(prodPrice, theme.moneyFormat).replace('.00','')+'</td>';
+                } else{
                 if(prodComparePrice > prodPrice) {
                   var productDiscount =  prodComparePrice / (prodComparePrice - prodPrice);
                   productDiscount = productDiscount.toFixed(2);
-                  console.log(productDiscount);
-                  
+                  console.log(productDiscount);                  
                   ItemPrice += '<div class="product-price-card-row price_row">';
                   ItemPrice += '<div class="ragular_price">'+theme.Currency.formatMoney(prodPrice, theme.moneyFormat).replace('.00','')+'</div>';
                   ItemPrice += '<div class="compare_at_price">'+theme.Currency.formatMoney(prodComparePrice, theme.moneyFormat).replace('.00','')+'</div>';
@@ -455,13 +457,15 @@
                   ItemPrice += '<div class="product-price-card-row price_row">';
                   ItemPrice += '<div class="ragular_price">'+theme.Currency.formatMoney(prodPrice, theme.moneyFormat).replace('.00','')+'</div>';
                   ItemPrice += '<div class="compare_at_price"></div>';
-                  ItemPrice += '<div class="product_discount"></div>';
+                  ItemPrice += '<div class=b"product_discount"></div>';
                   ItemPrice += '</div>';
                 }
+              }
 
                   console.log('AAA');
 
             var ldTableContent = '';
+            var ldListTableContent = '';
             var ldGridContent = '';
             var ldGridContentMob = '';
             var jwGridTitle = '';
@@ -482,6 +486,13 @@
               if(_thistags[i].includes('LDCT:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
               if(_thistags[i].includes('LDSHAPE:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
               if(_thistags[i].includes('LDCOLOR:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
+
+              if(_thistags[i].includes('LDSHAPE:')){ldListTableContent += '<td class="shape_td"><a href="{{ product.url }}"><img src="//cdn.shopify.com/s/files/1/0575/2681/2840/t/2/assets/list_360.png" alt="360 View" /><span class="text">'+tagVal+'</span>';}
+              ldListTableContent += ItemPrice;
+              if(_thistags[i].includes('LDCT:')){ldListTableContent += '<td class="care-tdt">'+tagVal+'</td>';}
+              if(_thistags[i].includes('LDCOLOR:')){ldListTableContent += '<td class="color_td">'+tagVal+'</td>';}
+              if(_thistags[i].includes('LDPOLISH:')){ldListTableContent += '<td class="cut_td">'+tagVal+'</td>';}
+              if(_thistags[i].includes('LDCLARITY:')){ldListTableContent += '<td class="clarity_td">'+tagVal+'</td>';}
               }
             })
             ldGridContent += '</div>';
@@ -563,6 +574,10 @@
                   productGrid += '</tbody></table>';
                   productGrid += '</div>'
                   productGrid += '</div>';
+                  productList += '<td class="wishlist_td"><a href="#"><span class="wishlist-Icon"></span>></a></td>';
+                  productList += '<td class="shape_td"><a href="{{ product.url }}"><img src="//cdn.shopify.com/s/files/1/0575/2681/2840/t/2/assets/list_360.png" alt="360 View" /><span class="text">'+jwGridTitle+'</span></a></td>';
+                  productList += ldListTableContent;
+                  productList += '</tr>';
                 }
                 productGrid += '</div>'
                 productGrid += '<div class="prodct_card_body">' 
@@ -586,9 +601,10 @@
         });
         
             // productGrid += '</ul>';
-
-            // // console.log(productGrid);
-                $('[data-collection-listing-container] [data-view="grid"] [data-list-item]').append(productGrid).removeClass('hide');   
+            console.log('ProductList ==>')
+             console.log(productList);
+                $('[data-collection-listing-container] [data-view="grid"] [data-list-item]').append(productGrid).removeClass('hide');  
+                $('[data-collection-listing-container] .list-view-items tbody').append(productList).removeClass('hide'); 
                  
                 var len = $(document).find('.dynamic-pagination span a').length;
                 var txt = Number($(document).find('.dynamic-pagination span a.active').text());

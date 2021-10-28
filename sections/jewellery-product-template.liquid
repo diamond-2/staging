@@ -347,11 +347,15 @@
     </svg></span>
                         <input type="text" id="delivery-check" placeholder="Enter pincode">
                     </div>
+                    {% if product.avaialable and productMetafield[delivery_days_instock] != blank %}
+                        <div class="delivery-check-date">{{ productMetafield[delivery_days_instock] }}</div>
+                    {% else %}
                     {%- if product.available and  productMetafield[delivery_days_instock] != blank -%}
                         <div class="delivery-check-date">{{ productMetafield[delivery_days_instock] }}</div>
                     {% else %}
                         <div class="delivery-check-date">{{ productMetafield[delivery_days_outofstock] }}</div>
                     {%- endif -%}
+                    {% endif %}
                 </div>
 
                 <div class="product-details-btn-grid">
@@ -377,7 +381,7 @@
                             <span class="text">to order by  phone</span>
                         </div>
                         <div class="right_col">
-                            <a href="tel:+8002278400">1-800-227-8400</a>
+                            <a href="tel:+8002278400">+65(800)4922522</a>
                         </div>
                     </div>
                     <div class="pdp-warranty-sec">

@@ -377,8 +377,12 @@ span.clear-filter {
     }
 }
 /* Hide filters on Live theme */
-/* .filter-toolbar-wrapper-mobile.desktop_hide,
+.filter-toolbar-wrapper-mobile.desktop_hide,
 .filters-toolbar-label,
-.filters-toolbar {
+.filters-toolbar,
+.filter_type2 .filters-toolbar__item-wrapper .filter_right_column .product_view_item_grp{
     display: none!important;
-}    */
+}
+[data-template="loose-stone-plp"] .filter_type2 .filters-toolbar__item-wrapper .filter_right_column .product_view_item_grp{
+    display: flex!important;
+}
