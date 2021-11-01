@@ -12542,3 +12542,64 @@ canvas#the-canvas {
 .getCertificate {
   text-align: center;
   padding: 50px 0 0; }
+
+#feedbackForm-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -99999;
+  opacity: 0;
+  visibility: hidden; }
+
+#feedbackForm-contaier {
+  position: fixed;
+  width: 100%;
+  max-width: 435px;
+  padding: 30px;
+  top: 50%;
+  left: 50%;
+  z-index: -99999;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background: #ffffff; }
+  #feedbackForm-contaier h2 {
+    color: #6C1D45;
+    font-size: 24px;
+    line-height: 1;
+    font-family: 'Spectral';
+    text-align: center;
+    letter-spacing: -1px;
+    text-transform: none;
+    padding-top: 12px; }
+  #feedbackForm-contaier #close-feedbackForn {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    border: none;
+    background: none;
+    position: absolute;
+    right: 20px;
+    top: 20px; }
+    #feedbackForm-contaier #close-feedbackForn svg {
+      width: 12px; }
+  #feedbackForm-contaier .sp-form .glb-btn {
+    max-width: 100%; }
+
+.feedbackFromVisible #feedbackForm-overlay,
+.feedbackFromVisible #feedbackForm-contaier {
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible; }
+
+.feedbackFromVisible #feedbackForm-contaier {
+  z-index: 10000; }

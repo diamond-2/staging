@@ -15258,3 +15258,72 @@ canvas#the-canvas {
   text-align: center;
   padding: 50px 0 0;
 }
+
+// Feedback form
+#feedbackForm-overlay {
+  position:fixed;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left:0;
+  background: rgba(0,0,0,0.5);
+  z-index: -99999;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#feedbackForm-contaier {
+  position:fixed;
+  width: 100%;
+  max-width: 435px;
+  padding: 30px;
+  top:50%;
+  left:50%;
+  z-index: -99999;
+  opacity: 0;
+  visibility: hidden;
+  @include prefix-transform-translate();
+  background: #ffffff;
+  h2{
+    color: $textcolor-phanton;
+    font-size: 24px;
+    line-height: 1;
+    font-family: 'Spectral';
+    text-align: center;
+    letter-spacing: -1px;
+    text-transform: none;
+    padding-top: 12px;
+  }
+  #close-feedbackForn {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    border: none;
+    background: none;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    svg {
+      width: 12px;
+    }
+  }
+  .sp-form{
+    .glb-btn{
+      max-width: 100%;
+    }
+  }
+}
+.feedbackFromVisible {
+  #feedbackForm-overlay,
+  #feedbackForm-contaier {
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+  }
+  #feedbackForm-contaier {
+    z-index: 10000;
+  }
+}
+

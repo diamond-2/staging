@@ -10361,8 +10361,103 @@ window.addEventListener("resize", function() {
     let certNumber = 'cer'+$('#certificate-number').val();
     
   });
+
+  // Show Feedback From
+  $(document).on('click', '#feedbackForm', function(){
+    $('body').addClass('feedbackFromVisible');
+  });
+
+  $(document).on('click', '#feedbackForm-overlay, #close-feedbackForn', function(){
+    $('body').removeClass('feedbackFromVisible');
+  })
+
+
+  // contact form validation
+  $("input[type='tel']").on('input', function(e) {
+    $(this).val($(this).val().replace(/[^0-9]/g, ''));
+}); 
+
+function $validateForm($this) {
+  if($this.find('input[name="contact[Name]"]').length > 0  && $this.find('input[name="contact[Phone Number]"]').length > 0 ){
+    var firstName = $this.find('input[name="contact[Name]"]').val().trim();
+    var nameRegx = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z0-9]*)*$/;
+  
+  
+    var thisPhone = $this.find('input[name="contact[Phone Number]"]').val().trim();
+    var regmm='^[0-9]{10}$';
+    var regmob = new RegExp(regmm);
+ 
+    if (firstName == "" || firstName == null ) {
+        $this.find('input[name="contact[Name]"]').addClass('form-error').next('.msg-error').text("Enter Your Name Name").css('display','block');
+    } else if (nameRegx.test(firstName) == false ){
+        $this.find('input[name="contact[Name]"]').addClass('form-error').next('.msg-error').text("Please Enter Valid Name").css('display','block');
+    } else {
+        $this.find('input[name="contact[Name]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+    }
+    if (thisPhone.length != 10 || thisPhone == null || regmob.test(thisPhone) == false) {
+        $this.find('input[name="contact[Phone Number]"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Phone Number").css('display','block');
+    } else {
+        $this.find('input[name="contact[Phone Number]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+    }
+  }
+}
+function $validateEmail($this) {
+    var thisEmail = $this.find('input[name="contact[email]"]').val();
+    const reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var proceed =  reg.test(thisEmail);
+    if (thisEmail == "" || thisEmail == null || proceed == false) {
+        $this.find('input[name="contact[email]"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Email Address").css('display','block');
+    } else {
+        $this.find('input[name="contact[email]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+    }
+}
+
+$(document).on('click', 'button[type="button"]', function(e) {
+    var $this = $(this).closest('form');
+
+    // remove Error Msg After 3s
+    removeError();
+
+    //Write here your validations
+    //And use this to prevent the form from submiting in case validations are not met.
+    if($this.hasClass('contact-form')) {
+        $validateForm($this);
+        $validateEmail($this);
+    }
+    if($this.find('input.form-error').length > 0) {
+        return false;
+    } else {
+        $this.submit();
+    }
+});
+$('form').on('keyup', 'input', function() {
+    $(this).removeClass('form-error').next('.msg-error').css('display','none');
+});
+
+
+
   
 });
+
+// Remove Message After 3s
+function removeSuccessMessage() {
+  setTimeout(function(){
+      var uri = window.location.toString();
+      if (uri.indexOf("?contact_posted") > 0) {
+          var clean_uri = uri.substring(0, uri.indexOf("?"));
+          window.history.replaceState({}, document.title, clean_uri);
+      }
+      $('.form-message').remove();
+  },3000)
+}
+removeSuccessMessage();
+
+function removeError() {
+  setTimeout(function(){
+      $('.msg-error').css('display','none');
+      $('.sp-form .input-box').removeClass('form-error');
+  },3000)
+}
 
 var showMobileNav = false;
 function fixedHeaderBg(scrollPosition) {

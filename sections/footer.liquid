@@ -218,7 +218,7 @@
                         {% if link.links != blank %}
                         <ul class="site-footer__sub-linklist">
                           {% for childlink in link.links %}
-                            <li class="site-footer__sub-linklist-item" data-level="level-1">
+                            <li class="site-footer__sub-linklist-item" data-level="level-1" {% if childlink.title contains 'Feedback'%}id="feedbackForm"{% endif %}>
                               <a href="{{ childlink.url }}" aria-label="{{ childlink.title }}">{{ childlink.title | replace: '®', '<sup>®</sup>' }}</a>
                             </li>
                         {% endfor %}
