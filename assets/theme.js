@@ -9802,6 +9802,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
     });
   },1000);
 
+  $(window).on('scroll', function(){
+    if($(window).scrollTop() > 50){
+      $('.chat-widget-wrapper').addClass('visibile-chat-widget')
+    }
+    
+  });
+
 var $header = document.getElementById("shopify-section-header");  
 var navParentEle = $(document).find('.site-header__mobile-nav').innerWidth()/2;
 
