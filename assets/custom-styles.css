@@ -12560,9 +12560,9 @@ canvas#the-canvas {
 
 #feedbackForm-contaier {
   position: fixed;
-  width: 100%;
-  max-width: 435px;
-  padding: 30px;
+  width: 90%;
+  max-width: 470px;
+  padding: 30px 30px 50px;
   top: 50%;
   left: 50%;
   z-index: -99999;
@@ -12576,13 +12576,13 @@ canvas#the-canvas {
   background: #ffffff; }
   #feedbackForm-contaier h2 {
     color: #6C1D45;
-    font-size: 24px;
+    font-size: 26px;
     line-height: 1;
     font-family: 'Spectral';
     text-align: center;
     letter-spacing: -1px;
     text-transform: none;
-    padding-top: 12px; }
+    padding-top: 20px; }
   #feedbackForm-contaier #close-feedbackForn {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -12592,12 +12592,26 @@ canvas#the-canvas {
     border: none;
     background: none;
     position: absolute;
-    right: 20px;
-    top: 20px; }
+    right: 24px;
+    top: 24px; }
     #feedbackForm-contaier #close-feedbackForn svg {
       width: 12px; }
-  #feedbackForm-contaier .sp-form .glb-btn {
-    max-width: 100%; }
+  #feedbackForm-contaier .sp-form {
+    padding-top: 20px; }
+    #feedbackForm-contaier .sp-form .glb-btn {
+      max-width: 100%;
+      font-size: 16px;
+      letter-spacing: -0.5px;
+      padding: 5px 20px; }
+    #feedbackForm-contaier .sp-form .input-box {
+      height: 40px; }
+    #feedbackForm-contaier .sp-form textarea {
+      height: 90px !important; }
+    #feedbackForm-contaier .sp-form label {
+      font-size: 16px;
+      font-weight: 300;
+      padding-bottom: 5px;
+      margin-bottom: 0px; }
 
 .feedbackFromVisible #feedbackForm-overlay,
 .feedbackFromVisible #feedbackForm-contaier {

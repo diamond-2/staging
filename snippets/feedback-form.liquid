@@ -5,14 +5,14 @@
     </button>
     <h2>Give Us<br/>Your Feedback</h2>
     
-    <div class="contact-form sp-form">
+    <div class=" sp-form">
         {%- assign formId = 'userFeedbackForm' -%}
-        {% form 'contact', id: formId %}
+        {% form 'contact', id: formId, class: 'userFeedbackForm' %}
             {% include 'form-status', form: form, form_id: formId %}           
 
             <div class="custom-form-group">
-                <label for="{{ formId }}-email">{{ 'contact.form.email' | t }}</label>
-                <input class="input-box required"
+                <label for="{{ formId }}-email">{{ 'contact.form.email' | t }}(Optional)</label>
+                <input class="input-box"
                 type="email"
                 id="{{ formId }}-email"
                 name="contact[email]"
@@ -38,7 +38,7 @@
 
             <div class="custom-form-group">
                 <label for="{{ formId }}-message">Comment</label>
-                <textarea maxlength="250" class="input-box required" rows="10" id="{{ formId }}-comment" name="contact[{{ 'contact.form.message' | t }}]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+                <textarea maxlength="250" class="input-box required" rows="10" id="{{ formId }}-comment" name="contact[{{ 'contact.form.message' | t }}]" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
                 <span class="msg-error"></span>
             </div>
             <div class="actions">

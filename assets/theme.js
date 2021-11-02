@@ -10434,7 +10434,17 @@ $(document).on('click', 'button[type="button"]', function(e) {
     if($this.find('input.form-error').length > 0) {
         return false;
     } else {
+      if($this.hasClass('userFeedbackForm')) {
+        let checkComment = $this.closest('form').find('#userFeedbackForm-comment').val();
+        if(checkComment == ''){
+          $this.closest('form').find('#userFeedbackForm-comment').addClass('form-error').next('.msg-error').text("Please enter your feedback").css('display','block');
+        } else {
+          $this.closest('form').find('#userFeedbackForm-comment').removeClass('form-error').next('.msg-error').empty().css('display','none');
+          $this.submit();
+        }     
+      }else {
         $this.submit();
+      }        
     }
 });
 $('form').on('keyup', 'input', function() {
