@@ -261,6 +261,22 @@
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_min_stn_ttl_crt_wt] }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
                                             </tr>
                                             {% endif %}
+
+                                            {% if productMetafield[tableContent_min_ttl_crt_wgt] != blank %}
+                                            <tr data-tooltip="jewstnsetting" data-row="{{ tableContent_min_ttl_crt_wgt }}">
+                                                <td><span class="pdp-tab-label">Minimum total carat weight</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[tableContent_min_ttl_crt_wgt] }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
+                                            </tr>
+                                            {% endif %}
+
+                                            {% if productMetafield[tableContent_setting_type] != blank %}
+                                            <tr data-tooltip="jewstnsetting" data-row="{{ tableContent_setting_type }}">
+                                                <td><span class="pdp-tab-label">Setting type</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[tableContent_setting_type] | truncate: 22  }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
+                                            </tr>
+                                            {% endif %}
+
+
                                             {% if productMetafield[tableContent_stone_avg_color] != blank %}
                                             <tr data-tooltip="jewstncolourm" data-row="{{ tableContent_stone_avg_color }}">
                                                 <td><span class="pdp-tab-label">Average Color</span></td>
@@ -287,23 +303,7 @@
                                                 <td><span class="pdp-tab-label">Average Clarity</span></td>
                                                 <td><span class="pdp-tab-val">{{ productMetafield[tableContent_avg_clarity] }}</span> {%- if productMetafield[tableContent_tooltip_avg_clarity] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_avg_clarity] }}"></span>{%- endif -%}</td>
                                             </tr>
-                                            {% endif %}
-
-                                            {% if productMetafield[tableContent_min_ttl_crt_wgt] != blank %}
-                                            <tr data-tooltip="jewstnsetting" data-row="{{ tableContent_min_ttl_crt_wgt }}">
-                                                <td><span class="pdp-tab-label">Minimum total carat weight</span></td>
-                                                <td><span class="pdp-tab-val">{{ productMetafield[tableContent_min_ttl_crt_wgt] }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
-                                            </tr>
-                                            {% endif %}
-
-                                            {% if productMetafield[tableContent_setting_type] != blank %}
-                                            <tr data-tooltip="jewstnsetting" data-row="{{ tableContent_setting_type }}">
-                                                <td><span class="pdp-tab-label">Setting type</span></td>
-                                                <td><span class="pdp-tab-val">{{ productMetafield[tableContent_setting_type] | truncate: 22 | append: ' setting' }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
-                                            </tr>
-                                            {% endif %}
-
-                                            
+                                            {% endif %}                                            
 
                                             {% if productMetafield[tableContent_cert_cut] != blank %}
                                             <tr data-tooltip="stncertcut" data-row="{{ tableContent_cert_cut }}">
