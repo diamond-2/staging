@@ -94,7 +94,7 @@
 
                                                 {% if variantMetafield[tableContent_ttl_crt_wgt] != blank %}
                                                 <tr data-tooltip="jewrhodium" data-row="{{ tableContent_ttl_crt_wgt }}">
-                                                    <td><span class="pdp-tab-label">Total caret weight</span></td>
+                                                    <td><span class="pdp-tab-label">Total carat weight</span></td>
                                                     <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_ttl_crt_wgt] | truncate: 30, '...' }}</span> {% if productMetafield[tableContent_tooltip_ttl_crt_wgt] != blank %} <span class="meta_tooltip" data-tooltip-title="{{productMetafield[tableContent_tooltip_ttl_crt_wgt]}}"></span>{% endif %}</td>
                                                 </tr>
                                                 {% endif %}
@@ -200,7 +200,10 @@
                 {%- capture tableContent_cert_culet -%}dia_tab{{ j }}_cert_culet{%- endcapture -%}
                 {%- capture tableContent_cert_measurements -%}dia_tab{{ j }}_cert_measurements{%- endcapture -%}
                 {%- capture tableContent_actual_stone_wt_carat -%}dia_tab{{ j }}_actual_stone_wt_carat{%- endcapture -%}
-                
+                {%- capture tableContent_setting_type -%}dia_tab{{ j }}_setting_type{%- endcapture -%}
+                {%- capture tableContent_min_ttl_crt_wgt -%}dia_tab{{ j }}_min_stn_total_crt_wt{%- endcapture -%}
+
+               
 
                 {% if
                     productMetafield[otherTableContent_title] != blank or 
@@ -224,9 +227,10 @@
                     productMetafield[tableContent_cert_girdle] != blank or
                     productMetafield[tableContent_cert_culet] != blank or
                     productMetafield[tableContent_stone_name] != blank or 
-                    
+                    productMetafield[tableContent_setting_type] != blank or
                     productMetafield[tableContent_actual_stone_wt_carat] != blank or
-                    productMetafield[tableContent_cert_measurements] != blank
+                    productMetafield[tableContent_cert_measurements] != blank or
+                    productMetafield[tableContent_min_ttl_crt_wgt] != blank
                 %}
                 
                     <div class="product-info-item">
@@ -285,12 +289,21 @@
                                             </tr>
                                             {% endif %}
 
-                                            {% if productMetafield[tableContent_stone_type] != blank %}
-                                            <tr data-tooltip="jewstnsetting" data-row="{{ tableContent_stone_type }}">
-                                                <td><span class="pdp-tab-label">Setting type</span></td>
-                                                <td><span class="pdp-tab-val">{{ productMetafield[tableContent_stone_type] | truncate: 22 | append: ' setting' }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
+                                            {% if productMetafield[tableContent_min_ttl_crt_wgt] != blank %}
+                                            <tr data-tooltip="jewstnsetting" data-row="{{ tableContent_min_ttl_crt_wgt }}">
+                                                <td><span class="pdp-tab-label">Minimum total carat weight</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[tableContent_min_ttl_crt_wgt] }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
                                             </tr>
                                             {% endif %}
+
+                                            {% if productMetafield[tableContent_setting_type] != blank %}
+                                            <tr data-tooltip="jewstnsetting" data-row="{{ tableContent_setting_type }}">
+                                                <td><span class="pdp-tab-label">Setting type</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[tableContent_setting_type] | truncate: 22 | append: ' setting' }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
+                                            </tr>
+                                            {% endif %}
+
+                                            
 
                                             {% if productMetafield[tableContent_cert_cut] != blank %}
                                             <tr data-tooltip="stncertcut" data-row="{{ tableContent_cert_cut }}">

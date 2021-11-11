@@ -3,7 +3,7 @@
 {% assign variantMetafield = current_variant.metafields.current_variant %}
 
 {% assign hide_default_title = false %}
-{% if product.options.size <= 1 or product.options.first.title contains 'Default' %}
+{% if product.options.size == 1 and product.options.first.title contains 'Default' %}
   {% assign hide_default_title = true %}
 {% endif %}
 
