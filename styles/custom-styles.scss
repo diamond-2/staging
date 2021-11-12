@@ -1171,7 +1171,7 @@ div#PageContainer {
         }
         &.site-header__wishlist {
           @media screen and (max-width: $md) {
-            margin-top: 18px!important;
+            margin-top: 5px!important;
           }
           svg {
             width: 36px;
@@ -1212,13 +1212,16 @@ div#PageContainer {
       .site-header__icons {
         .site-header__icon {
           &.site-header__wishlist {
-            margin-top: 5px!important;
+            @media screen and (max-width: $md) {
+              margin-top: 5px!important;  
+            }            
           }
         }
       } 
     }
   }
 }
+
 .currency-trigger {
   pointer-events: none !important;
 }
@@ -1839,7 +1842,9 @@ div#PageContainer {
   }
   
   body {
-    padding-top: 0px!important;
+    &.has_top_banner {
+      padding-top: 0px!important;
+    }    
     &.js-menu--is-open {
       overflow: hidden;
       position: relative;
@@ -15375,5 +15380,39 @@ canvas#the-canvas {
 body.has_top_banner {
   #shopify-section-header {
     background: transparent;
+  }
+}
+
+[data-template="index"]{
+  .site-header {
+    .site-header__mobile-nav {
+      .site-header__icons {
+        .site-header__icon {
+          &.site-header__wishlist {
+            @media screen and (max-width: $md) {
+              margin-top: 18px!important;  
+            } 
+          }
+        }
+      } 
+    }
+  }
+}
+
+[data-template="index"]{
+  .header-bg {
+    .site-header {
+      .site-header__mobile-nav {
+        .site-header__icons {
+          .site-header__icon {
+            &.site-header__wishlist {
+              @media screen and (max-width: $md) {
+                margin-top: 5px!important;  
+              } 
+            }
+          }
+        } 
+      }
+    }
   }
 }
