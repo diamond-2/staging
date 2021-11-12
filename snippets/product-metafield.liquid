@@ -13,6 +13,8 @@
                 {%- capture tableContent_dimension2  -%}prod_info_dimension2_value{% endcapture %}
                 {%- capture tableContent_dimension3Label  -%}prod_info_dimension3_label{% endcapture %}
                 {%- capture tableContent_dimension3  -%}prod_info_dimension3_value{% endcapture %}
+                {%- capture tableContent_dimension4Label  -%}prod_info_dimension4_label{% endcapture %}
+                {%- capture tableContent_dimension4  -%}prod_info_dimension4_value{% endcapture %}
                 {%- capture tableContent_rhodium_plated -%}rhodium_plated{% endcapture %}
                 {%- capture tableContent_avg_clarity -%}prod_info_avg_clarity{%- endcapture -%}
                 {%- capture tableContent_stone_category -%}prod_info_stone_category{%- endcapture -%}
@@ -32,6 +34,8 @@
                     variantMetafield[tableContent_dimension2] != blank or
                     variantMetafield[tableContent_dimension3Label] != blank or
                     variantMetafield[tableContent_dimension3] != blank or 
+                    variantMetafield[tableContent_dimension4Label] != blank or
+                    variantMetafield[tableContent_dimension4] != blank or 
                     variantMetafield[tableContent_rhodium_plated] != blank or
                     variantMetafield[tableContent_ttl_crt_wgt] != blank 
                 %}       
@@ -45,6 +49,8 @@
                         variantMetafield[tableContent_dimension2] != blank or 
                         variantMetafield[tableContent_dimension3Label] != blank or
                         variantMetafield[tableContent_dimension3] != blank or
+                        variantMetafield[tableContent_dimension4Label] != blank or
+                        variantMetafield[tableContent_dimension4] != blank or
                         variantMetafield[tableContent_rhodium_plated] != blank or 
                         variantMetafield[tableContent_ttl_crt_wgt] != blank 
                     %}    
@@ -84,6 +90,16 @@
                                                     <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_dimension3] }}</span> {%- if productMetafield[tableContent_tooltip_width] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_width] }}"></span>{%- endif -%}</td>
                                                 </tr>
                                                 {% endif %}
+
+                                                {% comment %}
+                                                {% if variantMetafield[tableContent_dimension4] != blank %}
+                                                <tr data-tooltip="jewdim3" data-row="{{ tableContent_dimension4 }}">
+                                                    <td><span class="pdp-tab-label">{% if  variantMetafield[tableContent_dimension4Label] != blank %}{{  variantMetafield[tableContent_dimension4Label]}} {% else %}Width{% endif %}</span></td>
+                                                    <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_dimension4] }}</span> {%- if productMetafield[tableContent_tooltip_width] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_width] }}"></span>{%- endif -%}</td>
+                                                </tr>
+                                                {% endif %}
+
+                                                {% endcomment %}
                                                 
                                                 {% if variantMetafield[tableContent_rhodium_plated] != blank %}
                                                 <tr data-tooltip="jewrhodium" data-row="{{ tableContent_rhodium_plated }}">

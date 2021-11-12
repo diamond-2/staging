@@ -44,10 +44,9 @@
                 <div class="product-detail-slider-wrapper">
                     <div class="product-detail-slider-holder">
                         <div class="product-detail-slider erererer">
-                            {% for mediaSlide in product.media %}
-                             
+                            {% for mediaSlide in product.media %}                             
                             {%- if mediaSlide -%}
-                            {% assign mediaSlide = mediaThumb | downcase %}
+                            {% assign mediaSlide = mediaSlide | downcase %}
                             {% if  mediaSlide contains "zyxw" %}
 
                             <div class="product-detail-slide {% if section.settings.enable_image_zoom == true %}image_zoom{% endif %}" data-alt="{{ mediaSlide.alt }}">
@@ -152,12 +151,12 @@
                     <h1 class="product-single__title">{{ product.title }}</h1>
                     {%- if template.suffix contains 'loose-stone' -%}
                     <div class="product-sku-wrapper">
-                        <div class="p_sku">SKU: {{ product.sku }}</div>
+                        <div class="p_sku">SKU: <span class="__sku">{{ product.sku }}</span></div>
                     </div>
                     {%- else -%}
                     <div class="product-sku-wrapper">
                         {%- if current_variant.sku != blank -%}
-                        <div class="p_sku">SKU: {{ current_variant.sku }}</div>
+                        <div class="p_sku">SKU: <span class="__sku">{{ current_variant.sku }}</span></div>
                         {% assign caratWeightGuide = 'Carat Weight Guide' %}
                         <div class="p_weight_guide"><a custom-modal="trigger" href="#{{ caratWeightGuide | downcase | replace: ' ', '_' }}">{{caratWeightGuide}}</a></div>        
                         {% capture weightGuidePopup %}
@@ -278,7 +277,7 @@
 
                     <select name="id" id="ProductSelect-{{ section.id }}" class="product-form__variants no-js">
                         {% for variant in product.variants %}
-                        <option data-qty="{{ variant.inventory_quantity}}" data-title="{{ variant.title | handleize }}" data-color="{{ variant.option1 }}" data-size="{{ variant.option2 }}" value="{{ variant.id }}" {%- if variant==current_variant %} selected="selected" {%-endif -%}> {{ variant.title }} {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
+                        <option data-sku="{{ variant.sku }}" data-qty="{{ variant.inventory_quantity}}" data-title="{{ variant.title | handleize }}" data-color="{{ variant.option1 }}" data-size="{{ variant.option2 }}" value="{{ variant.id }}" {%- if variant==current_variant %} selected="selected" {%-endif -%}> {{ variant.title }} {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
                         </option>
                         {% endfor %}
                     </select>
@@ -381,7 +380,7 @@
                             <span class="text">to order by  phone</span>
                         </div>
                         <div class="right_col">
-                            <a href="tel:+8002278400">+65(800)4922522</a>
+                            <a href="tel:+658004922522">+65 (800) 4922522</a>
                         </div>
                     </div>
                     <div class="pdp-warranty-sec">
@@ -515,50 +514,6 @@ var featuredSlider = $('.product-detail-slider'),
     thumbslider = $('.product-detail-slider-thumbnail');
     featuredSlider.slick(getFeaturedSliderSettings(thumbslider)); /* Initialize the slick again */
     thumbslider.slick(getThumbSliderSettings(featuredSlider));
-    // featuredSlider.slick({
-    //     slidesToShow: 1,
-    //     slidesToScroll: 1,
-    //     arrows: true,
-    //     fade: true,
-    //     asNavFor: thumbslider,
-    //     draggable: false,
-    //     infinite: false,
-    //     autoplay:false,
-    //     responsive: [
-    //         {
-    //             breakpoint: 749,
-    //             settings: {
-    //                 dots: true
-    //             }
-    //         }
-    //     ]
-    // });
-
-    
-
-// thumbslider.slick({
-//     slidesToShow: 5,
-//     slidesToScroll: 1,
-//     vertical:true,
-//     asNavFor: featuredSlider,
-//     dots: false,
-//     verticalSwiping:true,
-//     focusOnSelect: true,
-//     draggable: false,
-//     arrows: false,
-//     infinite: false,
-//     autoplay:false,
-//     centerMode: false,
-//     responsive: [
-//         {
-//             breakpoint: 991,
-//             settings: {
-//                 verticalSwiping:false,
-//                 vertical:false
-//             }
-//         }
-//     ]
-// });
 
 // Reinitialize slick slider
 function getFeaturedSliderSettings(thumbslider){
@@ -605,50 +560,6 @@ function getThumbSliderSettings(featuredSlider){
     ]
   }
 }
-
-
-
-    // $('.product-detail-slider').slick({
-    //     slidesToShow: 1,
-    //     slidesToScroll: 1,
-    //     arrows: true,
-    //     fade: true,
-    //     asNavFor: '.product-detail-slider-thumbnail',
-    //     draggable: false,
-    //     infinite: false,
-    //     autoplay:false,
-    //     responsive: [
-    //         {
-    //             breakpoint: 749,
-    //             settings: {
-    //                 dots: true
-    //             }
-    //         }
-    //     ]
-    // });
-    // $('.product-detail-slider-thumbnail').slick({
-    //     slidesToShow: 5,
-    //     slidesToScroll: 1,
-    //     vertical:true,
-    //     asNavFor: '.product-detail-slider',
-    //     dots: false,
-    //     verticalSwiping:true,
-    //     focusOnSelect: true,
-    //     draggable: false,
-    //     arrows: false,
-    //     infinite: false,
-    //     autoplay:false,
-    //     centerMode: false,
-    //     responsive: [
-    //         {
-    //             breakpoint: 991,
-    //             settings: {
-    //                 verticalSwiping:false,
-    //                 vertical:false
-    //             }
-    //         }
-    //     ]
-    // }); 
     
     // Go to 360 view Slide Mobile
     $('.mobile-3d-img').click(function(e) {

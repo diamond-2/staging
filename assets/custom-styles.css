@@ -4631,12 +4631,12 @@ body[data-template="product"] .main-content {
                 width: 20px;
                 margin-right: 0; } }
         .product-section-row .pdp-connect-section > div.connect-with-phone .right_col {
-          padding-right: 20px; }
+          padding-right: 0px; }
           @media (max-width: 749px) {
             .product-section-row .pdp-connect-section > div.connect-with-phone .right_col {
               padding-right: 0; } }
           .product-section-row .pdp-connect-section > div.connect-with-phone .right_col a {
-            text-decoration: underline;
+            text-decoration: none;
             font-weight: 400; }
     .product-section-row .pdp-connect-section .pdp-warranty-sec {
       display: flex;
@@ -4645,7 +4645,8 @@ body[data-template="product"] .main-content {
       text-transform: uppercase;
       align-items: center;
       padding: 12px 13px;
-      font-weight: 300; }
+      font-weight: 300;
+      justify-content: space-between; }
       @media (max-width: 1600px) and (min-width: 992px) {
         .product-section-row .pdp-connect-section .pdp-warranty-sec {
           font-size: 8px; } }
@@ -10207,13 +10208,12 @@ body[data-template="customers/reset_password"] .main-content {
   align-items: center;
   justify-content: center; }
   #preloader .loader {
-    border: 5px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 5px solid #6C1D45;
-    width: 40px;
-    height: 100px;
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite; }
+    background: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/gif_loader.gif?v=1636712925") no-repeat center center;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    max-height: 500px;
+    max-width: 500px; }
 
 /* ========== Customer Account Start ============== */
 body[data-template="customers/account"] .main-content,

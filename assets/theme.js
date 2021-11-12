@@ -750,8 +750,10 @@ slate.Variants = (function() {
       updateImgGallery(variant.id);
       let currentVariantQty = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('qty');
       let currentVariant = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('title');
+      let currentSku = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('sku');
       $(document).find('select[name="id"] option[value="'+variant.id+'"]').attr('selected', 'selected');
       $('.cv-stock-left').text(currentVariantQty);
+      $('.product-sku-wrapper .p_sku .__sku').text(currentSku);
       if($('body').hasClass('template-product')){
         setTimeout(function(){
           __cartData();
@@ -10267,6 +10269,7 @@ window.addEventListener("resize", function() {
     })
     
     let variantId = $('select[name="id"]').val();
+
     updateImgGallery(variantId);
     
   });
