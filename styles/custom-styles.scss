@@ -1041,6 +1041,9 @@ div#PageContainer {
             @media(max-width: $xl) and (min-width: $postMd) {
               margin-top:0;
             }
+            @media screen and (max-width: ) {
+              
+            }
           }
         }
       }
@@ -1050,12 +1053,13 @@ div#PageContainer {
     @media(max-width: $md) {
       margin-left: 5px;
       margin-right: 5px;
+      margin-top: 5px;
     }
 
     svg {
       @media(max-width: $md) {
-        width: 13px !important;
-        height: 13px !important;
+        width: 15px !important;
+        height: 15px !important;
         margin: 0 8px;
       }
     }
@@ -1123,6 +1127,10 @@ div#PageContainer {
         img {
           @media screen and (max-width: $tabOrient) {
             max-width: 240px;            
+          }
+          @media screen and (max-width: $md) {
+            max-width: 155px;
+            
           }
           &.header_sm_logo {
             max-width: 22px;
@@ -1201,6 +1209,13 @@ div#PageContainer {
           }
         }
       }
+      .site-header__icons {
+        .site-header__icon {
+          &.site-header__wishlist {
+            margin-top: 5px!important;
+          }
+        }
+      } 
     }
   }
 }
@@ -1824,6 +1839,7 @@ div#PageContainer {
   }
   
   body {
+    padding-top: 0px!important;
     &.js-menu--is-open {
       overflow: hidden;
       position: relative;
@@ -13539,6 +13555,7 @@ body[data-template="customers/addresses"] {
     padding: 0 10px !important;
     top: 2px;
     position: relative;
+
     svg {
       vertical-align: top !important;
     }
@@ -15354,3 +15371,9 @@ canvas#the-canvas {
   }
 }
 
+
+body.has_top_banner {
+  #shopify-section-header {
+    background: transparent;
+  }
+}

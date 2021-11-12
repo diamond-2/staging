@@ -594,11 +594,12 @@ div#PageContainer.js-menu--is-open {
   @media (max-width: 749px) {
     #shopify-section-header .site-header__search-toggle {
       margin-left: 5px;
-      margin-right: 5px; } }
+      margin-right: 5px;
+      margin-top: 5px; } }
   @media (max-width: 749px) {
     #shopify-section-header .site-header__search-toggle svg {
-      width: 13px !important;
-      height: 13px !important;
+      width: 15px !important;
+      height: 15px !important;
       margin: 0 8px; } }
   @media (max-width: 749px) {
     #shopify-section-header .js-mobile-nav-toggle svg.icon {
@@ -637,6 +638,9 @@ div#PageContainer.js-menu--is-open {
   @media screen and (max-width: 1023px) {
     .site-header .site-header__mobile-nav .site-header__logo .site-header__logo-image img {
       max-width: 240px; } }
+  @media screen and (max-width: 749px) {
+    .site-header .site-header__mobile-nav .site-header__logo .site-header__logo-image img {
+      max-width: 155px; } }
   .site-header .site-header__mobile-nav .site-header__logo .site-header__logo-image img.header_sm_logo {
     max-width: 22px;
     margin: 0 auto 6px;
@@ -685,6 +689,9 @@ div#PageContainer.js-menu--is-open {
 .header-bg .site-header .site-header__mobile-nav .site-header__logo .site-header__logo-image img.header_sm_logo {
   max-width: 0;
   opacity: 0; }
+
+.header-bg .site-header .site-header__mobile-nav .site-header__icons .site-header__icon.site-header__wishlist {
+  margin-top: 5px !important; }
 
 .currency-trigger {
   pointer-events: none !important; }
@@ -1136,20 +1143,22 @@ div#PageContainer.js-menu--is-open {
         position: static;
         width: auto; }
 
-body.js-menu--is-open {
-  overflow: hidden;
-  position: relative; }
-  body.js-menu--is-open::after {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    z-index: 1;
-    background: rgba(255, 255, 255, 0.35);
-    content: '';
-    top: 0;
-    left: 0; }
-  body.js-menu--is-open #shopify-section-header {
-    z-index: 999 !important; }
+body {
+  padding-top: 0px !important; }
+  body.js-menu--is-open {
+    overflow: hidden;
+    position: relative; }
+    body.js-menu--is-open::after {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.35);
+      content: '';
+      top: 0;
+      left: 0; }
+    body.js-menu--is-open #shopify-section-header {
+      z-index: 999 !important; }
 
 #shopify-section-landing {
   position: fixed;
@@ -12619,3 +12628,6 @@ canvas#the-canvas {
 
 .feedbackFromVisible #feedbackForm-contaier {
   z-index: 10000; }
+
+body.has_top_banner #shopify-section-header {
+  background: transparent; }
