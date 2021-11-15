@@ -10448,6 +10448,7 @@ $(document).on('click', 'button[type="button"]', function(e) {
         } else {
           $this.closest('form').find('#userFeedbackForm-comment').removeClass('form-error').next('.msg-error').empty().css('display','none');
           $this.submit();
+          $('#preloader').css('display','flex');
         }     
       }else {
         $this.submit();
@@ -10471,8 +10472,8 @@ function removeSuccessMessage() {
           var clean_uri = uri.substring(0, uri.indexOf("?"));
           window.history.replaceState({}, document.title, clean_uri);
       }
-      $('.form-message').remove();
-  },3000)
+      $('.form-message').hide();
+  },10000)
 }
 removeSuccessMessage();
 
