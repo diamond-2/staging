@@ -91,15 +91,13 @@
                                                 </tr>
                                                 {% endif %}
 
-                                                {% comment %}
+                                                
                                                 {% if variantMetafield[tableContent_dimension4] != blank %}
                                                 <tr data-tooltip="jewdim3" data-row="{{ tableContent_dimension4 }}">
                                                     <td><span class="pdp-tab-label">{% if  variantMetafield[tableContent_dimension4Label] != blank %}{{  variantMetafield[tableContent_dimension4Label]}} {% else %}Width{% endif %}</span></td>
                                                     <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_dimension4] }}</span> {%- if productMetafield[tableContent_tooltip_width] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ productMetafield[tableContent_tooltip_width] }}"></span>{%- endif -%}</td>
                                                 </tr>
                                                 {% endif %}
-
-                                                {% endcomment %}
                                                 
                                                 {% if variantMetafield[tableContent_rhodium_plated] != blank %}
                                                 <tr data-tooltip="jewrhodium" data-row="{{ tableContent_rhodium_plated }}">

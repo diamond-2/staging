@@ -10366,9 +10366,11 @@ window.addEventListener("resize", function() {
   $(document).on('click', '#search-certificate', function(){
     
     if(window.innerWidth > 1024){
+      let certNumber = 'cer'+$('#certificate-number').val();
+      console.log(certNumber);
       window.location.href = "/pages/aryamond-certificate?getCert="+certNumber;
     }
-    let certNumber = 'cer'+$('#certificate-number').val();
+    
     
   });
 
