@@ -2129,7 +2129,7 @@ body.landing-exist.scroll-start #shopify-section-landing {
   padding: 100px 0 0px; }
   @media (max-width: 749px) {
     .home-sld {
-      padding: 0 0; } }
+      padding: 60px 0 0px; } }
   .home-sld .shop-loose-diamond2-slider-top-row {
     color: #000000;
     max-width: 878px; }
@@ -7042,6 +7042,8 @@ body.has_top_banner .main-content {
           font-weight: 400; } }
       .ac-item .ac-body .ac-body-inner a {
         text-decoration: underline; }
+        .ac-item .ac-body .ac-body-inner a[href*="tel"] {
+          text-decoration: none; }
       .ac-item .ac-body .ac-body-inner *:last-child {
         margin-bottom: 0; }
       .ac-item .ac-body .ac-body-inner h3 {

@@ -10364,11 +10364,13 @@ window.addEventListener("resize", function() {
 
   // Get Certificate
   $(document).on('click', '#search-certificate', function(){
-    
-    if(window.innerWidth > 1024){
-      let certNumber = 'cer'+$('#certificate-number').val();
+    let certNumber = 'cer'+$('#certificate-number').val();
       console.log(certNumber);
+    if(window.innerWidth > 1024){      
       window.location.href = "/pages/aryamond-certificate?getCert="+certNumber;
+    }else {
+      window.open('/pages/certificate?getCert='+certNumber);
+      // window.location.href = "/pages/certificate?getCert="+certNumber;
     }
     
     

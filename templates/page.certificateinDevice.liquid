@@ -1,1 +1,10 @@
-{{ page.title }}
+{% layout none %}
+{% assign pageurl = content_for_header | split:'"pageurl":"' | last | split:'"' | first %} 
+{% assign certNum = pageurl | split: '?getCert=' | last | append: '.pdf' %}
+
+<iframe id="cert_of_auth_pdf" src="{{ certNum | file_url }}"  width="100%" style="height: 70vh;" allowfullscreen webkitallowfullscreen></iframe>
+
+
+<script type="text/javascript">
+console.log('PDF viewer in Mobile Devices');
+</script>

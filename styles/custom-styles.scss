@@ -3001,7 +3001,7 @@ body{
   .home-sld {
     padding: 100px 0 0px;   
     @media(max-width: $md) {
-      padding: 0 0;
+      padding: 60px 0 0px;
     } 
       .shop-loose-diamond2-slider-top-row{
         color: $textcolor-black;
@@ -8749,6 +8749,9 @@ body {
       }
       a {
         text-decoration: underline;
+        &[href*="tel"] {
+          text-decoration: none;
+        }
       }
       *:last-child {
         margin-bottom: 0;
