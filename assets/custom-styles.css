@@ -7848,6 +7848,8 @@ body[data-template="404"] .main-content {
         -webkit-transition: all 0.4s; }
       .sitemap-wrapper .sitemap-menu-grid > li > a:hover:after {
         width: 100%; }
+    .sitemap-wrapper .sitemap-menu-grid > li[data-title="shop-by-price"] {
+      display: none; }
   .sitemap-wrapper .sitemap-menu-grid ul {
     margin: 0;
     padding: 0;

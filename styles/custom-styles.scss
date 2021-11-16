@@ -9723,6 +9723,9 @@ body[data-template="404"] {
           }
         }
       }
+      &[data-title="shop-by-price"] {
+        display: none;
+      }
     }
     ul {
       margin: 0;

@@ -5,7 +5,7 @@
         <div class="product-detail-slider erererer">
             {%- for mediaSlide in product.media -%}
             {%- if mediaSlide -%}
-            {% assign mediaSlide = mediaThumb | downcase %}
+            {% assign mediaSlide = mediaSlide | downcase %}
             {% if  mediaSlide contains "zyxw" %}
 
             <div class="product-detail-slide image_zoom js-zoom-enabled"  data-alt="{{ mediaSlide.alt }}">

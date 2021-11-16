@@ -50,9 +50,9 @@
                             {% for mediaSlide in product.media %}                             
                             {%- if mediaSlide -%}
                             {% assign mediaSlide = mediaSlide | downcase %}
-                            <!-- <p>{{ mediaSlide }}</p> -->
+                            <p>{{ mediaSlide }}==</p>
                             {% if  mediaSlide contains "zyxw" %}
-
+                               <p>{{ forloop.index }}==</p> 
                             <div data-index="{{ forloop.index }}" class="product-detail-slide {% if section.settings.enable_image_zoom == true %}image_zoom{% endif %}" data-alt="{{ mediaSlide.alt }}">
                                 
                                 {% if mediaSlide.media_type == 'image' %}

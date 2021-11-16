@@ -10271,7 +10271,16 @@ window.addEventListener("resize", function() {
     let variantId = $('select[name="id"]').val();
 
     updateImgGallery(variantId);
-    
+
+
+    // Animate div if url has hash value
+    let getHashUrl = window.location.hash;
+    console.log(getHashUrl);
+    if(window.location.hash.length > 0 ) {
+      $('html, body').animate({
+        scrollTop: $(getHashUrl).offset().top - 70
+      }, 2000);
+    }    
   });
 
   // Show Password Event
