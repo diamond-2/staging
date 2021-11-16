@@ -38,6 +38,9 @@
         {%- assign compare_at_price = current_variant.compare_at_price -%}
         {%- assign price = current_variant.price -%}
 
+
+        
+
         <div class="product-section-row">
             <div class="product-detail-slider-grp" data-product-single-media-group>
                 {% if product.media.size > 0 %}
@@ -47,15 +50,19 @@
                             {% for mediaSlide in product.media %}                             
                             {%- if mediaSlide -%}
                             {% assign mediaSlide = mediaSlide | downcase %}
+                            <!-- <p>{{ mediaSlide }}</p> -->
                             {% if  mediaSlide contains "zyxw" %}
 
-                            <div class="product-detail-slide {% if section.settings.enable_image_zoom == true %}image_zoom{% endif %}" data-alt="{{ mediaSlide.alt }}">
+                            <div data-index="{{ forloop.index }}" class="product-detail-slide {% if section.settings.enable_image_zoom == true %}image_zoom{% endif %}" data-alt="{{ mediaSlide.alt }}">
                                 
                                 {% if mediaSlide.media_type == 'image' %}
                                 <div class="product-detail-slide-inner" data-scale="1.4">
                                     <div class="product-detail-slide-img-holder" style="background-image: url({{ mediaSlide | img_url:'900x' }});"></div>
                                 </div>
+                                
                                 {% elsif mediaSlide.media_type == 'video' %}
+                                
+                                {% assign videos = product.media | where: "media_type", "video" %}
                                 <div class="product-detail-slide-inner media_type_video" >
                                     <div class="product-detail-slide-img-holder">
                                         <video loop muted>

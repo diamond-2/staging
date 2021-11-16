@@ -4977,6 +4977,10 @@ body[data-template="product"] {
             }
           }
           img {
+            &.feature-row__image {
+              max-width: initial;
+              max-height: 100%;
+            }
             // position: absolute;
             // top: 50%;
             // left: 50%;

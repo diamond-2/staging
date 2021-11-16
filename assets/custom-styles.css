@@ -3849,6 +3849,9 @@ body[data-template="product"] .main-content {
             object-position: center;
             width: 100%;
             height: 100%; }
+        .product-detail-slider-wrapper .product-detail-slider-holder .product-detail-slider .product-detail-slide-inner img.feature-row__image {
+          max-width: initial;
+          max-height: 100%; }
       .product-detail-slider-wrapper .product-detail-slider-holder .product-detail-slider .slick-arrow {
         width: auto;
         height: auto;
