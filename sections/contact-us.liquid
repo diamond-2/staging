@@ -21,7 +21,7 @@
             {%- if section.settings.phone_number -%}
             <li class="phone-item">
                 <span class="icon_s">{% include 'contact-phone-icon' %}</span>
-                <span class="text"><a href="tel:{{ section.settings.phone_number }}">+{{ section.settings.phone_number }}</a></span>
+                <span class="text">{{ section.settings.phone_number }}</span>
             </li>
             {%- endif -%}
         </ul>

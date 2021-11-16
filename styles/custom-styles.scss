@@ -749,6 +749,9 @@ body {
           &:last-child {
             padding-right:0;
           }
+          &.site-header__search-toggle {
+            display: none;
+          }
         }
       }
     }
