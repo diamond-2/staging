@@ -8,7 +8,7 @@
           <div class="myaccount__order_history">
             <div class="account_sec_header_mobile show_mobile">
               <div class="back-to-page-btn">{% include 'icon-back-arrow' %}</div>
-              <p>Welcome, {{ customer.first_name }}</p>
+              <p>Welcome, {{ customer.first_name | capitalize }}</p>
               <h4>{{ 'Orders' }}</h4>
             </div>
             <h4 class="hide_mobile">{{ 'MY ORDERS' }}</h4>

@@ -9786,7 +9786,7 @@ body[data-template="customers/reset_password"] .main-content {
   @media (max-width: 749px) {
     .custom-sec-header2 p {
       font-size: 12px;
-      line-height: 12.96px; } }
+      line-height: 18px; } }
 
 .form-switch-wrapper {
   border: 1px solid rgba(0, 0, 0, 0.3);
