@@ -12554,7 +12554,8 @@ canvas#the-canvas {
 .coa-img-wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly; }
+  justify-content: space-evenly;
+  max-width: 1200px; }
   .coa-img-wrapper .coa-img {
     flex: 0 0 45%; }
     @media screen and (max-width: 749px) {
