@@ -7572,10 +7572,16 @@ body[data-template="loose-stone"] {
             &.slick-prev {
               left: 9px;
               opacity: 1;
+              @media screen and (max-width: $md) {
+                left: 0px;
+              }
             }
             &.slick-next {
               right: 9px;
               opacity: 1;
+              @media screen and (max-width: $md) {
+                right: 0px;
+              }
             }
           }
         }
@@ -7715,6 +7721,10 @@ body[data-template="loose-stone"] {
           z-index: 2;
           width: 30px;
           height: 30px;
+          @media screen and (max-width: $md) {
+            width: 20px;
+            height: 20px;
+          }
           @include transition();
           &:before {
             content: none;
@@ -7730,10 +7740,18 @@ body[data-template="loose-stone"] {
           &.slick-prev {
             left: 30px;
             opacity: 0;
+            @media screen and (max-width: $md) {
+              left: 0;
+              opacity: 1;
+            }
           }
           &.slick-next {
             right: 30px;
             opacity: 0;
+            @media screen and (max-width: $md) {
+              right: 0;
+              opacity: 1;
+            }
             &:after {
               transform: rotate(180deg);
             }
@@ -15469,6 +15487,14 @@ body.has_top_banner {
           }
         } 
       }
+    }
+  }
+}
+
+#shopify-section-footer {
+  sup {
+    @media screen and (max-width: $md) {
+      top: -7px;
     }
   }
 }
