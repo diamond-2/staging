@@ -79,11 +79,18 @@ body {
       padding-top: 53px !important;
       padding-bottom: 53px !important; } }
 
+@media (max-width: 749px) {
+  .padding_t40 {
+    padding-top: 40px !important; } }
+
 .padding_t {
   padding-top: 100px !important; }
   @media (max-width: 749px) {
     .padding_t {
       padding-top: 60px !important; } }
+  @media (max-width: 749px) {
+    .padding_t.padding_t40 {
+      padding-top: 40px !important; } }
 
 .padding_b {
   padding-bottom: 100px !important; }
@@ -3984,12 +3991,12 @@ body[data-template="product"] .main-content {
       .product-section-row .product-detail-slider-grp.__updatingSlideImage:after {
         position: absolute;
         content: '';
-        background: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/aryamond_loader.png") no-repeat center center;
+        background: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/aryamond_loader_blue.png") no-repeat center center;
         background-size: 50px;
         width: 50px;
         height: 50px;
         -webkit-animation: spin 5s linear infinite;
-        animation: spin 2s linear infinite;
+        animation: spin 5s linear infinite;
         left: 50%;
         z-index: 9999;
         top: 50%;
@@ -4137,7 +4144,7 @@ body[data-template="product"] .main-content {
         line-height: 11.88px; } }
     @media (max-width: 749px) {
       .product-section-row .product-wishlist {
-        display: none; } }
+        padding-top: 12px; } }
     .product-section-row .product-wishlist .wishlist-icon {
       margin-left: 46px; }
       @media (max-width: 1600px) {
@@ -4151,6 +4158,12 @@ body[data-template="product"] .main-content {
       .product-section-row .product-wishlist .wishlist-icon .swym-btn-container .swym-button:after {
         width: 24px;
         font-size: 22px; }
+    .product-section-row .product-wishlist .swym-btn-container[data-position=default] .swym-add-to-wishlist.swym-icon {
+      height: 30px; }
+      @media screen and (max-width: 749px) {
+        .product-section-row .product-wishlist .swym-btn-container[data-position=default] .swym-add-to-wishlist.swym-icon {
+          height: 30px;
+          line-height: 30px; } }
   .product-section-row .stone-granding-options {
     display: flex;
     margin-bottom: 40px; }
@@ -8253,7 +8266,7 @@ body[data-template="404"] .main-content {
         margin-left: auto; }
         @media (max-width: 749px) {
           .drawer .cart__footer .grid .cart_total_item .cart-subtotal {
-            padding-right: 0; } }
+            padding-right: 10px; } }
         .drawer .cart__footer .grid .cart_total_item .cart-subtotal .cart-subtotal__title {
           font-size: inherit; }
         .drawer .cart__footer .grid .cart_total_item .cart-subtotal .cart-subtotal__price {
@@ -8294,6 +8307,8 @@ body[data-template="404"] .main-content {
     .drawer .agree-terms-sec .custom-checkbox-holder .custom-checkbox-input-box span i svg {
       width: 13.14px;
       height: 9.71px; } }
+  .drawer .agree-terms-sec .custom-checkbox-holder .custom-checkbox-input-box span i svg path {
+    stroke: #6C1D45; }
   @media (min-width: 750px) {
     .drawer .agree-terms-sec .custom-checkbox-holder label {
       line-height: 20px; } }
@@ -10245,12 +10260,12 @@ body[data-template="customers/reset_password"] .main-content {
   align-items: center;
   justify-content: center; }
   #preloader .loader {
-    background: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/aryamond_loader.png") no-repeat center center;
+    background: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/aryamond_loader_blue.png") no-repeat center center;
     background-size: contain;
     width: 50px;
     height: 50px;
     -webkit-animation: spin 5s linear infinite;
-    animation: spin 2s linear infinite; }
+    animation: spin 5s linear infinite; }
 
 /* ========== Customer Account Start ============== */
 body[data-template="customers/account"] .main-content,
@@ -10277,7 +10292,8 @@ body[data-template="customers/addresses"] .main-content {
     @media (max-width: 749px) {
       .account_section-header p {
         font-size: 14px;
-        line-height: 18px; } }
+        line-height: 18px;
+        padding-bottom: 15px; } }
   .account_section-header .account_section_header_content {
     display: flex;
     flex-wrap: nowrap;

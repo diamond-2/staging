@@ -451,12 +451,23 @@ body {
     padding-bottom: 53px !important;
   }
 }
+.padding_t40 {  
+  @media(max-width: $md) {
+    padding-top:40px !important;
+  }
+}
 .padding_t {
   padding-top:100px !important;
   @media(max-width: $md) {
     padding-top:60px !important;
   }
+  &.padding_t40 {  
+    @media(max-width: $md) {
+      padding-top:40px !important;
+    }
+  }
 }
+
 .padding_b {
   padding-bottom:100px !important;
   @media(max-width: $md) {
@@ -5138,12 +5149,12 @@ body[data-template="product"] {
         &:after {
           position: absolute;
           content: '';
-          background: url('https://cdn.shopify.com/s/files/1/0575/2681/2840/files/aryamond_loader.png') no-repeat center center;
+          background: url('https://cdn.shopify.com/s/files/1/0575/2681/2840/files/aryamond_loader_blue.png') no-repeat center center;
           background-size: 50px;
           width: 50px;
           height: 50px;
           -webkit-animation: spin 5s linear infinite;
-          animation: spin 2s linear infinite;
+          animation: spin 5s linear infinite;
           left: 50%;
           z-index: 9999;
           top: 50%;
@@ -5272,7 +5283,8 @@ body[data-template="product"] {
       align-items: center;
       @include pdpSmallFont();
       @media(max-width: $md) {
-        display: none;
+        // display: none;
+        padding-top: 12px;
       }
       .wishlist-icon {
         margin-left: 46px;
@@ -5292,6 +5304,19 @@ body[data-template="product"] {
           }
         }
     }
+    .swym-btn-container{
+      &[data-position=default] {
+        .swym-add-to-wishlist {
+          &.swym-icon {
+            @media screen and (max-width: $md) {
+              height: 30px;
+              line-height: 30px;
+            }
+            height: 30px;
+          }
+        }
+      }
+    } 
   }
   .stone-granding-options {
     display: flex;
@@ -10204,7 +10229,7 @@ body[data-template="404"] {
           padding-right: 50px;
           margin-left: auto;
           @media(max-width: $md) {
-            padding-right:0;
+            padding-right:10px;
           }
           .cart-subtotal__title {
             font-size: inherit;
@@ -10269,6 +10294,9 @@ body[data-template="404"] {
               @media(min-width: $postMd) {
                 width: 13.14px;
                 height: 9.71px;
+              }
+              path {
+                stroke: $textcolor-phanton;
               }
             }
           }
@@ -12546,12 +12574,12 @@ body[data-template="customers/reset_password"] {
     align-items: center;
     justify-content: center;
     .loader {
-      background: url('https://cdn.shopify.com/s/files/1/0575/2681/2840/files/aryamond_loader.png') no-repeat center center;
+      background: url('https://cdn.shopify.com/s/files/1/0575/2681/2840/files/aryamond_loader_blue.png') no-repeat center center;
       background-size: contain;
       width: 50px;
       height: 50px;
       -webkit-animation: spin 5s linear infinite;
-      animation: spin 2s linear infinite;
+      animation: spin 5s linear infinite;
       // border: 5px solid #f3f3f3;
       // border-radius: 50%;
       // border-top: 5px solid $textcolor-phanton;
@@ -12585,6 +12613,7 @@ body[data-template="customers/addresses"] {
     @media(max-width:$md) {
       font-size: 14px;
       line-height: 18px;
+      padding-bottom: 15px;
     }
   }
 .account_section_header_content {
