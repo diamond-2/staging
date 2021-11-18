@@ -3991,7 +3991,7 @@ body[data-template="product"] .main-content {
       .product-section-row .product-detail-slider-grp.__updatingSlideImage:after {
         position: absolute;
         content: '';
-        background: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/aryamond_loader_blue.png") no-repeat center center;
+        background: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/aryamond_loader.png") no-repeat center center;
         background-size: 50px;
         width: 50px;
         height: 50px;
@@ -10272,13 +10272,13 @@ body[data-template="customers/reset_password"] .main-content {
   right: 0;
   height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(255, 255, 255, 0.8);
   z-index: 99999999;
   display: flex;
   align-items: center;
   justify-content: center; }
   #preloader .loader {
-    background: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/aryamond_loader_blue.png") no-repeat center center;
+    background: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/aryamond_loader.png") no-repeat center center;
     background-size: contain;
     width: 50px;
     height: 50px;
