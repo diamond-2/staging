@@ -10294,6 +10294,10 @@ window.addEventListener("resize", function() {
   });
   $('.common-layout-wrapper').closest('body').addClass('common_layout');
 
+  // Show mobile Search Drawer
+  $(document).on('click', '.show_mobile.site-header__search-toggle', function(){
+    $(document).find('.btn--link[data-predictive-search-open-drawer]').trigger('click');
+  });
   
   // Global Custom Modal Popup
   $('[custom-modal="trigger"]').click(function(e){
@@ -10434,6 +10438,8 @@ function $validateEmail($this) {
         $this.find('input[name="contact[email]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
     }
 }
+
+
 
 $(document).on('click', 'button[type="button"]', function(e) {
     var $this = $(this).closest('form');
