@@ -3905,8 +3905,8 @@ body[data-template="know-your-diamond"], body[data-template="about-us"] {
             text-align: center;
           }
           h2 {
-            font-size: 112px;
-            line-height: 127px;
+            font-size: 85px;
+            line-height: 100px;
             font-weight: 200;
             text-transform: uppercase;
             letter-spacing: normal;
@@ -9836,8 +9836,7 @@ body[data-template="404"] {
         position: relative;
         overflow: hidden;
         // padding-bottom: 82.9%;
-        padding-bottom: 100%;
-        border: 1px solid rgba(0, 0, 0, 0.1);
+        padding-bottom: 100%;        
         margin-bottom: 30px;
         @media(max-width: $xl) and (min-width: $postMd) {
           margin-bottom: 10px;
@@ -9848,13 +9847,14 @@ body[data-template="404"] {
         }
         img {
           position: absolute;
-          height: 100%;
+          max-height: 100%;
           width: 100%;
           top: 0;
           left: 0;
           right: 0;
           object-fit: cover;
           object-position: center;
+          border: 1px solid rgba(0, 0, 0, 0.1);
         }
       }
     }
