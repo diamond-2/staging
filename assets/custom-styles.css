@@ -7959,6 +7959,8 @@ body[data-template="404"] .main-content {
         object-fit: cover;
         object-position: center;
         border: 1px solid rgba(0, 0, 0, 0.1); }
+    .sitemap-wrapper .sitemap-menu-grid .sitemap-collection-image .sitemap-col-body {
+      display: none; }
 
 .min-slide-card {
   position: fixed;
