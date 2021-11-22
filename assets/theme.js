@@ -10375,9 +10375,10 @@ window.addEventListener("resize", function() {
   $('.home-scl .mobile_featured_image').html($('.home-scl .scl-collage .box--2-1 .img-box').html());
   $('.home-jcl .mobile_featured_image').html($('.home-jcl .scl-collage [class^=block-].big_block>div.full-width .img-box').html());
 
-  // Get Certificate
+  // Post Certificate Url
   $(document).on('click', '#search-certificate', function(){
     let certNumber = 'cer'+$('#certificate-number').val();
+    localStorage.setItem("certificateNumber", certNumber);
       console.log(certNumber);
     if(window.innerWidth > 1024){      
       window.location.href = "/pages/aryamond-certificate?getCert="+certNumber;
@@ -10385,9 +10386,23 @@ window.addEventListener("resize", function() {
       window.open('/pages/certificate?getCert='+certNumber);
       // window.location.href = "/pages/certificate?getCert="+certNumber;
     }
-    
-    
   });
+
+  // Get Certificates
+    let certificateNumberExist = localStorage.getItem("certificateNumber");    
+    if(certificateNumberExist != null ) {
+      let CertqueryParam = window.location.search;
+      if(CertqueryParam.indexOf(certificateNumberExist) > -1) {
+        ////cdn.shopify.com/s/files/1/0575/2681/2840/files/cer02.pdf?v=11713192365355509614#navpanes=0&amp;zoom=120
+        pdfSrc = '//cdn.shopify.com/s/files/1/0575/2681/2840/files/'+certificateNumberExist+'.pdf#navpanes=0&amp;zoom=120'
+        let iframeId = $('#cert_of_auth_pdf');
+        iframeId.attr('src', pdfSrc);
+      } else {
+        localStorage.removeItem("certificateNumber");
+      }
+    }
+    console.log(certificateNumberExist);
+
 
   // Show Feedback From
   $(document).on('click', '#feedbackForm', function(){

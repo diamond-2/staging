@@ -4863,11 +4863,11 @@ body[data-template="product"] {
       }
       &.slick-vertical {
         .slick-track {
-          -webkit-transform: translate3d(0,0,0)!important;
-          -moz-transform: translate3d(0,0,0)!important;
-          -ms-transform: translate3d(0,0,0)!important;
-          -o-transform: translate3d(0,0,0)!important;
-          transform: translate3d(0,0,0)!important;
+          // -webkit-transform: translate3d(0,0,0)!important;
+          // -moz-transform: translate3d(0,0,0)!important;
+          // -ms-transform: translate3d(0,0,0)!important;
+          // -o-transform: translate3d(0,0,0)!important;
+          // transform: translate3d(0,0,0)!important;
         }
         .slick-slide {
           border: none;
@@ -4983,8 +4983,8 @@ body[data-template="product"] {
               transform: translate(-50%,-50%);
               object-fit: cover;
               object-position: center;
-              width: 100%;
-              height: 100%;
+              width: auto;
+              height: auto;
             }
           }
           img {
@@ -15133,22 +15133,25 @@ canvas#the-canvas {
     max-width: 100%;
 }
 // Request Certificate Style
-.certifcate-img-wrapper a {
-  margin-top: 40px;
-  display: inline-block;
-  background: #6679cc;
-  border: 1px solid #6679cc;
-  box-sizing: border-box;
-  color: #fff;
-  padding: 22px 32px;
-  text-transform: uppercase;
-  transition: all .3s;
-  font-weight: 400;
-  border-radius: 0;
-  letter-spacing: normal;
-  font-size: 12px;
-  line-height: 12.96px;
-  padding: 7.6px 10px;
+.certifcate-img-wrapper {
+  max-width: 750px;
+  a {
+    margin-top: 40px;
+    display: inline-block;
+    background: #6679cc;
+    border: 1px solid #6679cc;
+    box-sizing: border-box;
+    color: #fff;
+    padding: 22px 32px;
+    text-transform: uppercase;
+    transition: all .3s;
+    font-weight: 400;
+    border-radius: 0;
+    letter-spacing: normal;
+    font-size: 12px;
+    line-height: 12.96px;
+    padding: 7.6px 10px;
+  }
 }
 
 .swym-btn-container .swym-fave-count {

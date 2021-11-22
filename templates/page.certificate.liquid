@@ -2,21 +2,33 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.7/pdfobject.min.js" integrity="sha512-g16L6hyoieygYYZrtuzScNFXrrbJo/lj9+1AYsw+0CYYYZ6lx5J3x9Yyzsm+D37/7jMIGh0fDqdvyYkNWbuYuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js" integrity="sha512-t2JWqzirxOmR9MZKu+BMz0TNHe55G5BZ/tfTmXMlxpUY8tsTo3QMD27QGoYKZKFAraIPDhFv56HLdN11ctmiTQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script> -->
-<center>
+
+  <div class="dia-container">  
+
 <h1>{{ page.title }}</h1>
 {% assign pageurl = content_for_header | split:'"pageurl":"' | last | split:'"' | first %} 
 {% assign certNum = pageurl | split: '?getCert=' | last | append: '.pdf' %}
-<div class="certifcate-img-wrapper" id="certificate-container" style="max-width: 80%; margin: 0 auto;">
+<center>
+<div class="certifcate-img-wrapper" id="certificate-container">
     <!-- <img data-src="{{ certNum | file_url }}" class="lazyload" alt="" /> -->
-     <iframe id="cert_of_auth_pdf" src="{{ certNum | file_url }}"  frameborder="0" width="100%" style="height: 70vh;">
+     <iframe id="cert_of_auth_pdf" src="{{ certNum | file_url }}#navpanes=0&zoom=120"  frameborder="0" width="100%" style="height: 90vh;">
     This browser does not support PDFs. Please download the PDF to view it: 
     <a href="../pdf/sample-3pp.pdf">Download PDF</a></iframe>
+
+    {% comment %}
+    <object data="{{ certNum | file_url }}" type="application/pdf">
+      <iframe src="https://docs.google.com/viewer?url={{ certNum | file_url }}&embedded=true"></iframe>
+  </object> {% endcomment %}
+
+
+
     <!-- <iframe id="pdfviewer" src="http://docs.google.com/gview?embedded=true&url=YOUR_URL_HERE&amp;embedded=true" frameborder="0" width="100%" height="100%"></iframe> -->
       <!-- <iframe id="pdfviewer" src="http://docs.google.com/gview?embedded=true&url={{ finalCertUrl | replace: '//', '' }}" frameborder="0" width="100%" style="height: 55vh;" ></iframe>  -->
   
     <!-- <canvas id="the-canvas"></canvas> -->
 </div>
 </center>
+</div>
 {% comment%}
 <script type="text/javascript">
 var url = `{{ certNum | file_url }}`;
