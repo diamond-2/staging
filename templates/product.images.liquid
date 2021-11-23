@@ -2,15 +2,15 @@
 {%- if product.media.size > 0 -%}
 <div class="product-detail-slider-wrapper">
     <div class="product-detail-slider-holder">
+        <div class="hide_mobile">{% include 'product-badge' %}</div>
         <div class="product-detail-slider erererer">
             {%- for mediaSlide in product.media -%}
             {%- if mediaSlide -%}
             {% assign mediaSlide = mediaSlide | downcase %}
-            {% if  mediaSlide contains "zyxw" %}
-
-            <div class="product-detail-slide image_zoom js-zoom-enabled"  data-alt="{{ mediaSlide.alt }}">
-
-                {% if mediaSlide.media_type == 'image' %}
+            {% if mediaSlide.media_type == 'image' %}
+                {% if  mediaSlide contains "zyxw" %}
+            <div class="product-detail-slide image_zoom js-zoom-enabled"  data-alt="{{ mediaSlide.alt }}" data-media_type="{{ mediaSlide.media_type }}" data-mediaName="{{ mediaSlide | replace: 'products/', ''}}">
+                
                 <div class="product-detail-slide-inner" data-scale="1.4">
                     <div class="product-detail-slide-img-holder zoomImg">
                         <img id="{{ media_id }}"
@@ -18,28 +18,28 @@
           data-src="{{ mediaSlide | img_url:'900x'}}"
           alt="{{ mediaSlide.alt | escape }}">
                     </div>
-                        
-
-
                 </div>
-                {% elsif mediaSlide.media_type == 'video' %}
+            </div>
+                {% endif %}
+                {% endif %}
+                {% if mediaSlide.media_type == 'video' %}
+                <div class="product-detail-slide image_zoom js-zoom-enabled"  data-alt="{{ mediaSlide.alt }}" data-media_type="{{ mediaSlide.media_type }}" data-mediaName="{{ mediaSlide | replace: 'products/', ''}}">
                 <div class="product-detail-slide-inner media_type_video">
                     <div class="product-detail-slide-img-holder">
-                        <video loop muted>
+                        <video loop muted autoplay preload="metadata" poster="{{ 'thumb-6.jpg' | asset_url }}">
                             {% for video in mediaSlide.sources %}
-                            <source src="{{ video.url }}" type="{{ video.mime_type }}">
+                                <source src="{{ video.url }}" type="{{ video.mime_type }}">
                             {% endfor %}
                         </video>
                     </div>
                 </div>
-                {% endif %}
-
             </div>
-            {%- endif -%}
+                {% endif %}
+            
             {%- endif -%}
             {%- endfor -%}
-        </div>
-        <div class="hide_mobile">{% include 'product-badge' %}</div>
+        </div>     
+        {% comment %}   
         {% for mediaThumb in product.media %}
         {% assign videoIndexValue = forloop.index0 %}
         {% if mediaThumb.media_type == 'video' %}
@@ -50,6 +50,7 @@
         </div>
         {% endif %}
         {% endfor %}
+        {% endcomment %}
     </div>
     <div class="product-detail-slider-thumbnail-wrapper hide_mobile">
         <div class="right-border-line"></div>
@@ -57,25 +58,31 @@
             data-size="{{ product.media.size }}" {% endif %}>
             {% for mediaThumb in product.media %}
             {% assign mediaThumb = mediaThumb | downcase %}
+            {% if mediaThumb.media_type == 'image' %}
             {% if  mediaThumb contains "zyxw" %}
-            <div class="product-detail-slider-thumbnail-slide" data-alt="{{ mediaThumb.alt }}">
-                {% if mediaThumb.media_type == 'image' %}
+            <div class="product-detail-slider-thumbnail-slide" data-alt="{{ mediaThumb.alt }}" data-media_type="{{ mediaThumb.media_type }}" data-mediaName="{{ mediaThumb | replace: 'products/', ''}}">               
                 <div class="product-detail-slider-thumbnail-slide-inner">
                     <div class="img_holder">
                         <img data-src="{{ mediaThumb | img_url:'150x150' }}" class="lazyload"
                             alt="{{ mediaThumb.alt }}">
                     </div>
                 </div>
-                {% elsif mediaThumb.media_type == 'video' %}
-                <div class="product-detail-slider-thumbnail-slide-inner media_thumb">
-                    <div class="img_holder">{{ 'thumb-6.jpg' | asset_url | img_tag :'360 Video' }}</div>
+            </div>
+                {% endif %}
+                {% endif %}
+                {% if mediaThumb.media_type == 'video' %}
+                <div class="product-detail-slider-thumbnail-slide" data-alt="{{ mediaThumb.alt }}" data-media_type="{{ mediaThumb.media_type }}" data-mediaName="{{ mediaThumb | replace: 'products/', ''}}">
+                <div class="product-detail-slider-thumbnail-slide-inner media_thumb">                    
+                    <div class="img_holder">
+                        <img src="{{ 'thumb-6.jpg' | asset_url }}" class="lazyload"
+                        alt="{{ '360 Video' }}">
+                    </div>
+                </div>
                 </div>
                 {% endif %}
-            </div>
-            {%- endif -%}
+            
             {% endfor %}
         </div>
     </div>
-</div>
 {%- endif -%}
 <script type="text/javascript" src="{{ 'zoom.js' | asset_url }}"></script>

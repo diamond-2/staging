@@ -66,7 +66,7 @@
             {% endfor %}
 
             
-            <div class="sitemap-row">
+            <div class="sitemap-row" style="display: none;">
                 <ul class="sitemap-menu-grid">
                     {% for footerMenu in linklists.footer.links %}
                     <li class="sitemap-menu-column" data-title="{{ footerMenu.title | handleize }}">
@@ -83,7 +83,7 @@
                 </ul>
             </div>
 
-            <div class="sitemap-row">
+            <div class="sitemap-row" style="display: none;">
                 <ul class="sitemap-menu-grid">
                     <li class="sitemap-menu-column">
                         <a>More Links</a>

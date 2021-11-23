@@ -10401,9 +10401,8 @@ window.addEventListener("resize", function() {
         localStorage.removeItem("certificateNumber");
       }
     }
-    console.log(certificateNumberExist);
-
-
+    //console.log(certificateNumberExist);
+    
   // Show Feedback From
   $(document).on('click', '#feedbackForm', function(){
     $('body').addClass('feedbackFromVisible');
