@@ -16,7 +16,7 @@ $preLg: 200px;
 
 
 @mixin globalFontSize26() {
-  font-size: 26px;
+  font-size: 22px;
   line-height: 28.08px;
   @media(max-width: $xxl) {
     font-size: 16px;
@@ -3440,6 +3440,9 @@ body{
                     }
                     a {
                       color: $textcolor-phanton;
+                      &[href$="#"] {
+                        pointer-events: none;
+                      }
                     }
                     .site-footer__sub-linklist{
                       padding-top: 25px;
@@ -4630,6 +4633,9 @@ body[data-template="know-your-diamond"], body[data-template="about-us"] {
   }
   .slick-list {
     margin: 0 -10px;
+    .slick-track {
+      margin: 0 auto;
+    }
   }
   .collection-card {
     text-align: center;
@@ -7723,6 +7729,18 @@ body[data-template="loose-stone"] {
               &+ {
                 margin-top: 12px;
               }
+              &>div {
+                flex: 0 0 33.333%;
+                &.product_weight {
+                  text-align: left;
+                }
+                &.product_compare {
+                  text-align: right;
+                  visibility: hidden;
+                  opacity: 0;
+                  pointer-events: none;
+                }
+              }
             }
           }
         }
@@ -7809,9 +7827,8 @@ body[data-template="loose-stone"] {
       .btn-holder {
         .glb-btn-with-arrow {
           &.large_arrow_btn {
-            font-size: 26px;
+            @include globalFontSize26();
             font-weight: 500;
-            line-height: 28.08px;
             margin-top: 30px;
             @media(max-width: $xxl) {
               font-size: 14px;
@@ -8909,7 +8926,7 @@ body {
 }
 
 .contact-us-section-wrapper {
-  padding-top: 70px;
+  padding-top: 0px;
   @media(max-width: $md) {
     padding-top:0;
   }
@@ -13906,6 +13923,7 @@ body.template-product {
         justify-content: center;
         color: #fff;
         &.whatsapp_trigger {
+          display: none;
           background-image: url(https://cdn.shopify.com/s/files/1/0575/2681/2840/files/1C_Custom.svg?v=1629985416);
           background-size: 32px;
           background-repeat: no-repeat;
@@ -13982,12 +14000,14 @@ body.template-product {
         opacity: 1;
         left: 0;
         &:nth-child(1) {
-          top: -90px;
-          transform: translateY(-90px);
-        }
-        &:nth-child(2) {
           top: -60px;
           transform: translateY(-60px);
+          // top: -90px;
+          // transform: translateY(-90px);
+        }
+        &:nth-child(2) {
+          // top: -60px;
+          // transform: translateY(-60px);
         }
         &:nth-child(3) {
           top: -30px;
@@ -15152,7 +15172,7 @@ canvas#the-canvas {
 }
 // Request Certificate Style
 .certifcate-img-wrapper {
-  max-width: 750px;
+  max-width: 1050px;
   a {
     margin-top: 40px;
     display: inline-block;
@@ -15601,4 +15621,11 @@ body.has_top_banner {
       right: 10px;
     } 
   }
+}
+.certificate-error {
+  color: #ff0000;
+  font-size: 15px!important;
+  padding-top: 5px;
+  margin-bottom: 0px;
+  font-weight: 500;
 }

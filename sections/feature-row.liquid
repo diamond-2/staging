@@ -1,3 +1,4 @@
+{%- if section.settings.enable_section -%}
 <div class="dia-container feature-row">
   {% capture image_layout %}
     {% if section.settings.image != blank %}
@@ -84,13 +85,19 @@
     {% endif %}
   </div>
 </div>
-
+{%- endif -%}
 
 {% schema %}
 {
   "name": "Image with text",
   "class": "index-section homepage-image-text",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_section",
+      "label": "Enable section",
+      "default": true
+    },
     {
       "type": "image_picker",
       "id": "image",

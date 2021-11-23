@@ -1,3 +1,4 @@
+{%- if section.settings.enable_slider -%}
 {%- if section.settings.slideshow_height == 'adapt' -%}
   {% comment %}
     'min_aspect_ratio' is the minimum aspect ratio of images shown without
@@ -198,7 +199,7 @@
     </div>
   {% endif %}
 </div>
-
+{%- endif -%}
 {% schema %}
 {
   "name": {
@@ -227,6 +228,12 @@
   "class": "index-section index-section--flush index-section--slideshow",
   "max_blocks": 6,
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_slider",
+      "label": "Enable slideshow",
+      "default": true
+    },
     {
       "type": "select",
       "id": "slideshow_height",

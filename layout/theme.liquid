@@ -262,6 +262,16 @@
   </ul>
   {% if template contains 'product' %}{% include 'product-zoom-gallery' %}{% endif %}
 
+  <!-- subscription form success message modal -->
+  <div class="form-message-modal-overlay"></div>
+  <div class="form-message-modal-content">
+    <div class="form-message-modal-header">
+      <a href="javascript:;" aria-label="Close modal"><img src="{{ 'Close.png' | file_url}}" alt=""></a>
+      <img data-src="{{ 'Diamond2-main-logo.svg' | file_url }}" class="lazyload  modal-logo" alt="" />
+    </div>
+    <div id="form-msg">Thank you for subscribe</div>
+  </div>
+  
   <!-- Feedback Form -->
   {% include 'feedback-form' %}
 

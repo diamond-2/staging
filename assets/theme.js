@@ -9990,36 +9990,67 @@ window.addEventListener("resize", function() {
 
   })
   
-  var challengePage = window.location.pathname;
-  if(challengePage == '/challenge'){
-    $('html, body').animate({scrollTop:0}, 'slow');
-  }
+  // var challengePage = window.location.pathname;
+  // if(challengePage == '/challenge'){
+  //   $('html, body').animate({scrollTop:0}, 'slow');
+  // }
   
+
   $(window).on('load', function(){  
-    setTimeout(function(){
+    // setTimeout(function(){
       $('.form-message').hide();
-    },5000);
+    // },10000);
     var check = window.location.search;
     var getFormId = localStorage.getItem('form-Id');
-    if(getFormId !=null) {
-      $('#'+getFormId).find('.form-message').addClass('show');
-      $('#'+getFormId).find('.form-message').removeClass('hide');
-      setTimeout(function(){
-        $('#'+getFormId).find('.form-message').removeClass('show');
-        $('#'+getFormId).find('.form-message').addClass('hide');
-      },5000)
+    var errorContent = ''
+    if(window.location.pathname != '/challenge' && getFormId !=null) {
+      var checkMsgExist = setInterval(function(){ 
+        //Check error in the form       
+        if ($('#'+getFormId).find('.form-message.form-message--error').text().length > 0) {
+          errorContent = $('#'+getFormId).find('.form-message.form-message--error').text();
+          $(document).find('.form-message-modal-content #form-msg').text(errorContent);          
+          showMsgModal();
+          $(document).find('input[type="email"]').val('');
+          window.history.replaceState(null, null, window.location.pathname);
+          localStorage.removeItem("form-Id");
+          clearInterval(checkMsgExist);
+        } 
+        //success
+        if($('#'+getFormId).find('.form-message--success').length > 0){
+          console.log($('#'+getFormId).find('.form-message--success').length)
+          if(check.indexOf('customer_posted=true') > -1){
+            errorContent = $('#'+getFormId).find('.form-message.form-message--success').text();
+            $(document).find('.form-message-modal-content #form-msg').text(errorContent); 
+            $(document).find('input[type="email"]').val('');
+            window.history.replaceState(null, null, window.location.pathname);
+            localStorage.removeItem("form-Id");
+            clearInterval(checkMsgExist);
+          }
+        }
+        console.log('test',errorContent);
+      },0);
+      
+      // console.log('errorContent', errorContent); 
+      // $('#'+getFormId).find('.form-message').removeClass('hide');
+      // $('#'+getFormId).find('.form-message').addClass('show');      
+      // setTimeout(function(){  
+        // $('#'+getFormId).find('.form-message').addClass('hide');      
+        // $('#'+getFormId).find('.form-message').removeClass('show');  
+        // hideMsgModal();
+      // },5000)
+
     }
     //success
-    if($('.form-message--success').length > 0){
-      if(check.indexOf('customer_posted=true') > -1){
-        setTimeout(function(){
-          // $('.form-message--success').remove();
-          window.history.replaceState(null, null, window.location.pathname);
-          $('html, body').animate({scrollTop: $('#'+getFormId).offset().top}, 'slow');
-          localStorage.removeItem("form-Id");
-        },500);
-      }
-    }
+    // if($('.form-message--success').length > 0){
+    //   if(check.indexOf('customer_posted=true') > -1){
+    //     setTimeout(function(){
+    //       // $('.form-message--success').remove();
+    //       window.history.replaceState(null, null, window.location.pathname);
+    //       $('html, body').animate({scrollTop: $('#'+getFormId).offset().top}, 'slow');
+    //       localStorage.removeItem("form-Id");
+    //     },2000);
+    //   }
+    // }
     //error
     setTimeout(function() {
       if(check.indexOf('entrepreneur&form_type=customer') > -1){
@@ -10032,7 +10063,7 @@ window.addEventListener("resize", function() {
         $('html, body').animate({scrollTop: $('#'+getFormId).offset().top}, 'slow');
         $('#'+getFormId).find('.input-group__btn button').removeAttr('disabled');
       }
-    },5000);
+    },10000);
   });
   
   $('#AccessibleNav #SiteNav > li').hover(function(e){
@@ -10275,11 +10306,18 @@ window.addEventListener("resize", function() {
 
     // Animate div if url has hash value
     let getHashUrl = window.location.hash;
+    let currentUrl = window.location.href;
     console.log(getHashUrl);
     if(window.location.hash.length > 0 ) {
-      $('html, body').animate({
-        scrollTop: $(getHashUrl).offset().top - 70
-      }, 2000);
+      if(currentUrl.indexOf('/challenge#ContactFooter') > -1 ){
+        $('html, body').animate({
+          scrollTop: 0
+        }, 2000);
+      }else {
+        $('html, body').animate({
+          scrollTop: $(getHashUrl).offset().top - 70
+        }, 2000);
+      }   
     }    
   });
 
@@ -10376,16 +10414,29 @@ window.addEventListener("resize", function() {
   $('.home-jcl .mobile_featured_image').html($('.home-jcl .scl-collage [class^=block-].big_block>div.full-width .img-box').html());
 
   // Post Certificate Url
-  $(document).on('click', '#search-certificate', function(){
-    let certNumber = 'cer'+$('#certificate-number').val();
-    localStorage.setItem("certificateNumber", certNumber);
-      console.log(certNumber);
-    if(window.innerWidth > 1024){      
-      window.location.href = "/pages/aryamond-certificate?getCert="+certNumber;
-    }else {
-      window.open('/pages/certificate?getCert='+certNumber);
-      // window.location.href = "/pages/certificate?getCert="+certNumber;
+  $(document).on('keypress', '#search-certificate, #certificate-number', function(e){
+    var code = e.keyCode || e.which;
+    if(code==13){
+        $('#search-certificate').trigger('click');
     }
+  });
+  $(document).on('click', '#search-certificate', function(e){
+    $(document).find('.certificate-error').remove();
+    let certNumber = 'cer'+$('#certificate-number').val();
+    if($('#certificate-number').val() != '') {
+      localStorage.setItem("certificateNumber", certNumber);
+      console.log(certNumber);
+      if(window.innerWidth > 1024){      
+        window.location.href = "/pages/aryamond-certificate?getCert="+certNumber;
+      }else {
+        window.open('/pages/certificate?getCert='+certNumber);
+        // window.location.href = "/pages/certificate?getCert="+certNumber;
+      }
+    } else {
+      $('#certificate-number').after('<p class="certificate-error">Please fill the certificate number.</p>');
+      return false;
+    }
+    
   });
 
   // Get Certificates
@@ -10394,7 +10445,7 @@ window.addEventListener("resize", function() {
       let CertqueryParam = window.location.search;
       if(CertqueryParam.indexOf(certificateNumberExist) > -1) {
         ////cdn.shopify.com/s/files/1/0575/2681/2840/files/cer02.pdf?v=11713192365355509614#navpanes=0&amp;zoom=120
-        pdfSrc = '//cdn.shopify.com/s/files/1/0575/2681/2840/files/'+certificateNumberExist+'.pdf#navpanes=0&amp;zoom=120'
+        pdfSrc = '//cdn.shopify.com/s/files/1/0575/2681/2840/files/'+certificateNumberExist+'.pdf#navpanes=0&zoom=175'
         let iframeId = $('#cert_of_auth_pdf');
         iframeId.attr('src', pdfSrc);
       } else {
@@ -10562,4 +10613,12 @@ function updateImgGallery(variantId){
   },500); 
   }
 }); 
+}
+
+function showMsgModal() {
+  $('.form-message-modal-overlay, .form-message-modal-content').show()
+}
+function hideMsgModal() {
+  $('.form-message-modal-overlay, .form-message-modal-content').hide()
+  $(document).find('.form-message-modal-content #form-msg').text('');
 }

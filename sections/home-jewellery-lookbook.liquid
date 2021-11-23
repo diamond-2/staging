@@ -1,5 +1,4 @@
-
-
+{%- if section.settings.enable_section -%}
 <div class="jcl-{{ section.id }} home-jcl"> 
     <div class="dia-container">
         <div class="scl-header">
@@ -53,13 +52,19 @@
     </div>
     
     </div>
-    
+ {%- endif -%}   
     {% schema %}
     {
         "name" : "Jewellery",
         "class": "jewellery-col-layout",
         "max_blocks": 3,
         "settings": [
+            {
+                "type": "checkbox",
+                "id": "enable_section",
+                "label": "Enable section",
+                "default": true
+            },
             {
                 "type":"text",
                 "id":"scl-heading",

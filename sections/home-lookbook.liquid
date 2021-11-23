@@ -1,5 +1,4 @@
-
-
+{%- if sections.settings.enable_section -%}
 <div class="scl-{{ section.id }} home-scl">
     <div class="dia-container">
         <div class="scl-header"> 
@@ -49,13 +48,19 @@
     </div>
     
     </div>
-    
+ {%- endif -%}   
     {% schema %}
     {
         "name" : "Solitaire",
         "class": "solitaire-col-layout",
         "max_blocks": 3,
         "settings": [
+            {
+                "type": "checkbox",
+                "id": "enable_section",
+                "label": "Enable section",
+                "default": true
+            },
             {
                 "type":"text",
                 "id":"scl-heading",

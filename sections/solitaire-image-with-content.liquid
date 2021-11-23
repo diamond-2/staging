@@ -1,4 +1,4 @@
-
+{%- if section.settings.enable_section -%}
 <div class="content-with-image-wrapper">
 	<div class="dia-container">
 		<div class="custom-row">
@@ -60,11 +60,17 @@
 		</div>
 	</div>
 </div>
-
+{%- endif -%}
 {% schema %}
   {
     "name": "Image With Content",
     "settings": [
+		{
+			"type": "checkbox",
+			"id": "enable_section",
+			"label": "Enable Section",
+			"default": true
+		},
 		{
 			"type": "header",
 			"content": "Content Column"
