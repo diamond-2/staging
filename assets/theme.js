@@ -10026,6 +10026,7 @@ window.addEventListener("resize", function() {
           if(check.indexOf('customer_posted=true') > -1){
             errorContent = $('#'+getFormId).find('.form-message.form-message--success').text();
             $(document).find('.form-message-modal-content #form-msg').text(errorContent); 
+            showMsgModal();
             $(document).find('input[type="email"]').val('');
             window.history.replaceState(null, null, window.location.pathname);
             localStorage.removeItem("form-Id");

@@ -2650,7 +2650,7 @@ body.landing-exist.scroll-start #shopify-section-landing {
         .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] .site-footer__item-inner--newsletter .footer-social__icns .site-footer__social-icons {
           flex: 1 1 69%;
           display: flex;
-          justify-content: space-between;
+          justify-content: flex-start;
           align-items: center;
           padding-left: 10px;
           padding-bottom: 0;
@@ -2662,7 +2662,8 @@ body.landing-exist.scroll-start #shopify-section-landing {
               padding: 0 30px;
               justify-content: center; } }
           .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] .site-footer__item-inner--newsletter .footer-social__icns .site-footer__social-icons .social-icons__item {
-            padding: 0px; }
+            padding: 0px;
+            margin-right: 10px; }
             @media (max-width: 749px) {
               .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] .site-footer__item-inner--newsletter .footer-social__icns .site-footer__social-icons .social-icons__item {
                 margin: 0 7.5px; } }
@@ -2701,6 +2702,8 @@ body.landing-exist.scroll-start #shopify-section-landing {
                   .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] .site-footer__item-inner--newsletter .footer-social__icns .site-footer__social-icons .social-icons__item .social-icons__link .icon {
                     width: 12px;
                     height: 12px; } }
+            .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] .site-footer__item-inner--newsletter .footer-social__icns .site-footer__social-icons .social-icons__item:last-child {
+              margin-right: 0px; }
   .site-footer .footer-form__entrepreneur {
     background: #E0E0E0;
     padding: 17px 0; }
@@ -4159,7 +4162,8 @@ body[data-template="product"] .main-content {
     display: flex;
     align-items: center;
     font-size: 13px;
-    line-height: 15.85px; }
+    line-height: 15.85px;
+    display: none; }
     @media (max-width: 1600px) {
       .product-section-row .product-wishlist {
         font-size: 10px;
@@ -4605,7 +4609,8 @@ body[data-template="product"] .main-content {
     .product-section-row .product-details-btn-grid .product-details-btn-item {
       padding: 0 15px;
       width: 50%;
-      margin-bottom: 30px; }
+      margin-bottom: 30px;
+      display: none; }
       @media (max-width: 1440px) {
         .product-section-row .product-details-btn-grid .product-details-btn-item {
           margin-bottom: 15px; } }
@@ -5436,7 +5441,6 @@ body[data-template="loose-stone"] .product-content-section {
       padding: 20px 0px 0; } }
   body[data-template="loose-stone"] .product-content-section .product-details-wrapper h3 {
     padding-right: 27px;
-    max-width: 43.5%;
     font-size: 18px;
     margin-bottom: 32px;
     display: flex;
@@ -5444,7 +5448,6 @@ body[data-template="loose-stone"] .product-content-section {
     justify-content: space-between; }
     @media screen and (max-width: 1199px) {
       body[data-template="loose-stone"] .product-content-section .product-details-wrapper h3 {
-        max-width: 50%;
         font-size: 14px; } }
     @media screen and (max-width: 749px) {
       body[data-template="loose-stone"] .product-content-section .product-details-wrapper h3 {
@@ -11462,21 +11465,25 @@ body.template-product .pdp-zoom-gallery {
         align-items: center;
         justify-content: center;
         color: #fff; }
+        .chat-widget-wrapper ul li a.livechat_trigger {
+          background: transparent url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/experts-chat-b.svg") no-repeat center center;
+          background-size: contain; }
         .chat-widget-wrapper ul li a.whatsapp_trigger {
           display: none;
-          background-image: url(https://cdn.shopify.com/s/files/1/0575/2681/2840/files/1C_Custom.svg?v=1629985416);
-          background-size: 32px;
-          background-repeat: no-repeat;
-          background-position: center; }
+          background: transparent url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/experts-whatsapp-b.svg") no-repeat center center;
+          background-size: contain; }
         .chat-widget-wrapper ul li a svg {
+          display: none;
           width: 15px !important; }
           .chat-widget-wrapper ul li a svg path {
             fill: #fff;
             stroke: #fff; }
+      .chat-widget-wrapper ul li.telephone_trigger_item a {
+        background: transparent url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/experts-call-b.svg") no-repeat center center;
+        background-size: contain; }
   .chat-widget-wrapper .chat-trigger {
-    width: 55px;
+    width: 80px;
     transition: width 0.3s ease-in-out 0s;
-    background: #6C1D45;
     color: #ffffff;
     font-size: 13px;
     text-align: center;
@@ -11490,10 +11497,26 @@ body.template-product .pdp-zoom-gallery {
     line-height: 36px;
     font-size: 0; }
     .chat-widget-wrapper .chat-trigger:after {
-      content: "Help";
+      content: "";
+      width: 80px;
+      height: 35px;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      background: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/help-chat-b.svg") no-repeat top right;
+      background-size: contain;
       font-size: 13px; }
     .chat-widget-wrapper .chat-trigger:before {
-      content: "X";
+      content: "";
+      content: "";
+      width: 80px;
+      height: 35px;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      background: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/close-help-b.svg") no-repeat top right;
+      background-size: contain;
+      font-size: 13px;
       font-size: 20px;
       display: none; }
 
@@ -12879,16 +12902,18 @@ a[href$="nolink"] {
   .factual-comparison-table th, .factual-comparison-table td {
     text-align: center;
     font-size: 12px;
+    line-height: 14.6px;
     font-weight: normal;
     text-transform: uppercase;
     width: 25%;
     border: none;
-    height: 50px; }
+    height: 43px;
+    padding: 5px 10px;
+    border: 1px  solid #000; }
     @media screen and (max-width: 749px) {
       .factual-comparison-table th, .factual-comparison-table td {
         min-width: 130px; } }
     .factual-comparison-table th:last-child, .factual-comparison-table td:last-child {
-      border: 1px  solid #000;
-      background: #fff3f5; }
+      background: #FEF0F6; }
   .factual-comparison-table th {
-    height: 80px; }
+    height: 88px; }
