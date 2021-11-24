@@ -888,7 +888,7 @@ body {
               }
             }
             &.site-nav__childlist--group--1,
-            &.site-nav__childlist--group--7 {
+            &.site-nav__childlist--group--9 {
               width: calc(100% - 940px);
               padding-right: 20px;
               &+.nav-image-wrapper {
@@ -966,6 +966,20 @@ body {
         }
       }
 
+    }
+    >li:last-child {
+      .site-nav__dropdown {
+        .site-nav__childlist{
+          .site-nav__childlist-grid {
+            .site-nav__childlist--group {
+              &[class*="site-nav__childlist--group--"] {
+              width: calc(100% - 940px);
+              padding-right: 20px;
+            }
+            }
+          }
+        }
+      }
     }
   }
   .site-nav__childlist-item {
@@ -5339,7 +5353,7 @@ body[data-template="product"] {
               height: 30px;
               line-height: 30px;
             }
-            height: 30px;
+            // height: 30px;
           }
         }
       }
@@ -5673,7 +5687,7 @@ body[data-template="product"] {
           content: 'Only '
         }
         &:after {
-          content: ' Stock left!'
+          content: ' piece left'
         }
       }
     }
@@ -5683,6 +5697,7 @@ body[data-template="product"] {
       display: flex;
       align-items: center;
       margin-top: 15px;
+      justify-content: space-between;
       @include pdpSmallFont();
       @media(max-width: $xxl) {
         align-items: center;
@@ -5774,6 +5789,7 @@ body[data-template="product"] {
     }
     .delivery-check-date {
         text-transform: none;
+        padding-left: 5px;
         // width: 43%;
         @media(max-width: $xxl) {
           // width: 34%;
@@ -5781,6 +5797,9 @@ body[data-template="product"] {
         @media(max-width: $xl) {
           // width: 100%;
           // flex-wrap: wrap;
+        }
+        @media(max-width: $md) {
+          padding-left: 0px;
         }
     }
   }
