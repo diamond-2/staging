@@ -229,11 +229,11 @@ $preLg: 200px;
     transform: rotate(45deg);
   }
   @mixin supscript-r() {
-    font-size: 40%;
-    top: -10px;
+    font-size: 40%!important;
+    top: -10px!important;
     left: -1px;
     @media screen and (max-width: $md) {
-        top: -7px;
+        top: -7px!important;
       }
   }
 
@@ -399,9 +399,10 @@ $postXXL: $xxl +  $viewportIncrement;
 * {
   outline: none !important;
 }
-// sub, sup {
-//   font-size: 75%;
-// }
+sup {
+  @include supscript-r();
+  // top: -9px;
+}
 body {
   font-weight: 300;
 }

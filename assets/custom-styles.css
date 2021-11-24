@@ -9,6 +9,14 @@
 * {
   outline: none !important; }
 
+sup {
+  font-size: 40% !important;
+  top: -10px !important;
+  left: -1px; }
+  @media screen and (max-width: 749px) {
+    sup {
+      top: -7px !important; } }
+
 body {
   font-weight: 300; }
 
@@ -2537,12 +2545,12 @@ body.landing-exist.scroll-start #shopify-section-landing {
               .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="link_list"] .site-footer__item-inner--link_list .site-footer__linklist .site-footer__linklist-item .site-footer__sub-linklist .site-footer__sub-linklist-item a {
                 color: #000000; }
                 .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="link_list"] .site-footer__item-inner--link_list .site-footer__linklist .site-footer__linklist-item .site-footer__sub-linklist .site-footer__sub-linklist-item a sup {
-                  font-size: 40%;
-                  top: -10px;
+                  font-size: 40% !important;
+                  top: -10px !important;
                   left: -1px; }
                   @media screen and (max-width: 749px) {
                     .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="link_list"] .site-footer__item-inner--link_list .site-footer__linklist .site-footer__linklist-item .site-footer__sub-linklist .site-footer__sub-linklist-item a sup {
-                      top: -7px; } }
+                      top: -7px !important; } }
   .site-footer .site-footer__content .site-footer__item.site-footer__item--one-half[data-content="newsletter"] {
     flex: 1 1 33.333%;
     justify-content: flex-end; }
@@ -3272,12 +3280,12 @@ body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3,
     text-align: center;
     margin-bottom: 44px; }
     .content-with-image-diamond-section-wrapper .top_header h2 sup {
-      font-size: 40%;
-      top: -10px;
+      font-size: 40% !important;
+      top: -10px !important;
       left: -1px; }
       @media screen and (max-width: 749px) {
         .content-with-image-diamond-section-wrapper .top_header h2 sup {
-          top: -7px; } }
+          top: -7px !important; } }
 
 .content-with-image-diamond-row {
   display: flex;
@@ -6857,12 +6865,12 @@ body.has_top_banner .main-content {
     .common-layout-wrapper .rte *:last-child {
       margin-bottom: 0; }
   .common-layout-wrapper .rte sup {
-    font-size: 40%;
-    top: -10px;
+    font-size: 40% !important;
+    top: -10px !important;
     left: -1px; }
     @media screen and (max-width: 749px) {
       .common-layout-wrapper .rte sup {
-        top: -7px; } }
+        top: -7px !important; } }
   .common-layout-wrapper.sp-sitemap-layout .custom-section-header h1 {
     margin-bottom: 58px;
     letter-spacing: normal; }
@@ -7813,12 +7821,12 @@ body[data-template="404"] .main-content {
   .sitemap-wrapper .sitemap-row h3 a {
     color: #6C1D45; }
   .sitemap-wrapper .sitemap-row h3 sup {
-    font-size: 40%;
-    top: -10px;
+    font-size: 40% !important;
+    top: -10px !important;
     left: -1px; }
     @media screen and (max-width: 749px) {
       .sitemap-wrapper .sitemap-row h3 sup {
-        top: -7px; } }
+        top: -7px !important; } }
   .sitemap-wrapper .sitemap-row h3 .sitemap_accordion_trigger {
     position: absolute;
     top: 0;
@@ -7929,12 +7937,12 @@ body[data-template="404"] .main-content {
           line-height: 15.12px;
           margin-bottom: 20px; } }
       .sitemap-wrapper .sitemap-menu-grid > li > a sup {
-        font-size: 40%;
-        top: -10px;
+        font-size: 40% !important;
+        top: -10px !important;
         left: -1px; }
         @media screen and (max-width: 749px) {
           .sitemap-wrapper .sitemap-menu-grid > li > a sup {
-            top: -7px; } }
+            top: -7px !important; } }
       .sitemap-wrapper .sitemap-menu-grid > li > a:after {
         content: "";
         display: block;
@@ -12764,12 +12772,12 @@ body.has_top_banner #shopify-section-header {
     margin-top: 5px !important; } }
 
 #shopify-section-footer sup {
-  font-size: 40%;
-  top: -10px;
+  font-size: 40% !important;
+  top: -10px !important;
   left: -1px; }
   @media screen and (max-width: 749px) {
     #shopify-section-footer sup {
-      top: -7px; } }
+      top: -7px !important; } }
 
 #SearchDrawer {
   position: fixed;
