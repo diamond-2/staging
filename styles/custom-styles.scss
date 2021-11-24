@@ -228,6 +228,14 @@ $preLg: 200px;
     border-left: 1px solid rgba(255, 0, 0, 0.5);
     transform: rotate(45deg);
   }
+  @mixin supscript-r() {
+    font-size: 40%;
+    top: -10px;
+    left: -1px;
+    @media screen and (max-width: $md) {
+        top: -7px;
+      }
+  }
 
   /*============================================================================
 #Breakpoint
@@ -3472,7 +3480,8 @@ body{
                         a{
                           color: $textcolor-black;
                           sup {
-                            top: -9px;
+                            @include supscript-r();
+                            // top: -9px;
                           }
                         }
                       }
@@ -4246,9 +4255,10 @@ body[data-template="know-your-diamond"], body[data-template="about-us"] {
       text-align: center;
       margin-bottom: 44px;
       sup {
-          font-size: 50%;
-          top: -19px;
-          left: -4px;
+        @include supscript-r();
+          // font-size: 50%;
+          // top: -19px;
+          // left: -4px;
       }
     }
   }
@@ -7664,6 +7674,7 @@ body[data-template="loose-stone"] {
             border: none;
             display: block;
             color: $textcolor-black;
+            min-height: 30px;
             @media(max-width: $xxl) {
               line-height: normal;
               font-size: 13px;
@@ -8529,8 +8540,10 @@ body {
       }
     }
     sup {
-      font-size: 75%;
-      top: -9px;
+      @include supscript-r()
+      // font-size: 40%;
+      // top: -11px;
+      // left: -1px;
     }
   }
   &.sp-sitemap-layout {
@@ -9656,8 +9669,10 @@ body[data-template="404"] {
         color: #6C1D45;
       }
       sup {
-        font-size: 75%;
-        top: -10px;
+        @include supscript-r();
+        // font-size: 40%;
+        // top: -11px;
+        // left: -1px;
       }
       .sitemap_accordion_trigger {
         position: absolute;
@@ -9791,8 +9806,10 @@ body[data-template="404"] {
           margin-bottom: 20px;
         }
         sup {
-          font-size: 75%;
-          top: -10px;
+          @include supscript-r();
+
+          // font-size: 40%;
+          // top: -10px;
         }
         &:after {
           content: "";
@@ -15535,9 +15552,10 @@ body.has_top_banner {
 
 #shopify-section-footer {
   sup {
-    @media screen and (max-width: $md) {
-      top: -7px;
-    }
+    @include supscript-r();
+    // @media screen and (max-width: $md) {
+    //   top: -7px;
+    // }
   }
 }
 #SearchDrawer {
@@ -15629,4 +15647,50 @@ body.has_top_banner {
   padding-top: 5px;
   margin-bottom: 0px;
   font-weight: 500;
+}
+
+a[href$="nolink"] {
+  text-decoration: none!important;
+  pointer-events: none!important;
+}
+.factual-comparison-section-wrapper {
+  @media screen and (max-width: $md) {
+    padding-top: 60px;
+    padding-bottom: 0px;
+  }
+}
+.factual-comparison-top-header {
+  h2 {
+    margin-bottom:40px;
+    @media screen and (max-width: $md) {
+      margin-bottom:20px;
+    }
+  }
+}
+.factual-comparison-table {
+  max-width: 850px;
+  margin: 0 auto;
+  @media screen and (max-width: $md) {
+    overflow: hidden;
+    overflow-x: auto;
+  }
+  th,td {
+    text-align: center;
+    font-size: 12px;
+    font-weight: normal;
+    text-transform: uppercase;
+    width: 25%;
+    border: none;
+    height: 50px;
+    @media screen and (max-width: $md) {
+      min-width: 130px;
+    }
+    &:last-child {
+      border: 1px  solid #000;
+    background: #fff3f5;
+    }
+  }
+  th {
+    height: 80px;
+  }
 }

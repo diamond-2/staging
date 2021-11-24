@@ -1,3 +1,4 @@
+{% if section.settings.enable_comparison_table %}
 <div class="factual-comparison-section-wrapper global_section_bg">
 	<div class="dia-container">
 		<div class="dia-small-container">
@@ -9,7 +10,77 @@
 
             <div class="factual-comparison-table">
 				<table>
+					<thead>
+						<tr>
+							<th>Properties</th>
+							<th>Cubic<br />Zironia</th>
+							<th>Natural<br/>Diamond</th>
+							<th><img src="//cdn.shopify.com/s/files/1/0575/2681/2840/files/Diamond2-main-logo.svg?v=1564371494035090670" width="150"></th>
+						</tr>
+					</thead>
 					<tbody>
+						<tr>
+							<td>LAB-GROWN</td>
+							<td>Yes</td>
+							<td>No</td>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<td>ATOMIC % OF<br/>CARBON</td>
+							<td>0%</td>
+							<td>about 100%</td>
+							<td>50%</td>
+						</tr>
+						<tr>
+							<td>BRILLIANCE</td>
+							<td>HIGH</td>
+							<td>HIGH</td>
+							<td>VERY HIGH</td>
+						</tr>
+						<tr>
+							<td>FIRE</td>
+							<td>HIGH</td>
+							<td>HIGH</td>
+							<td>VERY HIGH</td>
+						</tr>
+						<tr>
+							<td>thermal<br />Conductivity</td>
+							<td>No</td>
+							<td>Yes</td>
+							<td>Yes</td>
+						</tr>
+						<tr>
+							<td>Density (G/CM)<br/>(Heaviness)</td>
+							<td>5.5 - 5.9</td>
+							<td>3.5 - 3.53</td>
+							<td>3.218 - 3.22</td>
+						</tr>
+						<tr>
+							<td>Scratch<br />Resistant</td>
+							<td>Medium</td>
+							<td>Very High</td>
+							<td>Very High</td>
+						</tr>
+						<tr>
+							<td>Toughness</td>
+							<td>Good</td>
+							<td>Excellent</td>
+							<td>Excellent</td>
+						</tr>
+						<tr>
+							<td>Turn Cloudy<br />Overtime</td>
+							<td>Yes</td>
+							<td>No</td>
+							<td>No</td>
+						</tr>
+						<tr>
+							<td>Color</td>
+							<td>Mostly Better<br/>Than D</td>
+							<td>D to 3</td>
+							<td>D to 3</td>
+						</tr>
+					</tbody>
+					<!-- <tbody>
 						<tr>
 						    <th>{{ section.settings.column_1_title }}</th>
 						    <th>{{ section.settings.column_2_title }}</th>
@@ -26,24 +97,30 @@
 						</tr>
                         {%- endif -%}
                         {%- endfor -%}
-					</tbody>
+					</tbody> -->
 				</table>
 			</div>
 
 		</div>
 	</div>
 </div> 
-
+{% endif %}
 
 {% schema %}
   {
     "name": "Factual Comparison",
     "settings": [
+		{
+			"type": "checkbox",
+			"id": "enable_comparison_table",
+			"label": "Enable Section",
+			"default": true
+		},
     	{
     		"type": "text",
     		"label": "Heading",
     		"id": "heading",
-    		"default": "WHY diamond2 ?"
+    		"default": "Comparision with Diamons"
     	},
         {
     		"type": "text",
