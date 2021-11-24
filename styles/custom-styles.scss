@@ -7825,6 +7825,7 @@ body[data-template="loose-stone"] {
         }
       }
       .btn-holder {
+        display: none;
         .glb-btn-with-arrow {
           &.large_arrow_btn {
             @include globalFontSize26();

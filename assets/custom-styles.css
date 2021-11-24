@@ -6266,41 +6266,43 @@ body[data-template="loose-stone"] .product-content-section {
           width: 100%;
           height: 100%;
           object-fit: cover; }
-      .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder .glb-btn-with-arrow.large_arrow_btn {
-        font-size: 22px;
-        line-height: 28.08px;
-        font-weight: 500;
-        margin-top: 30px; }
-        @media (max-width: 1600px) {
-          .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder .glb-btn-with-arrow.large_arrow_btn {
-            font-size: 16px;
-            line-height: 1.8; } }
-        @media (max-width: 749px) {
-          .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder .glb-btn-with-arrow.large_arrow_btn {
-            font-size: 14px;
-            line-height: 18px; } }
-        @media (max-width: 1600px) {
-          .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder .glb-btn-with-arrow.large_arrow_btn {
-            font-size: 14px;
-            line-height: normal;
-            margin-top: 15px; } }
-        @media (max-width: 1199px) {
-          .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder .glb-btn-with-arrow.large_arrow_btn {
-            font-size: 14px; } }
-        @media (max-width: 749px) {
-          .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder .glb-btn-with-arrow.large_arrow_btn {
-            font-size: 14px;
-            line-height: normal; } }
-        @media (max-width: 1199px) and (min-width: 750px) {
-          .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder .glb-btn-with-arrow.large_arrow_btn:before {
-            background-size: 8px 10px; } }
-        @media (max-width: 749px) {
-          .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder .glb-btn-with-arrow.large_arrow_btn:before {
-            width: 10px;
-            height: 13px;
-            background-size: 7px 9px;
-            right: 1px;
-            margin-top: 0; } }
+      .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder {
+        display: none; }
+        .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder .glb-btn-with-arrow.large_arrow_btn {
+          font-size: 22px;
+          line-height: 28.08px;
+          font-weight: 500;
+          margin-top: 30px; }
+          @media (max-width: 1600px) {
+            .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder .glb-btn-with-arrow.large_arrow_btn {
+              font-size: 16px;
+              line-height: 1.8; } }
+          @media (max-width: 749px) {
+            .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder .glb-btn-with-arrow.large_arrow_btn {
+              font-size: 14px;
+              line-height: 18px; } }
+          @media (max-width: 1600px) {
+            .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder .glb-btn-with-arrow.large_arrow_btn {
+              font-size: 14px;
+              line-height: normal;
+              margin-top: 15px; } }
+          @media (max-width: 1199px) {
+            .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder .glb-btn-with-arrow.large_arrow_btn {
+              font-size: 14px; } }
+          @media (max-width: 749px) {
+            .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder .glb-btn-with-arrow.large_arrow_btn {
+              font-size: 14px;
+              line-height: normal; } }
+          @media (max-width: 1199px) and (min-width: 750px) {
+            .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder .glb-btn-with-arrow.large_arrow_btn:before {
+              background-size: 8px 10px; } }
+          @media (max-width: 749px) {
+            .solitaire-collection-wrapper .solitaire-two-col-row .static_image_column .btn-holder .glb-btn-with-arrow.large_arrow_btn:before {
+              width: 10px;
+              height: 13px;
+              background-size: 7px 9px;
+              right: 1px;
+              margin-top: 0; } }
     .solitaire-collection-wrapper .solitaire-two-col-row .pd_column {
       width: 50%; }
       @media (max-width: 749px) {

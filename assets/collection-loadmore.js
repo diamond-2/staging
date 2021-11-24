@@ -27,7 +27,8 @@ $(document).ready(function(){
           $('.__product-count__limit[data-pclimit]').text(updateCountLimit);
 
         } else if(prodCountTotal > updateCountLimit && diffPcount < prodCountLimit)  {
-          updateCountLimit = updateCountLimit + diffPcount;
+          updateCountLimit = updateCountLimit + diffPcount; 
+          console.log('updateCountLimit', updateCountLimit);
           $('.__product-count__limit[data-pclimit]').text(updateCountLimit);
         }
         loadmoreSpiner.hide();        

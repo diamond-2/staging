@@ -12,7 +12,7 @@
 {% if section.settings.layout == 'grid' %}
   {%- assign limit = section.settings.rows -%}
 {% else %}
-  {%- assign limit = 14 -%}
+  {%- assign limit = 16 -%}
 {% endif %}
 
 {% paginate collection.products by limit %}
