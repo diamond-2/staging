@@ -230,10 +230,12 @@ $preLg: 200px;
   }
   @mixin supscript-r() {
     font-size: 40%!important;
-    top: -10px!important;
-    left: -1px;
+    top: initial!important;
+    left: initial!important;
+    line-height: initial!important;
+    vertical-align: text-top!important;
     @media screen and (max-width: $md) {
-        top: -7px!important;
+        top: initial!important;
       }
   }
 

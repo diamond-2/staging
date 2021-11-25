@@ -23,7 +23,7 @@
 <div class="product-single__media-group--full" data-product-single-media-group>
     {%- for media in product.media -%}
     {% if media contains 'zyxw' %}
-    {% unless media.media_type == 'video' or  media.media_type == 'model' media.media_type == 'external_video' %}
+    {% unless media.media_type == 'model' %}
 {% capture media_id %}FeaturedMedia-product-template-{{ media.id }}{% endcapture %}
 {% capture media_class %}product-featured-media{% endcapture %}
 {% capture media_wrapper_id %}{{ media_id }}-wrapper{% endcapture %}
@@ -64,7 +64,6 @@
           alt="{{ media.alt | escape }}">
         </pinch-zoom>
       </div>
-      {% comment %}
     {% when 'external_video' %}
       <div class="product-single__media 44" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;">
         {{ media | external_video_tag }}
@@ -81,7 +80,6 @@
       <div class="product-single__media 11" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;">
         {{ media | media_tag: class: 'media-item', image_size: image_size }}
       </div>
-      {% endcomment %}
   {% endcase %}
 </div>
 {% endunless %}
