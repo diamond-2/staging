@@ -752,11 +752,11 @@ slate.Variants = (function() {
       let currentVariant = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('title');
       let currentSku = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('sku');
       $(document).find('select[name="id"] option[value="'+variant.id+'"]').attr('selected', 'selected');
-      if(currentVariantQty > 0 && currentVariantQty < 3) {
-        $('.cv-stock-left').text(currentVariantQty).show();
-      } else {
-        $('.cv-stock-left').hide();
-      }
+        if(currentVariantQty > 0 && currentVariantQty < 3) {
+          $('.cv-stock-left').text(currentVariantQty).show();
+        } else {
+          $('.cv-stock-left').hide();
+        }
       
       $('.product-sku-wrapper .p_sku .__sku').text(currentSku);
       if($('body').hasClass('template-product')){
@@ -857,7 +857,11 @@ slate.Variants = (function() {
        var element = document.querySelector('body');
        var dataAttribute = element.getAttribute('data-handle');
        var current_variantTitle = $('select[name="id"] option:selected').data('color');
+       var current_variantSizeValue = $('select[name="id"] option:selected').data('size');
        $(document).find('[data-variant-title]').text(current_variantTitle);
+       if(current_variantSizeValue != '') {
+        $(document).find('[data-variant-size]').text(current_variantSizeValue);
+       }
        $.ajax({
         url: dataAttribute+'/?view=metafields',
         cache: false,

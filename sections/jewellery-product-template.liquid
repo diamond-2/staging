@@ -137,15 +137,15 @@
                         <p style="display: none;">{{ template.suffix }}</p>
                         <li><a href="{{ routes.root_url }}">Home</a></li>
                         {%- if productMetafield[product_category] != blank -%}
-                        <li><a href="{{ routes.collections_url }}/{{ productMetafield[product_category] | append: '-collections' | downcase | handleize }}">{{ productMetafield[product_category] }}</a></li>
+                        <li data-lable="ss"><a href="{{ routes.collections_url }}/{{ productMetafield[product_category] | append: '-collections' | downcase | handleize }}">{{ productMetafield[product_category] }}</a></li>
                         {%- endif -%}
                         {% if template.suffix contains 'loose-stone' %}
                         {% if productMetafield[stone_category] != blank %}
-                        <li><span class="breadcrumb_text">{{ productMetafield[stone_category] }}</span></li>
+                        <li><span class="breadcrumb_text ">{{ productMetafield[stone_category] }}</span></li>
                         {% endif %}
                         {% else %}
                         {% if productMetafield[jewelery_category] != blank %}
-                        <li><span class="breadcrumb_text">{{ productMetafield[jewelery_category] }}</span></li>
+                        <li><span class="breadcrumb_text aa">{{ productMetafield[jewelery_category] }}</span></li>
                         {% endif %}
                         {% endif %}
                     </ul>
@@ -510,7 +510,6 @@
 {% else %}
 {{ ringSizePopup }}
 {% endif %}
-
 {{ weightGuidePopup }}
 
 

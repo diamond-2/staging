@@ -3,7 +3,7 @@
 <div class="product-details-wrapper pdp-tabber show_tab" id="productDetails">
     <div class="mobile-pdp-acc-trigger show_mobile"><p>PRODUCT DETAILS</p></div>
     <div class="pdp-acc-body">
-        <h3><span class="pdp-acc-body-heading">{{ product.title }} {% if hide_default_title %} {% else %}in  <span class="variantColorTitle" data-variant-title>{{ product.selected_or_first_available_variant.option1  }}</span>{% endif %}</span>{% if template.suffix contains 'loose-stone'%}<a class="product-view-report" href="javascript:;" aria-label="">View report&gt;</a>{% endif %}</h3>    
+        <h3><span class="pdp-acc-body-heading" data-option2="{{ product.selected_or_first_available_variant.option2 }}">{{ product.title }} {% if hide_default_title %} {% else %}in  <span class="variantColorTitle" data-variant-title>{{ product.selected_or_first_available_variant.option1  }}</span>{% if product.selected_or_first_available_variant.option2.size > 0 %}, Size: <span class="variantSizeValue" data-variant-size>{{ product.selected_or_first_available_variant.option2  }}</span> {% endif %}{% endif %}</span>{% if template.suffix contains 'loose-stone'%}<a class="product-view-report" href="javascript:;" aria-label="">View report&gt;</a>{% endif %}</h3>    
         <div class="product-details-row">
             <div class="product-info-gird">
                 {%- capture tableContent_title -%}prod_info_title{%- endcapture -%}

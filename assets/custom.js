@@ -23,9 +23,11 @@ $(document).on('click', '.product-form__cart-submit:not([aria-label="Sold out"])
     };
     // $('#preloader').fadeIn();
     var cartAPIResponse = await cartAPI(totalQtyInCart);  
+    console.log('formdata', formData);
     if(!formData) return; 
     console.log(cartAPIResponse);
-    if(totalQtyInCart.currentVarQty - totalQtyInCart.qty < 1) return;
+    console.log('abcd==>', totalQtyInCart );
+    if(totalQtyInCart.currentVarQty - totalQtyInCart.qty < 1) //return;
     console.log('abc', totalQtyInCart );
     __addTocart(formData, $this, totalQtyInCart.qty);  
   }
@@ -40,7 +42,7 @@ $(document).on('click', '.product-form__cart-submit:not([aria-label="Sold out"])
       dataType: "json",
       cache: false,
       success: function(cart) {
-        // console.log(cart)
+      //  console.log('cartDatattaa', cart)
         totalQtyInCart.qty = 0;
         let cartItems = cart.items;
         if(cartItems.length > 0)
@@ -50,13 +52,20 @@ $(document).on('click', '.product-form__cart-submit:not([aria-label="Sold out"])
           totalQtyInCart.qty += cartItems[i].quantity;
         }
         if(totalQtyInCart.qty <= currentVarQty) {
-          $('.cv-stock-left').text(currentVarQty - totalQtyInCart.qty);
+          let current_varQty = currentVarQty - totalQtyInCart.qty;
+          if(current_varQty > 0 && current_varQty < 3) {
+            $('.cv-stock-left').text(current_varQty).show();
+          } else {
+            $('.cv-stock-left').hide();
+          }
+          //$('.cv-stock-left').text();
         } 
       }       
     });
   }
   function __addTocart(formData, currentBtn, qtyinCart) {  
-    console.log(qtyinCart);     
+    console.log(qtyinCart);  
+    $(document).find('.cartItemError').remove();   
     $('#preloader').fadeIn();
     $.ajax({
       type: 'POST',
@@ -73,8 +82,12 @@ $(document).on('click', '.product-form__cart-submit:not([aria-label="Sold out"])
         currentBtn.find('[data-loader]').addClass('hidden');
         $('.drawer').addClass('show_drawer');
         $('.drawer_inner').addClass('has_cart_items');
-        var leftItems = parseInt($('.cv-stock-left').text());
-        $('.cv-stock-left').text(leftItems - 1);
+        var leftItems = parseInt($('.cv-stock-left').text()) - 1;
+        if(leftItems > 0 && leftItems < 3) {
+          $('.cv-stock-left').text(leftItems).show();
+        } else {
+          $('.cv-stock-left').hide();
+        }
 
         
         if($('body').hasClass('template-cart')) {
@@ -87,7 +100,13 @@ $(document).on('click', '.product-form__cart-submit:not([aria-label="Sold out"])
       error: function(XMLHttpRequest, textStatus, error ){
         var errors=(XMLHttpRequest.responseJSON.description);
         console.log(textStatus);
-        console.log(error);
+        console.log(XMLHttpRequest.status);
+        if(XMLHttpRequest.status == 422) {
+          currentBtn.before('<p class="cartItemError" style="font-size: 10px;margin: 0;color: red;font-weight: 500;padding-bottom: 0px;">Item already added to cart, no more piece available</p>');
+          setTimeout(function(){
+            $(document).find('.cartItemError').remove();   
+          },7000)
+        }
         //$(document).find('.pdp_pincode_block').before('<div class="quantity-error"><span>'+errors+'</span></div>');
         if(window.location.pathname.indexOf('collections') > -1) { 
             currentBtn.after('<div class="quantity-error"><span>'+errors+'</span></div>');
@@ -115,6 +134,7 @@ $(document).on('click', '.product-form__cart-submit:not([aria-label="Sold out"])
       cache: false,
       success: function(cart) {
         $(document).find('[data-cart-count]').text(cart.item_count);
+        $('#CartCount').removeClass('hide');
         $.ajax({
           url: '/cart/?view=miniCart',
           cache: false,
@@ -324,6 +344,10 @@ agreeCartCondiotn();
   $('.close-mini-cart').click(function(){
     $('.drawer').removeClass('show_drawer')
   });
+
+  $(document).on('click', '.cart__continue-controls a[data-closeminicart]', function(){
+    $('.close-mini-cart').trigger('click');
+  })
 
   // show tooltip on load
   $(document).find('span.meta_tooltip').remove();

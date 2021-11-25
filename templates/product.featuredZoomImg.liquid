@@ -22,7 +22,7 @@
 {% endcomment %}
 <div class="product-single__media-group--full" data-product-single-media-group>
     {%- for media in product.media -%}
-    {% if media contains 'zyxw' %}
+    
     {% unless media.media_type == 'model' %}
 {% capture media_id %}FeaturedMedia-product-template-{{ media.id }}{% endcapture %}
 {% capture media_class %}product-featured-media{% endcapture %}
@@ -32,8 +32,10 @@
   Load different poster image sizes depending on the product layout
 {%- endcomment -%}
 {% capture image_size %}{{ height }}x{{ height }}{% endcapture %}
-
-<div id="{{ media_wrapper_id }}"
+  {% case media.media_type %}
+    {% when 'image' %}
+    {% if media contains 'zyxw' %}
+    <div id="{{ media_wrapper_id }}"
     class="product-single__media-wrapper js{% unless featured_media == 'image' %} hide{% endunless %}"
     data-alt="{{ media.alt | escape }}"
     {% if media.media_type == 'video' or media.media_type == 'external_video' %} data-product-media-type-video data-enable-video-looping="{{ section.settings.enable_video_looping }}"{% endif %}
@@ -41,15 +43,14 @@
     {% if media.media_type == 'external_video' %} data-video-id="{{ media.external_id }}"{% endif %}
     data-product-single-media-wrapper
     data-media-id="{{ section.id }}-{{ media.id }}"
-    tabindex="-1">
-    
-  {% case media.media_type %}
-    {% when 'image' %}
+    tabindex="-1">   
+   
       {% capture zoom_media_id %}ImageZoom-product-template-{{ media.id }}{% endcapture %}
       {%- assign img_url = media | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
       {% comment %}{% include 'image-style', height: height, wrapper_id: media_wrapper_id, img_id: media_id, image: media.preview_image %}{% endcomment %}
       <div
         id="{{ zoom_media_id }}"
+        data-type="image"
         data-elem="pinchzoomer"
         data-alt="{{ media.alt | escape }}"
         style="padding-top:{{ 1 | divided_by: media.preview_image.aspect_ratio | times: 100}}%;"
@@ -64,25 +65,70 @@
           alt="{{ media.alt | escape }}">
         </pinch-zoom>
       </div>
+    </div>
+      {% endif %}
     {% when 'external_video' %}
-      <div class="product-single__media 44" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;">
+    <div id="{{ media_wrapper_id }}"
+    class="product-single__media-wrapper js{% unless featured_media == 'image' %} hide{% endunless %}"
+    data-alt="{{ media.alt | escape }}"
+    {% if media.media_type == 'video' or media.media_type == 'external_video' %} data-product-media-type-video data-enable-video-looping="{{ section.settings.enable_video_looping }}"{% endif %}
+    {% if media.media_type == 'model' %} data-product-media-type-model{% endif %}
+    {% if media.media_type == 'external_video' %} data-video-id="{{ media.external_id }}"{% endif %}
+    data-product-single-media-wrapper
+    data-media-id="{{ section.id }}-{{ media.id }}"
+    tabindex="-1">  
+      <div data-type="external_video" class="product-single__media 44" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;">
         {{ media | external_video_tag }}
       </div>
+    </div>
     {% when 'video' %}
-      <div class="product-single__media 33 product-single__media--video product-single__media--{{ media.id }}" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;">
-        {{ media | video_tag: class: 'media-video', image_size: image_size }}
+    <div id="{{ media_wrapper_id }}"
+    class="product-single__media-wrapper js{% unless featured_media == 'image' %} hide{% endunless %}"
+    data-alt="{{ media.alt | escape }}"
+    {% if media.media_type == 'video' or media.media_type == 'external_video' %} data-product-media-type-video data-enable-video-looping="{{ section.settings.enable_video_looping }}"{% endif %}
+    {% if media.media_type == 'model' %} data-product-media-type-model{% endif %}
+    {% if media.media_type == 'external_video' %} data-video-id="{{ media.external_id }}"{% endif %}
+    data-product-single-media-wrapper
+    data-media-id="{{ section.id }}-{{ media.id }}"
+    tabindex="-1">  
+      <div data-type="video" class="product-single__media 33 product-single__media--video product-single__media--{{ media.id }}" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;">
+        <video loop muted autoplay preload="metadata" poster="{{ 'thumb-6.jpg' | asset_url }}">
+          {% for video in media.sources %}
+              <source src="{{ video.url }}" type="{{ video.mime_type }}">
+          {% endfor %}
+      </video>
+      </div>
+        {% comment %}{{ media | video_tag: class: 'media-video', image_size: image_size, loop, muted, autoplay }}{% endcomment %}
       </div>
     {% when 'model' %}
-      <div class="product-single__media 22" style="padding-top: 100%">
+    <div id="{{ media_wrapper_id }}"
+    class="product-single__media-wrapper js{% unless featured_media == 'image' %} hide{% endunless %}"
+    data-alt="{{ media.alt | escape }}"
+    {% if media.media_type == 'video' or media.media_type == 'external_video' %} data-product-media-type-video data-enable-video-looping="{{ section.settings.enable_video_looping }}"{% endif %}
+    {% if media.media_type == 'model' %} data-product-media-type-model{% endif %}
+    {% if media.media_type == 'external_video' %} data-video-id="{{ media.external_id }}"{% endif %}
+    data-product-single-media-wrapper
+    data-media-id="{{ section.id }}-{{ media.id }}"
+    tabindex="-1">  
+      <div data-type="model" class="product-single__media 22" style="padding-top: 100%">
         {{ media | model_viewer_tag: image_size: image_size, reveal: 'interaction', toggleable: true, data-model-id: media.id }}
       </div>
+      </div>
     {% else %}
-      <div class="product-single__media 11" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;">
+    <div id="{{ media_wrapper_id }}"
+    class="product-single__media-wrapper js{% unless featured_media == 'image' %} hide{% endunless %}"
+    data-alt="{{ media.alt | escape }}"
+    {% if media.media_type == 'video' or media.media_type == 'external_video' %} data-product-media-type-video data-enable-video-looping="{{ section.settings.enable_video_looping }}"{% endif %}
+    {% if media.media_type == 'model' %} data-product-media-type-model{% endif %}
+    {% if media.media_type == 'external_video' %} data-video-id="{{ media.external_id }}"{% endif %}
+    data-product-single-media-wrapper
+    data-media-id="{{ section.id }}-{{ media.id }}"
+    tabindex="-1">  
+      <div data-type="other" class="product-single__media 11" style="padding-top: {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%;">
         {{ media | media_tag: class: 'media-item', image_size: image_size }}
       </div>
+      </div>
   {% endcase %}
-</div>
 {% endunless %}
-{% endif %}
 {% endfor %}
 </div>
