@@ -10423,6 +10423,7 @@ window.addEventListener("resize", function() {
   $('.home-scl .mobile_featured_image').html($('.home-scl .scl-collage .box--2-1 .img-box').html());
   $('.home-jcl .mobile_featured_image').html($('.home-jcl .scl-collage [class^=block-].big_block>div.full-width .img-box').html());
 
+  
   // Post Certificate Url
   $(document).on('keypress', '#search-certificate, #certificate-number', function(e){
     var code = e.keyCode || e.which;
@@ -10431,23 +10432,39 @@ window.addEventListener("resize", function() {
     }
   });
   $(document).on('click', '#search-certificate', function(e){
+    var certExist = false;
     $(document).find('.certificate-error').remove();
     let certNumber = 'cer'+$('#certificate-number').val();
     if($('#certificate-number').val() != '') {
+      let certificateSrc = '//cdn.shopify.com/s/files/1/0575/2681/2840/files/'+certNumber+'.pdf';
       localStorage.setItem("certificateNumber", certNumber);
-      console.log(certNumber);
-      if(window.innerWidth > 1024){      
-        window.location.href = "/pages/aryamond-certificate?getCert="+certNumber;
-      }else {
-        window.open('/pages/certificate?getCert='+certNumber);
-        // window.location.href = "/pages/certificate?getCert="+certNumber;
+      var request = new XMLHttpRequest();
+      request.open("GET", certificateSrc, true);
+      request.send();
+      request.onload = function() {
+        status = request.status;
+        if (request.status == 200) { //if(statusText == OK)
+        
+          console.log("image exists");
+          if(window.innerWidth > 1024){      
+            window.location.href = "/pages/aryamond-certificate?getCert="+certNumber;
+          }else {
+            window.open('/pages/certificate?getCert='+certNumber);
+            // window.location.href = "/pages/certificate?getCert="+certNumber;
+          }
+        } else {
+          console.log("image doesn't exist");
+          $('#certificate-number').after('<p class="certificate-error">This is an invalid certificate number. Please check and enter again.</p>');
+          return false;
+        }
       }
     } else {
       $('#certificate-number').after('<p class="certificate-error">Please fill the certificate number.</p>');
       return false;
-    }
-    
+    }    
   });
+
+  
 
   // Get Certificates
     let certificateNumberExist = localStorage.getItem("certificateNumber");    
@@ -10463,6 +10480,8 @@ window.addEventListener("resize", function() {
       }
     }
     //console.log(certificateNumberExist);
+    
+    
     
   // Show Feedback From
   $(document).on('click', '#feedbackForm', function(){

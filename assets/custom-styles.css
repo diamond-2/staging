@@ -674,7 +674,9 @@ div#PageContainer.js-menu--is-open {
       border-bottom: none; }
   .site-header .site-header__mobile-nav .site-header__icons .site-header__icon {
     padding: 10px 7px;
-    margin: 0 10px; }
+    margin: 0 10px;
+    cursor: pointer;
+    position: relative; }
     .site-header .site-header__mobile-nav .site-header__icons .site-header__icon.site-header__wishlist {
       display: none; }
     @media (max-width: 1600px) {
@@ -706,6 +708,28 @@ div#PageContainer.js-menu--is-open {
       .site-header .site-header__mobile-nav .site-header__icons .site-header__icon.site-header__wishlist svg path {
         fill: none;
         stroke-width: 1.2px; }
+    .site-header .site-header__mobile-nav .site-header__icons .site-header__icon .account-dropdown {
+      position: absolute;
+      top: 50px;
+      right: 0px;
+      width: 100px;
+      background: #ffffff;
+      border: 1px solid #e7e7e7;
+      opacity: 0;
+      visibility: hidden;
+      height: 0px;
+      z-index: 9999999;
+      transition: 0.3s ease-in-out; }
+      .site-header .site-header__mobile-nav .site-header__icons .site-header__icon .account-dropdown a {
+        display: block;
+        padding: 10px;
+        border-bottom: 1px solid #e7e7e7; }
+        .site-header .site-header__mobile-nav .site-header__icons .site-header__icon .account-dropdown a:last-child {
+          border-bottom: none; }
+    .site-header .site-header__mobile-nav .site-header__icons .site-header__icon:hover .account-dropdown {
+      opacity: 1;
+      visibility: visible;
+      height: auto; }
 
 .page-container {
   transform: none !important; }
@@ -10432,8 +10456,8 @@ body[data-template="customers/addresses"] .main-content {
     margin: 0; }
     @media (max-width: 1600px) {
       .account_section-header h1, .account_section-header .logout_link {
-        font-size: 30px;
-        line-height: 1; } }
+        font-size: 24px;
+        line-height: 1.2; } }
     @media (max-width: 749px) {
       .account_section-header h1, .account_section-header .logout_link {
         font-size: 18px;
@@ -10503,6 +10527,9 @@ body[data-template="customers/addresses"] .main-content {
         margin-right: 10px; }
     .account_nav ul li:last-child a {
       border-bottom: none; }
+    .account_nav ul li .wishlist_menu,
+    .account_nav ul li .appointments_menu {
+      display: none; }
 
 @media (max-width: 749px) {
   .account_top_section_holder {
@@ -10571,21 +10598,22 @@ body[data-template="customers/addresses"] .main-content {
   .account_section_wrapper .account_sec_header_mobile .back-to-page-btn svg path {
     fill: #000000; }
 
-@media (max-width: 749px) {
-  .account_section_wrapper .glb-breadcrumb {
-    margin-bottom: 20px; } }
-
-.account_section_wrapper h4 {
-  font-size: 24px;
-  line-height: 25.92px;
-  font-weight: 400;
-  font-family: 'Montserrat';
-  color: #6C1D45;
-  margin-bottom: 30px; }
-  @media (max-width: 1600px) {
-    .account_section_wrapper h4 {
-      font-size: 18px;
-      line-height: 1; } }
+.account_section_wrapper {
+  padding-top: 15px !important; }
+  @media (max-width: 749px) {
+    .account_section_wrapper .glb-breadcrumb {
+      margin-bottom: 20px; } }
+  .account_section_wrapper h4 {
+    font-size: 24px;
+    line-height: 25.92px;
+    font-weight: 400;
+    font-family: 'Montserrat';
+    color: #6C1D45;
+    margin-bottom: 30px; }
+    @media (max-width: 1600px) {
+      .account_section_wrapper h4 {
+        font-size: 18px;
+        line-height: 1; } }
 
 .myaccount__order_history table {
   border: 1px solid rgba(0, 0, 0, 0.1);

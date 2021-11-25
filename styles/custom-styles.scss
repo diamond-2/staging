@@ -1199,6 +1199,7 @@ div#PageContainer {
       .site-header__icon {
         padding: 10px 7px;
         margin: 0 10px;
+        cursor: pointer;
         &.site-header__account {
           // pointer-events: none;
         } 
@@ -1238,6 +1239,35 @@ div#PageContainer {
               fill: none;
               stroke-width: 1.2px;
             }
+          }
+        }
+        position: relative;
+        .account-dropdown {
+          position: absolute;
+          top: 50px;
+          right: 0px;
+          width: 100px;
+          background: #ffffff;
+          border: 1px solid #e7e7e7;
+          opacity: 0;
+          visibility: hidden;
+          height: 0px;
+          z-index:9999999;
+          transition: 0.3s ease-in-out;
+          a{
+            display: block;
+            padding:10px;
+            border-bottom: 1px solid #e7e7e7;
+            &:last-child  {
+              border-bottom: none;
+            }
+          }
+        } 
+        &:hover {
+          .account-dropdown {
+            opacity: 1;
+            visibility: visible;
+            height: auto;
           }
         }
       }
@@ -12761,8 +12791,8 @@ body[data-template="customers/addresses"] {
     color: $textcolor-phanton;
     margin: 0;
     @media(max-width: $xxl) {
-      font-size: 30px;
-      line-height: 1;
+      font-size: 24px;
+      line-height: 1.2;
     }
     @media(max-width:$md) {
       font-size: 18px;
@@ -12842,6 +12872,10 @@ body[data-template="customers/addresses"] {
           border-bottom: none;
         }
       }
+      .wishlist_menu,
+      .appointments_menu {
+        display: none;
+      }
     }
   }
 }
@@ -12919,6 +12953,7 @@ body[data-template="customers/addresses"] {
 }
 // Mobile Account Global Css End
 .account_section_wrapper {
+  padding-top: 15px!important;
   .glb-breadcrumb {
     @media(max-width: $md) {
       margin-bottom: 20px;

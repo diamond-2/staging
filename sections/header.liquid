@@ -406,10 +406,14 @@
             </a>
             {% if shop.customer_accounts_enabled %}
               {% if customer %}
-                <a href="{{ routes.account_url }}" class="site-header__icon site-header__account logout_account_btn">
+                <div href="{{ routes.account_url }}" class="site-header__icon site-header__account logout_account_btn">
                   {% include 'icon-login' %}{% comment %}{% include 'icon-logout' %}{% endcomment %}
                   <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
-                </a>
+                  <div class="account-dropdown">
+                    <a href="{{ routes.account_url }}" aria-label="Account">Account</a>
+                    <a href="/account/logout" aria-label="Logout">Logout</a>
+                  </div>
+                </div>
               {% else %}
                 <a href="{{ routes.account_login_url }}" class="site-header__icon site-header__account">
                   {% include 'icon-login' %}
