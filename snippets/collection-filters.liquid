@@ -5,6 +5,7 @@
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
 <script type="text/javascript">
+
   $(function(){
     {% include 'createpagination' %}
     var maxResults = 16;
@@ -154,7 +155,6 @@
           // createFilters();
           createPagination(searchData.totalItems, searchData.startIndex/getmaxitemperpage); 
           printProducts(searchData.items);
-
         }
 
         }       
@@ -519,7 +519,7 @@
             ldGridContentMob += '</div>';
           } else {
             console.log('inside jewellery');
-            jwGridTitle += '<div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="'+ prodLink +'">'+ prodTitle+'</a></div>';
+            jwGridTitle += '<div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="'+ prodLink +'">'+ prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</a></div>';
             jwGridContent += '<div class="product-price-card-row">';
               $.each(_thistags, function(i){ 
                 console.log('INdex==>' + i);
@@ -552,7 +552,7 @@
             }
             
             productGrid += '<div class="grid-view-item product-card">';
-            productGrid += '<a class="grid-view-item__link grid-view-item__image-container full-width-link" href="'+getprodlink+'" style="display: none;"><span class="visually-hidden">'+prodTitle+'</span></a>';
+            productGrid += '<a class="grid-view-item__link grid-view-item__image-container full-width-link" href="'+getprodlink+'" style="display: none;"><span class="visually-hidden">'+prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</span></a>';
             productGrid += '<div class="product-images-wrapper"> <div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider '+prodImgSliderDyn+'>';
              console.log()
                 for (let j = 0; j < prodImages.length; j++) {
@@ -604,7 +604,7 @@
             console.log('ProductList ==>')
              console.log(productList);
                 $('[data-collection-listing-container] [data-view="grid"] [data-list-item]').append(productGrid).removeClass('hide');  
-                $('[data-collection-listing-container] .list-view-items tbody').append(productList).removeClass('hide'); 
+                $('[data-collection-listing-container] .list-view-items tbody').append(productList).removeClass('hide');          
                  
                 var len = $(document).find('.dynamic-pagination span a').length;
                 var txt = Number($(document).find('.dynamic-pagination span a.active').text());

@@ -103,6 +103,7 @@ $(document).on('click', '.product-form__cart-submit:not([aria-label="Sold out"])
         console.log(XMLHttpRequest.status);
         if(XMLHttpRequest.status == 422) {
           currentBtn.before('<p class="cartItemError" style="font-size: 10px;margin: 0;color: red;font-weight: 500;padding-bottom: 0px;">Item already added to cart, no more piece available</p>');
+          $('#preloader').hide();
           setTimeout(function(){
             $(document).find('.cartItemError').remove();   
           },7000)

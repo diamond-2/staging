@@ -10037,6 +10037,11 @@ window.addEventListener("resize", function() {
             localStorage.removeItem("form-Id");
             clearInterval(checkMsgExist);
           }
+        } else {
+            if(window.location.pathname == '/pages/contact-us' &&  check.indexOf('customer_posted=true') > -1) {
+              $(document).find('.form-message.form-message--success').show();
+            }
+
         }
         console.log('test',errorContent);
       },0);
@@ -10050,6 +10055,11 @@ window.addEventListener("resize", function() {
         // hideMsgModal();
       // },5000)
 
+    } else {
+      console.log('contact page success msg');
+      if(window.location.pathname == '/pages/contact-us' &&  $(document).find('#ContactForm .form-message--success').length > 0 ) {
+        $(document).find('#ContactForm .form-message.form-message--success').addClass('show');  
+      }
     }
     //success
     // if($('.form-message--success').length > 0){
@@ -10503,7 +10513,7 @@ window.addEventListener("resize", function() {
 
   // contact form validation
   $("input[type='tel']").on('input', function(e) {
-    $(this).val($(this).val().replace(/[^0-9]/g, ''));
+    //$(this).val($(this).val().replace(/[^0-9]/g, ''));
 }); 
 
 function $validateForm($this) {
@@ -10513,7 +10523,7 @@ function $validateForm($this) {
   
   
     var thisPhone = $this.find('input[name="contact[Phone Number]"]').val().trim();
-    var regmm='^[0-9]{10}$';
+    var regmm=/^[\+\d]?(?:[\d-.\s()]*)$/mg; ///^[+]?\d+$/;
     var regmob = new RegExp(regmm);
  
     if (firstName == "" || firstName == null ) {
@@ -10523,7 +10533,7 @@ function $validateForm($this) {
     } else {
         $this.find('input[name="contact[Name]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
     }
-    if (thisPhone.length != 10 || thisPhone == null || regmob.test(thisPhone) == false) {
+    if (thisPhone.length > 16 || thisPhone == null || regmob.test(thisPhone) == false) {
         $this.find('input[name="contact[Phone Number]"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Phone Number").css('display','block');
     } else {
         $this.find('input[name="contact[Phone Number]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');

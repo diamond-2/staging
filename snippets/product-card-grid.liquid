@@ -113,7 +113,7 @@
   </noscript>
 
   <div class="prodct_card_body">
-    <div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="{{ product.url }}"> {{ product.title }}</a></div>
+    <div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="{{ product.url }}"> {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>'}}</a></div>
     <span style="display: none;">
       {% include 'product-price-listing', product: product, show_vendor: show_vendor %}
     </span>
