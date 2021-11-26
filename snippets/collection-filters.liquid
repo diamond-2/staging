@@ -43,6 +43,12 @@
       $(document).find('[data-collection-filter-section] :checkbox:checked[id="'+getKey+'"]').prop('checked', false).trigger('change');
     });
 
+    // Clear all Filter Event
+    $(document).on('click', '.clear-filters a', function(){
+      $('[data-active-filters]').html('');
+      $(document).find('[data-collection-filter-section] :checkbox:checked').prop('checked', false).trigger('change');
+    });
+
     $('body').on('change','[data-collection-filter-section] input[type="checkbox"]', function(){   
       $('[data-collection-listing-container]').addClass('inital-load');    
       // console.log('input changessssss'); 

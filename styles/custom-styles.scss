@@ -1954,7 +1954,7 @@ div#PageContainer {
     position: fixed;
     width: 100%;
     height: 100%;
-    z-index: 999999;
+    z-index: 99999999;
     top: 0;
     display: none;
     // -webkit-transform: translateY(-100%);
@@ -15825,5 +15825,27 @@ a[href*="tel"] {
   }
   th {
     height: 88px;
+  }
+}
+
+.breadcurm-collection-link {
+  display: none;
+}
+.product-single__title {
+  sup {
+    top: 3px!important;
+    position: relative;
+    @media screen and (max-width: $md) {
+      top: 0px!important;
+    }
+  }
+}
+.slide-overaly-heading {
+  sup {
+    position: relative;
+    top: 6px!important;
+    @media screen and (max-width: $md) {
+      top: 3px!important;
+    }
   }
 }

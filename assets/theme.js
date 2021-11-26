@@ -10043,7 +10043,7 @@ window.addEventListener("resize", function() {
             }
 
         }
-        console.log('test',errorContent);
+        //console.log('test',errorContent);
       },0);
       
       // console.log('errorContent', errorContent); 
@@ -10056,7 +10056,7 @@ window.addEventListener("resize", function() {
       // },5000)
 
     } else {
-      console.log('contact page success msg');
+      //console.log('contact page success msg');
       if(window.location.pathname == '/pages/contact-us' &&  $(document).find('#ContactForm .form-message--success').length > 0 ) {
         $(document).find('#ContactForm .form-message.form-message--success').addClass('show');  
       }

@@ -136,10 +136,13 @@
                     {% comment %}{% include 'breadcrumb' %}{% endcomment %}
                     <ul>
                         <p style="display: none;">{{ template.suffix }}</p>
-                        <li><a href="{{ routes.root_url }}">Home</a></li>
+                        <li><a href="{{ routes.root_url }}" aria-label="home">Home</a></li>
+                        <li class="breadcurm-collection-link"><a href="" aria-lable=""></a></li>
+                        {%- comment -%}
                         {%- if productMetafield[product_category] != blank -%}
                         <li data-lable="ss"><a href="{{ routes.collections_url }}/{{ productMetafield[product_category] | append: '-collections' | downcase | handleize }}">{{ productMetafield[product_category] }}</a></li>
                         {%- endif -%}
+                        {%- endcomment -%}
                         {% if template.suffix contains 'loose-stone' %}
                         {% if productMetafield[stone_category] != blank %}
                         <li><span class="breadcrumb_text ">{{ productMetafield[stone_category] }}</span></li>
