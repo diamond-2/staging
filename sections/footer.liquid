@@ -160,7 +160,7 @@
                         </button>
                       </span>
                     </div>
-                    <p class="form-message form-message--error custom-error"></p>
+                    <p class="form-message form-message--error custom-error" style="display: none!important;"></p>
                     {% if form.errors contains 'email' %}
                       <span id="{{ formId }}-email-error" class="input-error-message">
                         <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>

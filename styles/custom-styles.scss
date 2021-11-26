@@ -5458,7 +5458,7 @@ body[data-template="product"] {
             bottom: -22px;
             left: 50%;
             right: 0;
-            width: 150px;
+            width: 550px;
             text-align: center;
             transform: translateX(-50%);
             opacity: 0;
@@ -15750,6 +15750,7 @@ body.has_top_banner {
   padding: 20px;
   border: 1px solid rgba(0,0,0,.3);
   z-index: 1000;
+  text-align: center;
   .form-message-modal-header {
     padding-bottom: 10px;
     border-bottom: 1px solid #e7e7e7;
@@ -15780,6 +15781,9 @@ a[href$="nolink"],
 a[href=""] {
   text-decoration: none!important;
   pointer-events: none!important;
+}
+a[href*="tel"] {
+  text-decoration: underline!important;
 }
 .factual-comparison-section-wrapper {
   @media screen and (max-width: $md) {

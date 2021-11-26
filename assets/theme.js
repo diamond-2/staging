@@ -9980,6 +9980,7 @@ window.addEventListener("resize", function() {
     });
     $('.newsletter-form').on('submit', function(e){
       $(this).find('.custom-error').removeClass('hide');
+      $(document).find('input[type="email"]').val('');
       let formId = $(this).attr('id')
       localStorage.setItem("form-Id", formId);
       const email = $(this).find('[name="contact[email]"]').val();
@@ -10016,10 +10017,10 @@ window.addEventListener("resize", function() {
       var checkMsgExist = setInterval(function(){ 
         //Check error in the form       
         if ($('#'+getFormId).find('.form-message.form-message--error').text().length > 0) {
+          $(document).find('input[type="email"]').val('');
           errorContent = $('#'+getFormId).find('.form-message.form-message--error').text();
           $(document).find('.form-message-modal-content #form-msg').text(errorContent);          
-          showMsgModal();
-          $(document).find('input[type="email"]').val('');
+          showMsgModal();          
           window.history.replaceState(null, null, window.location.pathname);
           localStorage.removeItem("form-Id");
           clearInterval(checkMsgExist);
@@ -10074,6 +10075,10 @@ window.addEventListener("resize", function() {
         $('#'+getFormId).find('.input-group__btn button').removeAttr('disabled');
       }
     },10000);
+  });
+
+  $(document).on('click','.form-message-modal-close, .form-message-modal-overlay', function(){
+    hideMsgModal();
   });
   
   $('#AccessibleNav #SiteNav > li').hover(function(e){
@@ -10455,6 +10460,9 @@ window.addEventListener("resize", function() {
         } else {
           console.log("image doesn't exist");
           $('#certificate-number').after('<p class="certificate-error">This is an invalid certificate number. Please check and enter again.</p>');
+          setTimeout(function(){
+            $(document).find('.certificate-error').remove();
+          },5000);
           return false;
         }
       }
