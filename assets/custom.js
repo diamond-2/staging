@@ -357,12 +357,37 @@ agreeCartCondiotn();
       let dataLabel = $(this).data('label');
       $(document).find('[data-tooltip="'+dataLabel+'"] .pdp-tab-val').after('<span class="meta_tooltip" data-tooltip-title="'+$(this).text()+'"></span>');
     });
+
+    var defaulSelectedOption = $('.custom-checkbox-list :radio:checked').val()//.trigger('click'); //console.log('defaulSelectedOption', defaulSelectedOption);
+    linkedOptions(defaulSelectedOption);
   });
   
-
+ 
 
   $(document).on('click', '.custom-checkbox-list :radio', function(){
     var selectedOption = $(this).val();
+    linkedOptions(selectedOption);
+    // $('.single-option-selector[data-index="option2"] option, .single-option-selector[data-index="option3"] option').attr('disabled','disabled');//removeClass('availableoption');
+    // $('.single-option-selector[data-index="option2"] option, .single-option-selector[data-index="option3"] option').removeAttr('selected');
+    // // var option2Availabe = 
+    // // $('select[name="id"] option')
+    // // alert($(this).val());
+    // $('select[name="id"] option[data-color="'+selectedOption+'"]').each(function(){
+    //   var option2Available = $(this).data('size');
+    //   var option3Available = $(this).data('option3');
+    //   if($('.single-option-selector[data-index="option2"]').length > 0) {
+    //     $('.single-option-selector[data-index="option2"] option[value="'+option2Available+'"]').removeAttr('disabled');//addClass('availableoption')
+    //     $('.single-option-selector[data-index="option2"] option:not(:disabled):first').attr('selected','selected').trigger('change');
+    //   } 
+    //   if($('.single-option-selector[data-index="option3"]').length > 0) {
+    //     $('.single-option-selector[data-index="option3"] option[value="'+option3Available+'"]').removeAttr('disabled'); //.addClass('availableoption')
+    //     $('.single-option-selector[data-index="option3"] option:not(:disabled):first').attr('selected','selected').trigger('change');
+    //   }
+    // })
+
+  })
+
+  function linkedOptions(selectedOption) {
     $('.single-option-selector[data-index="option2"] option, .single-option-selector[data-index="option3"] option').attr('disabled','disabled');//removeClass('availableoption');
     $('.single-option-selector[data-index="option2"] option, .single-option-selector[data-index="option3"] option').removeAttr('selected');
     // var option2Availabe = 
@@ -380,5 +405,4 @@ agreeCartCondiotn();
         $('.single-option-selector[data-index="option3"] option:not(:disabled):first').attr('selected','selected').trigger('change');
       }
     })
-
-  })
+  }
