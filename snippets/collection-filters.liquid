@@ -201,6 +201,14 @@
             } else if(filterTitle == 'Collections'){
 
 
+            } else if(filterTitle == 'Tags'){
+
+
+            } else if(filterTitle == 'Discount'){
+
+
+            } else if(filterTitle == 'Product type') {
+
             } else if(filterTitle == 'global.dia_tab1_stone_shape'){
               var counter = 0;
                   var selectOptionLabel = '<div class="filter-by-label">Shape <span><a href="/pages/gemstone-cuts" aria-label="Learn more about shapes">Learn More &gt;</a></span></div>'
@@ -245,7 +253,13 @@
                     $('[data-collection-filter-section]').prepend(selectOptionLabel);
                   }
 
-            }else {
+            }
+            else {
+              //global.jewelery_category
+              //current_variant.min_stn_total_crt_wt
+              //global.jew_style
+              //current_variant.gender
+              // SELECT GOLD COLOUR
               // Common layout for print dropdown filter 
               var counter = 0;
                   var selectOption = '';	
@@ -254,6 +268,16 @@
                   if(filterTitle == 'global.metal_type'){
                     filterTitle = 'Metal Type';
                   }
+                  if(filterTitle == 'global.jewelery_category'){
+                    filterTitle = 'Product Type';
+                  }
+                  if(filterTitle == 'global.jew_style'){
+                    filterTitle = 'Style';
+                  }
+                  if(filterTitle == 'SELECT GOLD COLOUR'){
+                    filterTitle = 'Metal';
+                  }
+
                   // selectOption += '<select name="product-type" id="'+filterId+'" class="filters-toolbar__input">';
                   
                   // selectOption += '<option data-opt-val="" value="" selected="selected">'+filterTitle+'</option>';          

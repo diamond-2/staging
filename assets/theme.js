@@ -10136,8 +10136,8 @@ window.addEventListener("resize", function() {
     e.preventDefault();
     $(this).parent().next().slideToggle();
     $(this).parent().toggleClass('active');
-    $(this).parent().parent().siblings().find('.ac-heading').removeClass('active');
-    $(this).parent().parent().siblings().find('.ac-body').slideUp();
+    // $(this).parent().parent().siblings().find('.ac-heading').removeClass('active');
+    // $(this).parent().parent().siblings().find('.ac-body').slideUp();
   });
 
   // sidebar tabber

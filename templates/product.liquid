@@ -31,9 +31,12 @@
     unavailable: {{ 'products.product.unavailable' | t | json }}
   };
 
-  if(sessionStorage.backToCollection) {
+  var x = localStorage.getItem("backToCollection");
+  console.log(x);
+
+  if(localStorage.backToCollection) {
     theme.backToCollection = {};
-    theme.backToCollection.collection = JSON.parse(sessionStorage.backToCollection);
+    theme.backToCollection.collection = JSON.parse(localStorage.backToCollection);
     var productCollections = {{ product.collections | json }};
     var showCollection = false;
     if (productCollections) {

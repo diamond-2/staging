@@ -147,10 +147,12 @@
                         {% if productMetafield[stone_category] != blank %}
                         <li><span class="breadcrumb_text ">{{ productMetafield[stone_category] }}</span></li>
                         {% endif %}
-                        {% else %}
+                       
+                        {%- comment -%}
                         {% if productMetafield[jewelery_category] != blank %}
                         <li><span class="breadcrumb_text aa">{{ productMetafield[jewelery_category] }}</span></li>
                         {% endif %}
+                        {%- endcomment -%}
                         {% endif %}
                     </ul>
                 </div>

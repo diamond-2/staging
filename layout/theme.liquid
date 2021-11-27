@@ -145,7 +145,7 @@
       stylesheet: "{{ 'theme.css' | asset_url }}"
     };
 
-    {%- if template == 'collection' -%}
+    {%- if template contains 'collection' -%}
       {%- if current_tags -%}
         {%- capture tag_handles -%}
             {%- for tag in current_tags -%}
@@ -159,11 +159,11 @@
           link: "{{ shop.url }}{{ collection.url }}{%- if current_tags -%}/{{- tag_handles | split: '|' | join: '+' -}}{%- endif -%}"
         }
       };
-      sessionStorage.setItem("backToCollection", JSON.stringify(theme.backToCollection.collection));
+      localStorage.setItem("backToCollection", JSON.stringify(theme.backToCollection.collection));
 
     {%- elsif template != 'product' -%}
-      if (sessionStorage.getItem("backToCollection")) {
-        sessionStorage.removeItem("backToCollection")
+      if (localStorage.getItem("backToCollection")) {
+        localStorage.removeItem("backToCollection")
       }
     {%- endif -%}
 
