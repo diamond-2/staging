@@ -7231,8 +7231,10 @@ body.has_top_banner .main-content {
           .ac-item .ac-body .ac-body-inner p:not(:last-child) {
             margin-bottom: 30px; } }
 
-.newsletter-form#becomeEntrepreneur .form-message--error:after {
-  background-color: #e3c9c9; }
+.newsletter-form#becomeEntrepreneur .form-message--error {
+  display: none !important; }
+  .newsletter-form#becomeEntrepreneur .form-message--error:after {
+    background-color: #e3c9c9; }
 
 .newsletter-form .form-message--error {
   margin-top: 5px;

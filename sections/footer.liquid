@@ -130,7 +130,7 @@
                 <div class="site-footer__newsletter
                           {% if section.blocks.size == 1 %} site-footer__single-block--centered{% endif %}">
                   {%- assign formId = 'ContactFooter' -%}
-                  {% form 'customer', id: formId, novalidate: 'novalidate', class: 'newsletter-form contact-form' %}
+                  {% form 'customer', id: formId, novalidate: 'novalidate', class: 'newsletter-form contact-form erer' %}
                     {%- if form.posted_successfully? -%}
                       <p class="form-message form-message--success hide" tabindex="-1" data-form-status>
                         {{ 'general.newsletter_form.confirmation' | t }}
@@ -156,7 +156,7 @@
                         {% endif %}>
                       <span class="input-group__btn">
                         <button type="submit" class="btn newsletter__submit" name="commit" disabled>
-                          <span class="newsletter__submit-text--large">Sign Up</span>
+                          <span class="newsletter__submit-text--large">Sign Ups</span>
                         </button>
                       </span>
                     </div>

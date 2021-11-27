@@ -8991,6 +8991,7 @@ body {
 .newsletter-form {
   &#becomeEntrepreneur {
     .form-message--error {
+      display:none!important;
       &:after {
         background-color: #e3c9c9;
       }

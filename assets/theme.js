@@ -9980,10 +9980,9 @@ window.addEventListener("resize", function() {
     });
     $('.newsletter-form').on('submit', function(e){
       $(this).find('.custom-error').removeClass('hide');
-      $(document).find('input[type="email"]').val('');
       let formId = $(this).attr('id')
       localStorage.setItem("form-Id", formId);
-      const email = $(this).find('[name="contact[email]"]').val();
+      const email = $(this).find('[name="contact[email]"]').val();   
       const regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if(regex.test(email)){
         $(this).find('.custom-error').removeClass('show').text('');
@@ -10008,6 +10007,7 @@ window.addEventListener("resize", function() {
 
   $(window).on('load', function(){  
     // setTimeout(function(){
+      $(document).find('input[type="email"]').val('');   
       $('.form-message').hide();
     // },10000);
     var check = window.location.search;
