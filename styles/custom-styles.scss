@@ -5586,6 +5586,11 @@ body[data-template="product"] {
             height: 26px;
             padding: 0 9px;
           }
+          option {
+            &[disabled] {
+              display: none;
+            }
+          }          
       }
     }
   }

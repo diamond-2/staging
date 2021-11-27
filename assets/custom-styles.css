@@ -4400,6 +4400,8 @@ body[data-template="product"] .main-content {
           border-color: #000000;
           height: 26px;
           padding: 0 9px; } }
+      .product-section-row .product-form__controls-group .custom-select-holder select.product-form__input option[disabled] {
+        display: none; }
   .product-section-row .product-form__controls-group ~ .product-form__controls-group--submit {
     margin-top: 73px; }
     @media (max-width: 1600px) {

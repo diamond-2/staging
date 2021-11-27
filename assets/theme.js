@@ -5556,7 +5556,7 @@ theme.SearchResultsTemplate = (function() {
 
     return (
       accessibilityAnnounceComma +
-      '<div class="price__pricing-group">' +
+      '<div class="price__pricing-group as">' +
       (product.isOnSale ? salePriceMarkup : priceMarkup) +
       '</div>'
     );
