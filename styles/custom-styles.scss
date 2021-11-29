@@ -8818,6 +8818,7 @@ body {
         }
         &.active {
           color: #6C1D45;
+          pointer-events: none;
           .menu_text {
             &:after {
               width: 100%;

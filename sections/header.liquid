@@ -112,7 +112,7 @@
             </button>
           {% endunless %}
 
-          <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
+          <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer title="Search">
             {% include 'icon-search' %}
             <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
           </button>
@@ -142,7 +142,7 @@
             {% endif %}
           </div>
 
-          <a href="/pages/contact-us#location-map" class="hide_mobile site-header__icon site-header__store-locator">
+          <a href="/pages/contact-us#location-map" class="hide_mobile site-header__icon site-header__store-locator" title="Store Locator">
             {% include 'icon-store-locator' %}
             <span class="icon__fallback-text">Store Locator</span>
           </a>
@@ -312,11 +312,11 @@
 
         <div class="header-left-column hide_mobile">
           <div class="site-header__icons-wrapper">
-            <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
+            <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer title="Search">
               {% include 'icon-search' %}
               <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
             </button>
-            <a href="/pages/contact-us#location-map" class="hide_mobile site-header__icon site-header__store-locator">
+            <a href="/pages/contact-us#location-map" class="hide_mobile site-header__icon site-header__store-locator" title="Store Locator">
               {% include 'icon-store-locator' %}
               <span class="icon__fallback-text">Store Locator</span>
             </a>
@@ -406,7 +406,7 @@
             </a>
             {% if shop.customer_accounts_enabled %}
               {% if customer %}
-                <div href="{{ routes.account_url }}" class="site-header__icon site-header__account logout_account_btn">
+                <div href="{{ routes.account_url }}" class="site-header__icon site-header__account logout_account_btn" title="Account">
                   {% include 'icon-login' %}{% comment %}{% include 'icon-logout' %}{% endcomment %}
                   <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
                   <div class="account-dropdown">
@@ -415,14 +415,14 @@
                   </div>
                 </div>
               {% else %}
-                <a href="{{ routes.account_login_url }}" class="site-header__icon site-header__account">
+                <a href="{{ routes.account_login_url }}" class="site-header__icon site-header__account" title="Account">
                   {% include 'icon-login' %}
                   <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}</span>
                 </a>
               {% endif %}
             {% endif %}
 
-            <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart {% if request.page_type != 'cart'%}minicart-btn{% endif %}" >
+            <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart {% if request.page_type != 'cart'%}minicart-btn{% endif %}" title="Cart" >
               {% include 'icon-cart' %}
               <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
               <div id="CartCount" class="site-header__cart-count{% if cart.item_count == 0 %} hide{% endif %} critical-hidden" data-cart-count-bubble>

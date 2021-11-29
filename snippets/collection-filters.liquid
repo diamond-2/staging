@@ -15,7 +15,7 @@
 
       var queryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
       var searchData = '';
-    var filters = '';
+      var filters = '';
 
     // $(document).on('change', '[data-collection-filter-section] select', function(){
     //   // console.log('select changes');
@@ -183,22 +183,38 @@
             var sidebarHtml = '';
             // Range type layout for price filter
             if(filterTitle == 'Price') {
-              var minPrice = parseFloat(filterVal[0].from).toFixed(2);
-              var highestPrice = parseFloat(filterVal[0].to).toFixed(2);
-              var selectedMinPrice = parseFloat(filterVal[0].left).toFixed(2);
-              var SelectedHighestPrice = parseFloat(filterVal[0].right).toFixed(2);
+              var selectOption = '';
+              var minPrice = parseFloat(filterVal[0].from).toFixed(2); console.log('minPrice', minPrice);
+              var highestPrice = parseFloat(filterVal[0].to).toFixed(2); console.log('highestPrice', highestPrice);
+              var selectedMinPrice = parseFloat(filterVal[0].left).toFixed(2); console.log('selectedMinPrice',selectedMinPrice);
+              var SelectedHighestPrice = parseFloat(filterVal[0].right).toFixed(2); console.log('SelectedHighestPrice', SelectedHighestPrice);
               if(filterVal[0].selected != undefined && filterVal[0].selected != '' && filterVal[0].selected == 'true'){
                 var checked = 'checked=checked';
               }
-              // optionsHtml+='<div id="slider-range"></div><span id="collection-price-min"></span> <span id="collection-price-max"></span>';
-              // optionsHtml+='<input ' + checked + ' type="checkbox" data-opt-val="&restrictBy[price]=' + minPrice + ','+ highestPrice +'" value="&restrictBy[price]=' + minPrice + ','+ highestPrice +'" id="price-val-range" class="visually-hidden" />';          	
-              // sidebarHtml+= '<div class="collection-content-area-left-content price__filter" style="max-width: 280px;"><div class="collection-content-area-left-content-wrapper"><div class="collection-other-list">' + optionsHtml +'</div></div></div>';
-              // if(minPrice != highestPrice){ $('.collection-filters').append(sidebarHtml); };
-              // if($('#slider-range .ui-slider-range').length <= 0){
-              //   // initializingPriceSlider(minPrice, highestPrice, selectedMinPrice, SelectedHighestPrice);
-              // }  
+              selectOption+='<div class="collection-filter-wrapper" data-filter="&amp;restrictBy[stock_status]" data-filter-type="stock_status">'
+              selectOption += '<div name="product-type" id="'+filterId+'" class="filters-toolbar__input">';
+              selectOption += '<span class="filter-option-name">'+filterTitle+'</span>';
+              selectOption += '<ul class="filter-dd">';
 
-            } else if(filterTitle == 'Collections'){
+              selectOption+='<div id="slider-range"></div><span id="collection-price-min"></span> <span id="collection-price-max"></span>';
+              selectOption+='<input ' + checked + ' type="checkbox" data-opt-val="&restrictBy[price]=' + minPrice + ','+ highestPrice +'" value="&restrictBy[price]=' + minPrice + ','+ highestPrice +'" id="price-val-range" class="visually-hidden" />';  
+              
+              
+              // selectOption+= '<div class="collection-content-area-left-content price__filter" style="max-width: 280px;"><div class="collection-content-area-left-content-wrapper"><div class="collection-other-list">' + selectOption +'</div></div></div>';
+              selectOption += '</div>';
+              selectOption += '</ul>';
+              selectOption += '</div> </div>'; 
+              if(minPrice != highestPrice){ 
+                // $('.collection-filters').append(sidebarHtml);
+                $('[data-collection-filter-section]').prepend(selectOption); 
+              };
+              if($('#slider-range .ui-slider-range').length <= 0){
+                initializingPriceSlider(minPrice, highestPrice, selectedMinPrice, SelectedHighestPrice);
+              }  
+
+            } else 
+            
+            if(filterTitle == 'Collections'){
 
 
             } else if(filterTitle == 'Tags'){
@@ -276,6 +292,9 @@
                   }
                   if(filterTitle == 'SELECT GOLD COLOUR'){
                     filterTitle = 'Metal';
+                  }
+                  if(filterTitle == 'global.gender'){
+                    filterTitle = 'Gender';
                   }
 
                   // selectOption += '<select name="product-type" id="'+filterId+'" class="filters-toolbar__input">';
@@ -377,7 +396,7 @@
             console.log(i);
             console.log(v.id);
             console.log(v.value);
-            activeFilter += '<button data-clear-filter="" class="active-filter" data-value="'+v.value+'" data-key="'+v.id+'" aria-label="Clear '+v.value+' filter">'+v.value+'<span class="clear-filter" aria-hidden="true">x</span></button>';
+            activeFilter += '<button data-clear-filter="" class="active-filter ere" data-value="'+v.value+'" data-key="'+v.id+'" aria-label="Clear '+v.value+' filter">'+v.value+'<span class="clear-filter" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0575/2681/2840/files/close-brown.svg?v=1638208068" alt="Close Filter" /></span></button>';
           });
           $(document).find('[data-active-filters]').html(activeFilter);
         }

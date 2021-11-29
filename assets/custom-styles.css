@@ -7096,7 +7096,8 @@ body.has_top_banner .main-content {
           background: currentColor;
           transition: all 0.4s; }
       .sidebar-nav ul li a.active {
-        color: #6C1D45; }
+        color: #6C1D45;
+        pointer-events: none; }
         .sidebar-nav ul li a.active .menu_text:after {
           width: 100%; }
 

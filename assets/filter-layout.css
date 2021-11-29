@@ -229,6 +229,9 @@ span.clear-filter {
     font-size: 1em;
     color: #f860ac;
 }
+span.clear-filter img {
+    height: 8px;
+}
 .toDisabled {
     pointer-events: none;
     opacity: 0.3;

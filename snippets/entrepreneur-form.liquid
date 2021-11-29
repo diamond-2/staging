@@ -2,7 +2,7 @@
     {% form 'customer', id: formId, novalidate: 'novalidate', class: 'newsletter-form contact-form' %}
     {%- if form.posted_successfully? -%}
         <p class="form-message form-message--success hide" tabindex="-1" data-form-status>
-            Thanks you!
+            Thank you for enrolling!
         </p>
     {%- endif -%}
     <input type="hidden" name="contact[tags]" value="entrepreneur">
