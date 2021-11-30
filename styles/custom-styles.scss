@@ -8274,6 +8274,13 @@ body[data-template="loose-stone"] {
               @media(max-width: $md) {
                 margin-bottom: 20px;
               }
+              sup {
+                position: relative;
+                top: 6px!important;
+                @media screen and (max-width: $md) {
+                  top: 3px !important;
+                }
+              }
             }
             p {
               font-weight: 300;
@@ -13949,7 +13956,7 @@ body.template-product {
           .product-single__media {
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(0.3);
+            transform: translate(-50%, -50%) scale(0.5);
             @media screen and (max-width: $xl) {
               transform: translate(-50%, -50%) scale(0.8);
             }
