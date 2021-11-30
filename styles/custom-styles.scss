@@ -3349,6 +3349,7 @@ body{
       
     }
     .site-footer__newsletter {
+      display: none;
       @media (max-width: $md) {
         padding: 0;
       }
