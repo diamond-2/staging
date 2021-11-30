@@ -13038,9 +13038,11 @@ a[href^="tel"] {
     .product-single__title sup {
       top: 0px !important; } }
 
-.slide-overaly-heading sup {
+.slide-overaly-heading sup,
+.why-diamond2-content-holder sup {
   position: relative;
   top: 6px !important; }
   @media screen and (max-width: 749px) {
-    .slide-overaly-heading sup {
+    .slide-overaly-heading sup,
+    .why-diamond2-content-holder sup {
       top: 3px !important; } }
