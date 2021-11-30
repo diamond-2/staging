@@ -677,8 +677,6 @@ div#PageContainer.js-menu--is-open {
     margin: 0 10px;
     cursor: pointer;
     position: relative; }
-    .site-header .site-header__mobile-nav .site-header__icons .site-header__icon.site-header__wishlist {
-      display: none; }
     @media (max-width: 1600px) {
       .site-header .site-header__mobile-nav .site-header__icons .site-header__icon {
         margin: 0 3px; } }
@@ -3472,6 +3470,12 @@ body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3,
   @media (max-width: 749px) {
     .image_pos_right .content-with-image-diamond-content-column h2 {
       text-align: center; } }
+  .image_pos_right .content-with-image-diamond-content-column h2 sup {
+    position: relative;
+    top: 6px !important; }
+    @media screen and (max-width: 749px) {
+      .image_pos_right .content-with-image-diamond-content-column h2 sup {
+        top: 3px !important; } }
 
 @media (max-width: 749px) {
   .content-with-image-diamond-row .content-with-image-diamond-image-column {
@@ -3495,7 +3499,7 @@ body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3,
   justify-content: space-between; }
 
 .why-diamond2-section {
-  padding: 100px 0; }
+  padding: 100px 0 0; }
   @media (max-width: 749px) {
     .why-diamond2-section {
       padding-top: 60px;
@@ -3516,6 +3520,13 @@ body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3,
     @media (max-width: 749px) {
       .why-diamond2-section p:not(:last-child) {
         margin-bottom: 19px; } }
+
+.factual-comparison-section-wrapper {
+  padding: 100px 0 0; }
+  @media (max-width: 749px) {
+    .factual-comparison-section-wrapper {
+      padding-top: 60px;
+      padding-bottom: 0px; } }
 
 .ethically-produced-section {
   padding: 100px 0 0px; }
@@ -4153,9 +4164,15 @@ body[data-template="product"] .main-content {
         .product-section-row .product-detail-breadcrumb ul li {
           font-size: 11px;
           line-height: 11.88px; } }
-      .product-section-row .product-detail-breadcrumb ul li:not(:last-child):after {
+      .product-section-row .product-detail-breadcrumb ul li:before {
         content: "/";
         margin: 0 3px; }
+      .product-section-row .product-detail-breadcrumb ul li:first-child:before {
+        content: ''; }
+      .product-section-row .product-detail-breadcrumb ul li.breadcurm-category-meta {
+        display: none; }
+  .product-section-row .product-detail-breadcrumb[data-breadrumb="metafiedls"] ul li.breadcurm-category-meta {
+    display: inline-block; }
   .product-section-row .product-sku-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -8236,13 +8253,9 @@ body[data-template="404"] .main-content {
       .drawer .cart__headline ul li {
         margin-left: 32px;
         line-height: 0; }
-        .drawer .cart__headline ul li:first-child {
-          visibility: hidden;
-          opacity: 0;
-          pointer-events: none; }
-          @media (max-width: 749px) {
-            .drawer .cart__headline ul li:first-child {
-              margin-left: 0; } }
+        @media (max-width: 749px) {
+          .drawer .cart__headline ul li:first-child {
+            margin-left: 0; } }
         @media (max-width: 1600px) {
           .drawer .cart__headline ul li {
             margin-left: 20px; } }
@@ -10102,7 +10115,7 @@ body[data-template="customers/reset_password"] .main-content {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 9999999;
   background: rgba(0, 0, 0, 0.7);
   display: none; }
   .newsletter-popup-wrapper .newsletter-popup-holder {
@@ -12973,7 +12986,7 @@ a[href=""] {
   text-decoration: none !important;
   pointer-events: none !important; }
 
-a[href*="tel"] {
+a[href^="tel"] {
   text-decoration: underline !important; }
 
 @media screen and (max-width: 749px) {
@@ -12994,6 +13007,8 @@ a[href*="tel"] {
     .factual-comparison-table {
       overflow: hidden;
       overflow-x: auto; } }
+  .factual-comparison-table table {
+    margin-bottom: 0px; }
   .factual-comparison-table th, .factual-comparison-table td {
     text-align: center;
     font-size: 12px;

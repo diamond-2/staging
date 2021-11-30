@@ -191,18 +191,19 @@
               if(filterVal[0].selected != undefined && filterVal[0].selected != '' && filterVal[0].selected == 'true'){
                 var checked = 'checked=checked';
               }
-              selectOption+='<div class="collection-filter-wrapper" data-filter="&amp;restrictBy[stock_status]" data-filter-type="stock_status">'
+              selectOption+='<div class="collection-filter-wrapper" data-filter="&amp;restrictBy[price]" data-filter-type="price">'
               selectOption += '<div name="product-type" id="'+filterId+'" class="filters-toolbar__input">';
               selectOption += '<span class="filter-option-name">'+filterTitle+'</span>';
-              selectOption += '<ul class="filter-dd">';
+              selectOption += '<ul class="filter-dd"> <li>';
+                selectOption += ''
 
               selectOption+='<div id="slider-range"></div><span id="collection-price-min"></span> <span id="collection-price-max"></span>';
-              selectOption+='<input ' + checked + ' type="checkbox" data-opt-val="&restrictBy[price]=' + minPrice + ','+ highestPrice +'" value="&restrictBy[price]=' + minPrice + ','+ highestPrice +'" id="price-val-range" class="visually-hidden" />';  
+              selectOption+='<input ' + checked + ' type="checkbox" data-opt-val="&restrictBy[price]=' + minPrice + ','+ highestPrice +'" value="' + minPrice + '-'+ highestPrice +'" id="price-val-range" class="visually-hidden" />';  
               
               
               // selectOption+= '<div class="collection-content-area-left-content price__filter" style="max-width: 280px;"><div class="collection-content-area-left-content-wrapper"><div class="collection-other-list">' + selectOption +'</div></div></div>';
               selectOption += '</div>';
-              selectOption += '</ul>';
+              selectOption += '</li></ul>';
               selectOption += '</div> </div>'; 
               if(minPrice != highestPrice){ 
                 // $('.collection-filters').append(sidebarHtml);
@@ -269,8 +270,7 @@
                     $('[data-collection-filter-section]').prepend(selectOptionLabel);
                   }
 
-            }
-            else {
+            } else {
               //global.jewelery_category
               //current_variant.min_stn_total_crt_wt
               //global.jew_style
@@ -396,6 +396,7 @@
             console.log(i);
             console.log(v.id);
             console.log(v.value);
+            console.log(v);
             activeFilter += '<button data-clear-filter="" class="active-filter ere" data-value="'+v.value+'" data-key="'+v.id+'" aria-label="Clear '+v.value+' filter">'+v.value+'<span class="clear-filter" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0575/2681/2840/files/close-brown.svg?v=1638208068" alt="Close Filter" /></span></button>';
           });
           $(document).find('[data-active-filters]').html(activeFilter);
@@ -573,7 +574,7 @@
               $.each(_thistags, function(i){ 
                 console.log('INdex==>' + i);
                 console.log(_thistags[i]);
-                return false;
+                // return false;
                 if(_thistags[i].includes(':')){
                 let tagVal = _thistags[i].split(':')[1];  
                 if(_thistags[i].includes('JWCTW:')){jwGridContent += '<div class="product_weight">'+tagVal+'</div>';}
@@ -583,7 +584,7 @@
               jwGridContent +='<div class="product_compare">Compare</div>';
               jwGridContent +='</div>'
           }
-          console.log(jwGridContent);
+          console.log('jwGridContent', jwGridContent);
           // return false;
             if(prodQty <= 0 ){
               var prodAvaibility = 'grid-view-item--sold-out';
@@ -698,24 +699,24 @@
             max: parseFloat(highestPrice),
             values: [ selectedMin, selectedMax ],
             slide: function( event, ui ) { 
-              // $( "#collection-price-min" ).text("$" + minPrice);
-              // $( "#collection-price-max" ).text("$" + highestPrice);
-              // $('.price__filter').prev('.collection-content-area-left-heading').find('.selRange').remove();
+               $( "#collection-price-min" ).text("$" + minPrice);
+               $( "#collection-price-max" ).text("$" + highestPrice);
+              $('.price__filter').prev('.collection-content-area-left-heading').find('.selRange').remove();
     			// if(parseFloat(ui.values[ 0 ].toFixed(2)) > parseFloat(minPrice) || parseFloat(ui.values[ 1 ].toFixed(2)) < parseFloat(highestPrice)){
-                // $('.price__filter').prev('.collection-content-area-left-heading').append('<i class="selRange">($' + ui.values[ 0 ].toFixed(2) +' - $' + ui.values[ 1 ].toFixed(2) + ')</i>');
+                $('.price__filter').prev('.collection-content-area-left-heading').append('<i class="selRange">(SGD' + ui.values[ 0 ].toFixed(2) +' - SGD' + ui.values[ 1 ].toFixed(2) + ')</i>');
                priceSelected = '&restrictBy[price]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ];
     			// }    
             },
             stop: function( event, ui ) {
-              // $('#price-val-range').attr('data-opt-val', '&restrictBy[price]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ]).val('&restrictBy[price]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ]).attr('checked', 'checked').change(); 
+              $('#price-val-range').attr('data-opt-val', '&restrictBy[price]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ]).val('&restrictBy[price]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ]).attr('checked', 'checked').change(); 
             }
           });
-          // $( "#collection-price-min" ).text( "$" + minPrice);
-          // $( "#collection-price-max" ).text( "$" + highestPrice);
-          // $('.price__filter').prev('.collection-content-area-left-heading').find('.selRange').remove();
+          $( "#collection-price-min" ).text( "SGD" + minPrice);
+          $( "#collection-price-max" ).text( "SGD" + highestPrice);
+          $('.price__filter').prev('.collection-content-area-left-heading').find('.selRange').remove();
 
           if(parseFloat(selectedMin) > parseFloat(minPrice) || parseFloat(selectedMax) < parseFloat(highestPrice)){
-            // $('.price__filter').prev('.collection-content-area-left-heading').append('<i class="selRange">($' + selectedMin +' - $' + selectedMax + ')</i>');
+            $('.price__filter').prev('.collection-content-area-left-heading').append('<i class="selRange">(SGD' + selectedMin +' - SGD' + selectedMax + ')</i>');
           }      
         }
     	//Initialize Price Slider Ends

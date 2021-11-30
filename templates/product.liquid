@@ -32,7 +32,7 @@
   };
 
   var x = localStorage.getItem("backToCollection");
-  console.log(x);
+  console.log('LocalStorage Exist', x);
 
   if(localStorage.backToCollection) {
     theme.backToCollection = {};
@@ -54,6 +54,9 @@
       var breadcrumbHtml = '<a href="'+ theme.backToCollection.collection.link + '" aria-lable="' + theme.backToCollection.collection.title + '">' + theme.backToCollection.collection.title + '</a>';
       $(document).find('.breadcurm-collection-link').html(breadcrumbHtml).show();
     }
+    $('.product-detail-breadcrumb').attr('data-breadrumb', 'ls')
+  } else {
+    $('.product-detail-breadcrumb').attr('data-breadrumb', 'metafiedls');
   }
 </script>
 
