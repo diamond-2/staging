@@ -10036,6 +10036,15 @@ window.addEventListener("resize", function() {
             window.history.replaceState(null, null, window.location.pathname);
             localStorage.removeItem("form-Id");
             clearInterval(checkMsgExist);
+          }else {
+            if(check.indexOf('contact_posted=true') > -1) {
+              $(document).find('.form-message.form-message--success').show();
+              $(document).find('input[type="email"]').val('');
+              window.history.replaceState(null, null, window.location.pathname);
+              localStorage.removeItem("form-Id");
+              clearInterval(checkMsgExist);
+              $('html, body').animate({scrollTop: $('#'+getFormId).offset().top}, 'slow');
+            }
           }
         } else {
             if(window.location.pathname == '/pages/contact-us' &&  check.indexOf('customer_posted=true') > -1) {
@@ -10056,6 +10065,7 @@ window.addEventListener("resize", function() {
       // },5000)
 
     } else {
+      console.log('test1');
       //console.log('contact page success msg');
       if(window.location.pathname == '/pages/contact-us' &&  $(document).find('#ContactForm .form-message--success').length > 0 ) {
         $(document).find('#ContactForm .form-message.form-message--success').addClass('show');  

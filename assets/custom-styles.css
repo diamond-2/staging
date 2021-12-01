@@ -13054,3 +13054,18 @@ a[href^="tel"] {
     .slide-overaly-heading sup,
     .why-diamond2-content-holder sup {
       top: 3px !important; } }
+
+.ui-widget.ui-widget-content {
+  background: #d3d3d354;
+  border: none !important;
+  border-radius: 5px; }
+  .ui-widget.ui-widget-content.ui-slider-horizontal .ui-slider-range {
+    background: #6C1D45;
+    border: none; }
+  .ui-widget.ui-widget-content.ui-slider-horizontal .ui-state-default {
+    background: #6C1D45;
+    border-radius: 50%;
+    width: 1.4em;
+    height: 1.4em;
+    top: -4.3px;
+    border: none; }

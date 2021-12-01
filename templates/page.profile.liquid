@@ -1,1 +1,24 @@
-{{ page.title }}
+<div class="account_section_wrapper padding_t padding_t40">
+    <div class="container_fluid">
+      <div class="sp-account-section-holder">
+        <!-- Top Section 'Breadcrumbs', 'Welocome User', 'Top Nav' -->
+        {% include 'account-top-section' %}
+        <div class="sp-account-section">
+          <div class="myaccount_order_wrapper">
+            <div class="myaccount__order_history">
+              <div class="account_sec_header_mobile show_mobile">
+                <div class="back-to-page-btn">{% include 'icon-back-arrow' %}</div>
+                <p>Welcome, {{ customer.first_name | capitalize }}</p>
+                <h4>{{ 'Profile' }}</h4>
+              </div>
+              <h4 class="hide_mobile">{{ 'PROFILE' }}</h4>
+                {% if customer %}
+                {{ customer.first_name }}
+                {% endif %}
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

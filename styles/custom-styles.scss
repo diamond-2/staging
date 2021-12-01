@@ -15908,3 +15908,23 @@ a[href^="tel"] {
     }
   }
 }
+
+.ui-widget.ui-widget-content {
+  background: #d3d3d354;
+  border: none!important;
+    border-radius: 5px;
+    &.ui-slider-horizontal{
+      .ui-slider-range {
+        background: $textcolor-phanton;
+        border: none;
+      }
+      .ui-state-default {
+        background: $textcolor-phanton;
+        border-radius: 50%;
+        width: 1.4em;
+        height: 1.4em;
+        top: -4.3px;
+        border: none;
+      }
+    } 
+}

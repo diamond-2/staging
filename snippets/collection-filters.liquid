@@ -184,10 +184,10 @@
             // Range type layout for price filter
             if(filterTitle == 'Price') {
               var selectOption = '';
-              var minPrice = parseFloat(filterVal[0].from).toFixed(2); console.log('minPrice', minPrice);
-              var highestPrice = parseFloat(filterVal[0].to).toFixed(2); console.log('highestPrice', highestPrice);
-              var selectedMinPrice = parseFloat(filterVal[0].left).toFixed(2); console.log('selectedMinPrice',selectedMinPrice);
-              var SelectedHighestPrice = parseFloat(filterVal[0].right).toFixed(2); console.log('SelectedHighestPrice', SelectedHighestPrice);
+              var minPrice = parseFloat(filterVal[0].from).toFixed(0); console.log('minPrice', minPrice);
+              var highestPrice = parseFloat(filterVal[0].to).toFixed(0); console.log('highestPrice', highestPrice);
+              var selectedMinPrice = parseFloat(filterVal[0].left).toFixed(0); console.log('selectedMinPrice',selectedMinPrice);
+              var SelectedHighestPrice = parseFloat(filterVal[0].right).toFixed(0); console.log('SelectedHighestPrice', SelectedHighestPrice);
               if(filterVal[0].selected != undefined && filterVal[0].selected != '' && filterVal[0].selected == 'true'){
                 var checked = 'checked=checked';
               }
@@ -487,8 +487,11 @@
                 var _variant_RegularPrice_Min = '';
                 var ItemPrice = '';
                 var prodPrice = parseInt(prodObj[i].price)*100;
+                console.log('prodPrice', prodPrice);
                     //prodPrice = theme.Currency.formatMoney(prodPrice, theme.moneyFormat).replace('.00',''),                
                 var prodComparePrice = parseInt(prodObj[i].list_price)*100;
+                console.log('prodComparePrice', prodComparePrice);
+                // return false;
             //product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price 
                 //prodComparePrice = theme.Currency.formatMoney(prodComparePrice, theme.moneyFormat).replace('.00','')
                 if($('body').attr('data-template') == 'loose-stone-plp'){ 
@@ -699,8 +702,8 @@
             max: parseFloat(highestPrice),
             values: [ selectedMin, selectedMax ],
             slide: function( event, ui ) { 
-               $( "#collection-price-min" ).text("$" + minPrice);
-               $( "#collection-price-max" ).text("$" + highestPrice);
+               $( "#collection-price-min" ).text("SGD " + minPrice);
+               $( "#collection-price-max" ).text("SGD " + highestPrice);
               $('.price__filter').prev('.collection-content-area-left-heading').find('.selRange').remove();
     			// if(parseFloat(ui.values[ 0 ].toFixed(2)) > parseFloat(minPrice) || parseFloat(ui.values[ 1 ].toFixed(2)) < parseFloat(highestPrice)){
                 $('.price__filter').prev('.collection-content-area-left-heading').append('<i class="selRange">(SGD' + ui.values[ 0 ].toFixed(2) +' - SGD' + ui.values[ 1 ].toFixed(2) + ')</i>');
@@ -711,12 +714,12 @@
               $('#price-val-range').attr('data-opt-val', '&restrictBy[price]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ]).val('&restrictBy[price]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ]).attr('checked', 'checked').change(); 
             }
           });
-          $( "#collection-price-min" ).text( "SGD" + minPrice);
-          $( "#collection-price-max" ).text( "SGD" + highestPrice);
+          $( "#collection-price-min" ).text( "SGD " + minPrice);
+          $( "#collection-price-max" ).text( "SGD " + highestPrice);
           $('.price__filter').prev('.collection-content-area-left-heading').find('.selRange').remove();
 
           if(parseFloat(selectedMin) > parseFloat(minPrice) || parseFloat(selectedMax) < parseFloat(highestPrice)){
-            $('.price__filter').prev('.collection-content-area-left-heading').append('<i class="selRange">(SGD' + selectedMin +' - SGD' + selectedMax + ')</i>');
+            $('.price__filter').prev('.collection-content-area-left-heading').append('<i class="selRange">(SGD ' + selectedMin +' - SGD ' + selectedMax + ')</i>');
           }      
         }
     	//Initialize Price Slider Ends
