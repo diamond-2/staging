@@ -10495,18 +10495,25 @@ window.addEventListener("resize", function() {
   
 
   // Get Certificates
-    let certificateNumberExist = localStorage.getItem("certificateNumber");    
-    if(certificateNumberExist != null ) {
+    let certificateUrl = window.location.href;
+    let certificateNumberExist = localStorage.getItem("certificateNumber"); 
+ 
+    if(certificateNumberExist != null || certificateUrl.indexOf('?getCert=') > -1 ) {
       let CertqueryParam = window.location.search;
-      if(CertqueryParam.indexOf(certificateNumberExist) > -1) {
+      let CertificateNo = CertqueryParam.split('?getCert=')[1]; console.log('CertifNumberere', CertificateNo);
+      if(CertqueryParam.indexOf(CertificateNo) > -1) {
         ////cdn.shopify.com/s/files/1/0575/2681/2840/files/cer02.pdf?v=11713192365355509614#navpanes=0&amp;zoom=120
-        pdfSrc = '//cdn.shopify.com/s/files/1/0575/2681/2840/files/'+certificateNumberExist+'.pdf#navpanes=0&zoom=175'
+        pdfSrc = '//cdn.shopify.com/s/files/1/0575/2681/2840/files/'+CertificateNo+'.pdf#navpanes=0&zoom=175'
         let iframeId = $('#cert_of_auth_pdf');
         iframeId.attr('src', pdfSrc);
       } else {
         localStorage.removeItem("certificateNumber");
       }
     }
+
+    // if(certificateUrl.indexOf('?getCert=') > -1) {
+
+    // }
     //console.log(certificateNumberExist);
     
     
