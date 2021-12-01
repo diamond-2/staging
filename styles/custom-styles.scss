@@ -9,7 +9,7 @@ $textcolor-phanton: #6C1D45;
 $color-primary: #6679CC; 
 $small-text: 12px;
 $glbFontFamily: Montserrat;
-$small-container: 1455px;
+$small-container: 1450px;
 $input-field-background:#fff;
 $input-field-border-color:#6679CC;
 $preLg: 200px;
@@ -15941,4 +15941,26 @@ a[href^="tel"] {
         border: none;
       }
     } 
+}
+.profile-content-wrapper {
+  .profile-content-block {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    .form__label {
+      flex: 0 0 390px  ;
+      padding: 0 0 0 40px;
+    }
+    input{
+      margin-right: 10px;
+      &#customer-initial {
+        flex: 0 0 80px;
+        max-width:80px;
+      }
+      &[disabled] {
+        background: none;
+      }
+    }
+  }
 }

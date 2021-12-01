@@ -1,4 +1,4 @@
-
+{% if section.settings.enable_section %}
 <div class="collection-slider-wrapper">
     <div class="dia-container">
         {%- if section.settings.heading != blank -%}
@@ -36,7 +36,7 @@
         {%- endif -%}
     </div>
 </div>
-
+{% endif %}
 <script>
     $(".collection-slider").slick({
         dots: false,
@@ -72,11 +72,16 @@
         ]
     });
 </script>
-
 {% schema %}
   {
     "name": "Collection Slider",
     "settings": [
+        {
+            "type": "checkbox",
+            "id": "enable_section",
+            "label": "Enable Section",
+            "default": false
+        }, 
         {
             "type": "text",
             "label": "heading",
