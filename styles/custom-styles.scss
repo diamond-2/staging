@@ -5401,8 +5401,8 @@ body[data-template="product"] {
       display: flex;
       align-items: center;
       @include pdpSmallFont();
-      visibility: hidden;
-      opacity: 0;
+      // visibility: hidden;
+      // opacity: 0;
       @media(max-width: $md) {
         // display: none;
         padding-top: 12px;
@@ -7815,6 +7815,13 @@ body[data-template="loose-stone"] {
               font-weight: 400;
               line-height: 12.1px;
             }
+            sup {
+              top: 2px!important;
+              position: relative;
+              @media screen and (max-width: $md) {
+                top: 1px !important;
+              }
+            }
           }
           .product-price-card {
             font-size: 14px;
@@ -8430,6 +8437,13 @@ body[data-template="loose-stone"] {
         }
         @media(max-width: $md) {
           margin-bottom: 20px;
+        }
+        sup {
+          position: relative;
+          top: 6px!important;
+          @media screen and (max-width: $md) {
+            top: 3px!important;
+          }
         }
       }
       p {
