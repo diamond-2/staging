@@ -1,4 +1,4 @@
-
+{% comment %}
 
 {% assign accountImage = settings.account_right_image %}
 <div class="register-page-wrapper">
@@ -136,6 +136,186 @@
 
                 <div class="already-account-sec">Already have an account ? <a href="/account/login">Sign In</a></div>
               {% endform %}
+            </div>
+          </div>
+        </div>
+        
+        {% if accountImage %}
+        <div class="register-image-column">
+          <div class="register-image-column">
+            <div class="register_image_box">
+              <img src="{{ accountImage | img_url: 'master' }}" alt="Image">
+            </div>
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function(event) {
+
+    /*form validation start*/
+    
+    $('.form-validation').submit(function(e){
+      removeMessage();
+      let $this = $(this);
+      var firstName = $this.find('input[name="customer[first_name]"]').val().trim();
+      var lastName = $this.find('input[name="customer[last_name]"]').val().trim();
+      var thisPhone = $this.find('input[name="customer[phone_number]"]').val().trim();
+      var nameRegx = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z0-9]*)*$/;
+      var regmm='^([0|+[0-9]{1,5})?([7-9][0-9]{9})$';
+      var regmob = new RegExp(regmm);
+      if (firstName == "" || firstName == null) {
+        e.preventDefault();
+        $this.find('input[name="customer[first_name]"]').addClass('form-error').next('.msg-error').text("Enter Your First Name").css('display','block');
+      } else if (nameRegx.test(firstName) == false ){
+        e.preventDefault();
+        $this.find('input[name="customer[first_name]"]').addClass('form-error').next('.msg-error').text("Please Enter Valid First Name").css('display','block');
+      } else {
+        $this.find('input[name="customer[first_name]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+      }
+      if (lastName == "" || lastName == null) {
+        e.preventDefault();
+        $this.find('input[name="customer[last_name]"]').addClass('form-error').next('.msg-error').text("Enter Your Last Name").css('display','block');
+      } else if (nameRegx.test(lastName) == false ){
+        e.preventDefault();
+        $this.find('input[name="customer[last_name]"]').addClass('form-error').next('.msg-error').text("Please Enter Valid Last Name").css('display','block');
+      } else {
+        $this.find('input[name="customer[last_name]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+      }
+      if (thisPhone.length != 10 || thisPhone == null || regmob.test(thisPhone) == false) {
+        e.preventDefault();
+        $this.find('input[name="customer[phone_number]"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Phone Number").css('display','block');
+      } else {
+        $this.find('input[name="customer[phone_number]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+      }
+      // Email Validation
+      var thisEmail = $this.find('input[name="customer[email]"]').val();
+      const reg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var proceed =  reg.test(thisEmail);
+      if (thisEmail == "" || thisEmail == null || proceed == false) {
+        e.preventDefault();
+        $this.find('input[name="customer[email]"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Email Address").css('display','block');
+      } else {
+        $this.find('input[name="customer[email]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+      }
+
+      // Create Password Validation
+      var passw =  /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,16}$/; 
+      var thisPassword = $this.find('input[name="customer[password]"]').val();
+      if (thisPassword == '' || thisPassword == null) {
+        e.preventDefault();
+        $this.find('input[name="customer[password]"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Password").css('display','block');
+      } else {
+        if(thisPassword.match(passw)){
+          console.log('matchrejecx');
+          $this.find('input[name="customer[password]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+        }else {
+          e.preventDefault();
+          $this.find('input[name="customer[password]"]').addClass('form-error').next('.msg-error').text("Enter Password at least 8 characters, one lowercase letter, one uppercase letter, one numeric digit, and one special character").css('display','block');
+          return false;
+        } 
+      }
+
+      // Confirm Password
+      var $password = $this.find('input[name="customer[password]"]').val();
+      var $confirmPassword = $this.find('input[name="customer-confirm-[password]').val();
+      if($confirmPassword == '' || $confirmPassword == null || $confirmPassword != $password) {
+        e.preventDefault();
+        $this.find('input[name="customer-confirm-[password]"]').addClass('form-error').next('.msg-error').text("Password not matched").css('display','block');
+      } else {
+        $this.find('input[name="customer[password]"], input[name="customer-confirm-[password]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+      }
+
+      // Gender
+      var $password = $this.find('select[name="customer-[gender]"]').val();
+      if($password == null) {
+        e.preventDefault();
+        $this.find('select[name="customer-[gender]"]').addClass('form-error').next('.msg-error').text("Plese Select Gender").css('display','block');
+      } else {
+        $this.find('select[name="customer-[gender]"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
+      }
+
+      // Terms Agree
+      var $termsAgree = $this.find('#agree-tems');
+      let $termsAgreeError = $this.find('#termsErrorMsg');
+      if($($termsAgree).prop('checked') == false){
+          e.preventDefault();
+          $($termsAgreeError).text('** Please agree with terms and conditions.').css('display','block');
+      } else {
+          $($termsAgreeError).text('').css('display','none');
+      }
+
+    });
+    setInterval(function(){
+      let getForm = $('.form-validation');
+      let getEvent = $(getForm).attr('onsubmit');
+      if(getEvent !='') {
+        $(getForm).removeAttr('onsubmit');
+      }
+    },200);
+    // Remove Error After Checked
+    $('form #agree-tems').change(function(){
+      let $this2 = $(this).closest('form');
+      console.log($this2)
+      var $termsAgree = $this2.find('#agree-tems');
+      let $termsAgreeError = $this2.find('#termsErrorMsg');
+      if($($termsAgree).prop('checked') == false){
+          $($termsAgreeError).text('** Please agree with terms and conditions.').css('display','block');
+      } else {
+          $($termsAgreeError).text('').css('display','none');
+      }
+    });
+    $('form').on('keyup', 'input', function() {
+      $(this).removeClass('form-error').next('.msg-error').css('display','none');
+    });
+    $('form').on('change', 'select', function() {
+      $(this).removeClass('form-error').next('.msg-error').css('display','none');
+    });
+    function removeMessage(){    
+      setTimeout(function(){
+        $('.msg-error').css('display','none');
+        $('.form__input').removeClass('form-error');
+      },5000)
+    }
+    /*form validation end*/
+  });
+  
+  window.addEventListener('load',function(){
+    setTimeout(function(){
+      $('.form-message').css('display','none');
+
+      $('.form__error-message-wrapper').addClass('hide');
+      $('input').removeClass('input--error');
+    },5000);
+  });
+
+</script>
+
+{% endcomment %}
+
+
+
+
+
+{% assign accountImage = settings.account_right_image %}
+<div class="register-page-wrapper">
+  <div class="dia-container">
+    <div class="register-page-inner-wrapper">
+      <div class="register-form-header">
+        <h1>{{ 'Sign Up' }}</h1>
+      </div>
+      <div class="register-page-two-col-row {% if accountImage == blank %}has_not_right_image{% endif %}">
+        <div class="register-form-column">
+          <div class="register-form-column-inner">
+            <div class="form-wrapper">
+              {%- assign formId = 'create_customer' -%}
+              {% render "customer-fields", form_id: "j2tMlW" %}
             </div>
           </div>
         </div>

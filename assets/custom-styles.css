@@ -710,7 +710,7 @@ div#PageContainer.js-menu--is-open {
       position: absolute;
       top: 50px;
       right: 0px;
-      width: 100px;
+      width: 110px;
       background: #ffffff;
       border: 1px solid #e7e7e7;
       opacity: 0;
@@ -9398,6 +9398,8 @@ body.template-cart .home-sld {
       z-index: 2; }
       .agree-terms-sec .custom-checkbox-holder .custom-checkbox-input-box input:checked ~ span i {
         transform: scale(1); }
+        .agree-terms-sec .custom-checkbox-holder .custom-checkbox-input-box input:checked ~ span i svg path {
+          stroke: #6C1D45; }
     .agree-terms-sec .custom-checkbox-holder .custom-checkbox-input-box span {
       display: block;
       border: 1px solid #6679CC;
@@ -10568,8 +10570,7 @@ body[data-template="customers/addresses"] .main-content {
         margin-right: 10px; }
     .account_nav ul li:last-child a {
       border-bottom: none; }
-    .account_nav ul li .wishlist_menu,
-    .account_nav ul li .appointments_menu {
+    .account_nav ul li.wishlist_menu, .account_nav ul li.appointments_menu {
       display: none; }
 
 @media (max-width: 749px) {
@@ -13090,3 +13091,6 @@ a[href^="tel"] {
       max-width: 80px; }
     .profile-content-wrapper .profile-content-block input[disabled] {
       background: none; }
+
+.profile-content-wrapper .glb-btn {
+  margin-left: 40px; }

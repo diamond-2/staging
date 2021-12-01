@@ -10354,6 +10354,11 @@ window.addEventListener("resize", function() {
         }, 2000);
       }   
     }    
+
+    if(window.location.pathname == '/account/register' && $('body').attr('data-customeremail').length > -1) {
+      $('.register-form-header h1').text('Edit Profile');
+      $(document).find('input[name="email"]').val($('body').data('customeremail')).attr('disabled','disabled');
+    }
   });
 
   // Show Password Event
@@ -10686,3 +10691,5 @@ function hideMsgModal() {
   $('.form-message-modal-overlay, .form-message-modal-content').hide()
   $(document).find('.form-message-modal-content #form-msg').text('');
 }
+
+

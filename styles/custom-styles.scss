@@ -1246,7 +1246,7 @@ div#PageContainer {
           position: absolute;
           top: 50px;
           right: 0px;
-          width: 100px;
+          width: 110px;
           background: #ffffff;
           border: 1px solid #e7e7e7;
           opacity: 0;
@@ -11553,6 +11553,11 @@ body.template-cart {
         &:checked ~ span {
           i {
             transform: scale(1);
+            svg {
+              path {
+                stroke: $textcolor-phanton;
+              }
+            }
           }
         }
       }
@@ -12941,8 +12946,8 @@ body[data-template="customers/addresses"] {
           border-bottom: none;
         }
       }
-      .wishlist_menu,
-      .appointments_menu {
+      &.wishlist_menu,
+      &.appointments_menu {
         display: none;
       }
     }
@@ -15962,5 +15967,8 @@ a[href^="tel"] {
         background: none;
       }
     }
+  }
+  .glb-btn {
+    margin-left: 40px;;
   }
 }

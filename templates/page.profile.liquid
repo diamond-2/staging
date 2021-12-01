@@ -11,7 +11,7 @@
                 <p>Welcome, {{ customer.first_name | capitalize }}</p>
                 <h4>{{ 'Profile' }}</h4>
               </div>
-              <!-- <h4 class="hide_mobile">{{ 'PROFILE' }}</h4> -->
+              {% comment %}<h4 class="hide_mobile">{{ 'PROFILE' }}</h4> {% endcomment %}
                 {% if customer %}
                 {% assign customerGender = '' %}
                 {% assign customerInitial = '' %}

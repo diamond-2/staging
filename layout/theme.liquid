@@ -179,7 +179,7 @@
 	{{ shop.metafields.loox["global_html_head"] }}
 </head>
 
-<body class="layout_{% if template.suffix %}{{ template.suffix }}{% else %}{{ template }}{% endif %} template-{{ request.page_type | handle }} " data-template="{% if template.suffix %}{{ template.suffix }}{% else %}{{ template }}{% endif %}" {% if request.page_type == 'product' %}data-handle="{{ product.handle }}" {% endif %}>
+<body class="layout_{% if template.suffix %}{{ template.suffix }}{% else %}{{ template }}{% endif %} template-{{ request.page_type | handle }} " data-template="{% if template.suffix %}{{ template.suffix }}{% else %}{{ template }}{% endif %}" {% if request.page_type == 'product' %}data-handle="{{ product.handle }}" {% endif %} {% if customer %}data-customerEmail="{{ customer.email }}" {% endif %}>
   
   <!-- Loader -->
   <div id="preloader"><span class="loader"></span></div>
