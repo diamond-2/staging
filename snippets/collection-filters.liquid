@@ -29,7 +29,6 @@
 
 
     $(document).on('click', '.filter-option-name', function(){
-      console.log('showDropdown filters');
       $(this).closest('.filters-toolbar__input').toggleClass('open-dd');
       $(this).next('.filter-dd').slideToggle()
       $(this).closest('.collection-filter-wrapper').siblings().find('.filter-dd').slideUp();
@@ -51,15 +50,13 @@
 
     $('body').on('change','[data-collection-filter-section] input[type="checkbox"]', function(){   
       $('[data-collection-listing-container]').addClass('inital-load');    
-      // console.log('input changessssss'); 
       var newQueryString = filterOnSelect();     
       searchaniseProducts(newQueryString);  
     });
 
     $('body').on('change','#sortByFilter', function(){ 
       var getSelectedVal = $(this).val();
-      $(this).find('option:selected').attr('selected','selected').siblings().removeAttr('selected');    
-      // console.log('input changess'); 
+      $(this).find('option:selected').attr('selected','selected').siblings().removeAttr('selected'); 
       var newQueryString = filterOnSelect();     
       //// console.log('New Query Stirng --------------')
       //// console.log(newQueryString); 	
@@ -175,7 +172,6 @@
     	function createFilters(){ 
           $('[data-collection-filter-section]').empty();
           $.each(filters, function(key, val){ 
-            //// console.log(val);
             var filterName = val.attribute;
             var filterTitle = val.title;
             var filterId = filterTitle.toLowerCase().replace(' ', '-');
@@ -184,7 +180,7 @@
             // Range type layout for price filter
             if(filterTitle == 'Price') {
               var selectOption = '';
-              var minPrice = parseFloat(filterVal[0].from).toFixed(0); console.log('minPrice', minPrice);
+              var minPrice = parseFloat(filterVal[0].from).toFixed(0); console.log('minPrice', theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00',''));
               var highestPrice = parseFloat(filterVal[0].to).toFixed(0); console.log('highestPrice', highestPrice);
               var selectedMinPrice = parseFloat(filterVal[0].left).toFixed(0); console.log('selectedMinPrice',selectedMinPrice);
               var SelectedHighestPrice = parseFloat(filterVal[0].right).toFixed(0); console.log('SelectedHighestPrice', SelectedHighestPrice);
@@ -195,10 +191,10 @@
               selectOption += '<div name="product-type" id="'+filterId+'" class="filters-toolbar__input">';
               selectOption += '<span class="filter-option-name">'+filterTitle+'</span>';
               selectOption += '<ul class="filter-dd"> <li>';
-                selectOption += ''
+                selectOption += '<div class="slider-range-selected"><span id="collection-price-min-selected"></span><span id="collection-price-max-selected"></span></div>'
 
               selectOption+='<div id="slider-range"></div><span id="collection-price-min"></span> <span id="collection-price-max"></span>';
-              selectOption+='<input ' + checked + ' type="checkbox" data-opt-val="&restrictBy[price]=' + minPrice + ','+ highestPrice +'" value="' + minPrice + '-'+ highestPrice +'" id="price-val-range" class="visually-hidden" />';  
+              selectOption+='<input ' + checked + ' type="checkbox" data-opt-val="&restrictBy[price]=' + theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00','') + ','+ theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00','') +'" value="' + theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00','') + '-'+ theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00','') +'" id="price-val-range" class="visually-hidden" />';  
               
               
               // selectOption+= '<div class="collection-content-area-left-content price__filter" style="max-width: 280px;"><div class="collection-content-area-left-content-wrapper"><div class="collection-other-list">' + selectOption +'</div></div></div>';
@@ -245,9 +241,9 @@
                           disableItem = 'toDisabled';
                         }
                         var show = 'toShow';
-                        filterName=filterName.toLowerCase().replace(' ', '-'); //// console.log('Filtername==>'+filterName);
-                        var thisVal = val.value;//// console.log('thisVal == >  ' + thisVal);
-                        var filterVal = '&restrictBy[' + filterName + ']=' + val.value; // console.log(val.selected);
+                        filterName=filterName.toLowerCase().replace(' ', '-'); 
+                        var thisVal = val.value;
+                        var filterVal = '&restrictBy[' + filterName + ']=' + val.value;
                         if(val.selected != undefined && val.selected != '' && val.selected == 'true'){
                           var selected = 'selected=selected';
                           var checked = 'checked=checked';
@@ -322,7 +318,6 @@
                     selectOption += '<ul class="filter-dd">'
                     $.each(filterVal, function(key, val){
                       var disableItem = '';
-                      //console.log(val);
                     if(val.count >= 0){
                       if(val.count == 0){
                           disableItem = 'toDisabled';
@@ -393,10 +388,10 @@
         var fil = $('[data-collection-filter-section] input[type="checkbox"]:checked');  console.log('fil==>' + fil);  console.log(fil);
         if(fil.length > 0) {
           $.each(fil, function(i, v){
-            console.log(i);
-            console.log(v.id);
-            console.log(v.value);
-            console.log(v);
+            console.log('iiii', i);
+            console.log('VId', v.id);
+            console.log('VValue',v.value);
+            console.log('VVVVV',v);
             activeFilter += '<button data-clear-filter="" class="active-filter ere" data-value="'+v.value+'" data-key="'+v.id+'" aria-label="Clear '+v.value+' filter">'+v.value+'<span class="clear-filter" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0575/2681/2840/files/close-brown.svg?v=1638208068" alt="Close Filter" /></span></button>';
           });
           $(document).find('[data-active-filters]').html(activeFilter);
@@ -407,15 +402,10 @@
       $(document).find('[data-collection-filter-section] .collection-filter-wrapper').each(function(){
         var thisFilterName = $(this).data('filter'); //// console.log('thisFilterName==> ' + thisFilterName);
         var filValues = $(this).find('input[type="checkbox"]:checked');
-        
-        //// console.log(filValues.length);
         var filSelected = '';
         if(filValues.length > 0){
           filValues.each(function(i){ 
-            // console.log(i);
             filSelected+=$(this).closest('input[type="checkbox"]:checked ').val();
-            // console.log('filSelected==>>>>');
-            // console.log(filSelected);
             if(i+1 < filValues.length){
               filSelected += '|';
             }  
@@ -487,10 +477,10 @@
                 var _variant_RegularPrice_Min = '';
                 var ItemPrice = '';
                 var prodPrice = parseInt(prodObj[i].price)*100;
-                console.log('prodPrice', prodPrice);
+                //console.log('prodPrice', prodPrice);
                     //prodPrice = theme.Currency.formatMoney(prodPrice, theme.moneyFormat).replace('.00',''),                
                 var prodComparePrice = parseInt(prodObj[i].list_price)*100;
-                console.log('prodComparePrice', prodComparePrice);
+                //console.log('prodComparePrice', prodComparePrice);
                 // return false;
             //product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price 
                 //prodComparePrice = theme.Currency.formatMoney(prodComparePrice, theme.moneyFormat).replace('.00','')
@@ -500,7 +490,7 @@
                 if(prodComparePrice > prodPrice) {
                   var productDiscount =  prodComparePrice / (prodComparePrice - prodPrice);
                   productDiscount = productDiscount.toFixed(2);
-                  console.log(productDiscount);                  
+                 // console.log(productDiscount);                  
                   ItemPrice += '<div class="product-price-card-row price_row">';
                   ItemPrice += '<div class="ragular_price">'+theme.Currency.formatMoney(prodPrice, theme.moneyFormat).replace('.00','')+'</div>';
                   ItemPrice += '<div class="compare_at_price">'+theme.Currency.formatMoney(prodComparePrice, theme.moneyFormat).replace('.00','')+'</div>';
@@ -515,7 +505,7 @@
                 }
               }
 
-                  console.log('AAA');
+                 // console.log('AAA');
 
             var ldTableContent = '';
             var ldListTableContent = '';
@@ -524,10 +514,10 @@
             var jwGridTitle = '';
             var jwGridContent = '';
             if($('body').attr('data-template') == 'loose-stone-plp'){ 
-              console.log('inside Loosestone');
+             // console.log('inside Loosestone');
               ldGridContent += '<div class="product-price-card-row hide_mobile">';
             $.each(_thistags, function(i){  
-              console.log(_thistags[i]); 
+             // console.log(_thistags[i]); 
               if(_thistags[i].includes(':')){
                 let tagVal = _thistags[i].split(':')[1];            
               if(_thistags[i].includes('LDDEPTH:')){ldTableContent += '<tr><td>Depth:</td><td>'+tagVal+'</td></tr>';}
@@ -571,12 +561,12 @@
               ldGridContentMob += '</div>';            
             ldGridContentMob += '</div>';
           } else {
-            console.log('inside jewellery');
+          //  console.log('inside jewellery');
             jwGridTitle += '<div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="'+ prodLink +'">'+ prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</a></div>';
             jwGridContent += '<div class="product-price-card-row">';
               $.each(_thistags, function(i){ 
-                console.log('INdex==>' + i);
-                console.log(_thistags[i]);
+             //   console.log('INdex==>' + i);
+             //  console.log(_thistags[i]);
                 // return false;
                 if(_thistags[i].includes(':')){
                 let tagVal = _thistags[i].split(':')[1];  
@@ -587,7 +577,7 @@
               jwGridContent +='<div class="product_compare">Compare</div>';
               jwGridContent +='</div>'
           }
-          console.log('jwGridContent', jwGridContent);
+         // console.log('jwGridContent', jwGridContent);
           // return false;
             if(prodQty <= 0 ){
               var prodAvaibility = 'grid-view-item--sold-out';
@@ -607,7 +597,7 @@
             productGrid += '<div class="grid-view-item product-card">';
             productGrid += '<a class="grid-view-item__link grid-view-item__image-container full-width-link" href="'+getprodlink+'" style="display: none;"><span class="visually-hidden">'+prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</span></a>';
             productGrid += '<div class="product-images-wrapper"> <div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider '+prodImgSliderDyn+'>';
-             console.log()
+           
                 for (let j = 0; j < prodImages.length; j++) {
                   if(prodImages[j].indexOf('xyzg') > -1) {
                     productGrid += '<div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation><div id="" class="grid-view-item__image-wrapper product-card__image-wrapper js"><div class="product_img_holder"><img data-src="'+prodImages[j]+'" alt="'+ prodTitle+'" class="grid-view-item__image lazyload"></div></div></div>'
@@ -654,20 +644,19 @@
         });
         
             // productGrid += '</ul>';
-            console.log('ProductList ==>')
-             console.log(productList);
+            
                 $('[data-collection-listing-container] [data-view="grid"] [data-list-item]').append(productGrid).removeClass('hide');  
                 $('[data-collection-listing-container] .list-view-items tbody').append(productList).removeClass('hide');          
                  
                 var len = $(document).find('.dynamic-pagination span a').length;
                 var txt = Number($(document).find('.dynamic-pagination span a.active').text());
-                console.log('len==>' + len + '== '+ txt);
+                //console.log('len==>' + len + '== '+ txt);
                 if(len === txt){
-                  console.log('yes matched len and txt')
+                  //console.log('yes matched len and txt')
                   $(document).find('.dynamic-loadmore-btn-box, .dynamic-loader-spiner').hide();
                   
                 }else {
-                  console.log('current Item not matched len and text');
+                 // console.log('current Item not matched len and text');
                   $(document).find('.dynamic-loadmore-btn-box, .dynamicloadMore-btn').show();
                   $(document).find('.dynamic-loader-spiner').hide();  
                 }
@@ -692,35 +681,44 @@
 
       //Initialize Price Slider
     	function initializingPriceSlider(minPrice, highestPrice, selectedMin, selectedMax){
+          console.log(minPrice,'--', highestPrice,'--', selectedMin,'--', selectedMax);
           var getMinAmt = minPrice;
           var getMaxAmt = highestPrice;
-            $('#price-min-val').val(minPrice);
-            $('#price-max-val').val(highestPrice);      	
+            $('#price-min-val').val(theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00',''));
+            $('#price-max-val').val(theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00',''));      	
             $( "#slider-range" ).slider({
             range: true,
             min: parseFloat(minPrice),
             max: parseFloat(highestPrice),
             values: [ selectedMin, selectedMax ],
             slide: function( event, ui ) { 
-               $( "#collection-price-min" ).text("SGD " + minPrice);
-               $( "#collection-price-max" ).text("SGD " + highestPrice);
-              $('.price__filter').prev('.collection-content-area-left-heading').find('.selRange').remove();
+              $( "#collection-price-min" ).text( theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00',''));
+              $( "#collection-price-max" ).text( theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00',''));
+              $('[data-filter-type="price"]').find('.slider-range-selected .span').text('');
     			// if(parseFloat(ui.values[ 0 ].toFixed(2)) > parseFloat(minPrice) || parseFloat(ui.values[ 1 ].toFixed(2)) < parseFloat(highestPrice)){
-                $('.price__filter').prev('.collection-content-area-left-heading').append('<i class="selRange">(SGD' + ui.values[ 0 ].toFixed(2) +' - SGD' + ui.values[ 1 ].toFixed(2) + ')</i>');
-               priceSelected = '&restrictBy[price]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ];
+            $('[data-filter-type="price"]').find('.slider-range-selected #collection-price-min-selected').text(theme.Currency.formatMoney(ui.values[ 0 ]*100, theme.moneyFormat).replace('.00',''))
+            $('[data-filter-type="price"]').find('.slider-range-selected #collection-price-max-selected').text(theme.Currency.formatMoney(ui.values[ 1 ]*100, theme.moneyFormat).replace('.00',''))
+            
+            //.append('<i class="selRange">(SGD' + ui.values[ 0 ].toFixed(2) +' - SGD' + ui.values[ 1 ].toFixed(2) + ')</i>');
+              priceSelected = '&restrictBy[price]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ];
     			// }    
             },
             stop: function( event, ui ) {
+              // $('[data-filter-type="price"]').find('.slider-range-selected .selRange').remove();
               $('#price-val-range').attr('data-opt-val', '&restrictBy[price]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ]).val('&restrictBy[price]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ]).attr('checked', 'checked').change(); 
+              // if(parseFloat(selectedMin) > parseFloat(minPrice) || parseFloat(selectedMax) < parseFloat(highestPrice)){
+              //   $('[data-filter-type="price"]').find('.slider-range-selected').append('<i class="selRange">(SGD ' + selectedMin +' - SGD ' + selectedMax + ')</i>');
+              // } 
+              // consol
             }
           });
-          $( "#collection-price-min" ).text( "SGD " + minPrice);
-          $( "#collection-price-max" ).text( "SGD " + highestPrice);
-          $('.price__filter').prev('.collection-content-area-left-heading').find('.selRange').remove();
+          $( "#collection-price-min" ).text( theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00',''));
+          $( "#collection-price-max" ).text( theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00',''));
+          
 
-          if(parseFloat(selectedMin) > parseFloat(minPrice) || parseFloat(selectedMax) < parseFloat(highestPrice)){
-            $('.price__filter').prev('.collection-content-area-left-heading').append('<i class="selRange">(SGD ' + selectedMin +' - SGD ' + selectedMax + ')</i>');
-          }      
+          // if(parseFloat(selectedMin) > parseFloat(minPrice) || parseFloat(selectedMax) < parseFloat(highestPrice)){
+          //   $('[data-filter-type="price"]').find('.slider-range-selected').append('<i class="selRange">(SGD ' + selectedMin +' - SGD ' + selectedMax + ')</i>');
+          // }      
         }
     	//Initialize Price Slider Ends
   });

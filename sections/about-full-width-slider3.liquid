@@ -1,3 +1,4 @@
+{% if section.settings.enable_section %}
 <div class="full_width_slider_wrapper full_width_slider3_wrapper">
     <div class="full_width_slider">
         {%- if section.blocks.size > 0 -%}
@@ -36,11 +37,19 @@
         {%- endif -%}  
     </div>
 </div>
+{% endif %}
 {% schema %}
 {
     "name": "About Us Slider 3",
     "max_blocks": 6,
-    "settings": [],
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "enable_section",
+            "label": "Enable Section",
+            "default": false
+        } 
+    ],
     "blocks": [
        {
           "type": "image",

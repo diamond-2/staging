@@ -8415,8 +8415,6 @@ body[data-template="404"] .main-content {
           right: 10px;
           width: auto;
           top: 0; }
-          .drawer .update-cart table .custom_cart_row td.custom_cart_item_left_col .cart__product-information .cart__product-body .cart__product-body-right .add_wishlist_holder {
-            display: none; }
   .drawer .coupon-info, .drawer .cart_sum_title {
     display: none; }
   .drawer .cart__footer .grid {
@@ -9254,10 +9252,7 @@ body.template-cart .home-sld {
               right: 0; } }
           .custom_cart_row td.custom_cart_item_left_col .cart__product-body .cart__product-body-right .add_wishlist_holder {
             line-height: 0;
-            margin-right: 20px;
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none; }
+            margin-right: 20px; }
             @media (max-width: 749px) {
               .custom_cart_row td.custom_cart_item_left_col .cart__product-body .cart__product-body-right .add_wishlist_holder {
                 margin-right: 10px; } }
@@ -13066,7 +13061,7 @@ a[href^="tel"] {
       top: 3px !important; } }
 
 .ui-widget.ui-widget-content {
-  background: #d3d3d354;
+  background: #e0e0e0;
   border: none !important;
   border-radius: 5px; }
   .ui-widget.ui-widget-content.ui-slider-horizontal .ui-slider-range {

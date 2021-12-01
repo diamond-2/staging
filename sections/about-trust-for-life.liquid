@@ -1,4 +1,4 @@
-
+{% if section.settings.enable_section %}
 {%- if section.settings.heading != blank or section.settings.content != blank or section.settings.button_text != blank -%}
 <div class="trust-for-life-section">
 	<div class="dia-container">
@@ -20,12 +20,18 @@
 	</div>
 </div> 
 {%- endif -%}
-
+{% endif %}
 
 {% schema %}
   {
     "name": "About Trust For Life",
     "settings": [
+		{
+			"type": "checkbox",
+			"id": "enable_section",
+			"label": "Enable Section",
+			"default": false
+		}, 
     	{
     		"type": "text",
     		"label": "Heading",

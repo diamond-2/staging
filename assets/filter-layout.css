@@ -142,7 +142,7 @@ label.filter__label span {
     position: relative;
 }
 #price .filter-dd {
-    min-width: 175px;
+    min-width: 280px;
 }
 .filter-option-name:after {
     position: absolute;
@@ -162,7 +162,7 @@ ul.filter-dd {
     background: #ffffff;
     position: absolute;
     top: 39px;
-    padding: 10px 15px;
+    padding: 15px 15px 10px;
     border: 1px solid #d9d9d9;
     border-radius: 2px;
     width: 100%;
@@ -250,6 +250,21 @@ span.clear-filter img {
 .toDisabled {
     pointer-events: none;
     opacity: 0.3;
+}
+
+.slider-range-selected {
+    display: flex;
+    padding-bottom: 15px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: calc(100% + 10px);
+    margin-left: -5px;
+}
+.slider-range-selected span {
+    border: 1px solid lightgray;
+    max-width: 110px;
+    padding: 10px;
+    flex: 0 0 40%;
 }
 
 @media screen and (max-width: 749px) {

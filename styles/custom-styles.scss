@@ -10397,7 +10397,7 @@ body[data-template="404"] {
                 width: auto;
                 top: 0;
                 .add_wishlist_holder {
-                  display: none;
+                  // display: none;
                 }
               }
             }
@@ -11380,9 +11380,9 @@ body.template-cart {
           .add_wishlist_holder {
             line-height: 0;
             margin-right:20px;
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
+            // opacity: 0;
+            // visibility: hidden;
+            // pointer-events: none;
             @media(max-width: $md) {
               margin-right: 10px;
             }
@@ -15924,7 +15924,7 @@ a[href^="tel"] {
 }
 
 .ui-widget.ui-widget-content {
-  background: #d3d3d354;
+  background: #e0e0e0;
   border: none!important;
     border-radius: 5px;
     &.ui-slider-horizontal{
