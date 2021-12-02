@@ -10,11 +10,11 @@
            {% comment %} <p>Sign in using</p>{% endcomment %}
           </div>
           <!-- Login with Social App -->
-         {% comment %}{% include 'login-with-social' %}{% endcomment %}
-          <div class="or-line-with-text"><span>OR SIGN IN WITH </span></div>
+         {% comment %}{% include 'login-with-social' %}
+          <div class="or-line-with-text"><span>OR SIGN IN WITH </span></div>{% endcomment %}
           <div class="register-form-column">
             <div class="register-form-column-inner swith-form-tabber">
-              
+              {% comment %}
               <div class="form-switch-wrapper">
                 <div class="custom-radio-item active" data-swith-id="#loginWithEmail">
                   <div class="custom-radio">
@@ -31,7 +31,7 @@
                   <label for="mobileOtpTab">Mobile Number and OTP</label>
                 </div>
               </div>
-
+{% endcomment %}
               <div class="form-wrapper show-swith-form" id="loginWithEmail">
                 <div class="form-message form-message--success hide" id="ResetSuccess" tabindex="-1">
                   <div class="message-pop-holder">
