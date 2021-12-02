@@ -2404,45 +2404,43 @@ body.landing-exist.scroll-start #shopify-section-landing {
     @media (max-width: 749px) {
       .site-footer .footer-bottom-logo img {
         width: 30px; } }
-  .site-footer .site-footer__newsletter {
-    display: none; }
+  @media (max-width: 749px) {
+    .site-footer .site-footer__newsletter {
+      padding: 0; } }
+  .site-footer .site-footer__newsletter .input-group__btn {
+    width: 120px; }
     @media (max-width: 749px) {
-      .site-footer .site-footer__newsletter {
-        padding: 0; } }
-    .site-footer .site-footer__newsletter .input-group__btn {
-      width: 120px; }
-      @media (max-width: 749px) {
-        .site-footer .site-footer__newsletter .input-group__btn {
-          width: auto; } }
-      .site-footer .site-footer__newsletter .input-group__btn .btn {
-        margin: 0;
-        padding: 8px 10px; }
-        @media (max-width: 576px) {
-          .site-footer .site-footer__newsletter .input-group__btn .btn {
-            display: inline-block;
-            width: auto;
-            min-width: 81.78px;
-            font-size: 10px;
-            line-height: 10.8px;
-            padding: 10px 10px 7px; } }
-    .site-footer .site-footer__newsletter .input-group__field {
-      padding: 6px 8px;
-      margin: 0; }
+      .site-footer .site-footer__newsletter .input-group__btn {
+        width: auto; } }
+    .site-footer .site-footer__newsletter .input-group__btn .btn {
+      margin: 0;
+      padding: 8px 10px; }
       @media (max-width: 576px) {
-        .site-footer .site-footer__newsletter .input-group__field {
+        .site-footer .site-footer__newsletter .input-group__btn .btn {
+          display: inline-block;
+          width: auto;
+          min-width: 81.78px;
           font-size: 10px;
           line-height: 10.8px;
-          padding: 8px 13px 6px;
-          font-weight: 300; } }
-      @media (max-width: 576px) {
-        .site-footer .site-footer__newsletter .input-group__field::-webkit-input-placeholder {
-          text-transform: uppercase; } }
-      @media (max-width: 576px) {
-        .site-footer .site-footer__newsletter .input-group__field:-ms-input-placeholder {
-          text-transform: uppercase; } }
-      @media (max-width: 576px) {
-        .site-footer .site-footer__newsletter .input-group__field::placeholder {
-          text-transform: uppercase; } }
+          padding: 10px 10px 7px; } }
+  .site-footer .site-footer__newsletter .input-group__field {
+    padding: 6px 8px;
+    margin: 0; }
+    @media (max-width: 576px) {
+      .site-footer .site-footer__newsletter .input-group__field {
+        font-size: 10px;
+        line-height: 10.8px;
+        padding: 8px 13px 6px;
+        font-weight: 300; } }
+    @media (max-width: 576px) {
+      .site-footer .site-footer__newsletter .input-group__field::-webkit-input-placeholder {
+        text-transform: uppercase; } }
+    @media (max-width: 576px) {
+      .site-footer .site-footer__newsletter .input-group__field:-ms-input-placeholder {
+        text-transform: uppercase; } }
+    @media (max-width: 576px) {
+      .site-footer .site-footer__newsletter .input-group__field::placeholder {
+        text-transform: uppercase; } }
   @media (max-width: 1600px) and (min-width: 750px) {
     .site-footer .site-footer__content {
       padding-left: 0;
@@ -10828,12 +10826,14 @@ body[data-template="customers/addresses"] .main-content {
             line-height: 12.96px; } }
       .order-table .order-product-details-row .order-product-details-column .order_quentity {
         margin-bottom: 25.5px;
-        margin-top: -2.5px; }
+        margin-top: 8px; }
         @media (max-width: 749px) {
           .order-table .order-product-details-row .order-product-details-column .order_quentity {
             display: none; } }
         .order-table .order-product-details-row .order-product-details-column .order_quentity span {
           margin-left: 5px; }
+      .order-table .order-product-details-row .order-product-details-column .order-tracking-wrapper {
+        padding-top: 10px; }
       .order-table .order-product-details-row .order-product-details-column .order-product-varrients .v_Color {
         color: #000000;
         margin-bottom: 14px; }

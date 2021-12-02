@@ -130,12 +130,13 @@
                 <div class="site-footer__newsletter
                           {% if section.blocks.size == 1 %} site-footer__single-block--centered{% endif %}">
                   {%- assign formId = 'ContactFooter' -%}
-                  {% form 'customer', id: formId, novalidate: 'novalidate', class: 'newsletter-form contact-form erer' %}
-                    {%- if form.posted_successfully? -%}
+                  {% form 'contact', id: formId, novalidate: 'novalidate', class: 'newsletter-form contact-form erer' %}
+                  {% comment %}  {%- if form.posted_successfully? -%}
                       <p class="form-message form-message--success hide" tabindex="-1" data-form-status>
                         {{ 'general.newsletter_form.confirmation' | t }}
                       </p>
-                    {%- endif -%}
+                    {%- endif -%}{% endcomment %}
+                    {% include 'form-status', form: form, form_id: formId %}
                     <input type="hidden" name="contact[tags]" value="newsletter">
                     <div class="input-group {% if form.errors %} input-group--error{% endif %}">
                       <input type="email"

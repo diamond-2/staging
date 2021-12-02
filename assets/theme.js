@@ -10038,7 +10038,7 @@ window.addEventListener("resize", function() {
             clearInterval(checkMsgExist);
           }else {
             if(check.indexOf('contact_posted=true') > -1) {
-              $(document).find('.form-message.form-message--success').show();
+              $(document).find('#'+getFormId+' .form-message.form-message--success').show();
               $(document).find('input[type="email"]').val('');
               window.history.replaceState(null, null, window.location.pathname);
               localStorage.removeItem("form-Id");
@@ -10067,9 +10067,14 @@ window.addEventListener("resize", function() {
     } else {
       console.log('test1');
       //console.log('contact page success msg');
-      if(window.location.pathname == '/pages/contact-us' &&  $(document).find('#ContactForm .form-message--success').length > 0 ) {
-        $(document).find('#ContactForm .form-message.form-message--success').addClass('show');  
-      }
+      if(window.location.pathname == '/pages/contact-us' &&   $(document).find('#'+getFormId+'.form-message.form-message--success').length > 0 || $(document).find('#'+getFormId+'.form-message.form-message--success').length > 0 ) {
+        $(document).find('#'+getFormId+'.form-message.form-message--success').addClass('show');  
+      } 
+      // else {
+      //   if($(document).find('#'+getFormId+'.form-message.form-message--success').length > 0){
+      //     $(document).find('#'+getFormId+'.form-message.form-message--success').addClass('show');
+      //   }
+      // }
     }
     //success
     // if($('.form-message--success').length > 0){

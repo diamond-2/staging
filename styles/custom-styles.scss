@@ -3349,7 +3349,7 @@ body{
       
     }
     .site-footer__newsletter {
-      display: none;
+      // display: none;
       @media (max-width: $md) {
         padding: 0;
       }
@@ -13249,13 +13249,16 @@ body[data-template="customers/addresses"] {
       }
       .order_quentity {
         margin-bottom: 25.5px;
-        margin-top: -2.5px;
+        margin-top: 8px;
         @media(max-width: $md) {
           display: none;
         }
         span {
           margin-left: 5px;
         }
+      }
+      .order-tracking-wrapper {
+        padding-top: 10px;
       }
       .order-product-varrients {
         .v_Color {

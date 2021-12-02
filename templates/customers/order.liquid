@@ -14,7 +14,7 @@
                 <h4>{{ 'customer.order.title' | t: name: order.name }}</h4>
                 <p>{{ 'customer.order.date_html' | t: date: order_date | replace: 'Placed on', '' }}</p>
               </div>
-              <div class="order_sec2 hide_mobile">
+              <div class="order_sec2 hide_mobile te">
                 <h2>{{ 'customer.order.title' | t: name: order.name }}</h2>
                 <!-- {%- assign order_date = order.created_at | time_tag: format: "date_at_time" -%} -->
                 <p>{{ 'customer.order.date_html' | t: date: order_date | replace: 'Placed on', '' }}</p>
@@ -79,7 +79,26 @@
                         </div>
                         <div class="order_incluse_tex">{{ 'Price is Inclusive of Taxes' }}</div>
                       </div>
-                      
+                      {% if order.fulfillment_status == 'fulfilled' %}
+                      <div class="order-tracking-wrapper">
+                        <div class="order_tracking_link">Track order: 
+                          <span>                        
+                        {% if line_item.fulfillment.tracking_number %}
+                        {% if line_item.fulfillment.tracking_url %}
+                        <a href="{{ line_item.fulfillment.tracking_url }}" target="_blank"> <span>{{ line_item.fulfillment.tracking_number }}</span></a>
+                        {% endif %}
+                        {% endif %}
+                        {% comment %}
+                        {% if line_item.fulfillment.tracking_company %}
+                          <span>{{ line_item.fulfillment.tracking_company }}</span>
+                        {% endif %}
+                        {% if line_item.fulfillment.tracking_url %}
+                            <a href="{{ line_item.fulfillment.tracking_url }}">Tracking URL</a>
+                          {% endif %}
+                          {% endcomment %}
+                        </span></div>
+                      </div>
+                      {% endif %}
                     </div>
                   </div>
                 </div>

@@ -284,7 +284,7 @@
                         {% endfor %}
                     </div>
                     {% endunless %}
-
+                    <input type="hidden" name="properties[_Certificate_Id]" id="variant_certificate_id" value="{{}}" />
                     <select name="id" id="ProductSelect-{{ section.id }}" class="product-form__variants no-js">
                         {% for variant in product.variants %}
                         <option data-sku="{{ variant.sku }}" data-qty="{{ variant.inventory_quantity}}" data-title="{{ variant.title | handleize }}" data-color="{{ variant.option1 }}" data-size="{{ variant.option2 }}" data-option3="{{ variant.option3}}" value="{{ variant.id }}" {%- if variant==current_variant %} selected="selected" {%-endif -%}> {{ variant.title }} {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
