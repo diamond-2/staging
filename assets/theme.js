@@ -10023,6 +10023,7 @@ window.addEventListener("resize", function() {
         //Check error in the form       
         if ($('#'+getFormId).find('.form-message.form-message--error').text().length > 0) {
           $(document).find('input[type="email"]').val('');
+          $(document).find('.form-message.form-message--error').show();
           errorContent = $('#'+getFormId).find('.form-message.form-message--error').text();
           $(document).find('.form-message-modal-content #form-msg').text(errorContent);          
           showMsgModal();          
@@ -10074,6 +10075,14 @@ window.addEventListener("resize", function() {
       //console.log('contact page success msg');
       if(window.location.pathname == '/pages/contact-us' &&   $(document).find('#'+getFormId+'.form-message.form-message--success').length > 0 || $(document).find('#'+getFormId+'.form-message.form-message--success').length > 0 ) {
         $(document).find('#'+getFormId+'.form-message.form-message--success').addClass('show');  
+      } 
+      if ($('.form-message.form-message--error').text().length > 0) {
+        $(document).find('input[type="email"]').val('');
+        $(document).find('.form-message.form-message--error').show();
+        $('#preloader').hide();
+        setTimeout(function(){
+          $('.form-message.form-message--error').hide();
+        },8000);
       } 
       // else {
       //   if($(document).find('#'+getFormId+'.form-message.form-message--success').length > 0){
@@ -10487,7 +10496,7 @@ window.addEventListener("resize", function() {
         
           console.log("image exists");
           if(window.innerWidth > 1024){      
-            window.location.href = "/pages/aryamond-certificate?getCert="+certNumber;
+            window.location.href = "/pages/coa?getCert="+certNumber;
           }else {
             window.open('/pages/certificate?getCert='+certNumber);
             // window.location.href = "/pages/certificate?getCert="+certNumber;
