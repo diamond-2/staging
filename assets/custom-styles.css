@@ -9374,7 +9374,8 @@ body.template-cart .home-sld {
         line-height: 14.04px;
         letter-spacing: normal; } }
     .agree-terms-sec .custom-checkbox-holder label a {
-      text-decoration: underline; }
+      text-decoration: underline;
+      pointer-events: auto; }
   .agree-terms-sec .custom-checkbox-holder .custom-checkbox-input-box {
     margin-right: 20px;
     position: relative; }
@@ -9801,7 +9802,8 @@ body[data-template="customers/reset_password"] .main-content {
         font-size: 14px;
         line-height: 24px;
         letter-spacing: 1px;
-        font-weight: 300; }
+        font-weight: 300;
+        pointer-events: none; }
         @media (max-width: 749px) {
           .register-page-wrapper .form-wrapper form .agree-terms-sec .custom-checkbox-holder label {
             font-weight: 400;

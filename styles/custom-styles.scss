@@ -11529,6 +11529,7 @@ body.template-cart {
       }
       a {
         text-decoration: underline;
+        pointer-events: auto;
       }
     }
     .custom-checkbox-input-box {
@@ -12066,6 +12067,7 @@ body[data-template="customers/reset_password"] {
             line-height: 24px;
             letter-spacing: 1px;
             font-weight: 300;
+            pointer-events: none;;
             @media(max-width: $md) {
               font-weight: 400;
               font-size: 13px;
