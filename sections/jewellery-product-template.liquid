@@ -23,6 +23,7 @@
 {%- capture stone_color_granding -%}stone_color_granding{%- endcapture -%}
 {%- capture warranty -%}com_warranty{% endcapture %}
 {%- capture description -%}description{%- endcapture -%}
+{%- capture certificateId -%}cert_id{%- endcapture -%}
 
 <div class="product-template__container" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}"
     data-section-type="product" data-enable-history-state="true" data-ajax-enabled="{{ settings.enable_ajax }}">
@@ -284,7 +285,7 @@
                         {% endfor %}
                     </div>
                     {% endunless %}
-                    <input type="hidden" name="properties[_Certificate_Id]" id="variant_certificate_id" value="{{}}" />
+                    <input type="hidden" name="properties[_Certificate_Id]" id="variant_certificate_id" value="{{ variantMetafield[certificateId] }}" />
                     <select name="id" id="ProductSelect-{{ section.id }}" class="product-form__variants no-js">
                         {% for variant in product.variants %}
                         <option data-sku="{{ variant.sku }}" data-qty="{{ variant.inventory_quantity}}" data-title="{{ variant.title | handleize }}" data-color="{{ variant.option1 }}" data-size="{{ variant.option2 }}" data-option3="{{ variant.option3}}" value="{{ variant.id }}" {%- if variant==current_variant %} selected="selected" {%-endif -%}> {{ variant.title }} {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
