@@ -13094,3 +13094,8 @@ a[href^="tel"] {
 
 .profile-content-wrapper .glb-btn {
   margin-left: 40px; }
+
+.cf-form-inner .cf-form-actions button {
+  margin: 0 1em 2em 0px !important;
+  display: block !important;
+  width: 100% !important; }
