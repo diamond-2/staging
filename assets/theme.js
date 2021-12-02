@@ -751,14 +751,19 @@ slate.Variants = (function() {
       let currentVariantQty = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('qty');
       let currentVariant = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('title');
       let currentSku = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('sku');
+      let currentCertificateId = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('certificateid');
       $(document).find('select[name="id"] option[value="'+variant.id+'"]').attr('selected', 'selected');
         if(currentVariantQty > 0 && currentVariantQty < 3) {
           $('.cv-stock-left').text(currentVariantQty).show();
         } else {
           $('.cv-stock-left').hide();
         }
-      
+
+      $('#selectedVariantId').val(variant.id);
       $('.product-sku-wrapper .p_sku .__sku').text(currentSku);
+      if($('#variant_certificate_id').length > 0){
+        $('#variant_certificate_id').val(currentCertificateId);
+      }
       if($('body').hasClass('template-product')){
         setTimeout(function(){
           __cartData();
