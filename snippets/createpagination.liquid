@@ -47,7 +47,8 @@ var Pagination = {
        var thisVal = parseInt($(this).text().trim()) - 1;
        var newQueryString = filterOnSelect();      
        console.log(newQueryString);
-       var getmaxitemperpage = $('select.result-per-page option:selected').attr('data-count');
+       //var getmaxitemperpage = $('select.result-per-page option:selected').attr('data-count');
+       var getmaxitemperpage = $('[data-collection-listing-container]').data('itemperpage');
        newQueryString+='&startIndex='+ thisVal*getmaxitemperpage;
        searchaniseProducts(newQueryString);
        $.cookie('lastquerycol', newQueryString, { path: '/' });
@@ -63,7 +64,8 @@ var Pagination = {
        Pagination.Start();
        var thisVal = Pagination.page - 1;
        var newQueryString = filterOnSelect();
-       var getmaxitemperpage = $('select.result-per-page option:selected').attr('data-count');
+       //var getmaxitemperpage = $('select.result-per-page option:selected').attr('data-count');
+       var getmaxitemperpage = $('[data-collection-listing-container]').data('itemperpage');;
        newQueryString+='&startIndex='+ thisVal*getmaxitemperpage;
        searchaniseProducts(newQueryString);
        $.cookie('lastquerycol', newQueryString, { path: '/' });
@@ -80,7 +82,8 @@ var Pagination = {
        console.log(this)
        var thisVal = Pagination.page - 1;
        var newQueryString = filterOnSelect();
-       var getmaxitemperpage = $('select.result-per-page option:selected').attr('data-count');
+       //var getmaxitemperpage = $('select.result-per-page option:selected').attr('data-count');
+       var getmaxitemperpage = $('[data-collection-listing-container]').data('itemperpage');;
        newQueryString+='&startIndex='+ thisVal*getmaxitemperpage;
        searchaniseProducts(newQueryString);
        $.cookie('lastquerycol', newQueryString, { path: '/' });
