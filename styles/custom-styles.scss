@@ -1293,6 +1293,11 @@ div#PageContainer {
             height: auto;
           }
         }
+        &.site-header__wishlist {
+          visibility: hidden;
+          opacity: 0;
+          pointer-events: none;
+        }
       }
     }
   }
@@ -5424,8 +5429,9 @@ body[data-template="product"] {
       display: flex;
       align-items: center;
       @include pdpSmallFont();
-      // visibility: hidden;
-      // opacity: 0;
+       visibility: hidden;
+       opacity: 0;
+       pointer-events: none;
       @media(max-width: $md) {
         // display: none;
         padding-top: 12px;
@@ -10262,6 +10268,11 @@ body[data-template="404"] {
             }
           }
         }
+        &.minicart-wishlist-icon {
+          visibility: hidden;
+          opacity: 0;
+          pointer-events: none;
+        }
       }
     }
   }
@@ -11403,9 +11414,9 @@ body.template-cart {
           .add_wishlist_holder {
             line-height: 0;
             margin-right:20px;
-            // opacity: 0;
-            // visibility: hidden;
-            // pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
             @media(max-width: $md) {
               margin-right: 10px;
             }
