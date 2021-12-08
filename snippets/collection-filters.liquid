@@ -46,6 +46,7 @@
     $(document).on('click', '.clear-filters a', function(){
       $('[data-active-filters]').html('');
       $(document).find('[data-collection-filter-section] :checkbox:checked').prop('checked', false).trigger('change');
+      $('.no-result').css('display', 'none');
     });
 
     $('body').on('change','[data-collection-filter-section] input[type="checkbox"]', function(){   
