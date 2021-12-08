@@ -122,6 +122,9 @@ label.filter__label span {
 .dynamic-loadmore-btn-holder {
     text-align: center;
 }
+.dynamic-loadmore-btn-box {
+    display:none;
+}
 .dynamic-loadmore-btn-holder .dynamic-loader-spiner {
     margin: 0 auto;
     width: 30px;
