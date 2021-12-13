@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="{{ 'intlTelInput.css' | asset_url }}">
+<script src="{{ 'intlTelInput.js' | asset_url }}"></script>
+
 <div class="contact-us-section-wrapper" >
 
     <!-- Contact Details -->
@@ -85,7 +88,7 @@
             
                         <div class="custom-form-group">
                             <label for="{{ formId }}-phone">Phone No.</label>
-                            <input class="input-box required" type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" maxlength="16" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+                            <input class="input-box required contactPhoneNumer" type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" maxlength="16" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
                             <span class="msg-error"></span>
                         </div>
 
@@ -116,6 +119,23 @@
         </div>
     </div>
 </div>
+
+<script>
+// Vanilla Javascript
+var input = document.querySelector(".contactPhoneNumer");
+window.intlTelInput(input,({
+    // options here
+}));
+
+$(document).ready(function() {
+    $('.iti__flag-container').click(function() { 
+        var countryCode = $('.iti__selected-flag').attr('title');
+        var countryCode = countryCode.replace(/[^0-9]/g,'')
+        $('.contactPhoneNumer').val("");
+        $('.contactPhoneNumer').val("+"+countryCode+" "+ $('.contactPhoneNumer').val());
+    });
+});
+</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function(event) {
