@@ -127,11 +127,16 @@
                                                 </tr>
                                                 {% endif %}
 
-                                                {% if variantMetafield[tableContent_dec_ttl_crt_wgt] != blank %}
-                                                {% assign variantMetafield[tableContent_dec_ttl_crt_wgt] = variantMetafield[tableContent_dec_ttl_crt_wgt] | times: 100 %}
-                                                <tr data-tooltip="jewrhodium" data-row="{{ tableContent_dec_ttl_crt_wgt }}">
+                                                {% if variantMetafield[tableContent_dec_ttl_crt_wgt] != blank %}                                                <tr data-tooltip="jewrhodium" data-row="{{ tableContent_dec_ttl_crt_wgt }}">
                                                     <td><span class="pdp-tab-label">Total carat weight(cts.)</span></td>
-                                                    <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_dec_ttl_crt_wgt] | truncate: 30, '...' | round: 2 }}</span> {% if productMetafield[tableContent_tooltip_ttl_crt_wgt] != blank %} <span class="meta_tooltip" data-tooltip-title="{{productMetafield[tableContent_tooltip_ttl_crt_wgt]}}"></span>{% endif %}</td>
+                                                    <td>
+                                                    <span class="pdp-tab-val test-2">{{ variantMetafield[tableContent_dec_ttl_crt_wgt] | times: 100 | round:2 | money_without_currency  }}</span> 
+
+                                                    {% if productMetafield[tableContent_tooltip_ttl_crt_wgt] != blank %} 
+                                                    <span class="meta_tooltip" data-tooltip-title="{{productMetafield[tableContent_tooltip_ttl_crt_wgt] }}"></span>
+                                                    {% endif %}
+                                                    
+                                                    </td>
                                                 </tr>
                                                 {% endif %}
                                         </tbody>
@@ -404,11 +409,12 @@
                                         </tr>
                                         {% endif %}
                 
-                                        {% if variantMetafield[tableContent_dec_ttl_crt_wgt] != blank %}
-                                        {% assign variantMetafield[tableContent_dec_ttl_crt_wgt] = variantMetafield[tableContent_dec_ttl_crt_wgt] | times: 100 %}
-                                        <tr data-tooltip="jewstdec" data-row="{{ tableContent_dec_ttl_crt_wgt }}">
+                                        {% if variantMetafield[tableContent_dec_ttl_crt_wgt] != blank %}                                        <tr data-tooltip="jewstdec" data-row="{{ tableContent_dec_ttl_crt_wgt }}">
                                             <td><span class="pdp-tab-label">Total carat weight(cts.)</span></td>
-                                            <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_dec_ttl_crt_wgt] | round: 2}}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
+                                            <td>
+                                            <span class="pdp-tab-val test-1">{{ variantMetafield[tableContent_dec_ttl_crt_wgt]  | times: 100 | round:2 | money_without_currency }}</span> 
+                                            <span class="meta_tooltip" data-tooltip-title="tooltip"></span>
+                                            </td>
                                         </tr>
                                         {% endif %}
                 

@@ -6158,7 +6158,7 @@ body[data-template="loose-stone"] .product-content-section {
       @media (max-width: 749px) {
         .solitaire-collection-wrapper .grid--view-items .grid__item {
           width: 50%;
-          padding: 7.5px;
+          padding: 8px;
           margin-bottom: 15px; } }
       .solitaire-collection-wrapper .grid--view-items .grid__item:after {
         content: "";
