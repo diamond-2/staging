@@ -37,10 +37,27 @@
 
     // Clear filter Event
     $(document).on('click', '[data-clear-filter]', function(){
-      var getKey = $(this).data('key');
-      $(this).remove();
-      $(document).find('[data-collection-filter-section] :checkbox:checked[id="'+getKey+'"]').prop('checked', false).trigger('change');
+      var getKey = $(this).data('key');      
+      if(getKey == 'price-val-range'){
+        let minPrice = $('#collection-price-min').data('price');
+        let highestPrice = $('#collection-price-max').data('price');
+        let selectedMinPrice = $('#collection-price-min').data('price');
+        let SelectedHighestPrice = $('#collection-price-max').data('price');
+        $("#slider-range").slider("option", "values", [$('#collection-price-min').data('price'), $('#collection-price-max').data('price')]);
+        let resetPriceSlider = '&restrictBy[price]='+$('#collection-price-min').data('price')+','+$('#collection-price-max').data('price')+'';
+        $('#price-val-range').val(resetPriceSlider).attr('data-opt-val', resetPriceSlider);
+        $('#collection-price-min-selected, #collection-price-max-selected').text('');
+        initializingPriceSlider(minPrice, highestPrice, selectedMinPrice, SelectedHighestPrice);
+      }
+      $(document).find('[data-collection-filter-section] :checkbox:checked[id="'+getKey+'"]').prop('checked', false).trigger('change');    
+      $(this).remove();        
     });
+
+    $(document).on('change','#price-val-range', function(){
+      if(!$(this).is('checked')){
+        $(this).prop('checked', true);
+      }      
+    })
 
     $('body').on('change','[data-collection-filter-section] input[type="checkbox"]', function(){   
       $('[data-collection-listing-container]').addClass('inital-load');    
@@ -205,7 +222,7 @@
               selectOption += '<ul class="filter-dd"> <li>';
                 selectOption += '<div class="slider-range-selected"><span id="collection-price-min-selected"></span><span id="collection-price-max-selected"></span></div>'
 
-              selectOption+='<div id="slider-range"></div><span id="collection-price-min"></span> <span id="collection-price-max"></span>';
+              selectOption+='<div id="slider-range"></div><span id="collection-price-min" data-price=""></span> <span id="collection-price-max"  data-price=""></span>';
               selectOption+='<input ' + checked + ' type="checkbox" data-opt-val="&restrictBy[price]=' + theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00','') + ','+ theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00','') +'" value="' + theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00','') + '-'+ theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00','') +'" id="price-val-range" class="visually-hidden" />';  
               
               
@@ -638,7 +655,7 @@
             productGrid += '<div class="grid-view-item product-card">';
             productGrid += '<a class="grid-view-item__link grid-view-item__image-container full-width-link" href="'+getprodlink+'" style="display: none;"><span class="visually-hidden">'+prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</span></a>';
             productGrid += '<div class="product-images-wrapper"> <div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider '+prodImgSliderDyn+'>';
-            console.log('ProductImageLength', prodImages.length);
+            // console.log('ProductImageLength', prodImages.length);
 
                if(prodImages != undefined ){
                 for (let j = 0; j < prodImages.length; j++) {
@@ -736,8 +753,8 @@
             max: parseFloat(highestPrice),
             values: [ selectedMin, selectedMax ],
             slide: function( event, ui ) { 
-              $( "#collection-price-min" ).text( theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00',''));
-              $( "#collection-price-max" ).text( theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00',''));
+              $( "#collection-price-min" ).text( theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00','')).attr('data-price',minPrice);
+              $( "#collection-price-max" ).text( theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00','')).attr('data-price',highestPrice);
               $('[data-filter-type="price"]').find('.slider-range-selected .span').text('');
     			// if(parseFloat(ui.values[ 0 ].toFixed(2)) > parseFloat(minPrice) || parseFloat(ui.values[ 1 ].toFixed(2)) < parseFloat(highestPrice)){
             $('[data-filter-type="price"]').find('.slider-range-selected #collection-price-min-selected').text(theme.Currency.formatMoney(ui.values[ 0 ]*100, theme.moneyFormat).replace('.00',''))
