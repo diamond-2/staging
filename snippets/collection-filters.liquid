@@ -38,6 +38,7 @@
     // Clear filter Event
     $(document).on('click', '[data-clear-filter]', function(){
       var getKey = $(this).data('key');      
+      console.log("getKey--getKey", getKey)
       if(getKey == 'price-val-range'){
         let minPrice = $('#collection-price-min').data('price');
         let highestPrice = $('#collection-price-max').data('price');
@@ -54,10 +55,11 @@
     });
 
     $(document).on('change','#price-val-range', function(){
+      console.log('PriceRangeChange', $('#collection-price-min-selected').text().length);
       if(!$(this).is('checked')){
         $(this).prop('checked', true);
-      }      
-    })
+      }          
+    });
 
     $('body').on('change','[data-collection-filter-section] input[type="checkbox"]', function(){   
       $('[data-collection-listing-container]').addClass('inital-load');    
@@ -147,6 +149,7 @@
     }
 
     function searchaniseProducts(queryString) {
+      $(document).find('.no-result').remove();
     $.ajax({	
         url: searchBaseUrl + queryString,
         dataType: 'jsonp',
