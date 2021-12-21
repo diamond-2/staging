@@ -10163,10 +10163,15 @@ window.addEventListener("resize", function() {
   // Accordion
   $('.ac-heading a').click(function(e){
     e.preventDefault();
-    $(this).parent().next().slideToggle();
-    $(this).parent().toggleClass('active');
-    // $(this).parent().parent().siblings().find('.ac-heading').removeClass('active');
-    // $(this).parent().parent().siblings().find('.ac-body').slideUp();
+    $('.ac-heading').removeClass('active');
+    $(this).closest('.ac-heading').toggleClass('active');
+    $(this).closest('.ac-item').find('.ac-body').slideToggle();
+    $(this).closest('.ac-item').siblings('.ac-item').find('.ac-body').slideUp();
+    setTimeout(function(){
+      $('html, body').animate({
+        scrollTop: $('.ac-heading.active').offset().top - 200
+      }, 1000);      
+    },500);    
   });
 
   // sidebar tabber

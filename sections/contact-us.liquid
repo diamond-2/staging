@@ -50,7 +50,7 @@
                 </div>
                 {% endif %}
 
-                <div class="contact-form sp-form">
+                <div class="contact-form sp-form cft">
                     {%- assign formId = 'ContactForm' -%}
                     {% form 'contact', id: formId %}
                         {% include 'form-status', form: form, form_id: formId %}
@@ -132,6 +132,7 @@ initialCountry: "SG"
 
 $(document).ready(function() {
 $('.iti__flag-container').click(function() { 
+    $('.contactPhoneNumer').val('');
 var countryCode = $('.iti__selected-flag').attr('title');
 var countryCode = countryCode.replace(/[^0-9]/g,'')
 //$('.iti--allow-dropdown .contactPhoneNumer').val("");
