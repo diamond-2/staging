@@ -4244,10 +4244,7 @@ body[data-template="product"] .main-content {
     display: flex;
     align-items: center;
     font-size: 13px;
-    line-height: 15.85px;
-    visibility: hidden;
-    opacity: 0;
-    pointer-events: none; }
+    line-height: 15.85px; }
     @media (max-width: 1600px) {
       .product-section-row .product-wishlist {
         font-size: 10px;
@@ -6328,9 +6325,7 @@ body[data-template="loose-stone"] .product-content-section {
                   text-align: left; }
                 .solitaire-collection-wrapper .grid--view-items .grid__item .grid-view-item .prodct_card_body .product-price-card .product-price-card-row > div.product_compare {
                   text-align: right;
-                  visibility: hidden;
-                  opacity: 0;
-                  pointer-events: none; }
+                  cursor: pointer; }
       .solitaire-collection-wrapper .grid--view-items .grid__item .product_images_slider .slick-arrow {
         z-index: 2;
         width: 30px;
@@ -10606,7 +10601,7 @@ body[data-template="customers/addresses"] .main-content {
         margin-right: 10px; }
     .account_nav ul li:last-child a {
       border-bottom: none; }
-    .account_nav ul li.wishlist_menu, .account_nav ul li.appointments_menu {
+    .account_nav ul li.appointments_menu {
       display: none; }
 
 @media (max-width: 749px) {

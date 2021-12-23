@@ -54,11 +54,14 @@
             let windowScrolled = $(window).scrollTop();
             $('body').addClass('scroll-start');
             if(windowScrolled > 10){
+                if($('#shopify-section-landing').length > 0){ 
+                    $('html, body').animate({scrollTop:0}, '800'); 
+                }                
                 sessionStorage.setItem("landingSession", "2");
                 setTimeout(function(){
                     $('#shopify-section-landing').remove();
                     $('body').removeClass('scroll-start landing-exist');
-                },2000)
+                },1000)
             }
         });
         function removeSession() {
@@ -67,7 +70,7 @@
             setTimeout(function(){
                 $('#shopify-section-landing').remove();
                 $('body').removeClass('scroll-start landing-exist');
-            },2000)
+            },1000)
         }
         $('.remove_landing_cookie').click(function(e){
             e.preventDefault();

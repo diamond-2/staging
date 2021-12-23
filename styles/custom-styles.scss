@@ -1204,7 +1204,7 @@ div#PageContainer {
           // pointer-events: none;
         } 
         &.site-header__wishlist {
-          // display:none;
+          display:none;
         }       
         @media(max-width: $xxl) {
           margin:0 3px;
@@ -7912,9 +7912,10 @@ body[data-template="loose-stone"] {
                 }
                 &.product_compare {
                   text-align: right;
-                  visibility: hidden;
-                  opacity: 0;
-                  pointer-events: none;
+                  cursor:pointer;
+                  // visibility: hidden;
+                  // opacity: 0;
+                  // pointer-events: none;
                 }
               }
             }
@@ -10432,7 +10433,7 @@ body[data-template="404"] {
                 width: auto;
                 top: 0;
                 .add_wishlist_holder {
-                  // display: none;
+                  display: none;
                 }
               }
             }
@@ -12983,7 +12984,6 @@ body[data-template="customers/addresses"] {
           border-bottom: none;
         }
       }
-      &.wishlist_menu,
       &.appointments_menu {
         display: none;
       }
