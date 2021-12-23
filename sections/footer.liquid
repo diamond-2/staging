@@ -383,7 +383,7 @@
           {% assign footer_bottom__nav = section.settings.footer_bottom_nav %}
           {% for link in linklists[footer_bottom__nav].links %}
             <li class="footer_bottom__nav--list-item">
-              <a href="{{ link.url }}" aria-label="{{ link.title }}">{{ link.title | replace: '®', '<sup>®</sup>' }}</a>
+              <a href="{{ link.url }}" aria-label="{{ link.title }}"{% if link.url contains 'karamchand.com' %} target="_blank" {% endif %}>{{ link.title | replace: '®', '<sup>®</sup>' }}</a>
             </li>
           {% endfor %}
         {% endif %}

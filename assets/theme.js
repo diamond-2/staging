@@ -10632,6 +10632,28 @@ $('form').on('keyup', 'input', function() {
     $(this).removeClass('form-error').next('.msg-error').css('display','none');
 });
 
+// Compare product event
+var compareItemHandles = [];
+$(document).on('click', '.product_compare', function(){  
+  var prodHandle = $(this).closest('.grid__item').data('handle');
+  var prodTitle = $(this).closest('.grid__item').data('title');
+  if(compareItemHandles.length < 5){
+    if(!compareItemHandles.includes($(this).closest('.grid__item').data('handle'))){
+      compareItemHandles.push($(this).closest('.grid__item').data('handle'));
+      
+    }else {
+      alert('Already added item for compare.');
+      return false;
+    } 
+  }else {
+    alert('You can compare max 5 products.');
+    return false;
+  }
+  console.log(compareItemHandles);
+  
+
+})
+
 
 
   
@@ -10717,3 +10739,10 @@ function hideMsgModal() {
 }
 
 
+
+function compareProducts(productList) {
+  // let productArr = [];
+  // productArr.push(productList);
+  console.log(productList);
+
+}
