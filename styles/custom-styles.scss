@@ -15629,6 +15629,7 @@ canvas#the-canvas {
   max-width: 1200px;
   .coa-img {
     flex: 0 0 45%;
+    border: 1px solid #6c1d45;
     @media screen and (max-width: $md) {
       flex: 0 0 100%;
     }
@@ -16021,3 +16022,8 @@ a[href^="tel"] {
     }
   }
 } 
+
+[data-template="about-us"] .why-diamond2-des {
+  font-size: 18px;
+  text-align: left;
+}

@@ -12835,7 +12835,8 @@ canvas#the-canvas {
   justify-content: space-evenly;
   max-width: 1200px; }
   .coa-img-wrapper .coa-img {
-    flex: 0 0 45%; }
+    flex: 0 0 45%;
+    border: 1px solid #6c1d45; }
     @media screen and (max-width: 749px) {
       .coa-img-wrapper .coa-img {
         flex: 0 0 100%; } }
@@ -13139,3 +13140,7 @@ a[href^="tel"] {
   margin: 0 1em 2em 0px !important;
   display: block !important;
   width: 100% !important; }
+
+[data-template="about-us"] .why-diamond2-des {
+  font-size: 18px;
+  text-align: left; }
