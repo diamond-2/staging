@@ -7009,8 +7009,8 @@ body.has_top_banner .main-content {
   .common-layout-wrapper .custom-section-header h1 {
     font-family: 'Spectral', serif;
     font-weight: 200;
-    font-size: 24px;
-    line-height: 25.92px;
+    font-size: 45px;
+    line-height: 48.6px;
     color: #6C1D45;
     letter-spacing: 0.02em;
     text-transform: uppercase;
@@ -12974,8 +12974,8 @@ body.has_top_banner #shopify-section-header {
 [data-template="certificate"] .main-content h1 {
   font-family: 'Spectral', serif;
   font-weight: 200;
-  font-size: 24px;
-  line-height: 25.92px;
+  font-size: 45px;
+  line-height: 48.6px;
   color: #6C1D45;
   letter-spacing: 0.02em;
   text-transform: uppercase;

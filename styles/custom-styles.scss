@@ -8743,8 +8743,8 @@ body {
   .custom-section-header {
     h1 {
       @include heading-fonts();
-      font-size: 24px;
-      line-height:25.92px;
+      font-size: 45px;
+      line-height:48.6px;
       color: $textcolor-phanton;
       letter-spacing: 0.02em;
       text-transform: uppercase;
@@ -15822,8 +15822,8 @@ body.has_top_banner {
   .main-content {
     h1 {
       @include heading-fonts();
-      font-size: 24px;
-      line-height:25.92px;
+      font-size: 45px;
+      line-height:48.6px;
       color: $textcolor-phanton;
       letter-spacing: 0.02em;
       text-transform: uppercase;
