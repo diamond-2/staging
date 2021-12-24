@@ -10329,7 +10329,8 @@ window.addEventListener("resize", function() {
           let currentVariantColor = $(document).find('select[name="id"] option[value="'+currentvariantId+'"]').data('color');        console.log(currentVariantColor)
         $(document).find('#pdp-Zoom-Gallery .zoom-gallery-container .product-single__media-wrapper').not('[data-alt="'+currentVariantColor+'"]').remove();
           $('#pdp-Zoom-Gallery .zoom-gallery-container').find('[data-product-single-media-group]').slick({
-          	infinite: false
+          	infinite: false,
+            centerMode: false
           }).on('beforeChange', function(event, slick, currentSlide, nextSlide){
                 if($(document).find('pinch-zoom').length > 0) {
                   $(document).find('pinch-zoom').attr('style', '');

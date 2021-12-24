@@ -3560,6 +3560,13 @@ body{
                             // top: -9px;
                           }
                         }
+                        .footer-contact-timing{
+                          font-size: 10px;
+                          @media screen and (max-width: $md) {
+                            display: block;
+                            margin-top: -10px;
+                          }
+                        }
                       }
                     }
                   }
@@ -14028,7 +14035,7 @@ body.template-product {
               transform: translate(-50%, -50%) scale(1);
             }
             @media screen and (max-width: $xl) {
-              transform: translate(-50%, -50%) scale(1);
+              transform: translate(0%, -50%) scale(1);
             }
           }
         }

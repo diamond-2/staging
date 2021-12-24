@@ -220,7 +220,7 @@
                         <ul class="site-footer__sub-linklist">
                           {% for childlink in link.links %}
                             <li class="site-footer__sub-linklist-item" data-level="level-1" {% if childlink.title contains 'Feedback'%}id="feedbackForm"{% endif %}>
-                              <a href="{{ childlink.url }}" aria-label="{{ childlink.title }}">{{ childlink.title | replace: '®', '<sup>®</sup>' }}</a>
+                              <a href="{{ childlink.url }}" aria-label="{{ childlink.title }}">{{ childlink.title | replace: '®', '<sup>®</sup>' }}</a>{% if childlink.url contains 'tel:' %}<br/><span class="footer-contact-timing">(Mon-Sat 11:00 a.m. to 8:00 p.m.)</span>{% endif %}
                             </li>
                         {% endfor %}
                         </ul>                        

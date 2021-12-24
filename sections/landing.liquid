@@ -46,8 +46,11 @@
 <script>
     document.addEventListener('DOMContentLoaded', function(event) {
         if(sessionStorage.getItem("landingSession") == null){
+            console.log('session is nulll')
             $('#shopify-section-landing').slideDown();
             $('body').addClass('landing-exist');
+        } else {
+            $('#shopify-section-landing').remove();
         }
         var lastScrollTop = 0;
         $(window).on('scroll', function(){            
@@ -55,7 +58,8 @@
             $('body').addClass('scroll-start');
             if(windowScrolled > 10){
                 if($('#shopify-section-landing').length > 0){ 
-                    $('html, body').animate({scrollTop:0}, '800'); 
+                    console.log('yes landing section existsssss');
+                    $('html, body').animate({scrollTop:0}, '1000'); 
                 }                
                 sessionStorage.setItem("landingSession", "2");
                 setTimeout(function(){
