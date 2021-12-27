@@ -121,13 +121,13 @@
                                                 {% endif %}
 
                                                 {% if variantMetafield[tableContent_frc_ttl_crt_wgt] != blank %}
-                                                <tr data-tooltip="jewrhodium" data-row="{{ tableContent_ttl_crt_wgt }}">
+                                                <tr data-tooltip="jewrhodium" data-row="common_ttl_crt_wgt">
                                                     <td><span class="pdp-tab-label">Carat Total weight(CT. TW.)</span></td>
                                                     <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_frc_ttl_crt_wgt] | truncate: 30, '...' }}</span> {% if productMetafield[tableContent_tooltip_ttl_crt_wgt] != blank %} <span class="meta_tooltip" data-tooltip-title="{{productMetafield[tableContent_tooltip_ttl_crt_wgt]}}"></span>{% endif %}</td>
                                                 </tr>
                                                 {% endif %}
 
-                                                {% if variantMetafield[tableContent_dec_ttl_crt_wgt] != blank %}                                                <tr data-tooltip="jewrhodium" data-row="{{ tableContent_dec_ttl_crt_wgt }}">
+                                                {% if variantMetafield[tableContent_dec_ttl_crt_wgt] != blank %}                                                <tr data-tooltip="jewrhodium" data-row="common_ttl_crt_wgt">
                                                     <td><span class="pdp-tab-label">Total carat weight(cts.)</span></td>
                                                     <td>
                                                     <span class="pdp-tab-val test-2">{{ variantMetafield[tableContent_dec_ttl_crt_wgt] | times: 100 | round:2 | money_without_currency  }}</span> 
@@ -294,9 +294,9 @@
                 {%- capture tableContent_setting_type -%}dia_tab{{ j }}_setting_type{%- endcapture -%}
                 {%- capture tableContent_setting_typeLabel -%}dia_tab{{ j }}_setting_type_lael{%- endcapture -%}
                 
-                {%- capture tableContent_frc_ttl_crt_wgt -%}dia_tab{{ j }}_frc_stn_total_crt_wt{%- endcapture -%}
+                {%- capture tableContent_frc_ttl_crt_wgt_r -%}dia_tab{{ j }}_frc_stn_total_crt_wt{%- endcapture -%}
 
-                {%- capture tableContent_dec_ttl_crt_wgt -%}dia_tab{{ j }}_dec_stn_total_crt_wt{%- endcapture -%}
+                {%- capture tableContent_dec_ttl_crt_wgt_r -%}dia_tab{{ j }}_dec_stn_total_crt_wt{%- endcapture -%}
 
                
 
@@ -372,9 +372,9 @@
                     variantMetafield[tableContent_cert_measurementsLabel] != blank or
                     variantMetafield[tableContent_cert_measurements] != blank or
 
-                    variantMetafield[tableContent_frc_ttl_crt_wgt] != blank or
+                    variantMetafield[tableContent_frc_ttl_crt_wgt_r] != blank or
 
-                    variantMetafield[tableContent_dec_ttl_crt_wgt] != blank
+                    variantMetafield[tableContent_dec_ttl_crt_wgt_r] != blank
 
                 %}
                 
@@ -402,17 +402,17 @@
                                         {% endif %}
                     
                 
-                                        {% if variantMetafield[tableContent_frc_ttl_crt_wgt] != blank %}
-                                        <tr data-tooltip="jewstnfrc" data-row="{{ tableContent_frc_ttl_crt_wgt }}">
+                                        {% if variantMetafield[tableContent_frc_ttl_crt_wgt_r] != blank %}
+                                        <tr data-tooltip="jewstnfrc" data-row="common_dia_tab_ttl_crt_wgt">
                                             <td><span class="pdp-tab-label">Carat Total Weight(ct. tw.)</span></td>
-                                            <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_frc_ttl_crt_wgt] }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
+                                            <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_frc_ttl_crt_wgt_r] }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
                                         </tr>
                                         {% endif %}
                 
-                                        {% if variantMetafield[tableContent_dec_ttl_crt_wgt] != blank %}                                        <tr data-tooltip="jewstdec" data-row="{{ tableContent_dec_ttl_crt_wgt }}">
+                                        {% if variantMetafield[tableContent_dec_ttl_crt_wgt_r] != blank %}                                        <tr data-tooltip="jewstdec" data-row="common_dia_tab_ttl_crt_wgt">
                                             <td><span class="pdp-tab-label">Total carat weight(cts.)</span></td>
                                             <td>
-                                            <span class="pdp-tab-val test-1">{{ variantMetafield[tableContent_dec_ttl_crt_wgt]  | times: 100 | round:2 | money_without_currency }}</span> 
+                                            <span class="pdp-tab-val test-1">{{ variantMetafield[tableContent_dec_ttl_crt_wgt_r]  | times: 100 | round:2 | money_without_currency }}</span> 
                                             <span class="meta_tooltip" data-tooltip-title="tooltip"></span>
                                             </td>
                                         </tr>

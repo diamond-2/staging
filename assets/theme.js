@@ -886,10 +886,25 @@ slate.Variants = (function() {
           for(var variantKey in variantMetaFields) {// console.log('variantKey');   console.log(variantKey);
             var selectedVariant = $('select[name="id"]').val();//console.log(selectedVariant);
             if(selectedVariant != variantKey) continue 
-            variantMetaFields[variantKey].forEach(function(ele){ //console.log(ele);
-              for(var key in ele) {                
-                  //console.log('Enter currentvairant');
+            variantMetaFields[variantKey].forEach(function(ele){ console.log(ele);
+                           
+              for(var key in ele) {   
+                console.log(key);   
+                if(key == 'dec_stn_total_crt_wt_label' || key == 'frc_stn_total_crt_wt_label') {
+                  $(document).find('[data-row="common_ttl_crt_wgt"]').find('.pdp-tab-label').text(ele[key]); 
+                } else if(key == 'dia_tab1_dec_stn_total_crt_wt_label' || key == 'dia_tab1_frc_stn_total_crt_wt_label' || key == 'dia_tab2_dec_stn_total_crt_wt_label' || key == 'dia_tab2_frc_stn_total_crt_wt_label' || key == 'dia_tab3_dec_stn_total_crt_wt_label' || key == 'dia_tab3_frc_stn_total_crt_wt_label' || key == 'dia_tab4_dec_stn_total_crt_wt_label' || key == 'dia_tab4_frc_stn_total_crt_wt_label' || key == 'dia_tab5_dec_stn_total_crt_wt_label' || key == 'dia_tab5_frc_stn_total_crt_wt_label' || key == 'dia_tab6_dec_stn_total_crt_wt_label' || key == 'dia_tab6_frc_stn_total_crt_wt_label' || key == 'dia_tab7_dec_stn_total_crt_wt_label' || key == 'dia_tab7_frc_stn_total_crt_wt_label' || key == 'dia_tab8_dec_stn_total_crt_wt_label' || key == 'dia_tab8_frc_stn_total_crt_wt_label' || key == 'dia_tab9_dec_stn_total_crt_wt_label' || key == 'dia_tab9_frc_stn_total_crt_wt_label' || key == 'dia_tab10_dec_stn_total_crt_wt_label' || key == 'dia_tab10_frc_stn_total_crt_wt_label'){
+                  $(document).find('[data-row="common_dia_tab_ttl_crt_wgt"]').find('.pdp-tab-label').text(ele[key]); 
+                }
+                if(key == 'dec_stn_total_crt_wt' || key == 'frc_stn_total_crt_wt') {
+                  $(document).find('[data-row="common_ttl_crt_wgt"]').find('.pdp-tab-val').text(ele[key]);
+                } else if(key == 'dia_tab1_dec_stn_total_crt_wt' || key == 'dia_tab1_frc_stn_total_crt_wt' || key == 'dia_tab2_dec_stn_total_crt_wt' || key == 'dia_tab2_frc_stn_total_crt_wt' || key == 'dia_tab3_dec_stn_total_crt_wt' || key == 'dia_tab3_frc_stn_total_crt_wt' || key == 'dia_tab4_dec_stn_total_crt_wt' || key == 'dia_tab4_frc_stn_total_crt_wt' || key == 'dia_tab5_dec_stn_total_crt_wt' || key == 'dia_tab5_frc_stn_total_crt_wt' || key == 'dia_tab6_dec_stn_total_crt_wt' || key == 'dia_tab6_frc_stn_total_crt_wt' || key == 'dia_tab7_dec_stn_total_crt_wt' || key == 'dia_tab7_frc_stn_total_crt_wt' || key == 'dia_tab8_dec_stn_total_crt_wt' || key == 'dia_tab8_frc_stn_total_crt_wt' || key == 'dia_tab9_dec_stn_total_crt_wt' || key == 'dia_tab9_frc_stn_total_crt_wt' || key == 'dia_tab10_dec_stn_total_crt_wt' || key == 'dia_tab10_frc_stn_total_crt_wt'){
+                  $(document).find('[data-row="common_dia_tab_ttl_crt_wgt"]').find('.pdp-tab-val').text(ele[key]);
+                }
+                else {
                   $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val').text(ele[key]);                             
+                }
+                  //console.log('Enter currentvairant');
+                  
               }
             });           
           }
