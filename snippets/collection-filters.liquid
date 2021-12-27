@@ -665,7 +665,7 @@
             
             productGrid += '<div class="grid-view-item product-card">';
             productGrid += '<a class="grid-view-item__link grid-view-item__image-container full-width-link" href="'+getprodlink+'" style="display: none;"><span class="visually-hidden">'+prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</span></a>';
-            productGrid += '<div class="product-images-wrapper"> <div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider '+prodImgSliderDyn+'>';
+            productGrid += '<div class="product-images-wrapper"><a class="product-full-link" href="'+getprodlink+'"> </a><div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider '+prodImgSliderDyn+'>';
             // console.log('ProductImageLength', prodImages.length);
 
                if(prodImages != undefined ){
@@ -676,7 +676,6 @@
                 }  
              }            
                 productGrid += '</div>';
-                productGrid += '<a class="full_link" href="'+getprodlink+'"></a>';
                 if($('body').attr('data-template') == 'loose-stone-plp'){ 
                   productGrid += '<div class="hide_mobile">';
                   productGrid += '<div class="product-image-body-row">';
