@@ -3875,6 +3875,9 @@ body{
             color: $textcolor-black;
           }
         }
+        &.footer_bottom_nav_second {
+          padding: 40px 0 0;
+        }
       }
     }
     .input-group__btn .btn, .input-group__btn .shopify-payment-button .shopify-payment-button__button--unbranded,

@@ -2882,6 +2882,8 @@ body.landing-exist.scroll-start #shopify-section-landing {
             order: 10; } }
         .site-footer .footer-bottom__nav .footer_bottom__nav--list-items .footer_bottom__nav--list-item a {
           color: #000000; }
+      .site-footer .footer-bottom__nav .footer_bottom__nav--list-items.footer_bottom_nav_second {
+        padding: 40px 0 0; }
   .site-footer .input-group__btn .btn, .site-footer .input-group__btn .shopify-payment-button .shopify-payment-button__button--unbranded,
   .site-footer .shopify-payment-button .input-group__btn .shopify-payment-button__button--unbranded {
     background: #6679CC;

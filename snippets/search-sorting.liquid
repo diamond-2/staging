@@ -1,0 +1,106 @@
+<div class="filter-toolbar-wrapper-mobile desktop_hide">
+  <div class="dia-container">
+    <a href="javascript:;" id="filter-btn-mob" class="btn">Filter By</a>
+    <a href="javascript:;" id="sortby-btn-mob" class="btn">Sort By</a>
+  </div>
+</div>
+<div class="filters-toolbar-wrapper filter_type2 filters-toolbar--has-filter" data-filter-layout>
+  <div class="dia-container">
+    <div class="filter-top-row">
+      <div class="img_box">{{ 'diomand_40x40.svg' | asset_url | img_tag :'Diamond2' }}</div>
+    </div>
+    <div class="filters-toolbar-label">
+      <div class="filter-by-label">Filter by</div>
+      <div class="clear-filters"><a href="javascript:;" aria-label="Clear filters">Clear Filters</a></div>
+    </div>
+    <div class="filters-toolbar">
+      <!-- <div class="filter-by-label">Shape <span><a href="javascript:;" aria-label="Learn more about shapes">Learn More &gt;</a></span></div>
+      <div class="collection-filter-wrapper" data-filter="&restrictBy[shape]">
+        
+        <div class="collection_filter_by_shape">
+          <img src="{{ 'ld_shape_round.svg' | file_url }}" class="lazyload" />
+          <input type="checkbox" id="shape_round" class="visually-hidden" value="" />
+          <label for="shape_round" class="filter__label">Round</label>
+        </div>
+      </div> -->
+      <div class="collection-filter-wrapper-main" data-collection-filter-section>
+        
+      </div>
+    </div>
+    <div class="filters-toolbar__item-wrapper">
+      <div class="selected-filer-options" data-active-filters></div>
+      {% capture productitemlimit %}
+      {% if limit  > collection.products_count %}
+      {{ collection.products_count }}
+      {% else %}
+    {{ limit }}
+      {% endif %}
+      {% endcapture%}
+      {{}}
+      <div class="filters-toolbar__item filters-toolbar__item--count">
+        <span class="filters-toolbar__product-count">Showing <span class="__product-count__initial" data-pcinit="1">1</span> - <span class="__product-count__limit" data-pclimit="{{ limit }}" data-item="test">{{ productitemlimit }}</span> of <span class="__product-count__totalCount" data-tpcount=""></span></span>
+      </div>
+
+      <div class="filter_right_column">
+        <div class="filter_compare_item hide"><a href="#">Compare (4)</a></div>
+        <div class="filter_wishlist_item hide">{% include 'icon-wishlist-fill' %}<a href="#">Wishlist (25)</a></div>
+        <div class="filters-toolbar__item-wrapper">
+           
+            <div class="collection-sort">
+              <span class="collection-sort-label">Sort by</span>
+              <span class="select-sort-by-content">
+                <select id="sortByFilter" class="select-sort-by">
+                  <option value="relevance&sortOrder=desc" selected>Sort by</option>
+                  <option value="sales_amount&sortOrder=desc" >Best Selling</option>
+                  <option value="price&sortOrder=asc">Price (Low to High)</option>
+                  <option value="price&sortOrder=desc">Price (High to Low)</option>
+                  <option value="title&sortOrder=asc">Alphabetically (A-Z)</option>
+                  <option value="title&sortOrder=desc">Alphabetically (Z-A)</option>
+                  <option value="created&sortOrder=asc">Oldest</option>
+                  <option value="created&sortOrder=desc">Newest</option>                    
+                </select>
+              </span>
+            </div>
+          </div>
+        <div class="product_view_item_grp">
+          <div class="product_view grid_view active">
+            <a data-view="grid" href="#">{% include 'icon-grid' %}</a>
+          </div>
+          <div class="product_view list_view">
+            <a data-view="list" href="#">{% include 'icon-list' %}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="filter-cta-mob" class="desktop_hide">
+    <a class="btn" href="javascript:;">Show <span class="filter-result-count">29</span> Results</a>
+  </div>
+</div>
+
+
+<script>
+  $(function(){
+    $(document).on('click', '.filter-toolbar-wrapper-mobile a', function(){
+      $(document).find('[data-filter-layout]').addClass('visible-mob-filter');
+      $('body').addClass('overflow-hidden');
+    });
+
+    $(document).on('click', '#filter-cta-mob a', function(){
+      $(document).find('[data-filter-layout]').removeClass('visible-mob-filter');
+      $('body').removeClass('overflow-hidden');
+    });
+    // Filter button fixed on window scroll 
+    var offset = $('.filter-toolbar-wrapper-mobile').offset().top - 80;
+    $(window).on('scroll',function(){            
+      var s = $(window).scrollTop();//console.log(s)
+      if(s >= offset) {
+      $('.filter-toolbar-wrapper-mobile').addClass('postion-fixed');
+      }else {
+        $('.filter-toolbar-wrapper-mobile').removeClass('postion-fixed');
+      }
+    })
+  })
+
+</script>
