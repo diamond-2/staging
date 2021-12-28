@@ -3877,6 +3877,12 @@ body{
         }
         &.footer_bottom_nav_second {
           padding: 40px 0 0;
+          @media(max-width: $md) {
+            padding-top:20px;
+          }
+          .footer_bottom__nav--list-item {
+            width: auto;
+          }
         }
       }
     }
