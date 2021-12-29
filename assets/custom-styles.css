@@ -1190,6 +1190,8 @@ div#PageContainer.js-menu--is-open {
           .mobile-nav-wrapper .header-mb-login-details-wrapper .header-mb-login-details ul li a .icon_hold svg {
             display: block;
             width: 14px; }
+      .mobile-nav-wrapper .header-mb-login-details-wrapper .header-mb-login-details ul li.mob-nav-wishlist {
+        display: none; }
     .mobile-nav-wrapper .header-mb-login-details-wrapper .currency-box-wrapper {
       margin: 0;
       padding: 0;
