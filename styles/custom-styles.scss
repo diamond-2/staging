@@ -14357,6 +14357,10 @@ body.template-product {
         }
       }
     }
+    &.prduct-review-trigger {
+      display: none;
+      pointer-events: none;
+    }
   }
 }
 .mobile-pdp-acc-trigger {
@@ -16043,4 +16047,7 @@ a[href^="tel"] {
 [data-template="about-us"] .why-diamond2-des {
   font-size: 18px;
   text-align: left;
+}
+[data-template="search-result"] .main-content {
+  padding-top: 0px;
 }

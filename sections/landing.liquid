@@ -63,7 +63,7 @@
                 setTimeout(function(){
                     $('#shopify-section-landing').remove();
                     $('body').removeClass('scroll-start landing-exist');
-                },1000)
+                },2000)
             }
         });
         function removeSession() {
@@ -80,45 +80,6 @@
         });
 
     });
-    
-    // document.addEventListener('DOMContentLoaded', function(event) {
-    //     if(sessionStorage.getItem("landingSession") == null){
-    //         console.log('session is nulll')
-    //         $('#shopify-section-landing').slideDown();
-    //         $('body').addClass('landing-exist');
-    //     } else {
-    //         $('#shopify-section-landing').remove();
-    //     }
-    //     var lastScrollTop = 0;
-    //     $(window).on('scroll', function(){            
-    //         let windowScrolled = $(window).scrollTop();
-    //         $('body').addClass('scroll-start');
-    //         if(windowScrolled > 10){
-    //             if($('#shopify-section-landing').length > 0){ 
-    //                 console.log('yes landing section existsssss');
-    //                 $('html, body').animate({scrollTop:0}, '1000'); 
-    //             }                
-    //             sessionStorage.setItem("landingSession", "2");
-    //             setTimeout(function(){
-    //                 $('#shopify-section-landing').remove();
-    //                 $('body').removeClass('scroll-start landing-exist');
-    //             },1000)
-    //         }
-    //     });
-    //     function removeSession() {
-    //         $('body').addClass('scroll-start');
-    //         sessionStorage.setItem("landingSession", "2");
-    //         setTimeout(function(){
-    //             $('#shopify-section-landing').remove();
-    //             $('body').removeClass('scroll-start landing-exist');
-    //         },1000)
-    //     }
-    //     $('.remove_landing_cookie').click(function(e){
-    //         e.preventDefault();
-    //         removeSession();
-    //     });
-
-    // });
 </script>
 {% schema %}
 {

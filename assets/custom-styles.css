@@ -11788,6 +11788,9 @@ body.template-product .pdp-zoom-gallery {
       color: #6C1D45; }
       .product-meta-review-tabber-nav ul li.active a:after {
         transform: scale(1); }
+    .product-meta-review-tabber-nav ul.prduct-review-trigger {
+      display: none;
+      pointer-events: none; }
 
 .mobile-pdp-acc-trigger {
   position: relative;
@@ -13160,3 +13163,6 @@ a[href^="tel"] {
 [data-template="about-us"] .why-diamond2-des {
   font-size: 18px;
   text-align: left; }
+
+[data-template="search-result"] .main-content {
+  padding-top: 0px; }
