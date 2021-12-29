@@ -11788,7 +11788,7 @@ body.template-product .pdp-zoom-gallery {
       color: #6C1D45; }
       .product-meta-review-tabber-nav ul li.active a:after {
         transform: scale(1); }
-    .product-meta-review-tabber-nav ul.prduct-review-trigger {
+    .product-meta-review-tabber-nav ul li.prduct-review-trigger {
       display: none;
       pointer-events: none; }
 
