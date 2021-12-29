@@ -401,7 +401,7 @@
               {% endif %}
             </div>
             {%- comment -%} Header Wishlist icon  {%- endcomment -%}
-            <a href="#swym-wishlist" class="swym-wishlist site-header__icon site-header__wishlist">
+            <a href="{% if customer %}#swym-wishlist{% else %}javascript:;{% endif %}" {% if customer %}{% else %}data-modal="showInfoModal"{% endif %} class="swym-wishlist site-header__icon site-header__wishlist">
               {% render 'icon-account-wishlist' %}
             </a>
             {% if shop.customer_accounts_enabled %}
@@ -563,7 +563,7 @@
               {% if shop.customer_accounts_enabled %}
               {% if customer %}
               <li><a href="/account"><span class="icon_hold">{% include 'icon-login' %}</span><span class="tex_">My Account</span></a></li>
-              <li class="mob-nav-wishlist"> <a href="#swym-wishlist" class="swym-wishlist"><span class="icon_hold">{% render 'icon-account-wishlist' %}</span><span class="tex_">Wishlist</span></a></li>
+              <li class="mob-nav-wishlist"> <a href="{% if customer %}#swym-wishlist{% else %}javascript:;{% endif %}" class="swym-wishlist"><span class="icon_hold">{% render 'icon-account-wishlist' %}</span><span class="tex_">Wishlist</span></a></li>
               <!-- <li><a href="/"><span class="icon_hold">{% include 'icon-ambassador' %}</span><span class="tex_">Diamond2<sup>®</sup> Ambassador</span></a></li> -->
               <!-- <li><a href="/pages/contact-us"><span class="icon_hold">{% include 'icon-location-mobile' %}</span><span class="tex_">Store Locator</span></a></li> -->
               <li><a href="/pages/contact-us"><span class="icon_hold">{% include 'icon-phone' %}</span><span class="tex_">Help/Contact Us</span></a></li>

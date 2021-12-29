@@ -10648,6 +10648,11 @@ $('form').on('keyup', 'input', function() {
     $(this).removeClass('form-error').next('.msg-error').css('display','none');
 });
 
+// Show InfoModal
+$(document).on('click', '[data-modal="showInfoModal"]', function(){
+  showInfoModal();
+});
+
 // Compare product event
 var compareItemHandles = [];
 $(document).on('click', '.product_compare', function(){  
@@ -10754,6 +10759,13 @@ function hideMsgModal() {
   $(document).find('.form-message-modal-content #form-msg').text('');
 }
 
+
+function showInfoModal() {
+  $('.info-modal').fadeIn();
+}
+function hideInfoModal() {
+  $('.info-modal').fadeOut();
+}
 
 
 function compareProducts(productList) {
