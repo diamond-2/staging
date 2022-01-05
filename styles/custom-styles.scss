@@ -16167,6 +16167,19 @@ a[href^="tel"] {
       }
     }
   } 
+  [data-review-render] {
+    .grid__item {
+      [data-remove-wishslit-product] {
+        position: absolute;
+        z-index: 9;
+        right: 30px;
+        top: 30px;
+        svg {
+          width: 12px;
+        }
+      }
+    }
+  }
 }
 [data-compare-msg] {
   position: absolute;

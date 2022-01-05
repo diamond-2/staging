@@ -13246,6 +13246,14 @@ a[href^="tel"] {
     opacity: 0;
     visibility: hidden; }
 
+.wishlist-container [data-review-render] .grid__item [data-remove-wishslit-product] {
+  position: absolute;
+  z-index: 9;
+  right: 30px;
+  top: 30px; }
+  .wishlist-container [data-review-render] .grid__item [data-remove-wishslit-product] svg {
+    width: 12px; }
+
 [data-compare-msg] {
   position: absolute;
   bottom: 55px;

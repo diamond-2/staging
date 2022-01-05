@@ -10725,6 +10725,7 @@ $(document).on('click', '[data-compareitemcounter]', function(){
 // ToggleCompare Modal Box
 $(document).on('click', '[data-compare-show-modal], [data-compare-close-modal]', function(){
   toggleCompareModal();
+  hideCompareItemList();
 })
 
 
@@ -10740,6 +10741,7 @@ $(document).on('click', '[data-remove-compare-item]', function(){
     compareItemHandles.splice(index, 1);
   }
   $(this).closest('.compare__product-information').remove();
+  $(document).find('[data-compare-product-modal-content] .compare__product-information[data-handle="'+handle+'"]').remove();
   updateCompareProductCounter(); 
   if(newArray.length == 0){
     localStorage.removeItem("compareProducts");
