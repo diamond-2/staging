@@ -5,7 +5,20 @@
 <div id="main-landing-page">
     <div class="main-landing-page-container">
         <div class="landing-banner">
-            <img data-src="{{ landingBanner | img_url: 'master'}}" alt="" class="lazyload hide_mobile"/>
+            <!-- <img data-src="{{ landingBanner | img_url: 'master'}}" alt="" class="lazyload hide_mobile"/> -->
+
+            <img class="lazyload hide_mobile"
+            src="{{ landingBanner | img_url: 'master'}}"
+            data-src="{{ img_url }}"
+            data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
+            data-aspectratio="{{ landingBanner.aspect_ratio }}"
+            data-sizes="auto"
+            data-parent-fit="cover"
+            alt="{{ landingBanner.alt | escape }}">
+
+
+
+
             {% if landingBannerMobile %}
             <img data-src="{{ landingBannerMobile | img_url: 'master'}}" alt="" class="lazyload show_mobile"/>
             {% else %}
