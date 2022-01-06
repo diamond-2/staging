@@ -1,0 +1,63 @@
+<div class="customer-feedback">
+ <p class="section-heading">{{ section.settings.section_heading }}</p>
+
+ <div class="customer-feedback-section">
+   {% for block in section.blocks %} 
+    <p class="customer-name">{{ block.settings.customers-name }}</p>
+    <img class="star-icons" src=""/>
+    <p class="feedback-content">{{ block.settings.customers-feedbacks }}</p>
+   {% endfor %}
+ </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Customer Feedback",
+	"settings": [
+      {
+        "id": "section_heading",
+        "type": "text",
+        "label": "Section Heading"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "mostReadArticles",
+        "name": "Most Read Article",
+        "limit": 4,
+        "settings": [
+          {
+            "id": "customers-name",
+            "type": "text",
+            "label": "Customer Name"
+          },
+          {
+            "id": "customers-feedbacks",
+            "type": "text",
+            "label": "Customer Feedback"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+@media screen and (min-width: 768px){
+    .single-banner{ 
+        background:url("{{ section.settings.single_banner_desktop }}");
+        background-repeat:none;
+    } 
+}	
+@media screen and (max-width: 767px){
+.single-banner{ 
+        background:url("{{ section.settings.single_banner_mobile }}");
+        background-repeat:none;
+    }
+}
+.side-text{max-width:500px;margin-bottom:51px;font-family: Spectral;font-style: normal;font-weight: 200;font-size: 45px;line-height: 108%;text-align:left;}
+.input-btns{display:flex;}
+.input-btns input{width:440px;height:80px;}
+.input-btns button{font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 22px;line-height: 108%;text-align:center;text-transform:uppercase}
+{% endstylesheet %}

@@ -1,0 +1,60 @@
+<div class="describing-container">
+ <p class="section-heading">{{ section.settings.section_heading }}</p>
+ <p class="sub-heading">{{ section.settings.section_subheading }}</p>
+
+ <div class="describe-boxes">
+   {% for block in section.blocks %} 
+    <img class="small-img-1" src="{{ block.settings.small-img }}"/>
+    <p class="small-text-1">{{ block.settings.small-text-1 }}</p>
+    <p class="small-text-2">{{ block.settings.small-text-2 }}</p>
+   {% endfor %}
+ </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Describe blocks",
+    "max_blocks": 4,
+	"settings": [
+      {
+        "id": "section_heading",
+        "type": "text",
+        "label": "Section Heading"
+      },
+       {
+        "id": "section_subheading",
+        "type": "text",
+        "label": "Section Sub-Heading"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "mostReadArticles",
+        "name": "Most Read Article",
+        "limit": 4,
+        "settings": [
+          {
+            "id": "small-img",
+            "type": "image_picker",
+            "label": "Icons"
+          },
+          {
+            "id": "small-text-1",
+            "type": "text",
+            "label": "Heading Text"
+          },
+          {
+            "id": "small-text-2",
+            "type": "text",
+            "label": "Subheading Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+
+{% endstylesheet %}

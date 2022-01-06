@@ -1,0 +1,52 @@
+<div class="double-banner-container">
+ <div class="left">
+  <p>{{ section.settings.left-banner-text }}</p>
+ </div>
+ <div class="right">
+   <p>{{ section.settings.right-banner-text }}</p>
+ </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Double banner Content",
+    "settings": [
+      {
+        "id": "banner-left",
+        "type": "image_picker",
+        "label": "Left Banner Image"
+      },
+      {
+        "id": "banner_right",
+        "type": "image_picker",
+        "label": "Right Banner Image"
+      },
+      {
+        "id": "left-banner-text",
+        "type": "text",
+        "label": "Left Text"
+      },
+      {
+        "id": "right-banner-text",
+        "type": "text",
+        "label": "Right Text"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+.double-banner-container{display:flex;}
+    .left{
+        background:url("{{ section.settings.banner-left }}");
+        background-repeat:none;
+    }
+    .right{
+        background:url("{{ section.settings.banner_right }}");
+        background-repeat:none;
+    }
+.left p{max-width:441px;font-family: Spectral;font-style: normal;font-weight: 200;font-size: 45px;line-height: 108%;color:#000;text-align:right;text-transform:uppercase;}
+.right p{max-width:441px;font-family: Spectral;font-style: normal;font-weight: 200;font-size: 45px;line-height: 108%;text-align:left;text-transform:uppercase;}
+
+{% endstylesheet %}

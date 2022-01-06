@@ -1,0 +1,50 @@
+<div class="single-banner">
+ <p class="side-text">{{ section.settings.side_text }}</p>
+    <div class="input-btns">
+        <input class="drop-pin"/>
+        <button class="explore-btn">Explore designs</button>
+    </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Single banner Content",
+    "settings": [
+      {
+        "id": "single_banner_desktop",
+        "type": "image_picker",
+        "label": "Background Banner Desktop"
+      },
+      {
+        "id": "single_banner_mobile",
+        "type": "image_picker",
+        "label": "Background Banner Mobile"
+      },
+      {
+        "id": "side_text",
+        "type": "text",
+        "label": "Text over banner"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+@media screen and (min-width: 768px){
+    .single-banner{ 
+        background:url("{{ section.settings.single_banner_desktop }}");
+        background-repeat:none;
+    } 
+}	
+@media screen and (max-width: 767px){
+.single-banner{ 
+        background:url("{{ section.settings.single_banner_mobile }}");
+        background-repeat:none;
+    }
+}
+.side-text{max-width:500px;margin-bottom:51px;font-family: Spectral;font-style: normal;font-weight: 200;font-size: 45px;line-height: 108%;text-align:left;}
+.input-btns{display:flex;}
+.input-btns input{width:440px;height:80px;}
+.input-btns button{font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 22px;line-height: 108%;text-align:center;text-transform:uppercase}
+{% endstylesheet %}
