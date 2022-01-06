@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="{{'filter-layout.css' | asset_url }}">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -9,11 +8,11 @@
   $(function(){
     {% include 'createpagination' %}
     var maxResults = 16;
-    var defFilterName = 'restrictBy[collections]={{ collection.title | replace: ',' , '\,' | url_encode }}';
+    var defFilterName =window.location.search.split('&')[0].replace('?q=', 'q=');
       var searchsortby = $(document).find("#sortByFilter option:selected").attr('value'); // console.log('sortyBy==> '+ searchsortby);
       var searchBaseUrl = 'https://www.searchanise.com/getresults?api_key=7r9L5P8L4h';
 
-      var queryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
+      var queryString = '&'+defFilterName+'&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&';
       var searchData = '';
       var filters = '';
 
@@ -106,47 +105,8 @@
         }        
       },2000);
     });
-    searchaniseFiltersOnload(queryString);
-    function searchaniseFiltersOnload(queryString) {
-    $.ajax({	
-        url: searchBaseUrl + queryString,
-        dataType: 'jsonp',
-        success: function(data){		
-          searchData = data;
-          // console.log('\n\n----------------');
-          // console.log(searchData);    
-          // console.log('----------------\n\n');
-          if(data.hasOwnProperty('error') ==  true){
-          // $('.sn-loader, .filter-loader-icn').fadeOut();
-          $('[data-collection-listing-container]').addClass('full-width').prepend('<p class="no-result">There are currently no products in this collection, please check back later</p>');
-        } else {
-          $('#filter-cta-mob .filter-result-count').text(data.totalItems);
-          $('.collection-header').data('limit');
-          if($('.collection-header').attr('data-limit') < searchData.totalItems){
-            //// console.log('less then Search limit -- show pagination');
-            ///$('.collection-header-result-per-page').closest('.collection-bottom-pagination-data').removeClass('hidepaginate');
-              //$('.collection-header-result-per-page').css('opacity', 1).css('pointer-events', 'initial');;
-          }else{
-           // // console.log('greater thene Search limit -- hide pagination');
-            // $('.collection-header-result-per-page').css('opacity', 0).css('pointer-events', 'none');
-            // $('.collection-header-result-per-page').closest('.collection-bottom-pagination-data').addClass('hidepaginate');
-          }   
-          filters = searchData.facets;            
-          
-          //Init
-          //var getmaxitemperpage = $('select.result-per-page option:selected').attr('data-count');
-          createFilters();
-          // printProducts(searchData.items);
-
-          // setTimeout(function(){
-          //   location.reload();
-          // },7000);
-
-        }
-
-        }       
-      });
-    }
+    
+    searchaniseProducts(queryString)
 
     function searchaniseProducts(queryString) {
       $(document).find('.no-result').remove();
@@ -187,7 +147,7 @@
           
           //Init
           var getmaxitemperpage = 16;
-          // createFilters();
+          createFilters();
           createPagination(searchData.totalItems, searchData.startIndex/getmaxitemperpage); 
           printProducts(searchData.items);
         }
@@ -453,7 +413,7 @@
         }
         '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex='+ Startitems +'&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
       // var newQueryString = queryString
-      var newQueryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex='+ Startitems +'&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
+      var newQueryString = '&'+defFilterName+'&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex='+ Startitems +'&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&';
       $(document).find('[data-collection-filter-section] .collection-filter-wrapper').each(function(){
         var thisFilterName = $(this).data('filter'); //// console.log('thisFilterName==> ' + thisFilterName);
         var filValues = $(this).find('input[type="checkbox"]:checked');

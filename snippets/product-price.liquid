@@ -50,8 +50,13 @@
   {%- endcomment -%}
   <div class="price__pricing-group">
     <div class="price__sale">
+      {% if compare_at_price > price %}
       <span class="price-item price-item--regular aa" data-sale-price>{{ money_price }}</span>
       <span class="price-item price-item--sale" data-regular-price>{{ compare_at_price | money }}</span>
+      {% else %}
+      <span class="price-item price-item--regular aa" data-regular-price>{{ money_price }}</span>
+      {% endif %}
+      
     </div>
   </div>
   {%- comment -%}

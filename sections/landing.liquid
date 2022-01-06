@@ -47,14 +47,19 @@
     document.addEventListener('DOMContentLoaded', function(event) {
         if(sessionStorage.getItem("landingSession") == null){
             $('#shopify-section-landing').slideDown();
-            $('body').addClass('landing-exist');
+            $('body').addClass('landing-exist landing-scroll-stop');
         }
         var lastScrollTop = 0;
-        $(window).on('scroll', function(){            
+        $(window).on('scroll', function(){    
+            if($('body').hasClass('landing-scroll-stop')){ 
+                    $('body').removeClass('landing-scroll-stop'); 
+                    $('html, body').animate({scrollTop:0}, '800');   
+                }                   
             let windowScrolled = $(window).scrollTop();
             $('body').addClass('scroll-start');
-            if(windowScrolled > 10){
+            if(windowScrolled > 10){                                
                 sessionStorage.setItem("landingSession", "2");
+               
                 setTimeout(function(){
                     $('#shopify-section-landing').remove();
                     $('body').removeClass('scroll-start landing-exist');
@@ -67,7 +72,7 @@
             setTimeout(function(){
                 $('#shopify-section-landing').remove();
                 $('body').removeClass('scroll-start landing-exist');
-            },2000)
+            },1000)
         }
         $('.remove_landing_cookie').click(function(e){
             e.preventDefault();

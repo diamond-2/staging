@@ -10,7 +10,7 @@
 
             <div class="factual-comparison-table">
 				<table>
-					<thead>
+					<!-- <thead>
 						<tr>
 							<th>Properties</th>
 							<th>Cubic<br />Zironia</th>
@@ -79,25 +79,27 @@
 							<td>D to 3</td>
 							<td>D to 3</td>
 						</tr>
-					</tbody>
-					<!-- <tbody>
+					</tbody> -->
+					<tbody>
 						<tr>
 						    <th>{{ section.settings.column_1_title }}</th>
+							<th>{%- if section.settings.column_4_logo !=blank -%}<img class="lazyload" data-src="{{ section.settings.column_4_logo | img_url: 'master' }}">{%- endif -%}</th>
 						    <th>{{ section.settings.column_2_title }}</th>
 						    <th>{{ section.settings.column_3_title }}</th>
-						    <th>{%- if section.settings.column_4_logo !=blank -%}<img class="lazyload" data-src="{{ section.settings.column_4_logo | img_url: 'master' }}">{%- endif -%}</th>
+						    
 						</tr>
                         {%- for item in section.blocks -%}
                         {%- if item.settings.column_1_text !=blank or item.settings.column_2_text !=blank or item.settings.column_3_text !=blank or item.settings.column_4_text !=blank -%}
 						<tr>
 						    <td>{{ item.settings.column_1_text }}</td>
-						    <td>{{ item.settings.column_2_text }}</td>
-						    <td>{{ item.settings.column_3_text }}</td>
 						    <td>{{ item.settings.column_4_text }}</td>
+							<td>{{ item.settings.column_2_text }}</td>
+						    <td>{{ item.settings.column_3_text }}</td>
+						    
 						</tr>
                         {%- endif -%}
                         {%- endfor -%}
-					</tbody> -->
+					</tbody>
 				</table>
 			</div>
 

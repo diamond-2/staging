@@ -886,10 +886,25 @@ slate.Variants = (function() {
           for(var variantKey in variantMetaFields) {// console.log('variantKey');   console.log(variantKey);
             var selectedVariant = $('select[name="id"]').val();//console.log(selectedVariant);
             if(selectedVariant != variantKey) continue 
-            variantMetaFields[variantKey].forEach(function(ele){ //console.log(ele);
-              for(var key in ele) {                
-                  //console.log('Enter currentvairant');
+            variantMetaFields[variantKey].forEach(function(ele){ console.log(ele);
+                           
+              for(var key in ele) {   
+                console.log(key);   
+                if(key == 'dec_stn_total_crt_wt_label' || key == 'frc_stn_total_crt_wt_label') {
+                  $(document).find('[data-row="common_ttl_crt_wgt"]').find('.pdp-tab-label').text(ele[key]); 
+                } else if(key == 'dia_tab1_dec_stn_total_crt_wt_label' || key == 'dia_tab1_frc_stn_total_crt_wt_label' || key == 'dia_tab2_dec_stn_total_crt_wt_label' || key == 'dia_tab2_frc_stn_total_crt_wt_label' || key == 'dia_tab3_dec_stn_total_crt_wt_label' || key == 'dia_tab3_frc_stn_total_crt_wt_label' || key == 'dia_tab4_dec_stn_total_crt_wt_label' || key == 'dia_tab4_frc_stn_total_crt_wt_label' || key == 'dia_tab5_dec_stn_total_crt_wt_label' || key == 'dia_tab5_frc_stn_total_crt_wt_label' || key == 'dia_tab6_dec_stn_total_crt_wt_label' || key == 'dia_tab6_frc_stn_total_crt_wt_label' || key == 'dia_tab7_dec_stn_total_crt_wt_label' || key == 'dia_tab7_frc_stn_total_crt_wt_label' || key == 'dia_tab8_dec_stn_total_crt_wt_label' || key == 'dia_tab8_frc_stn_total_crt_wt_label' || key == 'dia_tab9_dec_stn_total_crt_wt_label' || key == 'dia_tab9_frc_stn_total_crt_wt_label' || key == 'dia_tab10_dec_stn_total_crt_wt_label' || key == 'dia_tab10_frc_stn_total_crt_wt_label'){
+                  $(document).find('[data-row="common_dia_tab_ttl_crt_wgt"]').find('.pdp-tab-label').text(ele[key]); 
+                }
+                if(key == 'dec_stn_total_crt_wt' || key == 'frc_stn_total_crt_wt') {
+                  $(document).find('[data-row="common_ttl_crt_wgt"]').find('.pdp-tab-val').text(ele[key]);
+                } else if(key == 'dia_tab1_dec_stn_total_crt_wt' || key == 'dia_tab1_frc_stn_total_crt_wt' || key == 'dia_tab2_dec_stn_total_crt_wt' || key == 'dia_tab2_frc_stn_total_crt_wt' || key == 'dia_tab3_dec_stn_total_crt_wt' || key == 'dia_tab3_frc_stn_total_crt_wt' || key == 'dia_tab4_dec_stn_total_crt_wt' || key == 'dia_tab4_frc_stn_total_crt_wt' || key == 'dia_tab5_dec_stn_total_crt_wt' || key == 'dia_tab5_frc_stn_total_crt_wt' || key == 'dia_tab6_dec_stn_total_crt_wt' || key == 'dia_tab6_frc_stn_total_crt_wt' || key == 'dia_tab7_dec_stn_total_crt_wt' || key == 'dia_tab7_frc_stn_total_crt_wt' || key == 'dia_tab8_dec_stn_total_crt_wt' || key == 'dia_tab8_frc_stn_total_crt_wt' || key == 'dia_tab9_dec_stn_total_crt_wt' || key == 'dia_tab9_frc_stn_total_crt_wt' || key == 'dia_tab10_dec_stn_total_crt_wt' || key == 'dia_tab10_frc_stn_total_crt_wt'){
+                  $(document).find('[data-row="common_dia_tab_ttl_crt_wgt"]').find('.pdp-tab-val').text(ele[key]);
+                }
+                else {
                   $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val').text(ele[key]);                             
+                }
+                  //console.log('Enter currentvairant');
+                  
               }
             });           
           }
@@ -10163,10 +10178,15 @@ window.addEventListener("resize", function() {
   // Accordion
   $('.ac-heading a').click(function(e){
     e.preventDefault();
-    $(this).parent().next().slideToggle();
-    $(this).parent().toggleClass('active');
-    // $(this).parent().parent().siblings().find('.ac-heading').removeClass('active');
-    // $(this).parent().parent().siblings().find('.ac-body').slideUp();
+    $('.ac-heading').removeClass('active');
+    $(this).closest('.ac-heading').toggleClass('active');
+    $(this).closest('.ac-item').find('.ac-body').slideToggle();
+    $(this).closest('.ac-item').siblings('.ac-item').find('.ac-body').slideUp();
+    setTimeout(function(){
+      $('html, body').animate({
+        scrollTop: $('.ac-heading.active').offset().top - 200
+      }, 1000);      
+    },500);    
   });
 
   // sidebar tabber
@@ -10324,7 +10344,8 @@ window.addEventListener("resize", function() {
           let currentVariantColor = $(document).find('select[name="id"] option[value="'+currentvariantId+'"]').data('color');        console.log(currentVariantColor)
         $(document).find('#pdp-Zoom-Gallery .zoom-gallery-container .product-single__media-wrapper').not('[data-alt="'+currentVariantColor+'"]').remove();
           $('#pdp-Zoom-Gallery .zoom-gallery-container').find('[data-product-single-media-group]').slick({
-          	infinite: false
+          	infinite: false,
+            centerMode: false
           }).on('beforeChange', function(event, slick, currentSlide, nextSlide){
                 if($(document).find('pinch-zoom').length > 0) {
                   $(document).find('pinch-zoom').attr('style', '');
@@ -10627,6 +10648,33 @@ $('form').on('keyup', 'input', function() {
     $(this).removeClass('form-error').next('.msg-error').css('display','none');
 });
 
+// Show InfoModal
+$(document).on('click', '[data-modal="showInfoModal"]', function(){
+  showInfoModal();
+});
+
+// Compare product event
+var compareItemHandles = [];
+$(document).on('click', '.product_compare', function(){  
+  var prodHandle = $(this).closest('.grid__item').data('handle');
+  var prodTitle = $(this).closest('.grid__item').data('title');
+  if(compareItemHandles.length < 5){
+    if(!compareItemHandles.includes($(this).closest('.grid__item').data('handle'))){
+      compareItemHandles.push($(this).closest('.grid__item').data('handle'));
+      
+    }else {
+      alert('Already added item for compare.');
+      return false;
+    } 
+  }else {
+    alert('You can compare max 5 products.');
+    return false;
+  }
+  console.log(compareItemHandles);
+  
+
+})
+
 
 
   
@@ -10712,3 +10760,17 @@ function hideMsgModal() {
 }
 
 
+function showInfoModal() {
+  $('.info-modal').fadeIn();
+}
+function hideInfoModal() {
+  $('.info-modal').fadeOut();
+}
+
+
+function compareProducts(productList) {
+  // let productArr = [];
+  // productArr.push(productList);
+  console.log(productList);
+
+}
