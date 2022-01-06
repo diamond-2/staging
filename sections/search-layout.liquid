@@ -1,0 +1,131 @@
+{% case section.settings.grid %}
+  {% when 2 %}
+    {%- assign max_height = 530 -%}
+  {% when 3 %}
+    {%- assign max_height = 345 -%}
+  {% when 4 %}
+    {%- assign max_height = 250 -%}
+  {% when 5 %}
+    {%- assign max_height = 195 -%}
+{% endcase %}
+
+{% if section.settings.layout == 'grid' %}
+  {%- assign limit = section.settings.rows -%}
+{% else %}
+  {%- assign limit = 16 -%}
+{% endif %}
+
+<div data-section-id="{{ section.id }}" data-section-type="collection-template" class="solitaire-collection-wrapper">
+  <header class="collection-header" data-limit="{{ limit }}">
+    {%- assign is_filter_by_available = false -%}
+    {%- if section.settings.tags_enable and collection.all_tags.size > 0 -%}
+      {%- assign is_filter_by_available = true -%}
+    {%- endif -%}
+
+  <div class="dia-container">
+    <div class="glb-sec-header text-center">
+      <h2>
+          {{ page.title }}
+      </h2>
+      {% if page.description != blank %}
+        <div class="glb-sec-desc">
+          {{ page.description }}
+        </div>
+      {% endif %}
+      {% if is_filter_by_available == false and section.settings.sort_enable == false %}
+        <span class="filters-toolbar__product-count">{{ 'collections.general.items_with_count' | t: count: collection.products_count }}</span>
+      {% endif %}
+    </div>
+  </div>
+    {% include 'search-sorting' %}    
+  </header>
+  <div class="dia-container css inital-load solitare-col-temp" id="Collection" data-collection-listing-container data-itemperpage="{{ limit }}">
+    <div class="grid-view-section product_view_tab" data-view="grid">
+      <ul class="grid grid--uniform grid--view-items hide" data-list-item></ul>
+      
+  </div>
+  <div class="dynamic-pagination" style="display: none;"></div>
+    <div class="dynamic-loadmore-btn-holder">
+      <div class="dynamic-loadmore-btn-box" style="display: none;"><a class="dynamicloadMore-btn glb-btn">VIEW MORE</a></div>
+      <div class="dynamic-loader-spiner" style="display: none;"></div>
+    </div>
+  </div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": {
+    "en": "Search pages"
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": {
+        "en": "Layout"
+      },
+      "default": "grid",
+      "options": [
+        {
+          "value": "grid",
+          "label": {
+            "en": "Grid"
+          }
+        },
+        {
+          "value": "list",
+          "label": {
+            "en": "List"
+          }
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "grid",
+      "label": {
+        "en": "Products per row (grid only)"
+      },
+      "default": 4,
+      "min": 2,
+      "max": 5,
+      "step": 1
+    },
+    {
+      "type": "range",
+      "id": "rows",
+      "label": "Product Per Page",
+      "default": 16,
+      "min": 4,
+      "max": 20,
+      "step": 1
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": {
+        "en": "Show product vendors"
+      },
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "sort_enable",
+      "label": {
+        "en": "Enable sorting"
+      },
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "tags_enable",
+      "label": {
+        "en": "Enable tag filtering"
+      },
+      "default": true
+    }
+  ]
+}
+{% endschema %}

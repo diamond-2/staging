@@ -1,20 +1,126 @@
-<div class="page-width">
-    <div class="grid">
-      <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
-        <div class="section-header text-center">
-          <h1>{{ page.title }}</h1>
+
+<div class="account_section_wrapper padding_t padding_t40">
+  <div class="container_fluid">
+    <div class="sp-account-section-holder">
+      <!-- Top Section 'Breadcrumbs', 'Welocome User', 'Top Nav' -->
+      {% include 'account-top-section' %}
+      <div class="sp-account-section">
+        <div class="myaccount_order_wrapper">
+          <div class="myaccount__order_history">
+            <div class="account_sec_header_mobile show_mobile">
+              <div class="back-to-page-btn">{% include 'icon-back-arrow' %}</div>
+              <p>Welcome, {{ customer.first_name | capitalize }}</p>
+              <h4>{{ 'Wishlist' }}</h4>
+            </div>
+            
+            <div class="wishlist-container">
+              <div id="swym-wishlist-render-container"></div>
+            </div>
         </div>
-  
-        <div class="rte">
-          {{ page.content }}
+
         </div>
-        
-        <div id="wishlist-items-container">
-          
-          
-        </div>
-        
       </div>
     </div>
   </div>
-  <script src="{{ 'swym-wishlist-page.js' | asset_url }}" ></script>
+</div>
+
+<style>
+  .swym-wishlist-grid {
+    display: none!important;
+  }
+</style>
+  <script type="text/javascript">// <![CDATA[
+    window.SwymCallbacks = window.SwymCallbacks || [];
+    window.SwymCallbacks.push(function(swat) {
+      var wishlistContainerElement = document.querySelector("#swym-wishlist-render-container");
+      var queryParams = swat.utils.getEncodedAsObject(window.location.search);
+      // Contains queryParams["lid"];
+      swat.ui.renderWishlistInContainer(wishlistContainerElement, queryParams);
+    });
+    // ]]></script>
+    
+  <!-- <script src="{{ 'swym-wishlist.js' | asset_url }}" async="async"></script> -->
+  <!-- Swym Custom Page CSS  -->
+  
+
+  <script>
+     var reviewCol = ''
+    $(document).on('click', '.swym-wishlist-list-card, .swym-option', function(){
+      reviewCol = $(this).attr('aria-label'); console.log('reviewCol==> ' + reviewCol);
+      var listExist = false;
+      var getList = setInterval(function(){
+        let findItem = $(document).find('.swym-wishlist-grid .swym-wishlist-item').length;
+          if(findItem > 0){
+            listExist = true;
+            if(listExist){
+              console.log('listExistee');
+              window.SwymCallbacks.push(swymRenderWishlist)
+              setTimeout(function(){
+                $(document).find('.product_images_slider').slick(sliderInit());
+                $(document).find('[data-review-render]').removeClass('review-hidden'); 
+              },2000)
+            }
+            clearInterval(getList);
+          }
+      },0);
+    }) 
+   
+    // window.SwymCallbacks.push(swymRenderWishlist); /* Init Here */
+
+function swymRenderWishlist(swat) {
+  
+	// Get wishlist items
+	swat.fetch(function(products) {
+    console.log('fetchProucts')
+    console.log(products)
+    console.log('=================')
+    var itemHtml = '';
+    const filteredProducts = products.filter(products => {
+    return products.hashtags == reviewCol;
+    });
+    console.log(filteredProducts);
+    $(document).find('.render-review-list-items').remove();
+    
+    itemHtml += '<div class="solitaire-collection-wrapper"><ul class="grid grid--uniform grid--view-items review-hidden" data-review-render></ul></div>';    
+    $(document).find('.swym-wishlist-grid').after('<div class="render-review-list-items">'+itemHtml+'</div>')  
+    
+      filteredProducts.forEach(function(item, index, array){
+        let itemHandle = item.du;
+        let itemslider = item.du.split('/products/')[1];
+        let itemepi = item.epi;
+        let itemempi = item.empi;
+        let itemlid = item.lid
+        $.ajax({
+          url: itemHandle+'/?view=review-item',
+          cache: false,
+          success: function(response) {
+            $(document).find('[data-review-render]').append('<li class="grid__item" data-label="'+ item.dt +' - '+ item.vi.replaceAll('/', ' / ') +'" data-lname="'+item.hashtags+'" data-lid="'+item.lid+'" data-epi="'+itemepi+'" data-empi="'+itemempi+'" data-du="'+ item.du+'">'+response+'</li>');
+          }
+        });
+      });
+    });
+  }
+
+
+    //  Remove Product From Wishlist
+     $(document).on('click', '[data-remove-wishslit-product]', function(){
+        var dataLabel = $(this).closest('.grid__item').data('label');
+        $(this).closest('.grid__item').remove();
+        $(document).find('.swym-wishlist-grid a[aria-label="'+ dataLabel +'"] button.swym-delete-btn').trigger('click');
+      });
+    
+     function sliderInit(){               
+          return {
+          // $(document).find('[data-col-images-slider-init]').slick({
+            autoplay: false,
+            autoplaySpeed: 500,
+            arrows: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            Infinite: false,
+            loop: false,
+            dots: false
+          // });
+        }
+      };
+  </script>

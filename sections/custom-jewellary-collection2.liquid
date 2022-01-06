@@ -1,4 +1,4 @@
-
+{%- if section.settings.enable_section -%}
 <div class="custom-jewellary-collections-wrapper">
     <div class="dia-container">
 
@@ -72,11 +72,17 @@
         {%- endif -%}
     </div>
 </div>
-
+{%- endif -%}
 {% schema %}
   {
     "name": "Jewellary",
     "settings": [
+        {
+            "type": "checkbox",
+            "id": "enable_section",
+            "label": "Enable Section",
+            "default": true
+        },
         {
             "type": "image_picker",
             "label": "Featured Image",

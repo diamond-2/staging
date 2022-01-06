@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="{{'filter-layout.css' | asset_url }}">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -9,11 +8,11 @@
   $(function(){
     {% include 'createpagination' %}
     var maxResults = 16;
-    var defFilterName = 'restrictBy[collections]={{ collection.title | replace: ',' , '\,' | url_encode }}';
+    var defFilterName =window.location.search.split('&')[0].replace('?q=', 'q=');
       var searchsortby = $(document).find("#sortByFilter option:selected").attr('value'); // console.log('sortyBy==> '+ searchsortby);
       var searchBaseUrl = 'https://www.searchanise.com/getresults?api_key=7r9L5P8L4h';
 
-      var queryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
+      var queryString = '&'+defFilterName+'&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&';
       var searchData = '';
       var filters = '';
 
@@ -46,6 +45,7 @@
         let SelectedHighestPrice = $('#collection-price-max').data('price');
         $("#slider-range").slider("option", "values", [$('#collection-price-min').data('price'), $('#collection-price-max').data('price')]);
         let resetPriceSlider = '&restrictBy[price]='+$('#collection-price-min').data('price')+','+$('#collection-price-max').data('price')+'';
+        console.log('resetPriceSlider ==> '+ resetPriceSlider);
         $('#price-val-range').val(resetPriceSlider).attr('data-opt-val', resetPriceSlider);
         $('#collection-price-min-selected, #collection-price-max-selected').text('');
         initializingPriceSlider(minPrice, highestPrice, selectedMinPrice, SelectedHighestPrice);
@@ -106,47 +106,8 @@
         }        
       },2000);
     });
-    searchaniseFiltersOnload(queryString);
-    function searchaniseFiltersOnload(queryString) {
-    $.ajax({	
-        url: searchBaseUrl + queryString,
-        dataType: 'jsonp',
-        success: function(data){		
-          searchData = data;
-          // console.log('\n\n----------------');
-          // console.log(searchData);    
-          // console.log('----------------\n\n');
-          if(data.hasOwnProperty('error') ==  true){
-          // $('.sn-loader, .filter-loader-icn').fadeOut();
-          $('[data-collection-listing-container]').addClass('full-width').prepend('<p class="no-result">There are currently no products in this collection, please check back later</p>');
-        } else {
-          $('#filter-cta-mob .filter-result-count').text(data.totalItems);
-          $('.collection-header').data('limit');
-          if($('.collection-header').attr('data-limit') < searchData.totalItems){
-            //// console.log('less then Search limit -- show pagination');
-            ///$('.collection-header-result-per-page').closest('.collection-bottom-pagination-data').removeClass('hidepaginate');
-              //$('.collection-header-result-per-page').css('opacity', 1).css('pointer-events', 'initial');;
-          }else{
-           // // console.log('greater thene Search limit -- hide pagination');
-            // $('.collection-header-result-per-page').css('opacity', 0).css('pointer-events', 'none');
-            // $('.collection-header-result-per-page').closest('.collection-bottom-pagination-data').addClass('hidepaginate');
-          }   
-          filters = searchData.facets;            
-          
-          //Init
-          //var getmaxitemperpage = $('select.result-per-page option:selected').attr('data-count');
-          createFilters();
-          // printProducts(searchData.items);
-
-          // setTimeout(function(){
-          //   location.reload();
-          // },7000);
-
-        }
-
-        }       
-      });
-    }
+    
+    searchaniseProducts(queryString)
 
     function searchaniseProducts(queryString) {
       $(document).find('.no-result').remove();
@@ -187,7 +148,7 @@
           
           //Init
           var getmaxitemperpage = 16;
-          // createFilters();
+          createFilters();
           createPagination(searchData.totalItems, searchData.startIndex/getmaxitemperpage); 
           printProducts(searchData.items);
         }
@@ -223,10 +184,10 @@
               selectOption += '<div name="product-type" id="'+filterId+'" class="filters-toolbar__input">';
               selectOption += '<span class="filter-option-name">'+filterTitle+'</span>';
               selectOption += '<ul class="filter-dd"> <li>';
-                selectOption += '<div class="slider-range-selected"><span id="collection-price-min-selected"></span><span id="collection-price-max-selected"></span></div>'
+                selectOption += '<div class="slider-range-selected ere"><span id="collection-price-min-selected"></span><span id="collection-price-max-selected"></span></div>'
 
               selectOption+='<div id="slider-range"></div><span id="collection-price-min" data-price=""></span> <span id="collection-price-max"  data-price=""></span>';
-              selectOption+='<input ' + checked + ' type="checkbox" data-opt-val="&restrictBy[price]=' + theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00','') + ','+ theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00','') +'" value="' + theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00','') + '-'+ theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00','') +'" id="price-val-range" class="visually-hidden" />';  
+              selectOption+='<input ' + checked + ' type="checkbox" data-opt-val="&restrictBy[price]=' + minPrice+ ','+ highestPrice +'" value="' + theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00','') + '-'+ theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00','') +'" id="price-val-range" class="visually-hidden" />';  
               
               
               // selectOption+= '<div class="collection-content-area-left-content price__filter" style="max-width: 280px;"><div class="collection-content-area-left-content-wrapper"><div class="collection-other-list">' + selectOption +'</div></div></div>';
@@ -427,6 +388,8 @@
         var fil = $('[data-collection-filter-section] input[type="checkbox"]:checked');  console.log('fil==>' + fil);  console.log(fil);
         if(fil.length > 0) {
           $.each(fil, function(i, v){
+            console.log('VVVVV++')
+            console.log(v);
             var priceValue = '';
             var minPriceValue = '';
             var maxPriceValue = '';
@@ -437,7 +400,14 @@
             console.log('VValue',v.value);
             console.log('VVVVV',v);
             if(v.id == 'price-val-range') {
-              priceValue = v.value.split('[price]=')[1];
+              console.log('inside pricessss range');
+              // if(v.value.indexOf('[price]=') > -1 ){
+                priceValue = v.value.split('[price]=')[1];
+              // }
+              // else {
+              //   priceValue = v.value;
+              // }
+              // priceValue = v.value.split('[price]=')[1];
               minPriceValue =  priceValue.split(',')[0];
               maxPriceValue =  priceValue.split(',')[1];
               minPriceValue = parseInt(minPriceValue)*100;
@@ -445,6 +415,7 @@
               FinalpriceValue = theme.Currency.formatMoney(minPriceValue, theme.moneyFormat).replace('.00','') +', '+ theme.Currency.formatMoney(maxPriceValue, theme.moneyFormat).replace('.00','');
               activeFilter += '<button data-clear-filter="" class="active-filter ere" data-value="'+v.value+'" data-key="'+v.id+'" aria-label="Clear '+v.value+' filter">'+FinalpriceValue+'<span class="clear-filter" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0575/2681/2840/files/close-brown.svg?v=1638208068" alt="Close Filter" /></span></button>';              
             } else {
+              console.log('outside price range');
               activeFilter += '<button data-clear-filter="" class="active-filter ere" data-value="'+v.value+'" data-key="'+v.id+'" aria-label="Clear '+v.value+' filter">'+v.value+'<span class="clear-filter" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0575/2681/2840/files/close-brown.svg?v=1638208068" alt="Close Filter" /></span></button>';
             }
             
@@ -453,7 +424,7 @@
         }
         '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex='+ Startitems +'&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
       // var newQueryString = queryString
-      var newQueryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex='+ Startitems +'&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
+      var newQueryString = '&'+defFilterName+'&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex='+ Startitems +'&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&';
       $(document).find('[data-collection-filter-section] .collection-filter-wrapper').each(function(){
         var thisFilterName = $(this).data('filter'); //// console.log('thisFilterName==> ' + thisFilterName);
         var filValues = $(this).find('input[type="checkbox"]:checked');
@@ -765,7 +736,7 @@
             slide: function( event, ui ) { 
               $( "#collection-price-min" ).text( theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00','')).attr('data-price',minPrice);
               $( "#collection-price-max" ).text( theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00','')).attr('data-price',highestPrice);
-              $('[data-filter-type="price"]').find('.slider-range-selected .span').text('');
+              // $('[data-filter-type="price"]').find('.slider-range-selected .span').text('');
     			// if(parseFloat(ui.values[ 0 ].toFixed(2)) > parseFloat(minPrice) || parseFloat(ui.values[ 1 ].toFixed(2)) < parseFloat(highestPrice)){
             $('[data-filter-type="price"]').find('.slider-range-selected #collection-price-min-selected').text(theme.Currency.formatMoney(ui.values[ 0 ]*100, theme.moneyFormat).replace('.00',''))
             $('[data-filter-type="price"]').find('.slider-range-selected #collection-price-max-selected').text(theme.Currency.formatMoney(ui.values[ 1 ]*100, theme.moneyFormat).replace('.00',''))

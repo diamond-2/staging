@@ -1,4 +1,4 @@
-
+{%- if section.settings.enable_slider -%}
 <div class="collection-slider-wrapper">
     <div class="dia-container">
         {%- if section.settings.heading != blank -%}
@@ -72,11 +72,17 @@
         ]
     });
 </script>
-
+{%- endif -%}
 {% schema %}
   {
     "name": "Collection Slider",
     "settings": [
+        {
+            "type": "checkbox",
+            "id": "enable_slider",
+            "label": "Enable Slider",
+            "default": true
+        },
         {
             "type": "text",
             "label": "heading",
