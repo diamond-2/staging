@@ -10746,6 +10746,7 @@ $(document).on('click', '[data-remove-compare-item]', function(){
   if(newArray.length == 0){
     localStorage.removeItem("compareProducts");
     hideCompareItemList();
+    $('.compare-product-list-modal-overlay, #compare-product-modal').removeClass('compare-modal-opened');
     $('[data-compareitemcounter] .compare-item-counter').text('0/4')
   }
 })
