@@ -7713,6 +7713,11 @@ body[data-template="static-layout"] .main-content {
 
 .jewellery-plp-collection-layout .grid--view-items .grid__item {
   margin-bottom: 0; }
+  .jewellery-plp-collection-layout .grid--view-items .grid__item.initially-hidden-items {
+    opacity: 0;
+    visibility: hidden;
+    z-index: -99999;
+    position: absolute; }
 
 .jewellery-plp-collection-layout .static_image_column {
   width: 75%;

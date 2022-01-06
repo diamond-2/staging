@@ -9597,6 +9597,12 @@ body[data-template="static-layout"] {
   .grid--view-items {
     .grid__item {
       margin-bottom: 0;
+      &.initially-hidden-items {
+        opacity: 0;
+        visibility: hidden;
+        z-index: -99999;
+        position:absolute
+      }
     }
   }
   .static_image_column {
