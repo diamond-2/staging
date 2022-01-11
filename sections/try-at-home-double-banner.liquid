@@ -36,17 +36,36 @@
   }
 {% endschema %}
 
-{% stylesheet %}
-.double-banner-container{display:flex;}
+<style>
+    .double-banner-container{display:flex;justify-content: center;margin-top: 900px;margin-bottom: 100px;padding-left: 100px;padding-right: 100px;}
     .left{
-        background:url("{{ section.settings.banner-left }}");
-        background-repeat:none;
+        background:url({{ section.settings.banner-left | img_url: 'master' }});
+        background-repeat:no-repeat;
+        width: 50%;height: 350px;margin-right: 15px;background-size: cover;
     }
     .right{
-        background:url("{{ section.settings.banner_right }}");
-        background-repeat:none;
+        background:url({{ section.settings.banner_right | img_url: 'master' }});
+        background-repeat:no-repeat;
+        width: 50%;height: 350px;margin-left: 15px;background-size: cover;
     }
-.left p{max-width:441px;font-family: Spectral;font-style: normal;font-weight: 200;font-size: 45px;line-height: 108%;color:#000;text-align:right;text-transform:uppercase;}
-.right p{max-width:441px;font-family: Spectral;font-style: normal;font-weight: 200;font-size: 45px;line-height: 108%;text-align:left;text-transform:uppercase;}
+   .left p{padding:133px 50px 132px 0px;max-width: 441px;font-family: Spectral;font-style: normal;font-weight: 200;font-size: 45px;line-height: 108%;color: #000;text-align: left;text-transform: uppercase;float: right;}
+   .right p{padding:133px 0px 132px 50px;max-width: 441px;font-family: Spectral;font-style: normal;font-weight: 200;font-size: 45px;line-height: 108%;text-align: left;text-transform: uppercase;float: left;}
 
-{% endstylesheet %}
+@media screen and (max-width: 767px){
+.double-banner-container {display: flex;margin-top: 10px;margin-bottom: 50px;padding-left: 10px;padding-right: 10px;flex-direction: column;}
+.left {width: 100%;height: 150px;margin-right: 0px;background-size: contain;}
+.left p {padding: 14% 0%;max-width: 221px;font-size: 21px;text-align: left;float: right;}
+.right {width: 100%;height: 150px;margin-left: 0px;background-size: contain;margin-top: 10px;}
+.right p {padding: 14% 0% 14% 5%;max-width: 221px;font-size: 21px;float: left;}
+
+}
+@media screen and (min-width: 768px) and (max-width: 1024px){
+.double-banner-container {margin-bottom:50px;display:block;margin-top: 500px;margin-bottom: 100px;padding-left: 20px;padding-right: 20px;}
+.left {width:100%;height: 250px;margin-right: 0px;display: flex;justify-content: flex-end;align-items: center;}
+.left p {padding: 0px 0px;max-width: 441px;font-size: 35px;float: right;}
+.right {width:100%;height: 250px;margin-left: 0px;display: flex;align-items: center;justify-content: flex-start;margin-top: 20px;}
+.right p {padding: 0px 0px 0px 20px;max-width: 441px;font-size: 35px;float: left;}
+
+  
+}
+</style>

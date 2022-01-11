@@ -4,9 +4,11 @@
 
  <div class="describe-boxes">
    {% for block in section.blocks %} 
-    <img class="small-img-1" src="{{ block.settings.small-img }}"/>
-    <p class="small-text-1">{{ block.settings.small-text-1 }}</p>
-    <p class="small-text-2">{{ block.settings.small-text-2 }}</p>
+   <div class="inner-explained-section">
+      <img class="small-img-1" src="{{ block.settings.small-img | img_url:"master" }}"/>
+      <p class="small-text-1">{{ block.settings.small-text-1 }}</p>
+      <p class="small-text-2">{{ block.settings.small-text-2 }}</p>
+   </div>
    {% endfor %}
  </div>
 </div>
@@ -30,8 +32,8 @@
     ],
     "blocks": [
       {
-        "type": "mostReadArticles",
-        "name": "Most Read Article",
+        "type": "addBlocks",
+        "name": "addBlocks",
         "limit": 4,
         "settings": [
           {
@@ -55,6 +57,36 @@
   }
 {% endschema %}
 
-{% stylesheet %}
+<style>
+.describe-boxes{display:flex;}
+.describing-container{padding-left:100px;padding-right:100px;}
+.inner-explained-section {/*max-width: 382px;*/width: 25%;padding: 0px 35px;display: block;margin: 0 auto;}
+p.section-heading{padding-bottom:50px;font-family: Spectral;font-style: normal;font-weight: 200;font-size: 45px;line-height: 108%;align-items: center;text-transform: uppercase;color: #6C1D45;text-align:center;margin-bottom:0px;}
+p.sub-heading{padding-bottom:50px;font-family: Montserrat;font-style: normal;font-weight: 300;font-size: 26px;line-height: 108%;align-items: center;text-align: justify;color: #000000;text-align:center;margin-bottom:0px;}
+img.small-img-1{max-width:90px;width:100%;display:block;margin:0 auto;}
+p.small-text-1{text-align:center;margin-bottom:0px;font-family: Spectral;font-style: normal;font-weight: 200 !important;font-size: 28px !important;line-height: 120% !important;color: #6C1D45;padding:30px 0px 30px;max-width: 250px;display:block;margin:0 auto;min-height:130px;}
+p.small-text-2{text-align:center;margin-bottom:0px;font-family: Montserrat;font-style: normal;font-weight: 300;font-size: 26px !important;line-height: 108% !important;color: #000000;}
 
-{% endstylesheet %}
+@media screen and (max-width: 767px){
+ .describing-container {padding-left: 10px;padding-right: 10px;}
+ p.section-heading {padding-bottom: 15px;font-size: 28px;color: #6c1d45;text-align: center;margin-bottom: 0;}
+ p.sub-heading {padding-bottom: 25px;font-size: 15px;color: #000;margin-bottom: 0;}
+ .describe-boxes {display: block;}
+ .inner-explained-section {width: 100%;padding: 0 25px 25px 25px;display: block;margin: 0 auto;}
+ img.small-img-1 {max-width: 90px;width: 100%;display: block;margin: 0 auto;}
+ p.small-text-1 {margin-bottom: 0;font-size: 15px!important;line-height: 120%!important;padding: 10px 0 10px;min-height: 0px;}
+ p.small-text-2 {text-align: center;margin-bottom: 0;font-size: 15px!important;line-height: 108%!important;}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px){
+.describing-container {padding-left: 20px;padding-right: 20px;}
+p.section-heading {padding-bottom: 15px;font-size: 35px;margin-bottom: 0px;}
+p.sub-heading {padding-bottom: 50px;font-size: 21px;margin-bottom: 0px;}
+.describe-boxes {display: flex;justify-content: space-evenly;}
+.inner-explained-section {max-width: 382px;width: 50%;padding: 0px 15px;display: block;margin: 0 auto;}
+img.small-img-1 {max-width: 50px;width: 100%;display: block;margin: 0 auto;}
+p.small-text-1 {font-weight: 200 !important;font-size: 18px !important;line-height: 120% !important;color: #6C1D45;padding: 10px 0px 10px;max-width: 250px;min-height: auto;}
+p.small-text-2 {font-size: 18px !important;line-height: 108% !important;color: #000000;}
+
+}
+</style>

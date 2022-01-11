@@ -1,0 +1,86 @@
+<div class="best-sellers-container">
+        <p class="bestseller-heading">{{ section.settings.best_sellers_heading }}</p>
+        <p class="bestseller-subheading">{{ section.settings.best_sellers_subheading }}</p>
+
+    <div class="pincode-container">
+        <div class="left-container">
+         <input class="pincode-input">
+         <button class="pincode-submittion">SUBMIT</button>
+        </div>
+
+    <div class="demo-body">
+        <div class="line-wrapper">
+            <div class="word">OR</div>
+        </div>
+    </div>
+
+        <div class="right-container">
+         <button class="drop-pin-btn">Drop Pin</button>
+        </div>
+    </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Best sellers section",
+    "settings": [
+      {
+        "id": "best_sellers_heading",
+        "type": "text",
+        "label": "Heading"
+      },
+      {
+        "id": "best_sellers_subheading",
+        "type": "text",
+        "label": "Sub-heading"
+      }
+    ]
+  }
+{% endschema %}
+
+<style>
+.best-sellers-container{padding:100px 0px; text-align:center;}
+.bestseller-heading{font-family: Spectral;font-style: normal;font-weight: 200;font-size: 45px !important;line-height: 108 !important%;text-align: center;text-transform: uppercase;color: #6C1D45;margin-bottom:0px;padding-bottom:50px;}
+.bestseller-subheading{font-family: Montserrat;font-style: normal;font-weight: 300;font-size: 26px !important;line-height: 108% !important;text-align: center;color: #000000;margin-bottom:0px;padding-bottom:50px;}
+.pincode-container{display: flex;justify-content: center;align-items: center;}
+.left-container{display: flex;flex-direction: column;margin-right: 100px;}
+.right-container{margin-left: 100px;}
+.pincode-input{background-image: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/Vector_4.png?v=1641798486"); background-size: 30px;padding: 8px 25px 8px 50px;background-repeat: no-repeat;background-position: 10px;width: 440px;height: 80px;border: 1px solid rgba(0, 0, 0, 0.28);font-family: Montserrat;font-style: normal;font-weight: 300;font-size: 24px;line-height: 108%;text-align: left;color: #000000;margin-bottom: 20px;}
+.pincode-submittion{width: 440px;height: 80px;font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 22px;line-height: 108%;text-align: center;text-transform: uppercase;color: #FFFFFF;background: #6679CC;border: 1px solid #6679CC;}
+.drop-pin-btn{padding-left: 25px;background: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/Vector_4.png?v=1641798486") no-repeat left;background-origin: content-box;width:238px;height:80px;background-color: #6C1D45;border: 1px solid #6679CC;font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 22px;line-height: 108%;text-align: center;text-transform: uppercase;color: #FFFFFF;}
+.demo-body{height:200px;}
+.line-wrapper{background: #8c8c8c;width: 1px;height: 100%;position: relative;}
+.line-wrapper .word{font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 22px;line-height: 108%;text-align: center;text-transform: uppercase;color: #000000;position: absolute;background: white;top: 50%;transform: translate(52%,-50%);right: 50%;padding-top: 10px;padding-bottom: 10px;}
+
+@media screen and (max-width: 767px){
+.best-sellers-container {padding: 35px 0;text-align: center;}
+.bestseller-heading {font-size: 28px!important;margin-bottom: 0;padding-bottom: 10px;line-height: 108% !important;}
+.bestseller-subheading {font-size: 18px!important;line-height: 108%!important;padding-bottom: 25px;}
+.pincode-container{padding-left:10px;padding-right:10px;display:block;}
+.left-container {margin-right: 0px;}
+.pincode-input {background-size: 15px;padding: 8px 25px 8px 50px;background-position: 10px;width: 300px;height: 50px;font-size: 21px;margin-bottom: 10px;display: block;margin: 0 auto 10px;}
+.pincode-submittion {max-width: 300px;height: 40px;font-size: 18px;width: 100%;display: block;margin: 0 auto;}
+.demo-body {height: 55px;}
+.line-wrapper {width: 100%;height: 1%;top: 25px;}
+.line-wrapper .word {font-size: 18px;bottom: 50%;transform: translate(57%,150%);right: 50%;margin: 18px 0px;padding-top:0px;padding-bottom:0px;top:auto;}
+.right-container { margin-left: 0px;}
+.drop-pin-btn {padding-left: 25px;width: 200px;height: 40px;font-size: 18px;background-size: 18px;}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px){
+.best-sellers-container {padding: 50px 0px;text-align: center;}
+.bestseller-heading {font-size: 35px !important;margin-bottom: 0px;padding-bottom: 0px;}
+.bestseller-subheading {font-size: 21px !important;margin-bottom: 0px;padding-bottom: 35px;}
+.pincode-container {display: flex;justify-content: space-evenly;align-items: center;padding-left: 20px;padding-right: 20px;}
+.left-container {display: flex;flex-direction: column;margin-right: 25px;}
+.pincode-input {background-size: 25px;padding: 8px 25px 8px 50px;width: 440px;height: 60px;font-size: 24px;margin-bottom: 10px;}
+.pincode-submittion {width: 440px;height: 60px;font-size: 18px;}
+.right-container {margin-left: 25px;}
+.drop-pin-btn {padding-left: 25px;width: 238px;height: 50px;font-size: 18px;background-size: 25px;}
+.line-wrapper .word{font-size:15px;}
+}
+
+
+</style>
