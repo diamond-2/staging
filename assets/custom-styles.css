@@ -10607,7 +10607,7 @@ body[data-template="customers/addresses"] .main-content {
         margin-right: 10px; }
     .account_nav ul li:last-child a {
       border-bottom: none; }
-    .account_nav ul li.wishlist_menu, .account_nav ul li.appointments_menu {
+    .account_nav ul li.appointments_menu {
       display: none; }
 
 @media (max-width: 749px) {
