@@ -1,28 +1,84 @@
-
 {% layout none %}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 <div class="compare__product-information" data-handle="{{ product.handle }}">
   <a class="text-link text-link--accent remove_compare_modal_pop_btn" data-remove-compare-item>Remove {% include 'icon-close' %}</a>
     <div class="compare__image-wrapper">
-      <img class="compare__image lazyload" data-src="{{ product.featured_image | img_url: '150x' }}" alt="{{ image.alt }}" data-compare-item-image="">
+      <img class="compare__image" src="{{ product.featured_image | img_url: '150x' }}" alt="{{ product.featured_image.alt }}" data-compare-item-image="">
     </div>
     <div class="compare__product-body">
       <div class="compare__product-body-left">
-        <div class="list-view-item__title">
+        <table id="compare__product-table-layout">
+          <tr>
+            <td class="list-view-item__title"><a href="{{ product.url }}" class="cart__product-title" data-compare-item-title="" data-role="product-title">
+              {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>' }}
+            </a></td>
+          </tr>
+          <tr>
+            <td class="compare_product-modal-price-block">{% include 'product-price', variant: current_variant %}</td>
+          </tr>
+          {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+          {% if option.name contains 'Color' or option.name contains 'Colour' or option.name contains 'COLOUR' %}
+          
+          <tr>
+            <td>
+              <div class="compareitem-label">Metal Color</div>
+              <div class="compareitem-value">
+                {% for value in option.values %}
+                <span data-color="{{ value | handleize }}" class="{{ value | handleize }}">{{ value | replace: 'White Gold', '' | replace: 'Yellow Gold', '' | replace: 'Rose Gold', '' }}</span>
+                {% endfor %}
+              </div>
+            </td>
+          </tr>
+          {% endif %}          
+          {% endfor %}
+          {% endunless %}
+          <tr>
+            <td>
+              <div class="compareitem-label">Average Color</div>
+              <div class="compareitem-value">3.56</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="compareitem-label">Average Clarity</div>
+              <div class="compareitem-value">GHI</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="compareitem-label">Center Stone Weight</div>
+              <div class="compareitem-value">Prong</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="compareitem-label">Solitaire Shape</div>
+              <div class="compareitem-value">GHI</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="compareitem-label">Solitaire Weight</div>
+              <div class="compareitem-value">VVS-Vs</div>
+            </td>
+          </tr>
+        </table>
+        <div class="list-view-item__title hide-in-compareModal">
           <a href="{{ product.url }}" class="cart__product-title" data-compare-item-title="" data-role="product-title">
-            {{ product.title }}
+            {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>' }}
           </a>
 
-          <div class="compare_product-modal-price-block">
+          <div class="compare_product-modal-price-block hide-in-compareModal">
             {% include 'product-price', variant: current_variant %}
-          </div>
+          </div>          
         </div>
 
         <!-- Cart Quentity -->
-  <ul class="product-details" data-compare-item-details="" aria-label="Product details">
+  <ul class="product-details hide-in-compareModal" data-compare-item-details="" aria-label="Product details">
       {% if current_variant.option1 %}
           <li class="product-details__item product-details__item--variant-option" data-compare-item-option="">
-            <div class="v_item_inner"><span>SELECT GOLD COLOUR : </span> <span>{{ current_variant.option1 }}</span></div>
+            <div class="v_item_inner"><span>{{ current_variant.option1 }}</span></div>
           </li>
         {% endif %}  
           {% if current_variant.option2 %}
