@@ -1224,7 +1224,7 @@ div#PageContainer {
           // pointer-events: none;
         } 
         &.site-header__wishlist {
-          display:none;
+          // display:none;
         }       
         @media(max-width: $xxl) {
           margin:0 3px;
@@ -1314,9 +1314,9 @@ div#PageContainer {
           }
         }
         &.site-header__wishlist {
-          visibility: hidden;
-          opacity: 0;
-          pointer-events: none;
+          // visibility: hidden;
+          // opacity: 0;
+          // pointer-events: none;
         }
       }
     }
@@ -5469,9 +5469,9 @@ body[data-template="product"] {
       display: flex;
       align-items: center;
       @include pdpSmallFont();
-       visibility: hidden;
-       opacity: 0;
-       pointer-events: none;
+      //  visibility: hidden;
+      //  opacity: 0;
+      //  pointer-events: none;
       @media(max-width: $md) {
         // display: none;
         padding-top: 12px;
@@ -9597,6 +9597,12 @@ body[data-template="static-layout"] {
   .grid--view-items {
     .grid__item {
       margin-bottom: 0;
+      // &.initially-hidden-items {
+      //   opacity: 0;
+      //   visibility: hidden;
+      //   z-index: -99999;
+      //   position:absolute
+      // }
     }
   }
   .static_image_column {
@@ -10312,9 +10318,9 @@ body[data-template="404"] {
           }
         }
         &.minicart-wishlist-icon {
-          visibility: hidden;
-          opacity: 0;
-          pointer-events: none;
+          // visibility: hidden;
+          // opacity: 0;
+          // pointer-events: none;
         }
       }
     }
@@ -10474,7 +10480,7 @@ body[data-template="404"] {
                 width: auto;
                 top: 0;
                 .add_wishlist_holder {
-                  display: none;
+                  // display: none;
                 }
               }
             }
@@ -11457,9 +11463,9 @@ body.template-cart {
           .add_wishlist_holder {
             line-height: 0;
             margin-right:20px;
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
+            // opacity: 0;
+            // visibility: hidden;
+            // pointer-events: none;
             @media(max-width: $md) {
               margin-right: 10px;
             }
@@ -11919,7 +11925,6 @@ body[data-template="customers/reset_password"] {
         width: 100%;
       }
       &.register-form-column {
-        border-right:1px solid $textcolor-phanton;
         padding-right:53px;
         @media(max-width: $xl) and (min-width: $postMd) {
           padding-right: 15px;
@@ -11943,6 +11948,7 @@ body[data-template="customers/reset_password"] {
         }
       }
       &.register-image-column {
+        border-left:1px solid $textcolor-phanton;
         padding-left: 50px;
         @media(max-width: $xl) and (min-width: $postMd) {
           padding-left: 15px;
@@ -13025,7 +13031,6 @@ body[data-template="customers/addresses"] {
           border-bottom: none;
         }
       }
-      &.wishlist_menu,  
       &.appointments_menu {
         display: none;
       }
@@ -16335,6 +16340,7 @@ a[href^="tel"] {
     position:relative;
     margin-bottom: 12px;
     .compare__image-wrapper {
+      min-width: 100px;
       max-width: 100px;
       height: 100px;
       box-shadow: 0 0 1px rgba(0,0,0,0.4); 
@@ -16392,7 +16398,9 @@ a[href^="tel"] {
           }
         }
       }
-      
+      #compare__product-table-layout {
+        display: none;
+      }
     }
     &:before {
       background: url(https://cdn.shopify.com/s/files/1/0575/2681/2840/files/aryamond_loader.png) no-repeat center center;
@@ -16420,6 +16428,21 @@ a[href^="tel"] {
       }      
     }
   }  
+  &.show-loader {
+    &:before {
+      background: url(https://cdn.shopify.com/s/files/1/0575/2681/2840/files/aryamond_loader.png) no-repeat center center;
+      background-size: contain;
+      width: 25px;
+      height: 25px;
+      -webkit-animation: spin 5s linear infinite;
+      animation: spin 5s linear infinite;
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      @include prefix-transform-translate();
+    }
+  }
 }
 
 .compare-product-list-modal-overlay {
@@ -16543,6 +16566,52 @@ a[href^="tel"] {
             }
           }
         }
+        #compare__product-table-layout {
+          td {
+            border: none;
+            text-align: center;
+            font-size: 14px;
+            padding: 5px 0;
+            font-weight: 500;
+            .compareitem-label {
+              color: $textcolor-phanton;
+              line-height: 1.2;
+            }
+            .compareitem-value{
+              span{
+                &[data-color*="yellow"],
+                &[data-color*="white"],
+                &[data-color*="rose"]{
+                  background: #f2c163;
+                  padding: 5px;
+                  display: inline-block;
+                  border-radius: 50%;
+                  font-size: 10px;
+                }
+                &[data-color*="white"] {
+                  background: #c4c4c4;
+                }
+                &[data-color*="rose"] {
+                  background: #efc1b8;
+                }
+              }
+            }
+            &.compare_product-modal-price-block {
+              padding-top: 0px;
+              .price__pricing-group {
+                width: 100%;
+                .price__sale {
+                  display: block;
+                  width: 100%;
+                  margin: 0;
+                }
+              }
+            }
+            &.list-view-item__title {
+              padding-bottom:0px;
+            }
+          }
+        } 
       }
       form {
         [data-add-to-cart] {
@@ -16555,6 +16624,9 @@ a[href^="tel"] {
           margin-top: 10px;
         }
       }
+      .hide-in-compareModal {
+        display: none;
+      }
     }
   }
   
@@ -16562,5 +16634,108 @@ a[href^="tel"] {
     z-index: 999999;
     visibility: visible;
     opacity: 1;
+  }
+}
+
+.js-drawer-open-top {
+  &.js-drawer-open {
+    #SearchDrawer{
+      top:190px;
+    }
+    .drawer-page-content{
+      &:after {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+    }
+    #SearchDrawer{
+      .search-bar__interior {
+        padding-top: 5.6vw;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-bottom: 50px;
+        .search-form__container{
+          flex: 0 0 65%;
+          align-items: self-start;
+          justify-content: flex-start;
+          .search-form__input-wrapper {
+            position: relative;
+            padding-left: 0px;
+            padding-right: 0px;
+            max-width: 785px;
+            .search-bar__input {
+              border: 0;
+              border-bottom: 1px solid;
+              max-width: 765px;
+              font-size: 38px;
+              font-weight: 300;
+              font-family: 'MONTSERRAT';
+              padding-left: 0;
+            }
+          }
+          .search-bar__actions {
+            position: absolute;
+            right: 50px;
+            top: 25px;
+            .search-bar__close{
+              .icon{
+                width: 1.7rem;
+              }
+            } 
+          }
+        }
+        .search-drawer-nav {
+          flex: 0 0 35%;
+          padding-top: 0;
+          .site-nav__childlist {
+            width: 100%;
+            padding-top: 108px;
+            padding-left: 60px;
+            .site-nav__childlist-grid {
+              justify-content: flex-start;
+              .site-nav__childlist--group {
+                max-width: 280px;
+                width: 100%;
+                &>li{
+                  a {
+                    font-size: 22px;
+                    @include heading-fonts();
+                    color: $textcolor-black;
+                    margin-bottom: 15px;
+                    display: inline-block;
+                    @include base-font();
+                    &[aria-label="Client Care"] {
+                      span {
+                        border-bottom: 1px solid $textcolor-black
+                      }
+                    }
+                    &[aria-label="+65 (800) 4922522"]{
+                      span {
+                        font-weight: 500;
+                        border-bottom: 1px solid $textcolor-black
+                      }
+                    }
+                  }
+                  &:first-child{
+                    &>a{
+                      @include heading-fonts();
+                      font-size:28px;
+                      margin-bottom: 30px;
+                      color: $textcolor-phanton;
+                    }
+                  }                 
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }  
+  &.has_top_banner {
+    #shopify-section-header{
+      background: #ffffff;
+    }
   }
 }

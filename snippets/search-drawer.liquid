@@ -35,6 +35,39 @@
           <span class="icon__fallback-text">{{ 'general.search.close' | t }}</span>
         </button>
       </div>
-    </div>
+    
   </div>
+   <div class="search-drawer-nav">
+    <div class="site-nav__childlist ">
+      <ul class="site-nav__childlist-grid">
+        {% assign search_navList = section.settings.search_navList %}
+       
+        {% for link in linklists[search_navList].links %}
+        <div class="site-nav__childlist--group site-nav__childlist--group--2">
+          <li data->
+          <a href="{% if link.url == '#' %}javascript:;{% else %}{{ link.url }}{%endif %}">{{ link.title }}</a>
+          {% if link.links != blank %}
+           <ul>
+          {% for childlink in link.links %}
+          {% assign childLinkSize = childlink.links | size %}           
+            <li data-title="{{ childlink.title }}">
+              <a href="{{ childlink.url }}" aria-label="{{ childlink.title }}">
+              {% if childlink.title contains 'Client Care'%}
+                Contact
+              {% endif%}
+              {% if childlink.title contains '+65 (800) 4922522'%}
+                Call
+              {% endif%}
+              <span> {{ childlink.title }}</span></a>
+            </li>   
+          {% endfor %}
+        </ul>
+          {% endif %}
+          </li>
+        </div>          
+        {% endfor %}
+      </ul>
+    </div>  
+  </div>
+</div>
 </div>

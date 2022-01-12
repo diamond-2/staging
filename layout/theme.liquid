@@ -285,7 +285,10 @@
 
     <!-- Wishlistking  App -->
   {% include 'swymSnippet' %}
+  {% include 'swym-move-to-wishlist'%}
+  {% if template contains 'collection' %}
   {% include 'compareProductLists'%}
+  {% endif %}
   {% include 'login-info-modal' %}
 
 </body>

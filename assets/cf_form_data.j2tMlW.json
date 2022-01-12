@@ -1,0 +1,501 @@
+{
+    "form": {
+      "id": "j2tMlW",
+      "name": "Registration",
+      "handle": "registration-4485",
+      "theme_id": "123896987816",
+      "settings": {
+        "locales": {
+          "back": "Back",
+          "next": "Next",
+          "cancel": "Cancel",
+          "edit_link": "Edit account",
+          "fix_errors": "Please fix errors before continuing",
+          "is_invalid": "{{label}} is invalid",
+          "email_taken": "Email has already been taken",
+          "phone_taken": "Phone number has already been taken",
+          "server_error": "Could not save form, please try again later",
+          "step_counter": "Step {{current}} of {{total}}",
+          "verify_email": "Check your email for a verification link to activate your account.",
+          "not_available": "An error occurred while saving your account, please try again in a few minutes.",
+          "create_account": "Sign Up",
+          "update_account": "Update account",
+          "recaptcha_error": "Challenge verification failed, please try again",
+          "creating_account": "Creating account...",
+          "updating_account": "Updating account...",
+          "reset_password_link": "Reset your password",
+          "invalid_email_domain": "Email contains an invalid domain name",
+          "reset_password_email_sent": "Check your inbox for a link to reset your password.",
+          "reset_password_too_many_attempts": "You tried to reset your password too many times. Please wait and try again later."
+        },
+        "whitelistedTags": "",
+        "showPasswordReset": true,
+        "markRequiredFields": false,
+        "displayCancelButton": false,
+        "redirectAfterSubmit": true,
+        "goBackAfterSubmission": false,
+        "cancelButtonRedirectUrl": "\/account\/login",
+        "postSubmissionRedirectUrl": "\/account",
+        "showSuccessStepAfterSubmit": false,
+        "goBackAfterCancelButtonClick": false
+      },
+      "install_locations": [
+        "register",
+        "account_edit",
+        "page_template",
+        "manual"
+      ],
+      "created_at": "2021-10-28T09:30:46Z",
+      "updated_at": "2021-12-01T20:28:23Z",
+      "revision_ids": [
+        "qYTzap3",
+        "p4TZv2m",
+        "MDTld14",
+        "mLT0KPK",
+        "06TpBbq",
+        "DRTr9xV",
+        "PnTpOgL",
+        "2ETzBbx",
+        "Z6TrMPq",
+        "nRT12GV",
+        "3qTeB0q",
+        "6XTxB7b",
+        "evT9gBD",
+        "B5TAxNm",
+        "VNT35GK",
+        "znTVpZv",
+        "boT5xA8",
+        "kdT5omn",
+        "Z6Trbm3"
+      ]
+    },
+    "revision": {
+      "id": "2ETzBbx",
+      "created_at": "2021-12-05T23:34:23Z",
+      "updated_at": "2022-01-06T13:34:49Z",
+      "embed_version": "4.8.4",
+      "published_at": "2022-01-06T13:34:49Z",
+      "fields": [
+        {
+          "id": 211319,
+          "dataColumn": {
+            "key": "first_name",
+            "label": "First name",
+            "dataType": "text"
+          },
+          "parentId": null,
+          "position": 0,
+          "type": "text",
+          "stepId": 114919,
+          "default": "",
+          "label": "First name",
+          "placeholder": "First Name",
+          "description": null,
+          "enum": null,
+          "appearance": {
+            "width": 12
+          },
+          "settings": {
+            "hideLabel": true
+          },
+          "validations": [
+            {
+              "metadata": {
+                "hiddenInApp": true
+              },
+              "operator": "not_blank",
+              "comparand": "",
+              "errorMessage": "Must not be blank"
+            }
+          ],
+          "sensitive": null,
+          "preset": "first_name",
+          "autotag": null
+        },
+        {
+          "id": 178474,
+          "dataColumn": {
+            "key": "last_name",
+            "label": "Last name",
+            "dataType": "text"
+          },
+          "parentId": null,
+          "position": 1,
+          "type": "text",
+          "stepId": 114919,
+          "default": "",
+          "label": "Last name",
+          "placeholder": "Last Name",
+          "description": null,
+          "enum": null,
+          "appearance": {
+            "width": 12
+          },
+          "settings": {
+            "hideLabel": true
+          },
+          "validations": [
+            {
+              "metadata": {
+                "hiddenInApp": true
+              },
+              "operator": "not_blank",
+              "comparand": "",
+              "errorMessage": "Must not be blank"
+            }
+          ],
+          "sensitive": null,
+          "preset": "last_name",
+          "autotag": null
+        },
+        {
+          "id": 875406,
+          "dataColumn": {
+            "key": "email",
+            "label": "Email address",
+            "dataType": "email"
+          },
+          "parentId": null,
+          "position": 2,
+          "type": "email",
+          "stepId": 114919,
+          "default": "",
+          "label": "Email address",
+          "placeholder": "Enter Email",
+          "description": null,
+          "enum": null,
+          "appearance": {
+            "width": 12
+          },
+          "settings": {
+            "hideLabel": true
+          },
+          "validations": [
+            {
+              "operator": "is_valid_email",
+              "comparand": null,
+              "errorMessage": "Please provide a valid email address"
+            },
+            {
+              "metadata": {
+                "hiddenInApp": true
+              },
+              "operator": "not_blank",
+              "comparand": "",
+              "errorMessage": "Must not be blank"
+            }
+          ],
+          "sensitive": null,
+          "preset": "email_address",
+          "autotag": null
+        },
+        {
+          "id": 111814,
+          "dataColumn": {
+            "key": "password",
+            "label": "Password",
+            "dataType": "text"
+          },
+          "parentId": null,
+          "position": 3,
+          "type": "text",
+          "stepId": 114919,
+          "default": "",
+          "label": "Password",
+          "placeholder": "Password ",
+          "description": null,
+          "enum": null,
+          "appearance": {
+            "width": 12
+          },
+          "settings": {
+            "hideLabel": true
+          },
+          "validations": [
+            {
+              "metadata": {
+                "hiddenInApp": true
+              },
+              "operator": "not_blank",
+              "comparand": "",
+              "errorMessage": "Must not be blank"
+            },
+            {
+              "metadata": {
+                "mandatory": true,
+                "staticOperator": true,
+                "comparandFieldProps": {
+                  "min": 5
+                }
+              },
+              "operator": "longer_than",
+              "comparand": 5,
+              "errorMessage": "Password is too short"
+            }
+          ],
+          "sensitive": true,
+          "preset": "password",
+          "autotag": null
+        },
+        {
+          "id": 148633,
+          "dataColumn": {
+            "key": "password_confirmation",
+            "label": "Password confirmation",
+            "dataType": "text"
+          },
+          "parentId": null,
+          "position": 4,
+          "type": "password_confirmation",
+          "stepId": 114919,
+          "default": "",
+          "label": "Password confirmation",
+          "placeholder": "Confirm Password ",
+          "description": "",
+          "enum": [
+  
+          ],
+          "appearance": {
+            "width": 12
+          },
+          "settings": {
+            "hideLabel": true,
+            "passwordMatchErrorMessage": "Must match password"
+          },
+          "validations": [
+  
+          ],
+          "sensitive": true,
+          "preset": "password_confirmation",
+          "autotag": null
+        },
+        {
+          "id": 301482,
+          "dataColumn": {
+            "key": "new_dropdown_field",
+            "label": "",
+            "dataType": "text"
+          },
+          "parentId": null,
+          "position": 5,
+          "type": "dropdown",
+          "stepId": 114919,
+          "default": "Male",
+          "label": "",
+          "placeholder": "Gender",
+          "description": "",
+          "enum": [
+            {
+              "label": "Male",
+              "value": "Male"
+            },
+            {
+              "label": "Female",
+              "value": "Female"
+            }
+          ],
+          "appearance": {
+            "width": 5
+          },
+          "settings": {
+            "end": 10,
+            "start": 1,
+            "enumType": "list",
+            "separateValues": false
+          },
+          "validations": [
+  
+          ],
+          "sensitive": null,
+          "preset": null,
+          "autotag": true
+        },
+        {
+          "id": 103841,
+          "dataColumn": {
+            "key": "phone",
+            "label": "Phone number",
+            "dataType": "phone"
+          },
+          "parentId": null,
+          "position": 6,
+          "type": "phone",
+          "stepId": 114919,
+          "default": "",
+          "label": "Phone number",
+          "placeholder": "Your Mobile Number",
+          "description": "",
+          "enum": [
+  
+          ],
+          "appearance": {
+            "width": 7
+          },
+          "settings": {
+            "hideLabel": true,
+            "disableAutoformat": true,
+            "defaultCountryCode": "SG"
+          },
+          "validations": [
+            {
+              "metadata": {
+              },
+              "operator": "shorter_than",
+              "comparand": 16,
+              "errorMessage": "Please provide a valid phone number"
+            },
+            {
+              "metadata": {
+                "hiddenInApp": true
+              },
+              "operator": "not_blank",
+              "comparand": "",
+              "errorMessage": "Must not be blank"
+            }
+          ],
+          "sensitive": null,
+          "preset": "phone_number",
+          "autotag": null
+        },
+        {
+          "id": 701511,
+          "dataColumn": null,
+          "parentId": null,
+          "position": 7,
+          "type": "html",
+          "stepId": 114919,
+          "default": "",
+          "label": "New custom HTML field",
+          "placeholder": "",
+          "description": "",
+          "enum": [
+  
+          ],
+          "appearance": {
+            "width": 12
+          },
+          "settings": {
+            "content": "<div class=\"agree-terms-sec\">\n                  <div class=\"custom-checkbox-holder\">\n                    <div class=\"custom-checkbox-input-box\">\n                      <input type=\"checkbox\" name=\"agree-terms\" id=\"agree-tems\">\n                      <span><i><svg width=\"23\" height=\"17\" viewBox=\"0 0 23 17\" fill=\"none\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\"><path d=\"M7.63448 14.8756L8 15.2672L8.36553 14.8756L21.6345 0.658845C21.8229 0.456969 22.1393 0.446059 22.3412 0.634476L22.6823 0.268948L22.3412 0.634476C22.543 0.822893 22.5539 1.13929 22.3655 1.34116L8.36553 16.3412C8.27097 16.4425 8.1386 16.5 8 16.5C7.86141 16.5 7.72904 16.4425 7.63448 16.3412L7.26895 16.6823L7.63448 16.3412L0.634476 8.84116C0.446059 8.63929 0.456969 8.32289 0.658845 8.13448C0.86072 7.94606 1.17711 7.95697 1.36553 8.15885L7.63448 14.8756Z\" stroke=\"#6679CC\"\/><\/svg><\/i><\/span>\n                    <\/div>\n                    <label for=\"agree-tems\">I agree to the <a href=\"\/pages\/terms-of-use\"   target=\"_blank\">Terms & Condition<\/a>\n<\/label>\n                  <\/div>\n                  <span class=\"msg-error\" id=\"termsErrorMsg\" style=\"display: none;\"><\/span>\n<\/div>",
+            "hideLabel": true
+          },
+          "validations": [
+  
+          ],
+          "sensitive": null,
+          "preset": null,
+          "autotag": null
+        },
+        {
+          "id": 186336,
+          "dataColumn": null,
+          "parentId": null,
+          "position": 0,
+          "type": "heading",
+          "stepId": 153863,
+          "default": "",
+          "label": "Account request sent heading",
+          "placeholder": null,
+          "description": "",
+          "enum": [
+  
+          ],
+          "appearance": {
+            "width": 12,
+            "alignment": "center"
+          },
+          "settings": {
+            "size": 1,
+            "content": "Success!",
+            "hideLabel": true,
+            "fontWeight": "bold"
+          },
+          "validations": [
+  
+          ],
+          "sensitive": null,
+          "preset": null,
+          "autotag": null
+        },
+        {
+          "id": 159817,
+          "dataColumn": null,
+          "parentId": null,
+          "position": 1,
+          "type": "paragraph",
+          "stepId": 153863,
+          "default": "",
+          "label": "Reviewing submission explanation",
+          "placeholder": null,
+          "description": "",
+          "enum": [
+  
+          ],
+          "appearance": {
+            "width": 12
+          },
+          "settings": {
+            "content": "<p style=\"text-align: center;\">The form has been successfully submitted.<\/p>",
+            "fontSize": 14,
+            "hideLabel": true
+          },
+          "validations": [
+  
+          ],
+          "sensitive": null,
+          "preset": null,
+          "autotag": null
+        },
+        {
+          "id": 201445,
+          "dataColumn": null,
+          "parentId": null,
+          "position": 2,
+          "type": "link",
+          "stepId": 153863,
+          "default": "",
+          "label": "Back to home link",
+          "placeholder": null,
+          "description": "",
+          "enum": [
+  
+          ],
+          "appearance": {
+            "width": 12,
+            "alignment": "center"
+          },
+          "settings": {
+            "url": "\/",
+            "content": "Back to home",
+            "fontSize": 14,
+            "hideLabel": true,
+            "fontWeight": "normal",
+            "openInNewTab": false
+          },
+          "validations": [
+  
+          ],
+          "sensitive": null,
+          "preset": null,
+          "autotag": null
+        }
+      ],
+      "steps": [
+        {
+          "id": 114919,
+          "title": "Step 1",
+          "description": ""
+        },
+        {
+          "id": 153863,
+          "title": "Submission success",
+          "metadata": {
+            "isSuccessStep": true
+          },
+          "description": ""
+        }
+      ],
+      "rules": [
+  
+      ]
+    }
+  }
