@@ -1,35 +1,35 @@
 <div class="single-banner">
-  <div class="inner-container">
-    <p class="side-text">{{ section.settings.side_text }}</p>
-    <div class="input-btns">
-        <input class="drop-pin"/>
-        <button class="explore-btn">Explore designs</button>
-    </div>
-    </div>
+<div class="inner-container">
+  <p class="side-text">{{ section.settings.side_text }}</p>
+  <div class="input-btns">
+      <input class="drop-pin"/>
+      <button class="explore-btn">Explore designs</button>
+  </div>
+  </div>
 </div>
 
 
 {% schema %}
-  {
-    "name": "Single banner Content",
-    "settings": [
-      {
-        "id": "single_banner_desktop",
-        "type": "image_picker",
-        "label": "Background Banner Desktop"
-      },
-      {
-        "id": "single_banner_mobile",
-        "type": "image_picker",
-        "label": "Background Banner Mobile"
-      },
-      {
-        "id": "side_text",
-        "type": "text",
-        "label": "Text over banner"
-      }
-    ]
-  }
+{
+  "name": "Single banner Content",
+  "settings": [
+    {
+      "id": "single_banner_desktop",
+      "type": "image_picker",
+      "label": "Background Banner Desktop"
+    },
+    {
+      "id": "single_banner_mobile",
+      "type": "image_picker",
+      "label": "Background Banner Mobile"
+    },
+    {
+      "id": "side_text",
+      "type": "text",
+      "label": "Text over banner"
+    }
+  ]
+}
 {% endschema %}
 
 <style>
@@ -46,8 +46,8 @@ body.layout_try-at-home.has_no_banner .sticky-header{border-bottom:0px;}
 .input-btns button{max-width:263px;background: #6679CC;border: 1px solid #6679CC;font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 22px;line-height: 108%;text-align:center;text-transform:uppercase;}
 
 @media screen and (min-width: 768px){
-  .single-banner{ background:url({{ section.settings.single_banner_desktop | img_url: 'master' }});background-size: cover;background-repeat:no-repeat;height: 970px;position: absolute;top: 0;left: 0;right: 0;} 
-  body.layout_try-at-home .page-container{position:unset;}
+.single-banner{ background:url({{ section.settings.single_banner_desktop | img_url: 'master' }});background-size: cover;background-repeat:no-repeat;height: 970px;position: absolute;top: 0;left: 0;right: 0;} 
+body.layout_try-at-home .page-container{position:unset;}
 }	
 
 @media screen and (max-width: 767px){
@@ -64,6 +64,10 @@ body.layout_try-at-home.has_no_banner .sticky-header{border-bottom:0px;}
 .side-text {max-width: 300px;margin-bottom: 35px;font-size: 35px !important;line-height: 108% !important;text-align: left;}
 .input-btns input {width: 350px;height: 80px;background-size: 25px;padding: 10px 50px;}
 .input-btns button {max-width: 200px;font-size: 18px;}
-
 }
+@media screen and (min-width: 1441px) and (max-width: 1900px){
+  .input-btns input{height:70px;}
+  .input-btns button{font-size:18px;}
+}
+
 </style>
