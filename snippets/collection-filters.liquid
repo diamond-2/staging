@@ -362,15 +362,15 @@
     //Create Filters
     	function createFilters(){ 
           $('[data-collection-filter-section]').empty();
-          if($('body').attr('data-template') == 'loose-stone-plp'){ 
-           <div class="filter-block-group" data-group="1">
-              <div class="filter-total-weight">
-                  <div class="filter-group-header"><span>Total Weight</span><span><a herf="#" aria-label="">Learn more</a></span></div>
-                  <div class="filter-group-content"></div>
-                </div>
-              <div class="filter-total-price"></div>
-            </div>
-          } 
+          // if($('body').attr('data-template') == 'loose-stone-plp'){ 
+          //  <div class="filter-block-group" data-group="1">
+          //     <div class="filter-total-weight">
+          //         <div class="filter-group-header"><span>Total Weight</span><span><a herf="#" aria-label="">Learn more</a></span></div>
+          //         <div class="filter-group-content"></div>
+          //       </div>
+          //     <div class="filter-total-price"></div>
+          //   </div>
+          // } 
           $.each(filters, function(key, val){ 
             var filterName = val.attribute;
             var filterTitle = val.title;
