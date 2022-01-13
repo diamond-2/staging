@@ -8,7 +8,13 @@
 
   $(function(){
     {% include 'createpagination' %}
-    var maxResults = 16;
+    if($('body').attr('data-template') == 'jewellery-plp' && $('body').attr('data-load') == 'jewellery-plp-initial'){
+      var maxResults = 18;
+    }else {
+      var maxResults = 16;
+    }    
+ //console.log('inital max-result = ' + maxResults);    
+    // var maxResults = 16;
     var defFilterName = 'restrictBy[collections]={{ collection.title | replace: ',' , '\,' | url_encode }}';
       var searchsortby = $(document).find("#sortByFilter option:selected").attr('value'); // console.log('sortyBy==> '+ searchsortby);
       var searchBaseUrl = 'https://www.searchanise.com/getresults?api_key=7r9L5P8L4h';
@@ -35,10 +41,48 @@
       $(this).closest('.collection-filter-wrapper').siblings().find('.filters-toolbar__input').removeClass('open-dd');
     })
 
+     // Clear all Filter Event
+     $(document).on('click', '.clear-filters a', function(){
+      $('[data-active-filters]').html('');
+      $(document).find('[data-collection-listing-container] [data-view="grid"] [data-list-item], [data-collection-listing-container] .list-view-items tbody').html('');
+      $(document).find('[data-collection-filter-section] :checkbox:checked').prop('checked', false)//.trigger('change');
+      
+      $('.slider-range-selected #collection-price-min-selected').text(' ');
+      $('.slider-range-selected #collection-price-max-selected').text(' ');
+      $('#slider-range .ui-corner-all.ui-widget-header').css("width", "100%");
+      $('#slider-range .ui-corner-all.ui-widget-header').css("left", "0%");
+      $('div#slider-range span.ui-slider-handle:first-child').css("display, none");
+     
+      var newQueryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
+      $(document).find('[data-collection-filter-section] .collection-filter-wrapper').each(function(){
+        var thisFilterName = $(this).data('filter'); //// console.log('thisFilterName==> ' + thisFilterName);
+        var filValues = $(this).find('input[type="checkbox"]:checked');
+        var filSelected = '';
+        if(filValues.length > 0){
+          filValues.each(function(i){ 
+            filSelected+=$(this).closest('input[type="checkbox"]:checked ').val();
+            if(i+1 < filValues.length){
+              filSelected += '|';
+            }  
+          });
+        }
+        var selFils = thisFilterName+'='+filSelected;
+        if(filSelected!=''){
+          newQueryString+=selFils.replace('undefined=', '');          
+        } 
+      });
+      newQueryString+='&maxResults='+maxResults;
+      // $('.dynamic-loadmore-btn-holder').hide();
+      $(document).find('[data-collection-listing-container] [data-view="grid"] [data-list-item], [data-collection-listing-container] .list-view-items tbody').html('');
+      searchaniseProducts(newQueryString);
+      
+      $('.no-result').css('display', 'none');
+    });
+
     // Clear filter Event
     $(document).on('click', '[data-clear-filter]', function(){
       var getKey = $(this).data('key');      
-      console.log("getKey--getKey", getKey)
+   //console.log("getKey--getKey", getKey)
       if(getKey == 'price-val-range'){
         let minPrice = $('#collection-price-min').data('price');
         let highestPrice = $('#collection-price-max').data('price');
@@ -48,14 +92,37 @@
         let resetPriceSlider = '&restrictBy[price]='+$('#collection-price-min').data('price')+','+$('#collection-price-max').data('price')+'';
         $('#price-val-range').val(resetPriceSlider).attr('data-opt-val', resetPriceSlider);
         $('#collection-price-min-selected, #collection-price-max-selected').text('');
-        initializingPriceSlider(minPrice, highestPrice, selectedMinPrice, SelectedHighestPrice);
+        // initializingPriceSlider(minPrice, highestPrice, selectedMinPrice, SelectedHighestPrice);
       }
-      $(document).find('[data-collection-filter-section] :checkbox:checked[id="'+getKey+'"]').prop('checked', false).trigger('change');    
+      $(document).find('[data-collection-filter-section] :checkbox:checked[id="'+getKey+'"]').prop('checked', false)//.trigger('change');    
       $(this).remove();        
+      var newQueryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
+      $(document).find('[data-collection-filter-section] .collection-filter-wrapper').each(function(){
+        var thisFilterName = $(this).data('filter'); //// console.log('thisFilterName==> ' + thisFilterName);
+        var filValues = $(this).find('input[type="checkbox"]:checked');
+        var filSelected = '';
+        if(filValues.length > 0){
+          filValues.each(function(i){ 
+            filSelected+=$(this).closest('input[type="checkbox"]:checked ').val();
+            if(i+1 < filValues.length){
+              filSelected += '|';
+            }  
+          });
+        }
+        var selFils = thisFilterName+'='+filSelected;
+        if(filSelected!=''){
+          newQueryString+=selFils.replace('undefined=', '');          
+        } 
+      });
+      newQueryString+='&maxResults='+maxResults;
+      // $('.dynamic-loadmore-btn-holder').hide();
+      $(document).find('[data-collection-listing-container] [data-view="grid"] [data-list-item], [data-collection-listing-container] .list-view-items tbody').html('');
+      searchaniseProducts(newQueryString);
+
     });
 
     $(document).on('change','#price-val-range', function(){
-      console.log('PriceRangeChange', $('#collection-price-min-selected').text().length);
+   //console.log('PriceRangeChange', $('#collection-price-min-selected').text().length);
       if(!$(this).is('checked')){
         $(this).prop('checked', true);
       }          
@@ -88,23 +155,71 @@
       $('.dynamicloadMore-btn').hide();
       $('.dynamic-loader-spiner').show();
     }
-
+    
     $(document).on('click', '.dynamicloadMore-btn', function(){
+      // var currentPage = Number($('.dynamic-pagination span a.active').text()); console.log('currentpagenumberacxitvee', currentPage)
+      // var currentPage = 1
+      var currentPageOld = Number($(document).find('[data-pclimit]').text());
+      console.log( 'old printe Items ', currentPageOld)
+      // $('.dynamic-pagination span a.active').next().addClass('active').siblings().removeClass('active');
+      // console.log($('.dynamic-pagination span a.active').next().text());
+   //console.log('loadmoreitems hits events ')
+   //console.log('loadmoreitems hits maxResults == >'+maxResults)
       
       $('[data-collection-listing-container]').removeClass('inital-load');  
-      LoadMoreItems();
-      $('.dynamic-pagination span a.active').next().addClass('active').siblings().removeClass('active');
-      var newQueryString = filterOnSelect();
-      //// console.log(newQueryString); 
-      searchaniseProducts(newQueryString);  
-      setTimeout(function(){
-        var totalPage = $('.dynamic-pagination span a').length;
-        var currentPage = parseInt($('.dynamic-pagination span a.active').text());
-        if(totalPage === currentPage) {
-          $(document).find('.dynamic-loadmore-btn-box, .dynamicloadMore-btn').hide();
-          $(document).find('.dynamic-loader-spiner').hide();
-        }        
-      },2000);
+      LoadMoreItems(); 
+      // setTimeout(function(){
+        var currentShowItems = Number($(document).find('[data-pclimit]').text()); console.log('Currently show Items == >' + currentShowItems);
+        maxResults = 16;
+        // var currentPage = Number($('.dynamic-pagination span a.active').text());
+    //  console.log("updated Current page items start from", currentShowItems + maxResults);
+    //  console.log('activepaginationnumber',  $('.dynamic-pagination span a.active').next().text());
+        // console.log('currentpagenumberacxitvee', currentPage)
+        var Startitems = currentPageOld;
+        // if(currentPage > 1) {
+        //     currentPage = currentPage; // console.log(currentPage);
+        //     // var Startitems = maxResults*currentPage;// console.log("startItems==>>" + Startitems);      
+        //     var Startitems = currentPageOld;// console.log("startItems==>>" + Startitems);      
+        //   } else {
+        //     if(currentPage == 1) {
+        //     currentPage = currentPage; // console.log(currentPage);
+        //     // var Startitems = maxResults*currentPage;// console.log("startItems==>>" + Startitems);      
+        //     var Startitems = currentPageOld;// console.log("startItems==>>" + Startitems);      
+        //   } else {
+        //     var Startitems = 0;
+        //   }            
+        //   }
+          console.log('querystging Start index', Startitems)
+
+          var newQueryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex='+ Startitems +'&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
+          $(document).find('[data-collection-filter-section] .collection-filter-wrapper').each(function(){
+            var thisFilterName = $(this).data('filter'); //// console.log('thisFilterName==> ' + thisFilterName);
+            var filValues = $(this).find('input[type="checkbox"]:checked');
+            var filSelected = '';
+            if(filValues.length > 0){
+              filValues.each(function(i){ 
+                filSelected+=$(this).closest('input[type="checkbox"]:checked ').val();
+                if(i+1 < filValues.length){
+                  filSelected += '|';
+                }  
+              });
+            }
+            var selFils = thisFilterName+'='+filSelected;
+            if(filSelected!=''){
+              newQueryString+=selFils.replace('undefined=', '');          
+            } 
+          });
+          newQueryString+='&maxResults='+maxResults;
+          searchaniseProducts(newQueryString);
+          setTimeout(function(){
+            var totalPage = $('.dynamic-pagination span a').length;
+            var currentPageitemess = parseInt($('.dynamic-pagination span a.active').text());
+            if(totalPage === currentPageitemess) {
+              $(document).find('.dynamic-loadmore-btn-box, .dynamicloadMore-btn').hide();
+              $(document).find('.dynamic-loader-spiner').hide();
+            }        
+          },2000);
+      // },500)      
     });
     searchaniseFiltersOnload(queryString);
     function searchaniseFiltersOnload(queryString) {
@@ -137,6 +252,36 @@
           //var getmaxitemperpage = $('select.result-per-page option:selected').attr('data-count');
           createFilters();
           // printProducts(searchData.items);
+          if($('body').attr('data-template') == 'jewellery-plp' && $('body').attr('data-load') == 'jewellery-plp-initial'){
+            console.log('Onload pagination')
+         //console.log('Yes jewellery-plp template');
+            var itemPerPage = 18;
+       console.log("test", searchData.totalItems+'-===--'+itemPerPage + data.startIndex)
+          if(searchData.totalItems > itemPerPage + data.startIndex) {
+            $('.__product-count__totalCount').attr('data-tpcount', searchData.totalItems).text(data.totalItems);
+            $('.__product-count__limit').attr('data-pclimit', itemPerPage).text(itemPerPage + data.startIndex);
+            $(document).find('.dynamic-loadmore-btn-box, .dynamicloadMore-btn').show();
+            $(document).find('.dynamic-loader-spiner').hide();
+          } else {
+            $('.__product-count__totalCount').attr('data-tpcount', searchData.totalItems).text(data.totalItems);
+            $('.__product-count__limit').attr('data-pclimit', data.totalItems).text(data.totalItems);
+            $(document).find('.dynamic-loadmore-btn-box, .dynamicloadMore-btn').hide();
+            $(document).find('.dynamic-loader-spiner').hide();
+          }
+          if(searchData.totalItems == 0) {
+            $('[data-collection-listing-container]').addClass('full-width').prepend('<p class="no-result text-center">There are currently no products in this collection, please check back later</p>');
+            $(document).find('.dynamic-loadmore-btn-box, .dynamic-loader-spiner, .filters-toolbar__item--count').hide();            
+          }
+
+
+          
+          //Init
+          var getmaxitemperpage = 18;
+          // createFilters();
+          createPagination(searchData.totalItems, searchData.startIndex/getmaxitemperpage); 
+          printProducts(searchData.items);
+
+        }
 
           // setTimeout(function(){
           //   location.reload();
@@ -155,6 +300,7 @@
         dataType: 'jsonp',
         success: function(data){		
           searchData = data;
+          updateFilters(searchData.facets);
           // console.log('\n\n----------------');
           // console.log(searchData);    
           // console.log('----------------\n\n');
@@ -163,20 +309,27 @@
           $('[data-collection-listing-container]').addClass('full-width').prepend('<p class="no-result">There are currently no products in this collection, please check back later</p>');
         } else {
           $(document).find('.filters-toolbar__item--count').show();
+
           var itemPerPage = $('.collection-header').data('limit');
-          console.log(itemPerPage+'----'+data.totalItems)
-          if(data.totalItems > itemPerPage) {
+          // var showItemPerPage = 
+       //console.log('paginatelimit--')
+       //console.log(itemPerPage+'----'+data.totalItems)
+       console.log('genric pagination')
+          if(data.totalItems > itemPerPage + data.startIndex) {
+            console.log('Innn-1');
             $('.__product-count__totalCount').attr('data-tpcount', data.totalItems).text(data.totalItems);
-            $('.__product-count__limit').attr('data-pclimit', itemPerPage).text(itemPerPage);
+            $('.__product-count__limit').attr('data-pclimit', itemPerPage).text(itemPerPage + data.startIndex);
             $(document).find('.dynamic-loadmore-btn-box, .dynamicloadMore-btn').show();
             $(document).find('.dynamic-loader-spiner').hide();
           } else {
+            console.log('Innn-2');
             $('.__product-count__totalCount').attr('data-tpcount', data.totalItems).text(data.totalItems);
             $('.__product-count__limit').attr('data-pclimit', data.totalItems).text(data.totalItems);
             $(document).find('.dynamic-loadmore-btn-box, .dynamicloadMore-btn').hide();
             $(document).find('.dynamic-loader-spiner').hide();
           }
           if(data.totalItems == 0) {
+            console.log('Innn-3');
             $('[data-collection-listing-container]').addClass('full-width').prepend('<p class="no-result text-center">There are currently no products in this collection, please check back later</p>');
             $(document).find('.dynamic-loadmore-btn-box, .dynamic-loader-spiner, .filters-toolbar__item--count').hide();
             
@@ -186,7 +339,13 @@
           
           
           //Init
-          var getmaxitemperpage = 16;
+          if($('body').attr('data-template') == 'jewellery-plp' && $('body').attr('data-load') == 'jewellery-plp-initial'){
+            var getmaxitemperpage = 18;
+          } else {
+            var getmaxitemperpage = 16;  
+          }
+          
+          
           // createFilters();
           createPagination(searchData.totalItems, searchData.startIndex/getmaxitemperpage); 
           printProducts(searchData.items);
@@ -203,6 +362,15 @@
     //Create Filters
     	function createFilters(){ 
           $('[data-collection-filter-section]').empty();
+          if($('body').attr('data-template') == 'loose-stone-plp'){ 
+           <div class="filter-block-group" data-group="1">
+              <div class="filter-total-weight">
+                  <div class="filter-group-header"><span>Total Weight</span><span><a herf="#" aria-label="">Learn more</a></span></div>
+                  <div class="filter-group-content"></div>
+                </div>
+              <div class="filter-total-price"></div>
+            </div>
+          } 
           $.each(filters, function(key, val){ 
             var filterName = val.attribute;
             var filterTitle = val.title;
@@ -269,6 +437,7 @@
                     var disableItem = '';
 
                     if(val.count >= 0){
+                   //console.log('initialfilter22')
                         if(val.count == 0){
                           disableItem = 'toDisabled';
                         }
@@ -356,6 +525,7 @@
                     selectOption += '<span class="filter-option-name">'+filterTitle+'</span>';
                     selectOption += '<ul class="filter-dd">'
                     $.each(filterVal, function(key, val){
+                   //console.log('initiall')
                       var disableItem = '';
                     if(val.count >= 0){
                       if(val.count == 0){
@@ -407,6 +577,46 @@
           }
       }
 
+
+      function updateFilters(filters){
+        $.each(filters, function(k, v){ 
+          var filterName = v.attribute;
+            var filterTitle = v.title;
+            var filterId = filterTitle.toLowerCase().replace(' ', '-');
+            var filterVal = v.buckets;
+            var sidebarHtml = '';
+            if(filterTitle == 'Price') {
+              var selectOption = '';
+              var minPrice = parseFloat(filterVal[0].from).toFixed(0); console.log('minPrice', theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00',''));
+              var highestPrice = parseFloat(filterVal[0].to).toFixed(0); console.log('highestPrice', highestPrice);
+              var selectedMinPrice = parseFloat(filterVal[0].left).toFixed(0); console.log('selectedMinPrice',selectedMinPrice);
+              var SelectedHighestPrice = parseFloat(filterVal[0].right).toFixed(0); console.log('SelectedHighestPrice', SelectedHighestPrice);              
+                initializingPriceSlider(minPrice, highestPrice, selectedMinPrice, SelectedHighestPrice);
+              
+            } else {
+          var filterVal = v.buckets;
+          $.each(filterVal, function(key, val){
+           //console.log(val);
+                    if(val.count >= 0){
+                      if(val.count == 0){
+                        //  ('onupdateFilterEach=========')
+                        // console.log(val.value);
+                        $(document).find('input[value="'+val.value+'"]').closest('.input-group').removeClass('toShow').addClass('toDisabled')
+                          // disableItem = 'toDisabled';
+                        } else {
+                          $(document).find('input[value="'+val.value+'"]').closest('.input-group').removeClass('toDisabled').addClass('toShow')
+                        }
+                        // var show = 'toShow';
+                        
+                                                
+                    }
+                  });
+            }
+  
+
+        })
+      }
+
      
       // Filter on Select event
      function filterOnSelect(){ 
@@ -432,10 +642,10 @@
             var maxPriceValue = '';
             var FinalpriceValue = '';
 
-            console.log('iiii', i);
-            console.log('VId', v.id);
-            console.log('VValue',v.value);
-            console.log('VVVVV',v);
+         //console.log('iiii', i);
+         //console.log('VId', v.id);
+         //console.log('VValue',v.value);
+         //console.log('VVVVV',v);
             if(v.id == 'price-val-range') {
               priceValue = v.value.split('[price]=')[1];
               minPriceValue =  priceValue.split(',')[0];
@@ -451,7 +661,8 @@
           });
           $(document).find('[data-active-filters]').html(activeFilter);
         }
-        '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex='+ Startitems +'&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
+        updateFilters();
+        //'&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex='+ Startitems +'&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
       // var newQueryString = queryString
       var newQueryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex='+ Startitems +'&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
       $(document).find('[data-collection-filter-section] .collection-filter-wrapper').each(function(){
@@ -472,9 +683,9 @@
         } 
       });
       newQueryString+='&maxResults='+maxResults;
-      console.log('==========>>');
-      console.log(newQueryString)
-      console.log('==========>>');
+   //console.log('==========>>');
+   //console.log(newQueryString)
+   //console.log('==========>>');
       return newQueryString;
       }
 
@@ -503,16 +714,18 @@
       
       // Print Product 
       function printProducts(prodObj){
+     //console.log(prodObj.length);
         $(document).find('[data-col-images-slider-init]').slick("unslick");
         if($('[data-collection-listing-container]').hasClass('inital-load')) {
-          $('[data-collection-listing-container] [data-view="grid"] [data-init-content], .bottom-pagination-row').remove();
-          $('[data-collection-listing-container] [data-view="grid"] [data-list-item ], [data-collection-listing-container] .list-view-items tbody').empty();
+          $(document).find('[data-collection-listing-container] [data-view="grid"] [data-init-content], .bottom-pagination-row').remove();
+          $(document).find('[data-collection-listing-container] [data-view="grid"] [data-list-item], [data-collection-listing-container] .list-view-items tbody').html('');
         }        
         var productGrid = '';
         var productList = '';
         // console.log(prodObj);
         var getcollection = "{{ collection.handle }}";
         $.each(prodObj, function(i) {   
+          
             var getprodlink = prodObj[i].link,
                 prodLink = prodObj[i].link,
                 getproductHandle = prodObj[i].link.split('/products/')[1],
@@ -613,7 +826,7 @@
                 if(_thistags[i].includes('LDCT:')){ldGridContentMob += '<div class="product_b_tex">'+tagVal+'</div>';}
                 if(_thistags[i].includes('LDSHAPE:')){ldGridContentMob += '<div class="product_b_tex">'+tagVal+'</div>';}
                   } else {
-                    console.log('testfiilllllll');
+                 //console.log('testfiilllllll');
 
                   }
                 });
@@ -634,7 +847,7 @@
             jwGridTitle += '<div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="'+ prodLink +'">'+ prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</a></div>';
             jwGridContent += '<div class="product-price-card-row">';
               $.each(_thistags, function(i){ 
-             //   console.log('INdex==>' + i);
+             ////console.log('INdex==>' + i);
              //  console.log(_thistags[i]);
                 // return false;
                 if(_thistags[i].includes(':')){
@@ -711,13 +924,25 @@
                 productGrid += '</div>'
                 productGrid += '</li>'
 
+                if($('body').attr('data-template') == 'jewellery-plp' && $('body').attr('data-load') == 'jewellery-plp-initial' && i == 3 ){
+                  productGrid += $('.capture-metafields-banner .static_image_column_3_layout[data-position="1"]').html();
+               //console.log('Yes jewellery-plp template');
+                }
+                if($('body').attr('data-template') == 'jewellery-plp' && $('body').attr('data-load') == 'jewellery-plp-initial' && i == 9 ){
+                  productGrid += $('.capture-metafields-banner .static_image_column_3_layout[data-position="2"]').html();
+               //console.log('Yes jewellery-plp template');
+                }
+
                 // $('[data-collection-listing-container] [data-view="grid"] [data-list-item]').append(productGrid).removeClass('hide'); 
         });
         
             // productGrid += '</ul>';
             
                 $('[data-collection-listing-container] [data-view="grid"] [data-list-item]').append(productGrid).removeClass('hide');  
-                $('[data-collection-listing-container] .list-view-items tbody').append(productList).removeClass('hide');          
+                $('[data-collection-listing-container] .list-view-items tbody').append(productList).removeClass('hide');         
+                if($('body').attr('data-template') == 'jewellery-plp' && $('body').attr('data-load') == 'jewellery-plp-initial'){
+                  $('body').removeAttr('data-load');
+                } 
                  
                 // var len = $(document).find('.dynamic-pagination span a').length;
                 // var txt = Number($(document).find('.dynamic-pagination span a.active').text());
@@ -752,7 +977,7 @@
 
       //Initialize Price Slider
     	function initializingPriceSlider(minPrice, highestPrice, selectedMin, selectedMax){
-          console.log(minPrice,'--', highestPrice,'--', selectedMin,'--', selectedMax);
+       //console.log(minPrice,'--', highestPrice,'--', selectedMin,'--', selectedMax);
           var getMinAmt = minPrice;
           var getMaxAmt = highestPrice;
             $('#price-min-val').val(theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00',''));
@@ -794,18 +1019,5 @@
     	//Initialize Price Slider Ends
   });
 
-  // Clear all Filter Event
-    $(document).on('click', '.clear-filters a', function(){
-      $('[data-active-filters]').html('');
-      $(document).find('[data-collection-filter-section] :checkbox:checked').prop('checked', false).trigger('change');
-      
-      $('.slider-range-selected #collection-price-min-selected').text(' ');
-      $('.slider-range-selected #collection-price-max-selected').text(' ');
-      $('#slider-range .ui-corner-all.ui-widget-header').css("width", "100%");
-      $('#slider-range .ui-corner-all.ui-widget-header').css("left", "0%");
-      $('div#slider-range span.ui-slider-handle:first-child').css("display, none");
-      //$('#slider-range .ui-corner-all.ui-widget-header').siblings('span:not(:first-child)').css("left", "100%");
-      
-      $('.no-result').css('display', 'none');
-    });
+ 
   </script>

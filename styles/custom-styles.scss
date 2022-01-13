@@ -4655,6 +4655,11 @@ body[data-template="know-your-diamond"], body[data-template="about-us"] {
     }
   }
 }
+.has_no_banner {
+  .why-diamond2-section {
+    padding: 0px;
+  }
+}
 .factual-comparison-section-wrapper {
   padding: 100px 0 0;
   @media(max-width: $md) {
@@ -5374,6 +5379,7 @@ body[data-template="product"] {
       font-family: Spectral;
       margin: 0;
       text-transform: uppercase;
+      min-height: 60px;
       @media(max-width: $xxl) and (min-width: $postMd) {
         font-size: 20px;
         line-height: normal;
@@ -7849,6 +7855,21 @@ body[data-template="loose-stone"] {
         z-index: 3;
         .product-images-wrapper {
           position: relative;
+          &:before {
+            content:'';
+            position:absolute;
+            top:44%;
+            left:44%;
+            @include prefix-transform-translate();
+            z-index:0;
+            background: url('https://cdn.shopify.com/s/files/1/0575/2681/2840/files/aryamond_loader.png') no-repeat center center;
+            background-size: contain;
+            width: 30px;
+            height: 30px;
+            -webkit-animation: spin 5s linear infinite;
+            animation: spin 5s linear infinite;
+            opacity: 0.1;
+          }
           .product-full-link {
             position: absolute;
             height: 100%;

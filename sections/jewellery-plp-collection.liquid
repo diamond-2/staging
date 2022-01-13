@@ -15,10 +15,11 @@
   {%- assign limit = 16 -%}
 {% endif %}
 
+
 {% paginate collection.products by limit %}
 
 <div data-section-id="{{ section.id }}" data-section-type="collection-template" class="solitaire-collection-wrapper jewellery-plp-collection-layout">
-  <header class="collection-header">
+  <header class="collection-header" data-limit="{{ limit }}">
     {%- assign is_filter_by_available = false -%}
     {%- if section.settings.tags_enable and collection.all_tags.size > 0 -%}
       {%- assign is_filter_by_available = true -%}
@@ -52,7 +53,7 @@
 
       {% capture metaBlock1 %}
       {% if blockImage !=blank %}
-      <div class="static_image_column">
+      <div class="static_image_column" data-image-layout="3" data-template="{{ template.suffix }}">
         <div class="img_holder">
           <a {% if blockLink %}href="{{ blockLink }}"{% endif %}>
             <img {% if blockMobileImage !=blank %}class="hide_mobile"{% endif %} src="{{ blockImage }}" alt="{{ collection.title }}">
@@ -74,7 +75,7 @@
 
       {% capture metaBlock2 %}
       {% if block2Image !=blank %}
-      <div class="static_image_column">
+      <div class="static_image_column" data-image-layout="3" data-template="{{ template.suffix }}">
         <div class="img_holder">
           <a {% if block2Link %}href="{{ block2Link }}"{% endif %}>
             <img {% if block2MobileImage !=blank %}class="hide_mobile"{% endif %} src="{{ block2Image }}" alt="{{ collection.title }}">
@@ -86,13 +87,17 @@
       </div>
       {% endif %}
       {% endcapture %}
+      <div class="capture-metafields-banner hide">
+        <div class="static_image_column_3_layout" data-position="1"> {{ metaBlock1 }}</div>
+        <div class="static_image_column_3_layout" data-position="2">{{ metaBlock2 }}</div>
+      </div>
 
       <div class="grid-view-section product_view_tab" data-view="grid">
         <ul class="grid grid--uniform grid--view-items hide" data-list-item></ul>
       <div data-pagination="{{ paginate.next.url }}" class="product-listing" data-init-content>
         <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
           {% for product in collection.products %}
-            <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+            <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }} {% if template.suffix == "jewellery-plp" and paginate.current_page == 1 %}{% if forloop.index == 15 or forloop.index == 16 %} initially-hidden-items{% endif %}{% endif %}" >
               {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
             </li>
 

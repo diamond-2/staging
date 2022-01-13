@@ -3557,6 +3557,9 @@ body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3,
       .why-diamond2-section p:not(:last-child) {
         margin-bottom: 19px; } }
 
+.has_no_banner .why-diamond2-section {
+  padding: 0px; }
+
 .factual-comparison-section-wrapper {
   padding: 100px 0 0; }
   @media (max-width: 749px) {
@@ -4162,7 +4165,8 @@ body[data-template="product"] .main-content {
       font-weight: bold;
       font-family: Spectral;
       margin: 0;
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      min-height: 60px; }
       @media (max-width: 1600px) and (min-width: 750px) {
         .product-section-row .product-detail-content-column .product-single__title {
           font-size: 20px;
@@ -6244,6 +6248,24 @@ body[data-template="loose-stone"] .product-content-section {
         z-index: 3; }
         .solitaire-collection-wrapper .grid--view-items .grid__item .grid-view-item .product-images-wrapper {
           position: relative; }
+          .solitaire-collection-wrapper .grid--view-items .grid__item .grid-view-item .product-images-wrapper:before {
+            content: '';
+            position: absolute;
+            top: 44%;
+            left: 44%;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            background: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/aryamond_loader.png") no-repeat center center;
+            background-size: contain;
+            width: 30px;
+            height: 30px;
+            -webkit-animation: spin 5s linear infinite;
+            animation: spin 5s linear infinite;
+            opacity: 0.1; }
           .solitaire-collection-wrapper .grid--view-items .grid__item .grid-view-item .product-images-wrapper .product-full-link {
             position: absolute;
             height: 100%;
