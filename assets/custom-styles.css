@@ -13386,7 +13386,7 @@ a[href^="tel"] {
   .compare_product_layout .compare__product-information {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     position: relative;
     margin-bottom: 12px; }
     .compare_product_layout .compare__product-information .compare__image-wrapper {
