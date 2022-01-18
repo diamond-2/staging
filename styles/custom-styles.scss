@@ -4923,7 +4923,7 @@ body[data-template="product"] {
   }
 }
 .product-pd-section {
-  padding-top: 100px;
+  padding-top: 40px;
   font-weight: 400;
   @media(max-width: $md) {
     padding-top:0;
@@ -5712,7 +5712,7 @@ body[data-template="product"] {
   }
   .product-form__controls-group {
     &~.product-form__controls-group--submit {
-      margin-top: 73px;
+      margin-top: 20px;
       @media(max-width: $xxl) {
         margin-top: 30px;
       }
@@ -7958,16 +7958,22 @@ body[data-template="loose-stone"] {
                 }
                 .ragular_price {
                   color: $textcolor-phanton;
+                  text-align: left;
                 }
                 .compare_at_price {
                   text-decoration: line-through;
+                }
+                .product_discount {
+                  text-align: right;
+                }
+                &>div {
+                  flex: 0 0 33.333%;
                 }
               }
               &+ {
                 margin-top: 12px;
               }
               &>div {
-                flex: 0 0 33.333%;
                 &.product_weight {
                   text-align: left;
                 }
@@ -15620,6 +15626,19 @@ canvas#the-canvas {
                   text-decoration: line-through;
                 }
               }
+              .divider {
+                position: relative;
+                &:before {
+                  position: absolute;
+                  height: 70%;
+                  width: 1px;
+                  background: rgba(0,0,0,0.3);
+                  content: '';
+                  left: 0;
+                  top: 50%;
+                  @include prefix-transform-translateY();
+                }
+              }
             }
           }
         } 
@@ -16662,6 +16681,9 @@ a[href^="tel"] {
   &.js-drawer-open {
     #SearchDrawer{
       top:190px;
+      @media screen and (max-width: $md) {
+        top: 75px;
+      }
     }
     .drawer-page-content{
       &:after {
@@ -16676,15 +16698,39 @@ a[href^="tel"] {
         padding-left: 50px;
         padding-right: 50px;
         padding-bottom: 50px;
+        flex-wrap: wrap;
+        @media screen and (max-width: $md){
+          padding-left:15px;
+          padding-right: 15px;
+        }
         .search-form__container{
           flex: 0 0 65%;
           align-items: self-start;
           justify-content: flex-start;
+          @media screen and (max-width: $md){
+            flex: 0 0 100%;
+          }
           .search-form__input-wrapper {
             position: relative;
             padding-left: 0px;
             padding-right: 0px;
             max-width: 785px;
+            .search-form__input_placeholders {
+              position: absolute;
+              font-size:38px;
+              top: 5px;
+              left: 0px;
+              color: #d7d7d7;
+              -webkit-transition: 0.3s ease-in-out;
+              -moz-transition: 0.3s ease-in-out;
+              -ms-transition: 0.3s ease-in-out;
+              -o-transition: 0.3s ease-in-out;
+              transition: 0.3s ease-in-out;
+              @media screen and (max-width: $md) {
+                left: 45px;
+                font-size: 20px;
+              }
+            }
             .search-bar__input {
               border: 0;
               border-bottom: 1px solid;
@@ -16693,15 +16739,55 @@ a[href^="tel"] {
               font-weight: 300;
               font-family: 'MONTSERRAT';
               padding-left: 0;
+              @media screen and (max-width: $md) {
+                padding-left: 45px;
+                padding-right: 10px;
+                min-height: 40px;
+                line-height: 1;
+                height: 40px;
+                font-size:20px;
+              }
+              &.active-input{
+                &+.search-form__input_placeholders{
+                  font-size: 20px;
+                  top: -40%;
+                  @media screen and (max-width: $md) {
+                    font-size: 16px;
+                    top: -30%;
+                  }
+                }
+                &:focus {
+                  &+.search-form__input_placeholders{
+                    font-size: 20px;
+                    top: -40%;
+                    @media screen and (max-width: $md) {
+                      font-size: 16px;
+                      top: -30%;
+                    }
+                  }
+                }
+              }              
+            }
+          }
+          .search-bar__submit {
+            @media screen and (max-width: $md){
+              right: calc(100% - 30px);
             }
           }
           .search-bar__actions {
             position: absolute;
             right: 50px;
             top: 25px;
+            @media screen and (max-width: $md) {
+              right: 25px;
+              top: 85px;
+            }
             .search-bar__close{
               .icon{
                 width: 1.7rem;
+                @media screen and (max-width: $md) {
+                  width: 1rem;
+                }
               }
             } 
           }
@@ -16709,10 +16795,17 @@ a[href^="tel"] {
         .search-drawer-nav {
           flex: 0 0 35%;
           padding-top: 0;
+          @media screen and (max-width: $md) {
+            flex: 0 0 100%;
+          }
           .site-nav__childlist {
             width: 100%;
             padding-top: 108px;
             padding-left: 60px;
+            @media screen and (max-width: $md){
+              padding-top: 35px;
+              padding-left: 0px;
+            }
             .site-nav__childlist-grid {
               justify-content: flex-start;
               .site-nav__childlist--group {
@@ -16726,6 +16819,9 @@ a[href^="tel"] {
                     margin-bottom: 15px;
                     display: inline-block;
                     @include base-font();
+                    @media screen and (max-width: $md) {
+                      font-size: 16px;
+                    }
                     &[aria-label="Client Care"] {
                       span {
                         border-bottom: 1px solid $textcolor-black
@@ -16744,8 +16840,17 @@ a[href^="tel"] {
                       font-size:28px;
                       margin-bottom: 30px;
                       color: $textcolor-phanton;
+                      @media screen and (max-width: $md) {
+                        font-size: 24px;
+                        margin-bottom: 18px;
+                      }
                     }
                   }                 
+                }
+                &:first-child{
+                  @media screen and (max-width: $md) {
+                    display: none;
+                  }
                 }
               }
             }

@@ -10778,6 +10778,20 @@ $(document).on('click', '[data-compare-clear-all]', function(){
   hideCompareItemList();
   compareItemHandles = [];
 });
+
+// Search Drawer Focus In/Out events
+$(document).on('focus','input[data-predictive-search-drawer-input]', function(){
+  $(this).addClass('active-input');
+}); 
+$(document).on('blur','input[data-predictive-search-drawer-input]', function(){
+  let inputVal = $('[data-predictive-search-drawer-input]').val();;
+  if(inputVal == ''){
+    $('[data-predictive-search-drawer-input]').removeClass('active-input');
+  }
+  
+}); 
+
+
 });
 
 //update Compare List by Ajax call

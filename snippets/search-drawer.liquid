@@ -3,10 +3,10 @@
     <div class="search-form__container" data-search-form-container>
       <form class="search-form search-bar__form" action="{{ routes.search_url }}" method="get" role="search">
         <div class="search-form__input-wrapper">
+          
           <input
             type="text"
             name="q"
-            placeholder="{{ 'general.search.placeholder' | t }}"
             role="combobox"
             aria-autocomplete="list"
             aria-owns="predictive-search-results"
@@ -17,6 +17,7 @@
             data-predictive-search-drawer-input
             data-base-url="{{ routes.search_url }}"
           />
+          <span class="search-form__input_placeholders">{{ 'general.search.placeholder' | t }}</span>
           <input type="hidden" name="options[prefix]" value="last" aria-hidden="true" />
           <div class="predictive-search-wrapper predictive-search-wrapper--drawer" data-predictive-search-mount="drawer"></div>
         </div>

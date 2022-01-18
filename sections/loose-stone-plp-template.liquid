@@ -54,6 +54,7 @@
       {% assign metafieldImage = collection.metafields.meta.block_image %}
       
       {% capture metafieldSection %}
+      {%- if metafieldImage != blank and  metafieldTitle != blank or metafieldContent != blank -%}
       <div class="content-with-image-wrapper">
         <div class="custom-row">
           <div class="custom-content-column">
@@ -97,14 +98,15 @@
           </div>
         </div>
       </div>
+      {% endif %}
       {% endcapture %}
 
       <div class="grid-view-section product_view_tab" data-view="grid">
         <ul class="grid grid--uniform grid--view-items hide" data-list-item></ul>
         <div data-pagination="{{ paginate.next.url }}" class="product-listing" data-init-content>
-          <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
+          <ul class=" abc grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
             {% for product in collection.products %}
-              <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+              <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}" data-handle="{{ product.handle }}" data-title="{{ product.title }}">
                 {% include 'loose-stone-product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
               </li>
 

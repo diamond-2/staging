@@ -1,4 +1,4 @@
-{% layout none %}
+{%- layout none -%}
 {% assign defTag = false  %}
 {% assign ctwTag = false  %}
 {% for tag in product.tags %}
@@ -31,7 +31,7 @@
       <div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation>
         <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper product-card__image-wrapper js">
           <div class="product_img_holder">
-            <img data-src="{{ slideImage.src | img_url: 'master' }}" alt="{{ product.title }}" class="grid-view-item__image lazyload">
+            <img src="{{ slideImage.src | img_url: 'master' }}" alt="{{ product.title }}" class="grid-view-item__image">
           </div>
         </div>
       </div>

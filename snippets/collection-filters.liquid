@@ -8,14 +8,19 @@
 
   $(function(){
     {% include 'createpagination' %}
+
     if($('body').attr('data-template') == 'jewellery-plp' && $('body').attr('data-load') == 'jewellery-plp-initial'){
       var maxResults = 18;
     }else {
       var maxResults = 16;
     }    
- //console.log('inital max-result = ' + maxResults);    
-    // var maxResults = 16;
-    var defFilterName = 'restrictBy[collections]={{ collection.title | replace: ',' , '\,' | url_encode }}';
+    if(window.location.search.indexOf('?&') > -1) {
+      var defFilterName = 'restrictBy[collections]={{ collection.title | replace: ',' , '\,' | url_encode }}'+window.location.search.split('?')[1];
+    } else {
+      var defFilterName = 'restrictBy[collections]={{ collection.title | replace: ',' , '\,' | url_encode }}';
+    }
+    console.log('defFilterName==>', defFilterName);
+
       var searchsortby = $(document).find("#sortByFilter option:selected").attr('value'); // console.log('sortyBy==> '+ searchsortby);
       var searchBaseUrl = 'https://www.searchanise.com/getresults?api_key=7r9L5P8L4h';
 
@@ -252,7 +257,7 @@
           //var getmaxitemperpage = $('select.result-per-page option:selected').attr('data-count');
           createFilters();
           // printProducts(searchData.items);
-          if($('body').attr('data-template') == 'jewellery-plp' && $('body').attr('data-load') == 'jewellery-plp-initial'){
+          if($('body').attr('data-template') == 'jewellery-plp' && $('body').attr('data-load') == 'jewellery-plp-initial' || window.location.search.indexOf('?&') > -1){
             console.log('Onload pagination')
          //console.log('Yes jewellery-plp template');
             var itemPerPage = 18;
@@ -365,11 +370,25 @@
           // if($('body').attr('data-template') == 'loose-stone-plp'){ 
           //  <div class="filter-block-group" data-group="1">
           //     <div class="filter-total-weight">
-          //         <div class="filter-group-header"><span>Total Weight</span><span><a herf="#" aria-label="">Learn more</a></span></div>
-          //         <div class="filter-group-content"></div>
-          //       </div>
-          //     <div class="filter-total-price"></div>
+          //       <div class="filter-group-header"><span>Total Weight</span><span><a herf="#" aria-label="">Learn more</a></span></div>
+          //       <div class="filter-group-content"></div>
+          //     </div>
+          //     <div class="filter-total-price">
+          //       <div class="filter-group-header"><span>Price (SGD)</span><span><a herf="#" aria-label="">Learn more</a></span></div>
+          //       <div class="filter-group-content"></div>
+          //     </div>
           //   </div>
+          //   <div class="filter-block-group" data-group="2">
+          //     <div class="filter-color">
+          //       <div class="filter-group-header"><span>Color</span><span><a herf="#" aria-label="">Learn more</a></span></div>
+          //       <div class="filter-group-content"></div>
+          //     </div>
+          //     <div class="filter-clarity">
+          //       <div class="filter-group-header"><span>Clarity</span><span><a herf="#" aria-label="">Learn more</a></span></div>
+          //       <div class="filter-group-content"></div>
+          //     </div>
+          //   </div>
+
           // } 
           $.each(filters, function(key, val){ 
             var filterName = val.attribute;
@@ -378,6 +397,7 @@
             var filterVal = val.buckets;
             var sidebarHtml = '';
             // Range type layout for price filter
+            if($('body').attr('data-template') != 'loose-stone-plp'){
             if(filterTitle == 'Price') {
               var selectOption = '';
               var minPrice = parseFloat(filterVal[0].from).toFixed(0); console.log('minPrice', theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00',''));
@@ -557,7 +577,12 @@
                     sidebarHtml+= '<div class="collection-filter-wrapper" data-filter="&restrictBy[' + filterName + ']" data-filter-type="'+ filterName +'">' + selectOption +'</div>';
                   	$('[data-collection-filter-section]').append(sidebarHtml);
                   }
-                }            
+                }   
+                
+              }
+              else {
+                console.log('Loose Stone filter Heree');
+              }
           });
 
           //Show open the selected filters
@@ -892,7 +917,7 @@
                 if($('body').attr('data-template') == 'loose-stone-plp'){ 
                   productGrid += '<div class="hide_mobile">';
                   productGrid += '<div class="product-image-body-row">';
-                  productGrid += '<a class="compare_btn">COMPARE</a>';
+                  productGrid += '<a class="compare_btn product_compare">COMPARE</a>';
                   productGrid += '<a class="p_more_btn"><span class="text_more">MORE</span><span class="text_less">LESS</span></a>';
                   productGrid += '</div>';
                   productGrid += '<div class="more_product_datatable" style="display: none;">';
