@@ -8195,6 +8195,9 @@ body[data-template="loose-stone"] {
           background: #fff;
           position: relative;
           border: 1px solid #E0E0E0;
+          &.no-image {
+            padding-top: 100%;
+          }
           @media(max-width: $md) {
             width: 104px;
           }
@@ -12922,15 +12925,23 @@ body[data-template="customers/reset_password"] {
     align-items: center;
     justify-content: center;
     .loader {
-      background: url('https://cdn.shopify.com/s/files/1/0575/2681/2840/files/aryamond_loader.png') no-repeat center center;
+      background: url('https://cdn.shopify.com/s/files/1/0575/2681/2840/files/four-angle.svg') no-repeat center center;
       background-size: contain;
       width: 50px;
       height: 50px;
       -webkit-animation: spin 5s linear infinite;
       animation: spin 5s linear infinite;
-      // border: 5px solid #f3f3f3;
-      // border-radius: 50%;
-      // border-top: 5px solid $textcolor-phanton;
+    }
+    &:before {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background: url('https://cdn.shopify.com/s/files/1/0575/2681/2840/files/one-angle.svg') no-repeat center center;
+      background-size: 100%;
+      top: 50%;
+      left: 50%;
+      position: absolute;
+      @include prefix-transform-translate();
     }
 }
 
@@ -15580,6 +15591,9 @@ canvas#the-canvas {
           position: relative;
           border: 1px solid #e0e0e0;
           overflow:hidden;
+          &.no-image {
+            padding-top: 100%;
+          }
           .full_link {
             position: absolute;
             height: 100%;

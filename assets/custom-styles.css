@@ -6550,6 +6550,8 @@ body[data-template="loose-stone"] .product-content-section {
           background: #fff;
           position: relative;
           border: 1px solid #E0E0E0; }
+          .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item .product-images-wrapper.no-image {
+            padding-top: 100%; }
           @media (max-width: 749px) {
             .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item .product-images-wrapper {
               width: 104px; } }
@@ -10514,12 +10516,26 @@ body[data-template="customers/reset_password"] .main-content {
   align-items: center;
   justify-content: center; }
   #preloader .loader {
-    background: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/aryamond_loader.png") no-repeat center center;
+    background: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/four-angle.svg") no-repeat center center;
     background-size: contain;
     width: 50px;
     height: 50px;
     -webkit-animation: spin 5s linear infinite;
     animation: spin 5s linear infinite; }
+  #preloader:before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/one-angle.svg") no-repeat center center;
+    background-size: 100%;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
 
 /* ========== Customer Account Start ============== */
 body[data-template="customers/account"] .main-content,
@@ -12765,6 +12781,8 @@ canvas#the-canvas {
     position: relative;
     border: 1px solid #e0e0e0;
     overflow: hidden; }
+    .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .product-images-wrapper.no-image {
+      padding-top: 100%; }
     .collection-slider-wrapper[data-product-slider] .pdp-collection-products .grid__item .product-images-wrapper .full_link {
       position: absolute;
       height: 100%;
