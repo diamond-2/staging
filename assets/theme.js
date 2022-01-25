@@ -10669,11 +10669,18 @@ if (compareItemExist != null) {
 }
 
 
-
+var compareType = ''
 $(document).on('click', '.product_compare', function(){  
+  
   hideCompareItemList();
   var prodHandle = $(this).closest('.grid__item').data('handle');
   var prodTitle = $(this).closest('.grid__item').data('title');
+  productType = $(this).closest('.grid__item').data('type'); console.log("prodType==>>", prodType);
+
+  $('.compare_product_layout').attr('data-itemTypes', compareType)
+  // if(compareType == '' || compareType == productType){
+
+  // }
   if(compareItemHandles.length < 4){
     $('[data-compareItemCounter]').removeClass('hide');
     if(!compareItemHandles.includes($(this).closest('.grid__item').data('handle'))){

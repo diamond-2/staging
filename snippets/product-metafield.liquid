@@ -31,7 +31,6 @@
                 {%- capture tableContent_frc_ttl_crt_wgt -%}frc_stn_total_crt_wt{%- endcapture -%}
                 {%- capture tableContent_dec_ttl_crt_wgt -%}dec_stn_total_crt_wt{%- endcapture -%}
 
-
                 
                 {% if template.suffix != 'loose-stone' %}
                 {% if
@@ -554,7 +553,290 @@
 
                 {% endif %}
                 {% endfor %}
+                {% if template.suffix == 'loose-stone' %}
+          
+            {% capture lstableContent_ls_cert_Shape %}ls_cert_Shape{% endcapture %}
+            {% capture lstableContent_lsCertColor %}ls_cert_color{% endcapture %}
+            {% capture lstableContent_ls_cert_clarity %}ls_cert_clarity{% endcapture %}
+            {% capture lstableContent_ls_cert_stn_wgt_crt %}ls_cert_stn_wgt_crt{% endcapture %}
+            {% capture lstableContent_ls_cert_Fluorescence %}ls_cert_Fluorescence{% endcapture %}
+            {% capture lstableContent_ls_cert_Tbl_avg_perc %}ls_cert_Tbl_avg_perc{% endcapture %}
+            {% capture lstableContent_ls_cert_Polish %}ls_cert_Polish{% endcapture %}
+            {% capture lstableContent_ls_cert_Symmetry %}ls_cert_Symmetry{% endcapture %}
+            {% capture lstableContent_ls_cert_Girdle %}ls_cert_Girdle{% endcapture %}
+            {% capture lstableContent_ls_cert_Culet  %}ls_cert_Culet {% endcapture %}            
+
+            {% capture lstableContent_ls_cert_Diamtrs_min %}ls_cert_Diamtrs_min{% endcapture %}
+            {% capture lstableContent_ls_cert_Diamtrs_max %}ls_cert_Diamtrs_max{% endcapture %}
+            {% capture lstableContent_ls_cert_Diamtrs_avg %}ls_cert_Diamtrs_avg{% endcapture %}
+            {% capture lstableContent_ls_cert_height_mm %}ls_cert_height_mm{% endcapture %}
+            {% capture lstableContent_ls_cert_height_perc %}ls_cert_height_perc{% endcapture %}
+            {% capture lstableContent_ls_cert_Crw_Agl_deg %}ls_cert_Crw_Agl_deg{% endcapture %}
+            {% capture lstableContent_ls_cert_Crw_Hgtperc %}ls_cert_Crw_Hgtperc{% endcapture %}            
+            {% capture lstableContent_ls_cert_Girdlemin %}ls_cert_Girdlemin{% endcapture %}
+            {% capture lstableContent_ls_cert_Girdlemax %}ls_cert_Girdlemax{% endcapture %}
+            {% capture lstableContent_ls_cert_Grdlavg_perc %}ls_cert_Grdlavg_perc{% endcapture %}
+            {% capture lstableContent_ls_cert_pvln_Agl %}ls_cert_pvln_Agl{% endcapture %}
+            {% capture lstableContent_ls_cert_PvlnH_perc %}ls_cert_PvlnH_perc{% endcapture %}
+            {% capture lstableContent_ls_cert_Stars_Width %}ls_cert_Stars_Width{% endcapture %}
+            {% capture lstableContent_ls_cert_Pavil_Width %}ls_cert_Pavil_Width{% endcapture %}
+            {% capture lstableContent_ls_cert_GIA2005totalcutgrade %}ls_cert_GIA2005totalcutgrade{% endcapture %}            
+            {% capture lstableContent_ls_cert_GIASYM %}ls_cert_GIASYM{% endcapture %}
+            {% capture lstableContent_ls_cert_hrdtotalcutgrade %}ls_cert_hrdtotalcutgrade{% endcapture %}
+            {% capture lstableContent_ls_cert_hrdSym_totalcutgrade %}ls_cert_hrdSym_totalcutgrade{% endcapture %}
+            {% capture lstableContent_ls_cert_IGI_totalcutgrade %}ls_cert_IGI_totalcutgrade{% endcapture %}
+             
+                <div class="product-info-item">
+                    <div class="product-info-holder">
+                        <div class="product-info-table">
+                            <figure class="table">
+                                <table>
+                                    <tbody> 
+                                        {%- comment -%}ls_cert_Shape{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_Shape] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_Shape] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_ShapeLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_ShapeLabel] }} {% else %}Shape{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_Shape] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+                                        
+                                        {%- comment -%}ls_cert_color{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_lsCertColor] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_lsCertColor] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_lsCertColorLabel] != blank %}{{ productMetafield[lstableContent_lsCertColorLabel] }} {% else %}Color{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_lsCertColor] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_clarity{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_clarity] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_clarity] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_clarityLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_clarityLabel] }} {% else %}Clarity{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_clarity] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_stn_wgt_crt{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_stn_wgt_crt] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_stn_wgt_crt] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_stn_wgt_crtLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_stn_wgt_crtLabel] }} {% else %}Weight{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_stn_wgt_crt] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_Fluorescence{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_Fluorescence] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_Fluorescence] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_FluorescenceLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_FluorescenceLabel] }} {% else %}Fluorescence{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_Fluorescence] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_Tbl_avg_perc{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_Tbl_avg_perc] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_Tbl_avg_perc] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_Tbl_avg_percLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_Tbl_avg_percLabel] }} {% else %}Table{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_Tbl_avg_perc] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_Polish{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_Polish] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_Polish] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_PolishLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_PolishLabel] }} {% else %}Polish{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_Polish] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_Symmetry{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_Symmetry] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_Symmetry] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_SymmetryLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_SymmetryLabel] }} {% else %}Symmetry{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_Symmetry] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_Girdle{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_Girdle] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_Girdle] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_GirdleLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_GirdleLabel] }} {% else %}Girdle{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_Girdle] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}lls_cert_Culet{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_Culet] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_Culet] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_CuletLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_CuletLabel] }} {% else %}Culet{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_Culet] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_Diamtrs_min{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_Diamtrs_min] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_Diamtrs_min] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_Diamtrs_minLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_Diamtrs_minLabel] }} {% else %}Diameter Min{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_Diamtrs_min] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_Diamtrs_max{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_Diamtrs_max] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_Diamtrs_max] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_Diamtrs_maxLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_Diamtrs_maxLabel] }} {% else %}Diameter Max{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_Diamtrs_max] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_Diamtrs_avg{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_Diamtrs_avg] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_Diamtrs_avg] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_Diamtrs_avgLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_Diamtrs_avgLabel] }} {% else %}Diameter Avg{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_Diamtrs_avg] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_height_mm{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_height_mm] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_height_mm] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_height_mmLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_height_mmLabel] }} {% else %}Height{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_height_mm] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_height_perc{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_height_perc] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_height_perc] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_height_percLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_height_percLabel] }} {% else %}Height(%){% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_height_perc] | truncate: 15 | append: '%' }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_Crw_Agl_deg{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_Crw_Agl_deg] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_Crw_Agl_deg] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_Crw_Agl_degLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_Crw_Agl_degLabel] }} {% else %}Crown Angle{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_Crw_Agl_deg] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_Crw_Hgtperc{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_Crw_Hgtperc] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_Crw_Hgtperc] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_Crw_HgtpercLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_Crw_HgtpercLabel] }} {% else %}Crown Height (%){% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_Crw_Hgtperc] | truncate: 15 | append: '%' }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_Girdlemin{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_Girdlemin] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_Girdlemin] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_GirdleminLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_GirdleminLabel] }} {% else %}Girdle Min{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_Girdlemin] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_Girdlemax{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_Girdlemax] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_Girdlemax] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_GirdlemaxLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_GirdlemaxLabel] }} {% else %}Girdle Max{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_Girdlemax] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_Grdlavg_perc{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_Grdlavg_perc] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_Grdlavg_perc] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_Grdlavg_percLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_Grdlavg_percLabel] }} {% else %}Girdle Avg (%){% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_Grdlavg_perc] | truncate: 15 | append: '%' }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_pvln_Agl{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_pvln_Agl] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_pvln_Agl] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_pvln_AglLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_pvln_AglLabel] }} {% else %}Pavilion Angle{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_pvln_Agl] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_PvlnH_perc{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_PvlnH_perc] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_PvlnH_perc] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_PvlnH_percLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_PvlnH_percLabel] }} {% else %}Pavilion Height{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_PvlnH_perc] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_Stars_Width{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_Stars_Width] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_Stars_Width] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_Stars_WidthLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_Stars_WidthLabel] }} {% else %}Stars Width{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_Stars_Width] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_Pavil_Width{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_Pavil_Width] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_Pavil_Width] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_Pavil_WidthLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_Pavil_WidthLabel] }} {% else %}Pavil Width{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_Pavil_Width] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_GIA2005totalcutgrade{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_GIA2005totalcutgrade] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_GIA2005totalcutgrade] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_GIA2005totalcutgradeLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_GIA2005totalcutgradeLabel] }} {% else %}GIA2005 total cut grade{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_GIA2005totalcutgrade] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_GIASYM{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_GIASYM] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_GIASYM] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_GIASYMLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_GIASYMLabel] }} {% else %}GIASYM{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_GIASYM] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_hrdtotalcutgrade{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_hrdtotalcutgrade] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_hrdtotalcutgrade] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_hrdtotalcutgradeLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_hrdtotalcutgradeLabel] }} {% else %}HRD total cut grade
+                                                    {% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_hrdtotalcutgrade] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_hrdSym_totalcutgrade{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_hrdSym_totalcutgrade] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_hrdSym_totalcutgrade] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_hrdSym_totalcutgradeLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_hrdSym_totalcutgradeLabel] }} {% else %}HRDSym. total cut grade{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_hrdSym_totalcutgrade] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+                                        {%- comment -%}ls_cert_IGI_totalcutgrade{%- endcomment -%} 
+                                        {% if productMetafield[lstableContent_ls_cert_IGI_totalcutgrade] != blank %}
+                                            <tr data-tooltip="stncertshape" data-row="{{ productMetafield[lstableContent_ls_cert_IGI_totalcutgrade] | truncate: 15 | handleize }}">
+                                                <td><span class="pdp-tab-label">{% if productMetafield[lstableContent_ls_cert_IGI_totalcutgradeLabel] != blank %}{{ productMetafield[lstableContent_ls_cert_IGI_totalcutgradeLabel] }} {% else %}IGI. total cut grade{% endif %}</span></td>
+                                                <td><span class="pdp-tab-val">{{ productMetafield[lstableContent_ls_cert_IGI_totalcutgrade] | truncate: 15 }}</span></td>
+                                            </tr>
+                                        {% endif %}
+
+
+                                        
+                                    </tbody>
+                                </table>
+                            </figure>
+                        </div>
+                    </div>                
+                </div>
+               
+            {% endif %}
             </div>
+
             {% if template.suffix == 'loose-stone' %}
             <div class="product-info-gird_column stone__info">
                 <ul>
@@ -571,7 +853,7 @@
 
             </div>
             {% endif %}
-        </div>
+        
         </div>
     </div>
 </div>

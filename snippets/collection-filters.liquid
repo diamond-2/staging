@@ -4,6 +4,22 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
+{% if template.suffix != 'loose-stone-plp'%}
+<style>
+  .collection-filter-wrapper[data-id="global.ls_cert_stn_wgt_crt"],
+.collection-filter-wrapper[data-id="global.ls_cert_color"],
+.collection-filter-wrapper[data-id="global.ls_cert_clarity"],
+.collection-filter-wrapper[data-id="global.ls_cert_Polish"],
+.collection-filter-wrapper[data-id="global.ls_cert_Symmetry"],
+.collection-filter-wrapper[data-id="global.ls_cert_Fluorescence"],
+.collection-filter-wrapper[data-id="global.ls_cert_Tbl_avg_perc"],
+.collection-filter-wrapper[data-id="global.ls_cert_polish"],
+.collection-filter-wrapper[data-id="global.ls_cert_symmetry"],
+.collection-filter-wrapper[data-id="global.ls_cert_fluorescence"] {
+  display: none!important;
+}
+</style>
+{% endif %}
 <script type="text/javascript">
 
   $(function(){
@@ -367,29 +383,9 @@
     //Create Filters
     	function createFilters(){ 
           $('[data-collection-filter-section]').empty();
-          // if($('body').attr('data-template') == 'loose-stone-plp'){ 
-          //  <div class="filter-block-group" data-group="1">
-          //     <div class="filter-total-weight">
-          //       <div class="filter-group-header"><span>Total Weight</span><span><a herf="#" aria-label="">Learn more</a></span></div>
-          //       <div class="filter-group-content"></div>
-          //     </div>
-          //     <div class="filter-total-price">
-          //       <div class="filter-group-header"><span>Price (SGD)</span><span><a herf="#" aria-label="">Learn more</a></span></div>
-          //       <div class="filter-group-content"></div>
-          //     </div>
-          //   </div>
-          //   <div class="filter-block-group" data-group="2">
-          //     <div class="filter-color">
-          //       <div class="filter-group-header"><span>Color</span><span><a herf="#" aria-label="">Learn more</a></span></div>
-          //       <div class="filter-group-content"></div>
-          //     </div>
-          //     <div class="filter-clarity">
-          //       <div class="filter-group-header"><span>Clarity</span><span><a herf="#" aria-label="">Learn more</a></span></div>
-          //       <div class="filter-group-content"></div>
-          //     </div>
-          //   </div>
-
-          // } 
+          if($('body').attr('data-template') == 'loose-stone-plp'){ 
+            $('[data-collection-filter-section]').append(' <div class="filter-block-group ls-filter-wrapper range-filters" data-position="1" data-group="range-group"></div><div class="filter-block-group ls-filter-wrapper list-filters" data-position="2" data-group="list-group"></div><div class="filter-block-group ls-filter-wrapper list-filters" data-position="3" data-group="list-group"></div><div class="filter-block-group ls-filter-wrapper range-filters" data-position="4" data-group="range-group"></div>')
+          } 
           $.each(filters, function(key, val){ 
             var filterName = val.attribute;
             var filterTitle = val.title;
@@ -407,7 +403,7 @@
               if(filterVal[0].selected != undefined && filterVal[0].selected != '' && filterVal[0].selected == 'true'){
                 var checked = 'checked=checked';
               }
-              selectOption+='<div class="collection-filter-wrapper" data-filter="&amp;restrictBy[price]" data-filter-type="price">'
+              selectOption+='<div class="collection-filter-wrapper" data-filter="&amp;restrictBy[price]" data-filter-type="price" data-id="'+filterId+'">'
               selectOption += '<div name="product-type" id="'+filterId+'" class="filters-toolbar__input">';
               selectOption += '<span class="filter-option-name">'+filterTitle+'</span>';
               selectOption += '<ul class="filter-dd"> <li>';
@@ -470,14 +466,13 @@
                           var checked = 'checked=checked';
                           	  checkVal = thisVal;
                         }
-                        selectOption += '<div class="collection_filter_by_shape'+ show +' '+ disableItem +'" data-shape="shape_'+encodeURIComponent(thisVal).toLowerCase()+'">';
-                  selectOption += '<input type="checkbox"  id="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" ' + checked + ' class="visually-hidden" value="' + encodeURIComponent(thisVal) + '">';
-                  selectOption += '<label for="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" class="filter__label">';
-                    selectOption += '<img data-src="'+fileUrl+'ld_shape_'+encodeURIComponent(thisVal).toLowerCase()+'.svg" class="lazyload"><span>' + thisVal +'</span></label>';
-                  selectOption += '</div>';
+                      selectOption += '<div class="collection_filter_by_shape'+ show +' '+ disableItem +'" data-shape="shape_'+encodeURIComponent(thisVal).toLowerCase()+'">';
+                      selectOption += '<input type="checkbox"  id="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" ' + checked + ' class="visually-hidden" value="' + encodeURIComponent(thisVal) + '">';
+                      selectOption += '<label for="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" class="filter__label">';
+                      selectOption += '<img data-src="'+fileUrl+'ld_shape_'+encodeURIComponent(thisVal).toLowerCase()+'.svg" class="lazyload"><span>' + thisVal +'</span></label>';
+                      selectOption += '</div>';
                         counter++;                        
                     }
-
                   
                   });
 
@@ -574,14 +569,172 @@
                   });                  
                   selectOption  += '</ul></div>';
                   if(counter >= 1){
-                    sidebarHtml+= '<div class="collection-filter-wrapper" data-filter="&restrictBy[' + filterName + ']" data-filter-type="'+ filterName +'">' + selectOption +'</div>';
+                    sidebarHtml+= '<div class="collection-filter-wrapper" data-filter="&restrictBy[' + filterName + ']" data-filter-type="'+ filterName +'" data-id="'+filterId+'">' + selectOption +'</div>';
                   	$('[data-collection-filter-section]').append(sidebarHtml);
                   }
                 }   
                 
               }
               else {
+
                 console.log('Loose Stone filter Heree');
+
+                if(filterTitle == 'Price' || filterTitle == 'global.ls_cert_stn_wgt_crt') {
+
+              var selectOption = '';
+              selectOption += '<div class="ls-filter-wrapper range-filters filter-block-group" data-group="range-slider-group">';
+              var minPrice = parseFloat(filterVal[0].from).toFixed(0); console.log('minPrice', theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00',''));
+              var highestPrice = parseFloat(filterVal[0].to).toFixed(0); console.log('highestPrice', highestPrice);
+              var selectedMinPrice = parseFloat(filterVal[0].left).toFixed(0); console.log('selectedMinPrice',selectedMinPrice);
+              var SelectedHighestPrice = parseFloat(filterVal[0].right).toFixed(0); console.log('SelectedHighestPrice', SelectedHighestPrice);
+              if(filterVal[0].selected != undefined && filterVal[0].selected != '' && filterVal[0].selected == 'true'){
+                var checked = 'checked=checked';
+              }
+
+
+              selectOption += '<div class="filter-total-price" data-filter="&amp;restrictBy[price]" data-filter-type="price" data-id="'+filterId+'">';
+              selectOption +=  '<div class="filter-group-header"><span>Price (SGD)</span><span><a herf="#" aria-label="">Learn more</a></span></div>';
+              selectOption +=  '<div class="filter-group-content">';
+                selectOption += '<div class="slider-range-selected"><span id="collection-price-min-selected"></span><span id="collection-price-max-selected"></span></div>'
+
+              selectOption+='<span id="collection-price-min" data-price=""></span><div id="slider-range"></div> <span id="collection-price-max"  data-price=""></span>';
+              selectOption+='<input ' + checked + ' type="checkbox" data-opt-val="&restrictBy[price]=' + theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00','') + ','+ theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00','') +'" value="' + theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00','') + '-'+ theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00','') +'" id="price-val-range" class="visually-hidden" />';  
+              
+              
+              // selectOption+= '<div class="collection-content-area-left-content price__filter" style="max-width: 280px;"><div class="collection-content-area-left-content-wrapper"><div class="collection-other-list">' + selectOption +'</div></div></div>';
+              selectOption += '</div> </div></div>';
+              selectOption += '</div>';; 
+              if(minPrice != highestPrice){ 
+                // $('.collection-filters').append(sidebarHtml);
+                $('[data-collection-filter-section] [data-position="1"]').append(selectOption); 
+              };
+              if($('#slider-range .ui-slider-range').length <= 0){
+                initializingPriceSlider(minPrice, highestPrice, selectedMinPrice, SelectedHighestPrice);
+              }  
+            }
+            if(filterTitle == 'global.ls_cert_color' || filterTitle == 'global.ls_cert_clarity') {
+
+              if(filterTitle == 'global.ls_cert_color'){
+                filterTitle = 'Color';
+              }
+              if(filterTitle == 'global.ls_cert_clarity'){
+                filterTitle = 'Clarity';
+              }
+
+              console.log('ls-color filter exist ')
+              var counter = 0;
+              var selectOption = '';
+              
+              selectOption += '<div class="" data-filter="&amp;restrictBy['+filterName+']" data-filter-type="ls_cert_color" data-id="'+filterId+'">';
+              selectOption +=  '<div class="filter-group-header"><span>'+ filterTitle +'</span><span><a herf="#" aria-label="">Learn more</a></span></div>';
+              selectOption +=  '<div class="filter-group-content">';
+
+                selectOption += '<ul class="filter-dd">'
+                    $.each(filterVal, function(key, val){
+                   console.log('LSS - initiall')
+                   console.log(key);
+                   console.log(val);
+                      var disableItem = '';
+                    if(val.count >= 0){
+                      if(val.count == 0){
+                          disableItem = 'toDisabled';
+                        }
+                        var show = 'toShow';
+                        filterName=filterName.toLowerCase().replace(' ', '-'); //// console.log('Filtername==>'+filterName);
+                        var thisVal = val.value;//// console.log('thisVal == >  ' + thisVal);
+                        if(val.value.indexOf(':') > -1) {
+                          var thisValContent = val.value.split(':')[1];  
+                        }else {
+                          var thisValContent = val.value;//// console.log('thisVal == >  ' + thisVal);
+                        }                       
+
+                        var filterVal = '&restrictBy[' + filterName + ']=' + val.value;
+                        if(val.selected != undefined && val.selected != '' && val.selected == 'true'){
+                          var selected = 'selected=selected';
+                          var checked = 'checked=checked';
+                          	  checkVal = thisVal;                          
+                        }
+                        selectOption += '<li class="input-group ' + show +' '+ disableItem + '"><input type="checkbox" ' + checked +' id="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" value="' + thisVal + '" class="visually-hidden"/> <label for="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter">'+ thisValContent +'</label></li>';
+                        
+                        //<li class="input-group"> data-opt-val="' + encodeURIComponent(thisVal) + '"' + selected + '  data-value="' + filterVal + '">' + thisVal + '</li>';
+                        counter++;                        
+                    }
+                  });                  
+                  selectOption  += '</ul></div>';
+                  selectOption +=  '</div">';
+              selectOption +=  '</div">';
+                  if(counter >= 1){
+                    sidebarHtml+= '<div class="collection-filter-wrapper" data-filter="&restrictBy[' + filterName + ']" data-filter-type="'+ filterName +'" data-id="'+filterId+'">' + selectOption +'</div>';
+                    console.log(sidebarHtml);
+                  	$('[data-collection-filter-section] [data-position="2"]').append(sidebarHtml);
+                  }
+
+            }
+
+            if(filterTitle == 'global.ls_cert_Polish' || filterTitle == 'global.ls_cert_Symmetry' || filterTitle == 'global.ls_cert_Fluorescence')  {
+
+              console.log('CUt, Polish, Symmetry, Fluoresence filers')
+
+              if(filterTitle == 'global.ls_cert_Polish'){
+                filterTitle = 'Polish';
+              }
+              if(filterTitle == 'global.ls_cert_Symmetry'){
+                filterTitle = 'Symmetry';
+              }
+              if(filterTitle == 'global.ls_cert_Fluorescence'){
+                filterTitle = 'Fluorescence';
+              }
+              var counter = 0;
+              var selectOption = '';
+
+              selectOption += '<div class="" data-filter="&amp;restrictBy['+filterName+']" data-filter-type="ls_cert_color" data-id="'+filterId+'">';
+              selectOption +=  '<div class="filter-group-header"><span>'+ filterTitle +'</span><span><a herf="#" aria-label="">Learn more</a></span></div>';
+              selectOption +=  '<div class="filter-group-content">';
+
+                selectOption += '<ul class="filter-dd">'
+                    $.each(filterVal, function(key, val){
+                  console.log('LSS - initiall')
+                  console.log(key);
+                  console.log(val);
+                      var disableItem = '';
+                    if(val.count >= 0){
+                      if(val.count == 0){
+                          disableItem = 'toDisabled';
+                        }
+                        var show = 'toShow';
+                        filterName=filterName.toLowerCase().replace(' ', '-'); //// console.log('Filtername==>'+filterName);
+                        var thisVal = val.value;//// console.log('thisVal == >  ' + thisVal);
+                        if(val.value.indexOf(':') > -1) {
+                          var thisValContent = val.value.split(':')[1];  
+                        }else {
+                          var thisValContent = val.value;//// console.log('thisVal == >  ' + thisVal);
+                        }                       
+
+                        var filterVal = '&restrictBy[' + filterName + ']=' + val.value;
+                        if(val.selected != undefined && val.selected != '' && val.selected == 'true'){
+                          var selected = 'selected=selected';
+                          var checked = 'checked=checked';
+                              checkVal = thisVal;                          
+                        }
+                        selectOption += '<li class="input-group ' + show +' '+ disableItem + '"><input type="checkbox" ' + checked +' id="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" value="' + thisVal + '" class="visually-hidden"/> <label for="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter">'+ thisValContent +'</label></li>';
+                        
+                        //<li class="input-group"> data-opt-val="' + encodeURIComponent(thisVal) + '"' + selected + '  data-value="' + filterVal + '">' + thisVal + '</li>';
+                        counter++;                        
+                    }
+                  });                  
+                  selectOption  += '</ul></div>';
+                  selectOption +=  '</div">';
+              selectOption +=  '</div">';
+                  if(counter >= 1){
+                    sidebarHtml+= '<div class="collection-filter-wrapper" data-filter="&restrictBy[' + filterName + ']" data-filter-type="'+ filterName +'" data-id="'+filterId+'">' + selectOption +'</div>';
+                    console.log(sidebarHtml);
+                    $('[data-collection-filter-section] [data-position="3"]').append(sidebarHtml);
+                  }
+
+              }
+
+
+
               }
           });
 
@@ -753,6 +906,7 @@
           
             var getprodlink = prodObj[i].link,
                 prodLink = prodObj[i].link,
+                prodType = prodObj[i].product_type,
                 getproductHandle = prodObj[i].link.split('/products/')[1],
                 prodQty = prodObj[i].quantity,
                 prodTitle = prodObj[i].title,
@@ -898,12 +1052,15 @@
               productGrid += '<li class="grid__item grid__item--loose-stone-plp-template  bbb">';
               productList += '<tr class="list-view-item">';
             }else {
-              productGrid += '<li class="grid__item grid__item--solitaire-collection  aaa" data-handle="'+getproductHandle+'" data-title="'+prodTitle+'">';
+              productGrid += '<li class="grid__item grid__item--solitaire-collection  aaa" data-handle="'+getproductHandle+'" data-title="'+prodTitle+'" data-type="'+prodType+'">';
             }
-            
+
+            if(prodImages == undefined ){
+              var noImage = 'no-image'
+            }
             productGrid += '<div class="grid-view-item product-card">';
             productGrid += '<a class="grid-view-item__link grid-view-item__image-container full-width-link" href="'+getprodlink+'" style="display: none;"><span class="visually-hidden">'+prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</span></a>';
-            productGrid += '<div class="product-images-wrapper"><a class="product-full-link" href="'+getprodlink+'"> </a><div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider '+prodImgSliderDyn+'>';
+            productGrid += '<div class="product-images-wrapper '+ noImage +'"><a class="product-full-link" href="'+getprodlink+'"> </a><div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider '+prodImgSliderDyn+'>';
             // console.log('ProductImageLength', prodImages.length);
 
                if(prodImages != undefined ){
