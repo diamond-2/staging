@@ -1,0 +1,57 @@
+<div class="benefits-container">
+    <div class="inner-benefits-section">
+        <div class="left">
+          <p class="benefits-heading">{{ section.settings.main_heading }}</p>
+          <p class="benefits-subheading">{{ section.settings.main_subheading }}</p>
+          <div class="benefits-content">{{ section.settings.main_content }}</div>
+        </div>
+
+    {% if section.settings.banner != blank %}
+        <div class="right">
+          <img src="{{ section.settings.banner | img_url }}" class="right-banner"/>
+        </div>
+    {% endif %}
+
+    </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Ambassador Benefits",
+  "settings": [
+    {
+      "id": "main_heading",
+      "type": "text",
+      "label": "Heading"
+    },
+    {
+      "id": "main_subheading",
+      "type": "text",
+      "label": "Sub Heading"
+    },
+    {
+      "id": "main_content",
+      "type": "html",
+      "label": "Content"
+    },
+    {
+      "id": "banner",
+      "type": "image_picker",
+      "label": "Banner"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+.benefits-container{padding-left:100px;padding-right:100px;}
+.inner-benefits-section{display:flex;}
+p.benefits-heading{padding-bottom:90px;margin-bottom:0px;max-width:785px;font-family: Spectral;font-style: normal;font-weight: 275;font-size: 45px;line-height: 108%;text-transform: uppercase;color:#6C1D45;}
+p.benefits-subheading{padding-bottom:90px;margin-bottom:0px;max-width:825px;font-family: Montserrat;font-style: normal;font-weight: 300;font-size: 26px;line-height: 108%;color: #000000;}
+div.benefits-content{font-family: Montserrat;font-style: normal;font-weight: 300;font-size: 26px;line-height: 108%;color: #000000;}
+.left{max-width: 825px;float: left;padding-right: 70px;}
+.right{max-width: 825px;float: right;padding-left: 0px;}
+.right img{width:825px;max-width:100%;}
+.left .benefits-content li{list-style: none;background-image: url(https://cdn.shopify.com/s/files/1/0575/2681/2840/files/Ellipse_150.png?v=1642679884);background-repeat: no-repeat;background-size: 20px;position: relative;padding: 0px 0px 30px 30px;}
+</style>

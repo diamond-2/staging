@@ -1,0 +1,63 @@
+<div class="enroll-banner">
+    <div class="enroll-container">
+        <p class="enroll-inner-heading">{{ section.settings.banner_heading }}</p>
+        <p class="enroll-inner-subheading">{{ section.settings.banner_subheading }}</p>
+        <a class="button-container" href="{{ section.settings.button_link }}">
+            <button class="enroll-btn">{{ section.settings.button_text }}</button>
+        </a>
+    </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Enroll banner Content",
+  "settings": [
+    {
+      "id": "enroll_banner_desktop",
+      "type": "image_picker",
+      "label": "Enroll Banner Desktop"
+    },
+    {
+      "id": "enroll_banner_mobile",
+      "type": "image_picker",
+      "label": "Enroll Banner Desktop"
+    },
+    {
+      "id": "banner_heading",
+      "type": "text",
+      "label": "Heading over banner"
+    },
+    {
+      "id": "banner_subheading",
+      "type": "text",
+      "label": "Sub-heading over banner"
+    },
+    {
+      "id": "button_text",
+      "type": "text",
+      "label": "Button Text"
+    },
+    {
+      "id": "button_link",
+      "type": "url",
+      "label": "Button Link"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+p.enroll-inner-heading{max-width:490px;font-family: Spectral;font-style: normal;font-weight: 275;font-size: 45px;line-height: 108%;text-transform: uppercase;color: #FFFFFF;padding-bottom:90px; margin-bottom:0px;}
+p.enroll-inner-subheading{max-width:530px;padding-bottom:90px;margin-bottom:0px;font-family: Montserrat;font-style: normal;font-weight: 300;font-size: 26px;line-height: 108%;color: #FFFFFF;}
+.enroll-btn{background: #6679CC;border: 1px solid #6679CC;padding:23px 32px;text-align: center;font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 22px;line-height: 108%;text-transform: uppercase;color: #FFFFFF;}
+.enroll-container{padding-top:296px;padding-left:100px;}
+
+@media screen and (min-width: 768px){
+.enroll-banner{ background:url({{ section.settings.enroll_banner_desktop | img_url: 'master' }});background-size: cover;background-repeat:no-repeat;height: 780px;} 
+}	
+
+@media screen and (max-width: 767px){
+.enroll-banner{background:url({{ section.settings.enroll_banner_mobile | img_url: 'master' }});background-repeat:no-repeat;height: 250px;background-size: cover;}
+}
+</style>
