@@ -1,12 +1,12 @@
 <div class="responsibility-content">
     <div class="responsibility-inner-box">
-        <p class="small-heading">{{ section.settings.heading }}</p>
+        <p class="small-heading-new">{{ section.settings.heading }}</p>
         <p class="small-content">{{ section.settings.sub-heading }}</p>
 
             <div class="inner-content">
                {% for block in section.blocks %} 
                 <div class="inner-test">
-                    <p class="inner-heading">{{ block.settings.inner-heading }}</p>
+                    <p class="inner-heading-res">{{ block.settings.inner-heading }}</p>
                     <div class="inner-texts">{{ block.settings.inner-content }}</div>
                 </div>
                 {% endfor %}
@@ -54,12 +54,63 @@
 
 <style>
 .responsibility-content{padding-right:100px;padding-left:100px;padding-top:100px;}
-.small-heading{display:block;text-align:center;margin:0 auto;max-width:550px;padding-bottom:50px;margin-bottom:0px;font-family: Spectral;font-style: normal;font-weight: 275;font-size: 45px;line-height: 108%;text-align: center;text-transform: uppercase;color: #6C1D45;}
-.small-content{display:block;text-align:center;margin:0 auto;max-width:826px;padding-bottom:50px;margin-bottom:0px;font-family: Montserrat;font-style: normal;font-weight: 300;font-size: 26px;line-height: 108%;text-align: center;color: #000000;}
+p.small-heading-new{display:block;text-align:center;margin:0 auto;max-width:550px;padding-bottom:50px;margin-bottom:0px;font-family: 'Spectral', serif;font-style: normal;font-weight: 275;font-size: 45px;line-height: 108%;text-align: center;text-transform: uppercase;color: #6C1D45;}
+.small-content{display:block;text-align:center;margin:0 auto;max-width:826px;padding-bottom:50px;margin-bottom:0px;font-family: 'Montserrat', sans-serif;font-style: normal;font-weight: 300;font-size: 26px;line-height: 108%;text-align: center;color: #000000;}
 .inner-content{display:flex;flex-direction: row;flex-wrap: wrap;}
-.inner-test {flex: 1;flex-basis: 30%;}
-p.inner-heading{padding-bottom:50px;margin-bottom:0px;font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 28px;line-height: 34px;letter-spacing: 0.02em;color: #000000;}
-div.inner-content{font-family: Montserrat;font-style: normal;font-weight: 300;font-size: 26px;line-height: 108%;color: #000000;}
+.inner-test {flex: 1;flex-basis: 30%;margin-bottom:50px;}
+p.inner-heading-res{padding-bottom:50px;margin-bottom:0px;font-family: 'Montserrat', sans-serif;font-style: normal;font-weight: normal;font-size: 28px;line-height: 34px;letter-spacing: 0.02em;color: #000000;}
+div.inner-content{font-family: 'Montserrat', sans-serif;font-style: normal;font-weight: 300;font-size: 26px;line-height: 108%;color: #000000;}
+div.inner-texts p{font-family: 'Montserrat', sans-serif;font-style: normal;font-weight: 300;font-size: 26px;line-height: 108%;display: flex;align-items: center;color: #000000;margin-bottom:0px;max-width:513px;}
 
+
+@media screen and (max-width: 767px){
+.responsibility-content {padding-right: 10px;padding-left: 10px;padding-top: 50px;}
+p.small-heading-new{font-size:25px !important;padding-bottom:25px !important;}
+p.small-content{font-size:15px !important;padding-bottom:25px !important;line-height:150% !important;}
+.inner-test {flex: 0;flex-basis: 100%;}
+p.inner-heading-res{padding-top:10px;padding-bottom:10px;font-size:18px;}
+.inner-texts p{margin-bottom:5px;font-size:15px;line-height:20px;}
+div.inner-texts p{font-size:15px;}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px){
+  .responsibility-content {padding-right: 25px;padding-left: 25px;padding-top: 50px;}
+  p.small-heading-new{max-width: 450px;padding-bottom: 25px;font-size:32px;}
+  p.small-content{font-size:18px !important;padding-bottom:25px !important;}
+  div.inner-content{font-size:18px;}
+  .inner-test {flex: 1;flex-basis: 50%;margin-bottom: 25px;padding-right: 10px;padding-left: 10px;}
+  p.inner-heading-res{padding-bottom: 15px;font-size:18px;}
+  div.inner-texts p{font-size:16px;}
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1220px){
+  .responsibility-content {padding-right: 25px;padding-left: 25px;padding-top: 50px;}
+  p.small-heading-new{max-width: 450px;padding-bottom: 25px;font-size:32px;}
+  p.small-content{font-size:21px !important;padding-bottom:25px !important;}
+  div.inner-content{font-size:21px;}
+  .inner-test {flex: 1;flex-basis: 50%;margin-bottom: 25px;padding-right: 10px;padding-left: 10px;}
+  p.inner-heading-res{padding-bottom: 15px;font-size:21px;}
+  div.inner-texts p{font-size:18px;}
+}
+
+@media screen and (min-width: 1221px) and (max-width: 1440px){
+  .responsibility-content {padding-right: 25px;padding-left: 25px;padding-top: 50px;}
+  p.small-heading-new{max-width: 450px;padding-bottom: 25px;font-size:32px;}
+  p.small-content{font-size:21px !important;padding-bottom:25px !important;}
+  div.inner-content{font-size:21px;}
+  .inner-test {flex: 1;flex-basis: 30%;margin-bottom: 25px;padding-right: 10px;padding-left: 10px;}
+  p.inner-heading-res{padding-bottom: 15px;font-size:21px;}
+  div.inner-texts p{font-size:18px;}
+}
+
+@media screen and (min-width: 1441px) and (max-width: 1900px){
+  .responsibility-content {padding-right: 25px;padding-left: 25px;padding-top: 50px;}
+  p.small-heading-new{max-width: 450px;padding-bottom: 50px;font-size:30px;}
+  p.small-content{font-size:16px !important;padding-bottom:50px !important;}
+  div.inner-content{font-size:16px;}
+  .inner-test {flex: 1;flex-basis: 30%;margin-bottom: 25px;padding-right: 10px;padding-left: 10px;}
+  p.inner-heading-res{padding-bottom: 15px;font-size:18px;}
+  div.inner-texts p{font-size:16px;}
+}
 
 </style>
