@@ -1,8 +1,14 @@
 
-
+{% if customer %}
+<div class="account_section_wrapper padding_t padding_t40">
+  <div class="container_fluid">
+  {% include 'account-top-section' %}
+  
+{% endif %}
 {% assign accountImage = settings.account_right_image %}
+
 <div class="register-page-wrapper">
-  <div class="dia-container">
+  <div class="{% if customer %}container_fluid_inner{% else %} dia-container{% endif %}">
     <div class="register-page-inner-wrapper">
       <div class="register-form-header">
         <h1>{{ 'Sign Up' }}</h1>
@@ -35,7 +41,9 @@
       </div>
     </div>
   </div>
+
 </div>
+{% if customer %}</div></div>{% endif %}
 <script>
 
   document.addEventListener('DOMContentLoaded', function(event) {

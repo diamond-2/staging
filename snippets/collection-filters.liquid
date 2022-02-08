@@ -100,6 +100,15 @@
       $('.no-result').css('display', 'none');
     });
 
+    // Toogle Advance Loose Stone filters
+    $(document).on('click', '#showAdvanceFilters', function(){
+      $('.filter-block-group[data-advance-filter]').toggleClass('visible-advance-filter');
+      $(this).text(function(i, v){
+          return v === 'Advance Filters' ? 'Show Less' : 'Advance Filters'
+      })
+    });
+
+
     // Clear filter Event
     $(document).on('click', '[data-clear-filter]', function(){
       var getKey = $(this).data('key');      
@@ -178,38 +187,15 @@
     }
     
     $(document).on('click', '.dynamicloadMore-btn', function(){
-      // var currentPage = Number($('.dynamic-pagination span a.active').text()); console.log('currentpagenumberacxitvee', currentPage)
-      // var currentPage = 1
+      
       var currentPageOld = Number($(document).find('[data-pclimit]').text());
-      console.log( 'old printe Items ', currentPageOld)
-      // $('.dynamic-pagination span a.active').next().addClass('active').siblings().removeClass('active');
-      // console.log($('.dynamic-pagination span a.active').next().text());
-   //console.log('loadmoreitems hits events ')
-   //console.log('loadmoreitems hits maxResults == >'+maxResults)
+      
       
       $('[data-collection-listing-container]').removeClass('inital-load');  
       LoadMoreItems(); 
-      // setTimeout(function(){
         var currentShowItems = Number($(document).find('[data-pclimit]').text()); console.log('Currently show Items == >' + currentShowItems);
         maxResults = 16;
-        // var currentPage = Number($('.dynamic-pagination span a.active').text());
-    //  console.log("updated Current page items start from", currentShowItems + maxResults);
-    //  console.log('activepaginationnumber',  $('.dynamic-pagination span a.active').next().text());
-        // console.log('currentpagenumberacxitvee', currentPage)
         var Startitems = currentPageOld;
-        // if(currentPage > 1) {
-        //     currentPage = currentPage; // console.log(currentPage);
-        //     // var Startitems = maxResults*currentPage;// console.log("startItems==>>" + Startitems);      
-        //     var Startitems = currentPageOld;// console.log("startItems==>>" + Startitems);      
-        //   } else {
-        //     if(currentPage == 1) {
-        //     currentPage = currentPage; // console.log(currentPage);
-        //     // var Startitems = maxResults*currentPage;// console.log("startItems==>>" + Startitems);      
-        //     var Startitems = currentPageOld;// console.log("startItems==>>" + Startitems);      
-        //   } else {
-        //     var Startitems = 0;
-        //   }            
-        //   }
           console.log('querystging Start index', Startitems)
 
           var newQueryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex='+ Startitems +'&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
@@ -239,8 +225,7 @@
               $(document).find('.dynamic-loadmore-btn-box, .dynamicloadMore-btn').hide();
               $(document).find('.dynamic-loader-spiner').hide();
             }        
-          },2000);
-      // },500)      
+          },2000);   
     });
     searchaniseFiltersOnload(queryString);
     function searchaniseFiltersOnload(queryString) {
@@ -374,8 +359,7 @@
 
         }       
       });
-    }
-    
+    }   
     
      
 
@@ -384,10 +368,11 @@
     	function createFilters(){ 
           $('[data-collection-filter-section]').empty();
           if($('body').attr('data-template') == 'loose-stone-plp'){ 
-            $('[data-collection-filter-section]').append(' <div class="filter-block-group ls-filter-wrapper range-filters" data-position="1" data-group="range-group"></div><div class="filter-block-group ls-filter-wrapper list-filters" data-position="2" data-group="list-group"></div><div class="filter-block-group ls-filter-wrapper list-filters" data-position="3" data-group="list-group"></div><div class="filter-block-group ls-filter-wrapper range-filters" data-position="4" data-group="range-group"></div>')
+            $('[data-collection-filter-section]').append(' <div class="filter-block-group ls-filter-wrapper range-filters" data-position="1" data-group="range-group"></div><div class="filter-block-group ls-filter-wrapper list-filters" data-position="2" data-group="list-group"></div><div class="filter-block-group ls-filter-wrapper list-filters" data-advance-filter data-position="3" data-group="list-group"></div><div class="filter-block-group ls-filter-wrapper range-filters" data-advance-filter data-position="4" data-group="range-group"></div>')
           } 
           $.each(filters, function(key, val){ 
             var filterName = val.attribute;
+            console.log('FilterName ==>', filterName);
             var filterTitle = val.title;
             var filterId = filterTitle.toLowerCase().replace(' ', '-');
             var filterVal = val.buckets;
@@ -473,7 +458,6 @@
                       selectOption += '</div>';
                         counter++;                        
                     }
-                  
                   });
 
                   if(counter >= 1){
@@ -515,27 +499,6 @@
                   if(filterTitle == 'current_variant.dia_tab1_frc_stn_total_crt_wt'){
                     filterTitle = 'CARAT WEIGHT(CT. TW.)';
                   }
-
-                  // selectOption += '<select name="product-type" id="'+filterId+'" class="filters-toolbar__input">';
-                  
-                  // selectOption += '<option data-opt-val="" value="" selected="selected">'+filterTitle+'</option>';          
-                  // $.each(filterVal, function(key, val){
-                  //   if(val.count > 0){
-                  //       var show = 'toShow';
-                  //       filterName=filterName.toLowerCase().replace(' ', '-'); //// console.log('Filtername==>'+filterName);
-                  //       var thisVal = val.value;//// console.log('thisVal == >  ' + thisVal);
-                  //       var filterVal = '&restrictBy[' + filterName + ']=' + val.value;
-                  //       if(val.selected != undefined && val.selected != '' && val.selected == 'true'){
-                  //         var selected = 'selected=selected';
-                  //             checked = 'checked=checked';
-                  //         	  checkVal = thisVal;
-                  //       }
-                  //       selectOption += '<option data-opt-val="' + encodeURIComponent(thisVal) + '" ' + selected + ' value="' + filterVal + '">' + thisVal + '</option>';
-                  //       counter++;                        
-                  //   }
-                  // });
-                  // selectOption  += '</select><input type="checkbox" id="'+filterId+'-filter" value="' + checkVal + '" ' + checked + ' class="visually-hidden" />';
-
                   selectOption += '<div name="product-type" id="'+filterId+'" class="filters-toolbar__input">';
                     selectOption += '<span class="filter-option-name">'+filterTitle+'</span>';
                     selectOption += '<ul class="filter-dd">'
@@ -579,7 +542,53 @@
 
                 console.log('Loose Stone filter Heree');
 
-                if(filterTitle == 'Price' || filterTitle == 'global.ls_cert_stn_wgt_crt') {
+                if(filterTitle == 'global.ls_cert_Shape'){
+              var counter = 0;
+                  var selectOptionLabel = '<div class="filter-by-label">Shape <span><a href="/pages/gemstone-cuts" aria-label="Learn more about shapes">Learn More &gt;</a></span></div>'
+                  var selectOption = '';	
+              	  // var checked = '';
+                  var checkVal = '';
+                  var fileUrl = 'https://cdn.shopify.com/s/files/1/0575/2681/2840/files/';
+                  if(filterTitle == 'global.shape_filter'){
+                    filterTitle = 'Shape';
+                  }
+                  filterId = filterId.replace('global.', '');
+                  $.each(filterVal, function(key, val){
+                    var disableItem = '';
+
+                    if(val.count >= 0){
+                   //console.log('initialfilter22')
+                        if(val.count == 0){
+                          disableItem = 'toDisabled';
+                        }
+                        var show = 'toShow';
+                        filterName=filterName.toLowerCase().replace(' ', '-'); 
+                        var thisVal = val.value;
+                        var filterVal = '&restrictBy[' + filterName + ']=' + val.value;
+                        if(val.selected != undefined && val.selected != '' && val.selected == 'true'){
+                          var selected = 'selected=selected';
+                          var checked = 'checked=checked';
+                          	  checkVal = thisVal;
+                        }
+                      selectOption += '<div class="collection_filter_by_shape'+ show +' '+ disableItem +'" data-shape="shape_'+encodeURIComponent(thisVal).toLowerCase()+'">';
+                      selectOption += '<input type="checkbox"  id="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" ' + checked + ' class="visually-hidden" value="' + encodeURIComponent(thisVal) + '">';
+                      selectOption += '<label for="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" class="filter__label">';
+                      selectOption += '<img data-src="'+fileUrl+'ld_shape_'+encodeURIComponent(thisVal).toLowerCase()+'.svg" class="lazyload"><span>' + thisVal +'</span></label>';
+                      selectOption += '</div>';
+                        counter++;                        
+                    }
+                  
+                  });
+
+                  if(counter >= 1){
+                    sidebarHtml+= '<div class="collection-filter-wrapper" data-filter="&restrictBy[' + filterName + ']" data-filter-type="shape-filter">' + selectOption +'</div>';
+                  	$('[data-collection-filter-section]').prepend(sidebarHtml);
+                    $('[data-collection-filter-section]').prepend(selectOptionLabel);
+                  }
+
+            }
+
+                if(filterTitle == 'Price') {
 
               var selectOption = '';
               selectOption += '<div class="ls-filter-wrapper range-filters filter-block-group" data-group="range-slider-group">';
@@ -592,7 +601,7 @@
               }
 
 
-              selectOption += '<div class="filter-total-price" data-filter="&amp;restrictBy[price]" data-filter-type="price" data-id="'+filterId+'">';
+              selectOption += '<div class="filter-total-price collection-filter-wrapper" data-filter="&amp;restrictBy[price]" data-filter-type="price" data-id="'+filterId+'">';
               selectOption +=  '<div class="filter-group-header"><span>Price (SGD)</span><span><a herf="#" aria-label="">Learn more</a></span></div>';
               selectOption +=  '<div class="filter-group-content">';
                 selectOption += '<div class="slider-range-selected"><span id="collection-price-min-selected"></span><span id="collection-price-max-selected"></span></div>'
@@ -611,6 +620,54 @@
               if($('#slider-range .ui-slider-range').length <= 0){
                 initializingPriceSlider(minPrice, highestPrice, selectedMinPrice, SelectedHighestPrice);
               }  
+            }
+
+            if(filterTitle == 'global.ls_cert_stn_wgt_crt') {
+              var selectOption = '';
+              console.log('cert_Stn_wgtfilterVal==> ', filterVal);
+              var lowest = Number.POSITIVE_INFINITY;
+              var highest = Number.NEGATIVE_INFINITY;
+              var tmp;
+              for (var i=filterVal.length-1; i>=0; i--) {
+                  tmp = filterVal[i].value;
+                  if (tmp < lowest) lowest = tmp;
+                  if (tmp > highest) highest = tmp;
+              }
+              console.log(highest, lowest);
+
+
+
+              selectOption += '<div class="ls-filter-wrapper range-filters filter-block-group" data-group="range-slider-group">';
+              var minVal = lowest; //console.log('minPrice', theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00',''));
+              var maxVal = highest //console.log('highestPrice', highestPrice);
+              var selectedMinVal = lowest; //console.log('selectedMinPrice',selectedMinPrice);
+              var selectedMaxVal = highest; //console.log('SelectedHighestPrice', SelectedHighestPrice);
+              if(filterVal[0].selected != undefined && filterVal[0].selected != '' && filterVal[0].selected == 'true'){
+                var checked = 'checked=checked';
+              }
+
+
+              selectOption += '<div class="filter-total-weight collection-filter-wrapper" data-filter="&amp;restrictBy[filter_metafield_216755d73301b7dbf39d68e2cf6ffbee]" data-filter-type="common-range" data-id="'+filterId+'">';
+              selectOption +=  '<div class="filter-group-header"><span>Total Weight</span><span><a herf="#" aria-label="">Learn more</a></span></div>';
+              selectOption +=  '<div class="filter-group-content">';
+                selectOption += '<div class="slider-range-selected"><span id="collection-val-min-selected" data-collection-val-min-selected></span><span id="collection-val-max-selected" data-collection-val-max-selected></span></div>'
+
+              selectOption+='<span id="collection-val-min" data-collection-val-min data-value=""></span><div data-common-slider-range id="slider-range_'+filterTitle.split('global.')[1]+'"></div> <span id="collection-val-max" data-collection-val-max  data-value=""></span>';
+              selectOption+='<input ' + checked + ' type="checkbox" data-opt-val="&restrictBy[filter_metafield_216755d73301b7dbf39d68e2cf6ffbee]=' + minVal + ','+ maxVal +'" value="' + minVal + '-'+ maxVal +'" id="ls_cert_stn_wgt_crt-val-range" data-common-val-range class="visually-hidden" />';  
+              
+              
+              // selectOption+= '<div class="collection-content-area-left-content price__filter" style="max-width: 280px;"><div class="collection-content-area-left-content-wrapper"><div class="collection-other-list">' + selectOption +'</div></div></div>';
+              selectOption += '</div> </div></div>';
+              selectOption += '</div>';; 
+              if(minVal != maxVal){ 
+                // $('.collection-filters').append(sidebarHtml);
+                $('[data-collection-filter-section] [data-position="1"]').append(selectOption); 
+              };
+              console.log(minVal +'<==>'+maxVal +'<==>'+ selectedMinVal +'<==>'+ selectedMaxVal);
+              if($('[data-common-slider-range] .ui-slider-range').length <= 0){
+                // initializingPriceSlider(minPrice, highestPrice, selectedMinPrice, SelectedHighestPrice);
+                initializingRangeSlider(minVal, maxVal, selectedMinVal, selectedMaxVal, 'filter_metafield_216755d73301b7dbf39d68e2cf6ffbee');
+              }
             }
             if(filterTitle == 'global.ls_cert_color' || filterTitle == 'global.ls_cert_clarity') {
 
@@ -631,9 +688,9 @@
 
                 selectOption += '<ul class="filter-dd">'
                     $.each(filterVal, function(key, val){
-                   console.log('LSS - initiall')
-                   console.log(key);
-                   console.log(val);
+                   //console.log('LSS - initiall')
+                   //console.log(key);
+                   //console.log(val);
                       var disableItem = '';
                     if(val.count >= 0){
                       if(val.count == 0){
@@ -665,7 +722,7 @@
               selectOption +=  '</div">';
                   if(counter >= 1){
                     sidebarHtml+= '<div class="collection-filter-wrapper" data-filter="&restrictBy[' + filterName + ']" data-filter-type="'+ filterName +'" data-id="'+filterId+'">' + selectOption +'</div>';
-                    console.log(sidebarHtml);
+                    //console.log(sidebarHtml);
                   	$('[data-collection-filter-section] [data-position="2"]').append(sidebarHtml);
                   }
 
@@ -693,9 +750,9 @@
 
                 selectOption += '<ul class="filter-dd">'
                     $.each(filterVal, function(key, val){
-                  console.log('LSS - initiall')
-                  console.log(key);
-                  console.log(val);
+                 // console.log('LSS - initiall')
+                  //console.log(key);
+                  //console.log(val);
                       var disableItem = '';
                     if(val.count >= 0){
                       if(val.count == 0){
@@ -727,7 +784,7 @@
               selectOption +=  '</div">';
                   if(counter >= 1){
                     sidebarHtml+= '<div class="collection-filter-wrapper" data-filter="&restrictBy[' + filterName + ']" data-filter-type="'+ filterName +'" data-id="'+filterId+'">' + selectOption +'</div>';
-                    console.log(sidebarHtml);
+                   // console.log(sidebarHtml);
                     $('[data-collection-filter-section] [data-position="3"]').append(sidebarHtml);
                   }
 
@@ -771,6 +828,13 @@
               var SelectedHighestPrice = parseFloat(filterVal[0].right).toFixed(0); console.log('SelectedHighestPrice', SelectedHighestPrice);              
                 initializingPriceSlider(minPrice, highestPrice, selectedMinPrice, SelectedHighestPrice);
               
+            } else if(filterTitle == 'global.ls_cert_stn_wgt_crt'){
+              var selectOption = '';
+              var minVal = filterVal[0]; console.log('minVal', minVal);
+              var maxVal = filterVal[0]; console.log('maxVal', maxVal);
+              var selectedMinVal = filterVal[0]; console.log('selectedMinVal',selectedMinVal);
+              var SelectedMaxVal = filterVal[0]; //console.log('SelectedHighestVal', SelectedHighestVal);              
+              //initializingRangeSlider(minVal, maxVal, selectedMinVal, SelectedMaxVal, 'filter_metafield_216755d73301b7dbf39d68e2cf6ffbee');
             } else {
           var filterVal = v.buckets;
           $.each(filterVal, function(key, val){
@@ -819,9 +883,13 @@
             var minPriceValue = '';
             var maxPriceValue = '';
             var FinalpriceValue = '';
+            var rangeValue = '';
+            var minVal = '';
+            var maxVal ='';
+            var FinalValue = '';
 
          //console.log('iiii', i);
-         //console.log('VId', v.id);
+         console.log('VId-------------', v.id);
          //console.log('VValue',v.value);
          //console.log('VVVVV',v);
             if(v.id == 'price-val-range') {
@@ -832,7 +900,19 @@
               maxPriceValue = parseInt(maxPriceValue)*100;
               FinalpriceValue = theme.Currency.formatMoney(minPriceValue, theme.moneyFormat).replace('.00','') +', '+ theme.Currency.formatMoney(maxPriceValue, theme.moneyFormat).replace('.00','');
               activeFilter += '<button data-clear-filter="" class="active-filter ere" data-value="'+v.value+'" data-key="'+v.id+'" aria-label="Clear '+v.value+' filter">'+FinalpriceValue+'<span class="clear-filter" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0575/2681/2840/files/close-brown.svg?v=1638208068" alt="Close Filter" /></span></button>';              
-            } else {
+            } else if( v.id == 'ls_cert_stn_wgt_crt-val-range'){
+              console.log('VVVVVVVVVVVVVVV==>')
+              console.log(v.value);
+              rangeValue = v.value.split('[filter_metafield_216755d73301b7dbf39d68e2cf6ffbee]=')[1];
+              minVal =  rangeValue.split(',')[0];
+              maxVal =  rangeValue.split(',')[1];
+              // minPriceValue = parseInt(minPriceValue)*100;
+              // maxPriceValue = parseInt(maxPriceValue)*100;
+              FinalValue = minVal+', '+ maxVal;
+              activeFilter += '<button data-clear-filter="" class="active-filter ere" data-value="'+v.value+'" data-key="'+v.id+'" aria-label="Clear '+v.value+' filter">'+FinalValue+'<span class="clear-filter" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0575/2681/2840/files/close-brown.svg?v=1638208068" alt="Close Filter" /></span></button>';   
+              
+            }
+            else {
               activeFilter += '<button data-clear-filter="" class="active-filter ere" data-value="'+v.value+'" data-key="'+v.id+'" aria-label="Clear '+v.value+' filter">'+v.value+'<span class="clear-filter" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0575/2681/2840/files/close-brown.svg?v=1638208068" alt="Close Filter" /></span></button>';
             }
             
@@ -988,14 +1068,15 @@
               if(_thistags[i].includes('LDSHAPE:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
               if(_thistags[i].includes('LDCOLOR:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
 
-              if(_thistags[i].includes('LDSHAPE:')){ldListTableContent += '<td class="shape_td"><a href="{{ product.url }}"><img src="//cdn.shopify.com/s/files/1/0575/2681/2840/t/2/assets/list_360.png" alt="360 View" /><span class="text">'+tagVal+'</span>';}
-              ldListTableContent += ItemPrice;
+              if(_thistags[i].includes('SHAPE:')){ldListTableContent += '<td class="shape_td"><a href="'+prodLink+'"><img src="//cdn.shopify.com/s/files/1/0575/2681/2840/t/2/assets/list_360.png" alt="360 View" /><span class="text">'+tagVal+'</span>';}
+              
               if(_thistags[i].includes('LDCT:')){ldListTableContent += '<td class="care-tdt">'+tagVal+'</td>';}
               if(_thistags[i].includes('LDCOLOR:')){ldListTableContent += '<td class="color_td">'+tagVal+'</td>';}
               if(_thistags[i].includes('LDPOLISH:')){ldListTableContent += '<td class="cut_td">'+tagVal+'</td>';}
               if(_thistags[i].includes('LDCLARITY:')){ldListTableContent += '<td class="clarity_td">'+tagVal+'</td>';}
               }
             })
+            ldListTableContent += ItemPrice;
             ldGridContent += '</div>';
             ldGridContentMob += '<div class="product-price-card-row show_mobile">';
               ldGridContentMob += '<div class="r1">';
@@ -1083,8 +1164,7 @@
                   productGrid += '</tbody></table>';
                   productGrid += '</div>'
                   productGrid += '</div>';
-                  productList += '<td class="wishlist_td"><a href="#"><span class="wishlist-Icon"></span>></a></td>';
-                  productList += '<td class="shape_td"><a href="{{ product.url }}"><img src="//cdn.shopify.com/s/files/1/0575/2681/2840/t/2/assets/list_360.png" alt="360 View" /><span class="text">'+jwGridTitle+'</span></a></td>';
+                  productList += '<td class="wishlist_td"><a href="#"><span class="wishlist-Icon"><svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.9542 3.14027C18.2213 1.69531 16.11 0.513075 13.6542 1.2014C12.4807 1.52703 11.4568 2.22537 10.7499 3.1823C10.0429 2.22537 9.01906 1.52703 7.84555 1.2014C5.38425 0.523584 3.27847 1.69531 2.54555 3.14027C1.51727 5.16321 1.9439 7.43836 3.81448 9.90266C5.28032 11.831 7.37516 13.7857 10.4162 16.0555C10.5123 16.1276 10.6307 16.1667 10.7526 16.1667C10.8745 16.1667 10.9929 16.1276 11.089 16.0555C14.1246 13.7909 16.2249 11.852 17.6907 9.90266C19.5559 7.43836 19.9825 5.16321 18.9542 3.14027Z" fill="white" stroke="currentColor" stroke-width="2"></path>    </svg></span> </a></td>';
                   productList += ldListTableContent;
                   productList += '</tr>';
                 }
@@ -1192,6 +1272,49 @@
           });
           $( "#collection-price-min" ).text( theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00',''));
           $( "#collection-price-max" ).text( theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00',''));
+          
+
+          // if(parseFloat(selectedMin) > parseFloat(minPrice) || parseFloat(selectedMax) < parseFloat(highestPrice)){
+          //   $('[data-filter-type="price"]').find('.slider-range-selected').append('<i class="selRange">(SGD ' + selectedMin +' - SGD ' + selectedMax + ')</i>');
+          // }      
+        }
+    	//Initialize Price Slider Ends
+
+      //Initialize common Range Slider
+    	function initializingRangeSlider(minVal, maxVal, selectedMinVal, selectedMaxVal, filterName){
+       console.log(minVal,'--', maxVal,'--', selectedMinVal,'--', selectedMaxVal);
+          var getMinVal = minVal;
+          var getMaxVal = maxVal;
+            // $('#price-min-val').val(theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00',''));
+            // $('#price-max-val').val(theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00',''));      	
+            $( "[data-common-slider-range]" ).slider({
+            range: true,
+            min: parseFloat(getMinVal),
+            max: parseFloat(getMaxVal),
+            values: [ selectedMinVal, selectedMaxVal ],
+            slide: function( event, ui ) { 
+              $( "#collection-val-min" ).text( getMinVal).attr('data-value',getMinVal);
+              $( "#collection-val-max" ).text( getMaxVal).attr('data-value',getMaxVal);
+              $('[data-filter-type="common-range"]').find('.slider-range-selected .span').text('');
+    			// if(parseFloat(ui.values[ 0 ].toFixed(2)) > parseFloat(minPrice) || parseFloat(ui.values[ 1 ].toFixed(2)) < parseFloat(highestPrice)){
+            $('[data-filter-type="common-range"]').find('.slider-range-selected #collection-val-min-selected').text(ui.values[ 0 ]);
+            $('[data-filter-type="common-range"]').find('.slider-range-selected #collection-val-max-selected').text(ui.values[ 1 ]);
+            
+            //.append('<i class="selRange">(SGD' + ui.values[ 0 ].toFixed(2) +' - SGD' + ui.values[ 1 ].toFixed(2) + ')</i>');
+              priceSelected = '&restrictBy[filter_metafield_216755d73301b7dbf39d68e2cf6ffbee]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ];
+    			// }    
+            },
+            stop: function( event, ui ) {
+              // $('[data-filter-type="price"]').find('.slider-range-selected .selRange').remove();
+              $('[data-common-val-range]').attr('data-opt-val', '&restrictBy[filter_metafield_216755d73301b7dbf39d68e2cf6ffbee]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ]).val('&restrictBy[filter_metafield_216755d73301b7dbf39d68e2cf6ffbee]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ]).attr('checked', 'checked').change(); 
+              // if(parseFloat(selectedMin) > parseFloat(minPrice) || parseFloat(selectedMax) < parseFloat(highestPrice)){
+              //   $('[data-filter-type="price"]').find('.slider-range-selected').append('<i class="selRange">(SGD ' + selectedMin +' - SGD ' + selectedMax + ')</i>');
+              // } 
+              // consol
+            }
+          });
+          $( "#collection-val-min" ).text( getMinVal);
+          $( "#collection-val-max" ).text( getMaxVal);
           
 
           // if(parseFloat(selectedMin) > parseFloat(minPrice) || parseFloat(selectedMax) < parseFloat(highestPrice)){

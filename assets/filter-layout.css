@@ -76,6 +76,7 @@ select#sortByFilter {
     max-width: 100%;
     justify-content: space-between;
     align-items: flex-end;
+    margin-bottom: 20px;
 }
 .collection_filter_by_shape {
     text-align: center;
@@ -483,8 +484,16 @@ span.clear-filter img {
     flex: 0  0 auto;
 }
 
+[data-template=loose-stone-plp] [data-collection-filter-section] .filter-block-group[data-advance-filter] {
+    display: none;
+}
+[data-template=loose-stone-plp] [data-collection-filter-section] .filter-block-group[data-advance-filter].visible-advance-filter {
+    display: flex;
+}
+
 [data-template="loose-stone-plp"] [data-collection-filter-section] .filter-block-group [data-group="range-slider-group"] [data-filter]{
     width: 100%;
+    flex: 0 0 100%;
 }
 [data-template="loose-stone-plp"] [data-collection-filter-section] .filter-block-group .collection-filter-wrapper .filter-dd {
     position: relative;
@@ -532,8 +541,13 @@ span.clear-filter img {
 [data-template="loose-stone-plp"] [data-collection-filter-section] .filter-block-group .collection-filter-wrapper ul.filter-dd .input-group input[type=checkbox]:checked+label {
     color: #ffffff;
 }
-
-
 [data-template="loose-stone-plp"] [data-collection-filter-section] .filter-block-group .collection-filter-wrapper ul.filter-dd .input-group label:before {
     display: none;
+}
+.filters-toolbar #showAdvanceFilters {
+    margin: 20px auto;
+}
+.filters-toolbar #showAdvanceFilters:hover,
+.filters-toolbar #showAdvanceFilters:focus {
+    color: #ffffff;
 }

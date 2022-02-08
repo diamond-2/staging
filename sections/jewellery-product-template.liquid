@@ -51,9 +51,8 @@
                             {% for mediaSlide in product.media %}                             
                             {%- if mediaSlide -%}
                             {% assign mediaSlide = mediaSlide | downcase %}
-                            <p>{{ mediaSlide }}==</p>
                             {% if  mediaSlide contains "zyxw" %}
-                               <p>{{ forloop.index }}==</p> 
+                            <p>{{ mediaSlide.media_type }}</p>
                             <div data-index="{{ forloop.index }}" class="product-detail-slide {% if section.settings.enable_image_zoom == true %}image_zoom{% endif %}" data-alt="{{ mediaSlide.alt }}">
                                 
                                 {% if mediaSlide.media_type == 'image' %}
@@ -161,8 +160,8 @@
                     {%- assign current_variant = product.selected_or_first_available_variant -%}
                     <h1 class="product-single__title">{{ product.title }}</h1>
                     {%- if template.suffix contains 'loose-stone' -%}
-                    <div class="product-sku-wrapper">
-                        <div class="p_sku">SKU: <span class="__sku">{{ product.sku }}</span></div>
+                    <div class="product-sku-wrapper {% if current_variant.sku == blank %} visible-hidden {% endif %}">
+                        <div class="p_sku">SKU: <span class="__sku">{{ current_variant.sku }}</span></div>
                     </div>
                     {%- else -%}
                     <div class="product-sku-wrapper">

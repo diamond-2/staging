@@ -8,18 +8,18 @@
     Usage:
     {% include 'product-card-list', product: product, show_vendor: section.settings.show_vendor %}
 {% endcomment %}
-
+{%- assign current_variant = product.selected_or_first_available_variant -%}
 <td class="wishlist_td">
     <a href="#">{% include 'icon-wishlist-fill' %}</a>
 </td>
 <td class="shape_td">
-    <a href="{{ product.url }}">{{ 'list_360.png' | asset_url | img_tag :'360 View' }}<span class="text">ROUND H&A</span></a>
+    <a href="{{ product.url }}">{{ 'list_360.png' | asset_url | img_tag :'360 View' }}<span class="text">{{ product.metafields.global.ls_cert_Shape }}</span></a>
 </td>
 <td class="price_td">
-    {{ product.price | money }}
+    {% include 'product-price', variant: current_variant %}
 </td>
-<td class="care-tdt">1.09</td>
-<td class="color_td">G</td>
-<td class="cut_td">EXCELLENT</td>
-<td class="clarity_td">SI</td>
-<td class="actions_td"><a href="javascript:void(0)">ADD TO COMPARE</td>  
+<td class="care-tdt">{{ product.metafields.global.ls_cert_stn_wgt_crt }}</td>
+<td class="color_td">{{ product.metafields.global.ls_cert_color }}</td>
+<td class="cut_td">{{ product.metafields.global.ls_cert_Culet}}</td>
+<td class="clarity_td">{{ product.metafields.global.ls_cert_clarity }}</td>
+<td class="actions_td grid__item"data-handle="{{ product.handle }}" data-title="{{ product.title }}" data-type="{{ product.type }}"><a class="product_compare" href="javascript:void(0)">ADD TO COMPARE</td>  

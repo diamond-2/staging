@@ -1,13 +1,15 @@
 {% assign landingBanner = section.settings.landing_image %}
+{% assign landingBannerWide = section.settings.landing_image_ls %}
 {% assign landingBannerMobile = section.settings.landing_image_mobile %}
 {% assign bannerToptext = section.settings.landing_text_top %}
 {% assign bannerBottomtext = section.settings.landing_text_bottom %}
 <div id="main-landing-page">
     <div class="main-landing-page-container">
-        <div class="landing-banner">
-            <!-- <img data-src="{{ landingBanner | img_url: 'master'}}" alt="" class="lazyload hide_mobile"/> -->
+        <div class="landing-banner">           
 
-            <img class="lazyload hide_mobile"
+           {% comment %} 
+            <!-- <img data-src="{{ landingBanner | img_url: 'master'}}" alt="" class="lazyload hide_mobile"/> -->
+           <img class="lazyload hide_mobile"
             src="{{ landingBanner | img_url: 'master'}}"
             data-src="{{ img_url }}"
             data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
@@ -15,14 +17,18 @@
             data-sizes="auto"
             data-parent-fit="cover"
             alt="{{ landingBanner.alt | escape }}">
+            {% endcomment %}
 
-
-
-
+            <picture class="lazyload hide_mobile">
+                <source media="(min-width: 1921px)" srcset="{{ landingBannerWide | img_url: 'master'}}">
+                <source media="(min-width: 1440px)" srcset="{{ landingBanner | img_url: '1440x'}}">
+                <source media="(min-width: 750px)" srcset="{{ landingBanner | img_url: '1200x'}}">
+                <img src="{{ landingBanner | img_url: '1440x'}}" alt="{{ landingBanner.alt }}">
+            </picture>
             {% if landingBannerMobile %}
             <img data-src="{{ landingBannerMobile | img_url: 'master'}}" alt="" class="lazyload show_mobile"/>
             {% else %}
-            <img data-src="{{ landingBanner | img_url: 'master'}}" alt="" class="lazyload show_mobile"/>
+            <img data-src="{{ landingBanner | img_url: '750x'}}" alt="" class="lazyload show_mobile"/>
             {% endif %}
         </div>
         <div class="landing-content">
@@ -103,6 +109,11 @@
             "type": "image_picker",
             "id": "landing_image",
             "label": "Select Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "landing_image_ls",
+            "label": "Select Image for wide screen"
         },
         {
             "type": "image_picker",

@@ -1,10 +1,35 @@
 {% layout none %}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
-<div class="compare__product-information" data-handle="{{ product.handle }}">
+<div class="compare__product-information" data-handle="{{ product.handle }}" data-type="{{ product.type }}">
   <a class="text-link text-link--accent remove_compare_modal_pop_btn" data-remove-compare-item>Remove {% include 'icon-close' %}</a>
-    <div class="compare__image-wrapper">
-      <img class="compare__image" src="{{ product.featured_image | img_url: '150x' }}" alt="{{ product.featured_image.alt }}" data-compare-item-image="">
+  {% assign compareImgCounter = 0 %}
+  {% for slideImage in product.images %}
+  {% assign slideImage = slideImage | downcase %}
+  {% if  slideImage contains "xyzg" %}
+    {% assign compareImgCounter = compareImgCounter | plus: 1 %}
+  <div class="compare__image-wrapper">
+    <img class="compare__image" src="{{ slideImage.src | img_url: '150x' }}" alt="{{ slideImage.alt }}" data-compare-item-image="">
+  </div>
+  {% if compareImgCounter == 1 %}
+  {% break %}
+  {% endif %}
+
+  <!-- <div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation>
+    <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper product-card__image-wrapper js">
+      <div class="product_img_holder">
+        <img data-src="{{ slideImage.src | img_url: 'master' }}" alt="{{ product.title }}" class="grid-view-item__image lazyload">
+      </div>
     </div>
+  </div> -->
+  {% endif %}
+  {% endfor %}
+
+
+
+
+    <!-- <div class="compare__image-wrapper">
+      <img class="compare__image" src="{{ product.featured_image | img_url: '150x' }}" alt="{{ product.featured_image.alt }}" data-compare-item-image="">
+    </div> -->
     <div class="compare__product-body">
       <div class="compare__product-body-left">
         <table id="compare__product-table-layout">
@@ -16,10 +41,52 @@
           <tr>
             <td class="compare_product-modal-price-block">{% include 'product-price', variant: current_variant %}</td>
           </tr>
+          {% if product.type == 'Loose Stones' %}
+
+          <tr>
+            <td>              
+              <div class="compareitem-value">{% if product.metafields.global.ls_cert_stn_wgt_crt != blank %}{{ product.metafields.global.ls_cert_stn_wgt_crt}}{% else %}--{% endif %}</div>
+              <div class="compareitem-label">{{ 'Diamond2' | replace: 'Diamond2', 'Diamond2<sup>®</sup>' }} </div>              
+            </td>
+          </tr>
+
+          <tr>
+            <td>              
+              <div class="compareitem-value">{% if product.metafields.global.ls_cert_Shape != blank %}{{ product.metafields.global.ls_cert_Shape}}{% else %}--{% endif %}</div>
+              <div class="compareitem-label">Shape</div>              
+            </td>
+          </tr>
+
+          <tr>
+            <td>              
+              <div class="compareitem-value">{% if product.metafields.global.ls_cert_color != blank %}{{ product.metafields.global.ls_cert_color}}{% else %}--{% endif %}</div>
+              <div class="compareitem-label">Color</div>              
+            </td>
+          </tr>
+
+
+          <tr>
+            <td>              
+              <div class="compareitem-value">{% if product.metafields.global.ls_cert_clarity != blank %}{{ product.metafields.global.ls_cert_clarity}}{% else %}--{% endif %}</div>
+              <div class="compareitem-label">Clarity</div>              
+            </td>
+          </tr>
+
+
+          <tr>
+            <td>              
+              <div class="compareitem-value">{% if product.metafields.global.ls_cert_height_mm != blank %}{{ product.metafields.global.ls_cert_height_mm }}{% else %}--{% endif %}</div>
+              <div class="compareitem-label">Measurement</div>              
+            </td>
+          </tr>
+
+
+
+
+          {% else %}
           {% unless product.has_only_default_variant %}
           {% for option in product.options_with_values %}
-          {% if option.name contains 'Color' or option.name contains 'Colour' or option.name contains 'COLOUR' %}
-          
+          {% if option.name contains 'Color' or option.name contains 'Colour' or option.name contains 'COLOUR' %}          
           <tr>
             <td>
               <div class="compareitem-label">Metal Color</div>
@@ -36,33 +103,35 @@
           <tr>
             <td>
               <div class="compareitem-label">Average Color</div>
-              <div class="compareitem-value">3.56</div>
+              <div class="compareitem-value">{% if current_variant.metafields.current_variant.dia_tab1_stone_avg_color != blank %}{{ current_variant.metafields.current_variant.dia_tab1_stone_avg_color}}{% else %}--{% endif %}</div>
             </td>
           </tr>
           <tr>
             <td>
               <div class="compareitem-label">Average Clarity</div>
-              <div class="compareitem-value">GHI</div>
+              <div class="compareitem-value">{% if current_variant.metafields.current_variant.dia_tab1_avg_clarity != blank %}{{ current_variant.metafields.current_variant.dia_tab1_avg_clarity }}{% else %}--{% endif %}</div>
             </td>
           </tr>
           <tr>
             <td>
               <div class="compareitem-label">Center Stone Weight</div>
-              <div class="compareitem-value">Prong</div>
+              <div class="compareitem-value">{% if current_variant.metafields.current_variant.dia_tab1_frc_stn_total_crt_wt != blank %}{{ current_variant.metafields.current_variant.dia_tab1_frc_stn_total_crt_wt}}{% else %}--{% endif %}</div>
+              
             </td>
           </tr>
           <tr>
             <td>
               <div class="compareitem-label">Solitaire Shape</div>
-              <div class="compareitem-value">GHI</div>
+              <div class="compareitem-value">{% if current_variant.metafields.current_variant.dia_tab1_stone_shape != blank %}{{ current_variant.metafields.current_variant.dia_tab1_stone_shape}}{% else %}--{% endif %}</div>
             </td>
           </tr>
           <tr>
             <td>
               <div class="compareitem-label">Solitaire Weight</div>
-              <div class="compareitem-value">VVS-Vs</div>
+              <div class="compareitem-value">{% if current_variant.metafields.current_variant.dia_tab1_cert_carats != blank %}{{ current_variant.metafields.current_variant.dia_tab1_cert_carats}}{% else %}--{% endif %}</div>
             </td>
           </tr>
+          {% endif %}
         </table>
         <div class="list-view-item__title hide-in-compareModal">
           <a href="{{ product.url }}" class="cart__product-title" data-compare-item-title="" data-role="product-title">
@@ -73,7 +142,7 @@
             {% include 'product-price', variant: current_variant %}
           </div>          
         </div>
-
+{% unless current_variant.title == 'Default Title'%}
         <!-- Cart Quentity -->
   <ul class="product-details hide-in-compareModal" data-compare-item-details="" aria-label="Product details">
       {% if current_variant.option1 %}
@@ -85,16 +154,10 @@
           <li class="v_Size product-details__item product-details__item--variant-option" data-compare-item-option="">
             <div class="v_item_inner"><span>Size : </span> <span>{{ current_variant.option2 }}</span></div>
           </li>
-          {% endif %}
-          
-  <!-- <li class="product-details__item product-details__item--property" data-compare-item-selling-plan-name=""></li>
-            <li class="hide product-details__item product-details__item--property
-               hide" data-compare-item-property="">
-              <span class="product-details__item-label" data-compare-item-property-name="">t: </span><span data-compare-item-property-value="">e
-  </span>
-            </li> -->
-            
+          {% endif %}            
           </ul>
+          {% endunless %}
+
           <div class="compare_product-price-block">
             {% include 'product-price', variant: current_variant %}
           </div>
