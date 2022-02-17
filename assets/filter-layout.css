@@ -178,13 +178,15 @@ ul.filter-dd {
     overflow-y: auto;
     z-index: 9;
 }
-#collection-price-min {
+#collection-price-min,
+[data-collection-val-min] {
     font-size: 10px;
     padding-top:5px;
     float: left;
     margin-left: -5px;
 }
-#collection-price-max {
+#collection-price-max,
+[data-collection-val-max] {
     font-size: 10px;
     padding-top:5px;
     float: right;
@@ -457,7 +459,9 @@ span.clear-filter img {
     margin: 0 auto;
 }
 [data-template=loose-stone-plp] [data-collection-filter-section] .filter-block-group [data-group=range-slider-group] [data-filter] .filter-group-content span#collection-price-min, 
-[data-template=loose-stone-plp] [data-collection-filter-section] .filter-block-group [data-group=range-slider-group] [data-filter] .filter-group-content span#collection-price-max {
+[data-template=loose-stone-plp] [data-collection-filter-section] .filter-block-group [data-group=range-slider-group] [data-filter] .filter-group-content span#collection-price-max,
+[data-template=loose-stone-plp] [data-collection-filter-section] .filter-block-group [data-group=range-slider-group] [data-filter] .filter-group-content span[data-collection-val-max], 
+[data-template=loose-stone-plp] [data-collection-filter-section] .filter-block-group [data-group=range-slider-group] [data-filter] .filter-group-content span[data-collection-val-min] {
     background: #e7e7e7;
     padding: 0 8px;
     border-radius: 10px;

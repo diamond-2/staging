@@ -1,7 +1,7 @@
 
 <link rel="stylesheet" href="{{'filter-layout.css' | asset_url }}">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
 {% if template.suffix != 'loose-stone-plp'%}
@@ -493,10 +493,10 @@
                     filterTitle = 'Gender';
                   }
 
-                  if(filterTitle == 'current_variant.dia_tab1_dec_stn_total_crt_wt'){
+                  if(filterTitle == 'global.dec_stn_total_crt_wt'){
                     filterTitle = 'CARAT WEIGHT(CTS.)';
                   }
-                  if(filterTitle == 'current_variant.dia_tab1_frc_stn_total_crt_wt'){
+                  if(filterTitle == 'global.frc_stn_total_crt_wt'){
                     filterTitle = 'CARAT WEIGHT(CT. TW.)';
                   }
                   selectOption += '<div name="product-type" id="'+filterId+'" class="filters-toolbar__input">';
@@ -624,24 +624,25 @@
 
             if(filterTitle == 'global.ls_cert_stn_wgt_crt') {
               var selectOption = '';
+
               console.log('cert_Stn_wgtfilterVal==> ', filterVal);
-              var lowest = Number.POSITIVE_INFINITY;
-              var highest = Number.NEGATIVE_INFINITY;
-              var tmp;
-              for (var i=filterVal.length-1; i>=0; i--) {
-                  tmp = filterVal[i].value;
-                  if (tmp < lowest) lowest = tmp;
-                  if (tmp > highest) highest = tmp;
-              }
-              console.log(highest, lowest);
+              min = Math.min.apply(null, filterVal.map(function(item) {
+                return item.value;
+              })),
+              max = Math.max.apply(null, filterVal.map(function(item) {
+                return item.value;
+              }));
+
+            console.log('min', min);//50
+            console.log('max', max);//1000
 
 
 
               selectOption += '<div class="ls-filter-wrapper range-filters filter-block-group" data-group="range-slider-group">';
-              var minVal = lowest; //console.log('minPrice', theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00',''));
-              var maxVal = highest //console.log('highestPrice', highestPrice);
-              var selectedMinVal = lowest; //console.log('selectedMinPrice',selectedMinPrice);
-              var selectedMaxVal = highest; //console.log('SelectedHighestPrice', SelectedHighestPrice);
+              var minVal = parseFloat(min); //console.log('minPrice', theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00',''));
+              var maxVal = parseFloat(max); //console.log('highestPrice', highestPrice);
+              var selectedMinVal = parseFloat(min); //console.log('selectedMinPrice',selectedMinPrice);
+              var selectedMaxVal = parseFloat(max); //console.log('SelectedHighestPrice', SelectedHighestPrice);
               if(filterVal[0].selected != undefined && filterVal[0].selected != '' && filterVal[0].selected == 'true'){
                 var checked = 'checked=checked';
               }
@@ -652,8 +653,8 @@
               selectOption +=  '<div class="filter-group-content">';
                 selectOption += '<div class="slider-range-selected"><span id="collection-val-min-selected" data-collection-val-min-selected></span><span id="collection-val-max-selected" data-collection-val-max-selected></span></div>'
 
-              selectOption+='<span id="collection-val-min" data-collection-val-min data-value=""></span><div data-common-slider-range id="slider-range_'+filterTitle.split('global.')[1]+'"></div> <span id="collection-val-max" data-collection-val-max  data-value=""></span>';
-              selectOption+='<input ' + checked + ' type="checkbox" data-opt-val="&restrictBy[filter_metafield_216755d73301b7dbf39d68e2cf6ffbee]=' + minVal + ','+ maxVal +'" value="' + minVal + '-'+ maxVal +'" id="ls_cert_stn_wgt_crt-val-range" data-common-val-range class="visually-hidden" />';  
+              selectOption+='<span id="collection-val-min" data-collection-val-min data-value="' + minVal + '">' + minVal + '</span><div data-common-slider-range id="slider-range_'+filterTitle.split('global.')[1]+'"></div> <span id="collection-val-max" data-collection-val-max  data-value="' + maxVal + '">' + maxVal + '</span>';
+              selectOption+='<input type="checkbox" data-opt-val="" value="' + minVal + '-'+ maxVal +'" id="ls_cert_stn_wgt_crt-val-range" data-common-val-range class="visually-hidden" />';  
               
               
               // selectOption+= '<div class="collection-content-area-left-content price__filter" style="max-width: 280px;"><div class="collection-content-area-left-content-wrapper"><div class="collection-other-list">' + selectOption +'</div></div></div>';
@@ -663,10 +664,47 @@
                 // $('.collection-filters').append(sidebarHtml);
                 $('[data-collection-filter-section] [data-position="1"]').append(selectOption); 
               };
+              var counter = 0;
+              var selectInputs = ''
+
+              // Hidden checkbox values for custom range slider
+              selectInputs += '<ul class="filter-dd" data-ref="'+ filterId +'">'
+              $.each(filterVal, function(key, val){
+                   //console.log('initiall')
+                      var disableItem = '';
+                    if(val.count >= 0){
+                      if(val.count == 0){
+                          disableItem = 'toDisabled';
+                        }
+                        var show = 'toShow';
+                        filterName=filterName.toLowerCase().replace(' ', '-'); //// console.log('Filtername==>'+filterName);
+                        var thisVal = val.value;//// console.log('thisVal == >  ' + thisVal);
+                        if(val.value.indexOf(':') > -1) {
+                          var thisValContent = val.value.split(':')[1];  
+                        }else {
+                          var thisValContent = val.value;//// console.log('thisVal == >  ' + thisVal);
+                        }                       
+
+                        var filterVal = '&restrictBy[' + filterName + ']=' + val.value;
+                        if(val.selected != undefined && val.selected != '' && val.selected == 'true'){
+                          var selected = 'selected=selected';
+                          var checked = 'checked=checked';
+                          	  checkVal = thisVal;                          
+                        }
+                        selectInputs += '<li class="input-group ' + show +' '+ disableItem + '"><input type="checkbox" ' + checked +' id="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" value="' + thisVal + '" class="visually-hidden"/> <label for="'+filterId+'_'+encodeURIComponent(thisValContent)+'-filter">'+ thisValContent +'</label></li>';
+                        counter++;                        
+                    }
+                  }); 
+                  selectInputs  += '</ul>';
+                  if(counter >= 1){
+                    sidebarHtml+= selectInputs;
+                      $('[data-collection-filter-section] [data-position="1"]').append(sidebarHtml);
+                  }
+
+
               console.log(minVal +'<==>'+maxVal +'<==>'+ selectedMinVal +'<==>'+ selectedMaxVal);
               if($('[data-common-slider-range] .ui-slider-range').length <= 0){
-                // initializingPriceSlider(minPrice, highestPrice, selectedMinPrice, SelectedHighestPrice);
-                initializingRangeSlider(minVal, maxVal, selectedMinVal, selectedMaxVal, 'filter_metafield_216755d73301b7dbf39d68e2cf6ffbee');
+                initializingRangeSlider(minVal, maxVal, selectedMinVal, selectedMaxVal, filterId);
               }
             }
             if(filterTitle == 'global.ls_cert_color' || filterTitle == 'global.ls_cert_clarity') {
@@ -688,9 +726,9 @@
 
                 selectOption += '<ul class="filter-dd">'
                     $.each(filterVal, function(key, val){
-                   //console.log('LSS - initiall')
-                   //console.log(key);
-                   //console.log(val);
+                   console.log('LSS - initiall')
+                   console.log(key);
+                   console.log(val);
                       var disableItem = '';
                     if(val.count >= 0){
                       if(val.count == 0){
@@ -1281,40 +1319,63 @@
     	//Initialize Price Slider Ends
 
       //Initialize common Range Slider
-    	function initializingRangeSlider(minVal, maxVal, selectedMinVal, selectedMaxVal, filterName){
+    	function initializingRangeSlider(minVal, maxVal, selectedMinVal, selectedMaxVal, filterId){
        console.log(minVal,'--', maxVal,'--', selectedMinVal,'--', selectedMaxVal);
-          var getMinVal = minVal;
-          var getMaxVal = maxVal;
+          var getMinVal = parseFloat(minVal);
+          var getMaxVal = parseFloat(maxVal);
             // $('#price-min-val').val(theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00',''));
-            // $('#price-max-val').val(theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00',''));      	
-            $( "[data-common-slider-range]" ).slider({
-            range: true,
-            min: parseFloat(getMinVal),
-            max: parseFloat(getMaxVal),
-            values: [ selectedMinVal, selectedMaxVal ],
-            slide: function( event, ui ) { 
-              $( "#collection-val-min" ).text( getMinVal).attr('data-value',getMinVal);
-              $( "#collection-val-max" ).text( getMaxVal).attr('data-value',getMaxVal);
-              $('[data-filter-type="common-range"]').find('.slider-range-selected .span').text('');
-    			// if(parseFloat(ui.values[ 0 ].toFixed(2)) > parseFloat(minPrice) || parseFloat(ui.values[ 1 ].toFixed(2)) < parseFloat(highestPrice)){
-            $('[data-filter-type="common-range"]').find('.slider-range-selected #collection-val-min-selected').text(ui.values[ 0 ]);
-            $('[data-filter-type="common-range"]').find('.slider-range-selected #collection-val-max-selected').text(ui.values[ 1 ]);
+            // $('#price-max-val').val(theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00','')); 
             
-            //.append('<i class="selRange">(SGD' + ui.values[ 0 ].toFixed(2) +' - SGD' + ui.values[ 1 ].toFixed(2) + ')</i>');
-              priceSelected = '&restrictBy[filter_metafield_216755d73301b7dbf39d68e2cf6ffbee]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ];
-    			// }    
-            },
-            stop: function( event, ui ) {
-              // $('[data-filter-type="price"]').find('.slider-range-selected .selRange').remove();
-              $('[data-common-val-range]').attr('data-opt-val', '&restrictBy[filter_metafield_216755d73301b7dbf39d68e2cf6ffbee]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ]).val('&restrictBy[filter_metafield_216755d73301b7dbf39d68e2cf6ffbee]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ]).attr('checked', 'checked').change(); 
-              // if(parseFloat(selectedMin) > parseFloat(minPrice) || parseFloat(selectedMax) < parseFloat(highestPrice)){
-              //   $('[data-filter-type="price"]').find('.slider-range-selected').append('<i class="selRange">(SGD ' + selectedMin +' - SGD ' + selectedMax + ')</i>');
-              // } 
-              // consol
-            }
-          });
-          $( "#collection-val-min" ).text( getMinVal);
-          $( "#collection-val-max" ).text( getMaxVal);
+            $( "[data-common-slider-range]" ).slider({
+              range: true,
+              min: getMinVal,
+              max: getMaxVal,
+              step: 0.001,
+              values: [ getMinVal, getMaxVal ],
+              slide: function( event, ui ) {
+                console.log(ui);
+                var selectedMin = ui.values[ 0 ];
+                var seletedMax = ui.values[ 1 ];
+                selectedCustomRange (selectedMin, seletedMax, filterId);
+                //$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+              },
+              stop: function(event, ui ) {
+                var getParentEle = $(this).closest('.collection-filter-wrapper').data('id');
+                console.log('getParentEle==>>>>', getParentEle);
+              }
+            });
+
+            
+          //   $( "[data-common-slider-range]" ).slider({
+          //   range: true,
+          //   min: getMinVal,
+          //   max: selectedMaxVal,
+          //   step: 0.1,
+          //   values: [ selectedMinVal, 5.53],
+          //   slide: function( event, ui ) { 
+          //     console.log(ui);
+          //     $( "#collection-val-min" ).text( getMinVal).attr('data-value',getMinVal);
+          //     $( "#collection-val-max" ).text( getMaxVal).attr('data-value',getMaxVal);
+          //     $('[data-filter-type="common-range"]').find('.slider-range-selected .span').text('');
+    			// // if(parseFloat(ui.values[ 0 ].toFixed(2)) > parseFloat(minPrice) || parseFloat(ui.values[ 1 ].toFixed(2)) < parseFloat(highestPrice)){
+          //   $('[data-filter-type="common-range"]').find('.slider-range-selected #collection-val-min-selected').text(ui.values[ 0 ]);
+          //   $('[data-filter-type="common-range"]').find('.slider-range-selected #collection-val-max-selected').text(ui.values[ 1 ]);
+            
+          //   //.append('<i class="selRange">(SGD' + ui.values[ 0 ].toFixed(2) +' - SGD' + ui.values[ 1 ].toFixed(2) + ')</i>');
+          //    // priceSelected = '&restrictBy[filter_metafield_216755d73301b7dbf39d68e2cf6ffbee]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ];
+    			// // }    
+          //   }//,
+          //   // stop: function( event, ui ) {
+          //   //   // $('[data-filter-type="price"]').find('.slider-range-selected .selRange').remove();
+          //   //   $('[data-common-val-range]').attr('data-opt-val', ui.values[ 0 ] + ','+ ui.values[ 1 ]).val(ui.values[ 0 ] + ','+ ui.values[ 1 ])//.attr('checked', 'checked').change(); 
+          //   //   // if(parseFloat(selectedMin) > parseFloat(minPrice) || parseFloat(selectedMax) < parseFloat(highestPrice)){
+          //   //   //   $('[data-filter-type="price"]').find('.slider-range-selected').append('<i class="selRange">(SGD ' + selectedMin +' - SGD ' + selectedMax + ')</i>');
+          //   //   // } 
+          //   //   // consol
+          //   // }
+          // });
+          // $( "#collection-val-min" ).text( getMinVal);
+          // $( "#collection-val-max" ).text( getMaxVal);
           
 
           // if(parseFloat(selectedMin) > parseFloat(minPrice) || parseFloat(selectedMax) < parseFloat(highestPrice)){
@@ -1322,6 +1383,18 @@
           // }      
         }
     	//Initialize Price Slider Ends
+
+      function selectedCustomRange (selectedMin, seletedMax, filterId) {
+        // var filterid = filterId.split('global.')[1]
+        $(document).find('ul.filter-dd[data-ref$="'+filterId+'"] input[type="checkbox"]').each(function(){
+          var  thisInputVal = parseFloat($(this).val());
+          if(thisInputVal >= selectedMin && thisInputVal <= selectedMin){
+            $(this).prop('checked', true).addClass('thisChecked');
+          }
+
+        })
+
+      }
   });
 
  
