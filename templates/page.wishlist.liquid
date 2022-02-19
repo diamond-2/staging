@@ -66,7 +66,6 @@
      window.SwymCallbacks.push(swymRenderWishlist); /* Init Here */
 
 function swymRenderWishlist(swat) {
-
   swat.fetchLists({
       callbackFn: function(lists) {
         var itemHtml = '';
@@ -77,10 +76,7 @@ function swymRenderWishlist(swat) {
             break;
           }
           itemHtml += '<div class="solitaire-collection-wrapper"><ul class="grid grid--uniform grid--view-items review-hidden" data-review-render></ul></div>';    
-          $(document).find('.swym-wishlist-grid').after('<div class="render-review-list-items">'+itemHtml+'</div>')  
-          
-
-
+          $(document).find('.swym-wishlist-grid').after('<div class="render-review-list-items">'+itemHtml+'</div>') 
             swat.fetchListDetails({lid: lid}, function(listContents){
               console.log('FetchListDetails:==>', listContents);
               listContents.items.forEach(function(item, index, array){
@@ -106,34 +102,6 @@ function swymRenderWishlist(swat) {
         // something went wrong
       }
     });
-
-
-  	// Get wishlist items
-    // swat.fetch(function(products) {
-    // console.log('fetchProucts')
-    // console.log(products)
-    // console.log('=================')
-    // console.log(reviewCol);
-    // // if(reviewCol == 'My Wishlist'){
-    // //   reviewCol = '';
-    // // }
-    // var itemHtml = '';
-    // let lid;
-    //   for(let i=0; i<products.length; i++){
-    //      if(products[i].hashtags != reviewCol) continue;
-    //      lid = products[i].lid;
-    //      break;
-    //   }
-    //   console.log(lid);
-    //   $(document).find('.render-review-list-items').remove();
-    
-   
-
-      
-    
-
-      
-    // });
   }
 
 

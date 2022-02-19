@@ -10818,6 +10818,42 @@ $(document).on('blur','input[data-predictive-search-drawer-input]', function(){
   
 }); 
 
+// Add Item to Wishlist
+$(document).on('click', '.move-to-wishlist-btn a', function(){
+  let addThis = $(this)
+  window._swat.addToWishList(
+    {
+      "epi": addThis.data('variantid'),
+      "empi": addThis.data('prodid')
+    },
+    function(r) {
+      console.log('Added to wishlist');
+      addThis.addClass('wishlist-added').attr('data-wishlist-added', 'success');
+      addThis.before('<span class="remove-item-from-wishlit"></span>');
+    }
+  );
+  
+})
+
+
+
+
+// Remove item from wishlist from Cart and Car drawer
+$(document).on('click', '.remove-item-from-wishlit', function(){
+  let removeThis = $(this)
+  window._swat.removeFromWishList(
+    {
+      "epi": removeThis.closest('.move-to-wishlist-btn').find('.wishlist-added').data('variantid')
+    },
+    function(r) {
+      console.log('Removed to wishlist');
+      removeThis.closest('.move-to-wishlist-btn').find('a').removeClass('wishlist-added').removeAttr('data-wishlist-added');
+      removeThis.remove();
+    }
+  )
+
+});
+
 
 });
 
@@ -11011,3 +11047,41 @@ function hideCompareItemList() {
 function toggleCompareModal() {
   $('.compare-product-list-modal-overlay, #compare-product-modal').toggleClass('compare-modal-opened');
 }
+
+  // <![CDATA[
+    window.SwymCallbacks = window.SwymCallbacks || [];
+    window.SwymCallbacks.push(function(swat) {
+    });
+    // ]]> 
+    window.SwymCallbacks.push(swymRenderWishlistItems); /* Init Here */
+function swymRenderWishlistItems(swat) {
+  var reviewCol = 'My Wishlist'
+  swat.fetchLists({
+    callbackFn: function(lists) {
+      console.log('Listssss==> ', lists);
+      let lid;
+        for(let i=0; i<lists.length; i++){
+          if(lists[i].lname != reviewCol) continue;
+          lid = lists[i].lid;
+          break;
+        } 
+          swat.fetchListDetails({lid: lid}, function(listContents){
+            console.log('FetchListDetails:==>', listContents);
+            listContents.items.forEach(function(item, index, array){
+              let itemVariantId = item.epi;
+              console.log(itemVariantId);
+              $(document).find('[data-variantid="'+itemVariantId+'"]').addClass('wishlist-added').attr('data-wishlist-added', 'success');  
+              $(document).find('[data-variantid="'+itemVariantId+'"]').before('<span class="remove-item-from-wishlit"></span>')            
+            });
+            
+
+          }, function(xhrObj) {
+            // something went wrong
+          });
+    },
+    errorFn: function(xhrObj) {
+      // something went wrong
+    }
+  });
+}
+

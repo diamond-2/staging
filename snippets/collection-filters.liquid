@@ -1333,15 +1333,16 @@
               step: 0.001,
               values: [ getMinVal, getMaxVal ],
               slide: function( event, ui ) {
-                console.log(ui);
-                var selectedMin = ui.values[ 0 ];
-                var seletedMax = ui.values[ 1 ];
-                selectedCustomRange (selectedMin, seletedMax, filterId);
+                console.log(ui);              
+                
                 //$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
               },
               stop: function(event, ui ) {
+                var selectedMin = ui.values[ 0 ];
+                var seletedMax = ui.values[ 1 ];
                 var getParentEle = $(this).closest('.collection-filter-wrapper').data('id');
                 console.log('getParentEle==>>>>', getParentEle);
+                selectedCustomRange (selectedMin, seletedMax, filterId);
               }
             });
 
@@ -1384,14 +1385,17 @@
         }
     	//Initialize Price Slider Ends
 
-      function selectedCustomRange (selectedMin, seletedMax, filterId) {
-        // var filterid = filterId.split('global.')[1]
-        $(document).find('ul.filter-dd[data-ref$="'+filterId+'"] input[type="checkbox"]').each(function(){
+      function selectedCustomRange (selectedMin, selectedMax, filterId) {
+        console.log("customRange Min", selectedMin);
+        console.log("customRange Max", selectedMax);
+        console.log("customRange Id", filterId);
+        var filterid = filterId.split('global.')[1]
+        $(document).find('ul.filter-dd[data-ref$="'+filterid+'"] input[type="checkbox"]').each(function(){
           var  thisInputVal = parseFloat($(this).val());
-          if(thisInputVal >= selectedMin && thisInputVal <= selectedMin){
+            console.log('thisInputVal', thisInputVal);
+          if(thisInputVal <= selectedMax && thisInputVal >= selectedMin){
             $(this).prop('checked', true).addClass('thisChecked');
           }
-
         })
 
       }
