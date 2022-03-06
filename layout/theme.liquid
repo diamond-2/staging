@@ -187,8 +187,11 @@
   <!-- Mini Cart -->
   {%- comment -%}{% include 'mini-cart' %}{%- endcomment -%}
 
+  
   <!-- newsletter Popup Start -->
-  {% include 'newsletter-popup' %}
+  {% if settings.enable_newsletter_popup %}
+    {% include 'newsletter-popup' %}
+  {% endif %}
   <!-- newsletter Popup End -->
 
   

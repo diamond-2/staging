@@ -158,7 +158,8 @@
       }          
     });
 
-    $('body').on('change','[data-collection-filter-section] input[type="checkbox"]', function(){   
+    $('body').on('change','[data-collection-filter-section] input[type="checkbox"]', function(){ 
+      console.log('onchangethit')  
       $('[data-collection-listing-container]').addClass('inital-load');    
       var newQueryString = filterOnSelect();     
       searchaniseProducts(newQueryString);  
@@ -229,6 +230,7 @@
     });
     searchaniseFiltersOnload(queryString);
     function searchaniseFiltersOnload(queryString) {
+      $(document).find('.no-result').remove();
     $.ajax({	
         url: searchBaseUrl + queryString,
         dataType: 'jsonp',
@@ -668,7 +670,7 @@
               var selectInputs = ''
 
               // Hidden checkbox values for custom range slider
-              selectInputs += '<ul class="filter-dd" data-ref="'+ filterId +'">'
+              selectInputs += '<ul class="filter-dd collection-filter-wrapper" data-filter="&restrictBy['+filterName+']" data-ref="'+ filterId +'">'
               $.each(filterVal, function(key, val){
                    //console.log('initiall')
                       var disableItem = '';
@@ -938,18 +940,19 @@
               maxPriceValue = parseInt(maxPriceValue)*100;
               FinalpriceValue = theme.Currency.formatMoney(minPriceValue, theme.moneyFormat).replace('.00','') +', '+ theme.Currency.formatMoney(maxPriceValue, theme.moneyFormat).replace('.00','');
               activeFilter += '<button data-clear-filter="" class="active-filter ere" data-value="'+v.value+'" data-key="'+v.id+'" aria-label="Clear '+v.value+' filter">'+FinalpriceValue+'<span class="clear-filter" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0575/2681/2840/files/close-brown.svg?v=1638208068" alt="Close Filter" /></span></button>';              
-            } else if( v.id == 'ls_cert_stn_wgt_crt-val-range'){
-              console.log('VVVVVVVVVVVVVVV==>')
-              console.log(v.value);
-              rangeValue = v.value.split('[filter_metafield_216755d73301b7dbf39d68e2cf6ffbee]=')[1];
-              minVal =  rangeValue.split(',')[0];
-              maxVal =  rangeValue.split(',')[1];
-              // minPriceValue = parseInt(minPriceValue)*100;
-              // maxPriceValue = parseInt(maxPriceValue)*100;
-              FinalValue = minVal+', '+ maxVal;
-              activeFilter += '<button data-clear-filter="" class="active-filter ere" data-value="'+v.value+'" data-key="'+v.id+'" aria-label="Clear '+v.value+' filter">'+FinalValue+'<span class="clear-filter" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0575/2681/2840/files/close-brown.svg?v=1638208068" alt="Close Filter" /></span></button>';   
+            } 
+            // else if( v.id == 'ls_cert_stn_wgt_crt-val-range'){
+            //   console.log('VVVVVVVVVVVVVVV==>')
+            //   console.log(v.value);
+            //   rangeValue = v.value.split('[filter_metafield_216755d73301b7dbf39d68e2cf6ffbee]=')[1];
+            //   minVal =  rangeValue.split(',')[0];
+            //   maxVal =  rangeValue.split(',')[1];
+            //   // minPriceValue = parseInt(minPriceValue)*100;
+            //   // maxPriceValue = parseInt(maxPriceValue)*100;
+            //   FinalValue = minVal+', '+ maxVal;
+            //   activeFilter += '<button data-clear-filter="" class="active-filter ere" data-value="'+v.value+'" data-key="'+v.id+'" aria-label="Clear '+v.value+' filter">'+FinalValue+'<span class="clear-filter" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0575/2681/2840/files/close-brown.svg?v=1638208068" alt="Close Filter" /></span></button>';   
               
-            }
+            // }
             else {
               activeFilter += '<button data-clear-filter="" class="active-filter ere" data-value="'+v.value+'" data-key="'+v.id+'" aria-label="Clear '+v.value+' filter">'+v.value+'<span class="clear-filter" aria-hidden="true"><img src="https://cdn.shopify.com/s/files/1/0575/2681/2840/files/close-brown.svg?v=1638208068" alt="Close Filter" /></span></button>';
             }
@@ -1386,16 +1389,35 @@
     	//Initialize Price Slider Ends
 
       function selectedCustomRange (selectedMin, selectedMax, filterId) {
+        $(document).find('ul.filter-dd[data-ref$="'+filterId+'"] input[type="checkbox"]:checked').prop('checked', false).removeClass('thisChecked');
         console.log("customRange Min", selectedMin);
         console.log("customRange Max", selectedMax);
         console.log("customRange Id", filterId);
         var filterid = filterId.split('global.')[1]
-        $(document).find('ul.filter-dd[data-ref$="'+filterid+'"] input[type="checkbox"]').each(function(){
+        $(document).find('ul.filter-dd[data-ref$="'+filterId+'"] input[type="checkbox"]').each(function(){
           var  thisInputVal = parseFloat($(this).val());
             console.log('thisInputVal', thisInputVal);
-          if(thisInputVal <= selectedMax && thisInputVal >= selectedMin){
-            $(this).prop('checked', true).addClass('thisChecked');
+          if(thisInputVal >= selectedMin && thisInputVal <= selectedMax){
+            console.log('yoyou');
+            
+              $(this).prop('checked', true).addClass('thisChecked')//.trigger('change')//.next('label').trigger('click');
+              // setTimeout(function(){
+              // filterOnSelect();     
+              // $(this).next('label').trigger('click');        
+            // },500)
+            
+            // $(this).next('label').trigger('click');
+          } else {
+            console.log('asdfasdf');
+            // $(this).prop('checked', true).addClass('thisChecked').trigger('change')
+
           }
+        }).promise().done(function(){
+
+          console.log('asdfasdf');
+          $('[data-collection-listing-container]').addClass('inital-load');    
+            var newQueryString = filterOnSelect();     
+            searchaniseProducts(newQueryString); 
         })
 
       }

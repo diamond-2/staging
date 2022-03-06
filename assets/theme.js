@@ -10820,6 +10820,8 @@ $(document).on('blur','input[data-predictive-search-drawer-input]', function(){
 
 // Add Item to Wishlist
 $(document).on('click', '.move-to-wishlist-btn a', function(){
+  console.log('hit data');
+  alert('ljklj');
   let addThis = $(this)
   window._swat.addToWishList(
     {

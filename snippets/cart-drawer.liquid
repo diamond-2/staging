@@ -28,7 +28,7 @@
 
           <div class="cart-remove-popup-wrapper">
             <div class="cart-remove-popup-holder">
-              <div class="cart-remove-popup">
+              <div class="cart-remove-popup xyx">
                 <div class="cart-remove-header">Are you sure you want to remove this item from the cart?</div> 
                 <div class="close_cart_pop"></div>
                 <div class="cart-remove-item">
@@ -47,8 +47,8 @@
                     <div class="cart-btn-item">
                       <a data-template="cart" class="glb-btn remove_cart_item" href="javascript:void(0);">REMOVE FROM CART</a>
                     </div>
-                    <div class="cart-btn-item">
-                      <a class="glb-btn" href="javascript:void(0)">ADD TO WISHLIST</a>
+                    <div class="cart-btn-item add_wishlist_holder move-to-wishlist-btn">
+                      <a class="glb-btn" href="javascript:void(0)" data-variantId="{{ item.id }}" data-prodId="{{ item.product_id }}" data-line="{{ forloop.index }}" aria-label="{{ 'move-to-wishlist' }}" data-role="product-move-to-wishlist">ADD TO WISHLIST</a>
                     </div>
                   </div>
                 </div>
@@ -59,7 +59,6 @@
         </div>
       </div>
     </div>
-
     
     
     

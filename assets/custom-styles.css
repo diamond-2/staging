@@ -111,12 +111,19 @@ body {
 .main-content h2,
 .newsletter-popup-header h2 {
   font-size: 45px;
-  line-height: 48.6px;
+  line-height: 52.6px;
   font-family: 'Spectral', serif;
   font-weight: 200;
   color: #6C1D45;
   letter-spacing: normal;
   text-transform: uppercase; }
+  .newsletter-popup-header h3 {
+    font-size: 36px;
+    line-height: 40px;
+    font-family: 'Spectral', serif;
+    font-weight: 200;
+    text-transform: uppercase;
+  }
   @media (max-width: 1600px) {
     .main-content h2,
     .newsletter-popup-header h2 {
@@ -10259,7 +10266,7 @@ body[data-template="customers/reset_password"] .main-content {
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-image: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/newsletter-background.png?v=1629455550"); }
+    background-image: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/newsletter_popup_desktop.jpg?v=1645785472"); }
     @media (max-width: 1600px) {
       .newsletter-popup-wrapper .newsletter-popup {
         padding: 45px;
@@ -10268,7 +10275,7 @@ body[data-template="customers/reset_password"] .main-content {
       .newsletter-popup-wrapper .newsletter-popup {
         padding: 40px 30px;
         min-height: 225px;
-        background-image: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/newsletter-background-mobile.png?v=1629455637"); } }
+        background-image: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/newsletter_popup_mobile.jpg?v=1645785562"); } }
     .newsletter-popup-wrapper .newsletter-popup .close_newsletter_icon {
       position: absolute;
       top: 31px;
@@ -10288,8 +10295,8 @@ body[data-template="customers/reset_password"] .main-content {
         display: block; }
     .newsletter-popup-wrapper .newsletter-popup .newsletter-popup-header h2 {
       text-transform: uppercase;
-      margin: 0 0 30px;
-      max-width: 505px;
+      margin: 0 0 50px;
+      max-width: 650px;
       letter-spacing: normal;
       color: #fff; }
       @media (max-width: 749px) {

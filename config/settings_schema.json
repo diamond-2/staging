@@ -1637,6 +1637,29 @@
       ]
     },
     {
+      "name": {
+        "en": "Newsletter Popup"
+      },
+      "settings": [
+        {
+          "type":"checkbox",
+          "id": "enable_newsletter_popup",
+          "label": "Show Newsletter Popup",
+          "default": true
+        },
+        {
+          "type":"text",
+          "id":"newsletter_heading",
+          "label":"Newletter heading"
+        },
+        {
+          "type":"text",
+          "id":"newsletter_offer",
+          "label": "newsletter text"
+        }
+      ]
+    },
+    {
       "name": "Create Account",
       "settings": [
         {

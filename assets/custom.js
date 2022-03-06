@@ -278,8 +278,16 @@ function caretRemovePopup() {
         let itemQuen = $(carPopItem).closest('.cart__qty_iput_holder').find('input[data-quantity]').val()
         let avilItem = $(carPopItem).closest('.cart-drawer__item').attr('data-qty');
         let maxAvilItem = $(carPopItem).closest('.cart__table-row').attr('max-avail-prodcut');
+        let carPopVariantId = $(this).closest('.cart__row').data('varid');
+        let cartPopProdId = $(this).closest('.cart__row').data('proid');
+        let cartPopLineId = $(this).closest('.cart__row').attr('data-cart-item-index');
         setTimeout(function(){
             $('.cart-remove-popup-wrapper .cart-remove-item').attr('data-cart-item-key',cartItemKey);
+            $('.cart-remove-popup-wrapper .cart-remove-item-footer .add-to-wishlist-btn').attr({
+              "data-variantid":carPopVariantId,
+              "data-prodid":cartPopProdId,
+              "data-line":cartPopLineId
+            });
             $('.cart-remove-popup-wrapper .cart-remove-item').attr('data-quantity',itemQuen);
             $('.cart-remove-popup-wrapper .cart-remove-item').attr('max-avail-prodcut',maxAvilItem);
             $('.cart-remove-popup-wrapper .cart-remove-item').attr('data-qty',avilItem);
@@ -301,6 +309,8 @@ function caretRemovePopup() {
         $('.cart-remove-popup-wrapper .cart-remove-item .cart_image_content .cart_item-price').html('');
         $('.cart-remove-popup-wrapper .cart-remove-item').attr('data-product-id','');
     });
+
+    
     $('.cart-remove-popup').click(function(e){
     e.stopPropagation();
     });

@@ -23,7 +23,7 @@
                 {% endif %}
                 {% endfor %}
 
-                  <tr data-removeCartLink="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0" class="cart__row custom_cart_row cart__table-row" data-cart-item data-cart-item-key="{{ item.key }}" data-cart-item-url="{{ item.url }}" data-cart-item-title="{{ item.title }}" data-cart-item-index="{{ forloop.index }}" data-cart-item-quantity="{{ item.quantity }}" max-avail-prodcut="{{qtyInv}}" data-proid="{{ item.product.id }}">
+                  <tr data-removeCartLink="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0" class="cart__row custom_cart_row cart__table-row" data-cart-item data-cart-item-key="{{ item.key }}" data-cart-item-url="{{ item.url }}" data-cart-item-title="{{ item.title }}" data-cart-item-index="{{ forloop.index }}" data-cart-item-quantity="{{ item.quantity }}" max-avail-prodcut="{{qtyInv}}" data-proid="{{ item.product.id }}" data-varid="{{ itemVariantId }}">
                     <td class="cart__meta small--text-left custom_cart_item_left_col" data-cart-table-cell>
                       <div class="cart__product-information">
                         <div class="cart__image-wrapper">
