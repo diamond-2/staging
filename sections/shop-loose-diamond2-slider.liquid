@@ -1,5 +1,5 @@
-
-<div class="sld-{{ section.id }} home-sld">
+{% if section.settings.enable_slider %}
+<div class="sld-{{ section.id }} home-sld tes">
     <div class="shop-loose-diamond2-slider-wrapper">
         <div class="dia-container">
             {%- if section.settings.heading != blank or section.settings.content != blank  -%}
@@ -44,7 +44,7 @@
         </div>
     </div>
 </div>
-
+{% endif %}
 <script>
     $(".shop-loose-diamond2-slider").slick({
         dots: false,
@@ -76,6 +76,12 @@
   {
     "name": "Shop Loose Diamond",
     "settings": [
+        {
+            "type": "checkbox",
+            "id": "enable_slider",
+            "label": "Enable Slider",
+            "default":  true
+        },
         {
             "type": "header",
             "content": "Slider Settings"

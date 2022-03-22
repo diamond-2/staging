@@ -1,3 +1,6 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.css"/> 
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.js"></script>
+
 {% case section.settings.grid %}
   {% when 2 %}
     {%- assign max_height = 530 -%}
@@ -12,7 +15,7 @@
 {% if section.settings.layout == 'grid' %}
   {%- assign limit = section.settings.rows -%}
 {% else %}
-  {%- assign limit = 14 -%}
+  {%- assign limit = 16 -%}
 {% endif %}
 
 {% paginate collection.products by limit %}
@@ -40,7 +43,7 @@
   {% include 'collection-sorting' %}
   </header>
 
-  <div class="dia-container inital-load" id="Collection" data-collection-listing-container>
+  <div class="dia-container inital-load loosestone-col-temp" id="Collection" data-collection-listing-container>
     {% if section.settings.layout == 'grid' %}
 
       <!-- MetaField Section -->
@@ -51,6 +54,7 @@
       {% assign metafieldImage = collection.metafields.meta.block_image %}
       
       {% capture metafieldSection %}
+      {%- if metafieldImage != blank and  metafieldTitle != blank or metafieldContent != blank -%}
       <div class="content-with-image-wrapper">
         <div class="custom-row">
           <div class="custom-content-column">
@@ -94,14 +98,15 @@
           </div>
         </div>
       </div>
+      {% endif %}
       {% endcapture %}
 
       <div class="grid-view-section product_view_tab" data-view="grid">
         <ul class="grid grid--uniform grid--view-items hide" data-list-item></ul>
         <div data-pagination="{{ paginate.next.url }}" class="product-listing" data-init-content>
-          <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
+          <ul class=" abc grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
             {% for product in collection.products %}
-              <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+              <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}" data-handle="{{ product.handle }}" data-title="{{ product.title }}" data-type="{{ product.type }}">
                 {% include 'loose-stone-product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
               </li>
 

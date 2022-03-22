@@ -1,5 +1,4 @@
-
-
+{% if section.settings.enable_section %}
 <div class="custom-video-section-wrapper">
     {%- if section.settings.video_url !=blank -%}
     <div class="custom-video-holder">
@@ -7,11 +6,17 @@
     </div>
     {%- endif -%}
 </div>
-
+{% endif %}
 {% schema %}
 {
   "name": "About Us Video",
   "settings": [
+  {
+    "type": "checkbox",
+    "id": "enable_section",
+    "label": "Enable Section",
+    "default": false
+} ,
     {
         "type": "text",
         "id": "video_url",

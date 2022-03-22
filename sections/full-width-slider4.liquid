@@ -1,3 +1,4 @@
+{%- if section.settings.enable_slider -%}
 <!-- Do not Style with class 'top_banner' -->
 <div class="full_width_slider_wrapper jewellery-collection-slider full_width_slider4_wrapper top_banner">
     <div class="full_width_slider">
@@ -37,13 +38,20 @@
         {%- endif -%}  
     </div>
 </div>
-
+{%- endif -%}
 
 {% schema %}
 {
     "name": "Full Width Slider",
     "class": "top_banner_section",
-    "settings": [],
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "enable_slider",
+            "label": "Enable Slider",
+            "default": true
+        }
+    ],
     "blocks": [
        {
           "type": "image",

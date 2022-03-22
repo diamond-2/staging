@@ -12,7 +12,7 @@
           </div>
           <div class="filters-toolbar-label">
             <div class="filter-by-label">Filter by</div>
-            <div class="clear-filters" style="display: none;"><a href="javascript:;" aria-label="Clear filters">Clear Filters</a></div>
+            <div class="clear-filters"><a href="javascript:;" aria-label="Clear filters">Clear Filters</a></div>
           </div>
           <div class="filters-toolbar">
             <!-- <div class="filter-by-label">Shape <span><a href="javascript:;" aria-label="Learn more about shapes">Learn More &gt;</a></span></div>
@@ -25,18 +25,26 @@
               </div>
             </div> -->
             <div class="collection-filter-wrapper-main" data-collection-filter-section>
+
               
             </div>
           </div>
           <div class="filters-toolbar__item-wrapper">
             <div class="selected-filer-options" data-active-filters></div>
-
+            {% capture productitemlimit %}
+            {% if limit  > collection.products_count %}
+            {{ collection.products_count }}
+            {% else %}
+          {{ limit }}
+            {% endif %}
+            {% endcapture%}
+            {{}}
             <div class="filters-toolbar__item filters-toolbar__item--count">
-              <span class="filters-toolbar__product-count">Showing {% if collection.products_count > 0 %}1{% else %}0{% endif %} - {{ limit }} of {{ collection.products_count }}</span>
+              <span class="filters-toolbar__product-count">Showing {% if collection.products_count > 0 %}<span class="__product-count__initial" data-pcinit="1">1</span>{% else %}<span class="__product-count__initial" data-pcinit="0">0</span>{% endif %} - <span class="__product-count__limit" data-pclimit="{{ limit }}" data-item="test">{{ productitemlimit }}</span> of <span class="__product-count__totalCount" data-tpcount="{{ collection.products_count }}">{{ collection.products_count }}</span></span>
             </div>
 
             <div class="filter_right_column">
-              <div class="filter_compare_item hide"><a href="#">Compare (3)</a></div>
+              <div class="filter_compare_item hide"><a href="#">Compare (4)</a></div>
               <div class="filter_wishlist_item hide">{% include 'icon-wishlist-fill' %}<a href="#">Wishlist (25)</a></div>
               <div class="filters-toolbar__item-wrapper">
                   {% if section.settings.sort_enable %}
@@ -57,7 +65,7 @@
                   </div>
                   {% endif %}
                 </div>
-              <div class="product_view_item_grp hide">
+              <div class="product_view_item_grp">
                 <div class="product_view grid_view active">
                   <a data-view="grid" href="#">{% include 'icon-grid' %}</a>
                 </div>

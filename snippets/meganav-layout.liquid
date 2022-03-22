@@ -49,9 +49,12 @@
                           {% assign imgSrc = featuredImg %}
                         {% else %}
                         {% endif %}
-                        
+
+                        {%- comment -%}
+                        {% if secondLevelTitle contains 'by Shape' or secondLevelTitle contains 'by Category' %}data-handle2="{{ collectionHandle | file_url }}"{% endif %} 
+                        {%- endcomment -%}                        
                         <li {% if subnav.title contains ' all ' %}class="last_menu_item"{% endif %}>
-                            <a {% if secondLevelTitle contains 'by Shape' or secondLevelTitle contains 'by Category' %}data-handle2="{{ collectionHandle | file_url }}"{% endif %} {% if featuredImg != blank %}data-handle="{{ imgSrc }}" {% else %} {% if block.settings[subnavimage] %}data-handle="{{ block.settings[subnavimage] | img_url: 'master' }}"{% endif %} {% endif %}  href="{{ subnav.url }}" class="site-nav__link site-nav__child-link {% if subnav.title contains ' all ' %}active_color{% endif %}">
+                            <a {% if featuredImg != blank %}data-handle="{{ imgSrc }}" {% else %} {% if block.settings[subnavimage] %}data-handle="{{ block.settings[subnavimage] | img_url: 'master' }}"{% endif %} {% endif %}  href="{{ subnav.url }}" class="site-nav__link site-nav__child-link {% if subnav.title contains ' all ' %}active_color{% endif %}">
                                 <span class="site-nav__label">{{ subnav.title | escape | replace: '®', '<sup>®</sup>' }} </span>
                             </a>
                         </li>
@@ -99,7 +102,9 @@
           {% if matchParent == linkTitle %}
           {% if block.settings.subnav_img_1 != blank %}
           {% assign imgCounter = imgCounter | plus: 1 %}
-        <li id="nav-img-block" class="nav-image-wrapper"><img class="navItemsThumb lazyload" data-src="{% if matchParent == linkTitle %}{{ block.settings.subnav_img_1 | img_url: '450x321' }}{% endif %}" alt="{{ collection.title | escape }}" /></li>
+          
+  
+        <li id="nav-img-block" class="nav-image-wrapper"><img class="navItemsThumb lazyload" {% if block.settings.sitemap_img_1 != blank %} data-sitemapImg="{{ block.settings.sitemap_img_1 | img_url: 'master' }}"{% endif %} data-src="{% if matchParent == linkTitle %}{{ block.settings.subnav_img_1 | img_url: 'master' }}{% endif %}" alt="{{ collection.title | escape }}" /></li>
         {% if imgCounter == 1 %}
         {% break %}
         {% endif %}

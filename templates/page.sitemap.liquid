@@ -49,7 +49,7 @@
                         </div>
                     </li>
                     {% for childmenu in link.links %}
-                    <li class="sitemap-menu-column" {% if childmenu.title contains 'by Shapes' or childmenu.title contains 'by Categories' %}child_split_column2{% endif %}>
+                    <li class="sitemap-menu-column {% if childmenu.title contains 'by Shapes' or childmenu.title contains 'by Categories' %}child_split_column2{% endif %}" data-title="{{ childmenu.title | handleize}}">
                         {% if childmenu.title %}<a href="{{ childmenu.url }}">{{ childmenu.title | replace: '®', '<sup>®</sup>' }}</a>{% endif %}
                         {% if childmenu.links.size > 0 %}
                         <ul>
@@ -66,10 +66,10 @@
             {% endfor %}
 
             
-            <div class="sitemap-row">
+            <div class="sitemap-row" style="display: none;">
                 <ul class="sitemap-menu-grid">
                     {% for footerMenu in linklists.footer.links %}
-                    <li class="sitemap-menu-column">
+                    <li class="sitemap-menu-column" data-title="{{ footerMenu.title | handleize }}">
                         {% if footerMenu.title %}<a href="{{ footerMenu.url }}">{{ footerMenu.title | replace: '®', '<sup>®</sup>' }}</a>{% endif %}
                         {% if footerMenu.links.size > 0 %}
                         <ul>
@@ -83,7 +83,7 @@
                 </ul>
             </div>
 
-            <div class="sitemap-row">
+            <div class="sitemap-row" style="display: none;">
                 <ul class="sitemap-menu-grid">
                     <li class="sitemap-menu-column">
                         <a>More Links</a>
@@ -102,7 +102,9 @@
 
 <script>
     $('#AccessibleNav .site-nav--has-dropdown').each(function(e){
-        let imageS = $(this).find('.nav-image-wrapper img').clone();
-        $('.sitemap-row').eq(e).find('.sitemap-collection-image .sitemap-col-img a').append(imageS);
+        // let imageS = $(this).find('.nav-image-wrapper img').clone();
+        let imageSrc = $(this).find('.nav-image-wrapper img').data('sitemapimg');
+        let imgTag = '<img class="navItemsThumb lazyloaded" src="'+imageSrc+'" alt="">';
+        $('.sitemap-row').eq(e).find('.sitemap-collection-image .sitemap-col-img a').append(imgTag);
     });
 </script>

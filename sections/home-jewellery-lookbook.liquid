@@ -1,5 +1,4 @@
-
-
+{%- if section.settings.enable_section -%}
 <div class="jcl-{{ section.id }} home-jcl"> 
     <div class="dia-container">
         <div class="scl-header">
@@ -32,7 +31,7 @@
                 {% if block.settings[blockTitle] != blank or block.settings[blockUrl] != blank %}
                 <div class="content-box">
                     {% if block.settings[blockTitle] != blank %}  <h3> {{ block.settings[blockTitle] }}</h3> {% endif %}
-                    {% if block.settings[blockUrl] != blank %}  <a href="{{ block.settings[blockUrl] }}" aria-label="" class="custom-link"> Discover more ></a> {% endif %}
+                    {% if block.settings[blockUrl] != blank %}  <a href="{{ block.settings[blockUrl] }}" aria-label="" class="custom-link"> Discover more</a> {% endif %}
                 </div>
                 {% endif %}
     
@@ -53,13 +52,19 @@
     </div>
     
     </div>
-    
+ {%- endif -%}   
     {% schema %}
     {
         "name" : "Jewellery",
         "class": "jewellery-col-layout",
         "max_blocks": 3,
         "settings": [
+            {
+                "type": "checkbox",
+                "id": "enable_section",
+                "label": "Enable section",
+                "default": true
+            },
             {
                 "type":"text",
                 "id":"scl-heading",

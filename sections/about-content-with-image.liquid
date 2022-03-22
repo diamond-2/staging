@@ -1,3 +1,4 @@
+{% if section.enable_section %}
 <div class="content-with-image-diamond-section-wrapper global_section_bg">
     {%- for item in section.blocks -%}
     <div class="content-with-image-diamond-section-row image_pos_{{ item.settings.image_position }} image_col_size_{{ item.settings.image_size }}">
@@ -50,12 +51,19 @@
     </div>
     {%- endfor -%}
 </div>
- 
+ {% endif %}
 
 {% schema %}
 {
     "name": "About Content With Image",
-    "settings": [],
+    "settings": [        
+        {
+            "type": "checkbox",
+            "id": "enable_section",
+            "label": "Enable Section",
+            "default": false
+        }        
+    ],
     "blocks": [
        {
           "type": "image",

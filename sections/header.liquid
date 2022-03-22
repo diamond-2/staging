@@ -112,7 +112,7 @@
             </button>
           {% endunless %}
 
-          <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
+          <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer title="Search">
             {% include 'icon-search' %}
             <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
           </button>
@@ -142,7 +142,7 @@
             {% endif %}
           </div>
 
-          <a href="pages/store-locator" class="hide_mobile site-header__icon site-header__store-locator">
+          <a href="/pages/contact-us#location-map" class="hide_mobile site-header__icon site-header__store-locator" title="Store Locator">
             {% include 'icon-store-locator' %}
             <span class="icon__fallback-text">Store Locator</span>
           </a>
@@ -252,8 +252,8 @@
 
                       {% if link.title contains 'INTRODUCING DIAMOND2' %}
                       <ul class="custom-menu-mb">
-                        <li><a href="#">SHOP LOOSE DIAMOND2<sup>®</sup></a></li>
-                        <li><a href="#">SHOP Jewellery CollectionS</a></li>
+                        <li><a href="/collections/loose-diamond2">SHOP LOOSE DIAMOND2<sup>®</sup></a></li>
+                        <li><a href="/collections/jewellery">SHOP Jewellery CollectionS</a></li>
                       </ul>
                       {% endif %}
 
@@ -275,10 +275,10 @@
       <div class="header-mb-login-details-wrapper">
         <div class="header-mb-login-details">
           <ul>
-            <li><a href="/"><span class="icon_hold">{% include 'icon-ambassador' %}</span><span class="tex_">Diamond2<sup>®</sup> Ambassador</span></a></li>
-            <li><a href="/pages/store-locator"><span class="icon_hold">{% include 'icon-location-mobile' %}</span><span class="tex_">Store Locator</span></a></li>
-            <li><a href="tel:+1234567890"><span class="icon_hold">{% include 'icon-phone' %}</span><span class="tex_">Help/Contact Us</span></a></li>
-            <li><a href="/sign-in"><span class="icon_hold">{% include 'icon-user' %}</span><span class="tex_">Sign Up / Sign In</span></a></li>
+            <!-- <li><a href="/"><span class="icon_hold">{% include 'icon-ambassador' %}</span><span class="tex_">Diamond2<sup>®</sup> Ambassador</span></a></li> -->
+            <li><a href="/pages/contact-us#location-map"><span class="icon_hold">{% include 'icon-location-mobile' %}</span><span class="tex_">Store Locator</span></a></li>
+            <li><a href="/pages/contact-us"><span class="icon_hold">{% include 'icon-phone' %}</span><span class="tex_">Help/Contact Us</span></a></li>
+            <li><a href="/account/login"><span class="icon_hold">{% include 'icon-user' %}</span><span class="tex_">Sign Up / Sign In</span></a></li>
           </ul>
         </div>
 
@@ -312,11 +312,11 @@
 
         <div class="header-left-column hide_mobile">
           <div class="site-header__icons-wrapper">
-            <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
+            <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer title="Search">
               {% include 'icon-search' %}
               <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
             </button>
-            <a href="pages/store-locator" class="hide_mobile site-header__icon site-header__store-locator">
+            <a href="/pages/contact-us#location-map" class="hide_mobile site-header__icon site-header__store-locator" title="Store Locator">
               {% include 'icon-store-locator' %}
               <span class="icon__fallback-text">Store Locator</span>
             </a>
@@ -363,7 +363,7 @@
         </div>
 
         <div class="grid__item {% if section.settings.align_logo == 'left' %}medium-up--one-quarter{% else %}medium-up--one-third medium-up--push-one-third{% endif %} text-right site-header__icons{% if shop.customer_accounts_enabled %} site-header__icons--plus{% endif %}">
-          <div class="site-header__icons-wrapper">
+          <div class="site-header__icons-wrapper aa">
             
             {% unless linklists[section.settings.main_linklist] == blank %}
               <button type="button" class="btn--link site-header__icon site-header__menu js-mobile-nav-toggle mobile-nav--open" aria-controls="MobileNav"  aria-expanded="false" aria-label="{{ 'layout.navigation.menu' | t }}">
@@ -372,7 +372,7 @@
               </button>
             {% endunless %}
             
-            <button type="button" class="show_mobile btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
+            <button type="button" class="show_mobile btn--link site-header__icon site-header__search-toggle js-drawer-open-top">
               {% include 'icon-search' %}
               <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
             </button>
@@ -400,22 +400,29 @@
                 </div>
               {% endif %}
             </div>
-
+            {%- comment -%} Header Wishlist icon  {%- endcomment -%}
+            <a href="{% if customer %}/pages/wishlist{% else %}javascript:;{% endif %}" {% if customer %}{% else %}data-modal="showInfoModal"{% endif %} class="swym-wishlist site-header__icon site-header__wishlist">
+              {% render 'icon-account-wishlist' %}
+            </a>
             {% if shop.customer_accounts_enabled %}
               {% if customer %}
-                <a href="{{ routes.account_url }}/logout" class="site-header__icon site-header__account logout_account_btn">
-                  {% include 'icon-logout' %}
+                <div href="{{ routes.account_url }}" class="site-header__icon site-header__account logout_account_btn" title="Account">
+                  {% include 'icon-login' %}{% comment %}{% include 'icon-logout' %}{% endcomment %}
                   <span class="icon__fallback-text">{{ 'layout.customer.account' | t }}</span>
-                </a>
+                  <div class="account-dropdown">
+                    <a href="{{ routes.account_url }}" aria-label="My Account">My Account</a>
+                    <a href="/account/logout" aria-label="Logout">Logout</a>
+                  </div>
+                </div>
               {% else %}
-                <a href="{{ routes.account_login_url }}" class="site-header__icon site-header__account">
+                <a href="{{ routes.account_login_url }}" class="site-header__icon site-header__account" title="Account">
                   {% include 'icon-login' %}
                   <span class="icon__fallback-text">{{ 'layout.customer.log_in' | t }}</span>
                 </a>
               {% endif %}
             {% endif %}
 
-            <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart {% if request.page_type != 'cart'%}minicart-btn{% endif %}" >
+            <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart {% if request.page_type != 'cart'%}minicart-btn{% endif %}" title="Cart" >
               {% include 'icon-cart' %}
               <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
               <div id="CartCount" class="site-header__cart-count{% if cart.item_count == 0 %} hide{% endif %} critical-hidden" data-cart-count-bubble>
@@ -553,10 +560,22 @@
         <div class="header-mb-login-details-wrapper">
           <div class="header-mb-login-details">
             <ul>
-              <li><a href="/"><span class="icon_hold">{% include 'icon-ambassador' %}</span><span class="tex_">Diamond2<sup>®</sup> Ambassador</span></a></li>
-              <li><a href="/pages/store-locator"><span class="icon_hold">{% include 'icon-location-mobile' %}</span><span class="tex_">Store Locator</span></a></li>
+              {% if shop.customer_accounts_enabled %}
+              {% if customer %}
+              <li><a href="/account"><span class="icon_hold">{% include 'icon-login' %}</span><span class="tex_">My Account</span></a></li>
+              <li class="mob-nav-wishlist"> <a href="{% if customer %}/pages/wishlist{% else %}javascript:;{% endif %}" class="swym-wishlist"><span class="icon_hold">{% render 'icon-account-wishlist' %}</span><span class="tex_">Wishlist</span></a></li>
+              <!-- <li><a href="/"><span class="icon_hold">{% include 'icon-ambassador' %}</span><span class="tex_">Diamond2<sup>®</sup> Ambassador</span></a></li> -->
+              <!-- <li><a href="/pages/contact-us"><span class="icon_hold">{% include 'icon-location-mobile' %}</span><span class="tex_">Store Locator</span></a></li> -->
+              <li><a href="/pages/contact-us"><span class="icon_hold">{% include 'icon-phone' %}</span><span class="tex_">Help/Contact Us</span></a></li>
+              <li><a href="account/logout"><span class="icon_hold">{% include 'icon-logout' %}</span><span class="tex_">Sign out</span></a></li>
+
+              {% else %}
+              <!-- <li><a href="/"><span class="icon_hold">{% include 'icon-ambassador' %}</span><span class="tex_">Diamond2<sup>®</sup> Ambassador</span></a></li> -->
+              <li><a href="/pages/contact-us"><span class="icon_hold">{% include 'icon-location-mobile' %}</span><span class="tex_">Store Locator</span></a></li>
               <li><a href="tel:+1234567890"><span class="icon_hold">{% include 'icon-phone' %}</span><span class="tex_">Help/Contact Us</span></a></li>
-              <li><a href="/sign-in"><span class="icon_hold">{% include 'icon-user' %}</span><span class="tex_">Sign Up / Sign In</span></a></li>
+              <li><a href="/account/login"><span class="icon_hold">{% include 'icon-user' %}</span><span class="tex_">Sign Up / Sign In</span></a></li>
+              {% endif %}
+              {% endif %}
             </ul>
           </div>
 
@@ -722,7 +741,23 @@
       "id": "color_text",
       "label": "Text",
       "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Search Drawer"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_searchDrawer",
+      "label": "Enable Search Drawer",
+      "default": true
+    },
+    {    
+      "type": "link_list",
+      "id": "search_navList",
+      "label": "Choose navigation"
     }
+    
   ],
   "blocks": [
         {
@@ -748,6 +783,11 @@
               "type": "image_picker",
               "id": "subnav_img_1",
               "label": "Subnav Featured Image"
+            },
+            {
+              "type": "image_picker",
+              "id": "sitemap_img_1",
+              "label": "Sitemap Featured Image"
             },
             {
               "type": "link_list",
@@ -819,3 +859,6 @@
     ]
 }
 {% endschema %}
+
+
+

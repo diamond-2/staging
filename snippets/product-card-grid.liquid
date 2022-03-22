@@ -88,12 +88,13 @@
     <span class="visually-hidden">{{ product.title }}</span>
   </a>
 
-  <div class="product-images-wrapper">
+  <div class="product-images-wrapper {% if product.images.size == 0%}no-image {% endif %}">
     <a class="product-full-link" href="{{ product.url }}"></a>
     <div class="product-images-wrapper {% if product.images.size > 1 %}product_images_slider{% endif %}">
       {% for slideImage in product.images %}
       {% assign slideImage = slideImage | downcase %}
-      {% if  slideImage contains "_xyzg" %}
+      {% assign firstVariantColor = product.variants.first.option1 %}
+      {% if  slideImage contains "xyzg" and slideImage.alt ==  firstVariantColor %}
       <div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation>
         <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper product-card__image-wrapper js">
           <div class="product_img_holder">
@@ -112,7 +113,7 @@
   </noscript>
 
   <div class="prodct_card_body">
-    <div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="{{ product.url }}"> {{ product.title }}</a></div>
+    <div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="{{ product.url }}"> {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>'}}</a></div>
     <span style="display: none;">
       {% include 'product-price-listing', product: product, show_vendor: show_vendor %}
     </span>

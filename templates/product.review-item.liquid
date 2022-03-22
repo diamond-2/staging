@@ -1,0 +1,67 @@
+{%- layout none -%}
+{% assign defTag = false  %}
+{% assign ctwTag = false  %}
+{% for tag in product.tags %}
+
+{% if tag contains 'DEF:' %}
+{% assign defTag = true  %}
+{% if defTag %}
+{% assign defTagVal = tag | split: ':' | last  %}
+{% endif %}
+{% endif %}
+{% if tag contains 'CTW:' %}
+{% assign ctwTag = true  %}
+{% assign ctwTagVal = tag | split: ':' | last  %}
+{% endif %}
+{% endfor %}
+<a href="javascript:;" aria-label="Remove product" data-remove-wishslit-product>{% render 'icon-close' %}</a>
+<div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card">
+  {% include 'product-badge' %}
+  <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="{{ product.url }}" style="display: none;">
+    <span class="visually-hidden">{{ product.title }}</span>
+  </a>
+
+  <div class="product-images-wrapper">
+    <a class="product-full-link" href="{{ product.url }}"></a>
+    <div class="product-images-wrapper {% if product.images.size > 1 %}product_images_slider{% endif %}" data-slider="product_images_slider_{{product_handle}}">
+      {% for slideImage in product.images %}
+      {% assign slideImage = slideImage | downcase %}
+      {% assign firstVariantColor = product.variants.first.option1 %}
+      {% if  slideImage contains "xyzg" and slideImage.alt ==  firstVariantColor %}
+      <div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation>
+        <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper product-card__image-wrapper js">
+          <div class="product_img_holder">
+            <img src="{{ slideImage.src | img_url: 'master' }}" alt="{{ product.title }}" class="grid-view-item__image">
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <noscript>
+    {% capture image_size %}{{ max_height }}x{{ max_height }}{% endcapture %}
+    <img class="grid-view-item__image" src="{{ preview_image | img_url: image_size, scale: 2 }}" alt="{{ preview_image.alt }}" style="max-width: {{ max_height | times: preview_image.aspect_ratio }}px;">
+  </noscript>
+
+  <div class="prodct_card_body">
+    <div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="{{ product.url }}"> {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>'}}</a></div>
+    <span style="display: none;">
+      {% include 'product-price-listing', product: product, show_vendor: show_vendor %}
+    </span>
+    <div class="product-price-card ter">
+      <div class="product-price-card-row" data-id = {{ product.id }}>
+        <div class="product_weight">{% if ctwTag %}{{ ctwTagVal }}{% endif %}</div>
+        <div class="product_def">{% if defTag %}{{ defTagVal }}{% endif %}</div>
+        <div class="product_compare">COMPARE</div>
+      </div>
+      <div class="product-price-card-row price_row ww {% if product.compare_at_price == blank %}no_discount{% endif %}">
+        <div class="ragular_price">{{ product.price | money | remove: '.00' }}</div>
+        {% if product.compare_at_price %}<div class="compare_at_price">{{ product.compare_at_price | money | remove: '.00' }}</div>{% endif %}
+        {% assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price %}
+        {% if product.compare_at_price %}<div class="product_discount">{{ discount | floor }}% OFF</div>{% endif %}
+      </div>
+    </div>
+  </div>
+</div>

@@ -41,7 +41,7 @@
   </div>
     {% include 'collection-sorting' %}    
   </header>
-  <div class="dia-container css inital-load" id="Collection" data-collection-listing-container>
+  <div class="dia-container css inital-load solitare-col-temp" id="Collection" data-collection-listing-container data-itemperpage="{{ limit }}">
     <div class="grid-view-section product_view_tab" data-view="grid">
       <ul class="grid grid--uniform grid--view-items hide" data-list-item></ul>
       <div class="product-listing" data-init-content>
@@ -54,7 +54,7 @@
       <!-- First Row -->
       <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
         {% for product in collection.products limit: 4 %}
-          <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }} aaa">
+          <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }} aaa" data-handle="{{ product.handle }}" data-title="{{ product.title }}" data-type="{{ product.type }}">
             {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
           </li>
         {% else %}
@@ -111,7 +111,7 @@
         <div class="pd_column">
           <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
             {% for product in collection.products limit: 4 offset: continue %}
-              <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+              <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}" data-handle="{{ product.handle }}" data-title="{{ product.title }}" data-type="{{ product.type }}"> 
                 {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
               </li>
             {% else %}
@@ -153,7 +153,7 @@
       <!-- Third Row -->
       <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
         {% for product in collection.products limit: 4 offset: continue %}
-          <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+          <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}" data-handle="{{ product.handle }}" data-title="{{ product.title }}" data-type="{{ product.type }}">
             {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
           </li>
         {% else %}
@@ -210,7 +210,7 @@
         <div class="pd_column">
           <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
             {% for product in collection.products limit: 4 offset: continue %}
-              <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+              <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}" data-handle="{{ product.handle }}" data-title="{{ product.title }}" data-type="{{ product.type }}">
                 {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
               </li>
             {% else %}
@@ -248,10 +248,10 @@
       </div>
       {%- endif -%}
 
-      <div data-pagination="{{ paginate.next.url }}" class="product-listing">
+      <div data-pa="one" data-pagination="{{ paginate.next.url }}" class="product-listing">
         <ul  class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
           {% for product in collection.products offset: continue %}
-            <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+            <li data-gridItem="" class="grid__item grid__item--{{section.id}} {{ grid_item_width }}" data-handle="{{ product.handle }}" data-title="{{ product.title }}" data-type="{{ product.type }}">
               {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
             </li>
           {% else %}
@@ -288,10 +288,10 @@
       </div>
 
       {% else %}
-      <div data-pagination="{{ paginate.next.url }}" class="product-listing">
+      <div data-pa="two" data-pagination="{{ paginate.next.url }}" class="product-listing">
         <ul  class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
           {% for product in collection.products %}
-            <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+            <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}" data-handle="{{ product.handle }}" data-title="{{ product.title }}" data-type="{{ product.type }}">
               {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
             </li>
           {% else %}
@@ -329,10 +329,10 @@
       {% endif %}
 
       {%- else -%}
-      <div data-pagination="{{ paginate.next.url }}" class="product-listing">
+      <div data-pa="three" data-pagination="{{ paginate.next.url }}" class="product-listing">
         <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
           {% for product in collection.products %}
-            <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}">
+            <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }}" data-handle="{{ product.handle }}" data-title="{{ product.title }}" data-type="{{ product.type }}">
               {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
             </li>
           {% else %}

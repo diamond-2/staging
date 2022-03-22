@@ -3,7 +3,7 @@
 {% assign variantMetafield = current_variant.metafields.current_variant %}
 
 {% assign hide_default_title = false %}
-{% if product.options.size <= 1 or product.options.first.title contains 'Default' %}
+{% if product.options.size == 1 and product.options.first.title contains 'Default' %}
   {% assign hide_default_title = true %}
 {% endif %}
 
@@ -22,6 +22,8 @@
 {%- capture prod_info_stone_coating -%}prod_info_stone_coating{%- endcapture -%}
 {%- capture stone_color_granding -%}stone_color_granding{%- endcapture -%}
 {%- capture warranty -%}com_warranty{% endcapture %}
+{%- capture description -%}description{%- endcapture -%}
+{%- capture certificateId -%}cert_id{%- endcapture -%}
 
 <div class="product-template__container" id="ProductSection-{{ section.id }}" data-section-id="{{ section.id }}"
     data-section-type="product" data-enable-history-state="true" data-ajax-enabled="{{ settings.enable_ajax }}">
@@ -37,25 +39,31 @@
         {%- assign compare_at_price = current_variant.compare_at_price -%}
         {%- assign price = current_variant.price -%}
 
+
+        
+
         <div class="product-section-row">
             <div class="product-detail-slider-grp" data-product-single-media-group>
                 {% if product.media.size > 0 %}
                 <div class="product-detail-slider-wrapper">
                     <div class="product-detail-slider-holder">
                         <div class="product-detail-slider erererer">
-                            {% for mediaSlide in product.media %}
-                             
+                            {% for mediaSlide in product.media %}                             
                             {%- if mediaSlide -%}
-                            {% assign mediaSlide = mediaThumb | downcase %}
-                            {% if  mediaSlide contains "_zyxw" %}
-
-                            <div class="product-detail-slide {% if section.settings.enable_image_zoom == true %}image_zoom{% endif %}">
+                            {% assign mediaSlide = mediaSlide | downcase %}
+                            <p>{{ mediaSlide }}==</p>
+                            {% if  mediaSlide contains "zyxw" %}
+                               <p>{{ forloop.index }}==</p> 
+                            <div data-index="{{ forloop.index }}" class="product-detail-slide {% if section.settings.enable_image_zoom == true %}image_zoom{% endif %}" data-alt="{{ mediaSlide.alt }}">
                                 
                                 {% if mediaSlide.media_type == 'image' %}
                                 <div class="product-detail-slide-inner" data-scale="1.4">
                                     <div class="product-detail-slide-img-holder" style="background-image: url({{ mediaSlide | img_url:'900x' }});"></div>
                                 </div>
+                                
                                 {% elsif mediaSlide.media_type == 'video' %}
+                                
+                                {% assign videos = product.media | where: "media_type", "video" %}
                                 <div class="product-detail-slide-inner media_type_video" >
                                     <div class="product-detail-slide-img-holder">
                                         <video loop muted>
@@ -89,7 +97,7 @@
                         <div class="product-detail-slider-thumbnail" {% if product.media.size <  5 %} data-size="{{ product.media.size }}"{% endif %}>
                             {% for mediaThumb in product.media %}
                             {% assign mediaThumb = mediaThumb | downcase %}
-                            {% if  mediaThumb contains "_zyxw" %}
+                            {% if  mediaThumb contains "zyxw" %}
                             <div class="product-detail-slider-thumbnail-slide" data-alt="{{ mediaThumb.alt }}">
                                 {% if mediaThumb.media_type == 'image' %}  
                                 <div class="product-detail-slider-thumbnail-slide-inner">
@@ -126,19 +134,22 @@
 
             <div class="product-detail-content-column">
                 <div class="product-detail-breadcrumb">
+                    {% comment %}{% include 'breadcrumb' %}{% endcomment %}
                     <ul>
-                        <p style="display: none;">{{ template.suffix }}</p>
-                        <li><a href="{{ routes.root_url }}">Home</a></li>
+                        <li><a href="{{ routes.root_url }}" aria-label="home">Home</a></li>
+                        <li class="breadcurm-collection-link breadcrum-ls"><a href="" aria-lable=""></a></li>
+                        
                         {%- if productMetafield[product_category] != blank -%}
-                        <li><a href="{{ routes.collections_url }}/{{ productMetafield[product_category] | append: '-collections' | downcase | handleize }}">{{ productMetafield[product_category] }}</a></li>
+                        <li class="breadcurm-category-meta" data-lable="ss"><a href="{{ routes.collections_url }}/{{ productMetafield[product_category] | append: '-collections' | downcase | handleize }}">{{ productMetafield[product_category] }}</a></li>
                         {%- endif -%}
+                       
                         {% if template.suffix contains 'loose-stone' %}
                         {% if productMetafield[stone_category] != blank %}
-                        <li><span class="breadcrumb_text">{{ productMetafield[stone_category] }}</span></li>
+                        <li class="breadcurm-category-meta"><span class="breadcrumb_text ">{{ productMetafield[stone_category] }}</span></li>
                         {% endif %}
-                        {% else %}
+                       {% else %}
                         {% if productMetafield[jewelery_category] != blank %}
-                        <li><span class="breadcrumb_text">{{ productMetafield[jewelery_category] }}</span></li>
+                        <li class="breadcurm-category-meta"><span class="breadcrumb_text aa">{{ productMetafield[jewelery_category] }}</span></li>
                         {% endif %}
                         {% endif %}
                     </ul>
@@ -150,21 +161,31 @@
                     {%- assign current_variant = product.selected_or_first_available_variant -%}
                     <h1 class="product-single__title">{{ product.title }}</h1>
                     {%- if template.suffix contains 'loose-stone' -%}
+                    <div class="product-sku-wrapper">
+                        <div class="p_sku">SKU: <span class="__sku">{{ product.sku }}</span></div>
+                    </div>
                     {%- else -%}
                     <div class="product-sku-wrapper">
                         {%- if current_variant.sku != blank -%}
-                        <div class="p_sku">SKU: {{ current_variant.sku }}</div>
-                        <div class="p_weight_guide"><a href="javascript:void(0);">Carat Weight Guide</a></div>
+                        <div class="p_sku">SKU: <span class="__sku">{{ current_variant.sku }}</span></div>
+                        {% assign caratWeightGuide = 'Carat Weight Guide' %}
+                        <div class="p_weight_guide"><a custom-modal="trigger" href="#{{ caratWeightGuide | downcase | replace: ' ', '_' }}">{{caratWeightGuide}}</a></div>        
+                        {% capture weightGuidePopup %}
+                            {% include 'weight_guide-popup', weight_guide_text: caratWeightGuide %}
+                        {% endcapture %}                    
                         {%- endif -%}
                     </div>
                     {%- endif -%}
                     <div class="product-wishlist">
                         <div class="wishlist-text">SAVE TO WISHLIST</div>
                         <div class="wishlist-icon">
-                            {% include 'iocn-wislist' %}
+                        <!-- Swym button on product pages -->
+                        <div class="swym-wishlist-button-bar"></div>
+                        <!-- Swym button on product pages -->                       
+                            {% comment %}{% include 'iocn-wislist' %} {% endcomment %}
                         </div>
                     </div>
-                   
+                   {% comment %}
                     {%- if cart.taxes_included or shop.shipping_policy.body != blank -%}
                     <div class="product__policies rte" data-product-policies>
                         {%- if cart.taxes_included -%}
@@ -175,7 +196,7 @@
                         {%- endif -%}
                     </div>
                     {%- endif -%}
-
+                    {% endcomment %}
                     {% capture "form_classes" -%}
                     product-form product-form-{{ section.id }}
                     {%- if section.settings.enable_payment_button and product.has_only_default_variant %}
@@ -237,7 +258,19 @@
                                     {% endfor %}
                                 </select>
                             </div>
+                            
                             {% if option.name =='Size' %}
+                            {% assign prodCategory = product.metafields.global.jewelery_category %}
+                            {% if prodCategory == 'Bangle' %}
+
+                            {% assign bangleSizeText = 'Bangle Size Guide' %}
+                            <div class="ring-size-chart"><a custom-modal="trigger" href="#{{ bangleSizeText | downcase | replace: ' ', '_' }}">{{ bangleSizeText }}</a></div>
+                            
+                            {% capture bangleSizePopup %}
+                                {% include 'bangle-size-popup', bangle_size_text: bangleSizeText %}
+                            {% endcapture %}
+
+                            {% else %}
                             <!-- Set Ring Size Text in Variable and Pass that value on 'ring-size-poup' -->
                             {% assign ringSizeText = 'Ring Size Guide' %}
                             <div class="ring-size-chart"><a custom-modal="trigger" href="#{{ ringSizeText | downcase | replace: ' ', '_' }}">{{ ringSizeText }}</a></div>
@@ -245,17 +278,18 @@
                             {% capture ringSizePopup %}
                                 {% include 'ring-size-popup', ring_size_text: ringSizeText %}
                             {% endcapture %}
-
+                            {% endif %}
                             {% endif %}
                             {% endif %}
                         </div>
                         {% endfor %}
                     </div>
                     {% endunless %}
-
+                    {% if variantMetafield[certificateId] != blank %}<input type="hidden" name="properties[_Certificate_Id]" id="variant_certificate_id" value="{{ variantMetafield[certificateId] }}" />{% endif %}
+                    <input type="hidden" name="id" id="selectedVariantId" value="{{ current_variant.id }}"/>
                     <select name="id" id="ProductSelect-{{ section.id }}" class="product-form__variants no-js">
                         {% for variant in product.variants %}
-                        <option data-title="{{ variant.title | handleize }}" data-color="{{ variant.option1 }}" data-size="{{ variant.option2 }}" value="{{ variant.id }}" {%- if variant==current_variant %} selected="selected" {%-endif -%}> {{ variant.title }} {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
+                        <option data-certificateId="{{ variantMetafield[certificateId] }}" data-sku="{{ variant.sku }}" data-qty="{{ variant.inventory_quantity}}" data-title="{{ variant.title | handleize }}" data-color="{{ variant.option1 }}" data-size="{{ variant.option2 }}" data-option3="{{ variant.option3}}" value="{{ variant.id }}" {%- if variant==current_variant -%} selected="selected" {%-endif -%}> {{ variant.title }} {%- if variant.available == false %} - {{ 'products.product.sold_out' | t }}{% endif %}
                         </option>
                         {% endfor %}
                     </select>
@@ -314,7 +348,7 @@
 
                 </div>
 
-                <div class="price_inclusive">Price is Inclusive of Taxes</div>
+                <div class="price_inclusive"><span class="tax-msg">Price is Inclusive of Taxes</span><span class="cv-stock-left">{{current_variant.inventory_quantity }}</span></div>
                 <div class="delivery-check-sec">
                     <div class="delivery-check-title">check delivery date</div>
                     <div class="delivery-check-input">
@@ -324,11 +358,15 @@
     </svg></span>
                         <input type="text" id="delivery-check" placeholder="Enter pincode">
                     </div>
+                    {% if product.avaialable and productMetafield[delivery_days_instock] != blank %}
+                        <div class="delivery-check-date">{{ productMetafield[delivery_days_instock] }}</div>
+                    {% else %}
                     {%- if product.available and  productMetafield[delivery_days_instock] != blank -%}
                         <div class="delivery-check-date">{{ productMetafield[delivery_days_instock] }}</div>
                     {% else %}
                         <div class="delivery-check-date">{{ productMetafield[delivery_days_outofstock] }}</div>
                     {%- endif -%}
+                    {% endif %}
                 </div>
 
                 <div class="product-details-btn-grid">
@@ -354,7 +392,7 @@
                             <span class="text">to order by  phone</span>
                         </div>
                         <div class="right_col">
-                            <a href="tel:+8002278400">1-800-227-8400</a>
+                            <a href="tel:+658004922522">+65 (800) 4922522</a>
                         </div>
                     </div>
                     <div class="pdp-warranty-sec">
@@ -404,7 +442,7 @@
                         <div class="pdp-warranty-item _shipping">
                             <span>
                                 <svg width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M22.4 4H19.6V2.66667C19.6 1.95942 19.305 1.28115 18.7799 0.781048C18.2548 0.280951 17.5426 0 16.8 0H2.8C2.05739 0 1.3452 0.280951 0.820101 0.781048C0.294999 1.28115 0 1.95942 0 2.66667V16H2.8C2.8 16.5253 2.90864 17.0454 3.11971 17.5307C3.33078 18.016 3.64015 18.457 4.03015 18.8284C4.42016 19.1999 4.88316 19.4945 5.39273 19.6955C5.9023 19.8965 6.44845 20 7 20C7.55155 20 8.0977 19.8965 8.60727 19.6955C9.11684 19.4945 9.57984 19.1999 9.96985 18.8284C10.3599 18.457 10.6692 18.016 10.8803 17.5307C11.0914 17.0454 11.2 16.5253 11.2 16H16.8C16.8 17.0609 17.2425 18.0783 18.0302 18.8284C18.8178 19.5786 19.8861 20 21 20C22.1139 20 23.1822 19.5786 23.9698 18.8284C24.7575 18.0783 25.2 17.0609 25.2 16H28V9.33333L22.4 4ZM7 18C6.72413 17.9999 6.45098 17.9481 6.19615 17.8475C5.94132 17.7468 5.70979 17.5994 5.51479 17.4135C5.31978 17.2277 5.16512 17.0071 5.05964 16.7643C4.95415 16.5216 4.89991 16.2614 4.9 15.9987C4.90009 15.7359 4.95452 15.4758 5.06017 15.2331C5.16583 14.9904 5.32064 14.7699 5.51578 14.5842C5.71091 14.3985 5.94254 14.2512 6.19744 14.1507C6.45235 14.0502 6.72553 13.9986 7.0014 13.9987C7.55854 13.9988 8.09279 14.2098 8.48662 14.5851C8.88044 14.9604 9.10159 15.4694 9.1014 16C9.10122 16.5306 8.87971 17.0394 8.48562 17.4145C8.09153 17.7896 7.55714 18.0002 7 18ZM2.8 12V2.66667H16.8V12H2.8ZM21 18C20.7241 17.9999 20.451 17.9481 20.1961 17.8475C19.9413 17.7468 19.7098 17.5994 19.5148 17.4135C19.3198 17.2277 19.1651 17.0071 19.0596 16.7643C18.9542 16.5216 18.8999 16.2614 18.9 15.9987C18.9001 15.7359 18.9545 15.4758 19.0602 15.2331C19.1658 14.9904 19.3206 14.7699 19.5158 14.5842C19.7109 14.3985 19.9425 14.2512 20.1974 14.1507C20.4523 14.0502 20.7255 13.9986 21.0014 13.9987C21.5585 13.9988 22.0928 14.2098 22.4866 14.5851C22.8804 14.9604 23.1016 15.4694 23.1014 16C23.1012 16.5306 22.8797 17.0394 22.4856 17.4145C22.0915 17.7896 21.5571 18.0002 21 18Z" fill="black"/>
+                                <path d="M22.4 4H19.6V2.#66667C19.6 1.95942 19.305 1.28115 18.7799 0.781048C18.2548 0.280951 17.5426 0 16.8 0H2.8C2.05739 0 1.3452 0.280951 0.820101 0.781048C0.294999 1.28115 0 1.95942 0 2.66667V16H2.8C2.8 16.5253 2.90864 17.0454 3.11971 17.5307C3.33078 18.016 3.64015 18.457 4.03015 18.8284C4.42016 19.1999 4.88316 19.4945 5.39273 19.6955C5.9023 19.8965 6.44845 20 7 20C7.55155 20 8.0977 19.8965 8.60727 19.6955C9.11684 19.4945 9.57984 19.1999 9.96985 18.8284C10.3599 18.457 10.6692 18.016 10.8803 17.5307C11.0914 17.0454 11.2 16.5253 11.2 16H16.8C16.8 17.0609 17.2425 18.0783 18.0302 18.8284C18.8178 19.5786 19.8861 20 21 20C22.1139 20 23.1822 19.5786 23.9698 18.8284C24.7575 18.0783 25.2 17.0609 25.2 16H28V9.33333L22.4 4ZM7 18C6.72413 17.9999 6.45098 17.9481 6.19615 17.8475C5.94132 17.7468 5.70979 17.5994 5.51479 17.4135C5.31978 17.2277 5.16512 17.0071 5.05964 16.7643C4.95415 16.5216 4.89991 16.2614 4.9 15.9987C4.90009 15.7359 4.95452 15.4758 5.06017 15.2331C5.16583 14.9904 5.32064 14.7699 5.51578 14.5842C5.71091 14.3985 5.94254 14.2512 6.19744 14.1507C6.45235 14.0502 6.72553 13.9986 7.0014 13.9987C7.55854 13.9988 8.09279 14.2098 8.48662 14.5851C8.88044 14.9604 9.10159 15.4694 9.1014 16C9.10122 16.5306 8.87971 17.0394 8.48562 17.4145C8.09153 17.7896 7.55714 18.0002 7 18ZM2.8 12V2.66667H16.8V12H2.8ZM21 18C20.7241 17.9999 20.451 17.9481 20.1961 17.8475C19.9413 17.7468 19.7098 17.5994 19.5148 17.4135C19.3198 17.2277 19.1651 17.0071 19.0596 16.7643C18.9542 16.5216 18.8999 16.2614 18.9 15.9987C18.9001 15.7359 18.9545 15.4758 19.0602 15.2331C19.1658 14.9904 19.3206 14.7699 19.5158 14.5842C19.7109 14.3985 19.9425 14.2512 20.1974 14.1507C20.4523 14.0502 20.7255 13.9986 21.0014 13.9987C21.5585 13.9988 22.0928 14.2098 22.4866 14.5851C22.8804 14.9604 23.1016 15.4694 23.1014 16C23.1012 16.5306 22.8797 17.0394 22.4856 17.4145C22.0915 17.7896 21.5571 18.0002 21 18Z" fill="black"/>
                                 </svg>
                             </span>
                                 {% if productMetafield[fast_shipping] != blank %}
@@ -439,17 +477,22 @@
 
         <div class="product-content-section">
 
-            {%- if product.description != blank -%}
+            {%- if variantMetafield[description] != blank or  product.description != blank -%}
             <div class="product-desc-section content_showed">
                 <div class="product-desc-title"><p>PRODUCT DESCRIPTION</p><span></span></div>
+                {% if variantMetafield[description] != blank %}
+                <div class="product-desc-content" data-row="{{ description}}"><div class="pdp-tab-val">{{ variantMetafield[description] }}</div></div>
+                {% else %}
                 <div class="product-desc-content">{{ product.description }}</div>
+                {% endif %}
+                
             </div>
             {%- endif -%}
 
             <div class="product-meta-review-tabber-nav hide_mobile">
                 <ul>
                     <li class="prduct-metatab-trigger active"><a href="#productDetails">Product Details</a></li>
-                    <li class="prduct-review-trigger"><a href="#productReview">Review</a></li>
+                    <li class="prduct-review-trigger"><a href="#productReview">Reviews</a></li>
                 </ul>
             </div>
 
@@ -465,53 +508,69 @@
 
     </div>
 </div>
-
 <!-- Add Popup Capture Code Here -->
+{% assign prodCategory = product.metafields.global.jewelery_category %}
+{% if prodCategory == 'Bangle' %}
+{{ bangleSizePopup }}
+{% else %}
 {{ ringSizePopup }}
+{% endif %}
+{{ weightGuidePopup }}
 
 
 <script>
-    $('.product-detail-slider').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: true,
-        fade: true,
-        asNavFor: '.product-detail-slider-thumbnail',
-        draggable: false,
-        infinite: false,
-        autoplay:false,
-        responsive: [
-            {
-                breakpoint: 749,
-                settings: {
-                    dots: true
-                }
+
+// PDP Image slider 
+var featuredSlider = $('.product-detail-slider'),
+    thumbslider = $('.product-detail-slider-thumbnail');
+    featuredSlider.slick(getFeaturedSliderSettings(thumbslider)); /* Initialize the slick again */
+    thumbslider.slick(getThumbSliderSettings(featuredSlider));
+
+// Reinitialize slick slider
+function getFeaturedSliderSettings(thumbslider){
+  return {
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    fade: true,
+    asNavFor: thumbslider,
+    draggable: false,
+    infinite: false,
+    autoplay:false,
+    responsive: [
+        {
+            breakpoint: 749,
+            settings: {
+                dots: true
             }
-        ]
-    });
-    $('.product-detail-slider-thumbnail').slick({
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        vertical:true,
-        asNavFor: '.product-detail-slider',
-        dots: false,
-        verticalSwiping:true,
-        focusOnSelect: true,
-        draggable: false,
-        arrows: false,
-        infinite: false,
-        autoplay:false,
-        centerMode: false,
-        responsive: [
-            {
-                breakpoint: 991,
-                settings: {
-                    verticalSwiping:false,
-                    vertical:false
-                }
+        }
+    ]
+  }
+}
+
+// Reinitialize slick slider
+function getThumbSliderSettings(featuredSlider){
+  return {
+    infinite: false,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    asNavFor: featuredSlider,
+    dots: false,
+    arrows: true,
+    vertical: true,
+    verticalSwiping: true,
+    focusOnSelect: true,
+    responsive: [
+        {
+        breakpoint: 992,
+        settings: {
+            vertical: false,
+            adaptiveHeight: true            
             }
-        ]
-    }); 
+        }
+    ]
+  }
+}
     
     // Go to 360 view Slide Mobile
     $('.mobile-3d-img').click(function(e) {
@@ -522,28 +581,28 @@
     
     function activeBorder() {
         setTimeout(function(){
-            $(".slide-active-border").css({
-                height: $(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").height(),
-                top: $(".product-detail-slider-thumbnail .slick-slide.slick-current").position().top
+            $(document).find(".slide-active-border").css({
+                height: $(document).find(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").height(),
+                top: $(document).find(".product-detail-slider-thumbnail .slick-slide.slick-current").position().top
             });
         },100);
-        $(".product-detail-slider-thumbnail .slick-slide").click(function() {
+        $(document).on('click', '.product-detail-slider-thumbnail .slick-slide', function() {
             var borederHeight = $(this).children('.product-detail-slider-thumbnail-slide-inner').height();
                 borederPos = $(this).children('.product-detail-slider-thumbnail-slide-inner').position().top;
-            $(".slide-active-border").css({
+            $(document).find(".slide-active-border").css({
                 height: borederHeight,
                 top: borederPos
             })
         });
     }
     window.addEventListener("load", function(){
-        $('.product-detail-slider-thumbnail .slick-track').prepend('<div class="slide-active-border"></div>');
+        $(document).find('.product-detail-slider-thumbnail .slick-track').prepend('<div class="slide-active-border"></div>');
         activeBorder();
         // border mover on Arrow click
-        $(".product-detail-slider-wrapper .slick-arrow").click(function() {
+        $(document).on('click', '.product-detail-slider-wrapper .slick-arrow', function() {
             $(".slide-active-border").css({
-                height: $(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").height(),
-                top: $(".product-detail-slider-thumbnail .slick-slide.slick-current").position().top
+                height: $(document).find(".product-detail-slider-thumbnail .slick-slide.slick-current .product-detail-slider-thumbnail-slide-inner").height(),
+                top: $(document).find(".product-detail-slider-thumbnail .slick-slide.slick-current").position().top
             });
         });    
     });
@@ -575,6 +634,17 @@ $(".image_zoom .product-detail-slide-inner")
           "%"
       });
   });
+</script>
+<script>
+
+    $(document).ready(function(){
+        $('.product-info-holder .product-info-table tr').each(function(){
+            var tdlength = $(this).find('td').length || $(this).find('th').length;
+            if(tdlength > 2) {
+                $(this).closest('.product-info-table').addClass('three_td_table');
+            }
+        });
+    });
 </script>
 
 {% unless product == empty %}

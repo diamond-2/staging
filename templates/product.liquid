@@ -31,9 +31,12 @@
     unavailable: {{ 'products.product.unavailable' | t | json }}
   };
 
-  if(sessionStorage.backToCollection) {
+  var x = localStorage.getItem("backToCollection");
+  console.log('LocalStorage Exist', x);
+
+  if(localStorage.backToCollection) {
     theme.backToCollection = {};
-    theme.backToCollection.collection = JSON.parse(sessionStorage.backToCollection);
+    theme.backToCollection.collection = JSON.parse(localStorage.backToCollection);
     var productCollections = {{ product.collections | json }};
     var showCollection = false;
     if (productCollections) {
@@ -47,7 +50,13 @@
       var backToCollectionHTML = '<div class="text-center return-link-wrapper page-width"><a href="' + theme.backToCollection.collection.link + '" class="btn btn--secondary btn--has-icon-before">{% include 'icon-arrow-left' %}{{ 'products.product.back_to_collection' | t }} ' + theme.backToCollection.collection.title + '</a></div>';
       var backToCollectionContainer = document.getElementById('backToCollection');
       backToCollectionContainer.insertAdjacentHTML('afterbegin', backToCollectionHTML);
+
+      var breadcrumbHtml = '<a href="'+ theme.backToCollection.collection.link + '" aria-lable="' + theme.backToCollection.collection.title + '">' + theme.backToCollection.collection.title + '</a>';
+      $(document).find('.breadcurm-collection-link').html(breadcrumbHtml).show();
     }
+    $('.product-detail-breadcrumb').attr('data-breadrumb', 'ls')
+  } else {
+    $('.product-detail-breadcrumb').attr('data-breadrumb', 'metafiedls');
   }
 </script>
 

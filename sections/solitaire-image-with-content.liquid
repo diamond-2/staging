@@ -1,5 +1,5 @@
-
-<div class="content-with-image-wrapper">
+{%- if section.settings.enable_section -%}
+<div class="content-with-image-wrapper erer">
 	<div class="dia-container">
 		<div class="custom-row">
 			<div class="custom-content-column">
@@ -10,14 +10,24 @@
 				{%- if section.settings.button_1_text != blank or  section.settings.button_2_text != blank -%}
 				<div class="buttons-wrapper hide_mobile">
 					{%- if section.settings.button_1_text != blank -%}
-					<div class="button-item">
+					<div class="button-item 3rd">
 						<a class="glb-btn-with-arrow large_arrow_btn" href="{{ section.settings.button_1_link }}">{{ section.settings.button_1_text }}</a>
 					</div>
 					{%- endif -%}
 					{%- if section.settings.button_2_text != blank -%}
-					<div class="button-item">
-						<a class="glb-btn-with-arrow large_arrow_btn" href="{{ section.settings.button_2_link }}">{{ section.settings.button_2_text }}</a>
+					{% assign caratWeightGuide = 'Carat Weight Guide' %}
+					<div class="button-item 4th p_weight_guide">
+						<a class="glb-btn-with-arrow large_arrow_btn" custom-modal="trigger" href="#{{ caratWeightGuide | downcase | replace: ' ', '_' }}">{{ section.settings.button_2_text }}</a>
 					</div>
+					{% capture weightGuidePopup %}
+						{% include 'weight_guide-popup', weight_guide_text: caratWeightGuide %}
+					{% endcapture %}
+
+
+					
+
+
+
 					{%- endif -%}
 				</div>
 				{%- endif -%}
@@ -45,12 +55,12 @@
 				{%- if section.settings.button_1_text != blank or  section.settings.button_2_text != blank -%}
 				<div class="buttons-wrapper show_mobile">
 					{%- if section.settings.button_1_text != blank -%}
-					<div class="button-item">
+					<div class="button-item 1st">
 						<a class="glb-btn-with-arrow large_arrow_btn" href="{{ section.settings.button_1_link }}">{{ section.settings.button_1_text }}</a>
 					</div>
 					{%- endif -%}
 					{%- if section.settings.button_2_text != blank -%}
-					<div class="button-item">
+					<div class="button-item 2nd">
 						<a class="glb-btn-with-arrow large_arrow_btn" href="{{ section.settings.button_2_link }}">{{ section.settings.button_2_text }}</a>
 					</div>
 					{%- endif -%}
@@ -60,11 +70,18 @@
 		</div>
 	</div>
 </div>
-
+{{ weightGuidePopup }}
+{%- endif -%}
 {% schema %}
   {
     "name": "Image With Content",
     "settings": [
+		{
+			"type": "checkbox",
+			"id": "enable_section",
+			"label": "Enable Section",
+			"default": true
+		},
 		{
 			"type": "header",
 			"content": "Content Column"

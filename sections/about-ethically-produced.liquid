@@ -1,3 +1,4 @@
+{% if section.settings.enable_section %}
 {%- if section.settings.heading != blank or section.settings.content != blank -%}
 <div class="ethically-produced-section global_section_bg">
 	<div class="dia-container">
@@ -10,11 +11,19 @@
 	</div>
 </div> 
 {%- endif -%}
+{% endif %}
+
 
 {% schema %}
   {
     "name": "About Ethically Produced",
     "settings": [
+		{
+			"type": "checkbox",
+			"id": "enable_section",
+			"label": "Enable Section",
+			"default": false
+		}, 
     	{
     		"type": "text",
     		"label": "Heading",

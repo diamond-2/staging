@@ -1,0 +1,134 @@
+{% layout none %}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+<div class="compare__product-information" data-handle="{{ product.handle }}">
+  <a class="text-link text-link--accent remove_compare_modal_pop_btn" data-remove-compare-item>Remove {% include 'icon-close' %}</a>
+    <div class="compare__image-wrapper">
+      <img class="compare__image" src="{{ product.featured_image | img_url: '150x' }}" alt="{{ product.featured_image.alt }}" data-compare-item-image="">
+    </div>
+    <div class="compare__product-body">
+      <div class="compare__product-body-left">
+        <table id="compare__product-table-layout">
+          <tr>
+            <td class="list-view-item__title"><a href="{{ product.url }}" class="cart__product-title" data-compare-item-title="" data-role="product-title">
+              {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>' }}
+            </a></td>
+          </tr>
+          <tr>
+            <td class="compare_product-modal-price-block">{% include 'product-price', variant: current_variant %}</td>
+          </tr>
+          {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+          {% if option.name contains 'Color' or option.name contains 'Colour' or option.name contains 'COLOUR' %}
+          
+          <tr>
+            <td>
+              <div class="compareitem-label">Metal Color</div>
+              <div class="compareitem-value">
+                {% for value in option.values %}
+                <span data-color="{{ value | handleize }}" class="{{ value | handleize }}">{{ value | replace: 'White Gold', '' | replace: 'Yellow Gold', '' | replace: 'Rose Gold', '' }}</span>
+                {% endfor %}
+              </div>
+            </td>
+          </tr>
+          {% endif %}          
+          {% endfor %}
+          {% endunless %}
+          <tr>
+            <td>
+              <div class="compareitem-label">Average Color</div>
+              <div class="compareitem-value">3.56</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="compareitem-label">Average Clarity</div>
+              <div class="compareitem-value">GHI</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="compareitem-label">Center Stone Weight</div>
+              <div class="compareitem-value">Prong</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="compareitem-label">Solitaire Shape</div>
+              <div class="compareitem-value">GHI</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="compareitem-label">Solitaire Weight</div>
+              <div class="compareitem-value">VVS-Vs</div>
+            </td>
+          </tr>
+        </table>
+        <div class="list-view-item__title hide-in-compareModal">
+          <a href="{{ product.url }}" class="cart__product-title" data-compare-item-title="" data-role="product-title">
+            {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>' }}
+          </a>
+
+          <div class="compare_product-modal-price-block hide-in-compareModal">
+            {% include 'product-price', variant: current_variant %}
+          </div>          
+        </div>
+
+        <!-- Cart Quentity -->
+  <ul class="product-details hide-in-compareModal" data-compare-item-details="" aria-label="Product details">
+      {% if current_variant.option1 %}
+          <li class="product-details__item product-details__item--variant-option" data-compare-item-option="">
+            <div class="v_item_inner"><span>{{ current_variant.option1 }}</span></div>
+          </li>
+        {% endif %}  
+          {% if current_variant.option2 %}
+          <li class="v_Size product-details__item product-details__item--variant-option" data-compare-item-option="">
+            <div class="v_item_inner"><span>Size : </span> <span>{{ current_variant.option2 }}</span></div>
+          </li>
+          {% endif %}
+          
+  <!-- <li class="product-details__item product-details__item--property" data-compare-item-selling-plan-name=""></li>
+            <li class="hide product-details__item product-details__item--property
+               hide" data-compare-item-property="">
+              <span class="product-details__item-label" data-compare-item-property-name="">t: </span><span data-compare-item-property-value="">e
+  </span>
+            </li> -->
+            
+          </ul>
+          <div class="compare_product-price-block">
+            {% include 'product-price', variant: current_variant %}
+          </div>
+
+          <div class="compare-product-modal-action">
+            {% form 'product', product, class:form_classes, novalidate: 'novalidate', data-product-form: '' %}
+            <input type="hidden" name="id" id="selectedVariantId_{{current_variant.id }}" value="{{ current_variant.id }}"/>
+            <button type="submit" name="add" {% unless current_variant.available %} aria-disabled="true"
+                                {% endunless %}
+                                aria-label="{% unless current_variant.available %}{{ 'products.product.sold_out' | t }}{% else %}{{ 'products.product.add_to_cart' | t }}{% endunless %}"
+                                class="btn product-form__cart-submit glb-btn"  data-add-to-cart>
+
+                                <span data-add-to-cart-text>
+                                    {% unless current_variant.available %}
+                                    {{ 'products.product.sold_out' | t }}
+                                    {% else %}
+                                    ADD TO BAG
+                                    {% endunless %}
+                                </span>
+                                <span class="hide" data-loader>
+                                    {% include 'icon-spinner' %}
+                                </span>
+                            </button>
+            {% endform %}
+          </div>
+
+
+      </div>
+      <div class="compare__product-body-right">
+        <!-- <div class="add_wishlist_holder"><a href="#" class="add_wishlist_icon"><svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10.4656 19.2932L10.4657 19.2932L10.4613 19.2893C6.4707 15.748 3.97621 13.3889 2.47421 11.4221C0.996381 9.48702 0.5 7.95864 0.5 6.06061C0.5 2.92819 2.78653 0.5 5.55882 0.5C7.84706 0.5 9.13724 1.88072 10.1125 3.07689L10.5 3.55221L10.8875 3.07689C11.8628 1.88072 13.1529 0.5 15.4412 0.5C18.2135 0.5 20.5 2.92819 20.5 6.06061C20.5 7.95864 20.0036 9.48702 18.5258 11.4221C17.0238 13.3889 14.5293 15.748 10.5387 19.2893L10.5387 19.2893L10.5344 19.2932L10.5 19.3244L10.4656 19.2932Z" stroke="#6C1D45"></path>
+          </svg>
+          </a></div> -->
+          <a class="text-link text-link--accent remove_compare_pop_btn" data-remove-compare-item>{% include 'icon-close' %}</a>
+      </div>      
+    </div>
+  </div>

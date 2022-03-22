@@ -145,7 +145,7 @@
       stylesheet: "{{ 'theme.css' | asset_url }}"
     };
 
-    {%- if template == 'collection' -%}
+    {%- if template contains 'collection' -%}
       {%- if current_tags -%}
         {%- capture tag_handles -%}
             {%- for tag in current_tags -%}
@@ -159,11 +159,11 @@
           link: "{{ shop.url }}{{ collection.url }}{%- if current_tags -%}/{{- tag_handles | split: '|' | join: '+' -}}{%- endif -%}"
         }
       };
-      sessionStorage.setItem("backToCollection", JSON.stringify(theme.backToCollection.collection));
+      localStorage.setItem("backToCollection", JSON.stringify(theme.backToCollection.collection));
 
     {%- elsif template != 'product' -%}
-      if (sessionStorage.getItem("backToCollection")) {
-        sessionStorage.removeItem("backToCollection")
+      if (localStorage.getItem("backToCollection")) {
+        localStorage.removeItem("backToCollection")
       }
     {%- endif -%}
 
@@ -179,7 +179,7 @@
 	{{ shop.metafields.loox["global_html_head"] }}
 </head>
 
-<body class="layout_{% if template.suffix %}{{ template.suffix }}{% else %}{{ template }}{% endif %} template-{{ request.page_type | handle }} " data-template="{% if template.suffix %}{{ template.suffix }}{% else %}{{ template }}{% endif %}" {% if request.page_type == 'product' %}data-handle="{{ product.handle }}" {% endif %}>
+<body class="layout_{% if template.suffix %}{{ template.suffix }}{% else %}{{ template }}{% endif %} template-{{ request.page_type | handle }} " data-template="{% if template.suffix %}{{ template.suffix }}{% else %}{{ template }}{% endif %}"  {% if template.suffix == 'jewellery-plp'%}data-load="jewellery-plp-initial"{% endif %} {% if request.page_type == 'product' %}data-handle="{{ product.handle }}" {% endif %} {% if customer %}data-customerEmail="{{ customer.email }}" {% endif %}>
   
   <!-- Loader -->
   <div id="preloader"><span class="loader"></span></div>
@@ -188,7 +188,7 @@
   {%- comment -%}{% include 'mini-cart' %}{%- endcomment -%}
 
   <!-- newsletter Popup Start -->
-  {% include 'newsletter-popup' %}
+  {%- comment  -%}{% include 'newsletter-popup' %}{%- endcomment -%}
   <!-- newsletter Popup End -->
 
   
@@ -262,13 +262,34 @@
   </ul>
   {% if template contains 'product' %}{% include 'product-zoom-gallery' %}{% endif %}
 
+  <!-- subscription form success message modal -->
+  <div class="form-message-modal-overlay"></div>
+  <div class="form-message-modal-content">
+    <div class="form-message-modal-header">
+      <a class="form-message-modal-close" href="javascript:;" aria-label="Close modal"><img src="{{ 'Close.png' | file_url}}" alt=""></a>
+      <img data-src="{{ 'Diamond2-main-logo.svg' | file_url }}" class="lazyload  modal-logo" alt="" />
+    </div>
+    <div id="form-msg">Thank you for subscribe</div>
+  </div>
+  
+  <!-- Feedback Form -->
+  {% include 'feedback-form' %}
+
   <!-- Chat Widget Toggle -->
   {% include 'chat-widget' %}
 
   <!-- Login With Social App -->
   {% include 'social-login' %}
 
-
 	{{ shop.metafields.loox["global_html_body"] }}
+
+    <!-- Wishlistking  App -->
+  {% include 'swymSnippet' %}
+  {% include 'swym-move-to-wishlist'%}
+  {% if template contains 'collection' %}
+  {% include 'compareProductLists'%}
+  {% endif %}
+  {% include 'login-info-modal' %}
+
 </body>
 </html>
