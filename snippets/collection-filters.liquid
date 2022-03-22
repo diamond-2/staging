@@ -6,16 +6,43 @@
 
 {% if template.suffix != 'loose-stone-plp'%}
 <style>
-  .collection-filter-wrapper[data-id="global.ls_cert_stn_wgt_crt"],
-.collection-filter-wrapper[data-id="global.ls_cert_color"],
-.collection-filter-wrapper[data-id="global.ls_cert_clarity"],
-.collection-filter-wrapper[data-id="global.ls_cert_Polish"],
-.collection-filter-wrapper[data-id="global.ls_cert_Symmetry"],
-.collection-filter-wrapper[data-id="global.ls_cert_Fluorescence"],
-.collection-filter-wrapper[data-id="global.ls_cert_Tbl_avg_perc"],
-.collection-filter-wrapper[data-id="global.ls_cert_polish"],
-.collection-filter-wrapper[data-id="global.ls_cert_symmetry"],
-.collection-filter-wrapper[data-id="global.ls_cert_fluorescence"] {
+.collection-filter-wrapper[data-id="global.ls_cert_stn_wgt_crt"],
+  .collection-filter-wrapper[data-id="global.ls_cert_color"],
+  .collection-filter-wrapper[data-id="global.ls_cert_clarity"],
+  .collection-filter-wrapper[data-id="global.ls_cert_Polish"],
+  .collection-filter-wrapper[data-id="global.ls_cert_Symmetry"],
+  .collection-filter-wrapper[data-id="global.ls_cert_Fluorescence"],
+  .collection-filter-wrapper[data-id="global.ls_cert_Tbl_avg_perc"],
+  .collection-filter-wrapper[data-id="global.ls_cert_polish"],
+  .collection-filter-wrapper[data-id="global.ls_cert_symmetry"],
+  .collection-filter-wrapper[data-id="global.ls_cert_fluorescence"],
+  .collection-filter-wrapper[data-id="global.ls_cert_depth"],
+  .collection-filter-wrapper[data-id="global.ls_cert_table"],
+  .collection-filter-wrapper[data-id="global.ls_cert_ratio"],
+  .collection-filter-wrapper[data-id="global.ls_cert_shape"],  
+    
+  .collection-filter-wrapper[data-id="global.ls_cert_tbl_avg_perc"],
+  .collection-filter-wrapper[data-id="global.ls_cert_igi_totalcutgrade"],
+  .collection-filter-wrapper[data-id="global.ls_cert_hrdsym_totalcutgrade"],
+  .collection-filter-wrapper[data-id="global.ls_cert_hrdtotalcutgrade"],
+  .collection-filter-wrapper[data-id="global.ls_cert_giasym"],
+  .collection-filter-wrapper[data-id="global.ls_cert_gia2005totalcutgrade"],
+  .collection-filter-wrapper[data-id="global.ls_cert_culet"],
+  .collection-filter-wrapper[data-id="global.ls_cert_pavil_width"],
+  .collection-filter-wrapper[data-id="global.ls_cert_stars_width"],
+  .collection-filter-wrapper[data-id="global.ls_cert_pvlnh_perc"],
+  .collection-filter-wrapper[data-id="global.ls_cert_pvln_agl"],
+  .collection-filter-wrapper[data-id="global.ls_cert_grdlavg_perc"],
+  .collection-filter-wrapper[data-id="global.ls_cert_girdlemax"],
+  .collection-filter-wrapper[data-id="global.ls_cert_girdlemin"],
+  .collection-filter-wrapper[data-id="global.ls_cert_girdle"],
+  .collection-filter-wrapper[data-id="global.ls_cert_crw_hgtperc"],
+  .collection-filter-wrapper[data-id="global.ls_cert_crw_agl_deg"],
+  .collection-filter-wrapper[data-id="global.ls_cert_height_perc"],
+  .collection-filter-wrapper[data-id="global.ls_cert_height_mm"],
+  .collection-filter-wrapper[data-id="global.ls_cert_diamtrs_avg"],
+  .collection-filter-wrapper[data-id="global.ls_cert_diamtrs_max"],
+  .collection-filter-wrapper[data-id="global.ls_cert_diamtrs_min"] {
   display: none!important;
 }
 </style>
@@ -101,13 +128,83 @@
     });
 
     // Toogle Advance Loose Stone filters
+
+    // if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('tenth-level-filter')){
+    //     console.log('10th exist')
+    //     $('.filter-block-group[data-advance-filter]').removeClass('visible-advance-filter');
+    //     $(this).text(function(i, v){
+    //         return v === 'Show Less' ? 'Advance Filters' : 'Show More'
+    //     });
+    //   }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('ninth-level-filter')){
+    //     console.log('9th exist');
+    //     $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('ninth-level-filter tenth-level-filter');
+    //   }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('eighth-level-filter')){
+    //     console.log('8th exist');
+    //     $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('eighth-level-filter ninth-level-filter');
+    //   }else
+
+
     $(document).on('click', '#showAdvanceFilters', function(){
-      $('.filter-block-group[data-advance-filter]').toggleClass('visible-advance-filter');
-      $(this).text(function(i, v){
-          return v === 'Advance Filters' ? 'Show Less' : 'Advance Filters'
-      })
+       if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('seventh-level-filter')){
+        console.log('7th exist');
+        // $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('seventh-level-filter eighth-level-filter');
+        $('.filter-block-group[data-advance-filter]').removeClass('visible-advance-filter');
+        $(this).text(function(i, v){
+            return v === 'Show Less' ? 'Advance Filters' : 'Show More'
+        });
+        $('html, body').animate({
+        scrollTop: $(".collection-header").offset().top+50
+    }, 1000);
+        // $('').animate({scrollTop:0}, '1000');
+      }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('sixth-level-filter')){
+        console.log('6th exist');
+        $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('sixth-level-filter seventh-level-filter');
+        $(this).text(function(i, v){
+            return v === 'Show More' ? 'Show Less' : 'Advance Filters'
+        });
+      }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('fifth-level-filter')){
+        console.log('5th exist');
+        $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('fifth-level-filter sixth-level-filter');
+      }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('fourth-level-filter')){
+        console.log('4th exist');
+        $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('fourth-level-filter fifth-level-filter');
+      }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('third-level-filter')){
+        console.log('3th exist');
+        $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('third-level-filter fourth-level-filter ');
+      }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('second-level-filter')){
+        console.log('2th exist');
+        $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('second-level-filter third-level-filter ');
+      }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('first-level-filter')){
+        console.log('1th exist');
+        $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('first-level-filter second-level-filter ');
+      }else {
+        console.log('Enter in Else Part of Advnce filter')
+        $('.filter-block-group[data-advance-filter]').addClass('visible-advance-filter');
+        $('.collection-filter-wrapper-main[data-collection-filter-section]').addClass('first-level-filter');
+        $(this).text(function(i, v){
+            return v === 'Advance Filters' ? 'Show More' : 'Show Less'
+        });
+      }
+      
+      
     });
 
+
+    // Toggle enable/disable Filters
+    $(document).on('click', 'span[data-filter-toggle]', function(){
+      let $thisFilter = $(this);
+      $thisFilter.toggleClass('enable-filter');
+      // setTimeout(function(){
+        if($thisFilter.hasClass('enable-filter')){
+          console.log('ere111');
+          $thisFilter.closest('[data-group="range-slider-group"]').removeClass('disable-filter');
+        }else {
+          console.log('ere222')
+          $thisFilter.closest('[data-group="range-slider-group"]').addClass('disable-filter');
+        }
+      // },1000)
+      
+    })
 
     // Clear filter Event
     $(document).on('click', '[data-clear-filter]', function(){
@@ -370,7 +467,7 @@
     	function createFilters(){ 
           $('[data-collection-filter-section]').empty();
           if($('body').attr('data-template') == 'loose-stone-plp'){ 
-            $('[data-collection-filter-section]').append(' <div class="filter-block-group ls-filter-wrapper range-filters" data-position="1" data-group="range-group"></div><div class="filter-block-group ls-filter-wrapper list-filters" data-position="2" data-group="list-group"></div><div class="filter-block-group ls-filter-wrapper list-filters" data-advance-filter data-position="3" data-group="list-group"></div><div class="filter-block-group ls-filter-wrapper range-filters" data-advance-filter data-position="4" data-group="range-group"></div>')
+            $('[data-collection-filter-section]').append(' <div class="filter-block-group ls-filter-wrapper range-filters" data-position="1" data-group="range-group"></div><div class="filter-block-group ls-filter-wrapper list-filters" data-position="2" data-group="list-group"></div><div class="filter-block-group ls-filter-wrapper list-filters" data-advance-filter data-position="3" data-group="list-group"></div><div class="filter-block-group ls-filter-wrapper range-filters" data-advance-filter data-position="4" data-group="range-group"></div><div class="filter-block-group ls-filter-wrapper list-filters" data-advance-filter data-position="5" data-group="list-group"></div>')
           } 
           $.each(filters, function(key, val){ 
             var filterName = val.attribute;
@@ -425,7 +522,7 @@
 
             } else if(filterTitle == 'Product type') {
 
-            } else if(filterTitle == 'global.shape_filter'){
+            } else if(window.location.pathname.indexOf('solitaire') > -1 && filterTitle == 'global.ls_cert_Shape'){
               var counter = 0;
                   var selectOptionLabel = '<div class="filter-by-label">Shape <span><a href="/pages/gemstone-cuts" aria-label="Learn more about shapes">Learn More &gt;</a></span></div>'
                   var selectOption = '';	
@@ -496,10 +593,13 @@
                   }
 
                   if(filterTitle == 'global.dec_stn_total_crt_wt'){
-                    filterTitle = 'CARAT WEIGHT(CTS.)';
+                    filterTitle = 'CARAT WGT(CTS.)';
                   }
                   if(filterTitle == 'global.frc_stn_total_crt_wt'){
                     filterTitle = 'CARAT WEIGHT(CT. TW.)';
+                  }
+                  if(filterTitle == 'STCW:'){
+                    filterTitle = 'CARAT  WGT(CTS.)';
                   }
                   selectOption += '<div name="product-type" id="'+filterId+'" class="filters-toolbar__input">';
                     selectOption += '<span class="filter-option-name">'+filterTitle+'</span>';
@@ -513,11 +613,23 @@
                         }
                         var show = 'toShow';
                         filterName=filterName.toLowerCase().replace(' ', '-'); //// console.log('Filtername==>'+filterName);
-                        var thisVal = val.value;//// console.log('thisVal == >  ' + thisVal);
+                        console.log('ValueData ==>>', filterTitle);
+                        var thisVal = val.value; console.log('thisVal == >  ' + thisVal);
                         if(val.value.indexOf(':') > -1) {
-                          var thisValContent = val.value.split(':')[1];  
+                          if(filterTitle == 'CARAT WGT(CTS.)'){
+                            let splitVal = val.value.split(' ');
+                            var thisValContent =  splitVal[0]+'-'+splitVal.slice(-1)[0];
+                          }else {
+                            var thisValContent = val.value.split(':')[1];  
+                          }                          
                         }else {
-                          var thisValContent = val.value;//// console.log('thisVal == >  ' + thisVal);
+                          if(filterTitle == 'CARAT WGT(CTS.)'){
+                            let splitVal = val.value.split(' ');
+                            var thisValContent =  splitVal[0]+'-'+splitVal.slice(-1)[0];
+                          }else {
+                            var thisValContent = val.value;//// console.log('thisVal == >  ' + thisVal);
+                          }
+                          
                         }                       
 
                         var filterVal = '&restrictBy[' + filterName + ']=' + val.value;
@@ -604,7 +716,7 @@
 
 
               selectOption += '<div class="filter-total-price collection-filter-wrapper" data-filter="&amp;restrictBy[price]" data-filter-type="price" data-id="'+filterId+'">';
-              selectOption +=  '<div class="filter-group-header"><span>Price (SGD)</span><span><a herf="#" aria-label="">Learn more</a></span></div>';
+              selectOption +=  '<div class="filter-group-header"><span>Price (SGD)</span><span><a href="#" aria-label="">Learn more</a></span></div>';
               selectOption +=  '<div class="filter-group-content">';
                 selectOption += '<div class="slider-range-selected"><span id="collection-price-min-selected"></span><span id="collection-price-max-selected"></span></div>'
 
@@ -624,6 +736,7 @@
               }  
             }
 
+            // Total Caret Weight Filter
             if(filterTitle == 'global.ls_cert_stn_wgt_crt') {
               var selectOption = '';
 
@@ -651,7 +764,7 @@
 
 
               selectOption += '<div class="filter-total-weight collection-filter-wrapper" data-filter="&amp;restrictBy[filter_metafield_216755d73301b7dbf39d68e2cf6ffbee]" data-filter-type="common-range" data-id="'+filterId+'">';
-              selectOption +=  '<div class="filter-group-header"><span>Total Weight</span><span><a herf="#" aria-label="">Learn more</a></span></div>';
+              selectOption +=  '<div class="filter-group-header"><span>Total Weight</span><span><a href="#" aria-label="">Learn more</a></span></div>';
               selectOption +=  '<div class="filter-group-content">';
                 selectOption += '<div class="slider-range-selected"><span id="collection-val-min-selected" data-collection-val-min-selected></span><span id="collection-val-max-selected" data-collection-val-max-selected></span></div>'
 
@@ -709,21 +822,170 @@
                 initializingRangeSlider(minVal, maxVal, selectedMinVal, selectedMaxVal, filterId);
               }
             }
-            if(filterTitle == 'global.ls_cert_color' || filterTitle == 'global.ls_cert_clarity') {
 
+            // Depth and table Filter Range slider
+            if(filterTitle == 'global.ls_cert_Depth' || filterTitle == 'global.ls_cert_Table' || filterTitle == 'global.ls_cert_Ratio' || filterTitle == 'global.ls_cert_Culet' || filterTitle == 'global.ls_cert_Pavil_Width' || filterTitle == 'global.ls_cert_Stars_Width' || filterTitle == 'global.ls_cert_PvlnH_perc' || filterTitle == 'global.ls_cert_pvln_Agl' || filterTitle == 'global.ls_cert_Grdlavg_perc' || filterTitle == 'global.ls_cert_Girdlemax' || filterTitle == 'global.ls_cert_Girdlemin' || filterTitle == 'global.ls_cert_Girdle' || filterTitle == 'global.ls_cert_Crw_Hgtperc' || filterTitle == 'global.ls_cert_Crw_Agl_deg' || filterTitle == 'global.ls_cert_height_perc' || filterTitle == 'global.ls_cert_height_mm' || filterTitle == 'global.ls_cert_Diamtrs_avg' || filterTitle == 'global.ls_cert_Diamtrs_max' || filterTitle == 'global.ls_cert_Diamtrs_min' ) {
+console.log('Enter in Depth and Table filter ')
+              var selectOption = '';
+              if(filterTitle == 'global.ls_cert_Depth'){
+                filterTitle = 'Depth %';
+              }
+              if(filterTitle == 'global.ls_cert_Table'){
+                filterTitle = 'Table %';
+              }
+              if(filterTitle == 'global.ls_cert_Ratio'){
+                filterTitle = 'L/W Ratio %';
+              }
+              if(filterTitle == 'global.ls_cert_Culet'){
+                filterTitle = 'Culet';
+              }
+              if(filterTitle == 'global.ls_cert_Pavil_Width'){
+                filterTitle = 'Pavil Width';
+              }
+              if(filterTitle == 'global.ls_cert_Stars_Width'){
+                filterTitle = 'Stars Width';
+              }
+              if(filterTitle == 'global.ls_cert_PvlnH_perc'){
+                filterTitle = 'Cert Pavilion Height';
+              }
+              if(filterTitle == 'global.ls_cert_pvln_Agl') {
+                filterTitle = 'Pavilion Angle';
+              }
+              if(filterTitle == 'global.ls_cert_Grdlavg_perc'){
+                filterTitle = 'Girdle Avg';
+              }
+              if(filterTitle == 'global.ls_cert_Girdlemax') {
+                filterTitle = 'Gridle Max';
+              }
+              if(filterTitle == 'global.ls_cert_Girdlemin') {
+                filterTitle = 'Gridle Min';
+              }
+              if(filterTitle == 'global.ls_cert_Girdle') {
+                filterTitle = 'Gridle';
+              }
+              if(filterTitle == 'global.ls_cert_Crw_Hgtperc') {
+                filterTitle = 'Crown Height %';
+              }
+              if(filterTitle == 'global.ls_cert_Crw_Agl_deg') {
+                filterTitle = 'Crown Angle deg';
+              }
+              if(filterTitle == 'global.ls_cert_height_perc') {
+                filterTitle = 'Height (%)';
+              }
+              if(filterTitle == 'global.ls_cert_height_mm') {
+                filterTitle = 'Height (mm)';
+              }
+              if(filterTitle == 'global.ls_cert_Diamtrs_avg') {
+                filterTitle = 'Diameter Avg';
+              }
+              if(filterTitle == 'global.ls_cert_Diamtrs_max') {
+                filterTitle = 'Diameter Max';
+              }
+              if(filterTitle == 'global.ls_cert_Diamtrs_min') {
+                filterTitle = 'Diameter Min';
+              }
+
+
+              console.log('cert_Depth/Table Val==> ', filterVal);
+              min = Math.min.apply(null, filterVal.map(function(item) {
+                return item.value;
+              })),
+              max = Math.max.apply(null, filterVal.map(function(item) {
+                return item.value;
+              }));
+
+            console.log('min', min);//50
+            console.log('max', max);//1000
+
+
+
+              selectOption += '<div class="ls-filter-wrapper range-filters filter-block-group" data-group="range-slider-group">';
+              var minVal = parseFloat(min); //console.log('minPrice', theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00',''));
+              var maxVal = parseFloat(max); //console.log('highestPrice', highestPrice);
+              var selectedMinVal = parseFloat(min); //console.log('selectedMinPrice',selectedMinPrice);
+              var selectedMaxVal = parseFloat(max); //console.log('SelectedHighestPrice', SelectedHighestPrice);
+              if(filterVal[0].selected != undefined && filterVal[0].selected != '' && filterVal[0].selected == 'true'){
+                var checked = 'checked=checked';
+              }
+
+
+              selectOption += '<div class="filter-total-weight collection-filter-wrapper" data-filter="&amp;restrictBy['+filterName+']" data-filter-type="common-range" data-id="'+filterId+'">';
+              selectOption +=  '<div class="filter-group-header"><span>'+filterTitle+'</span><span><a href="#" aria-label="">Learn more</a></span><span class="filter-toggle-btn enable-filter" data-filter-toggle></span></div>';
+              selectOption +=  '<div class="filter-group-content">';
+                selectOption += '<div class="slider-range-selected"><span id="collection-val-min-selected_'+filterId.split('global.')[1]+'" data-collection-val-min-selected></span><span id="collection-val-max-selected_'+filterId.split('global.')[1]+'" data-collection-val-max-selected></span></div>'
+
+              selectOption+='<span id="collection-val-min_'+filterId.split('global.')[1]+'" data-collection-val-min data-value="' + minVal + '">' + minVal + '</span><div data-common-slider-range id="slider-range_'+filterId.split('global.')[1]+'"></div> <span id="collection-val-max_'+filterId.split('global.')[1]+'" data-collection-val-max  data-value="' + maxVal + '">' + maxVal + '</span>';
+              selectOption+='<input type="checkbox" data-opt-val="" value="' + minVal + '-'+ maxVal +'" id="'+filterId.split('global.')[1]+'-val-range" data-common-val-range class="visually-hidden" />';  
+              
+              
+              // selectOption+= '<div class="collection-content-area-left-content price__filter" style="max-width: 280px;"><div class="collection-content-area-left-content-wrapper"><div class="collection-other-list">' + selectOption +'</div></div></div>';
+              selectOption += '</div> </div></div>';
+              selectOption += '</div>';; 
+              if(minVal != maxVal){ 
+                // $('.collection-filters').append(sidebarHtml);
+                $('[data-collection-filter-section] [data-position="4"]').append(selectOption); 
+              };
+              var counter = 0;
+              var selectInputs = ''
+
+              // Hidden checkbox values for custom range slider
+              selectInputs += '<ul class="filter-dd collection-filter-wrapper" data-filter="&restrictBy['+filterName+']" data-ref="'+ filterId +'">'
+              $.each(filterVal, function(key, val){
+                   //console.log('initiall')
+                      var disableItem = '';
+                    if(val.count >= 0){
+                      if(val.count == 0){
+                          disableItem = 'toDisabled';
+                        }
+                        var show = 'toShow';
+                        filterName=filterName.toLowerCase().replace(' ', '-'); //// console.log('Filtername==>'+filterName);
+                        var thisVal = val.value;//// console.log('thisVal == >  ' + thisVal);
+                        if(val.value.indexOf(':') > -1) {
+                          var thisValContent = val.value.split(':')[1];  
+                        }else {
+                          var thisValContent = val.value;//// console.log('thisVal == >  ' + thisVal);
+                        }                       
+
+                        var filterVal = '&restrictBy[' + filterName + ']=' + val.value;
+                        if(val.selected != undefined && val.selected != '' && val.selected == 'true'){
+                          var selected = 'selected=selected';
+                          var checked = 'checked=checked';
+                          	  checkVal = thisVal;                          
+                        }
+                        selectInputs += '<li class="input-group ' + show +' '+ disableItem + '"><input type="checkbox" ' + checked +' id="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" value="' + thisVal + '" class="visually-hidden"/> <label for="'+filterId+'_'+encodeURIComponent(thisValContent)+'-filter">'+ thisValContent +'</label></li>';
+                        counter++;                        
+                    }
+                  }); 
+                  selectInputs  += '</ul>';
+                  if(counter >= 1){
+                    sidebarHtml+= selectInputs;
+                      $('[data-collection-filter-section] [data-position="1"]').append(sidebarHtml);
+                  }
+
+
+              console.log(minVal +'<==>'+maxVal +'<==>'+ selectedMinVal +'<==>'+ selectedMaxVal+'<<==>>'+filterId);
+              if($('.collection-filter-wrapper[data-id="'+filterId+'"] [data-common-slider-range] .ui-slider-range').length <= 0){
+                initializingRangeSlider(minVal, maxVal, selectedMinVal, selectedMaxVal, filterId);
+              }
+            }
+
+
+            if(filterTitle == 'global.ls_cert_color' || filterTitle == 'global.ls_cert_clarity') {
+              let filterRef = filterTitle.split('.')[1];
               if(filterTitle == 'global.ls_cert_color'){
                 filterTitle = 'Color';
               }
               if(filterTitle == 'global.ls_cert_clarity'){
                 filterTitle = 'Clarity';
               }
+              
 
               console.log('ls-color filter exist ')
               var counter = 0;
               var selectOption = '';
               
               selectOption += '<div class="" data-filter="&amp;restrictBy['+filterName+']" data-filter-type="ls_cert_color" data-id="'+filterId+'">';
-              selectOption +=  '<div class="filter-group-header"><span>'+ filterTitle +'</span><span><a herf="#" aria-label="">Learn more</a></span></div>';
+              selectOption +=  '<div class="filter-group-header"><span>'+ filterTitle +'</span><span><a href="/pages/diamond2-buying-guide/#'+filterRef+'" target="_blank" aria-label="'+filterTitle+'">Learn more</a></span></div>';
               selectOption +=  '<div class="filter-group-content">';
 
                 selectOption += '<ul class="filter-dd">'
@@ -771,6 +1033,7 @@
             if(filterTitle == 'global.ls_cert_Polish' || filterTitle == 'global.ls_cert_Symmetry' || filterTitle == 'global.ls_cert_Fluorescence')  {
 
               console.log('CUt, Polish, Symmetry, Fluoresence filers')
+              let filterRef = filterTitle.split('.')[1];
 
               if(filterTitle == 'global.ls_cert_Polish'){
                 filterTitle = 'Polish';
@@ -781,11 +1044,12 @@
               if(filterTitle == 'global.ls_cert_Fluorescence'){
                 filterTitle = 'Fluorescence';
               }
+              
               var counter = 0;
               var selectOption = '';
 
-              selectOption += '<div class="" data-filter="&amp;restrictBy['+filterName+']" data-filter-type="ls_cert_color" data-id="'+filterId+'">';
-              selectOption +=  '<div class="filter-group-header"><span>'+ filterTitle +'</span><span><a herf="#" aria-label="">Learn more</a></span></div>';
+              selectOption += '<div class="" data-filter="&amp;restrictBy['+filterName+']" data-filter-type="ls_cert_color" data-id="'+filterId+'" data-group="list-group">';
+              selectOption +=  '<div class="filter-group-header"><span>'+ filterTitle +'</span><span><a href="#'+filterRef+'" aria-label="'+filterTitle+'">Learn more</a></span><span class="filter-toggle-btn enable-filter" data-filter-toggle></span></div>';
               selectOption +=  '<div class="filter-group-content">';
 
                 selectOption += '<ul class="filter-dd">'
@@ -829,6 +1093,78 @@
                   }
 
               }
+
+
+
+              if(filterTitle == 'global.ls_cert_IGI_totalcutgrade' || filterTitle == 'global.ls_cert_hrdSym_totalcutgrade' || filterTitle == 'global.ls_cert_hrdtotalcutgrade' || filterTitle == 'global.ls_cert_GIASYM' || filterTitle == 'global.ls_cert_GIA2005totalcutgrade') {
+
+console.log('CUt, Polish, Symmetry, Fluoresence filers')
+let filterRef = filterTitle.split('.')[1];
+
+if(filterTitle == 'global.ls_cert_IGI_totalcutgrade'){
+  filterTitle = 'IGI.totalcutgrade';
+}
+if(filterTitle == 'global.ls_cert_hrdSym_totalcutgrade'){
+  filterTitle = 'HrdSym.totalcutgrade';
+}
+if(filterTitle == 'global.ls_cert_hrdtotalcutgrade'){
+  filterTitle = 'Hrdtotalcutgrade';
+}
+if(filterTitle == 'global.ls_cert_GIASYM'){
+  filterTitle = 'GIASYM';
+}
+if(filterTitle == 'global.ls_cert_GIA2005totalcutgrade'){
+  filterTitle = 'GIA2005totalcutgrade';
+}
+
+var counter = 0;
+var selectOption = '';
+
+selectOption += '<div class="" data-filter="&amp;restrictBy['+filterName+']" data-filter-type="ls_cert_color" data-id="'+filterId+'" data-group="list-group ">';
+selectOption +=  '<div class="filter-group-header"><span>'+ filterTitle +'</span><span><a href="#'+filterRef+'" aria-label="'+filterTitle+'">Learn more</a></span><span class="filter-toggle-btn enable-filter" data-filter-toggle=""></span></div>';
+selectOption +=  '<div class="filter-group-content">';
+
+  selectOption += '<ul class="filter-dd">'
+      $.each(filterVal, function(key, val){
+   // console.log('LSS - initiall')
+    //console.log(key);
+    //console.log(val);
+        var disableItem = '';
+      if(val.count >= 0){
+        if(val.count == 0){
+            disableItem = 'toDisabled';
+          }
+          var show = 'toShow';
+          filterName=filterName.toLowerCase().replace(' ', '-'); //// console.log('Filtername==>'+filterName);
+          var thisVal = val.value;//// console.log('thisVal == >  ' + thisVal);
+          if(val.value.indexOf(':') > -1) {
+            var thisValContent = val.value.split(':')[1];  
+          }else {
+            var thisValContent = val.value;//// console.log('thisVal == >  ' + thisVal);
+          }                       
+
+          var filterVal = '&restrictBy[' + filterName + ']=' + val.value;
+          if(val.selected != undefined && val.selected != '' && val.selected == 'true'){
+            var selected = 'selected=selected';
+            var checked = 'checked=checked';
+                checkVal = thisVal;                          
+          }
+          selectOption += '<li class="input-group ' + show +' '+ disableItem + '"><input type="checkbox" ' + checked +' id="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" value="' + thisVal + '" class="visually-hidden"/> <label for="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter">'+ thisValContent +'</label></li>';
+          
+          //<li class="input-group"> data-opt-val="' + encodeURIComponent(thisVal) + '"' + selected + '  data-value="' + filterVal + '">' + thisVal + '</li>';
+          counter++;                        
+      }
+    });                  
+    selectOption  += '</ul></div>';
+    selectOption +=  '</div">';
+selectOption +=  '</div">';
+    if(counter >= 1){
+      sidebarHtml+= '<div class="collection-filter-wrapper" data-filter="&restrictBy[' + filterName + ']" data-filter-type="'+ filterName +'" data-id="'+filterId+'">' + selectOption +'</div>';
+     // console.log(sidebarHtml);
+      $('[data-collection-filter-section] [data-position="5"]').append(sidebarHtml);
+    }
+
+}
 
 
 
@@ -888,13 +1224,11 @@
                         } else {
                           $(document).find('input[value="'+val.value+'"]').closest('.input-group').removeClass('toDisabled').addClass('toShow')
                         }
-                        // var show = 'toShow';
-                        
+                        // var show = 'toShow';                       
                                                 
                     }
                   });
-            }
-  
+            } 
 
         })
       }
@@ -1278,6 +1612,24 @@
         }
       };
 
+      // Get product View for metafields information
+      
+      function getMetaInfo(prodHandle){
+        let itemUrls = prodHandle+'/?view=metaInfo';
+        $.ajax({
+          url: compareitemUrls,
+          cache: false,
+        success: function(responseCompare) {
+          // console.log(response);
+          // $('#compare-product-list, [data-compare-product-modal-content]').append(responseCompare).addClass('compare-item-loaded');
+          // $('.compare_product_layout').addClass('showCompareProducts');
+        },
+        error: function(XHR, XMLHttpRequest, error){
+          console.log(XHR);
+        }
+      }
+      
+
       //Initialize Price Slider
     	function initializingPriceSlider(minPrice, highestPrice, selectedMin, selectedMax){
        //console.log(minPrice,'--', highestPrice,'--', selectedMin,'--', selectedMax);
@@ -1324,12 +1676,14 @@
       //Initialize common Range Slider
     	function initializingRangeSlider(minVal, maxVal, selectedMinVal, selectedMaxVal, filterId){
        console.log(minVal,'--', maxVal,'--', selectedMinVal,'--', selectedMaxVal);
+       console.log('erelkjrlekjrlekjrlekjr', filterId);
           var getMinVal = parseFloat(minVal);
           var getMaxVal = parseFloat(maxVal);
             // $('#price-min-val').val(theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00',''));
             // $('#price-max-val').val(theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00','')); 
+            let rangeSlider = $('#slider-range_'+filterId.split('global.')[1]+'[data-common-slider-range]');
             
-            $( "[data-common-slider-range]" ).slider({
+            rangeSlider.slider({
               range: true,
               min: getMinVal,
               max: getMaxVal,
@@ -1345,46 +1699,10 @@
                 var seletedMax = ui.values[ 1 ];
                 var getParentEle = $(this).closest('.collection-filter-wrapper').data('id');
                 console.log('getParentEle==>>>>', getParentEle);
+                filterId =  $(this).closest('.collection-filter-wrapper').data('id');
                 selectedCustomRange (selectedMin, seletedMax, filterId);
               }
-            });
-
-            
-          //   $( "[data-common-slider-range]" ).slider({
-          //   range: true,
-          //   min: getMinVal,
-          //   max: selectedMaxVal,
-          //   step: 0.1,
-          //   values: [ selectedMinVal, 5.53],
-          //   slide: function( event, ui ) { 
-          //     console.log(ui);
-          //     $( "#collection-val-min" ).text( getMinVal).attr('data-value',getMinVal);
-          //     $( "#collection-val-max" ).text( getMaxVal).attr('data-value',getMaxVal);
-          //     $('[data-filter-type="common-range"]').find('.slider-range-selected .span').text('');
-    			// // if(parseFloat(ui.values[ 0 ].toFixed(2)) > parseFloat(minPrice) || parseFloat(ui.values[ 1 ].toFixed(2)) < parseFloat(highestPrice)){
-          //   $('[data-filter-type="common-range"]').find('.slider-range-selected #collection-val-min-selected').text(ui.values[ 0 ]);
-          //   $('[data-filter-type="common-range"]').find('.slider-range-selected #collection-val-max-selected').text(ui.values[ 1 ]);
-            
-          //   //.append('<i class="selRange">(SGD' + ui.values[ 0 ].toFixed(2) +' - SGD' + ui.values[ 1 ].toFixed(2) + ')</i>');
-          //    // priceSelected = '&restrictBy[filter_metafield_216755d73301b7dbf39d68e2cf6ffbee]=' + ui.values[ 0 ] + ','+ ui.values[ 1 ];
-    			// // }    
-          //   }//,
-          //   // stop: function( event, ui ) {
-          //   //   // $('[data-filter-type="price"]').find('.slider-range-selected .selRange').remove();
-          //   //   $('[data-common-val-range]').attr('data-opt-val', ui.values[ 0 ] + ','+ ui.values[ 1 ]).val(ui.values[ 0 ] + ','+ ui.values[ 1 ])//.attr('checked', 'checked').change(); 
-          //   //   // if(parseFloat(selectedMin) > parseFloat(minPrice) || parseFloat(selectedMax) < parseFloat(highestPrice)){
-          //   //   //   $('[data-filter-type="price"]').find('.slider-range-selected').append('<i class="selRange">(SGD ' + selectedMin +' - SGD ' + selectedMax + ')</i>');
-          //   //   // } 
-          //   //   // consol
-          //   // }
-          // });
-          // $( "#collection-val-min" ).text( getMinVal);
-          // $( "#collection-val-max" ).text( getMaxVal);
-          
-
-          // if(parseFloat(selectedMin) > parseFloat(minPrice) || parseFloat(selectedMax) < parseFloat(highestPrice)){
-          //   $('[data-filter-type="price"]').find('.slider-range-selected').append('<i class="selRange">(SGD ' + selectedMin +' - SGD ' + selectedMax + ')</i>');
-          // }      
+            });    
         }
     	//Initialize Price Slider Ends
 
@@ -1395,6 +1713,7 @@
         console.log("customRange Id", filterId);
         var filterid = filterId.split('global.')[1]
         $(document).find('ul.filter-dd[data-ref$="'+filterId+'"] input[type="checkbox"]').each(function(){
+          console.log('ActiveFilterId == >',filterId)
           var  thisInputVal = parseFloat($(this).val());
             console.log('thisInputVal', thisInputVal);
           if(thisInputVal >= selectedMin && thisInputVal <= selectedMax){

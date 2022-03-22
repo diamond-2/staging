@@ -246,6 +246,7 @@
         e.preventDefault();
         $this.find('input[name="email"]').addClass('form-error').next('.msg-error').text("Enter Your Valid Email Address").css('display','block');;
       } else {
+        localStorage.setItem("sentRecovermsg", "SUCCESS");
         $this.find('input[name="email"]').removeClass('form-error').next('.msg-error').empty().css('display','none');
       }
     });
@@ -273,7 +274,17 @@
       $('.form__error-message-wrapper').addClass('hide');
       $('input').removeClass('input--error');
     },5000);
-    
+
+    var getRecoverCall = localStorage.getItem("sentRecovermsg");
+    if(getRecoverCall != null){
+      setTimeout(function(){
+      $(document).find('#ResetSuccess').show().removeClass('hide');
+      setTimeout(function(){
+        localStorage.removeItem('sentRecovermsg');
+        $(document).find('#ResetSuccess').hide().addClass('hide');
+      },30000);      
+    },1000);   
+  }
     /*form validation end*/
   });
 </script>

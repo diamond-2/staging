@@ -15,3 +15,13 @@
 
     {% section 'diamond-ambasaador-slider' %}
 </div>
+
+<script>
+    $(document).ready(function(){
+        let getHash = window.location.hash;
+        if(getHash != ''){
+            $(document).find('.diamond-tabber-nav li'+getHash+' a').trigger('click');
+        }
+
+    })
+</script>

@@ -10423,6 +10423,10 @@ window.addEventListener("resize", function() {
   // Show mobile Search Drawer
   $(document).on('click', '.show_mobile.site-header__search-toggle', function(){
     $(document).find('.btn--link[data-predictive-search-open-drawer]').trigger('click');
+    setTimeout(function(){
+      $(document).find('#SearchDrawer form input[data-predictive-search-drawer-input]').trigger('click');
+    },500)
+    
   });
   
   // Global Custom Modal Popup
@@ -10821,7 +10825,7 @@ $(document).on('blur','input[data-predictive-search-drawer-input]', function(){
 // Add Item to Wishlist
 $(document).on('click', '.move-to-wishlist-btn a', function(){
   console.log('hit data');
-  alert('ljklj');
+  // alert('ljklj');
   let addThis = $(this)
   window._swat.addToWishList(
     {
@@ -11016,10 +11020,10 @@ function hideMsgModal() {
 
 
 function showInfoModal() {
-  $('.info-modal').fadeIn();
+  $('.info-modal, .info-modal-overlay').fadeIn();
 }
 function hideInfoModal() {
-  $('.info-modal').fadeOut();
+  $('.info-modal, .info-modal-overlay').fadeOut();
 }
 
 

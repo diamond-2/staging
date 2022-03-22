@@ -8,10 +8,10 @@
 
         <div class="diamond-tabber">
             
-            <div class="diamond-tabber-nav hide_mobile">
+            <div class="diamond-tabber-nav hide_mobile er">
                 <ul>
                     {% for item in section.blocks %}
-                    {% if item.settings.title !=blank %}<li {% if forloop.first %}class="active"{% endif %}><a href="#diamond-tab{{ forloop.index }}">{{ item.settings.title }}</a></li>{% endif %}
+                    {% if item.settings.title !=blank %}<li id="{{ item.settings.title | downcase | prepend: 'ls_cert_' }}" class="{% if forloop.first %}active{% endif %}"><a href="#diamond-tab{{ forloop.index }}">{{ item.settings.title }}</a></li>{% endif %}
                     {% endfor %}
                 </ul>
             </div>

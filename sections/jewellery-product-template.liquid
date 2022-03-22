@@ -178,9 +178,26 @@
                     <div class="product-wishlist">
                         <div class="wishlist-text">SAVE TO WISHLIST</div>
                         <div class="wishlist-icon">
+                            {% if customer %}
                         <!-- Swym button on product pages -->
                         <div class="swym-wishlist-button-bar"></div>
-                        <!-- Swym button on product pages -->                       
+                        <!-- Swym button on product pages -->  
+                        {% else %}   
+                       
+                            <!-- <button class="btn swym-button swym-add-to-wishlist swym-inject swym-has-fave-count swym-icon swym-heart swym-added swym-loaded" onclick="event.preventDefault();" aria-label="Add to Wishlist">
+                                <span class="swym-wishlist-cta">Add to Wishlist</span>
+                                <span class="swym-tooltip swym-inject swym-tooltip-clickable"><span class="swym-tooltip-text">Add to wishlist</span></span></button><span class="swym-fave-count swym-added" data-count="9">9</span> -->
+                                <a href="javascript:;" data-modal="showInfoModal" class="">
+                                    {% render 'icon-account-wishlist' %}
+                                </a>
+                          
+                        
+
+
+
+
+                           
+                        {% endif %}                     
                             {% comment %}{% include 'iocn-wislist' %} {% endcomment %}
                         </div>
                     </div>
