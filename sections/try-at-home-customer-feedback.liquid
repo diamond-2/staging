@@ -1,0 +1,157 @@
+<div class="customer-feedback">
+ <p class="section-heading">{{ section.settings.section_heading }}</p>
+
+ <div class="customer-feedback-section">
+   {% for block in section.blocks %} 
+    <div class="inner-feedback-section">
+      <p class="customer-name">{{ block.settings.customers-name }}</p>
+      <img class="star-icons" src="{{ block.settings.star-icons | img_url }}"/>
+      <p class="feedback-content">{{ block.settings.customers-feedbacks }}</p>
+    </div>
+   {% endfor %}
+ </div>
+
+ <div class="contact-us-container">
+  <p class="contact-us-heading">Any Question ?</p>
+  <div class="inner-contact-us">
+   <p class="inner-text-1">Just give us a call at</p>
+   <a class="inner-text-2" href="tel:+65 4444 26XX">+65 4444 26XX</a>
+  </div>
+
+ </div>
+
+</div>
+
+
+{% schema %}
+  {
+    "name": "Customer Feedback",
+	"settings": [
+      {
+        "id": "section_heading",
+        "type": "text",
+        "label": "Section Heading"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "customersFeedback",
+        "name": "Customers Feedbacks",
+        "settings": [
+          {
+            "id": "customers-name",
+            "type": "text",
+            "label": "Customer Name"
+          },
+          {
+            "id": "star-icons",
+            "type": "image_picker",
+            "label": "Review Stars"
+          },
+          {
+            "id": "customers-feedbacks",
+            "type": "text",
+            "label": "Customer Feedback"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+<style>
+.customer-feedback{padding-left:250px;padding-right:250px;}
+.customer-feedback .section-heading{margin-bottom:0px;padding-bottom:50px;font-family: Spectral;font-style: normal;font-weight: 275;font-size: 45px;text-align: center;text-transform: uppercase;color: #6C1D45;}
+.customer-name{margin-bottom:0px;padding-bottom:20px;font-family: Spectral;font-style: normal;font-weight: 275;font-size: 28px;line-height: 43px;text-align: center;color: #6C1D45;}
+.star-icons{padding-bottom:50px;display:block;margin:0 auto;text-align:center;}
+p.feedback-content{padding:0px 100px;margin-bottom:0px;font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 28px !important;line-height: 34px !important; text-align: center;letter-spacing: 0.02em;color: rgba(0, 0, 0, 0.7);}
+.customer-feedback .slick-prev:before {content: url('https://cdn.shopify.com/s/files/1/0575/2681/2840/files/arrow-left.png?v=1641803610');}
+.customer-feedback .slick-next:before {content: url('https://cdn.shopify.com/s/files/1/0575/2681/2840/files/arrow-right.png?v=1641803610');}
+.customer-feedback .slick-next, .customer-feedback .slick-prev{top:65% !important;}
+
+.contact-us-container{max-width:500px;width:100%;height:220px;background-color:#6679CC;display:block;margin:0 auto;margin-top:99px;position:relative;}
+p.contact-us-heading{font-family: Spectral;font-style: normal;font-weight: 275;font-size: 45px;line-height: 108%;text-transform: uppercase;color: #FFFFFF;text-align:center;padding:25px 0px;margin-bottom:0px;}
+.contact-us-container:before{border: 1px solid #DDDDDD;}
+.contact-us-container:after{content: '';display: block;position: absolute;left: 70px;bottom: 100%;width: 0;height: 0;border-bottom:17px solid #6679CC;border-top: 15px solid transparent;border-left: 15px solid transparent;border-right: 15px solid transparent;}
+.inner-contact-us{background: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/Vector_6.png?v=1641810765") no-repeat left;background-origin:content-box;padding-left:35px;padding-right:20px;}
+p.inner-text-1{padding-left:100px;font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 28px;line-height: 34px;letter-spacing: 0.02em;color: #FFFFFF;padding-bottom:10px;margin-bottom:0px;}
+a.inner-text-2{text-decoration:none !important;padding-left:100px;font-family: Montserrat;font-style: normal;font-weight: bold;font-size: 36px;line-height: 44px;letter-spacing: 0.02em;color: #FFFFFF;}
+
+@media screen and (max-width: 767px){
+ .customer-feedback {padding-left: 10px;padding-right: 10px;display: block;text-align: center;margin: 0 auto;width: 100%;}
+ .customer-feedback .section-heading{margin-bottom: 0;padding-bottom: 10px;font-size: 28px;}
+ .contact-us-container {max-width: 500px;width: 100%;height: 150px;margin-top: 20px;}
+p.contact-us-heading {font-size: 28px;padding: 15px 0;margin-bottom: 0;}
+.inner-contact-us {padding-left: 35px;padding-right: 15px;background-size: 50px;}
+p.inner-text-1 {padding-left: 50px;font-size: 15px;padding-bottom: 0px;margin-bottom: 0;}
+a.inner-text-2 {text-decoration: none!important;padding-left: 50px;font-size: 21px;line-height: 25px;letter-spacing: .02em;color: #fff;}
+.customer-name{font-size: 21px !important;padding-top: 20px;padding-bottom:15px;line-height:18px;}
+.star-icons{padding-bottom:10px;}
+p.feedback-content {padding: 0px 10px;margin-bottom: 0px;font-size: 12px !important;line-height: 21px !important;}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px){
+.customer-feedback {padding-left: 50px;padding-right: 50px;}
+.customer-feedback .section-heading {margin-bottom: 0px;padding-bottom: 20px;font-size: 35px;}
+.customer-name {margin-bottom: 0px;padding-bottom: 20px;font-size: 21px !important;}
+.star-icons {padding-bottom: 20px;display: block;margin: 0 auto;text-align: center;}
+p.feedback-content {padding: 0px 50px;margin-bottom: 0px;font-size: 15px !important;line-height: 30px !important;}
+.contact-us-container{max-width: 350px;width: 100%;height: 150px;margin-top: 35px;}
+p.contact-us-heading {font-size: 28px;padding: 15px 0px;margin-bottom: 0px;}
+.inner-contact-us{padding-left: 35px;padding-right: 20px;background-size: 45px;}
+p.inner-text-1{padding-left:75px;font-size:18px;padding-bottom:0px;margin-bottom:0px;}
+a.inner-text-2{padding-left:75px;font-size:18px;}  
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1440px){
+.customer-feedback {padding-left: 100px;padding-right: 100px;}
+.customer-feedback .section-heading{font-size:35px;padding-bottom:21px;}
+.customer-name{font-size:25px !important;padding-bottom:20px;}
+.star-icons{padding-bottom:21px;}
+p.feedback-content{padding:0px 50px;font-size:21px !important;}
+.contact-us-container{margin-top:50px;}
+}
+</style>
+
+<script>
+$( document ).ready(function() {
+  $('.customer-feedback-section').slick({
+  dots: false,
+  arrows: true,
+  infinite: false,
+  speed: 300,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: false
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll:1,
+        dots: true,
+        arrows: false,
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: true,
+        arrows: false,
+      }
+    }
+  ]
+  });
+});
+</script>

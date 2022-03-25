@@ -1,0 +1,74 @@
+<div class="single-banner">
+<div class="inner-container">
+  <p class="side-text">{{ section.settings.side_text }}</p>
+  <div class="input-btns">
+      <input class="drop-pin"/>
+      <button class="explore-btn">Explore designs</button>
+  </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Single banner Content",
+  "settings": [
+    {
+      "id": "single_banner_desktop",
+      "type": "image_picker",
+      "label": "Background Banner Desktop"
+    },
+    {
+      "id": "single_banner_mobile",
+      "type": "image_picker",
+      "label": "Background Banner Mobile"
+    },
+    {
+      "id": "side_text",
+      "type": "text",
+      "label": "Text over banner"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+body.layout_try-at-home .main-content{padding-top:0px;}
+body.layout_try-at-home #shopify-section-header{background:rgba(255, 255, 255, 0.2);}
+body.layout_try-at-home .site-header{background:transparent;}
+body.layout_try-at-home .site-header__mobile-nav{background:transparent;}
+body.layout_try-at-home.has_no_banner .sticky-header{border-bottom:0px;}
+
+.inner-container{margin-left:100px;margin-top: 496px;}
+.side-text{max-width:500px;margin-bottom:51px;font-family: Spectral;font-style: normal;font-weight: 200;font-size: 45px !important;line-height: 108% !important;text-align:left;}
+.input-btns{display:flex;}
+.input-btns input{width:440px;height:80px;background: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/Vector.png?v=1641804604");background-size: 30px;background-repeat: no-repeat;background-position: 10px;background-color: rgba(255, 255, 255, 0.8);border: 1px solid rgba(0, 0, 0, 0.28);padding:10px 50px;}
+.input-btns button{max-width:263px;background: #6679CC;border: 1px solid #6679CC;font-family: Montserrat;font-style: normal;font-weight: normal;font-size: 22px;line-height: 108%;text-align:center;text-transform:uppercase;}
+
+@media screen and (min-width: 768px){
+.single-banner{ background:url({{ section.settings.single_banner_desktop | img_url: 'master' }});background-size: cover;background-repeat:no-repeat;height: 970px;position: absolute;top: 0;left: 0;right: 0;} 
+body.layout_try-at-home .page-container{position:unset;}
+}	
+
+@media screen and (max-width: 767px){
+.single-banner{background:url({{ section.settings.single_banner_mobile | img_url: 'master' }});background-repeat:no-repeat;height: 250px;background-size: cover;}
+.inner-container {margin-left: 10px;margin-top: 0px;}
+.side-text {max-width: 215px;margin-bottom: 20px;font-size: 28px !important;padding: 20px 0px;}
+.input-btns input {width: 200px;height: 50px;background-size: 12px;background-position: 10px;padding: 10px 25px;}
+.input-btns button {max-width: 150px;font-size: 12px;}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px){
+.single-banner {height: 570px;}
+.inner-container {margin-left: 50px;margin-top: 250px;}
+.side-text {max-width: 300px;margin-bottom: 35px;font-size: 35px !important;line-height: 108% !important;text-align: left;}
+.input-btns input {width: 350px;height: 80px;background-size: 25px;padding: 10px 50px;}
+.input-btns button {max-width: 200px;font-size: 18px;}
+}
+@media screen and (min-width: 1441px) and (max-width: 1900px){
+  .input-btns input{height:70px;}
+  .input-btns button{font-size:18px;}
+}
+
+
+</style>
