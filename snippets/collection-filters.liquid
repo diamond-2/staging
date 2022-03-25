@@ -1420,6 +1420,12 @@ selectOption +=  '</div">';
 
                  // console.log('AAA');
 
+                //  Get All metainfo by ajax API Call
+                console.log('MetaInfo before::==>>');
+
+                getMetaInfo(prodLink);
+                console.log('MetaInfo after::==>>');
+
             var ldTableContent = '';
             var ldListTableContent = '';
             var ldGridContent = '';
@@ -1615,11 +1621,13 @@ selectOption +=  '</div">';
       // Get product View for metafields information
       
       function getMetaInfo(prodHandle){
-        let itemUrls = prodHandle+'/?view=metaInfo';
+        console.log('MetaInfo==>', prodHandle);
+        let itemUrls = prodHandle+'/?view=metainfo';
         $.ajax({
-          url: compareitemUrls,
+          url: itemUrls,
           cache: false,
-        success: function(responseCompare) {
+        success: function(itemMetafields) {
+          console.log(itemMetafields);
           // console.log(response);
           // $('#compare-product-list, [data-compare-product-modal-content]').append(responseCompare).addClass('compare-item-loaded');
           // $('.compare_product_layout').addClass('showCompareProducts');
@@ -1627,8 +1635,8 @@ selectOption +=  '</div">';
         error: function(XHR, XMLHttpRequest, error){
           console.log(XHR);
         }
-      }
-      
+      })
+    }      
 
       //Initialize Price Slider
     	function initializingPriceSlider(minPrice, highestPrice, selectedMin, selectedMax){

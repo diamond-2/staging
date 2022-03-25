@@ -1,2 +1,42 @@
 {% layout none %}
-{{ product.id }}
+{{ product.id }}====
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+{{ variant.metafields.current_variant.dec_stn_total_crt_wt.value }}
+
+{% assign dec_stn_total_crt_wt = current_variant.metafields.current_variant.dec_stn_total_crt_wt.value %}
+{% assign dec_stn_total_crt_wt = current_variant.metafields.current_variant.dec_stn_total_crt_wt.value %}
+
+
+{% comment %}
+{% assign defTag = false  %}
+{% assign ctwTag = false  %}
+{% for tag in product.tags %}
+
+{% if tag contains 'DEF:' %}
+{% assign defTag = true  %}
+{% if defTag %}
+{% assign defTagVal = tag | split: ':' | last  %}
+{% endif %}
+{% endif %}
+{% if tag contains 'CTW:' %}
+{% assign ctwTag = true  %}
+{% assign ctwTagVal = tag | split: ':' | last  %}
+{% endif %}
+{% endfor %}
+
+    <div class="product-price-card ter">
+      <div class="product-price-card-row" data-id = {{ product.id }}>
+        <div class="product_weight">{% if ctwTag %}{{ ctwTagVal }}{% endif %}</div>
+        <div class="product_def">{% if defTag %}{{ defTagVal }}{% endif %}</div>
+        <div class="product_compare">COMPARE</div>
+      </div>
+      <div class="product-price-card-row price_row ww {% if product.compare_at_price == blank %}no_discount{% endif %}">
+        <div class="ragular_price">{{ product.price | money | remove: '.00' }}</div>
+        {% if product.compare_at_price %}<div class="compare_at_price">{{ product.compare_at_price | money | remove: '.00' }}</div>{% endif %}
+        {% assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price %}
+        {% if product.compare_at_price %}<div class="product_discount">{{ discount | floor }}% OFF</div>{% endif %}
+      </div>
+    </div>
+{% endcomment %}

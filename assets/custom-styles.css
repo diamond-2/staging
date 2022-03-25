@@ -384,6 +384,9 @@ body {
         font-weight: 300;
         flex-wrap: wrap;
         min-height: 16px; } }
+      @media (max-width: 991px) {
+        .announcement-bar__message.slick-slider .slick-list {
+          width: 100%; } }
 
 .centered-header {
   padding-top: 15px !important; }
@@ -787,7 +790,11 @@ div#PageContainer.js-menu--is-open {
 
 @media (max-width: 749px) {
   [data-template="index"] .site-header__icons .site-header__icon {
-    margin-top: 15px !important; } }
+    margin-top: 15px !important; } 
+    [data-template="index"] .site-header__icons .site-header__icon.site-header__menu {
+      margin-top: 10px !important; }
+  }
+     
 
 @media (max-width: 749px) {
   [data-template="index"] .header-bg .site-header__icons .site-header__icon {
@@ -13783,10 +13790,19 @@ a[href^="tel"] {
   padding-right: 50px;
   padding-bottom: 50px;
   flex-wrap: wrap; }
+  @media screen and (max-width: 1600px) {
+    .js-drawer-open-top.js-drawer-open #SearchDrawer .search-bar__interior {
+      padding-top: .5vw;
+    }
+    #SearchDrawer .search-bar__form .search-bar__submit svg {
+      width: 22px;
+    }
+  }
   @media screen and (max-width: 991px) {
     .js-drawer-open-top.js-drawer-open #SearchDrawer .search-bar__interior {
       padding-left: 15px;
       padding-right: 15px; } }
+
   .js-drawer-open-top.js-drawer-open #SearchDrawer .search-bar__interior .search-form__container {
     flex: 0 0 65%;
     align-items: self-start;
@@ -13814,6 +13830,7 @@ a[href^="tel"] {
         -o-transition: 0.3s ease-in-out;
         transition: 0.3s ease-in-out;
         pointer-events: none; }
+        
         @media screen and (max-width: 991px) {
           .js-drawer-open-top.js-drawer-open #SearchDrawer .search-bar__interior .search-form__container .search-form__input-wrapper .search-form__input_placeholders {
             left: 45px;
@@ -13826,6 +13843,11 @@ a[href^="tel"] {
         font-weight: 300;
         font-family: 'MONTSERRAT';
         padding-left: 0; }
+        @media screen and (max-width: 1600px) {
+          .js-drawer-open-top.js-drawer-open #SearchDrawer .search-bar__interior .search-form__container .search-form__input-wrapper .search-bar__input {
+            font-size: 24px;
+          }
+        }
         @media screen and (max-width: 991px) {
           .js-drawer-open-top.js-drawer-open #SearchDrawer .search-bar__interior .search-form__container .search-form__input-wrapper .search-bar__input {
             padding-left: 45px;
@@ -13850,7 +13872,10 @@ a[href^="tel"] {
               top: -30%; } }
     @media screen and (max-width: 991px) {
       .js-drawer-open-top.js-drawer-open #SearchDrawer .search-bar__interior .search-form__container .search-bar__submit {
-        right: calc(100% - 30px); } }
+        right: calc(100% - 30px); } 
+      .js-drawer-open-top.js-drawer-open #SearchDrawer .search-bar__interior .search-form__container .search-bar__submit svg {
+        width: 20px; }
+      }
     .js-drawer-open-top.js-drawer-open #SearchDrawer .search-bar__interior .search-form__container .search-bar__actions {
       position: absolute;
       right: 50px;
@@ -13858,9 +13883,16 @@ a[href^="tel"] {
       @media screen and (max-width: 991px) {
         .js-drawer-open-top.js-drawer-open #SearchDrawer .search-bar__interior .search-form__container .search-bar__actions {
           right: 25px;
-          top: 85px; } }
+          top: 135px; } }
+          @media screen and (max-width: 749px) {
+            .js-drawer-open-top.js-drawer-open #SearchDrawer .search-bar__interior .search-form__container .search-bar__actions {
+              top: 85px; } }
       .js-drawer-open-top.js-drawer-open #SearchDrawer .search-bar__interior .search-form__container .search-bar__actions .search-bar__close .icon {
         width: 1.7rem; }
+        @media screen and (max-width: 1600px){
+          .js-drawer-open-top.js-drawer-open #SearchDrawer .search-bar__interior .search-form__container .search-bar__actions .search-bar__close .icon {
+            width: 1.3rem; }
+        }
         @media screen and (max-width: 991px) {
           .js-drawer-open-top.js-drawer-open #SearchDrawer .search-bar__interior .search-form__container .search-bar__actions .search-bar__close .icon {
             width: 1rem; } }
