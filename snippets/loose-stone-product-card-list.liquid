@@ -8,18 +8,31 @@
     Usage:
     {% include 'product-card-list', product: product, show_vendor: section.settings.show_vendor %}
 {% endcomment %}
-{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign ls_depth = product.metafields.global.ls_cert_Depth -%}
+{%- assign ls_table = product.metafields.global.ls_cert_Table -%}
+{%- assign ls_cut = product.metafields.global.ls_cert_cutgrade -%}
+{%- assign ls_polish = product.metafields.global.ls_cert_Polish -%}
+{%- assign ls_symmetry = product.metafields.global.ls_cert_Symmetry -%}
+{%- assign ls_clarity = product.metafields.global.ls_cert_clarity -%}
+{%- assign ls_stoneWgt= product.metafields.global.stone_wgt -%}
+{%- assign ls_uom= product.metafields.global.uom -%}
+{%- assign ls_shape = product.metafields.global.ls_cert_Shape -%}
+{%- assign ls_cutgrade = product.metafields.global.ls_cert_cutgrade -%}
+{%- assign ls_color = product.metafields.global.ls_cert_color -%}
+{%- assign ls_culet = product.metafields.global.ls_cert_Culet -%}
+
+
 <td class="wishlist_td">
     <a href="#">{% include 'icon-wishlist-fill' %}</a>
 </td>
 <td class="shape_td">
-    <a href="{{ product.url }}">{{ 'list_360.png' | asset_url | img_tag :'360 View' }}<span class="text">{{ product.metafields.global.ls_cert_Shape }}</span></a>
+    <a href="{{ product.url }}">{{ ls_shape | downcase | prepend: 'ld_shape_' | append: '.svg' | file_url |  img_tag }}<span class="text">{{ ls_shape }}</span></a>
 </td>
 <td class="price_td">
-    {% include 'product-price', variant: current_variant %}
+    {% include 'product-price', product: product %}
 </td>
-<td class="care-tdt">{{ product.metafields.global.ls_cert_stn_wgt_crt }}</td>
-<td class="color_td">{{ product.metafields.global.ls_cert_color }}</td>
-<td class="cut_td">{{ product.metafields.global.ls_cert_Culet}}</td>
-<td class="clarity_td">{{ product.metafields.global.ls_cert_clarity }}</td>
+<td class="care-tdt">{{ ls_stoneWgt }} {{ ls_uom }}</td>
+<td class="color_td">{{ ls_color }}</td>
+<td class="cut_td">{{ ls_cut }}</td>
+<td class="clarity_td">{{ ls_clarity }}</td>
 <td class="actions_td grid__item"data-handle="{{ product.handle }}" data-title="{{ product.title }}" data-type="{{ product.type }}"><a class="product_compare" href="javascript:void(0)">ADD TO COMPARE</td>  

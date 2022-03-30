@@ -10,7 +10,7 @@
 {%- assign ls_shape = product.metafields.global.ls_cert_Shape -%}
 {%- assign ls_cutgrade = product.metafields.global.ls_cert_cutgrade -%}
 {%- assign ls_color = product.metafields.global.ls_cert_color -%}
-{%- capture showMoreData -%}
+
   <div class="product-image-body-row">
     <a class="compare_btn product_compare">COMPARE</a>
     <a class="p_more_btn"><span class="text_more">MORE</span><span class="text_less">LESS</span></a>
@@ -27,6 +27,3 @@
       </tbody>
     </table>
   </div>
-{%- endcapture -%}
-<!-- capture More Data Table Close -->
-{{ showMoreData }}

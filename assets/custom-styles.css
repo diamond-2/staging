@@ -6629,7 +6629,8 @@ body[data-template="loose-stone"] .product-content-section {
           font-size: 16px;
           line-height: 17.28px;
           font-weight: 500;
-          color: #6C1D45; }
+          color: #6C1D45;
+          z-index: 40; }
           @media (max-width: 1600px) {
             .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item .product-image-body-row {
               font-size: 13px;

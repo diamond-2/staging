@@ -1636,15 +1636,15 @@ selectOption +=  '</div">';
                 productGrid += '</div>';
                 if($('body').attr('data-template') == 'loose-stone-plp'){ 
                   productGrid += '<div class="ls-item-more-info hide_mobile">';
-                  productGrid += '<div class="product-image-body-row">';
-                  productGrid += '<a class="compare_btn product_compare">COMPARE</a>';
-                  productGrid += '<a class="p_more_btn"><span class="text_more">MORE</span><span class="text_less">LESS</span></a>';
-                  productGrid += '</div>';
-                  productGrid += '<div class="more_product_datatable" style="display: none;">';
-                  productGrid += ' <table><tbody>';
-                  productGrid += ldTableContent;
-                  productGrid += '</tbody></table>';
-                  productGrid += '</div>'
+                  // productGrid += '<div class="product-image-body-row">';
+                  // productGrid += '<a class="compare_btn product_compare">COMPARE</a>';
+                  // productGrid += '<a class="p_more_btn"><span class="text_more">MORE</span><span class="text_less">LESS</span></a>';
+                  // productGrid += '</div>';
+                  // productGrid += '<div class="more_product_datatable" style="display: none;">';
+                  // productGrid += ' <table><tbody>';
+                  // productGrid += ldTableContent;
+                  // productGrid += '</tbody></table>';
+                  // productGrid += '</div>'
                   productGrid += '</div>';
                   productList += '<td class="wishlist_td"><a href="#"><span class="wishlist-Icon"><svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.9542 3.14027C18.2213 1.69531 16.11 0.513075 13.6542 1.2014C12.4807 1.52703 11.4568 2.22537 10.7499 3.1823C10.0429 2.22537 9.01906 1.52703 7.84555 1.2014C5.38425 0.523584 3.27847 1.69531 2.54555 3.14027C1.51727 5.16321 1.9439 7.43836 3.81448 9.90266C5.28032 11.831 7.37516 13.7857 10.4162 16.0555C10.5123 16.1276 10.6307 16.1667 10.7526 16.1667C10.8745 16.1667 10.9929 16.1276 11.089 16.0555C14.1246 13.7909 16.2249 11.852 17.6907 9.90266C19.5559 7.43836 19.9825 5.16321 18.9542 3.14027Z" fill="white" stroke="currentColor" stroke-width="2"></path>    </svg></span> </a></td>';
                   productList += ldListTableContent;
@@ -1707,9 +1707,11 @@ selectOption +=  '</div">';
                   }
                   renderMetaInfo();
 
+                  var itemMoreInfoUrls = prodLink+'/?view=lsmetamoreinfo';
+
                   function getMoreData(ajaxurl) { 
                     return $.ajax({
-                      url: itemUrls,
+                      url: itemMoreInfoUrls,
                       type: 'GET',
                     });
                   };
