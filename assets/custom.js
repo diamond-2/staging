@@ -221,6 +221,37 @@ $(document).on('click', '.product-form__cart-submit:not([aria-label="Sold out"])
       updateCartItem(getDataId, 0);
     }
  });
+
+ 
+   $(document).on('click', '.move-to-wishlist-btn-drawer', function(){
+     console.log('test button hit');
+   });
+   $('.move-to-wishlist-btn-drawer').click(function(){
+    let addThis = $(this)
+    let getselectedItem =  addThis.data('variantid');
+    if(addThis.hasClass('wishlist-added')){      
+      addThis.removeClass('wishlist-added').removeAttr('data-wishlist-added');
+      $('.drawer_inner.has_cart_items tr[data-varid="'+getselectedItem+'"] .remove-item-from-wishlit').trigger('click');
+      addThis.text('Add to Wishlist');
+    }else {
+      window._swat.addToWishList(
+        {
+          "epi": addThis.data('variantid'),
+          "empi": addThis.data('prodid')
+        },
+        function(r) {
+          console.log('Added to wishlist');
+          addThis.addClass('wishlist-added').attr('data-wishlist-added', 'success');
+         
+          // addThis.before('<span class="remove-item-from-wishlit">Remove Wishlist</span>');
+        }
+      );
+      addThis.text('Remove Wishlist');
+      $('.drawer_inner.has_cart_items tr[data-varid="'+getselectedItem+'"] .move-to-wishlist-btn a').trigger('click');
+    }
+    
+   });
+
  // Remove Cart Item End
 
   function updateCartItem (getDataId, getDataQty) {
@@ -264,6 +295,7 @@ $(document).on('click', '.product-form__cart-submit:not([aria-label="Sold out"])
 caretRemovePopup();
 function caretRemovePopup() {
     $('.remove_cart_pop_btn').click(function(e){
+      console.log('cvheckLength==>',$(this).closest('.cart__product-body-right').find('.move-to-wishlist-btn .remove-item-from-wishlit').length);
         e.preventDefault();
         $('body').addClass('remove_cart_popup_show')
         let carPopItem = $(this).closest('.cart__row');
@@ -281,13 +313,20 @@ function caretRemovePopup() {
         let carPopVariantId = $(this).closest('.cart__row').data('varid');
         let cartPopProdId = $(this).closest('.cart__row').data('proid');
         let cartPopLineId = $(this).closest('.cart__row').attr('data-cart-item-index');
+        if($(this).closest('.cart__product-body-right').find('.move-to-wishlist-btn .remove-item-from-wishlit').length > 0) {
+          $('.move-to-wishlist-btn-drawer').addClass('wishlist-added');
+          $('.move-to-wishlist-btn-drawer').text('Remove Wishlist');
+          // $('.cart-remove-popup .cart-remove-item-footer [data-move-to-wishlist-btn-drawer] .remove-item-from-wishlit').remove();
+          // $('.cart-remove-popup .cart-remove-item-footer [data-move-to-wishlist-btn-drawer]').prepend('<span class="remove-item-from-wishlit">Remove Wishlist</span>');
+        }
         setTimeout(function(){
             $('.cart-remove-popup-wrapper .cart-remove-item').attr('data-cart-item-key',cartItemKey);
-            $('.cart-remove-popup-wrapper .cart-remove-item-footer .add-to-wishlist-btn').attr({
+            $('.cart-remove-popup-wrapper .cart-remove-item-footer .add-to-wishlist-btn, .move-to-wishlist-btn-drawer').attr({
               "data-variantid":carPopVariantId,
               "data-prodid":cartPopProdId,
               "data-line":cartPopLineId
-            });
+            });          
+            
             $('.cart-remove-popup-wrapper .cart-remove-item').attr('data-quantity',itemQuen);
             $('.cart-remove-popup-wrapper .cart-remove-item').attr('max-avail-prodcut',maxAvilItem);
             $('.cart-remove-popup-wrapper .cart-remove-item').attr('data-qty',avilItem);
@@ -316,7 +355,8 @@ function caretRemovePopup() {
     });
 }
 // Remove Cart Popup Start
-  
+
+
 // Agree condition checkobx validation Start
 function agreeCartCondition() {
   $(document).on('submit', 'form.cart' ,function(e){

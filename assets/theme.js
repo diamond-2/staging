@@ -10844,8 +10844,8 @@ $(document).on('blur','input[data-predictive-search-drawer-input]', function(){
 
 // Add Item to Wishlist
 $(document).on('click', '.move-to-wishlist-btn a', function(){
-  console.log('hit data');
-  // alert('ljklj');
+ 
+//  alert('ljklj');
   let addThis = $(this)
   window._swat.addToWishList(
     {
@@ -10859,10 +10859,9 @@ $(document).on('click', '.move-to-wishlist-btn a', function(){
     }
   );
   
-})
+});
 
-
-
+  
 
 // Remove item from wishlist from Cart and Car drawer
 $(document).on('click', '.remove-item-from-wishlit', function(){

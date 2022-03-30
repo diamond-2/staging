@@ -471,7 +471,7 @@
           } 
           $.each(filters, function(key, val){ 
             var filterName = val.attribute;
-            console.log('FilterName ==>', filterName);
+            //console.log('FilterName ==>', filterName);
             var filterTitle = val.title;
             var filterId = filterTitle.toLowerCase().replace(' ', '-');
             var filterVal = val.buckets;
@@ -582,15 +582,16 @@
                   if(filterTitle == 'global.jewelery_category'){
                     filterTitle = 'Product Type';
                   }
+                  if(filterTitle == 'global.design_style'){
+                    filterTitle = 'Product Sub Type';
+                  }
                   if(filterTitle == 'global.jew_style'){
                     filterTitle = 'Style';
                   }
                   if(filterTitle == 'SELECT GOLD COLOUR'){
                     filterTitle = 'Metal';
                   }
-                  if(filterTitle == 'global.gender'){
-                    filterTitle = 'Gender';
-                  }
+                  
 
                   if(filterTitle == 'global.dec_stn_total_crt_wt'){
                     filterTitle = 'CARAT WGT(CTS.)';
@@ -601,11 +602,90 @@
                   if(filterTitle == 'STCW:'){
                     filterTitle = 'CARAT  WGT(CTS.)';
                   }
+                  if(filterTitle == 'global.stn_total_ct_wt'){
+                    filterTitle = 'TOTAL CT. WT. (TCW)';
+                  }
+                  if(filterTitle == 'global.gender'){
+                    filterTitle = 'Gender';
+                  }
+                  if(filterTitle == 'global.main_stone_type'){
+                    filterTitle = 'GEMSTONE';
+                  }
+                  if(filterTitle == 'global.stn_solitaire_ct_wt'){
+                    filterTitle = 'SOLITAIRE CT. WT.';
+                  }
+                  if(filterTitle == 'global.jew_stn_graded_color'){
+                    filterTitle = 'Stone Color';
+                  }
+                  if(filterTitle == 'global.jew_stn_graded_clarity'){
+                    filterTitle = 'Stone Clarity';
+                  }
+
                   selectOption += '<div name="product-type" id="'+filterId+'" class="filters-toolbar__input">';
                     selectOption += '<span class="filter-option-name">'+filterTitle+'</span>';
                     selectOption += '<ul class="filter-dd">'
-                    $.each(filterVal, function(key, val){
+                      if(filterTitle == 'TOTAL CT. WT. (TCW)'){
+                        console.log('FillterValue', filterVal);
+                        var filterArrayVal = [];
+                        $.each(filterVal, function(key, val){                          
+                          var str = val.value;
+                          if(str.indexOf(' ') > -1){
+                            let firstVal = Number(str.split(' ')[0]);
+                            let secondVal = str.split(' ')[1]; 
+                            let converToDecimal = secondVal.split('/');
+                            let getConvertedNumber =  Number(converToDecimal[0])/Number(converToDecimal[1]); console.log('convertedNumber', getConvertedNumber)
+                            let finalNumber = firstVal+getConvertedNumber;
+                            filterArrayVal.push(finalNumber)
+                          } else {
+                            let convertNumber = Number(str)
+                            filterArrayVal.push(convertNumber);
+                          }
+
+                        })
+                         console.log('finalArray==>>', filterArrayVal);
+
+                         var result = {};
+                         filterArrayVal.forEach((key, i) =>  result[key] = filterVal[i]);
+                          console.log(result);
+
+                            // Get the array of keys
+                            var keys = Object.keys( result );
+
+                            // Sort the keys in descending order
+                            keys.sort( function ( a, b ) { return a - b; } );
+
+                            // Iterate through the array of keys and access the corresponding object properties
+                            for ( var i = 0; i < keys.length; i++ ) {
+                                console.log( keys[i], result[ keys[i] ].value );
+                                let ind =  keys[i];
+                                let vol = result[ keys[i] ];
+
+
+                                var disableItem = '';
+                                if(vol.count >= 0){
+                                  if(vol.count == 0){
+                                      disableItem = 'toDisabled';
+                                    }
+                                    var show = 'toShow';
+                                    filterName=filterName.toLowerCase().replace(' ', '-'); //// console.log('Filtername==>'+filterName);
+                                    //console.log('ValueData ==>>', filterTitle);
+                                    var thisVal = vol.value;// console.log('thisVal == >  ' + thisVal);
+                                    // var filterVal = '&restrictBy[' + filterName + ']=' + toString(vol.value);
+                                    if(vol.selected != undefined && vol.selected != '' && vol.selected == 'true'){
+                                      var selected = 'selected=selected';
+                                      var checked = 'checked=checked';
+                                          checkVal = thisVal;                          
+                                    }
+                                    selectOption += '<li class="input-group ' + show +' '+ disableItem + '"><input type="checkbox" ' + checked +' id="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" value="' + thisVal + '" class="visually-hidden"/> <label for="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter">'+ thisVal +'</label></li>';
+                                    
+                                    //<li class="input-group"> data-opt-val="' + encodeURIComponent(thisVal) + '"' + selected + '  data-value="' + filterVal + '">' + thisVal + '</li>';
+                                    counter++;                        
+                                }
+                            }                       
+                      } else {
+                        $.each(filterVal, function(key, val){
                    //console.log('initiall')
+                   //console.log('Keyyyy', key);
                       var disableItem = '';
                     if(val.count >= 0){
                       if(val.count == 0){
@@ -613,8 +693,8 @@
                         }
                         var show = 'toShow';
                         filterName=filterName.toLowerCase().replace(' ', '-'); //// console.log('Filtername==>'+filterName);
-                        console.log('ValueData ==>>', filterTitle);
-                        var thisVal = val.value; console.log('thisVal == >  ' + thisVal);
+                        //console.log('ValueData ==>>', filterTitle);
+                        var thisVal = val.value;// console.log('thisVal == >  ' + thisVal);
                         if(val.value.indexOf(':') > -1) {
                           if(filterTitle == 'CARAT WGT(CTS.)'){
                             let splitVal = val.value.split(' ');
@@ -643,7 +723,9 @@
                         //<li class="input-group"> data-opt-val="' + encodeURIComponent(thisVal) + '"' + selected + '  data-value="' + filterVal + '">' + thisVal + '</li>';
                         counter++;                        
                     }
-                  });                  
+                  }); 
+                      }
+                                     
                   selectOption  += '</ul></div>';
                   if(counter >= 1){
                     sidebarHtml+= '<div class="collection-filter-wrapper" data-filter="&restrictBy[' + filterName + ']" data-filter-type="'+ filterName +'" data-id="'+filterId+'">' + selectOption +'</div>';
@@ -1418,20 +1500,37 @@ selectOption +=  '</div">';
                 }
               }
 
-                 // console.log('AAA');
-
-                //  Get All metainfo by ajax API Call
-                console.log('MetaInfo before::==>>');
-
-                getMetaInfo(prodLink);
-                console.log('MetaInfo after::==>>');
-
             var ldTableContent = '';
             var ldListTableContent = '';
             var ldGridContent = '';
             var ldGridContentMob = '';
             var jwGridTitle = '';
             var jwGridContent = '';
+
+
+            //  Get All metainfo by ajax API Call
+            console.log('MetaInfo before::==>>');
+                      var metaInfobyview = '';
+                      var itemUrls = prodLink+'/?view=metainfo';
+                    //   $.ajax({
+                    //     url: itemUrls,
+                    //     cache: false,
+                    //   success: function(res) {
+                      
+                    //     jwGridContent += res;
+                    //     jwGridContent +='<div class="product_compare">Compare</div>';
+                    //     console.log('MetaInfo after::==>>',jwGridContent);
+                    //   },
+                    //   error: function(XHR, XMLHttpRequest, error){
+                    //     console.log(XHR);
+                    //   }
+                    // });
+                   
+                    // console.log('MetaInfo after2222::==>>',jwGridContent);
+
+
+                    
+
             if($('body').attr('data-template') == 'loose-stone-plp'){ 
              // console.log('inside Loosestone');
               ldGridContent += '<div class="product-price-card-row hide_mobile">';
@@ -1486,18 +1585,20 @@ selectOption +=  '</div">';
           } else {
           //  console.log('inside jewellery');
             jwGridTitle += '<div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="'+ prodLink +'">'+ prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</a></div>';
-            jwGridContent += '<div class="product-price-card-row">';
-              $.each(_thistags, function(i){ 
-             ////console.log('INdex==>' + i);
-             //  console.log(_thistags[i]);
-                // return false;
-                if(_thistags[i].includes(':')){
-                let tagVal = _thistags[i].split(':')[1];  
-                if(_thistags[i].includes('CTW:')){jwGridContent += '<div class="product_weight">'+tagVal+'</div>';}
-                if(_thistags[i].includes('DEF:')){jwGridContent += '<div class="product_def">'+tagVal+'</div>';}
-                }
-              });
-              jwGridContent +='<div class="product_compare">Compare</div>';
+            jwGridContent += '<div class="product-price-card-row abc">';
+            //   $.each(_thistags, function(i){ 
+            //  ////console.log('INdex==>' + i);
+            //  //  console.log(_thistags[i]);
+            //     // return false;
+            //     if(_thistags[i].includes(':')){
+            //     let tagVal = _thistags[i].split(':')[1];  
+            //     if(_thistags[i].includes('CTW:')){jwGridContent += '<div class="product_weight">'+tagVal+'</div>';}
+            //     if(_thistags[i].includes('DEF:')){jwGridContent += '<div class="product_def">'+tagVal+'</div>';}
+            //     }
+            //   });
+
+              
+              
               jwGridContent +='</div>'
           }
          // console.log('jwGridContent', jwGridContent);
@@ -1511,7 +1612,7 @@ selectOption +=  '</div">';
             // }    
 
             if($('body').attr('data-template') == 'loose-stone-plp'){ 
-              productGrid += '<li class="grid__item grid__item--loose-stone-plp-template  bbb">';
+              productGrid += '<li class="grid__item grid__item--loose-stone-plp-template  bbb" data-handle="'+getproductHandle+'" data-title="'+prodTitle+'" data-type="'+prodType+'">';
               productList += '<tr class="list-view-item">';
             }else {
               productGrid += '<li class="grid__item grid__item--solitaire-collection  aaa" data-handle="'+getproductHandle+'" data-title="'+prodTitle+'" data-type="'+prodType+'">';
@@ -1550,14 +1651,22 @@ selectOption +=  '</div">';
                   productList += '</tr>';
                 }
                 productGrid += '</div>'
-                productGrid += '<div class="prodct_card_body">' 
+                productGrid += '<div class="prodct_card_body est">' 
+                  if($('body').attr('data-template') != 'loose-stone-plp'){
+                     
+                  }
                 productGrid += jwGridTitle;
                 productGrid += '<span style="display: none;"></span>';
                 productGrid += '<div class="product-price-card">'
                 productGrid += ldGridContent;
                 productGrid += ldGridContentMob;
+
+               
+
+                  
                 productGrid += jwGridContent;
                 productGrid += ItemPrice;
+               
                 // productGrid += '<div class="product-price-card-row price_row">'
                 // productGrid += '<div class="ragular_price">'+ prodPrice +'</div>'
                 // productGrid += '</div>'
@@ -1577,6 +1686,36 @@ selectOption +=  '</div">';
                 }
 
                 // $('[data-collection-listing-container] [data-view="grid"] [data-list-item]').append(productGrid).removeClass('hide'); 
+
+                function getData(ajaxurl) { 
+                    return $.ajax({
+                      url: itemUrls,
+                      type: 'GET',
+                    });
+                  };
+
+                  async function renderMetaInfo() {
+                    try {
+                      const res = await getData(prodLink+'/?view=metainfo')
+                      // $(document).find('.product_view_tab[data-view="grid"] li .prodct_card_body').html('');
+                      let x  = res;
+                      var GridContentupdate = x;
+                      $(document).find('.product_view_tab[data-view="grid"] li[data-handle="'+prodLink.split('products/')[1]+'"] .prodct_card_body').html('').html(GridContentupdate);
+
+                      // setTimeout(function(){
+                        // if($('body').attr('data-template') == 'loose-stone-plp'){
+                        //   $(document).find('.product_view_tab[data-view="grid"] li[data-handle="'+prodLink.split('products/')[1]+'"] .prodct_card_body').html('').html(GridContentupdate);
+                        // }else {
+                        //   $(document).find('.product_view_tab[data-view="grid"] li[data-handle="'+prodLink.split('products/')[1]+'"] .prodct_card_body').html('').html(GridContentupdate);
+                        // }
+                        
+                      // },500);                        
+                    } catch(err) {
+                      console.log(err);
+                    }
+                  }
+
+                  renderMetaInfo();
         });
         
             // productGrid += '</ul>';
@@ -1586,22 +1725,10 @@ selectOption +=  '</div">';
                 if($('body').attr('data-template') == 'jewellery-plp' && $('body').attr('data-load') == 'jewellery-plp-initial'){
                   $('body').removeAttr('data-load');
                 } 
-                 
-                // var len = $(document).find('.dynamic-pagination span a').length;
-                // var txt = Number($(document).find('.dynamic-pagination span a.active').text());
-                // //console.log('len==>' + len + '== '+ txt);
-                // if(len === txt){
-                //   //console.log('yes matched len and txt')
-                //   $(document).find('.dynamic-loadmore-btn-box, .dynamic-loader-spiner').hide();
-                  
-                // }else {
-                //  // console.log('current Item not matched len and text');
-                //   $(document).find('.dynamic-loadmore-btn-box, .dynamicloadMore-btn').show();
-                //   $(document).find('.dynamic-loader-spiner').hide();  
-                // }
+             
                 
+                               
                 $(document).find('[data-col-images-slider-init]').slick(sliderInit());
-              //  sliderInit();  
       }
       function sliderInit(){               
           return {
@@ -1620,23 +1747,21 @@ selectOption +=  '</div">';
 
       // Get product View for metafields information
       
-      function getMetaInfo(prodHandle){
-        console.log('MetaInfo==>', prodHandle);
-        let itemUrls = prodHandle+'/?view=metainfo';
-        $.ajax({
-          url: itemUrls,
-          cache: false,
-        success: function(itemMetafields) {
-          console.log(itemMetafields);
-          // console.log(response);
-          // $('#compare-product-list, [data-compare-product-modal-content]').append(responseCompare).addClass('compare-item-loaded');
-          // $('.compare_product_layout').addClass('showCompareProducts');
-        },
-        error: function(XHR, XMLHttpRequest, error){
-          console.log(XHR);
-        }
-      })
-    }      
+    //   function getMetaInfo(prodHandle){
+    //     console.log('MetaInfo==>', prodHandle);
+    //     let itemUrls = prodHandle+'/?view=metainfo';
+    //     $.ajax({
+    //       url: itemUrls,
+    //       cache: false,
+    //     success: function(itemMetafields) {
+    //      var metaInfobyview = itemMetafields
+          
+    //     },
+    //     error: function(XHR, XMLHttpRequest, error){
+    //       console.log(XHR);
+    //     }
+    //   })
+    // }      
 
       //Initialize Price Slider
     	function initializingPriceSlider(minPrice, highestPrice, selectedMin, selectedMax){

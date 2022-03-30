@@ -1,42 +1,49 @@
-{% layout none %}
-{{ product.id }}====
+{%- layout none -%}
+{%- if product.template_suffix contains 'loose' -%}
+{%- assign ls_depth = product.metafields.global.ls_cert_Depth -%}
+{%- assign ls_table = product.metafields.global.ls_cert_Table -%}
+{%- assign ls_fluorescence = product.metafields.global.ls_cert_Fluorescence -%}
+{%- assign ls_polish = product.metafields.global.ls_cert_Polish -%}
+{%- assign ls_symmetry = product.metafields.global.ls_cert_Symmetry -%}
+{%- assign ls_clarity = product.metafields.global.ls_cert_clarity -%}
+{%- assign ls_stoneWgt= product.metafields.global.stone_wgt -%}
+{%- assign ls_uom= product.metafields.global.uom -%}
+{%- assign ls_shape = product.metafields.global.ls_cert_Shape -%}
+{%- assign ls_cutgrade = product.metafields.global.ls_cert_cutgrade -%}
+{%- assign ls_color = product.metafields.global.ls_cert_color -%}
+  
 
-{% assign current_variant = product.selected_or_first_available_variant %}
-
-{{ variant.metafields.current_variant.dec_stn_total_crt_wt.value }}
-
-{% assign dec_stn_total_crt_wt = current_variant.metafields.current_variant.dec_stn_total_crt_wt.value %}
-{% assign dec_stn_total_crt_wt = current_variant.metafields.current_variant.dec_stn_total_crt_wt.value %}
-
-
-{% comment %}
-{% assign defTag = false  %}
-{% assign ctwTag = false  %}
-{% for tag in product.tags %}
-
-{% if tag contains 'DEF:' %}
-{% assign defTag = true  %}
-{% if defTag %}
-{% assign defTagVal = tag | split: ':' | last  %}
-{% endif %}
-{% endif %}
-{% if tag contains 'CTW:' %}
-{% assign ctwTag = true  %}
-{% assign ctwTagVal = tag | split: ':' | last  %}
-{% endif %}
-{% endfor %}
-
-    <div class="product-price-card ter">
-      <div class="product-price-card-row" data-id = {{ product.id }}>
-        <div class="product_weight">{% if ctwTag %}{{ ctwTagVal }}{% endif %}</div>
-        <div class="product_def">{% if defTag %}{{ defTagVal }}{% endif %}</div>
-        <div class="product_compare">COMPARE</div>
+      {%- comment -%}<div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="{{ product.url }}"> {{ product.title }}</a></div>{%- endcomment -%}
+      <span style="display: none;">
+        {%- include 'product-price-listing', product: product, show_vendor: show_vendor -%}
+      </span>
+      <div class="product-price-card">
+        <div class="product-price-card-row hide_mobile">
+          <div class="product_b_tex">{%- if ls_stoneWgt != blank  -%}{{ ls_stoneWgt }} {%- if ls_uom != blank -%}{{ ls_uom }}{%- endif -%}{%- endif -%}</div>
+          <div class="product_b_tex">{%- if ls_shape != blank -%}{{ ls_shape }}{%- endif -%}</div>
+          <div class="product_b_tex">{%- if ls_polish != blank  -%}{{ ls_polish }} {%- endif -%}</div>
+          <div class="product_b_tex">{%- if ls_color != blank -%}{{ ls_color }}{%- endif -%}</div>
+          <span class="divider"></span>
+          <div class="product_b_tex">{%- if ls_clarity != blank -%}{{ ls_clarity }}{%- endif -%}</div>
+        </div>
+        <div class="product-price-card-row show_mobile">
+          <div class="r1">
+            <div class="product_b_tex">{%- if ls_stoneWgt != blank  -%}{{ ls_stoneWgt }} {%- if ls_uom != blank -%}{{ ls_uom }}{%- endif -%}{%- endif -%}</div>
+            <div class="product_b_tex">{%- if ls_shape != blank -%}{{ ls_shape }}{%- endif -%}</div>
+          </div>
+          <div class="r2">
+            <div class="product_b_tex">{%- if ls_polish != blank  -%}{{ ls_polish }} {%- endif -%}</div>
+            <div class="product_b_tex">{%- if ls_color != blank -%}{{ ls_color }}{%- endif -%}</div>
+            <div class="product_b_tex">{%- if ls_clarity != blank -%}{{ ls_clarity }}{%- endif -%}</div>
+          </div>
+        </div>
+        <div class="product-price-card-row price_row {% if product.compare_at_price == blank %}no_discount{% endif %}">
+          <div class="ragular_price">{{ product.price | money | remove: '.00' }}</div>
+          {%- if product.compare_at_price -%}<div class="compare_at_price">{{ product.compare_at_price | money | remove: '.00' }}</div>{%- endif -%}
+          {%- assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price -%}
+          {%- if product.compare_at_price -%}<div class="product_discount">{{ discount | floor }}% OFF</div>{%- endif -%}
+        </div>
       </div>
-      <div class="product-price-card-row price_row ww {% if product.compare_at_price == blank %}no_discount{% endif %}">
-        <div class="ragular_price">{{ product.price | money | remove: '.00' }}</div>
-        {% if product.compare_at_price %}<div class="compare_at_price">{{ product.compare_at_price | money | remove: '.00' }}</div>{% endif %}
-        {% assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price %}
-        {% if product.compare_at_price %}<div class="product_discount">{{ discount | floor }}% OFF</div>{% endif %}
-      </div>
-    </div>
-{% endcomment %}
+      <div class="show_mobile">{{ showMoreData }}</div>
+{%- else -%}
+{%- assign current_variant = product.selected_or_first_available_variant -%}{%- assign stoneTotalWgt = product.metafields.global.stn_total_ct_wt -%}{%- assign stoneClr = product.metafields.global.jew_stn_graded_color  -%}{%- assign stoneClarity = product.metafields.global.jew_stn_graded_color -%}<div class="h4 grid-view-item__title product-card__title aaa" aria-hidden="true"><a href="{{ product.url }}"> {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>'}}</a></div><span style="display: none;">{%- include 'product-price-listing', product: product, show_vendor: show_vendor -%}</span><div class="product-price-card ter aaa"><div class="product-price-card-row" data-id = {{ product.id }}><div class="product_weight">{%- if stoneTotalWgt != blank -%}{{ stoneTotalWgt | append: 'CTS.' }}{%- endif -%}</div><div class="product_def">{%-if stoneClr != blank -%}{{ stoneClr }}{%- if stoneClarity != blank -%}/{%- endif -%}{%- endif -%}{%- if stoneClarity != blank  -%}{{ stoneClarity }}{%- endif -%}</div><div class="product_compare">COMPARE</div></div><div class="product-price-card-row price_row ww aaa {%- if product.compare_at_price == blank -%}no_discount{%- endif -%}"><div class="ragular_price">{{ product.price | money | remove: '.00' }}</div>{%- if product.compare_at_price -%}<div class="compare_at_price">{{ product.compare_at_price | money | remove: '.00' }}</div>{%- endif -%}{%- assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price -%}{%- if product.compare_at_price -%}<div class="product_discount">{{ discount | floor }}% OFF</div>{%- endif -%}</div>  </div>{%- endif -%}

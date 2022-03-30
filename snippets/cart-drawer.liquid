@@ -47,8 +47,8 @@
                     <div class="cart-btn-item">
                       <a data-template="cart" class="glb-btn remove_cart_item" href="javascript:void(0);">REMOVE FROM CART</a>
                     </div>
-                    <div class="cart-btn-item add_wishlist_holder move-to-wishlist-btn">
-                      <a class="glb-btn" href="javascript:void(0)" data-variantId="{{ item.id }}" data-prodId="{{ item.product_id }}" data-line="{{ forloop.index }}" aria-label="{{ 'move-to-wishlist' }}" data-role="product-move-to-wishlist">ADD TO WISHLIST</a>
+                    <div class="cart-btn-item add_wishlist_holder move-to-wishlist-btn" data-move-to-wishlist-btn-drawer>
+                      <a class="glb-btn move-to-wishlist-btn-drawer" href="javascript:void(0)" data-variantId="{{ cart.item.id }}" data-prodId="{{ cart.item.product_id }}" data-line="{{ forloop.index }}" aria-label="{{ 'move-to-wishlist' }}" data-role="product-move-to-wishlist">ADD TO WISHLIST</a>
                     </div>
                   </div>
                 </div>
@@ -59,6 +59,7 @@
         </div>
       </div>
     </div>
+
     
     
     

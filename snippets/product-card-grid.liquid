@@ -113,6 +113,7 @@
   </noscript>
 
   <div class="prodct_card_body">
+    {%- comment -%}
     <div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="{{ product.url }}"> {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>'}}</a></div>
     <span style="display: none;">
       {% include 'product-price-listing', product: product, show_vendor: show_vendor %}
@@ -130,5 +131,29 @@
         {% if product.compare_at_price %}<div class="product_discount">{{ discount | floor }}% OFF</div>{% endif %}
       </div>
     </div>
+    {%- endcomment -%}
+    {%- assign current_variant = product.selected_or_first_available_variant -%}
+    {%- assign stoneTotalWgt = product.metafields.global.stn_total_ct_wt -%}
+    {%- assign stoneClr = product.metafields.global.jew_stn_graded_color  -%}
+    {%- assign stoneClarity = product.metafields.global.jew_stn_graded_color -%}
+    <div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="{{ product.url }}"> {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>'}}</a></div>
+    <span style="display: none;">{%- include 'product-price-listing', product: product, show_vendor: show_vendor -%}</span>
+    
+    <div class="product-price-card ter"><div class="product-price-card-row" data-id = {{ product.id }}>
+      <div class="product_weight">{%- if stoneTotalWgt != blank -%}{{ stoneTotalWgt | append: 'CTS.' }}{%- endif -%}</div>
+      <div class="product_def">{%-if stoneClr != blank -%}{{ stoneClr }}{%- if stoneClarity != blank -%}/{%- endif -%}{%- endif -%}{%- if stoneClarity != blank  -%}{{ stoneClarity }}{%- endif -%}</div>
+      <div class="product_compare">COMPARE</div>
+    </div>
+    <div class="product-price-card-row price_row ww {% if product.compare_at_price == blank %}no_discount{% endif %}">
+      <div class="ragular_price">{{ product.price | money | remove: '.00' }}</div>
+      {%- if product.compare_at_price -%}<div class="compare_at_price">{{ product.compare_at_price | money | remove: '.00' }}</div>{%- endif -%}
+      {%- assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price -%}
+      {%- if product.compare_at_price -%}<div class="product_discount">{{ discount | floor }}% OFF</div>{%- endif -%}
+    </div>
+  </div>
+
+
+
+
   </div>
 </div>
