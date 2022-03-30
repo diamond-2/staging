@@ -1,2 +1,32 @@
 {% layout none %}
-{{ product.id }}
+{%- assign ls_depth = product.metafields.global.ls_cert_Depth -%}
+{%- assign ls_table = product.metafields.global.ls_cert_Table -%}
+{%- assign ls_fluorescence = product.metafields.global.ls_cert_Fluorescence -%}
+{%- assign ls_polish = product.metafields.global.ls_cert_Polish -%}
+{%- assign ls_symmetry = product.metafields.global.ls_cert_Symmetry -%}
+{%- assign ls_clarity = product.metafields.global.ls_cert_clarity -%}
+{%- assign ls_stoneWgt= product.metafields.global.stone_wgt -%}
+{%- assign ls_uom= product.metafields.global.uom -%}
+{%- assign ls_shape = product.metafields.global.ls_cert_Shape -%}
+{%- assign ls_cutgrade = product.metafields.global.ls_cert_cutgrade -%}
+{%- assign ls_color = product.metafields.global.ls_cert_color -%}
+{%- capture showMoreData -%}
+  <div class="product-image-body-row">
+    <a class="compare_btn product_compare">COMPARE</a>
+    <a class="p_more_btn"><span class="text_more">MORE</span><span class="text_less">LESS</span></a>
+  </div>
+  <div class="more_product_datatable">
+    <table>
+      <tbody>
+        {%- if ls_depth != blank -%}<tr><td>Depth:</td><td>{{ ls_depth }}</td></tr>{%- endif -%}
+        {%- if ls_table != blank -%}<tr><td>Table:</td><td>{{ ls_table }}</td></tr>{%- endif -%}
+        {%- if ls_fluorescence != blank -%}<tr><td>Fluorescence:</td><td>{{ ls_fluorescence }}</td></tr>{%- endif -%}              
+        {%- if ls_polish != blank -%}<tr><td>Polish:</td><td>{{ ls_polish }}</td></tr>{%- endif -%}
+        {%- if ls_symmetry != blank -%}<tr><td>Symmetry:</td><td>{{ ls_symmetry }}</td></tr>{%- endif -%}
+        {%- if ls_clarity != blank -%}<tr><td>CLARITY:</td><td>{{ ls_clarity }}</td></tr>{%- endif -%}
+      </tbody>
+    </table>
+  </div>
+{%- endcapture -%}
+<!-- capture More Data Table Close -->
+{{ showMoreData }}
