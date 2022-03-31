@@ -550,7 +550,7 @@
                           var checked = 'checked=checked';
                           	  checkVal = thisVal;
                         }
-                      selectOption += '<div class="collection_filter_by_shape'+ show +' '+ disableItem +'" data-shape="shape_'+encodeURIComponent(thisVal).toLowerCase()+'">';
+                      selectOption += '<div class="collection_filter_by_shape '+ show +' '+ disableItem +'" data-shape="shape_'+encodeURIComponent(thisVal).toLowerCase()+'">';
                       selectOption += '<input type="checkbox"  id="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" ' + checked + ' class="visually-hidden" value="' + encodeURIComponent(thisVal) + '">';
                       selectOption += '<label for="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" class="filter__label">';
                       selectOption += '<img data-src="'+fileUrl+'ld_shape_'+encodeURIComponent(thisVal).toLowerCase()+'.svg" class="lazyload"><span>' + thisVal +'</span></label>';
@@ -766,7 +766,7 @@
                           var checked = 'checked=checked';
                           	  checkVal = thisVal;
                         }
-                      selectOption += '<div class="collection_filter_by_shape'+ show +' '+ disableItem +'" data-shape="shape_'+encodeURIComponent(thisVal).toLowerCase()+'">';
+                      selectOption += '<div class="collection_filter_by_shape '+ show +' '+ disableItem +'" data-shape="shape_'+encodeURIComponent(thisVal).toLowerCase()+'">';
                       selectOption += '<input type="checkbox"  id="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" ' + checked + ' class="visually-hidden" value="' + encodeURIComponent(thisVal) + '">';
                       selectOption += '<label for="'+filterId+'_'+encodeURIComponent(thisVal)+'-filter" class="filter__label">';
                       selectOption += '<img data-src="'+fileUrl+'ld_shape_'+encodeURIComponent(thisVal).toLowerCase()+'.svg" class="lazyload"><span>' + thisVal +'</span></label>';
@@ -1613,7 +1613,7 @@ selectOption +=  '</div">';
 
             if($('body').attr('data-template') == 'loose-stone-plp'){ 
               productGrid += '<li class="grid__item grid__item--loose-stone-plp-template  bbb" data-handle="'+getproductHandle+'" data-title="'+prodTitle+'" data-type="'+prodType+'">';
-              productList += '<tr class="list-view-item">';
+              productList += '<tr class="list-view-item" data-handle="'+getproductHandle+'" data-title="'+prodTitle+'" data-type="'+prodType+'">';
             }else {
               productGrid += '<li class="grid__item grid__item--solitaire-collection  aaa" data-handle="'+getproductHandle+'" data-title="'+prodTitle+'" data-type="'+prodType+'">';
             }
@@ -1728,6 +1728,28 @@ selectOption +=  '</div">';
                     }
                   }
                   renderLSMetaMoreInfo();
+
+                  var listViewMetaUrls = prodLink+'/?view=listviewmetainfo';
+
+                  function getListViewData(ajaxurl) { 
+                    return $.ajax({
+                      url: listViewMetaUrls,
+                      type: 'GET',
+                    });
+                  };
+
+                  async function renderLSListInfo() {
+                    try {
+                      const responseList = await getListViewData(prodLink+'/?view=listviewmetainfo')
+                      // $(document).find('.product_view_tab[data-view="grid"] li .prodct_card_body').html('');
+                      let z  = responseList;
+                      var lsListInfoContent = z;
+                      $(document).find('.product_view_tab[data-view="list"] .product-listing table.list-view-items tbody tr[data-handle="'+prodLink.split('products/')[1]+'"]').html('').html(lsListInfoContent);                      
+                    } catch(err) {
+                      console.log(err);
+                    }
+                  }
+                  renderLSListInfo();
         });
         
             // productGrid += '</ul>';
@@ -1889,3 +1911,4 @@ selectOption +=  '</div">';
 
  
   </script>
+

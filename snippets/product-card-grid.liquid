@@ -89,6 +89,9 @@
   </a>
 
   <div class="product-images-wrapper {% if product.images.size == 0%}no-image {% endif %}">
+     <!-- Swym Wishlist Plus EPI Button-->
+      <button data-with-epi="true" class="swym-button swym-add-to-wishlist-view-product product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}" data-variant-id="{{product.variants[0].id}}" data-product-url="{{ shop.url }}{{ product.url }}"></button>
+  <!-- Swym Wishlist Plus EPI Button-->
     <a class="product-full-link" href="{{ product.url }}"></a>
     <div class="product-images-wrapper {% if product.images.size > 1 %}product_images_slider{% endif %}">
       {% for slideImage in product.images %}
