@@ -224,14 +224,31 @@
 
     <div class="checkout-page-left-column">
      <form class="checkout-form">
-       <div class="time-slot-wrapper">
-       <div class="time-slot-label">
-         <h2 class="time-slot-label-h">Pick a time slot</h2>
+       <div class="date-slot-wrapper">
+       <div class="date-slot-label">
+         <h2 class="date-slot-label-h">Pick a Date slot</h2>
        </div>
-       <div class="time-slot-input">
-         <input class="time-slot-input-date" type="date" data-date-inline-picker="true" />
+       <div class="date-slot-input">
+         <input class="date-slot-input-date" type="date" data-date-inline-picker="true" value="" name="date"/>
        </div>
+       <div class="error">
       </div>
+      </div>
+
+      <div class="time-slot-wrapper">
+        <div class="time-slot-label">
+          <h2 class="time-slot-label-h">Pick a time slot</h2>
+        </div>
+        <div class="time-slot-input-time">
+          <select class="time-slot-input">
+            <option value="11:30 AM - 01:00 PM"> 11:30 AM - 01:00 PM </option>
+            <option value="11:30 AM - 01:00 PM"> 11:30 AM - 01:00 PM </option>
+            <option value="11:30 AM - 01:00 PM"> 11:30 AM - 01:00 PM </option>
+          </select>
+        </div>
+        <!-- <div class="error">
+       </div> -->
+       </div>
 
      <div class="booking-info-wrapper-outer">
      
@@ -243,8 +260,10 @@
         <div class="booking-info-label">
           <p class="booking-info-label-h"><span id="text">Full Name</span><span id="symbol">*</span></p>
         </div>
-        <div class="booking-info-input">
-          <input class="booking-info-input-name" type="text" value="" required />
+        <div class="booking-info-input name-input">
+          <input class="booking-info-input-name" type="text" value="" required name="name"/>
+        </div>
+        <div class="error">
         </div>
        </div>
 
@@ -252,8 +271,10 @@
         <div class="booking-info-label">
           <p class="booking-info-label-h"><span id="text">Mobile Number</span><span id="symbol">*</span></p>
         </div>
-        <div class="booking-info-input">
-          <input class="booking-info-input-mobile" type="tel" value="" required />
+        <div class="booking-info-input tel-input">
+          <input class="booking-info-input-mobile" type="tel" value="" required name="tel"/>
+        </div>
+        <div class="error">
         </div>
        </div>
 
@@ -261,8 +282,10 @@
         <div class="booking-info-label">
           <p class="booking-info-label-h"><span id="text">Email Id</span><span id="symbol">*</span></p>
         </div>
-        <div class="booking-info-input">
-          <input class="booking-info-input-email" type="email" value="" required />
+        <div class="booking-info-input email-input">
+          <input class="booking-info-input-email" type="email" value="" required name="email"/>
+        </div>
+        <div class="error">
         </div>
        </div>
 
@@ -270,8 +293,10 @@
         <div class="booking-info-label">
           <p class="booking-info-label-h"><span id="text">Your Address</span><span id="symbol">*</span></p>
         </div>
-        <div class="booking-info-input">
-          <textarea class="booking-info-input-address" rows="4" cols="50"></textarea>
+        <div class="booking-info-input address-input">
+          <textarea class="booking-info-input-address" rows="4" cols="50" value="" name="address"></textarea>
+        </div>
+        <div class="error">
         </div>
        </div>
 
@@ -553,7 +578,12 @@ p.small-text-2{text-align:center;margin-bottom:0px;font-family: Montserrat;font-
 span.delivery-notes-heading {
     text-transform: capitalize;
 }
-
+.error span {
+    color: #ae0d5e;
+}
+.error {
+    padding-top: 10px;
+}
 @media screen and (max-width: 600px){
   /* appointment conformation code start */
   .whdyif-btns {
@@ -884,6 +914,15 @@ a#vmr-a {
 #ac-wrapper{
 display: none;
 }
+.time-slot-input {
+    width: 100%;
+}
+.date-slot-wrapper {
+    padding-bottom: 35px;
+}
+h2.date-slot-label-h {
+    font-size: 18px;
+}
 /* appointment conformation code end */
 </style>
 
@@ -907,6 +946,107 @@ document.getElementById("sap-btn").addEventListener("click", function(event){
 
 document.getElementById("booking-info-btn-bn").addEventListener("click", function(event){
   event.preventDefault()
+  // document.getElementById('tah-cart-form').style.display = "none";
+  // document.getElementById('tah-cart-describing').style.display = "none";
+  // document.getElementById('breadcrumb-text-c').innerHTML = "Checkout";
+  // document.getElementById('checkout-form').style.display = "none";
+  // document.getElementById('checkout-form').style.display = "none";
+  // document.getElementById('ac-wrapper').style.display = "block";
+
+
+   /* data collection of appointment conformation form input*/
+   let date = document.querySelector(".date-slot-input-date").value;
+   let time = document.querySelector(".time-slot-input-time").value;
+   let name = document.querySelector(".booking-info-input-name").value;
+   let mobile_no = document.querySelector(".booking-info-input-mobile").value;
+   let email = document.querySelector(".booking-info-input-email").value;
+   let address = document.querySelector(".booking-info-input-address").value;
+
+ /* validation */
+
+   let input_fill =false; 
+
+   if (date ==''&& name =='' && mobile_no=='' && email =='' && address==''){
+   let errors= document.querySelectorAll(".error");
+ 
+    for (i = 0; i < errors.length; i++) {
+      errors[i].innerHTML="<span>field is require!</span>";
+      }
+   }
+
+   if(date !=''){
+   document.querySelector(".date-slot-input").nextElementSibling.innerHTML='';
+   input_fill=true;
+   }else{
+    document.querySelector(".date-slot-input").nextElementSibling.innerHTML='<span>field is require!</span>';
+    input_fill=false;
+  }
+
+   if(name !=''){
+    input_fill=true;
+     document.querySelector(".name-input").nextElementSibling.innerHTML='';
+   }else{
+    input_fill=false;
+    document.querySelector(".name-input").nextElementSibling.innerHTML='<span>field is require!</span>';
+   }
+
+   if(mobile_no !=''){
+
+    var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+     if( ! mobile_no.match(phoneno)){
+       input_fill=false;
+        document.querySelector(".tel-input").nextElementSibling.innerHTML='<span>Invalid Phone Number!</span>';
+          }
+        else{
+          input_fill=true;
+          document.querySelector(".tel-input").nextElementSibling.innerHTML='';  
+        }
+   
+   }else{
+    input_fill=false;
+    document.querySelector(".tel-input").nextElementSibling.innerHTML='<span>field is require!</span>';
+   }
+
+   if(email !=''){
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+      if ( ! email.match(validRegex)) {
+        input_fill=false;
+        document.querySelector(".email-input").nextElementSibling.innerHTML='<span>Invalid email address!</span>';
+      }else{
+        input_fill=true;
+        document.querySelector(".email-input").nextElementSibling.innerHTML='';
+      }
+
+    //document.querySelector(".email-input").nextElementSibling.innerHTML='';
+
+   }else{
+    input_fill=false;
+    document.querySelector(".email-input").nextElementSibling.innerHTML='<span>field is require!</span>';
+   }
+
+   if(address !=''){
+    input_fill=true;
+     document.querySelector(".address-input").nextElementSibling.innerHTML='';
+   }else{
+    input_fill=false;
+    document.querySelector(".address-input").nextElementSibling.innerHTML='<span>field is require!</span>';
+   }
+
+let errors= document.querySelectorAll(".error");
+ 
+ for (i = 0; i < errors.length; i++) {
+   if (errors[i].hasChildNodes()) {
+   console.log("yes")
+   input_fill=false;
+}
+}
+
+/* end validation */
+
+/* after form validation */
+ if( input_fill)
+ {
   document.getElementById('tah-cart-form').style.display = "none";
   document.getElementById('tah-cart-describing').style.display = "none";
   document.getElementById('breadcrumb-text-c').innerHTML = "Checkout";
@@ -914,9 +1054,7 @@ document.getElementById("booking-info-btn-bn").addEventListener("click", functio
   document.getElementById('checkout-form').style.display = "none";
   document.getElementById('ac-wrapper').style.display = "block";
 
-
-   /* data collection of appointment conformation form input*/
-
+ }
 
     /* data collection of appointment conformation form input*/
 
@@ -927,3 +1065,127 @@ document.getElementById("booking-info-btn-bn").addEventListener("click", functio
 
 
 
+<button class="btn" id="btn-modal">開く</button>
+
+<div class="tah-m-overlay" id="tah-m-overlay"></div>
+<div class="tah-m-modal" id="tah-m-modal">
+  <button class="tah-m-modal-close-btn" id="tah-m-close-btn"><i class="fa fa-times" title="closed"></i></button>
+ 
+<div class="th_cart_inner">
+  <div class="row justify-content-md-center">
+      <div class="col-md-4 text-center">
+        <div class="row">
+          <div class="col-sm-12 mt-5 bgWhite">
+            <div class="title">
+              Enter 6 Digit OPT to confirm your appointment
+            </div>
+            <div class="th_cart_inner-tc">
+            </div>
+            <div class="th_cart_inner-outer">
+            <form action="" class="th_cart_inner-form">
+              <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(1)' maxlength=1 >
+              <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(2)' maxlength=1 >
+              <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(3)' maxlength=1 >
+              <input class="otp" type="text" oninput='digitValidate(this)'onkeyup='tabChange(4)' maxlength=1 >
+  <input class="otp" type="text" oninput='digitValidate(this)'onkeyup='tabChange(5)' maxlength=1 >
+<input class="otp" type="text" oninput='digitValidate(this)'onkeyup='tabChange(6)' maxlength=1 >              
+            </form>
+          </div>
+            <button class='btn mt-4 mb-4 customBtn'>Verify</button>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+  
+</div>
+
+<style>
+
+  
+/** Modal */
+.tah-m-modal {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+.tah-m-modal-close-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 20px;
+}
+
+/** Overlay */
+.tah-m-overlay {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+}
+
+/** JS */
+.tah-m-is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+
+
+
+.th_cart_inner .title{
+  font-weight:600;
+  margin-top:20px;
+  font-size:24px
+}
+
+.th_cart_inner .customBtn{
+  border-radius:0px;
+  padding:10px;
+  width: 100%;
+}
+
+.th_cart_inner form input{
+  display:inline-block;
+  width:50px;
+  height:50px;
+  text-align:center;
+}
+.th_cart_inner-outer {
+    min-height: 80px;
+}
+
+</style>
+
+<script>
+  document.getElementById('btn-modal').addEventListener('click', function() {
+  document.getElementById('tah-m-overlay').classList.add('tah-m-is-visible');
+  document.getElementById('tah-m-modal').classList.add('tah-m-is-visible');
+});
+
+document.getElementById('tah-m-close-btn').addEventListener('click', function() {
+  document.getElementById('tah-m-overlay').classList.remove('tah-m-is-visible');
+  document.getElementById('tah-m-modal').classList.remove('tah-m-is-visible');
+});
+
+
+</script>
