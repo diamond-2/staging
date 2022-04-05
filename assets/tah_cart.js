@@ -182,3 +182,34 @@ for (i = 0; i < th_cart_opt_p_v.length; i++) {
  }
 
 });
+
+
+
+var x = {
+    nextSlot: 60,
+    // breakTime: [
+    //     ['11:00', '14:00'], ['16:00', '18:00']
+    // ],
+    startTime: '06:00',
+    endTime: '12:00'
+};
+
+var slotTime = moment(x.startTime, "HH:mm");
+var endTime = moment(x.endTime, "HH:mm");
+
+function isInBreak(slotTime, breakTimes) {
+    return breakTimes.some((br) => {
+      return slotTime >= moment(br[0], "HH:mm") && slotTime < moment(br[1], "HH:mm");
+  });
+}
+
+let times = [];
+while (slotTime < endTime)
+{
+  if (!isInBreak(slotTime, x.breakTime)) {
+     times.push(slotTime.format("HH:mm"));
+  }
+  slotTime = slotTime.add(x.nextSlot, 'minutes');
+}
+
+console.log("Time slots: ", times);

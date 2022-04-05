@@ -306,10 +306,13 @@
          <div class="faq">
           <div class="accordion-wrapper try-at-home-faq">
             <div class="ac-grid">
+
+                {% for block in section.blocks %} 
+                {% if block.type == 'faq' %}
                <div class="ac-item">
                   <div class="ac-heading">
                      <a href="javascript:void(0);" aria-describedby="a11y-external-message">
-                        Q. Why try at home ?
+                        {{ block.settings.title }}
                         <span class="icon_s">
                            <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M11.9999 0.995538C12.0004 1.12361 11.9721 1.25016 11.9172 1.36588C11.8624 1.48159 11.7823 1.58354 11.6828 1.66423L6.54046 5.80498C6.3871 5.93107 6.19474 6 5.99622 6C5.79771 6 5.60534 5.93107 5.45199 5.80498L0.309616 1.51849C0.134589 1.37297 0.0245216 1.16387 0.00362666 0.937176C-0.0172683 0.710485 0.052721 0.484775 0.198198 0.3097C0.343674 0.134626 0.552721 0.0245285 0.779351 0.00362778C1.00598 -0.0172729 1.23163 0.0527353 1.40665 0.198252L6.00051 4.03037L10.5944 0.326846C10.7202 0.222013 10.8734 0.155421 11.0358 0.134949C11.1983 0.114478 11.3632 0.140983 11.5111 0.211329C11.6589 0.281675 11.7835 0.392918 11.8702 0.531895C11.9568 0.670871 12.0019 0.831765 11.9999 0.995538Z" fill="black"></path>
@@ -318,114 +321,14 @@
                      </a>
                   </div>
                   <div class="rte ac-body">
-                     <div class="ac-body-inner">Yes, all our jewellery is certified by GIA experienced/certified gemologists. All jewellery is sold with carries a certificate that carries all necessary details of the jewellery including the image.</div>
+                     <div class="ac-body-inner">
+                         {{ block.settings.faq-anwser }}
+                        </div>
                   </div>
                </div>
-               <div class="ac-item">
-                  <div class="ac-heading">
-                     <a href="javascript:void(0);" aria-describedby="a11y-external-message">
-                        Q. Which are the cities in which this service is available?
-                        <span class="icon_s">
-                           <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M11.9999 0.995538C12.0004 1.12361 11.9721 1.25016 11.9172 1.36588C11.8624 1.48159 11.7823 1.58354 11.6828 1.66423L6.54046 5.80498C6.3871 5.93107 6.19474 6 5.99622 6C5.79771 6 5.60534 5.93107 5.45199 5.80498L0.309616 1.51849C0.134589 1.37297 0.0245216 1.16387 0.00362666 0.937176C-0.0172683 0.710485 0.052721 0.484775 0.198198 0.3097C0.343674 0.134626 0.552721 0.0245285 0.779351 0.00362778C1.00598 -0.0172729 1.23163 0.0527353 1.40665 0.198252L6.00051 4.03037L10.5944 0.326846C10.7202 0.222013 10.8734 0.155421 11.0358 0.134949C11.1983 0.114478 11.3632 0.140983 11.5111 0.211329C11.6589 0.281675 11.7835 0.392918 11.8702 0.531895C11.9568 0.670871 12.0019 0.831765 11.9999 0.995538Z" fill="black"></path>
-                           </svg>
-                        </span>
-                     </a>
-                  </div>
-                  <div class="rte ac-body">
-                     <div class="ac-body-inner">Yes, all our jewellery is certified by GIA experienced/certified gemologists. All jewellery is sold with carries a certificate that carries all necessary details of the jewellery including the image.</div>
-                  </div>
-               </div>
-               <div class="ac-item">
-                <div class="ac-heading">
-                   <a href="javascript:void(0);" aria-describedby="a11y-external-message">
-                      Q. Which are the cities in which this service is available?
-                      <span class="icon_s">
-                         <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.9999 0.995538C12.0004 1.12361 11.9721 1.25016 11.9172 1.36588C11.8624 1.48159 11.7823 1.58354 11.6828 1.66423L6.54046 5.80498C6.3871 5.93107 6.19474 6 5.99622 6C5.79771 6 5.60534 5.93107 5.45199 5.80498L0.309616 1.51849C0.134589 1.37297 0.0245216 1.16387 0.00362666 0.937176C-0.0172683 0.710485 0.052721 0.484775 0.198198 0.3097C0.343674 0.134626 0.552721 0.0245285 0.779351 0.00362778C1.00598 -0.0172729 1.23163 0.0527353 1.40665 0.198252L6.00051 4.03037L10.5944 0.326846C10.7202 0.222013 10.8734 0.155421 11.0358 0.134949C11.1983 0.114478 11.3632 0.140983 11.5111 0.211329C11.6589 0.281675 11.7835 0.392918 11.8702 0.531895C11.9568 0.670871 12.0019 0.831765 11.9999 0.995538Z" fill="black"></path>
-                         </svg>
-                      </span>
-                   </a>
-                </div>
-                <div class="rte ac-body">
-                   <div class="ac-body-inner">Yes, all our jewellery is certified by GIA experienced/certified gemologists. All jewellery is sold with carries a certificate that carries all necessary details of the jewellery including the image.</div>
-                </div>
-             </div>
-             <div class="ac-item">
-              <div class="ac-heading">
-                 <a href="javascript:void(0);" aria-describedby="a11y-external-message">
-                    Q. Which are the cities in which this service is available?
-                    <span class="icon_s">
-                       <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M11.9999 0.995538C12.0004 1.12361 11.9721 1.25016 11.9172 1.36588C11.8624 1.48159 11.7823 1.58354 11.6828 1.66423L6.54046 5.80498C6.3871 5.93107 6.19474 6 5.99622 6C5.79771 6 5.60534 5.93107 5.45199 5.80498L0.309616 1.51849C0.134589 1.37297 0.0245216 1.16387 0.00362666 0.937176C-0.0172683 0.710485 0.052721 0.484775 0.198198 0.3097C0.343674 0.134626 0.552721 0.0245285 0.779351 0.00362778C1.00598 -0.0172729 1.23163 0.0527353 1.40665 0.198252L6.00051 4.03037L10.5944 0.326846C10.7202 0.222013 10.8734 0.155421 11.0358 0.134949C11.1983 0.114478 11.3632 0.140983 11.5111 0.211329C11.6589 0.281675 11.7835 0.392918 11.8702 0.531895C11.9568 0.670871 12.0019 0.831765 11.9999 0.995538Z" fill="black"></path>
-                       </svg>
-                    </span>
-                 </a>
-              </div>
-              <div class="rte ac-body">
-                 <div class="ac-body-inner">Yes, all our jewellery is certified by GIA experienced/certified gemologists. All jewellery is sold with carries a certificate that carries all necessary details of the jewellery including the image.</div>
-              </div>
-           </div>
-           <div class="ac-item">
-            <div class="ac-heading">
-               <a href="javascript:void(0);" aria-describedby="a11y-external-message">
-                  Q. Which are the cities in which this service is available?
-                  <span class="icon_s">
-                     <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11.9999 0.995538C12.0004 1.12361 11.9721 1.25016 11.9172 1.36588C11.8624 1.48159 11.7823 1.58354 11.6828 1.66423L6.54046 5.80498C6.3871 5.93107 6.19474 6 5.99622 6C5.79771 6 5.60534 5.93107 5.45199 5.80498L0.309616 1.51849C0.134589 1.37297 0.0245216 1.16387 0.00362666 0.937176C-0.0172683 0.710485 0.052721 0.484775 0.198198 0.3097C0.343674 0.134626 0.552721 0.0245285 0.779351 0.00362778C1.00598 -0.0172729 1.23163 0.0527353 1.40665 0.198252L6.00051 4.03037L10.5944 0.326846C10.7202 0.222013 10.8734 0.155421 11.0358 0.134949C11.1983 0.114478 11.3632 0.140983 11.5111 0.211329C11.6589 0.281675 11.7835 0.392918 11.8702 0.531895C11.9568 0.670871 12.0019 0.831765 11.9999 0.995538Z" fill="black"></path>
-                     </svg>
-                  </span>
-               </a>
-            </div>
-            <div class="rte ac-body">
-               <div class="ac-body-inner">Yes, all our jewellery is certified by GIA experienced/certified gemologists. All jewellery is sold with carries a certificate that carries all necessary details of the jewellery including the image.</div>
-            </div>
-         </div>
-         <div class="ac-item">
-          <div class="ac-heading">
-             <a href="javascript:void(0);" aria-describedby="a11y-external-message">
-                Q. Which are the cities in which this service is available?
-                <span class="icon_s">
-                   <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M11.9999 0.995538C12.0004 1.12361 11.9721 1.25016 11.9172 1.36588C11.8624 1.48159 11.7823 1.58354 11.6828 1.66423L6.54046 5.80498C6.3871 5.93107 6.19474 6 5.99622 6C5.79771 6 5.60534 5.93107 5.45199 5.80498L0.309616 1.51849C0.134589 1.37297 0.0245216 1.16387 0.00362666 0.937176C-0.0172683 0.710485 0.052721 0.484775 0.198198 0.3097C0.343674 0.134626 0.552721 0.0245285 0.779351 0.00362778C1.00598 -0.0172729 1.23163 0.0527353 1.40665 0.198252L6.00051 4.03037L10.5944 0.326846C10.7202 0.222013 10.8734 0.155421 11.0358 0.134949C11.1983 0.114478 11.3632 0.140983 11.5111 0.211329C11.6589 0.281675 11.7835 0.392918 11.8702 0.531895C11.9568 0.670871 12.0019 0.831765 11.9999 0.995538Z" fill="black"></path>
-                   </svg>
-                </span>
-             </a>
-          </div>
-          <div class="rte ac-body">
-             <div class="ac-body-inner">Yes, all our jewellery is certified by GIA experienced/certified gemologists. All jewellery is sold with carries a certificate that carries all necessary details of the jewellery including the image.</div>
-          </div>
-       </div>
-       <div class="ac-item">
-        <div class="ac-heading">
-           <a href="javascript:void(0);" aria-describedby="a11y-external-message">
-              Q. Which are the cities in which this service is available?
-              <span class="icon_s">
-                 <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M11.9999 0.995538C12.0004 1.12361 11.9721 1.25016 11.9172 1.36588C11.8624 1.48159 11.7823 1.58354 11.6828 1.66423L6.54046 5.80498C6.3871 5.93107 6.19474 6 5.99622 6C5.79771 6 5.60534 5.93107 5.45199 5.80498L0.309616 1.51849C0.134589 1.37297 0.0245216 1.16387 0.00362666 0.937176C-0.0172683 0.710485 0.052721 0.484775 0.198198 0.3097C0.343674 0.134626 0.552721 0.0245285 0.779351 0.00362778C1.00598 -0.0172729 1.23163 0.0527353 1.40665 0.198252L6.00051 4.03037L10.5944 0.326846C10.7202 0.222013 10.8734 0.155421 11.0358 0.134949C11.1983 0.114478 11.3632 0.140983 11.5111 0.211329C11.6589 0.281675 11.7835 0.392918 11.8702 0.531895C11.9568 0.670871 12.0019 0.831765 11.9999 0.995538Z" fill="black"></path>
-                 </svg>
-              </span>
-           </a>
-        </div>
-        <div class="rte ac-body">
-           <div class="ac-body-inner">Yes, all our jewellery is certified by GIA experienced/certified gemologists. All jewellery is sold with carries a certificate that carries all necessary details of the jewellery including the image.</div>
-        </div>
-     </div>
-     <div class="ac-item">
-      <div class="ac-heading">
-         <a href="javascript:void(0);" aria-describedby="a11y-external-message">
-            Q. Which are the cities in which this service is available?
-            <span class="icon_s">
-               <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11.9999 0.995538C12.0004 1.12361 11.9721 1.25016 11.9172 1.36588C11.8624 1.48159 11.7823 1.58354 11.6828 1.66423L6.54046 5.80498C6.3871 5.93107 6.19474 6 5.99622 6C5.79771 6 5.60534 5.93107 5.45199 5.80498L0.309616 1.51849C0.134589 1.37297 0.0245216 1.16387 0.00362666 0.937176C-0.0172683 0.710485 0.052721 0.484775 0.198198 0.3097C0.343674 0.134626 0.552721 0.0245285 0.779351 0.00362778C1.00598 -0.0172729 1.23163 0.0527353 1.40665 0.198252L6.00051 4.03037L10.5944 0.326846C10.7202 0.222013 10.8734 0.155421 11.0358 0.134949C11.1983 0.114478 11.3632 0.140983 11.5111 0.211329C11.6589 0.281675 11.7835 0.392918 11.8702 0.531895C11.9568 0.670871 12.0019 0.831765 11.9999 0.995538Z" fill="black"></path>
-               </svg>
-            </span>
-         </a>
-      </div>
-      <div class="rte ac-body">
-         <div class="ac-body-inner">Yes, all our jewellery is certified by GIA experienced/certified gemologists. All jewellery is sold with carries a certificate that carries all necessary details of the jewellery including the image.</div>
-      </div>
-    </div>
+              {% endif %}
+              {% endfor %}
+
             </div>
          </div>
          </div>
@@ -438,37 +341,37 @@
     <!-- appointment conformation code start -->
     <div class="ac-wrapper dia-container" id="ac-wrapper">
       <div class="ac-wrapper-title">
-        <h2 class="ac-wrapper-title-h">Appointment Confirmation</h2>
+        <h2 class="ac-wrapper-title-h">{{ section.settings.cart-item-t21 }}</h2>
       </div>
       <div class="ac-wapper-inner">
     
         <div class="ac-wapper-inner-mtd">
         <div class="ac-wapper-inner-image">
-          <img src="https://cdn.shopify.com/s/files/1/0575/2681/2840/files/Try_at_Home__Appointment.png?v=1648824435">
+          <img src="{{ section.settings.cart-item-t22 |img_url:"master" }} ">
         </div>
         <div class="ac-wapper-inner-title">
-          <p class="ac-wrapper-inner-title-h"> Your Try At Home Has Been Conform</p>
+          <p class="ac-wrapper-inner-title-h"> {{ section.settings.cart-item-t23 }}</p>
         </div>
         <div class="ac-wapper-inner-description">
-          <p class="ac-wrapper-inner-description-p"><span>We are so excited you booked your appointment.We are going to come hover with all your faourite</span><span>designs for you to try on.Please check all the deatils below</span></p>
+          <p class="ac-wrapper-inner-description-p"> {{ section.settings.cart-item-t24 }} </p>
         </div>
       </div>
     
         <div class="ac-wapper-inner-adat-r">
         <div class="ac-wapper-inner-adat">
-          <p class="ac-wrapper-inner-adat-p">Appointment Date And Time</p>
+          <p class="ac-wrapper-inner-adat-p">{{ section.settings.cart-item-t25 }}</p>
         </div>
     
         <div class="ac-wapper-inner-adat-d-outer">
         <div class="ac-wapper-inner-adat-d-d">
           <div class="ac-wrapper-inner-adat-d"> 
-          <p id="adat-d">Date</p>
+          <p id="adat-d">{{ section.settings.cart-item-t26 }}</p>
           <p id="adat-d-v">2021-08-14</p>
           </div>
         </div>
         <div class="ac-wapper-inner-adat-d-t">
           <div class="ac-wrapper-inner-adat-t"> 
-          <p id="adat-t">Time</p>
+          <p id="adat-t">{{ section.settings.cart-item-t27 }}</p>
           <p id="adat-d-v">11:30 AM To 01:00 PM</p>
           </div>
         </div>
@@ -478,7 +381,7 @@
     
       <div class="ac-wapper-inner-adat-add">
         <div class="ac-wapper-inner-adat-add-t">
-          <p class="ac-wrapper-inner-adat-p-add-t">Appointment Address</p>
+          <p class="ac-wrapper-inner-adat-p-add-t">{{ section.settings.cart-item-t28 }}</p>
         </div>
         <div class="ac-wapper-inner-adat-add-t-p">
           <div class="ac-wrapper-inner-adat-add-t-p-v"> 
@@ -494,23 +397,23 @@
       </div>
     
       <div class="ac-wapper-inner-adat-btn">
-        <button class="adat-btncb" id="adat-btncb">CONTINUE BROWSING</button>
+        <button class="adat-btncb" id="adat-btncb">{{ section.settings.cart-item-t29 }}</button>
       </div>
     
       <div class="ac-wapper-inner-adat-whdyif">
-        <h2 class="adat-whdyif" id="adat-whdyif">WHO DID YOU BOOK IT FOR?</h2>
+        <h2 class="adat-whdyif" id="adat-whdyif">{{ section.settings.cart-item-t30 }}</h2>
         <div class="whdyif-btns">
         <div class="whdyif-left">
-          <button class="whdyif-left-btn" id="whdyif-left-btn">MYSELF</button>
+          <button class="whdyif-left-btn" id="whdyif-left-btn">{{ section.settings.cart-item-t31 }}</button>
         </div>
         <div class="whdyif-right">
-          <button class="whdyif-right-btn" id="whdyif-right-btn">SOMEONE ELSE</button>
+          <button class="whdyif-right-btn" id="whdyif-right-btn">{{ section.settings.cart-item-t32 }}</button>
         </div>
       </div>
       </div>
     
       <div class="ac-wapper-inner-adat-vmr">
-      <a href="javascript:vaoid(0);" class="vmr-a" id="vmr-a">VIEW MY REQUEST ></a>
+      <a href="javascript:vaoid(0);" class="vmr-a" id="vmr-a">{{ section.settings.cart-item-t33 }}</a>
       </div>
     
       <div class="ac-wapper-inner-adat-el">
@@ -663,21 +566,21 @@
     },
     {
         "id": "cart-item-t12",
-        "type": "number",
+        "type": "text",
         "label": "Slot Interval",
-        "default":1
+        "default":"1"
     },
     {
         "id": "cart-item-t13",
-        "type": "number",
+        "type": "text",
         "label": "Start Time",
-        "default":10
+        "default":"10:00 AM"
     },
     {
         "id": "cart-item-t14",
-        "type": "number",
+        "type": "text",
         "label": "End Time",
-        "default":08
+        "default":"08:00 PM"
     },
     {
         "id": "cart-item-t15",
@@ -716,6 +619,83 @@
         "default":"Book Now"
     },
     {
+        "id": "cart-item-t21",
+        "type": "text",
+        "label": "Appointment Confirmation",
+        "default":"Appointment Confirmation"
+    },
+    {
+        "id": "cart-item-t22",
+        "type": "image_picker",
+        "label": "image (icon)"
+    },
+    {
+        "id": "cart-item-t23",
+        "type": "text",
+        "label": "Your Try At Home Has Been Conform",
+        "default":"Your Try At Home Has Been Conform"
+    },
+    {
+        "id": "cart-item-t24",
+        "type": "html",
+        "label": "we so excited",
+        "default":"<span>We are so excited you booked your appointment.We are going to come hover with all your faourite</span><span>designs for you to try on.Please check all the deatils below</span>"
+    },
+    {
+        "id": "cart-item-t25",
+        "type": "html",
+        "label": "Appointment Date And Time",
+        "default":"Appointment Date And Time"
+    },
+    {
+        "id": "cart-item-t26",
+        "type": "text",
+        "label": "Date",
+        "default":"Date"
+    },
+    {
+        "id": "cart-item-t27",
+        "type": "text",
+        "label": "Time",
+        "default":"Time"
+    },
+    {
+        "id": "cart-item-t28",
+        "type": "text",
+        "label": "Appointment Address",
+        "default":"Appointment Address"
+    },
+    {
+        "id": "cart-item-t29",
+        "type": "text",
+        "label": "CONTINUE BROWSING",
+        "default":"CONTINUE BROWSING"
+    },
+    {
+        "id": "cart-item-t30",
+        "type": "text",
+        "label": "WHO DID YOU BOOK IT FOR?",
+        "default":"WHO DID YOU BOOK IT FOR?"
+    },
+    {
+        "id": "cart-item-t31",
+        "type": "text",
+        "label": "MYSELF",
+        "default":"MYSELF"
+    },
+    {
+        "id": "cart-item-t32",
+        "type": "text",
+        "label": "SOMEONE ELSE",
+        "default":"SOMEONE ELSE"
+    },
+    {
+        "id": "cart-item-t33",
+        "type": "text",
+        "label": "VIEW MY REQUEST >",
+        "default":"VIEW MY REQUEST >"
+    },
+    {
         "type": "header",
         "content": "Four Icons"
     },
@@ -751,6 +731,25 @@
                 "id": "small-text-2-d",
                 "type": "text",
                 "label": "Subheading Text"
+              }
+            ]
+		},
+
+        {
+            "type": "faq",
+            "name": "faq",
+            "settings": [
+              {
+                "id": "title",
+                "type": "text",
+                "label": "faq quaetion",
+                "default":"faq quaetion"
+              },
+              {
+                "id": "faq-anwser",
+                "type": "text",
+                "label": "faq anwser",
+                "default":"faq anwser"
               }
             ]
 		}
