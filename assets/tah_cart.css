@@ -1,0 +1,511 @@
+      
+ .service-charge{
+   display: flex;
+     justify-content: space-between;
+     margin-bottom: 30px;
+     font-size: 18px;
+     line-height: 1;
+     letter-spacing: 0.5px;
+     text-transform: uppercase;
+     font-size: 13px;
+ }
+ 
+ .service-charge .delivery-notes-subheading { text-transform: capitalize;}
+ 
+ .layout_tah_cart .coupon-info {padding: 10px 5px 3px !important;}
+ .layout_tah_cart .cart_sum_title {margin-left: 0px !important;}
+ 
+ 
+ .try-at-home-cart-describing {padding-top: 60px;}
+ .describe-boxes{display:flex;}
+ .describing-container{padding-left:100px;padding-right:100px;}
+ .inner-explained-section {/*max-width: 382px;*/width: 25%;padding: 0px 35px;display: block;margin: 0 auto;}
+ p.section-heading{padding-bottom:50px;font-family: Spectral;font-style: normal;font-weight: 200;font-size: 30px;line-height: 108%;align-items: center;text-transform: uppercase;color: #6C1D45;text-align:center;margin-bottom:0px;}
+ p.sub-heading{padding-bottom:50px;font-family: Montserrat;font-style: normal;font-weight: 300;font-size: 26px;line-height: 108%;align-items: center;text-align: justify;color: #000000;text-align:center;margin-bottom:0px;}
+ img.small-img-1{max-width:65px;height: 65px;/*width:100%;*/display:block;margin:0 auto;}
+ p.small-text-1{text-align:center;margin-bottom:0px;font-family: Spectral;font-style: normal;font-weight: 200 !important;font-size: 28px !important;line-height: 120% !important;color: #6C1D45;padding:20px 0px 30px;max-width: 250px;display:block;margin:0 auto;min-height:130px;}
+ p.small-text-2{text-align:center;margin-bottom:0px;font-family: Montserrat;font-style: normal;font-weight: 300;font-size:20px !important;line-height: 108% !important;color: #000000;}
+ .small-text-1 span {display: block;}
+ .small-text-2 span {display: block;}
+ #cart__product_sku_id {font-size: 13px;padding-bottom: 10px;}
+ #cart__product_message_id span { font-size: 12px; display: block;line-height: 1.2;}
+ .cart__product_message { padding-bottom: 15px;}
+ .cart_product_extra_message span { display: block;}
+ #free_trail {font-size: 15px;color: #6C1D45;}
+ #Available_to {font-size: 13px;color: #6C1D45;}
+ .cart_product_extra_message {padding-bottom: 15px;}
+ .extra-info-box p {padding-top: 5px;font-size: 12px;}
+ 
+ .coupon-info-content- {width: 260px;vertical-align: middle;}
+ .cart-right-greater-iocn img {width: 20px;height: 20px;vertical-align: middle;}
+ .layout_tah_cart .padding_t {
+     padding-top: 15px !important;
+ }
+ .glb-breadcrumb .bred_tex{ color: #6C1D45 !important;}
+ span.delivery-notes-heading {
+     text-transform: capitalize;
+ }
+ .error span {
+     color: #ae0d5e;
+ }
+ .error {
+     padding-top: 10px;
+ }
+ @media screen and (max-width: 600px){
+   /* appointment conformation code start */
+   .whdyif-btns {
+     width: 100% !important;
+     display: block !important;
+     margin: 0px !important;
+ }
+ 
+ .whdyif-left {
+     padding-bottom: 25px;
+     width: 100% !important;
+     margin-right: 0px !important;
+ }
+ .whdyif-right {
+     width: 100% !important;
+     margin-left: 0px !important;
+ }
+ /* appointment conformation code end */
+ }
+ @media screen and (max-width: 767px){
+   .layout_tah_cart  .cart__buttons-container > div {
+     width: 100% !important;
+   }
+ .layout_tah_cart  .cart__buttons-container {
+     display: block;
+     flex-direction: unset;
+     flex-wrap: unset;
+     margin: 0 -7.5px;
+     width: auto;
+     max-width: initial;
+ }
+ .layout_tah_cart  .cart_bottom_section .cart__buttons-container > div {
+     margin-bottom: 15px !important;
+ }
+   .coupon-info-content- {width: 300px;vertical-align: middle;padding-top: 5px;}
+  .describing-container {padding-left: 10px;padding-right: 10px;}
+  p.section-heading {padding-bottom: 15px;font-size: 28px;color: #6c1d45;text-align: center;margin-bottom: 0;}
+  p.sub-heading {padding-bottom: 25px;font-size: 15px;color: #000;margin-bottom: 0;}
+  .describe-boxes {display: block;}
+  .inner-explained-section {width: 100%;padding: 0 25px 25px 25px;display: block;margin: 0 auto;}
+  img.small-img-1 {max-width: 70px;width: 100%;display: block;margin: 0 auto;height: 100%;padding-bottom: 15px;}
+  p.small-text-1 {margin-bottom: 0;font-size: 15px!important;line-height: 120%!important;padding: 20px 0 10px;min-height: 0px;}
+  p.small-text-2 {text-align: center;margin-bottom: 0;font-size: 15px!important;line-height: 108%!important;}
+ /* checkout code */
+ .checkout-template-wrapper .checkout-page-two-col-row .checkout-page-left-column {
+     margin-right: 0px !important;
+     width: 100% !important;
+ }
+ .checkout-template-wrapper .checkout-page-two-col-row .checkout-page-right-column {
+     padding-left: 0px !important;
+     width: 100% !important;
+     border-left: 0px !important;
+ }
+ /* checkout code*/
+ /* appointment conformation code start */
+ h2.ac-wrapper-title-h {
+     text-align: center;
+ }
+ .ac-wapper-inner-image {
+     text-align: center;
+     width: 100px;
+     margin: 0 auto;
+ }
+ .ac-wapper-inner-title {
+     padding-bottom: 20px;
+ }
+ .ac-wapper-inner-adat-add-t {
+     padding-bottom: 20px;
+ }
+ #adat-add-p-v {
+     line-height: 1.4;
+ }
+ 
+ 
+ /* appointment conformation code end */
+ }
+ 
+ @media screen and (min-width: 768px) and (max-width: 1024px){
+ .describing-container {padding-left: 20px;padding-right: 20px;}
+ p.section-heading {padding-bottom: 15px;font-size: 30px;margin-bottom: 0px;}
+ p.sub-heading {padding-bottom: 50px;font-size: 21px;margin-bottom: 0px;}
+ .describe-boxes {display: flex;justify-content: space-evenly;}
+ .inner-explained-section {max-width: 382px;width: 50%;padding: 0px 15px;display: block;margin: 0 auto;}
+ img.small-img-1 {max-width: 50px;height: 50px;/*width: 100%;*/display: block;margin: 0 auto;}
+ p.small-text-1 {font-weight: 200 !important;font-size: 18px !important;line-height: 120% !important;color: #6C1D45;padding: 20px 0px 10px;max-width: 250px;min-height: auto;}
+ p.small-text-2 {font-size:20px !important;line-height: 108% !important;color: #000000;}
+ }
+ 
+ @media screen and (min-width: 1025px) and (max-width: 1440px){
+ .describing-container {padding-left: 20px;padding-right: 20px;}
+ p.section-heading {padding-bottom: 10px;font-size: 30px;line-height: 108%;}
+ p.sub-heading {padding-bottom: 50px;font-size: 21px;}
+ .inner-explained-section {width: 25%;padding: 0px 15px;}
+ p.small-text-1 {font-weight: 200 !important;font-size: 21px !important;line-height: 120% !important;padding: 20px 0px 10px;min-height: auto;}
+ p.small-text-2 {font-size:16px !important;line-height: 108% !important;}
+ 
+ }
+ 
+ /* checkout page code */
+ .checkout-template-wrapper .checkout-page-two-col-row {
+     display: flex;
+     flex-wrap: wrap;
+ }
+ .checkout-template-wrapper .checkout-page-two-col-row .checkout-page-left-column {
+     margin-right: 50px;
+     width: calc(50.82% - 50px);
+ }
+ .checkout-template-wrapper .checkout-page-two-col-row .checkout-page-right-column {
+     padding-left: 50px;
+     width: 49.18%;
+     border-left: 1px solid #6C1D45;
+ }
+ .checkout-template-wrapper {
+     width: 100%;
+ }
+ .checkout-template-wrapper .ac-item .ac-heading a {
+     font-size: 15px;
+     line-height: 1.5;
+     width: 100%;
+ }
+ .checkout-template-wrapper .time-slot-label-h,.checkout-template-wrapper .booking-info-label-h-title {
+     font-size: 18px;
+ }
+ .checkout-form input {
+     width: 100%;
+ }
+ .time-slot-wrapper {
+     padding-bottom: 35px;
+ }
+ .checkout-template-wrapper .booking-info-label-h {
+     font-size: 13px;
+     padding-bottom: 10px;
+ }
+ .checkout-template-wrapper .booking-info-wrapper {
+     padding-bottom: 15px;
+ }
+ .checkout-template-wrapper .booking-info-label-h #symbol {
+     color:#6C1D45;
+     padding-left: 3px;
+ }
+ .checkout-template-wrapper .booking-info-input-address {
+     width: 100%;
+     resize: none;
+ }
+ .checkout-template-wrapper .booking-info-btn- {
+     background: #6679CC;
+     border: 1px solid #6679CC;
+     box-sizing: border-box;
+     color: #ffffff;
+     padding: 9px 60px;
+     font-size: 14px;
+     text-transform: uppercase;
+     transition: all 0.3s;
+     font-weight: 200;
+     border-radius: 0;
+     letter-spacing: normal;
+ }
+ .checkout-template-wrapper  .ac-item {
+     padding: 0px;
+     margin: 0px;
+     border-bottom: 2px solid #ebeef0;
+ }
+ .ac-heading {
+     padding: 21px 0 21px 0;
+ }
+ .checkout-template-wrapper {
+     display: none;
+ }
+ /* checkout page code*/
+ 
+ /* appointment conformation code start */
+ .ac-wapper-inner-image {
+     text-align: center;
+ }
+ .ac-wrapper-inner-title-h {
+     text-align: center;
+ }
+ .ac-wrapper-inner-description-p {
+     text-align: center;
+ }
+ .ac-wrapper-inner-description-p span {
+     display: block;
+ }
+ .layout_tah_cart .ac-wrapper-inner-title-h {
+     font-size: 20px;
+ }
+ .ac-wrapper-inner-adat-p {
+     text-align: center;
+ }
+ .layout_tah_cart  .ac-wrapper-inner-adat-p {
+     font-size: 18px;
+ }
+ .ac-wapper-inner-adat-d-outer {
+     display: flex;
+ }
+ .ac-wapper-inner-adat-d-d {
+     width: 50%;
+     margin-right: 20px;
+ }
+ .ac-wapper-inner-adat-d-t {
+     width: 50%;
+     border-left: 1px solid #6C1D45;
+     padding-left: 20px;
+ }
+ #adat-t {
+     font-size: 15px;
+     margin: 0px;
+ }
+ #adat-d-v {
+     font-size: 13px;
+ }
+ #adat-d {
+     font-size: 15px;
+     margin: 0px;
+ }
+ .ac-wrapper-inner-adat-d {
+     text-align: end;
+ }
+ .ac-wrapper-inner-adat-t {
+     text-align: start;
+ }
+ .ac-wapper-inner-mtd {
+     border-bottom: 2px solid #f4f6f8;
+     padding-bottom: 25px;
+ }
+ .ac-wapper-inner-adat-r{
+   padding-top: 25px;
+   padding-bottom: 25px;
+   border-bottom: 2px solid #f4f6f8;
+ }
+ .ac-wapper-inner-adat-add{
+   padding-top: 25px;
+   padding-bottom: 25px;
+   border-bottom: 2px solid #f4f6f8;
+ }
+ .ac-wapper-inner-adat {
+     padding-bottom: 15px;
+ }
+ p.ac-wrapper-inner-adat-p-add-t {
+     text-align: center;
+     font-size: 18px;
+ }
+ #adat-add-p-v {
+     text-align: center;
+ }
+ #adat-btncb {
+     display: inline-block;
+     background: #6679CC;
+     border: 1px solid #6679CC;
+     box-sizing: border-box;
+     color: #ffffff;
+     padding: 11px 30px;
+     font-size: 18px;
+     line-height: 23.76px;
+     text-transform: uppercase;
+     transition: all 0.3s;
+     font-weight: 400;
+     border-radius: 0;
+     letter-spacing: normal;
+ }
+ .ac-wapper-inner-adat-btn {
+     text-align: center;
+     padding-bottom: 25px;
+     padding-top: 50px;
+ }
+ #adat-whdyif {
+     text-align: center;
+     font-size: 30px;
+ }
+ .whdyif-btns {
+     width: 500px;
+     display: flex;
+     margin: 0 auto;
+ }
+ .whdyif-left {
+     width: 250px;
+     margin-right: 20px;
+ }
+ button#whdyif-left-btn {
+     width: 100%;
+ }
+ .whdyif-right {
+     width: 250px;
+     margin-left: 20px;
+ }
+ #whdyif-right-btn {
+     width: 100%;
+ }
+ button#whdyif-left-btn,#whdyif-right-btn {
+     width: 100%;
+     display: inline-block;
+     background: #ffffff;
+     border: 1px solid #6C1D45;
+     box-sizing: border-box;
+     color: #6C1D45;
+     padding: 11px 30px;
+     font-size: 18px;
+     line-height: 23.76px;
+     text-transform: uppercase;
+     transition: all 0.3s;
+     font-weight: 400;
+     border-radius: 0;
+     letter-spacing: normal;
+ }
+ #adat-add-p-v {
+     text-align: center;
+     font-size: 18px;
+     width: 335px;
+     margin: 0 auto;
+     color: rgb(0 0 0 / 47%);
+ }
+ a#vmr-a {
+     font-size: 30px;
+     text-transform: uppercase;
+     text-decoration: underline;
+     color: #6C1D45;
+ }
+ 
+ #adat-el {
+     text-align: center;
+     font-size: 18px;
+ }
+ .ac-wapper-inner-adat-vmr {
+     text-align: center;
+     padding-top: 50px;
+     padding-bottom: 25px;
+ }
+ #ac-wrapper{
+ display: none;
+ }
+ .time-slot-input {
+     width: 100%;
+ }
+ .date-slot-wrapper {
+     padding-bottom: 35px;
+ }
+ h2.date-slot-label-h {
+     font-size: 18px;
+ }
+ /* appointment conformation code end */
+ 
+ /* opt modal */
+ 
+   
+ /** Modal */
+ .tah-m-modal {
+   pointer-events: none;
+   opacity: 0;
+   transition: opacity 0.3s;
+   position: absolute;
+   top: 180px;
+   left: 0;
+   right: 0;
+   max-width: 500px;
+   margin: 0 auto;
+   padding: 30px;
+   background: #fff;
+   border-radius: 4px;
+   box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+ }
+ .tah-m-modal-close-btn {
+   position: absolute;
+   right: 10px;
+   top: 10px;
+   font-size: 20px;
+ }
+ 
+ /** Overlay */
+ .tah-m-overlay {
+   pointer-events: none;
+   opacity: 0;
+   transition: opacity 0.3s;
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0,0,0,0.3);
+ }
+ 
+ /** JS */
+ .tah-m-is-visible {
+   opacity: 1;
+   pointer-events: auto;
+ }
+ 
+ 
+ 
+ 
+ 
+ .th_cart_inner .title{
+   font-weight:600;
+   margin-top:20px;
+   font-size:24px
+ }
+ 
+ .th_cart_inner .customBtn{
+   border-radius:0px;
+   padding:10px;
+   width: 100%;
+ }
+ 
+ .th_cart_inner form input{
+   display:inline-block;
+   width:50px;
+   height:50px;
+   text-align:center;
+ }
+ .th_cart_inner-outer {
+     min-height: 80px;
+ }
+ .th_cart_inner-tc #mobile_no_m {
+     font-size: 16px;
+     padding-right: 5px;
+ }
+ #mobile_no_mc {
+     font-size: 16px;
+     text-decoration-line: underline;
+     margin-left: 10px;
+     color: #6C1D45;
+     cursor: pointer; 
+ }
+ .th_cart_inner-tc {
+     padding:30px 0 30px 0;
+ }
+ #tah-m-close-btn img {
+     width: 20px;
+     height: 20px;
+ }
+ #tah-m-close-btn {
+     background: #fff;
+     border: none;
+     padding: 15px;
+ }
+ .mobile-no-cl #mncl-in {
+    padding: 5px 0 5px 0;
+}
+.mobile-no-cl {
+display: none;
+}
+#mncl-in-btn {
+    background: #6679CC;
+    border: solid #6679CC;
+    box-sizing: border-box;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+#mncl-in-btn:hover {
+    color: #ffffff;
+    border-color: #6C1D45;
+    background: #6C1D45;
+}
+ /* end modal */
+
+ 
