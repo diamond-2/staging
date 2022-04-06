@@ -184,32 +184,55 @@ for (i = 0; i < th_cart_opt_p_v.length; i++) {
 });
 
 
+/* time slot using momentum js */
+//Data
+let time_interval = document.getElementById("time-slot-outer").getAttribute("th_cart-time-interval");
+let time_start = document.getElementById("time-slot-outer").getAttribute("th_cart-time-start");
+let time_end = document.getElementById("time-slot-outer").getAttribute("th_cart-time-end");
 
-var x = {
-    nextSlot: 60,
-    // breakTime: [
-    //     ['11:00', '14:00'], ['16:00', '18:00']
-    // ],
-    startTime: '06:00',
-    endTime: '12:00'
+let x = {
+  slotInterval:time_interval,
+  openTime: time_start,
+  closeTime: time_end
 };
 
-var slotTime = moment(x.startTime, "HH:mm");
-var endTime = moment(x.endTime, "HH:mm");
+//Format the time
+let startTime = moment(x.openTime, "hh:mm A");
 
-function isInBreak(slotTime, breakTimes) {
-    return breakTimes.some((br) => {
-      return slotTime >= moment(br[0], "HH:mm") && slotTime < moment(br[1], "HH:mm");
-  });
+//Format the end time and the next day to it 
+// let endTimeEE = moment(x.closeTime, "hh:mm A").add(1, 'days');
+let endTime = moment(x.closeTime, "hh:mm A");
+
+//Times
+let allTimes = [];
+
+//Loop over the times - only pushes time with 30 minutes interval
+while (startTime < endTime) {
+  //Push times
+   
+
+  let start_time= startTime.format("hh:mm A");
+  let interval_time= startTime.add(x.slotInterval, 'hours'); // hours or minutes
+  let end_time = interval_time.format("hh:mm A");
+  let finaltime = start_time + "- "+ end_time;
+
+  allTimes.push(finaltime); 
+  //Add interval of 30 minutes
+ 
 }
 
-let times = [];
-while (slotTime < endTime)
+//console.log(allTimes);
+
+let select_element = document.getElementById("time-slot-select-time");
+for (let i=0; i< allTimes.length; i++)
 {
-  if (!isInBreak(slotTime, x.breakTime)) {
-     times.push(slotTime.format("HH:mm"));
-  }
-  slotTime = slotTime.add(x.nextSlot, 'minutes');
+console.log(allTimes[i]);
+
+var option = document.createElement("option");
+option.text = allTimes[i];
+option.value = allTimes[i];
+select_element.appendChild(option);
+
 }
 
-console.log("Time slots: ", times);
+/* time slot using momentum js */
