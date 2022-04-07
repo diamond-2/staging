@@ -261,6 +261,13 @@ var monthName = currentDate.toLocaleString("en-US", {
 var yearNum = currentDate.toLocaleString("en-US", {
   year: "numeric"
 });
+
+let selected_date_default= currentDate.toLocaleString("en-US", {
+  month: "numeric",
+  day: "numeric",
+  year: "numeric"
+});
+selected_date_added = selected_date_default;
 monthTitle.innerHTML = `${monthName} ${yearNum}`;
 
 if (side == "left") {
@@ -392,6 +399,9 @@ selected_date_added = selected_date;
 
 
 }
+
+/* if date is default slected */
+
 
 
 

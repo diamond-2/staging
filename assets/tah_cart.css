@@ -1,76 +1,113 @@
-      
- .service-charge{
-   display: flex;
-     justify-content: space-between;
-     margin-bottom: 30px;
-     font-size: 18px;
-     line-height: 1;
-     letter-spacing: 0.5px;
-     text-transform: uppercase;
-     font-size: 13px;
- }
- 
- .service-charge .delivery-notes-subheading { text-transform: capitalize;}
- 
- .layout_tah_cart .coupon-info {padding: 10px 5px 3px !important;}
- .layout_tah_cart .cart_sum_title {margin-left: 0px !important;}
- 
- 
- .try-at-home-cart-describing {padding-top: 60px;}
- .describe-boxes{display:flex;}
- .describing-container{padding-left:100px;padding-right:100px;}
- .inner-explained-section {/*max-width: 382px;*/width: 25%;padding: 0px 35px;display: block;margin: 0 auto;}
- p.section-heading{padding-bottom:50px;font-family: Spectral;font-style: normal;font-weight: 200;font-size: 30px;line-height: 108%;align-items: center;text-transform: uppercase;color: #6C1D45;text-align:center;margin-bottom:0px;}
- p.sub-heading{padding-bottom:50px;font-family: Montserrat;font-style: normal;font-weight: 300;font-size: 26px;line-height: 108%;align-items: center;text-align: justify;color: #000000;text-align:center;margin-bottom:0px;}
- img.small-img-1{max-width:65px;height: 65px;/*width:100%;*/display:block;margin:0 auto;}
- p.small-text-1{text-align:center;margin-bottom:0px;font-family: Spectral;font-style: normal;font-weight: 200 !important;font-size: 28px !important;line-height: 120% !important;color: #6C1D45;padding:20px 0px 30px;max-width: 250px;display:block;margin:0 auto;min-height:130px;}
- p.small-text-2{text-align:center;margin-bottom:0px;font-family: Montserrat;font-style: normal;font-weight: 300;font-size:20px !important;line-height: 108% !important;color: #000000;}
- .small-text-1 span {display: block;}
- .small-text-2 span {display: block;}
- #cart__product_sku_id {font-size: 13px;padding-bottom: 10px;}
- #cart__product_message_id span { font-size: 12px; display: block;line-height: 1.2;}
- .cart__product_message { padding-bottom: 15px;}
- .cart_product_extra_message span { display: block;}
- #free_trail {font-size: 15px;color: #6C1D45;}
- #Available_to {font-size: 13px;color: #6C1D45;}
- .cart_product_extra_message {padding-bottom: 15px;}
- .extra-info-box p {padding-top: 5px;font-size: 12px;}
- 
- .coupon-info-content- {width: 260px;vertical-align: middle;}
- .cart-right-greater-iocn img {width: 20px;height: 20px;vertical-align: middle;}
- .layout_tah_cart .padding_t {
-     padding-top: 15px !important;
- }
- .glb-breadcrumb .bred_tex{ color: #6C1D45 !important;}
- span.delivery-notes-heading {
-     text-transform: capitalize;
- }
- .error span {
-     color: #ae0d5e;
- }
- .error {
-     padding-top: 10px;
- }
- @media screen and (max-width: 600px){
+
+@media screen and (max-width:390px) {
+    #table-body .row .col {
+        padding: 0px !important;
+    }
+    }
+@media screen and (max-width:400px) {
+    .layout_tah_cart .coupon-info-content- {
+        width: 70% !important;
+    }
+    .layout_tah_cart #table-body {
+        font-size: 11px !important;
+    }
+    #table-body .row .col {
+        padding: 0px !important;
+    }
+
+    }
+    @media screen and (max-width:450px) {
+        .th_cart_inner .title {
+            margin-top: 40px !important;
+        }
+        .layout_tah_cart #table-header .row .col {
+          padding: 0px;
+      }
+      .layout_tah_cart .calendar-footer {
+          height: 140px;
+        }
+        .layout_tah_cart .calendar-footer #cancel_footer {
+          margin-bottom: 25px;
+      }
+      .layout_tah_cart #table-body {
+          font-size:14px !important;
+      }
+      .layout_tah_cart #table-header {
+          font-size: 13px !important;
+      }
+      .layout_tah_cart #table-body .row {
+          padding: 0px !important;
+          margin: 0px !important;
+      }
+      .layout_tah_cart .header-background {
+          background-color: #fff;
+          height: 65px;
+      }
+      .layout_tah_cart .model_calender .model-content{
+      width:100% !important;
+      }
+      .layout_tah_cart .content-wrapper {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .layout_tah_cart .content-wrapper .container {
+        padding-left: 0;
+        padding-right: 0;
+      }
+}   
+@media screen and (max-width: 600px){
+    .layout_tah_cart .coupon-info-content- {
+        width:75% !important;
+    }
+    .layout_tah_cart .model_calender .model-content {
+        position: relative;
+        width: 70% !important;
+        margin: auto;
+        background-color: #fff;
+        animation-name: animatetop;
+        animation-duration: .4s;
+    }
    /* appointment conformation code start */
-   .whdyif-btns {
+   .layout_tah_cart .whdyif-btns {
      width: 100% !important;
      display: block !important;
      margin: 0px !important;
  }
  
- .whdyif-left {
+ .layout_tah_cart .whdyif-left {
      padding-bottom: 25px;
      width: 100% !important;
      margin-right: 0px !important;
  }
- .whdyif-right {
+ .layout_tah_cart .whdyif-right {
      width: 100% !important;
      margin-left: 0px !important;
  }
  /* appointment conformation code end */
+ .layout_tah_cart .calendar-footer #cancel_footer {
+    width: 150px;
+    margin: 5px;
+  }
+  .layout_tah_cart #apply_footer{
+    width: 150px;
+    margin: 5px;
+  }
+
  }
  @media screen and (max-width: 767px){
+     
+    .layout_tah_cart .cart-template-wrapper .cart-page-two-col-row .cart-page-left-column {
+        width: 100% !important;
+        margin-right: 0;
+        margin-bottom: 30px;
+    }
+    
+    .layout_tah_cart .cart-template-wrapper .cart-page-two-col-row .cart-page-right-column {
+        width: 100% !important;
+        padding: 0;
+        border: none;
+    }
+
    .layout_tah_cart  .cart__buttons-container > div {
      width: 100% !important;
    }
@@ -85,70 +122,171 @@
  .layout_tah_cart  .cart_bottom_section .cart__buttons-container > div {
      margin-bottom: 15px !important;
  }
-   .coupon-info-content- {width: 300px;vertical-align: middle;padding-top: 5px;}
-  .describing-container {padding-left: 10px;padding-right: 10px;}
-  p.section-heading {padding-bottom: 15px;font-size: 28px;color: #6c1d45;text-align: center;margin-bottom: 0;}
-  p.sub-heading {padding-bottom: 25px;font-size: 15px;color: #000;margin-bottom: 0;}
-  .describe-boxes {display: block;}
-  .inner-explained-section {width: 100%;padding: 0 25px 25px 25px;display: block;margin: 0 auto;}
-  img.small-img-1 {max-width: 70px;width: 100%;display: block;margin: 0 auto;height: 100%;padding-bottom: 15px;}
-  p.small-text-1 {margin-bottom: 0;font-size: 15px!important;line-height: 120%!important;padding: 20px 0 10px;min-height: 0px;}
-  p.small-text-2 {text-align: center;margin-bottom: 0;font-size: 15px!important;line-height: 108%!important;}
+ .layout_tah_cart .total_cart_item {padding-bottom: 25px;}
+ .layout_tah_cart .cart__buttons-container .glb-btn { font-size: 12px;line-height: 12.96px;padding: 16px 5px; min-height: 0;}
+ .layout_tah_cart .c_heading { padding-bottom: 25px;}
+ .layout_tah_cart .coupon-info-content- {width:88%;vertical-align: middle;padding-top: 5px;}
+ .layout_tah_cart .describing-container {padding-left: 10px;padding-right: 10px;}
+ .layout_tah_cart p.section-heading {padding-bottom: 15px;font-size: 28px;color: #6c1d45;text-align: center;margin-bottom: 0;}
+ .layout_tah_cart p.sub-heading {padding-bottom: 25px;font-size: 15px;color: #000;margin-bottom: 0;}
+ .layout_tah_cart .describe-boxes {display: block;}
+ .layout_tah_cart .inner-explained-section {width: 100%;padding: 0 25px 25px 25px;display: block;margin: 0 auto;}
+ .layout_tah_cart img.small-img-1 {max-width: 70px;width: 100%;display: block;margin: 0 auto;height: 100%;padding-bottom: 15px;}
+ .layout_tah_cart p.small-text-1 {margin-bottom: 0;font-size: 15px!important;line-height: 120%!important;padding: 20px 0 10px;min-height: 0px;}
+ .layout_tah_cart p.small-text-2 {text-align: center;margin-bottom: 0;font-size: 15px!important;line-height: 108%!important;}
  /* checkout code */
- .checkout-template-wrapper .checkout-page-two-col-row .checkout-page-left-column {
+ .layout_tah_cart .checkout-template-wrapper .checkout-page-two-col-row .checkout-page-left-column {
      margin-right: 0px !important;
      width: 100% !important;
  }
- .checkout-template-wrapper .checkout-page-two-col-row .checkout-page-right-column {
+ .layout_tah_cart .checkout-template-wrapper .checkout-page-two-col-row .checkout-page-right-column {
      padding-left: 0px !important;
      width: 100% !important;
      border-left: 0px !important;
  }
  /* checkout code*/
  /* appointment conformation code start */
- h2.ac-wrapper-title-h {
+ .layout_tah_cart h2.ac-wrapper-title-h {
      text-align: center;
  }
- .ac-wapper-inner-image {
+ .layout_tah_cart .ac-wapper-inner-image {
      text-align: center;
      width: 100px;
      margin: 0 auto;
  }
- .ac-wapper-inner-title {
+ .layout_tah_cart .ac-wapper-inner-title {
      padding-bottom: 20px;
  }
- .ac-wapper-inner-adat-add-t {
+ .layout_tah_cart .ac-wapper-inner-adat-add-t {
      padding-bottom: 20px;
  }
- #adat-add-p-v {
+ .layout_tah_cart #adat-add-p-v {
      line-height: 1.4;
  }
  
  
  /* appointment conformation code end */
+ .layout_tah_cart .model_calender .model-content {
+    width: 95% !important;
+  }
+  .layout_tah_cart #table-header {
+    font-size: 13px;
+    font-weight: 600;
+}
+.layout_tah_cart .header-background {
+    background-color: #fff;
+    height: 65px;
+}
+.layout_tah_cart .prev-button i {
+    font-size: 2em;
+}
+.layout_tah_cart .next-button i {
+    font-size: 2em;
+}
+.layout_tah_cart .header-title {
+    width: 215px;
+    display: inline-block;
+    float: left;
+}
+.layout_tah_cart .header-text #month-name {
+font-size:16px;
+}
+.layout_tah_cart .content-wrapper.grey.lighten-3 {
+    width: 100% !important;
+    margin: 0 auto;
+    background-color: #fff !important;
+}
+.layout_tah_cart .calendar-wrapper.z-depth-2 {
+width:95%;
+margin: 0 auto;
+margin-top: 30px;
+margin-bottom: 30px;
+}
+
+.layout_tah_cart .content-wrapper .container {
+  width: auto;
+}
+.layout_tah_cart .calendar-content {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.layout_tah_cart body .row {
+  margin-bottom: 0;
+}
+
  }
- 
+ @media screen and (max-width:992px) {
+    .layout_tah_cart .coupon-info-content- {
+        width: 87%;
+        vertical-align: middle;
+    }
+    .layout_tah_cart .cart-template-wrapper .cart-page-two-col-row .cart-page-left-column {
+        width: 100% !important;
+        margin-right: 0;
+        margin-bottom: 30px;
+    }
+    
+    .layout_tah_cart .cart-template-wrapper .cart-page-two-col-row .cart-page-right-column {
+        width: 100% !important;
+        padding: 0;
+        border: none;
+    }
+    .layout_tah_cart .mobile-header {
+      display: block;
+    }
+    .layout_tah_cart .calendar-wrapper {
+      margin-top: 80px;
+    }
+    .layout_tah_cart .sidebar-wrapper {
+      background-color: #EEEEEE !important;
+    }
+    .layout_tah_cart .sidebar-title {
+      background-color: #5A649C !important;
+    }
+    .layout_tah_cart .empty-message {
+      color: black;
+    }
+}
+@media screen and (max-width:1200px) {
+    .layout_tah_cart .model_calender .model-content {
+    position: relative;
+    width: 95%;
+    margin: auto;
+    background-color: #fff;
+    animation-name: animatetop;
+    animation-duration: .4s;
+}
+}
+
  @media screen and (min-width: 768px) and (max-width: 1024px){
- .describing-container {padding-left: 20px;padding-right: 20px;}
- p.section-heading {padding-bottom: 15px;font-size: 30px;margin-bottom: 0px;}
- p.sub-heading {padding-bottom: 50px;font-size: 21px;margin-bottom: 0px;}
- .describe-boxes {display: flex;justify-content: space-evenly;}
- .inner-explained-section {max-width: 382px;width: 50%;padding: 0px 15px;display: block;margin: 0 auto;}
- img.small-img-1 {max-width: 50px;height: 50px;/*width: 100%;*/display: block;margin: 0 auto;}
- p.small-text-1 {font-weight: 200 !important;font-size: 18px !important;line-height: 120% !important;color: #6C1D45;padding: 20px 0px 10px;max-width: 250px;min-height: auto;}
- p.small-text-2 {font-size:20px !important;line-height: 108% !important;color: #000000;}
+    .layout_tah_cart .describing-container {padding-left: 20px;padding-right: 20px;}
+    .layout_tah_cart p.section-heading {padding-bottom: 15px;font-size: 30px;margin-bottom: 0px;}
+    .layout_tah_cart p.sub-heading {padding-bottom: 50px;font-size: 21px;margin-bottom: 0px;}
+    .layout_tah_cart .describe-boxes {display: flex;justify-content: space-evenly;}
+    .layout_tah_cart .inner-explained-section {max-width: 382px;width: 50%;padding: 0px 15px;display: block;margin: 0 auto;}
+    .layout_tah_cart img.small-img-1 {max-width: 50px;height: 50px;/*width: 100%;*/display: block;margin: 0 auto;}
+    .layout_tah_cart  p.small-text-1 {font-weight: 200 !important;font-size: 18px !important;line-height: 120% !important;color: #6C1D45;padding: 20px 0px 10px;max-width: 250px;min-height: auto;}
+    .layout_tah_cart p.small-text-2 {font-size:20px !important;line-height: 108% !important;color: #000000;}
  }
  
  @media screen and (min-width: 1025px) and (max-width: 1440px){
- .describing-container {padding-left: 20px;padding-right: 20px;}
- p.section-heading {padding-bottom: 10px;font-size: 30px;line-height: 108%;}
- p.sub-heading {padding-bottom: 50px;font-size: 21px;}
- .inner-explained-section {width: 25%;padding: 0px 15px;}
- p.small-text-1 {font-weight: 200 !important;font-size: 21px !important;line-height: 120% !important;padding: 20px 0px 10px;min-height: auto;}
- p.small-text-2 {font-size:16px !important;line-height: 108% !important;}
+    .layout_tah_cart .describing-container {padding-left: 20px;padding-right: 20px;}
+    .layout_tah_cart p.section-heading {padding-bottom: 10px;font-size: 30px;line-height: 108%;}
+    .layout_tah_cart p.sub-heading {padding-bottom: 50px;font-size: 21px;}
+    .layout_tah_cart .inner-explained-section {width: 25%;padding: 0px 15px;}
+    .layout_tah_cart p.small-text-1 {font-weight: 200 !important;font-size: 21px !important;line-height: 120% !important;padding: 20px 0px 10px;min-height: auto;}
+    .layout_tah_cart p.small-text-2 {font-size:16px !important;line-height: 108% !important;}
  
  }
  
+ @media screen and(max-width: 1840px){
+ .th_cart_inner .customBtn {
+    border-radius: 0;
+    padding: 10px;
+    width: 90%;
+}
+ }
+
  /* checkout page code */
  .checkout-template-wrapper .checkout-page-two-col-row {
      display: flex;
@@ -453,7 +591,7 @@
    border-radius:0px;
    padding:10px;
    /* width: 100%; */
-   width: 65%;
+   width:85%;
  }
  
  .th_cart_inner form input{
@@ -860,136 +998,10 @@ padding-top: 25px;
 font-size: 20px;
 font-weight: 800 !important;
 }
-.pn_btn_cal {
+.pn_btn_cal{
     display: inline-block;
     float:right;
 }
-
-@media (max-width:450px) {
-  #table-header .row .col {
-    padding: 0px;
-}
-.calendar-footer {
-    height: 140px;
-  }
-.calendar-footer #cancel_footer {
-    margin-bottom: 25px;
-}
-#table-body {
-    font-size:14px !important;
-}
-  #table-header {
-    font-size: 13px !important;
-}
-div#table-body .row {
-    padding: 0px !important;
-    margin: 0px !important;
-}
-  .header-background {
-    background-color: #fff;
-    height: 65px;
-}
-.model_calender .model-content{
-width:100% !important;
-}
-.content-wrapper {
-  padding-left: 0;
-  padding-right: 0;
-}
-.content-wrapper .container {
-  padding-left: 0;
-  padding-right: 0;
-}
-}
-@media (max-width:992px) {
-/*   .content-wrapper {
-  margin-left: 0;
-}*/
-.mobile-header {
-  display: block;
-}
-.calendar-wrapper {
-  margin-top: 80px;
-}
-.sidebar-wrapper {
-  background-color: #EEEEEE !important;
-}
-.sidebar-title {
-  background-color: #5A649C !important;
-}
-.empty-message {
-  color: black;
-}
-}
-
-@media (max-width:400px) {
-#table-body {
-    font-size: 11px !important;
-}
-}
-@media (max-width:600px) {
-  .calendar-footer #cancel_footer {
-    width: 150px;
-    margin: 5px;
-  }
-  #apply_footer{
-    width: 150px;
-    margin: 5px;
-  }
-}
-@media (max-width:767px) {
-  .model_calender .model-content {
-    width: 95% !important;
-  }
-  #table-header {
-    font-size: 13px;
-    font-weight: 600;
-}
-  .header-background {
-    background-color: #fff;
-    height: 65px;
-}
-  .prev-button i {
-    font-size: 2em;
-}
-.next-button i {
-    font-size: 2em;
-}
-  .row.header-title {
-    width: 215px;
-    display: inline-block;
-    float: left;
-}
-.header-text #month-name {
-font-size:16px;
-}
-.content-wrapper.grey.lighten-3 {
-    width: 100% !important;
-    margin: 0 auto;
-    background-color: #fff !important;
-}
-.calendar-wrapper.z-depth-2 {
-width:95%;
-margin: 0 auto;
-margin-top: 30px;
-margin-bottom: 30px;
-}
-
-.content-wrapper .container {
-  width: auto;
-}
-.calendar-content {
-  padding-left: 5%;
-  padding-right: 5%;
-}
-body .row {
-  margin-bottom: 0;
-}
-}
-
-
-
-
 .model_calender{
 display:none;
 position:fixed;
@@ -1047,6 +1059,59 @@ color: white;
     background: #6C1D45;
     color: #fff;
 }
+      
+.service-charge{
+    display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      font-size: 18px;
+      line-height: 1;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-size: 13px;
+  }
+  
+  .service-charge .delivery-notes-subheading { text-transform: capitalize;}
+  
+  .layout_tah_cart .coupon-info {padding: 10px 5px 3px !important;}
+  .layout_tah_cart .cart_sum_title {margin-left: 0px !important;}
+  
+  
+  .try-at-home-cart-describing {padding-top: 60px;}
+  .describe-boxes{display:flex;}
+  .describing-container{padding-left:100px;padding-right:100px;}
+  .inner-explained-section {/*max-width: 382px;*/width: 25%;padding: 0px 35px;display: block;margin: 0 auto;}
+  p.section-heading{padding-bottom:50px;font-family: Spectral;font-style: normal;font-weight: 200;font-size: 30px;line-height: 108%;align-items: center;text-transform: uppercase;color: #6C1D45;text-align:center;margin-bottom:0px;}
+  p.sub-heading{padding-bottom:50px;font-family: Montserrat;font-style: normal;font-weight: 300;font-size: 26px;line-height: 108%;align-items: center;text-align: justify;color: #000000;text-align:center;margin-bottom:0px;}
+  img.small-img-1{max-width:65px;height: 65px;/*width:100%;*/display:block;margin:0 auto;}
+  p.small-text-1{text-align:center;margin-bottom:0px;font-family: Spectral;font-style: normal;font-weight: 200 !important;font-size: 28px !important;line-height: 120% !important;color: #6C1D45;padding:20px 0px 30px;max-width: 250px;display:block;margin:0 auto;min-height:130px;}
+  p.small-text-2{text-align:center;margin-bottom:0px;font-family: Montserrat;font-style: normal;font-weight: 300;font-size:20px !important;line-height: 108% !important;color: #000000;}
+  .small-text-1 span {display: block;}
+  .small-text-2 span {display: block;}
+  #cart__product_sku_id {font-size: 13px;padding-bottom: 10px;}
+  #cart__product_message_id span { font-size: 12px; display: block;line-height: 1.2;}
+  .cart__product_message { padding-bottom: 15px;}
+  .cart_product_extra_message span { display: block;}
+  #free_trail {font-size: 15px;color: #6C1D45;}
+  #Available_to {font-size: 13px;color: #6C1D45;}
+  .cart_product_extra_message {padding-bottom: 15px;}
+  .extra-info-box p {padding-top: 5px;font-size: 12px;}
+  
+  .coupon-info-content- {width: 77%;vertical-align: middle;}
+  .cart-right-greater-iocn img {width: 20px;height: 20px;vertical-align: middle;}
+  .layout_tah_cart .padding_t {
+      padding-top: 15px !important;
+  }
+  .glb-breadcrumb .bred_tex{ color: #6C1D45 !important;}
+  span.delivery-notes-heading {
+      text-transform: capitalize;
+  }
+  .error span {
+      color: #ae0d5e;
+  }
+  .error {
+      padding-top: 10px;
+  }
 
 
  /* Calender css end */
