@@ -226,7 +226,7 @@ while (startTime < endTime) {
 let select_element = document.getElementById("time-slot-select-time");
 for (let i=0; i< allTimes.length; i++)
 {
-console.log(allTimes[i]);
+//console.log(allTimes[i]);
 
 var option = document.createElement("option");
 option.text = allTimes[i];
@@ -236,3 +236,184 @@ select_element.appendChild(option);
 }
 
 /* time slot using momentum js */
+
+/* calender js start */
+
+
+ let selected_date_added; 
+var calendar = document.getElementById("calendar-table");
+var gridTable = document.getElementById("table-body");
+var currentDate = new Date();
+var selectedDate = currentDate;
+var selectedDayBlock = null;
+var globalEventObj = {};
+
+var sidebar = document.getElementById("sidebar");
+
+function createCalendar(date, side) {
+var currentDate = date;
+var startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+
+var monthTitle = document.getElementById("month-name");
+var monthName = currentDate.toLocaleString("en-US", {
+  month: "long"
+});
+var yearNum = currentDate.toLocaleString("en-US", {
+  year: "numeric"
+});
+monthTitle.innerHTML = `${monthName} ${yearNum}`;
+
+if (side == "left") {
+  gridTable.className = "animated fadeOutRight";
+} else {
+  gridTable.className = "animated fadeOutLeft";
+}
+
+setTimeout(() => {
+  gridTable.innerHTML = "";
+
+  var newTr = document.createElement("div");
+  newTr.className = "row";
+  var currentTr = gridTable.appendChild(newTr);
+
+  for (let i = 1; i < startDate.getDay(); i++) {
+     let emptyDivCol = document.createElement("div");
+     emptyDivCol.className = "col empty-day";
+     currentTr.appendChild(emptyDivCol);
+  }
+
+  var lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+  lastDay = lastDay.getDate();
+
+  for (let i = 1; i <= lastDay; i++) {
+     if (currentTr.children.length >= 7) {
+        currentTr = gridTable.appendChild(addNewRow());
+     }
+     let currentDay = document.createElement("div");
+     currentDay.className = "col";
+     if (selectedDayBlock == null && i == currentDate.getDate() || selectedDate.toDateString() == new Date(currentDate.getFullYear(), currentDate.getMonth(), i).toDateString()) {
+        selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), i);
+
+        document.getElementById("eventDayName").innerHTML = selectedDate.toLocaleString("en-US", {
+           month: "long",
+           day: "numeric",
+           year: "numeric"
+        });
+
+        selectedDayBlock = currentDay;
+        setTimeout(() => {
+           currentDay.classList.add("blue");
+           currentDay.classList.add("lighten-3");
+        }, 900);
+     }
+     currentDay.innerHTML = i;
+
+     //show marks
+     if (globalEventObj[new Date(currentDate.getFullYear(), currentDate.getMonth(), i).toDateString()]) {
+        let eventMark = document.createElement("div");
+        eventMark.className = "day-mark";
+        currentDay.appendChild(eventMark);
+     }
+
+     currentTr.appendChild(currentDay);
+  }
+
+  for (let i = currentTr.getElementsByTagName("div").length; i < 7; i++) {
+     let emptyDivCol = document.createElement("div");
+     emptyDivCol.className = "col empty-day";
+     currentTr.appendChild(emptyDivCol);
+  }
+
+  if (side == "left") {
+     gridTable.className = "animated fadeInLeft";
+  } else {
+     gridTable.className = "animated fadeInRight";
+  }
+
+  function addNewRow() {
+     let node = document.createElement("div");
+     node.className = "row";
+     return node;
+  }
+
+}, !side ? 0 : 270);
+}
+
+createCalendar(currentDate);
+
+var todayDayName = document.getElementById("todayDayName");
+todayDayName.innerHTML = "Today is " + currentDate.toLocaleString("en-US", {
+weekday: "long",
+day: "numeric",
+month: "short"
+});
+
+var prevButton = document.getElementById("prev");
+var nextButton = document.getElementById("next");
+
+prevButton.onclick = function changeMonthPrev() {
+currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1);
+createCalendar(currentDate, "left");
+}
+nextButton.onclick = function changeMonthNext() {
+currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1);
+createCalendar(currentDate, "right");
+}
+
+gridTable.onclick = function (e) {
+
+if (!e.target.classList.contains("col") || e.target.classList.contains("empty-day")) {
+  return;
+}
+
+if (selectedDayBlock) {
+  if (selectedDayBlock.classList.contains("blue") && selectedDayBlock.classList.contains("lighten-3")) {
+     selectedDayBlock.classList.remove("blue");
+     selectedDayBlock.classList.remove("lighten-3");
+  }
+}
+selectedDayBlock = e.target;
+selectedDayBlock.classList.add("blue");
+selectedDayBlock.classList.add("lighten-3");
+
+selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), parseInt(e.target.innerHTML));
+
+let selected_date= selectedDate.toLocaleString("en-US", {
+  month: "numeric",
+  day: "numeric",
+  year: "numeric"
+});
+
+
+//console.log("mss"+ selected_date);
+selected_date_added = selected_date;
+//calender_date
+
+
+
+}
+
+
+
+$('[data-id="model_calender"]').on('click', function(){
+var thisModel = $(this).data('target');
+$(thisModel).show();
+$(thisModel).find('[data-close="model_calender"]').click(function(){ 
+$(thisModel).hide();
+});
+// $(window).click(function(event){
+// if('#'+event.target.id == thisModel){
+//   $(thisModel).hide();
+// }
+// });
+});
+
+document.getElementById('apply_footer').addEventListener('click', function() {
+
+document.getElementById("calender_date").value=selected_date_added;
+$("#mymodel_calender").hide();
+});
+document.getElementById('cancel_footer').addEventListener('click', function() {
+  $("#mymodel_calender").hide();
+  });
+/* calender js end */
