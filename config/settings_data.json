@@ -103,15 +103,89 @@
               "small-text-1-d": "Buy Only if you like",
               "small-text-2-d": "Buy on the spot! if you don't like it, there's no obligation to buy."
             }
+          },
+          "22deb43d-7aac-403a-aa7e-1d0c6ead5160": {
+            "type": "faq",
+            "settings": {
+              "title": "Q. why try at home ?",
+              "faq-anwser": "Contrary to popular belief ,lorem Ipsum is nor simply random text."
+            }
+          },
+          "756d0631-5a25-4f46-8bbc-5419305f3819": {
+            "type": "faq",
+            "settings": {
+              "title": "Q. Which are the cities in which this service is available?",
+              "faq-anwser": "Contrary to popular belief ,lorem Ipsum is nor simply random text."
+            }
+          },
+          "a08396c2-635c-456c-9f9d-b86b9b09aec9": {
+            "type": "faq",
+            "settings": {
+              "title": "Q. Which are the cities in which this service is available?",
+              "faq-anwser": "Contrary to popular belief ,lorem Ipsum is nor simply random text."
+            }
+          },
+          "80e151cd-68f3-421f-9f38-c92a489bd9b7": {
+            "type": "faq",
+            "settings": {
+              "title": "Q. Which are the cities in which this service is available?",
+              "faq-anwser": "Contrary to popular belief ,lorem Ipsum is nor simply random text."
+            }
+          },
+          "672c6468-31c7-48e3-9dd7-ec16e77fb952": {
+            "type": "faq",
+            "settings": {
+              "title": "Q. Which are the cities in which this service is available?",
+              "faq-anwser": "Contrary to popular belief ,lorem Ipsum is nor simply random text."
+            }
           }
         },
         "block_order": [
           "93222211-55d8-4bb9-bd5c-0d86107354db",
           "79eb2f7f-9543-420d-a74f-c9d75f9e4799",
           "93cf5826-34d9-4319-a1d7-073a78271ce0",
-          "9d561353-7f11-4f05-925a-b82ce982ed80"
+          "9d561353-7f11-4f05-925a-b82ce982ed80",
+          "22deb43d-7aac-403a-aa7e-1d0c6ead5160",
+          "756d0631-5a25-4f46-8bbc-5419305f3819",
+          "a08396c2-635c-456c-9f9d-b86b9b09aec9",
+          "80e151cd-68f3-421f-9f38-c92a489bd9b7",
+          "672c6468-31c7-48e3-9dd7-ec16e77fb952"
         ],
         "settings": {
+          "section_heading-ct": "TRY AT HOME SHOPPING BAG",
+          "section_heading-csb": "Add Minimum 1 & Maximum 7 Design",
+          "cart-item-tl": "Need help choosing Designs?",
+          "cart-item-t2": "Order Summary",
+          "cart-item-t3": "Free Trail",
+          "cart-item-t4": "Service Charge",
+          "cart-item-t5": "Free",
+          "cart-item-t6": "Total Cost",
+          "cart-item-t7": "Schedule your appointment",
+          "cart-item-t8": "add more design",
+          "cart-item-t9": "Add Minimum 1 & Maximum 7 design",
+          "cart-item-t10": "Pick a Date slot",
+          "cart-item-t11": "Pick a time slot",
+          "cart-item-t12": "1",
+          "cart-item-t13": "10:00 AM",
+          "cart-item-t14": "08:00 PM",
+          "cart-item-t15": "Booking Information",
+          "cart-item-t16": "Full Name",
+          "cart-item-t17": "Mobile Number",
+          "cart-item-t18": "Email Id",
+          "cart-item-t19": "Your Address",
+          "cart-item-t20": "Book Now",
+          "cart-item-t21": "Appointment Confirmation",
+          "cart-item-t23": "Your Try At Home Has Been Conform",
+          "cart-item-t24": "<span>We are so excited you booked your appointment.We are going to come hover with all your faourite<\/span><span>designs for you to try on.Please check all the deatils below<\/span>",
+          "cart-item-t25": "Appointment Date And Time",
+          "cart-item-t26": "Date",
+          "cart-item-t27": "Time",
+          "cart-item-t28": "Appointment Address",
+          "cart-item-t29": "CONTINUE BROWSING",
+          "cart-item-t30": "WHO DID YOU BOOK IT FOR?",
+          "cart-item-t31": "MYSELF",
+          "cart-item-t32": "SOMEONE ELSE",
+          "cart-item-t33": "VIEW MY REQUEST >",
           "section_heading-d": "IT DOESN'T GET EASIER THAN THIS!",
           "section_subheading-d": "It’s free, there’s no obligation to buy!"
         }
