@@ -31,7 +31,7 @@ document.getElementById("sap-btn").addEventListener("click", function(event){
      let errors= document.querySelectorAll(".error");
    
       for (i = 0; i < errors.length; i++) {
-        errors[i].innerHTML="<span>field is require!</span>";
+        errors[i].innerHTML="<span>Mandatory Field!</span>";
         }
      }
   
@@ -39,7 +39,7 @@ document.getElementById("sap-btn").addEventListener("click", function(event){
      document.querySelector(".date-slot-input").nextElementSibling.innerHTML='';
      input_fill=true;
      }else{
-      document.querySelector(".date-slot-input").nextElementSibling.innerHTML='<span>field is require!</span>';
+      document.querySelector(".date-slot-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
       input_fill=false;
     }
   
@@ -48,7 +48,7 @@ document.getElementById("sap-btn").addEventListener("click", function(event){
        document.querySelector(".name-input").nextElementSibling.innerHTML='';
      }else{
       input_fill=false;
-      document.querySelector(".name-input").nextElementSibling.innerHTML='<span>field is require!</span>';
+      document.querySelector(".name-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
      }
   
      if(mobile_no !=''){
@@ -65,7 +65,7 @@ document.getElementById("sap-btn").addEventListener("click", function(event){
      
      }else{
       input_fill=false;
-      document.querySelector(".tel-input").nextElementSibling.innerHTML='<span>field is require!</span>';
+      document.querySelector(".tel-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
      }
   
      if(email !=''){
@@ -83,7 +83,7 @@ document.getElementById("sap-btn").addEventListener("click", function(event){
   
      }else{
       input_fill=false;
-      document.querySelector(".email-input").nextElementSibling.innerHTML='<span>field is require!</span>';
+      document.querySelector(".email-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
      }
   
      if(address !=''){
@@ -91,14 +91,14 @@ document.getElementById("sap-btn").addEventListener("click", function(event){
        document.querySelector(".address-input").nextElementSibling.innerHTML='';
      }else{
       input_fill=false;
-      document.querySelector(".address-input").nextElementSibling.innerHTML='<span>field is require!</span>';
+      document.querySelector(".address-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
      }
   
   let errors= document.querySelectorAll(".error");
    
    for (i = 0; i < errors.length; i++) {
      if (errors[i].hasChildNodes()) {
-     console.log("yes")
+    // console.log("yes")
      input_fill=false;
   }
   }
@@ -111,6 +111,8 @@ document.getElementById("sap-btn").addEventListener("click", function(event){
 
     document.getElementById('tah-m-overlay').classList.add('tah-m-is-visible');
     document.getElementById('tah-m-modal').classList.add('tah-m-is-visible');
+    let enter_mobole_no = document.querySelector(".booking-info-input-mobile").value;
+    document.getElementById("mobile_no_m").innerHTML=enter_mobole_no;
     window.scrollTo({ top: 160, behavior: 'smooth' });
   
    }
@@ -160,13 +162,16 @@ document.getElementById('mncl-in-btn').addEventListener('click', function() {
   
 });
   
-document.getElementById('vya_btn').addEventListener('click', function() {
+document.getElementById('vya_btn').addEventListener('click', function(e) {
+e.preventDefault();
 let input_fill_opt_in=false;
 let th_cart_opt_p_v = document.querySelectorAll("#th_cart_opt_p");
 for (i = 0; i < th_cart_opt_p_v.length; i++) {
     if (th_cart_opt_p_v[i].value) {
-    console.log("yes" + th_cart_opt_p_v[i].value)
+   // console.log("yes" + th_cart_opt_p_v[i].value)
     input_fill_opt_in=true;
+ }else{
+  input_fill_opt_in=false;
  }
  }
  if(input_fill_opt_in){
@@ -179,6 +184,12 @@ for (i = 0; i < th_cart_opt_p_v.length; i++) {
     document.getElementById('ac-wrapper').style.display = "block";
     document.getElementById('tah-m-overlay').classList.remove('tah-m-is-visible');
     document.getElementById('tah-m-modal').classList.remove('tah-m-is-visible');
+    document.querySelector(".opt_error").innerHTML='';
+   let change_mobile_no = document.getElementById("mobile_no_m").value;
+   document.querySelector(".booking-info-input-mobile").value=change_mobile_no;
+
+ }else{
+  document.querySelector(".opt_error").innerHTML='<span>Fill OTP Inputs!</span>';
  }
 
 });
@@ -426,4 +437,21 @@ $("#mymodel_calender").hide();
 document.getElementById('cancel_footer').addEventListener('click', function() {
   $("#mymodel_calender").hide();
   });
+  
 /* calender js end */
+/* otp modal */
+
+  $("[id=th_cart_opt_p]").keyup(function(event) {
+     if ($(this).val() !=""){
+      if (!$.isNumeric($(this).val())) {
+        $(".opt_error").html("<span>Please Enter Number Only!</span>");
+        } else{
+         $(this).next('input').focus();
+         $(".opt_error").empty();
+        }
+       }
+  });
+
+
+
+

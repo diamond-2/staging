@@ -17,6 +17,9 @@
 
     }
     @media screen and (max-width:450px) {
+        #table-body .row .col {
+            padding: 15px 0 15px 0!important;
+        }
         .th_cart_inner .title {
             margin-top: 40px !important;
         }
@@ -216,6 +219,9 @@ margin-bottom: 30px;
 
  }
  @media screen and (max-width:992px) {
+    #table-header, #table-body {
+        font-size: 20px;
+    }
     .layout_tah_cart .coupon-info-content- {
         width: 87%;
         vertical-align: middle;
@@ -247,7 +253,7 @@ margin-bottom: 30px;
       color: black;
     }
 }
-@media screen and (max-width:1200px) {
+/* @media screen and (max-width:1200px) {
     .layout_tah_cart .model_calender .model-content {
     position: relative;
     width: 95%;
@@ -256,6 +262,17 @@ margin-bottom: 30px;
     animation-name: animatetop;
     animation-duration: .4s;
 }
+} */
+@media screen and (min-width: 768px) and (max-width:900px){
+    .layout_tah_cart .model_calender .model-content {
+        position: relative;
+        width:70%;
+        margin: auto;
+        background-color: #fff;
+        animation-name: animatetop;
+        animation-duration: .4s;
+    }
+
 }
 
  @media screen and (min-width: 768px) and (max-width: 1024px){
@@ -267,7 +284,21 @@ margin-bottom: 30px;
     .layout_tah_cart img.small-img-1 {max-width: 50px;height: 50px;/*width: 100%;*/display: block;margin: 0 auto;}
     .layout_tah_cart  p.small-text-1 {font-weight: 200 !important;font-size: 18px !important;line-height: 120% !important;color: #6C1D45;padding: 20px 0px 10px;max-width: 250px;min-height: auto;}
     .layout_tah_cart p.small-text-2 {font-size:20px !important;line-height: 108% !important;color: #000000;}
- }
+ 
+    .layout_tah_cart .model_calender .model-content {
+        position: relative;
+        width: 65%;
+        margin: auto;
+        background-color: #fff;
+        animation-name: animatetop;
+        animation-duration: .4s;
+    }
+    #table-header, #table-body {
+        font-size:20px;
+    }
+    
+
+}
  
  @media screen and (min-width: 1025px) and (max-width: 1440px){
     .layout_tah_cart .describing-container {padding-left: 20px;padding-right: 20px;}
@@ -277,8 +308,47 @@ margin-bottom: 30px;
     .layout_tah_cart p.small-text-1 {font-weight: 200 !important;font-size: 21px !important;line-height: 120% !important;padding: 20px 0px 10px;min-height: auto;}
     .layout_tah_cart p.small-text-2 {font-size:16px !important;line-height: 108% !important;}
  
+   /* calender */
+
+   #table-body .row .col {
+    padding: 18px;
+    /* border-radius: 50%; */
+}
+#table-header, #table-body {
+    font-size: 20px;
+}
+.calendar-content {
+    background-color: #fff;
+    padding:unset !important;
+    overflow:hidden;
+}
+.header-background {
+    background-color: #fff;
+    height: 90px;
+}
+.model_calender .model-content {
+    width: 35%;
+    margin: auto;
+
+}
+
+   /* calender css */
+
  }
- 
+ @media only screen and (min-width: 1500px) {
+    .coupon-info-content- {
+        width: 83% !important;
+        vertical-align: middle;
+    }
+    .model_calender .model-content {
+        width:35% !important;
+        margin: auto;
+    }
+    .small-text-1 {
+        padding: 20px 0 18px !important;
+        min-height: 110px !important;
+    }
+ }
  @media screen and(max-width: 1840px){
  .th_cart_inner .customBtn {
     border-radius: 0;
@@ -288,6 +358,29 @@ margin-bottom: 30px;
  }
 
  /* checkout page code */
+ .error_n {
+    padding-top: 15px;
+    color: #6C1D45;
+}
+ .layout_tah_cart .cart-template-wrapper .cart-page-two-col-row .cart-page-right-column .cart__footer .grid .grid__item.delivery-notes > span {
+    width:unset;
+}
+.layout_tah_cart .ac-item .ac-body .ac-body-inner {
+    padding: 0px 0 13px;
+}
+.layout_tah_cart .ac-heading.active {
+    padding-bottom: 5px;
+}
+
+.layout_tah_cart .cart-template-wrapper .cart-page-two-col-row .cart-page-right-column .cart__footer .grid .grid__item {
+    margin-bottom:20px;
+}
+ .layout_tah_cart .delivery-notes-heading,.layout_tah_cart .cart-subtotal__title_,.layout_tah_cart .delivery-notes-heading {
+    font-size: 13px;
+}
+ .coupon-info-content- p {
+    font-size: 16px;
+}
  .checkout-template-wrapper .checkout-page-two-col-row {
      display: flex;
      flex-wrap: wrap;
@@ -351,9 +444,12 @@ margin-bottom: 30px;
      margin: 0px;
      border-bottom: 2px solid #ebeef0;
  }
- .ac-heading {
-     padding: 21px 0 21px 0;
+ .ac-heading:not(:first-child) {
+     padding-top: 0px;
  }
+ .ac-heading{
+    padding: 21px 0 21px 0;
+}
  .checkout-template-wrapper {
      display: none;
  }
@@ -440,8 +536,8 @@ margin-bottom: 30px;
      border: 1px solid #6679CC;
      box-sizing: border-box;
      color: #ffffff;
-     padding: 11px 30px;
-     font-size: 18px;
+     padding: 10px 30px;
+     font-size: 16px;
      line-height: 23.76px;
      text-transform: uppercase;
      transition: all 0.3s;
@@ -456,7 +552,7 @@ margin-bottom: 30px;
  }
  #adat-whdyif {
      text-align: center;
-     font-size: 30px;
+     font-size:25px;
  }
  .whdyif-btns {
      width: 500px;
@@ -484,8 +580,8 @@ margin-bottom: 30px;
      border: 1px solid #6C1D45;
      box-sizing: border-box;
      color: #6C1D45;
-     padding: 11px 30px;
-     font-size: 18px;
+     padding: 10px 30px;
+     font-size: 16px;
      line-height: 23.76px;
      text-transform: uppercase;
      transition: all 0.3s;
@@ -501,12 +597,14 @@ margin-bottom: 30px;
      color: rgb(0 0 0 / 47%);
  }
  a#vmr-a {
-     font-size: 30px;
+     font-size:25px;
      text-transform: uppercase;
      text-decoration: underline;
      color: #6C1D45;
  }
- 
+ .layout_tah_cart  .ac-wrapper-title-h {
+    font-size: 25px;
+}
  #adat-el {
      text-align: center;
      font-size: 18px;
@@ -627,14 +725,15 @@ margin-bottom: 30px;
      padding: 15px;
  }
  .mobile-no-cl #mncl-in {
-    padding: 5px 0 5px 0;
+    padding: 5px 8px;
+    margin-right: 7px;
 }
 .mobile-no-cl {
 display: none;
 }
 #mncl-in-btn {
     background: #6679CC;
-    border: solid #6679CC;
+    border:2px solid #6679CC;
     box-sizing: border-box;
     color: #ffffff;
     text-transform: uppercase;
@@ -652,10 +751,10 @@ display: none;
 
 
 #table-header {
-font-size: 25px;
+font-size: 20px;
 }
 #table-body {
-font-size: 25px;
+font-size: 20px;
 }
 #sidebar {
 display: none;
@@ -717,7 +816,7 @@ height:90px;
 
 .calendar-content {
 background-color: #fff;
-padding: 20px;
+margin:10px;
 /*padding-left: 15%;
 padding-right: 15%;*/
 overflow: hidden;
@@ -1071,12 +1170,14 @@ color: white;
       font-size: 13px;
   }
   
-  .service-charge .delivery-notes-subheading { text-transform: capitalize;}
-  
+  .service-charge .delivery-notes-subheading { text-transform: capitalize;color: #6C1D45;}
+  .layout_tah_cart .cart-subtotal__price {color: #000 !important;}
+  .layout_tah_cart .cart__continue-controls{ padding-bottom: 5px !important;}
   .layout_tah_cart .coupon-info {padding: 10px 5px 3px !important;}
   .layout_tah_cart .cart_sum_title {margin-left: 0px !important;}
-  
-  
+  .layout_tah_cart .cart__continue-controls .glb-btn {background: #fff;color: #6C1D45; width: 100%;text-align: center;}
+  .layout_tah_cart .cart__submit-controls- .glb-btn {width: 100%;margin-bottom: 25px;text-align: center;}
+  .layout_tah_cart .cart__continue-controls .glb-btn:hover {color: #ffffff;border-color: #6C1D45;background: #6C1D45;}
   .try-at-home-cart-describing {padding-top: 60px;}
   .describe-boxes{display:flex;}
   .describing-container{padding-left:100px;padding-right:100px;}
@@ -1107,13 +1208,17 @@ color: white;
       text-transform: capitalize;
   }
   .error span {
-      color: #ae0d5e;
+      color: #6C1D45;
   }
   .error {
       padding-top: 10px;
   }
 
-
+  .opt_error {
+    padding-top: 18px;
+    padding-bottom: 18px;
+    color:#6C1D45;
+}
  /* Calender css end */
 
  

@@ -155,7 +155,7 @@
                         </div>
                         <div class="grid__item cart_total_item ">
                           <div class="cart-subtotal">
-                            <span class="cart-subtotal__title">{{ section.settings.cart-item-t6 }}</span>
+                            <span class="cart-subtotal__title_">{{ section.settings.cart-item-t6 }}</span>
                             <span class="cart-subtotal__price" data-cart-subtotal="">INR 0</span>
                           </div>
                         </div>
@@ -163,7 +163,7 @@
                     </div>
       
                     <div class="cart_bottom_section">
-                      <div class="cart__buttons-container" id="sap-btn">
+                      <div class="cart__buttons-container-r" id="sap-btn">
                         <div class="cart__submit-controls-">
                           <a href="javascript:void(0);" class="glb-btn">{{ section.settings.cart-item-t7 }}</a>
                         </div>
@@ -438,15 +438,15 @@
             <div class="row">
               <div class="mt-5 bgWhite">
                 <div class="title">
-                  Enter 6 Digit OPT to confirm your appointment
+                  {{ section.settings.cart-item-t36 }}
                 </div>
                 <div class="th_cart_inner-tc">
                  <div class="th_cart_inner-tc-in" id="th_cart_inner-tc-in">
-                  <span id="mobile_no_m"> +921345876</span><span id="mobile_no_mc">Change Number</span>
+                  <span id="mobile_no_m"> +921345876</span><span id="mobile_no_mc">{{ section.settings.cart-item-t38 }}</span>
                 </div>
                  
                   <div class="mobile-no-cl" id="mobile-no-cl">
-                      <input type="tel" name="mncl-in" value="" id="mncl-in"><button id="mncl-in-btn">submite</button>
+                      <input type="tel" name="mncl-in" value="" id="mncl-in"><button id="mncl-in-btn">{{ section.settings.cart-item-t39 }}</button>
                   </div>
                   <div class="error_n">
                 </div>
@@ -454,15 +454,17 @@
                 </div>
                 <div class="th_cart_inner-outer">
                 <form action="" class="th_cart_inner-form">
-                  <input class="otp" id="th_cart_opt_p" type="text"  size="1" maxlength="1">
-                  <input class="otp" id="th_cart_opt_p" type="text"  size="1" maxlength="1">
+                  <input class="otp" id="th_cart_opt_p" type="text"  size="1" maxlength="1" >
+                  <input class="otp" id="th_cart_opt_p" type="text"  size="1" maxlength="1" >
                   <input class="otp" id="th_cart_opt_p" type="text" size="1" maxlength="1" >
-                  <input class="otp" id="th_cart_opt_p" type="text"  size="1" maxlength="1">
-                  <input class="otp" id="th_cart_opt_p" type="text"  size="1" maxlength="1">
-                  <input class="otp" id="th_cart_opt_p" type="text"  size="1" maxlength="1">              
+                  <input class="otp" id="th_cart_opt_p" type="text"  size="1" maxlength="1" >
+                  <input class="otp" id="th_cart_opt_p" type="text"  size="1" maxlength="1" >
+                  <input class="otp" id="th_cart_opt_p" type="text"  size="1" maxlength="1" >              
                 </form>
+                <div class="opt_error">
+                </div>
               </div>
-                <button class='btn mt-4 mb-4 customBtn' id="vya_btn">Verify Your Appointment</button>
+                <button class='btn mt-4 mb-4 customBtn' id="vya_btn">{{ section.settings.cart-item-t37 }}</button>
               </div>
             </div>
           </div>
@@ -509,7 +511,7 @@
       "label": "left icon"
       },
       {
-        "id": "cart-item-35",
+        "id": "cart-item-t35",
         "type": "image_picker",
         "label": "right icon"
     },
@@ -707,6 +709,34 @@
         "type": "text",
         "label": "VIEW MY REQUEST >",
         "default":"VIEW MY REQUEST >"
+    },
+    {
+      "type": "header",
+      "content": "otp modal"
+   },
+   {
+      "id": "cart-item-t36",
+      "type": "text",
+      "label": "opt tile",
+      "default":"Enter 6 Digit OTP to confirm your appointment"
+    },
+    {
+      "id": "cart-item-t37",
+      "type": "text",
+      "label": "opt button",
+      "default":"Verify Your Appointment"
+    },
+    {
+      "id": "cart-item-t38",
+      "type": "text",
+      "label": "opt anchor",
+      "default":"Change Number"
+    },
+    {
+      "id": "cart-item-t39",
+      "type": "text",
+      "label": "opt submit",
+      "default":"submit"
     },
     {
         "type": "header",
