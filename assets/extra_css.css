@@ -1,0 +1,11 @@
+ /* collection */
+ #th_cart_btn_c {
+    cursor: pointer;
+    font-size: 21px;
+    
+}
+
+.change_icon_c{
+    color: #6C1D45;
+    cursor: not-allowed;
+}

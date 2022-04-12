@@ -84,7 +84,7 @@
   <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" type="text/css" media="print" onload="this.media='all';onLoadStylesheet()">
   <link rel="stylesheet" href="{{ 'asset-styles.css' | asset_url }}" type="text/css">
   <link rel="stylesheet" href="{{ 'custom-styles.css' | asset_url }}" type="text/css">
-  
+  <link rel="stylesheet" href="{{ 'extra_css.css' | asset_url }}" type="text/css">
   <style>
     {{ header_font | font_face: font_display: 'swap' }}
     {{ base_font | font_face: font_display: 'swap' }}
@@ -236,8 +236,9 @@
 
   {% if template contains 'collection' %}
   <script src="{{ 'collection-loadmore.js' | asset_url }}" async="async"></script>
+  
   {% endif %}
-
+  <script src="{{ 'extra_js.js' | asset_url }}" async="async"></script>
   <script type="text/javascript">
     if (window.MSInputMethodContext && document.documentMode) {
       var scripts = document.getElementsByTagName('script')[0];

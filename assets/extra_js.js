@@ -1,0 +1,48 @@
+let arrrr=[];
+
+  $(document).on('click', '#th_cart_btn_c', function () {
+    let th_cart_p_id_ = $(this).attr("th_cart_item_p_id");
+    let th_cart_p_id = $(this).attr("th_cart_item_p_handle");
+    $(this).addClass("change_icon_c");
+    $(this).after("<span id='th_cart_added'>item is added to try at cart</span>");
+  //  alert("The paragraph was clicked.");
+   
+
+    if (localStorage.getItem("th_cart_items_id") != null) {
+
+        var th_cart_items_id_no= localStorage.getItem("th_cart_items_id").length;
+
+        if( parseInt(th_cart_items_id_no) > 0){
+            
+            var new_arry=localStorage.getItem("th_cart_items_id");
+            const myArr = new_arry.split(",");
+            arrrr=myArr;
+            if ( !arrrr.includes(th_cart_p_id)){
+            arrrr.push(th_cart_p_id);
+            localStorage.setItem("th_cart_items_id",arrrr);
+            }else{
+            $(this).after("<span id='th_cart_added'>item is already added to try at cart</span>");
+
+            }
+          //document.getElementById("result_item").innerHTML = localStorage.getItem("array_name");
+          }
+
+    
+         }
+    
+        if (localStorage.getItem("th_cart_items_id") === null || parseInt(localStorage.getItem("th_cart_items_id").length) == 0 ) {
+    
+             arrrr.push(th_cart_p_id);
+            localStorage.setItem("th_cart_items_id",arrrr);
+            console.log(localStorage.getItem("th_cart_items_id"));
+            console.log(localStorage.getItem("th_cart_items_id").length);
+    
+        // document.getElementById("result_item").innerHTML = localStorage.getItem("array_name");
+        }
+    
+
+
+
+
+
+});
