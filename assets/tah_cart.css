@@ -1221,6 +1221,44 @@ color: white;
 }
  /* Calender css end */
 
+ .city_state {
+    display: flex;
+    width: 100%;
+}
 
-
+.city_state .booking-info-wrapper {
+    width: 100%;
+}
  
+.country_pincode {
+    display: flex;
+    width: 100%;
+}
+.country_pincode .booking-info-wrapper {
+    width: 100%;
+}
+.city_state :first-child,.country_pincode :first-child {
+    margin-right: 25px;
+}
+.layout_tah_cart .booking-info-label-h-add1 ,
+.layout_tah_cart .booking-info-label-h-add2,
+.layout_tah_cart .booking-info-label-h-city,
+.layout_tah_cart .booking-info-label-h-state,
+.layout_tah_cart .booking-info-label-h-country,
+.layout_tah_cart .booking-info-label-h-pincode{
+    font-size: 13px;
+    padding-bottom: 10px;
+}
+.booking-info-label-h-city #text ,.booking-info-label-h-state #text,
+.booking-info-label-h-country #text ,.booking-info-label-h-pincode #text{
+    padding-left: 3px;
+    margin: 0px;
+}
+#symbol {
+    color: #6c1d45;
+}
+.cart_empty {
+    padding: 60px 0 60px 0;
+    text-align: center;
+    vertical-align: middle;
+}

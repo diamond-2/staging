@@ -1,0 +1,51 @@
+{%- layout none -%}
+<tr class="cart__row custom_cart_row cart__table-row">
+    <td class="cart__meta small--text-left custom_cart_item_left_col" data-cart-table-cell="">
+    <div class="cart__product-information">
+    <div class="cart__image-wrapper">
+    <img class="cart__image" src="https:{{product.featured_image|img_url:"master"}}" alt="14K Rose Gold" data-cart-item-image="" style="cursor: pointer;">
+    </div>
+    <div class="cart__product-body">
+    <div class="cart__product-body-left">
+    <div class="list-view-item__title">
+    <a href="{{product.url}}" class="cart__product-title" data-cart-item-title="" data-role="product-title">
+        {{product.title}}
+    </a>
+    </div>
+    
+    <div class="cart__product_sku">
+    <p id="cart__product_sku_id">{{product.sku}}</p>
+    </div>
+    <div class="cart__product_message">
+    <p id="cart__product_message_id">
+    <span>We'll Call You To Confirm The Size And</span> 
+    <span>We'll Bring Similar Designs Too. </span>
+    </p>
+    </div>
+    <div class="cart_product_extra_message">
+    <span id="free_trail"> FREE TRAIL </span>    
+    <span id="Available_to">Available To Try From Tomorrow</span>
+    </div>
+    <div class="cart__final-price" data-cart-item-line-price="">
+    <span class="org_price">{{ product.price|money }}</span>
+    <span class="price_inclusive_tex">Price inclusive of taxes</span>
+    </div>
+    
+    </div>
+    <div class="cart__product-body-right">
+    <div class="add_wishlist_holder move-to-wishlist-btn">
+    <a href="javascript:;" data-modal="showInfoModal" data-variantid="42037293482233" data-prodid="7438709358841" class="add_wishlist_icon" data-line="1" aria-label="more-to-wishlist" data-role="product-move-to-wishlist" aria-describedby="a11y-external-message"><svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10.4656 19.2932L10.4657 19.2932L10.4613 19.2893C6.4707 15.748 3.97621 13.3889 2.47421 11.4221C0.996381 9.48702 0.5 7.95864 0.5 6.06061C0.5 2.92819 2.78653 0.5 5.55882 0.5C7.84706 0.5 9.13724 1.88072 10.1125 3.07689L10.5 3.55221L10.8875 3.07689C11.8628 1.88072 13.1529 0.5 15.4412 0.5C18.2135 0.5 20.5 2.92819 20.5 6.06061C20.5 7.95864 20.0036 9.48702 18.5258 11.4221C17.0238 13.3889 14.5293 15.748 10.5387 19.2893L10.5387 19.2893L10.5344 19.2932L10.5 19.3244L10.4656 19.2932Z" stroke="#6C1D45"></path>
+    </svg>
+    </a>
+    </div>
+    <div class="cart_remove_flex">
+    <p class="cart__remove">
+    <a class="text-link text-link--accent remove_cart_pop_btn" id="remove_th_cart_item" th_cart_remove_p_handle="{{ product.handle }} ">Close</a>
+    </p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </td>
+    </tr>

@@ -21,13 +21,21 @@ document.getElementById("sap-btn").addEventListener("click", function(event){
      let name = document.querySelector(".booking-info-input-name").value;
      let mobile_no = document.querySelector(".booking-info-input-mobile").value;
      let email = document.querySelector(".booking-info-input-email").value;
-     let address = document.querySelector(".booking-info-input-address").value;
+    // let address = document.querySelector(".booking-info-input-address").value;
+     let address1 = document.querySelector(".booking-info-input-add1").value;
+     let address2 = document.querySelector(".booking-info-input-add2").value;
+     let city = document.querySelector(".booking-info-input-city").value;
+     let state = document.querySelector(".booking-info-input-state").value;
+     let country = document.querySelector(".booking-info-input-country").value;
+     let pincode = document.querySelector(".booking-info-input-pincode").value;
   
    /* validation */
   
      let input_fill =false; 
   
-     if (date ==''&& name =='' && mobile_no=='' && email =='' && address==''){
+     if (date ==''&& name =='' && mobile_no=='' && email =='' && address1 =='' && 
+     city=='' && state =='' && country==='' && pincode ==''
+     ){
      let errors= document.querySelectorAll(".error");
    
       for (i = 0; i < errors.length; i++) {
@@ -86,13 +94,62 @@ document.getElementById("sap-btn").addEventListener("click", function(event){
       document.querySelector(".email-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
      }
   
-     if(address !=''){
+    //  if(address !=''){
+    //   input_fill=true;
+    //    document.querySelector(".address-input").nextElementSibling.innerHTML='';
+    //  }else{
+    //   input_fill=false;
+    //   document.querySelector(".address-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
+    //  }
+    
+
+     if(address1 !=''){
       input_fill=true;
-       document.querySelector(".address-input").nextElementSibling.innerHTML='';
+       document.querySelector(".add1-input").nextElementSibling.innerHTML='';
      }else{
       input_fill=false;
-      document.querySelector(".address-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
+      document.querySelector(".add1-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
      }
+
+     if(city !=''){
+      input_fill=true;
+       document.querySelector(".city-input").nextElementSibling.innerHTML='';
+     }else{
+      input_fill=false;
+      document.querySelector(".city-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
+     }
+
+     if(state !=''){
+      input_fill=true;
+       document.querySelector(".state-input").nextElementSibling.innerHTML='';
+     }else{
+      input_fill=false;
+      document.querySelector(".state-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
+     }
+
+     if(country !=''){
+      input_fill=true;
+       document.querySelector(".country-input").nextElementSibling.innerHTML='';
+     }else{
+      input_fill=false;
+      document.querySelector(".country-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
+     }
+
+     if(pincode !=''){
+      input_fill=true;
+       document.querySelector(".pincode-input").nextElementSibling.innerHTML='';
+     }else{
+      input_fill=false;
+      document.querySelector(".pincode-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
+     }
+
+    //  if(address2 !=''){
+    //   input_fill=true;
+    //    document.querySelector(".pincode-input").nextElementSibling.innerHTML='';
+    //  }else{
+    //   input_fill=false;
+    //   document.querySelector(".pincode-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
+    //  }
   
   let errors= document.querySelectorAll(".error");
    
@@ -459,224 +516,111 @@ document.getElementById('cancel_footer').addEventListener('click', function() {
 }
 /* code for show items */
 
+
+
 let product_handle_arr=[];
-let total_cart_p_no =0;
-if (localStorage.getItem("th_cart_items_id") != null) {
+
+if (localStorage.getItem("th_cart_items_id") != null ) {
+  var th_cart_items_id_no= localStorage.getItem("th_cart_items_id").length;
+  if( parseInt(th_cart_items_id_no) > 0){
+
+
 let added_product_handle=  localStorage.getItem("th_cart_items_id");
 const myArray = added_product_handle.split(",");
-
+$("#the_cart_items_render").empty();
 myArray.forEach(function(item, i) {
   $("#th_cart_t_no").text(parseInt(++i));
-$.getJSON("/products/"+item+ ".js", function(result){
 
-    let th_cart_items=`
-<tr class="cart__row custom_cart_row cart__table-row">
-<td class="cart__meta small--text-left custom_cart_item_left_col" data-cart-table-cell="">
-<div class="cart__product-information">
-<div class="cart__image-wrapper">
-<img class="cart__image" src="https:${result.featured_image}" alt="14K Rose Gold" data-cart-item-image="" style="cursor: pointer;">
-</div>
-<div class="cart__product-body">
-<div class="cart__product-body-left">
-<div class="list-view-item__title">
-<a href="${result.title}" class="cart__product-title" data-cart-item-title="" data-role="product-title">
-${result.title}
-</a>
-</div>
+  var itemUrls = "/products/"+item+'/?view=tahcartres';
+  function getData(ajaxurl) { 
+    return $.ajax({
+      url: itemUrls,
+      type: 'GET',
+    });
+  };
+  async function renderMetaInfo() {
+    try {
+      const res = await getData("/products/"+item+'/?view=tahcartres')
 
-<div class="cart__product_sku">
-<p id="cart__product_sku_id">${result.variants[0].sku}</p>
-</div>
-<div class="cart__product_message">
-<p id="cart__product_message_id">
-<span>We'll Call You To Confirm The Size And</span> 
-<span>We'll Bring Similar Designs Too. </span>
-</p>
-</div>
-<div class="cart_product_extra_message">
-<span id="free_trail"> FREE TRAIL </span>    
-<span id="Available_to">Available To Try From Tomorrow</span>
-</div>
-<div class="cart__final-price" data-cart-item-line-price="">
-<span class="org_price">${Shopify.formatMoney(result.price)}</span>
-<span class="price_inclusive_tex">Price inclusive of taxes</span>
-</div>
-
-</div>
-<div class="cart__product-body-right">
-<div class="add_wishlist_holder move-to-wishlist-btn">
-<a href="javascript:;" data-modal="showInfoModal" data-variantid="42037293482233" data-prodid="7438709358841" class="add_wishlist_icon" data-line="1" aria-label="more-to-wishlist" data-role="product-move-to-wishlist" aria-describedby="a11y-external-message"><svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10.4656 19.2932L10.4657 19.2932L10.4613 19.2893C6.4707 15.748 3.97621 13.3889 2.47421 11.4221C0.996381 9.48702 0.5 7.95864 0.5 6.06061C0.5 2.92819 2.78653 0.5 5.55882 0.5C7.84706 0.5 9.13724 1.88072 10.1125 3.07689L10.5 3.55221L10.8875 3.07689C11.8628 1.88072 13.1529 0.5 15.4412 0.5C18.2135 0.5 20.5 2.92819 20.5 6.06061C20.5 7.95864 20.0036 9.48702 18.5258 11.4221C17.0238 13.3889 14.5293 15.748 10.5387 19.2893L10.5387 19.2893L10.5344 19.2932L10.5 19.3244L10.4656 19.2932Z" stroke="#6C1D45"></path>
-</svg>
-</a>
-</div>
-<div class="cart_remove_flex">
-<p class="cart__remove">
-<a class="text-link text-link--accent remove_cart_pop_btn" id="remove_th_cart_item" th_cart_remove_p_handle="${result.handle}">Close</a>
-</p>
-</div>
-</div>
-</div>
-</div>
-</td>
-</tr>
-    `
-  // });
-  $("#the_cart_items_render").append(th_cart_items);
-
+      let x  = res;
+      var GridContentupdate = x;
+    //console.log(GridContentupdate); 
+     $("#the_cart_items_render").append(GridContentupdate);                   
+    } catch(err) {
+      console.log(err);
+    }
+  }
+  renderMetaInfo();
 });
 
-});
-
+}else{
+  $("#th_cart_t_no").text(parseInt(0));
+  $("#the_cart_items_render").append("<div class='cart_empty'>Try At Home Cart is Empty!");   
+}
+}
+else{
+  $("#th_cart_t_no").text(parseInt(0));
+  $("#the_cart_items_render").append("<div class='cart_empty'>Try At Home Cart is Empty!");   
 }
 
+
 /* removed items from localstorag */
-let new_arry_remove_items_arr=[];
 
 $(document).on('click', '#remove_th_cart_item', function () {
 
-
- 
   let th_cart_p_handle_ = $(this).attr("th_cart_remove_p_handle");
-
   var new_arry_remove_item=localStorage.getItem("th_cart_items_id");
-
-  var array_item_l = localStorage.getItem("th_cart_items_id").length;
-
-
   let new_arry_remove_items = new_arry_remove_item.split(",");
 
-  if (new_arry_remove_items.includes(th_cart_p_handle_)){
-
     new_arry_remove_items.splice(new_arry_remove_items.indexOf(th_cart_p_handle_), 1);
-    new_arry_remove_items_arr.push(new_arry_remove_items);
-    localStorage.setItem("th_cart_items_id",new_arry_remove_items_arr);
+    localStorage.setItem("th_cart_items_id",new_arry_remove_items);
     
-    $(this).closest('tr').remove();
-    }
-  
+   // console.log(localStorage.getItem("th_cart_items_id")); 
+   if (localStorage.getItem("th_cart_items_id") != null ) {
+    var th_cart_items_id_no= localStorage.getItem("th_cart_items_id").length;
+    if( parseInt(th_cart_items_id_no) > 0){
 
+      $("#the_cart_items_render").empty();
+    let added_product_handle=  localStorage.getItem("th_cart_items_id");
+    const myArray = added_product_handle.split(",");
+    
+    myArray.forEach(function(item, i) {
+      $("#th_cart_t_no").text(parseInt(++i));
+    
+      var itemUrls = "/products/"+item+'/?view=tahcartres';
+      function getData(ajaxurl) { 
+        return $.ajax({
+          url: itemUrls,
+          type: 'GET',
+        });
+      };
+      async function renderMetaInfo() {
+        try {
+          const res = await getData("/products/"+item+'/?view=tahcartres')
+    
+          let x  = res;
+          var GridContentupdate = x;
+        //console.log(GridContentupdate); 
+       
+         $("#the_cart_items_render").append(GridContentupdate);                   
+        } catch(err) {
+          console.log(err);
+        }
+      }
+      renderMetaInfo();
 
-//  new_arry_remove_items_arr.forEach(function(item, i) {
-//   //$("#the_cart_items_render").empty();
-// $.getJSON("/products/"+item+ ".js", function(result){
-//     let th_cart_items=`
-// <tr class="cart__row custom_cart_row cart__table-row">
-// <td class="cart__meta small--text-left custom_cart_item_left_col" data-cart-table-cell="">
-// <div class="cart__product-information">
-// <div class="cart__image-wrapper">
-// <img class="cart__image" src="https:${result.featured_image}" alt="14K Rose Gold" data-cart-item-image="" style="cursor: pointer;">
-// </div>
-// <div class="cart__product-body">
-// <div class="cart__product-body-left">
-// <div class="list-view-item__title">
-// <a href="${result.title}" class="cart__product-title" data-cart-item-title="" data-role="product-title">
-// ${result.title}
-// </a>
-// </div>
-
-// <div class="cart__product_sku">
-// <p id="cart__product_sku_id">${result.variants[0].sku}</p>
-// </div>
-// <div class="cart__product_message">
-// <p id="cart__product_message_id">
-// <span>We'll Call You To Confirm The Size And</span> 
-// <span>We'll Bring Similar Designs Too. </span>
-// </p>
-// </div>
-// <div class="cart_product_extra_message">
-// <span id="free_trail"> FREE TRAIL </span>    
-// <span id="Available_to">Available To Try From Tomorrow</span>
-// </div>
-// <div class="cart__final-price" data-cart-item-line-price="">
-// <span class="org_price">${Shopify.formatMoney(result.price)}</span>
-// <span class="price_inclusive_tex">Price inclusive of taxes</span>
-// </div>
-
-// </div>
-// <div class="cart__product-body-right">
-// <div class="add_wishlist_holder move-to-wishlist-btn">
-// <a href="javascript:;" data-modal="showInfoModal" data-variantid="42037293482233" data-prodid="7438709358841" class="add_wishlist_icon" data-line="1" aria-label="more-to-wishlist" data-role="product-move-to-wishlist" aria-describedby="a11y-external-message"><svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-// <path d="M10.4656 19.2932L10.4657 19.2932L10.4613 19.2893C6.4707 15.748 3.97621 13.3889 2.47421 11.4221C0.996381 9.48702 0.5 7.95864 0.5 6.06061C0.5 2.92819 2.78653 0.5 5.55882 0.5C7.84706 0.5 9.13724 1.88072 10.1125 3.07689L10.5 3.55221L10.8875 3.07689C11.8628 1.88072 13.1529 0.5 15.4412 0.5C18.2135 0.5 20.5 2.92819 20.5 6.06061C20.5 7.95864 20.0036 9.48702 18.5258 11.4221C17.0238 13.3889 14.5293 15.748 10.5387 19.2893L10.5387 19.2893L10.5344 19.2932L10.5 19.3244L10.4656 19.2932Z" stroke="#6C1D45"></path>
-// </svg>
-// </a>
-// </div>
-// <div class="cart_remove_flex">
-// <p class="cart__remove">
-// <a class="text-link text-link--accent remove_cart_pop_btn" id="remove_th_cart_item" th_cart_remove_p_handle="${result.handle}">Close</a>
-// </p>
-// </div>
-// </div>
-// </div>
-// </div>
-// </td>
-// </tr>
-//     `
-
-// $("#the_cart_items_render").append(th_cart_items);
-
-// });
-// $("#th_cart_t_no").text(parseInt(++i));
-
-// });
-
-// if (localStorage.getItem("th_cart_items_id") === null) {
-//   $("#th_cart_t_no").text(0);
-//   localStorage.setItem("th_cart_items_id",'');
-//   $("#the_cart_items_render").append("<div class='cart_is_empty'>Cart is Empty </div>");
-
-
-// }
+    });
+  }
+  else{
+    $("#th_cart_t_no").text(parseInt(0));
+    $("#the_cart_items_render").empty();
+    $("#the_cart_items_render").append("<div class='cart_empty'>Try At Home Cart is Empty!");  
+  }
+}else{
+  $("#th_cart_t_no").text(parseInt(0));
+  $("#the_cart_items_render").empty();
+    $("#the_cart_items_render").append("<div class='cart_empty'>Try At Home Cart is Empty!"); 
+}
 
 });
 /* removed items from localstorag */
-
-/* money formate */
-var Shopify = Shopify || {};
-// ---------------------------------------------------------------------------
-// Money format handler
-// ---------------------------------------------------------------------------
-Shopify.money_format = "${{amount}}";
-Shopify.formatMoney = function(cents, format) {
-  if (typeof cents == 'string') { cents = cents.replace('.',''); }
-  var value = '';
-  var placeholderRegex = /\{\{\s*(\w+)\s*\}\}/;
-  var formatString = (format || this.money_format);
-
-  function defaultOption(opt, def) {
-     return (typeof opt == 'undefined' ? def : opt);
-  }
-
-  function formatWithDelimiters(number, precision, thousands, decimal) {
-    precision = defaultOption(precision, 2);
-    thousands = defaultOption(thousands, ',');
-    decimal   = defaultOption(decimal, '.');
-
-    if (isNaN(number) || number == null) { return 0; }
-
-    number = (number/100.0).toFixed(precision);
-
-    var parts   = number.split('.'),
-        dollars = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1' + thousands),
-        cents   = parts[1] ? (decimal + parts[1]) : '';
-
-    return dollars + cents;
-  }
-
-  switch(formatString.match(placeholderRegex)[1]) {
-    case 'amount':
-      value = formatWithDelimiters(cents, 2);
-      break;
-    case 'amount_no_decimals':
-      value = formatWithDelimiters(cents, 0);
-      break;
-    case 'amount_with_comma_separator':
-      value = formatWithDelimiters(cents, 2, '.', ',');
-      break;
-    case 'amount_no_decimals_with_comma_separator':
-      value = formatWithDelimiters(cents, 0, '.', ',');
-      break;
-  }
-
-  return formatString.replace(placeholderRegex, value);
-};
