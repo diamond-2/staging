@@ -5965,6 +5965,7 @@ body[data-template="loose-stone"] .product-content-section {
             padding: 18px 10px; } }
         .list-view-section table.list-view-items tr.list-view-item td.wishlist_td {
           width: 6.2%; }
+          
         .list-view-section table.list-view-items tr.list-view-item td.shape_td .text {
           vertical-align: middle;
           display: inline-block;
@@ -6304,6 +6305,17 @@ body[data-template="loose-stone"] .product-content-section {
         z-index: 3; }
         .solitaire-collection-wrapper .grid--view-items .grid__item .grid-view-item .product-images-wrapper {
           position: relative; }
+          .solitaire-collection-wrapper .grid--view-items .grid__item .grid-view-item .product-images-wrapper a.item-wishlist-icn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 99; }
+          .solitaire-collection-wrapper .grid--view-items .grid__item .grid-view-item .product-images-wrapper .swym-button.swym-add-to-wishlist-view-product {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 99;
+          }
           .solitaire-collection-wrapper .grid--view-items .grid__item .grid-view-item .product-images-wrapper:before {
             content: '';
             position: absolute;
@@ -6606,6 +6618,12 @@ body[data-template="loose-stone"] .product-content-section {
           background: #fff;
           position: relative;
           border: 1px solid #E0E0E0; }
+          .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item .product-images-wrapper .item-wishlist-icn {
+            position: absolute;
+            z-index: 99;
+            right: 15px;
+            top: 15px;
+          }
           .solitaire-collection-wrapper.loose-stone-plp-layout .grid--view-items .grid__item .product-images-wrapper.no-image {
             padding-top: 100%; }
           @media (max-width: 749px) {
@@ -14062,3 +14080,9 @@ body[data-template="loose-stone"] .product-section-row .product-wishlist {
         line-height: 1; } }
   .account_section_wrapper .register-page-wrapper .register-page-two-col-row > div.register-form-column .register-form-column-inner {
     margin-left: 0px; }
+.item-wishlist-icn svg{
+  width: 15px;
+}
+.item-wishlist-icn svg path {
+  stroke-width: 1;
+}

@@ -75,6 +75,15 @@
 
 <div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card">
     <div class="product-images-wrapper {% if product.images.size == 0 %}no-image{% endif %}">
+       <!-- Swym Wishlist Plus EPI Button-->
+       {% if customer %}
+       <button data-with-epi="true" class="swym-button swym-add-to-wishlist-view-product product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}" data-variant-id="{{product.variants[0].id}}" data-product-url="{{ shop.url }}{{ product.url }}"></button>
+       {% else %}
+       <a href="javascript:;" data-modal="showInfoModal" class="item-wishlist-icn">
+        {% render 'icon-account-wishlist' %}
+      </a>
+       {% endif %}
+       <!-- Swym Wishlist Plus EPI Button-->
       {% include 'product-badge' %}
       <div class="{% if product.images.size > 1 %}product_images_slider{% endif %}">
         {% for slideImage in product.images %}

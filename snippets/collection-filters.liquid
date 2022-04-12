@@ -1448,7 +1448,8 @@ selectOption +=  '</div">';
                 prodQty = prodObj[i].quantity,
                 prodTitle = prodObj[i].title,
                 prodTags = prodObj[i].tags,                
-                prodId = prodObj[i].id;
+                prodId = prodObj[i].product_id;
+                currentVariantId = prodObj[i].add_to_cart_id
                 if(prodObj[i].hasOwnProperty('shopify_images')){
                  var prodImages = prodObj[i].shopify_images;
                 } else {
@@ -1512,24 +1513,7 @@ selectOption +=  '</div">';
             console.log('MetaInfo before::==>>');
                       var metaInfobyview = '';
                       var itemUrls = prodLink+'/?view=metainfo';
-                    //   $.ajax({
-                    //     url: itemUrls,
-                    //     cache: false,
-                    //   success: function(res) {
-                      
-                    //     jwGridContent += res;
-                    //     jwGridContent +='<div class="product_compare">Compare</div>';
-                    //     console.log('MetaInfo after::==>>',jwGridContent);
-                    //   },
-                    //   error: function(XHR, XMLHttpRequest, error){
-                    //     console.log(XHR);
-                    //   }
-                    // });
-                   
-                    // console.log('MetaInfo after2222::==>>',jwGridContent);
-
-
-                    
+                                  
 
             if($('body').attr('data-template') == 'loose-stone-plp'){ 
              // console.log('inside Loosestone');
@@ -1621,9 +1605,28 @@ selectOption +=  '</div">';
             if(prodImages == undefined ){
               var noImage = 'no-image'
             }
+            if($('body').attr('data-customer') == 'true' ){
+              console.log('Customer exist');
+              var addWishlist = '<button data-with-epi="true" class="swym-button swym-add-to-wishlist-view-product product_'+prodId+'" data-swaction="addToWishlist" data-product-id="'+prodId+'" data-variant-id="'+_this_variants[0].variant_id+'" data-product-url="'+window.location.host+getprodlink+'"></button>';
+              console.log('Wislist Button dynamic',addWishlist)
+             
+                function swymCallbackFn(swat){
+                  // your API calls go here
+                  document.addEventListener("swym:collections-loaded", function(){
+                    swat.initializeActionButtons(".data-collection-listing-container");
+                  })
+                }
+                if(!window.SwymCallbacks){
+                  window.SwymCallbacks = [];
+                }
+                window.SwymCallbacks.push(swymCallbackFn);
+
+            } else {
+              var addWishlist = '<a href="javascript:;" data-modal="showInfoModal" class="item-wishlist-icn" aria-describedby="a11y-external-message"><svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">    <path d="M18.9542 3.14027C18.2213 1.69531 16.11 0.513075 13.6542 1.2014C12.4807 1.52703 11.4568 2.22537 10.7499 3.1823C10.0429 2.22537 9.01906 1.52703 7.84555 1.2014C5.38425 0.523584 3.27847 1.69531 2.54555 3.14027C1.51727 5.16321 1.9439 7.43836 3.81448 9.90266C5.28032 11.831 7.37516 13.7857 10.4162 16.0555C10.5123 16.1276 10.6307 16.1667 10.7526 16.1667C10.8745 16.1667 10.9929 16.1276 11.089 16.0555C14.1246 13.7909 16.2249 11.852 17.6907 9.90266C19.5559 7.43836 19.9825 5.16321 8.9542 3.14027Z" fill="white" stroke="currentColor" stroke-width="2"></path> </svg></a>'
+            }
             productGrid += '<div class="grid-view-item product-card">';
             productGrid += '<a class="grid-view-item__link grid-view-item__image-container full-width-link" href="'+getprodlink+'" style="display: none;"><span class="visually-hidden">'+prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</span></a>';
-            productGrid += '<div class="product-images-wrapper '+ noImage +'"><a class="product-full-link" href="'+getprodlink+'"> </a><div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider '+prodImgSliderDyn+'>';
+            productGrid += '<div class="product-images-wrapper '+ noImage +'"><a class="product-full-link" href="'+getprodlink+'"> </a> '+addWishlist+' <div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider '+prodImgSliderDyn+'>';
             // console.log('ProductImageLength', prodImages.length);
 
                if(prodImages != undefined ){
@@ -1700,7 +1703,7 @@ selectOption +=  '</div">';
                       // $(document).find('.product_view_tab[data-view="grid"] li .prodct_card_body').html('');
                       let x  = res;
                       var GridContentupdate = x;
-                      $(document).find('.product_view_tab[data-view="grid"] li[data-handle="'+prodLink.split('products/')[1]+'"] .prodct_card_body').html('').html(GridContentupdate);                      
+                      $(document).find('.product_view_tab[data-view="grid"] li[data-handle="'+prodLink.split('products/')[1]+'"]').html('').html(GridContentupdate);                      
                     } catch(err) {
                       console.log(err);
                     }
@@ -1716,18 +1719,18 @@ selectOption +=  '</div">';
                     });
                   };
 
-                  async function renderLSMetaMoreInfo() {
-                    try {
-                      const response = await getMoreData(prodLink+'/?view=lsmetamoreinfo')
-                      // $(document).find('.product_view_tab[data-view="grid"] li .prodct_card_body').html('');
-                      let y  = response;
-                      var LsGridmoreInfoContent = y;
-                      $(document).find('.product_view_tab[data-view="grid"] li[data-handle="'+prodLink.split('products/')[1]+'"] .product-images-wrapper .ls-item-more-info').html('').html(LsGridmoreInfoContent);                      
-                    } catch(err) {
-                      console.log(err);
-                    }
-                  }
-                  renderLSMetaMoreInfo();
+                  // async function renderLSMetaMoreInfo() {
+                  //   try {
+                  //     const response = await getMoreData(prodLink+'/?view=lsmetamoreinfo')
+                  //     // $(document).find('.product_view_tab[data-view="grid"] li .prodct_card_body').html('');
+                  //     let y  = response;
+                  //     var LsGridmoreInfoContent = y;
+                  //     $(document).find('.product_view_tab[data-view="grid"] li[data-handle="'+prodLink.split('products/')[1]+'"] .product-images-wrapper .ls-item-more-info').html('').html(LsGridmoreInfoContent);                      
+                  //   } catch(err) {
+                  //     console.log(err);
+                  //   }
+                  // }
+                  // renderLSMetaMoreInfo();
 
                   var listViewMetaUrls = prodLink+'/?view=listviewmetainfo';
 
@@ -1779,24 +1782,8 @@ selectOption +=  '</div">';
         }
       };
 
-      // Get product View for metafields information
-      
-    //   function getMetaInfo(prodHandle){
-    //     console.log('MetaInfo==>', prodHandle);
-    //     let itemUrls = prodHandle+'/?view=metainfo';
-    //     $.ajax({
-    //       url: itemUrls,
-    //       cache: false,
-    //     success: function(itemMetafields) {
-    //      var metaInfobyview = itemMetafields
-          
-    //     },
-    //     error: function(XHR, XMLHttpRequest, error){
-    //       console.log(XHR);
-    //     }
-    //   })
-    // }      
-
+      // Get product View for metafields information      
+  
       //Initialize Price Slider
     	function initializingPriceSlider(minPrice, highestPrice, selectedMin, selectedMax){
        //console.log(minPrice,'--', highestPrice,'--', selectedMin,'--', selectedMax);
