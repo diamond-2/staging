@@ -889,9 +889,9 @@ slate.Variants = (function() {
             variantMetaFields[variantKey].forEach(function(ele){ console.log(ele);
                            
               for(var key in ele) {   
-                console.log(key);   
-                // if(key == 'dec_stn_total_crt_wt_label' || key == 'frc_stn_total_crt_wt_label') {
-                //   $(document).find('[data-row="common_ttl_crt_wgt"]').find('.pdp-tab-label').text(ele[key]); 
+                console.log('KKKEEYY', key);   
+                // if(key == 'dec_stn_total_crt_wt' || key == 'frc_stn_total_crt_wt') {
+                //   key = 'tableContent_common_ttl_crt_wgt';
                 // } 
                 // else if(key == 'dia_tab1_dec_stn_total_crt_wt_label' || key == 'dia_tab1_frc_stn_total_crt_wt_label' || key == 'dia_tab2_dec_stn_total_crt_wt_label' || key == 'dia_tab2_frc_stn_total_crt_wt_label' || key == 'dia_tab3_dec_stn_total_crt_wt_label' || key == 'dia_tab3_frc_stn_total_crt_wt_label' || key == 'dia_tab4_dec_stn_total_crt_wt_label' || key == 'dia_tab4_frc_stn_total_crt_wt_label' || key == 'dia_tab5_dec_stn_total_crt_wt_label' || key == 'dia_tab5_frc_stn_total_crt_wt_label' || key == 'dia_tab6_dec_stn_total_crt_wt_label' || key == 'dia_tab6_frc_stn_total_crt_wt_label' || key == 'dia_tab7_dec_stn_total_crt_wt_label' || key == 'dia_tab7_frc_stn_total_crt_wt_label' || key == 'dia_tab8_dec_stn_total_crt_wt_label' || key == 'dia_tab8_frc_stn_total_crt_wt_label' || key == 'dia_tab9_dec_stn_total_crt_wt_label' || key == 'dia_tab9_frc_stn_total_crt_wt_label' || key == 'dia_tab10_dec_stn_total_crt_wt_label' || key == 'dia_tab10_frc_stn_total_crt_wt_label'){
                 //   $(document).find('[data-row="common_dia_tab_ttl_crt_wgt"]').find('.pdp-tab-label').text(ele[key]); 
@@ -10238,20 +10238,20 @@ window.addEventListener("resize", function() {
 
 
 
-  // Product Listing Product card Images slider
-  let plpImageSLider = document.querySelector('.product_images_slider');
-  if(plpImageSLider){
-    $('.product_images_slider').slick({ 
-      autoplay: false,
-      autoplaySpeed: 500,
-      arrows: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      Infinite: false,
-      loop: false,
-      dots: false
-    });
-  }
+  // // Product Listing Product card Images slider
+  // let plpImageSLider = document.querySelector('.product_images_slider');
+  // if(plpImageSLider){
+  //   $('.product_images_slider').slick({ 
+  //     autoplay: false,
+  //     autoplaySpeed: 500,
+  //     arrows: true,
+  //     slidesToShow: 1,
+  //     slidesToScroll: 1,
+  //     Infinite: false,
+  //     loop: false,
+  //     dots: false
+  //   });
+  // }
 
   // Product Table Toggle
   $(document).on('click', '.p_more_btn', function(e){
