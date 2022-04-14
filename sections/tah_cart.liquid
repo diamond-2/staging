@@ -437,7 +437,9 @@
     </div>
     
     <!-- end modal-->
-  
+  <!-- cart_items_limit-->
+  <input type="hidden" value="{{ section.settings.cart-item-t-cil }}" id="th_cart_cil">
+  <!--- end -->
    
 
 
@@ -715,7 +717,17 @@
         "id": "section_subheading-d",
         "type": "text",
         "label": "Section Sub-Heading"
-      }
+      },
+      {
+        "type": "header",
+        "content": "th cart items(limited to add to card)"
+    },
+    {
+        "id": "cart-item-t-cil",
+        "type": "number",
+        "label": "cart items limit",
+        "default":2
+    }
 
 	],
 	"blocks": [
