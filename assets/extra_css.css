@@ -9,3 +9,9 @@
     color: #6C1D45;
     cursor: not-allowed;
 }
+span#th_cart_added {
+    background: #6C1D45;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 10px 10px 10px;
+}
