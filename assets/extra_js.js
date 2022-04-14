@@ -5,16 +5,13 @@ let array_len;
     //let th_cart_p_id_ = $(this).attr("th_cart_item_p_id");
     let th_cart_p_id = $(this).attr("th_cart_item_p_handle");
     $(this).addClass("change_icon_c");
-<<<<<<< HEAD
     // if(parseInt(th_cart_items_id_no) != 6 && !arrrr.includes(th_cart_p_id)){
     //   $(this).closest('#th_cart_added').remove();
     // $(this).after("<span id='th_cart_added'>item is added to try at cart</span>");
     // }
-=======
     if(!arrrr.includes(th_cart_p_id)){
     $(this).after("<span id='th_cart_added'>item is added to try at cart</span>");
     }
->>>>>>> dev-md
   //  alert("The paragraph was clicked.");
    
 
@@ -27,7 +24,6 @@ let array_len;
             var new_arry=localStorage.getItem("th_cart_items_id");
             const myArr = new_arry.split(",");
             arrrr=myArr;
-<<<<<<< HEAD
             if(parseInt(th_cart_items_id_no) != 4){
             if ( !arrrr.includes(th_cart_p_id)){
               if(parseInt(th_cart_items_id_no) != 4 && !arrrr.includes(th_cart_p_id)){  
@@ -38,7 +34,6 @@ let array_len;
               }
             }else{
             $(this).closest('#th_cart_added').remove();
-=======
             array_len =arrrr.length;
             if(array_len < 7){
             if ( !arrrr.includes(th_cart_p_id)){
@@ -51,17 +46,13 @@ let array_len;
             }else{
             //$(this).closest('#th_cart_added').remove();
             $(this).next().remove("span");
->>>>>>> dev-md
             $(this).after("<span id='th_cart_added'>item is already added to try at cart</span>");
 
             }
           }else{
-<<<<<<< HEAD
             $(this).closest('#th_cart_added').remove();
-=======
             // $(this).closest('#th_cart_added').remove();
             $(this).next().remove("span");
->>>>>>> dev-md
             $(this).after("<span id='th_cart_added'>your try at home cart is full.</span>");
           }
     

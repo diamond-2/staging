@@ -579,10 +579,7 @@ $(document).on('click', '#remove_th_cart_item', function () {
    if (localStorage.getItem("th_cart_items_id") != null ) {
     var th_cart_items_id_no= localStorage.getItem("th_cart_items_id").length;
     if( parseInt(th_cart_items_id_no) > 0){
-<<<<<<< HEAD
 
-=======
->>>>>>> dev-md
       $("#the_cart_items_render").empty();
     let added_product_handle=  localStorage.getItem("th_cart_items_id");
     const myArray = added_product_handle.split(",");
@@ -604,10 +601,7 @@ $(document).on('click', '#remove_th_cart_item', function () {
           let x  = res;
           var GridContentupdate = x;
         //console.log(GridContentupdate); 
-<<<<<<< HEAD
        
-=======
->>>>>>> dev-md
          $("#the_cart_items_render").append(GridContentupdate);                   
         } catch(err) {
           console.log(err);
