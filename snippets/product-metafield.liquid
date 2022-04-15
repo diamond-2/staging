@@ -18,18 +18,22 @@
                 {%- capture prodtableContent_dimension4  -%}prod_info_dimension4_value{% endcapture %}
                 {%- capture prodtableContent_rhodium_platedLabel -%}rhodium_plated_label{% endcapture %}
                 {%- capture prodtableContent_rhodium_plated -%}rhodium_plated{% endcapture %}
-                {%- capture prodtableContent_avg_clarityLabel -%}prod_info_avg_clarity_label{%- endcapture -%}
-                {%- capture prodtableContent_avg_clarity -%}prod_info_avg_clarity{%- endcapture -%}
-                {%- capture prodtableContent_stone_categoryLabel -%}prod_info_stone_category_label{%- endcapture -%}
-                {%- capture prodtableContent_stone_category -%}prod_info_stone_category{%- endcapture -%}
-                {%- capture prodtableContent_stone_shapeLabel -%}prod_info_stone_shape_label{%- endcapture -%}
-                {%- capture prodtableContent_stone_shape -%}prod_info_stone_shape{%- endcapture -%}
                 {%- capture prodtableContent_stone_cut_shapeLabel -%}prod_info_stone_cut_shape_label{%- endcapture -%}
                 {%- capture prodtableContent_stone_cut_shape -%}prod_info_stone_cut_shape{%- endcapture -%}
+                
+               {%- comment -%}
+                {%- capture prodtableContent_dec_ttl_crt_wgt -%}dec_stn_total_crt_wt{%- endcapture -%}
+                 {%- capture prodtableContent_stone_shapeLabel -%}prod_info_stone_shape_label{%- endcapture -%}
+                {%- capture prodtableContent_stone_shape -%}prod_info_stone_shape{%- endcapture -%}
+                {%- capture prodtableContent_avg_clarityLabel -%}prod_info_avg_clarity_label{%- endcapture -%}
+                {%- capture prodtableContent_avg_clarity -%}prod_info_avg_clarity{%- endcapture -%}
                 {%- capture prodtableContent_no_of_stonesLabel -%}prod_info_no_of_stones_label{%- endcapture -%}
                 {%- capture prodtableContent_no_of_stones -%}prod_info_no_of_stones{%- endcapture -%}
+                {%- capture prodtableContent_stone_categoryLabel -%}prod_info_stone_category_label{%- endcapture -%}
+                {%- capture prodtableContent_stone_category -%}prod_info_stone_category{%- endcapture -%}
                 {%- capture prodtableContent_frc_ttl_crt_wgt -%}frc_stn_total_crt_wt{%- endcapture -%}
-                {%- capture prodtableContent_dec_ttl_crt_wgt -%}dec_stn_total_crt_wt{%- endcapture -%}
+
+               {% endcomment %}
 
                 {%- capture tableContent_rhodium_platedLabel -%}rhodium_plated_label{% endcapture %}
                 {%- capture tableContent_rhodium_plated -%}rhodium_plated{% endcapture %}
@@ -309,8 +313,8 @@
                 {%- capture tableContent_stone_cut_shapeLabel -%}dia_tab{{ j }}_stone_cut_shape_label{%- endcapture -%}
                 {%- capture tableContent_stone_cut_shape -%}dia_tab{{ j }}_stone_cut_shape{%- endcapture -%}                
                 
-                {%- capture tableContent_stone_nameLabel -%}dia_tab{{ j }}stone_name_label{%- endcapture -%}
-                {%- capture tableContent_stone_name -%}dia_tab{{ j }}stone_name{%- endcapture -%}
+                {%- capture tableContent_stone_nameLabel -%}dia_tab{{ j }}_stone_name_label{%- endcapture -%}
+                {%- capture tableContent_stone_name -%}dia_tab{{ j }}_stone_name{%- endcapture -%}
                 
                 {%- capture tableContent_no_of_stonesLabel-%}dia_tab{{ j }}_no_of_stones_label{%- endcapture -%}
                 {%- capture tableContent_no_of_stones-%}dia_tab{{ j }}_no_of_stones{%- endcapture -%}

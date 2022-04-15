@@ -1,1 +1,23 @@
-<h1>{{ page.title | escape }}</h1>
+<style>
+    iframe#caratWeightGuideIframe{
+        min-height: 900px;
+        max-width: 1260px;
+        margin: 40px auto;
+        display: block;
+    }
+    @media screen and (max-width: 749px){
+        iframe#caratWeightGuideIframe{
+            min-height: 500px;
+        }
+    }
+</style>
+<div class="dia-container">
+    <div class="text-center">
+        <h2>{{ page.title | escape }}</h2>
+    </div>   
+
+    {% assign pdfURL = 'carat_weight_guide.pdf' | downcase  %}
+    <iframe id="caratWeightGuideIframe" class="lazyload" data-src="{{ pdfURL | file_url }}" frameborder="0" width="100%" height="100%"></iframe>
+</div>
+
+
