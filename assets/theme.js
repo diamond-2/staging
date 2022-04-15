@@ -10181,7 +10181,7 @@ window.addEventListener("resize", function() {
   // Accordion
   $('.ac-heading a').click(function(e){
     e.preventDefault();
-    $('.ac-heading').removeClass('active');
+    //$('.ac-heading').removeClass('active');
     $(this).closest('.ac-heading').toggleClass('active');
     $(this).closest('.ac-item').find('.ac-body').slideToggle();
     $(this).closest('.ac-item').siblings('.ac-item').find('.ac-body').slideUp();

@@ -1,0 +1,899 @@
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet" href="{{ 'tah_cart.css' | asset_url }}" type="text/css" >
+<div id="shopify-section-cart-template-t-cart" class="shopify-section">
+    <div class="cart-template-wrapper padding_t">
+        <div class="dia-container" data-section-id="cart-template" data-section-type="cart-template" data-ajax-enabled="true">
+          <div data-cart-wrapper="">
+            <div class="glb-breadcrumb">
+              <ul>
+                <li>
+                  <a href="/">Home</a>
+                  <span class="breadcrumb_divider">/</span>
+                </li>
+                <li><span class="bred_tex" id="breadcrumb-text-c" style="color:inherit;">Shopping Bag</span></li>
+              </ul>
+            </div>
+            <div class="update-cart" id="tah-cart-form">
+              <div class="cart-page-se-header">
+                <div class="c_heading">{{ section.settings.section_heading-ct }}</div>
+                <div class="total_cart_item">Items ( <span id="th_cart_items_no"><span id="th_cart_t_no"></span>/7</span> ) {{ section.settings.section_heading-csb }}</div>
+              </div>
+              <form action="/cart" method="post" novalidate="" class="cart">
+                <div class="cart-page-two-col-row">
+                  <div class="cart-page-left-column">
+                    <table>
+                      <tbody id="the_cart_items_render"> 
+                        </tbody>
+                    </table>
+                  </div>
+                  <div class="cart-page-right-column">
+                    <div class="coupon-info">
+                      <div class="coupon-info-icon">
+                        <img src="{% if section.settings.cart-item-t34  != blank %} {{ section.settings.cart-item-t34 |img_url:"master"}} {% else %}https://cdn.shopify.com/s/files/1/0575/2681/2840/files/check-mark-svgrepo-com.svg?v=1648748830{% endif %}">                  
+                      </div>
+                      <div class="coupon-info-content-">
+                        <p>{{ section.settings.cart-item-tl }}</p>
+                      </div>
+                      <div class="cart-right-greater-iocn">
+                        <img src="{% if section.settings.cart-item-t35  != blank %} {{ section.settings.cart-item-t35 |img_url:"master"}} {% else %}https://cdn.shopify.com/s/files/1/0575/2681/2840/files/greater-than-solid-svgrepo-com_1.svg?v=1648810255{% endif %}">
+                      </div>
+                    </div>
+                    <div class="cart_sum_title">{{ section.settings.cart-item-t2 }}</div>
+                    <div class="cart__footer">
+                      <div class="grid">
+                        <div class="grid__item delivery-notes">
+                          <span class="delivery-notes-heading">{{ section.settings.cart-item-t3 }}</span>
+                          <span class="delivery-notes-subheading">INR O</span>
+                        </div>
+                        <div class="grid__item service-charge">
+                          <span class="delivery-notes-heading">{{ section.settings.cart-item-t4 }}</span>
+                          <span class="delivery-notes-subheading">{{ section.settings.cart-item-t5 }}</span>
+                        </div>
+                        <div class="grid__item cart_total_item ">
+                          <div class="cart-subtotal">
+                            <span class="cart-subtotal__title_">{{ section.settings.cart-item-t6 }}</span>
+                            <span class="cart-subtotal__price" data-cart-subtotal="">INR 0</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+      
+                    <div class="cart_bottom_section">
+                      <div class="cart__buttons-container-r" id="sap-btn">
+                        <div class="cart__submit-controls-">
+                          <a href="javascript:void(0);" class="glb-btn">{{ section.settings.cart-item-t7 }}</a>
+                        </div>
+                        <div class="cart__continue-controls">
+                          <a href="/" class="glb-btn">{{ section.settings.cart-item-t8 }}</a>
+                        </div>
+                    <div class="extra-info-box">
+                      <p>{{ section.settings.cart-item-t9 }}</p>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+    
+           
+          </div>
+          <div class="empty-cart  hide" data-empty-page-content="">
+              <h2>Your Shopping Bag</h2>
+              <div class="content_holder">
+                  <p>Your shopping bag is empty.</p>
+                  <p>For faster checkout, sign in to your account.</p>
+              </div>
+              <a href="/account/register" class="glb-btn-with-arrow">SIGN IN or SIGN UP</a>       
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="try-at-home-cart-describing" id="tah-cart-describing">
+    <div class="describing-container">
+      <p class="section-heading">{{ section.settings.section_heading-d }}</p>
+      <p class="sub-heading">{{ section.settings.section_subheading-d }}</p>
+     
+      <div class="describe-boxes"> 
+     {% for block in section.blocks %} 
+     {% if block.type == 'addBlocks' %}
+        <div class="inner-explained-section">
+           <img class="small-img-1" src="{% if block.settings.small-img-d  !=blank %}{{ block.settings.small-img-d | img_url:"master" }}{% else %} https://cdn.shopify.com/s/files/1/0575/2681/2840/files/Try_at_Home__Shopping_b_1.jpg?v=1648807539{% endif %}">
+           <p class="small-text-1">{{ block.settings.small-text-1-d }} </p>
+           <p class="small-text-2">{{ block.settings.small-text-2-d }}</p>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+     </div>
+    </div>
+    
+     <!-- checkout code -->
+     <div class="checkout-template-wrapper dia-container" id="checkout-form">
+      <div class="checkout-page-two-col-row">
+    
+        <div class="checkout-page-left-column">
+         <form class="checkout-form">
+           <div class="date-slot-wrapper">
+           <div class="date-slot-label">
+             <h2 class="date-slot-label-h">{{ section.settings.cart-item-t10 }}</h2>
+           </div>
+           <div class="date-slot-input">
+             <!-- <input class="date-slot-input-date" type="date" data-date-inline-picker="true" value="" name="date"/> -->
+             <input type="text" class="date-slot-input-date"  id="calender_date" value="" placeholder="dd/mm/yyyy" data-id="model_calender"  data-target="#mymodel_calender">
+           </div>
+           <div class="error">
+          </div>
+          </div>
+    
+          <div class="time-slot-wrapper">
+            <div class="time-slot-label">
+              <h2 class="time-slot-label-h">{{ section.settings.cart-item-t11 }}</h2>
+            </div>
+            <div class="time-slot-input-time" 
+            id="time-slot-outer"
+            th_cart-time-interval="{{ section.settings.cart-item-t12 }}"
+            th_cart-time-start="{{ section.settings.cart-item-t13 }}"
+            th_cart-time-end="{{ section.settings.cart-item-t14 }}"
+            >
+              <select class="time-slot-input" id="time-slot-select-time">             
+              </select>
+            </div>
+            <!-- <div class="error">
+           </div> -->
+           </div>
+    
+         <div class="booking-info-wrapper-outer">
+         
+          <div class="booking-info-label-title">
+            <h2 class="booking-info-label-h-title"><span id="text">{{ section.settings.cart-item-t15 }}</span></h2>
+          </div>
+    
+          <div class="booking-info-wrapper">
+            <div class="booking-info-label">
+              <p class="booking-info-label-h"><span id="text">{{ section.settings.cart-item-t16 }}</span><span id="symbol">*</span></p>
+            </div>
+            <div class="booking-info-input name-input">
+              <input class="booking-info-input-name" type="text" value="" required name="name"/>
+            </div>
+            <div class="error">
+            </div>
+           </div>
+    
+           <div class="booking-info-wrapper">
+            <div class="booking-info-label">
+              <p class="booking-info-label-h"><span id="text">{{ section.settings.cart-item-t17 }}</span><span id="symbol">*</span></p>
+            </div>
+            <div class="booking-info-input tel-input">
+              <input class="booking-info-input-mobile" type="tel" value="" required name="tel" onkeypress="return validateNumber(event)"/>
+            </div>
+            <div class="error">
+            </div>
+           </div>
+    
+           <div class="booking-info-wrapper">
+            <div class="booking-info-label">
+              <p class="booking-info-label-h"><span id="text">{{ section.settings.cart-item-t18 }}</span><span id="symbol">*</span></p>
+            </div>
+            <div class="booking-info-input email-input">
+              <input class="booking-info-input-email" type="email" value="" required name="email"/>
+            </div>
+            <div class="error">
+            </div>
+           </div>
+
+           <div class="booking-info-wrapper">
+            <div class="booking-info-label">
+              <p class="booking-info-label-h-add1"><span id="text">Address 1 </span><span id="symbol">*</span></p>
+            </div>
+            <div class="booking-info-input add1-input">
+              <input class="booking-info-input-add1" type="text" value="" required name="email"/>
+            </div>
+            <div class="error">
+            </div>
+           </div>
+
+           <div class="booking-info-wrapper">
+            <div class="booking-info-label">
+              <p class="booking-info-label-h-add2"><span id="text">Address 2 </span><!--<span id="symbol">*</span>--></p>
+            </div>
+            <div class="booking-info-input add2-input">
+              <input class="booking-info-input-add2" type="text" value=""  name="add2"/>
+            </div>
+           
+           </div>
+
+         <div class="city_state">
+           <div class="booking-info-wrapper">
+            <div class="booking-info-label">
+              <p class="booking-info-label-h-city"><span id="text">City </span><span id="symbol">*</span></p>
+            </div>
+            <div class="booking-info-input city-input">
+              <input class="booking-info-input-city" type="text" value=""  name="city"/>
+            </div>
+            <div class="error">
+            </div>
+           </div>
+           <div class="booking-info-wrapper">
+            <div class="booking-info-label">
+              <p class="booking-info-label-h-state"><span id="text">State </span><span id="symbol">*</span></p>
+            </div>
+            <div class="booking-info-input state-input">
+              <input class="booking-info-input-state" type="text" value=""  name="state"/>
+            </div>
+            <div class="error">
+            </div>
+           </div>
+          </div>
+
+          <div class="country_pincode">
+            <div class="booking-info-wrapper">
+             <div class="booking-info-label">
+               <p class="booking-info-label-h-country"><span id="text">Country</span><span id="symbol">*</span></p>
+             </div>
+             <div class="booking-info-input country-input">
+               <input class="booking-info-input-country" type="text" value=""  name="country"/>
+             </div>
+             <div class="error">
+             </div>
+            </div>
+            <div class="booking-info-wrapper">
+             <div class="booking-info-label">
+               <p class="booking-info-label-h-pincode"><span id="text">Pincode </span><span id="symbol">*</span></p>
+             </div>
+             <div class="booking-info-input pincode-input">
+               <input class="booking-info-input-pincode" type="text" value=""  name="pincode" onkeypress="return validateNumber(event)"/>
+             </div>
+             <div class="error">
+             </div>
+            </div>
+           </div>
+
+           <!-- <div class="booking-info-wrapper">
+            <div class="booking-info-label">
+              <p class="booking-info-label-h"><span id="text">{{ section.settings.cart-item-t19 }}</span><span id="symbol">*</span></p>
+            </div>
+            <div class="booking-info-input address-input">
+              <textarea class="booking-info-input-address" rows="4" cols="50" value="" name="address"></textarea>
+            </div>
+            <div class="error">
+            </div>
+           </div> -->
+    
+           <div class="booking-info-wrapper">
+            <div class="booking-info-btn">
+              <button class="booking-info-btn-" id="booking-info-btn-bn">{{ section.settings.cart-item-t20 }}</button>
+            </div>
+           </div>
+    
+          </div>
+         </form>
+        </div>
+    
+        <div class="checkout-page-right-column">
+         <div class="faq">
+          <div class="accordion-wrapper try-at-home-faq">
+            <div class="ac-grid">
+
+                {% for block in section.blocks %} 
+                {% if block.type == 'faq' %}
+               <div class="ac-item">
+                  <div class="ac-heading">
+                     <a href="javascript:void(0);" aria-describedby="a11y-external-message">
+                        {{ block.settings.title }}
+                        <span class="icon_s">
+                           <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M11.9999 0.995538C12.0004 1.12361 11.9721 1.25016 11.9172 1.36588C11.8624 1.48159 11.7823 1.58354 11.6828 1.66423L6.54046 5.80498C6.3871 5.93107 6.19474 6 5.99622 6C5.79771 6 5.60534 5.93107 5.45199 5.80498L0.309616 1.51849C0.134589 1.37297 0.0245216 1.16387 0.00362666 0.937176C-0.0172683 0.710485 0.052721 0.484775 0.198198 0.3097C0.343674 0.134626 0.552721 0.0245285 0.779351 0.00362778C1.00598 -0.0172729 1.23163 0.0527353 1.40665 0.198252L6.00051 4.03037L10.5944 0.326846C10.7202 0.222013 10.8734 0.155421 11.0358 0.134949C11.1983 0.114478 11.3632 0.140983 11.5111 0.211329C11.6589 0.281675 11.7835 0.392918 11.8702 0.531895C11.9568 0.670871 12.0019 0.831765 11.9999 0.995538Z" fill="black"></path>
+                           </svg>
+                        </span>
+                     </a>
+                  </div>
+                  <div class="rte ac-body">
+                     <div class="ac-body-inner">
+                         {{ block.settings.faq-anwser }}
+                        </div>
+                  </div>
+               </div>
+              {% endif %}
+              {% endfor %}
+
+            </div>
+         </div>
+         </div>
+      </div>
+      
+      </div>
+    </div>
+      <!-- checkout code end -->
+    
+    <!-- appointment conformation code start -->
+    <div class="ac-wrapper dia-container" id="ac-wrapper">
+      <div class="ac-wrapper-title">
+        <h2 class="ac-wrapper-title-h">{{ section.settings.cart-item-t21 }}</h2>
+      </div>
+      <div class="ac-wapper-inner">
+    
+        <div class="ac-wapper-inner-mtd">
+        <div class="ac-wapper-inner-image">
+          <img src="{% if section.settings.cart-item-t22 != blank %}{{ section.settings.cart-item-t22 |img_url:"master" }} {% else%}https://cdn.shopify.com/s/files/1/0575/2681/2840/files/Try_at_Home__Appointment.png?v=1648824435 {% endif %}">
+        </div>
+        <div class="ac-wapper-inner-title">
+          <p class="ac-wrapper-inner-title-h"> {{ section.settings.cart-item-t23 }}</p>
+        </div>
+        <div class="ac-wapper-inner-description">
+          <p class="ac-wrapper-inner-description-p"> {{ section.settings.cart-item-t24 }} </p>
+        </div>
+      </div>
+    
+        <div class="ac-wapper-inner-adat-r">
+        <div class="ac-wapper-inner-adat">
+          <p class="ac-wrapper-inner-adat-p">{{ section.settings.cart-item-t25 }}</p>
+        </div>
+    
+        <div class="ac-wapper-inner-adat-d-outer">
+        <div class="ac-wapper-inner-adat-d-d">
+          <div class="ac-wrapper-inner-adat-d"> 
+          <p id="adat-d">{{ section.settings.cart-item-t26 }}</p>
+          <p id="adat-d-v">2021-08-14</p>
+          </div>
+        </div>
+        <div class="ac-wapper-inner-adat-d-t">
+          <div class="ac-wrapper-inner-adat-t"> 
+          <p id="adat-t">{{ section.settings.cart-item-t27 }}</p>
+          <p id="adat-d-v">11:30 AM To 01:00 PM</p>
+          </div>
+        </div>
+      </div>
+    
+      </div>
+    
+      <div class="ac-wapper-inner-adat-add">
+        <div class="ac-wapper-inner-adat-add-t">
+          <p class="ac-wrapper-inner-adat-p-add-t">{{ section.settings.cart-item-t28 }}</p>
+        </div>
+        <div class="ac-wapper-inner-adat-add-t-p">
+          <div class="ac-wrapper-inner-adat-add-t-p-v"> 
+          <p id="adat-add-p-v">
+            Aryamond Singapore PTE .Limited 
+            Wisma Atria
+            #02-03-6/07
+            435 Orchard Road
+            Singapore 238877
+          </p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="ac-wapper-inner-adat-btn">
+        <button class="adat-btncb" id="adat-btncb">{{ section.settings.cart-item-t29 }}</button>
+      </div>
+    
+      <div class="ac-wapper-inner-adat-whdyif">
+        <h2 class="adat-whdyif" id="adat-whdyif">{{ section.settings.cart-item-t30 }}</h2>
+        <div class="whdyif-btns">
+        <div class="whdyif-left">
+          <button class="whdyif-left-btn" id="whdyif-left-btn">{{ section.settings.cart-item-t31 }}</button>
+        </div>
+        <div class="whdyif-right">
+          <button class="whdyif-right-btn" id="whdyif-right-btn">{{ section.settings.cart-item-t32 }}</button>
+        </div>
+      </div>
+      </div>
+    
+      <div class="ac-wapper-inner-adat-vmr">
+      <a href="javascript:vaoid(0);" class="vmr-a" id="vmr-a">{{ section.settings.cart-item-t33 }}</a>
+      </div>
+    
+      <div class="ac-wapper-inner-adat-el">
+        <div class="adat-el" id="adat-el">Incase you have any queries, Please write to us at info@Diamond2.com Or call us on 344434443444</div>
+        </div>
+    
+      </div>
+    </div>
+    
+    <!-- appointment conformation code end -->
+    <!--- opt modal -->
+    <div class="tah-m-overlay" id="tah-m-overlay"></div>
+    <div class="tah-m-modal" id="tah-m-modal">
+      <button class="tah-m-modal-close-btn" id="tah-m-close-btn"><img src="https://cdn.shopify.com/s/files/1/0575/2681/2840/files/cancel-removebg-preview.png?v=1649151751"></button>
+     
+    <div class="th_cart_inner">
+      <div class="row justify-content-md-center">
+          <div class="text-center">
+            <div class="row">
+              <div class="mt-5 bgWhite">
+                <div class="title">
+                  {{ section.settings.cart-item-t36 }}
+                </div>
+                <div class="th_cart_inner-tc">
+                 <div class="th_cart_inner-tc-in" id="th_cart_inner-tc-in">
+                  <span id="mobile_no_m"> +921345876</span><span id="mobile_no_mc">{{ section.settings.cart-item-t38 }}</span>
+                </div>
+                 
+                  <div class="mobile-no-cl" id="mobile-no-cl">
+                      <input type="tel" name="mncl-in" value="" id="mncl-in" onkeypress="return validateNumber(event)"><button id="mncl-in-btn">{{ section.settings.cart-item-t39 }}</button>
+                  </div>
+                  <div class="error_n">
+                </div>
+                  <span id="mobile_no_m_br"></span>
+                </div>
+                <div class="th_cart_inner-outer">
+                <form action="" class="th_cart_inner-form">
+                  <input class="otp" id="th_cart_opt_p" type="text"  size="1" maxlength="1" onkeypress="return validateNumber(event)">
+                  <input class="otp" id="th_cart_opt_p" type="text"  size="1" maxlength="1" onkeypress="return validateNumber(event)">
+                  <input class="otp" id="th_cart_opt_p" type="text" size="1" maxlength="1" onkeypress="return validateNumber(event)">
+                  <input class="otp" id="th_cart_opt_p" type="text"  size="1" maxlength="1" onkeypress="return validateNumber(event)">
+                  <input class="otp" id="th_cart_opt_p" type="text"  size="1" maxlength="1" onkeypress="return validateNumber(event)">
+                  <input class="otp" id="th_cart_opt_p" type="text"  size="1" maxlength="1" onkeypress="return validateNumber(event)">              
+                </form>
+                <div class="opt_error">
+                </div>
+              </div>
+                <button class='btn mt-4 mb-4 customBtn' id="vya_btn">{{ section.settings.cart-item-t37 }}</button>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    </div>
+    
+    <!-- end modal-->
+  <!-- cart_items_limit-->
+  <input type="hidden" value="{{ section.settings.cart-item-t-cil }}" id="th_cart_cil">
+  <!--- end -->
+   
+
+
+
+{% schema %}
+{
+	"name": "try at home cart",
+	"class": "th_cart_section",
+	"settings": [
+    {
+        "type": "header",
+        "content": "Cart Settings"
+    },
+    {
+        "id": "section_heading-ct",
+        "type": "text",
+        "label": "cart title",
+        "default":"TRY AT HOME SHOPPING BAG"
+    },
+    {
+        "id": "section_heading-csb",
+        "type": "text",
+        "label": "items title",
+        "default":"Add Minimum 1 & Maximum 7 Design"
+    },
+    {
+        "id": "cart-item-tl",
+        "type": "text",
+        "label": "need help",
+        "default":"Need help choosing Designs?"
+    },
+    {
+      "id": "cart-item-t34",
+      "type": "image_picker",
+      "label": "left icon"
+      },
+      {
+        "id": "cart-item-t35",
+        "type": "image_picker",
+        "label": "right icon"
+    },
+    {
+        "id": "cart-item-t2",
+        "type": "text",
+        "label": "Order Summary",
+        "default":"Order Summary"
+    },
+    {
+        "id": "cart-item-t3",
+        "type": "text",
+        "label": "Free Trail",
+        "default":"Free Trail"
+    },
+    {
+        "id": "cart-item-t4",
+        "type": "text",
+        "label": "Service Charge",
+        "default":"Service Charge"
+    },
+    {
+        "id": "cart-item-t5",
+        "type": "text",
+        "label": "Free",
+        "default":"Free"
+    },
+    {
+        "id": "cart-item-t6",
+        "type": "text",
+        "label": "Total Cost",
+        "default":"Total Cost"
+    },
+    {
+        "id": "cart-item-t7",
+        "type": "text",
+        "label": "Schedule your appointment",
+        "default":"Schedule your appointment"
+    },
+    {
+        "id": "cart-item-t8",
+        "type": "text",
+        "label": "add more design",
+        "default":"add more design"
+    },
+    {
+        "id": "cart-item-t9",
+        "type": "text",
+        "label": "Add Minimum 1 & Maximum 7 design",
+        "default":"Add Minimum 1 & Maximum 7 design"
+    },
+    {
+        "type": "header",
+        "content": "checkout settings"
+    },
+    {
+        "id": "cart-item-t10",
+        "type": "text",
+        "label": "Pick a Date slot",
+        "default":"Pick a Date slot"
+    },
+    {
+        "id": "cart-item-t11",
+        "type": "text",
+        "label": "Pick a time slot",
+        "default":"Pick a time slot"
+    },
+    {
+        "id": "cart-item-t12",
+        "type": "text",
+        "label": "Slot Interval in hour",
+        "default":"1"
+    },
+    {
+        "id": "cart-item-t13",
+        "type": "text",
+        "label": "Start Time",
+        "default":"10:00 AM"
+    },
+    {
+        "id": "cart-item-t14",
+        "type": "text",
+        "label": "End Time",
+        "default":"08:00 PM"
+    },
+    {
+        "id": "cart-item-t15",
+        "type": "text",
+        "label": "Booking Information",
+        "default":"Booking Information"
+    },
+    {
+        "id": "cart-item-t16",
+        "type": "text",
+        "label": "Full Name",
+        "default":"Full Name"
+    },
+    {
+        "id": "cart-item-t17",
+        "type": "text",
+        "label": "Mobile Number",
+        "default":"Mobile Number"
+    },
+    {
+        "id": "cart-item-t18",
+        "type": "text",
+        "label": "Email Id",
+        "default":"Email Id"
+    },
+    {
+        "id": "cart-item-t19",
+        "type": "text",
+        "label": "Your Address",
+        "default":"Your Address"
+    },
+    {
+        "id": "cart-item-t20",
+        "type": "text",
+        "label": "Book Now",
+        "default":"Book Now"
+    },
+    {
+        "id": "cart-item-t21",
+        "type": "text",
+        "label": "Appointment Confirmation",
+        "default":"Appointment Confirmation"
+    },
+    {
+        "id": "cart-item-t22",
+        "type": "image_picker",
+        "label": "image (icon)"
+    },
+    {
+        "id": "cart-item-t23",
+        "type": "text",
+        "label": "Your Try At Home Has Been Conform",
+        "default":"Your Try At Home Has Been Conform"
+    },
+    {
+        "id": "cart-item-t24",
+        "type": "html",
+        "label": "we so excited",
+        "default":"<span>We are so excited you booked your appointment.We are going to come hover with all your faourite</span><span>designs for you to try on.Please check all the deatils below</span>"
+    },
+    {
+        "id": "cart-item-t25",
+        "type": "html",
+        "label": "Appointment Date And Time",
+        "default":"Appointment Date And Time"
+    },
+    {
+        "id": "cart-item-t26",
+        "type": "text",
+        "label": "Date",
+        "default":"Date"
+    },
+    {
+        "id": "cart-item-t27",
+        "type": "text",
+        "label": "Time",
+        "default":"Time"
+    },
+    {
+        "id": "cart-item-t28",
+        "type": "text",
+        "label": "Appointment Address",
+        "default":"Appointment Address"
+    },
+    {
+        "id": "cart-item-t29",
+        "type": "text",
+        "label": "CONTINUE BROWSING",
+        "default":"CONTINUE BROWSING"
+    },
+    {
+        "id": "cart-item-t30",
+        "type": "text",
+        "label": "WHO DID YOU BOOK IT FOR?",
+        "default":"WHO DID YOU BOOK IT FOR?"
+    },
+    {
+        "id": "cart-item-t31",
+        "type": "text",
+        "label": "MYSELF",
+        "default":"MYSELF"
+    },
+    {
+        "id": "cart-item-t32",
+        "type": "text",
+        "label": "SOMEONE ELSE",
+        "default":"SOMEONE ELSE"
+    },
+    {
+        "id": "cart-item-t33",
+        "type": "text",
+        "label": "VIEW MY REQUEST >",
+        "default":"VIEW MY REQUEST >"
+    },
+    {
+      "type": "header",
+      "content": "otp modal"
+   },
+   {
+      "id": "cart-item-t36",
+      "type": "text",
+      "label": "opt tile",
+      "default":"Enter 6 Digit OTP to confirm your appointment"
+    },
+    {
+      "id": "cart-item-t37",
+      "type": "text",
+      "label": "opt button",
+      "default":"Verify Your Appointment"
+    },
+    {
+      "id": "cart-item-t38",
+      "type": "text",
+      "label": "opt anchor",
+      "default":"Change Number"
+    },
+    {
+      "id": "cart-item-t39",
+      "type": "text",
+      "label": "opt submit",
+      "default":"submit"
+    },
+    {
+        "type": "header",
+        "content": "Four Icons"
+    },
+    {
+        "id": "section_heading-d",
+        "type": "text",
+        "label": "Section Heading"
+      },
+       {
+        "id": "section_subheading-d",
+        "type": "text",
+        "label": "Section Sub-Heading"
+      },
+      {
+        "type": "header",
+        "content": "th cart items(limited to add to card)"
+    },
+    {
+        "id": "cart-item-t-cil",
+        "type": "number",
+        "label": "cart items limit",
+        "default":2
+    }
+
+	],
+	"blocks": [
+           {
+            "type": "addBlocks",
+            "name": "addBlocks",
+            "limit": 4,
+            "settings": [
+              {
+                "id": "small-img-d",
+                "type": "image_picker",
+                "label": "Icons"
+              },
+              {
+                "id": "small-text-1-d",
+                "type": "text",
+                "label": "Heading Text"
+              },
+              {
+                "id": "small-text-2-d",
+                "type": "text",
+                "label": "Subheading Text"
+              }
+            ]
+		},
+
+        {
+            "type": "faq",
+            "name": "faq",
+            "settings": [
+              {
+                "id": "title",
+                "type": "text",
+                "label": "faq quaetion",
+                "default":"faq quaetion"
+              },
+              {
+                "id": "faq-anwser",
+                "type": "text",
+                "label": "faq anwser",
+                "default":"faq anwser"
+              }
+            ]
+		}
+
+	]
+}
+{% endschema %}
+    
+
+
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+<div id="mymodel_calender" class="model_calender">
+<div class="model-content">
+    <div class="modal-header">
+<span class="close" data-close="model_calender">&times;</span>
+</div>
+    <div class="modal-body">
+
+
+
+<div class="main-wrapper">
+  <div class="sidebar-wrapper z-depth-2 side-nav fixed" id="sidebar">
+    <div class="sidebar-title">
+      <h4>Events</h4>
+      <h5 id="eventDayName">Date</h5>
+    </div>
+    <div class="sidebar-events" id="sidebarEvents">
+      <div class="empty-message">Sorry, no events to selected date</div>
+    </div>
+
+  </div>
+
+  <div class="content-wrapper grey lighten-3">
+    <div class="container-ch">
+     <div class="choose-new-date">
+      <p>choose new date</p>
+     </div>
+      <div class="calendar-wrapper z-depth-2">
+
+        <div class="header-background">
+          <div class="calendar-header">
+
+
+
+            <div class="row header-title">
+
+              <div class="header-text">
+                <h3 id="month-name">February</h3>
+                <h5 id="todayDayName">Today is Friday 7 Feb</h5>
+              </div>
+
+            </div>
+            <div class="pn_btn_cal">
+             <a class="prev-button" id="prev">
+              <i class="material-icons">keyboard_arrow_left</i>
+            </a>
+            <a class="next-button" id="next">
+              <i class="material-icons">keyboard_arrow_right</i>
+            </a>
+          </div>
+          </div>
+        </div>
+
+        <div class="calendar-content">
+          <div id="calendar-table" class="calendar-cells">
+
+            <div id="table-header">
+              <div class="row">
+                <div class="col">Mon</div>
+                <div class="col">Tue</div>
+                <div class="col">Wed</div>
+                <div class="col">Thu</div>
+                <div class="col">Fri</div>
+                <div class="col">Sat</div>
+                <div class="col">Sun</div>
+              </div>
+            </div>
+
+            <div id="table-body" class="">
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="calendar-footer">
+        <div id="cancel_footer"> cancel </div> 
+        <div id="apply_footer"> apply </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+</div>
+</div>
+</div>
+
+
+<!--calender  cdn start -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+ <!-- time slot cdn-->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
+ <script src="{{ 'tah_cart.js' | asset_url }}"></script>
+ <!--- time slot cdn end-->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap-grid.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+<!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> -->
+ <!--calender  cdn end -->
+
+ 
+  
+    

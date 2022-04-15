@@ -6253,10 +6253,10 @@ body[data-template="loose-stone"] .product-content-section {
             width: calc(100% - -5px);
             left: -3px;
             top: -3px; } }
-      .solitaire-collection-wrapper .grid--view-items .grid__item:hover:after {
+      /* .solitaire-collection-wrapper .grid--view-items .grid__item:hover:after {
         transform: scale(1);
         opacity: 1;
-        visibility: visible; }
+        visibility: visible; } */
       .solitaire-collection-wrapper .grid--view-items .grid__item:hover .price_hidden_row {
         opacity: 1;
         visibility: visible; }
