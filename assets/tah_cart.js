@@ -1,4 +1,4 @@
-
+document.addEventListener('DOMContentLoaded', function() {
 document.getElementById("sap-btn").addEventListener("click", function(event){
     event.preventDefault()
     document.getElementById('tah-cart-form').style.display = "none";
@@ -517,15 +517,19 @@ document.getElementById('cancel_footer').addEventListener('click', function() {
 /* code for show items */
 
 
+console.log('TAH Cart.js active');
+
 
 let product_handle_arr=[];
 
 if (localStorage.getItem("th_cart_items_id") != null ) {
+  console.log(localStorage.getItem("th_cart_items_id"));
   var th_cart_items_id_no= localStorage.getItem("th_cart_items_id").length;
   if( parseInt(th_cart_items_id_no) > 0){
 
 
-let added_product_handle=  localStorage.getItem("th_cart_items_id");
+let added_product_handle =  localStorage.getItem("th_cart_items_id"); console.log("added_product_handle", added_product_handle);
+
 const myArray = added_product_handle.split(",");
 $("#the_cart_items_render").empty();
 myArray.forEach(function(item, i) {
@@ -622,3 +626,5 @@ $(document).on('click', '#remove_th_cart_item', function () {
 
 });
 /* removed items from localstorag */
+
+});

@@ -1,4 +1,5 @@
 {%- layout none -%}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
 {%- if product.template_suffix contains 'loose' -%}
 {%- assign ls_depth = product.metafields.global.ls_cert_Depth -%}
 {%- assign ls_table = product.metafields.global.ls_cert_Table -%}
@@ -120,6 +121,15 @@
           {%- assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price -%}
           {%- if product.compare_at_price -%}<div class="product_discount">{{ discount | floor }}% OFF</div>{%- endif -%}
         </div>
+        {% if product.tags contains 'TAH' %}
+        <div class="tah-add-to-cart-block">
+          <button class="tah-add-to-cart-btn" data-variantid="{{ current_variant.id }}" data-add-to-cart data-handle="{{ product.handle }}">
+            <span class="tah-add-to-cart-btn-icn">{%- include 'icon-plus-white' -%}</span>
+            <span class="tah-add-to-cart-btn-added-icn">{%- include 'icon-tick-white' -%}</span>
+          </button>
+        </div>
+        {% endif %}
+        
       </div>
       <div class="show_mobile">{{ showMoreData }}</div>
 
@@ -180,7 +190,6 @@
           dots: false
         });
     </script>
-  {%- assign current_variant = product.selected_or_first_available_variant -%}
   {%- assign stoneTotalWgt = product.metafields.global.stn_total_ct_wt -%}
   {%- assign stoneClr = product.metafields.global.jew_stn_graded_color  -%}
   {%- assign stoneClarity = product.metafields.global.jew_stn_graded_color -%}
@@ -200,6 +209,14 @@
           {%- assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price -%}
           {%- if product.compare_at_price -%}<div class="product_discount">{{ discount | floor }}% OFF</div>{%- endif -%}
         </div>  
+        {% if product.tags contains 'TAH' %}
+          <div class="tah-add-to-cart-block">
+            <button class="tah-add-to-cart-btn" data-variantid="{{ current_variant.id }}" data-add-to-cart data-handle="{{ product.handle }}">
+              <span class="tah-add-to-cart-btn-icn">{%- include 'icon-plus-white' -%}</span>
+              <span class="tah-add-to-cart-btn-added-icn">{%- include 'icon-tick-white' -%}</span>
+            </button>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>

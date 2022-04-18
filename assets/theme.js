@@ -10879,6 +10879,48 @@ $(document).on('click', '.remove-item-from-wishlit', function(){
 
 });
 
+var tahCartItems = [];
+$(document).on('click', '.tah-add-to-cart-btn[data-add-to-cart]', function(){
+console.log('Tah add to bag hit')
+tahCartItems.push($(this).data('handle'));
+
+let uniqueArray = [...new Set(tahCartItems)];
+
+localStorage.setItem("th_cart_items_id", uniqueArray);
+ 
+  // let formData = {
+  //   'items': [{
+  //    'id': $(this).data('handle'),
+  //    'quantity': 1
+  //    }]
+  //  };
+  //  fetch(window.Shopify.routes.root + 'cart/add.js', {
+  //    method: 'POST',
+  //    headers: {
+  //      'Content-Type': 'application/json'
+  //    },
+  //    body: JSON.stringify(formData)
+  //  })
+  //  .then(response => {
+  //    console.log('Tah add to bag', response);
+  //    $.ajax({
+  //     url: '/cart.js',
+  //     dataType: "json",
+  //     cache: false,
+  //     success: function(cart) {
+  //       console.log(cart);
+     
+        
+  //     }       
+  //   });
+
+  //    return response.json();
+  //  })
+  //  .catch((error) => {
+  //    console.error('Error:', error);
+  //  });
+});
+
 
 });
 

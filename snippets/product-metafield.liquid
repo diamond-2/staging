@@ -298,6 +298,12 @@
                 {% endif %}
 
                 <div class="product-info-gird_column">
+                {%- comment -%}                              
+                    {%- capture tableContent_stone_nameLabel -%}dia_tab{{ j }}_stone_name_label{%- endcapture -%}
+                    {%- capture tableContent_stone_name -%}dia_tab{{ j }}_stone_name{%- endcapture -%}
+                    variantMetafield[tableContent_stone_nameLabel] != blank or 
+                    variantMetafield[tableContent_stone_name] != blank or 
+                {%- endcomment -%}
                 {% for j in (1..10) %}
                 {%- capture otherTableContent_title -%}dia_tab{{ j }}_title{%- endcapture -%}
 
@@ -311,10 +317,7 @@
                 {%- capture tableContent_stone_shape -%}dia_tab{{ j }}_stone_shape{%- endcapture -%}
                 
                 {%- capture tableContent_stone_cut_shapeLabel -%}dia_tab{{ j }}_stone_cut_shape_label{%- endcapture -%}
-                {%- capture tableContent_stone_cut_shape -%}dia_tab{{ j }}_stone_cut_shape{%- endcapture -%}                
-                
-                {%- capture tableContent_stone_nameLabel -%}dia_tab{{ j }}_stone_name_label{%- endcapture -%}
-                {%- capture tableContent_stone_name -%}dia_tab{{ j }}_stone_name{%- endcapture -%}
+                {%- capture tableContent_stone_cut_shape -%}dia_tab{{ j }}_stone_cut_shape{%- endcapture -%}  
                 
                 {%- capture tableContent_no_of_stonesLabel-%}dia_tab{{ j }}_no_of_stones_label{%- endcapture -%}
                 {%- capture tableContent_no_of_stones-%}dia_tab{{ j }}_no_of_stones{%- endcapture -%}
@@ -440,9 +443,6 @@
                     variantMetafield[tableContent_cert_culetLabel] != blank or
                     variantMetafield[tableContent_cert_culet] != blank or
 
-                    variantMetafield[tableContent_stone_nameLabel] != blank or 
-                    variantMetafield[tableContent_stone_name] != blank or 
-
                     variantMetafield[tableContent_setting_typeLabel] != blank or
                     variantMetafield[tableContent_setting_type] != blank or
 
@@ -514,12 +514,14 @@
                                         </tr>
                                         {% endif %}
                 
+                                        {%- comment -%}
                                         {% if variantMetafield[tableContent_stone_name] != blank %}
                                         <tr data-tooltip="jewstnname" data-row="{{ tableContent_stone_name }}">
                                             <td><span class="pdp-tab-label">{% if variantMetafield[tableContent_stone_nameLabel] != blank %}{{ variantMetafield[tableContent_stone_nameLabel] }}{% else %}Stone Name{% endif %}</span></td>
                                             <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_stone_name] }}</span> {%- if variantMetafield[tableContent_tooltip_avg_name] != blank -%}<span class="meta_tooltip" data-tooltip-title="{{ variantMetafield[tableContent_tooltip_avg_name] }}"></span>{%- endif -%}</td>
                                         </tr>
                                         {% endif %}
+                                        {%- endcomment -%}
                 
                                         {% if variantMetafield[tableContent_actual_stone_wt_carat] != blank %}
                                         <tr data-tooltip="jewstnname" data-row="{{ tableContent_actual_stone_wt_carat }}">

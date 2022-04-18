@@ -72,3 +72,36 @@ body.layout_try-at-home .page-container{position:unset;}
 
 
 </style>
+<script>
+document.addEventListener('DOMContentLoaded', function(event) {
+  $('.explore-btn').on('click', function(){
+    if($(this).prev('input').val() !=''){
+      let getZip = $(this).prev('input').val(); console.log('getZip==>', getZip)
+      getProductListByZipCode(getZip);
+    } else {
+      alert('Please Enter the Location Zipcode');
+      return false;
+    }    
+  });
+});
+
+function getProductListByZipCode(zipCode){
+  $.ajax({
+    type: 'POST',
+    url: 'https://aryamond.mobikasa.net/api/get-zip-sku',
+    data: {
+    zip: zipCode
+    },
+    dataType: 'json', 
+    success: function (data) { 
+        if(data.status == true && data.products.length > 0){
+          console.log('tst-->', data.products[0].skus)
+          let tahProductList = data.products[0].skus;
+          localStorage.setItem("tahProducts", tahProductList);
+          window.location.href = '/collections/try-at-home';
+        }
+    } 
+  });
+}
+
+</script>
