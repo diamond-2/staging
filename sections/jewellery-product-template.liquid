@@ -168,10 +168,13 @@
                         {%- if current_variant.sku != blank -%}
                         <div class="p_sku">SKU: <span class="__sku">{{ current_variant.sku }}</span></div>
                         {% assign caratWeightGuide = 'Carat Weight Guide' %}
+                        <div class="p_weight_guide"><a href="/pages/caratweightguide">{{caratWeightGuide}}</a></div>
+                        {% comment %}
                         <div class="p_weight_guide"><a custom-modal="trigger" href="#{{ caratWeightGuide | downcase | replace: ' ', '_' }}">{{caratWeightGuide}}</a></div>        
                         {% capture weightGuidePopup %}
                             {% include 'weight_guide-popup', weight_guide_text: caratWeightGuide %}
-                        {% endcapture %}                    
+                        {% endcapture %}  
+{% endcomment %}
                         {%- endif -%}
                     </div>
                     {%- endif -%}

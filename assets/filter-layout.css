@@ -500,6 +500,23 @@ span.clear-filter img {
     color: #ffffff;
 }
 
+.tah-add-to-cart-block button.tah-add-to-cart-btn {
+    width: 35px;
+    height: 35px;
+    background: #6679CC;
+    border: none;
+    appearance: none;
+    border-radius: 50%;
+    color: white;
+}
+.tah-add-to-cart-btn-added-icn,
+.tah-add-to-cart-block button.tah-add-to-cart-btn.tah-item-added .tah-add-to-cart-btn-icn {
+    display: none;
+}
+.tah-add-to-cart-block button.tah-add-to-cart-btn.tah-item-added .tah-add-to-cart-btn-added-icn {
+    display:  block;
+}
+
 @media screen and (max-width: 991px) {
     .collection-filter-wrapper[data-filter-type=shape-filter] {
         overflow: hidden;

@@ -57,6 +57,7 @@
     }else {
       var maxResults = 16;
     }    
+    
     if(window.location.search.indexOf('?&') > -1) {
       var defFilterName = 'restrictBy[collections]={{ collection.title | replace: ',' , '\,' | url_encode }}'+window.location.search.split('?')[1];
     } else {
@@ -64,22 +65,23 @@
     }
     console.log('defFilterName==>', defFilterName);
 
+    
+
       var searchsortby = $(document).find("#sortByFilter option:selected").attr('value'); // console.log('sortyBy==> '+ searchsortby);
       var searchBaseUrl = 'https://www.searchanise.com/getresults?api_key=7r9L5P8L4h';
 
+    if(window.location.pathname == '/collections/try-at-home' && localStorage.getItem("tahProducts") != null && localStorage.getItem("tahProducts").length > 0){
+      var getTahSkus = localStorage.getItem("tahProducts").replaceAll(',', '|');
+      var tahfilterData = '&restrictBy[filter_metafield_d7c8b4ec7e41c20a313f2959da7994f7]='+getTahSkus;
+      var queryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName + tahfilterData+'&maxResults=' + maxResults;
+    } else {
       var queryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
+    }
+
+      
       var searchData = '';
       var filters = '';
 
-    // $(document).on('change', '[data-collection-filter-section] select', function(){
-    //   // console.log('select changes');
-    //   var getSelectedVal = $(this).val(); console.log(getSelectedVal);
-    //   $(this).find('option:selected').attr('selected','selected').siblings().removeAttr('selected');
-    //   var getId = $(this).attr('id');  console.log(getId);
-
-    //   $(document).find('[data-collection-filter-section] input[id="'+getId+'-filter"]').val(getSelectedVal).attr('checked', 'checked');
-    //   $(this).next(':checkbox').trigger('change');
-    // });
 
 
     $(document).on('click', '.filter-option-name', function(){
@@ -325,8 +327,11 @@
             }        
           },2000);   
     });
+
+
     searchaniseFiltersOnload(queryString);
     function searchaniseFiltersOnload(queryString) {
+     
       $(document).find('.no-result').remove();
     $.ajax({	
         url: searchBaseUrl + queryString,
@@ -357,7 +362,7 @@
           //var getmaxitemperpage = $('select.result-per-page option:selected').attr('data-count');
           createFilters();
           // printProducts(searchData.items);
-          if($('body').attr('data-template') == 'jewellery-plp' && $('body').attr('data-load') == 'jewellery-plp-initial' || window.location.search.indexOf('?&') > -1){
+          if($('body').attr('data-template') == 'jewellery-plp' && $('body').attr('data-load') == 'jewellery-plp-initial' || window.location.search.indexOf('?&') > -1 || window.location.pathname == '/collections/try-at-home' && localStorage.getItem("tahProducts") != null && localStorage.getItem("tahProducts").length > 0){
             console.log('Onload pagination')
          //console.log('Yes jewellery-plp template');
             var itemPerPage = 18;
