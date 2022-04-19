@@ -1,6 +1,6 @@
 
 @media screen and (max-width:350px) {
-    .opt_error {
+    .opt_error ,.error_n{
         width: 200px !important;
         text-align: center;
         margin: 0 auto;
