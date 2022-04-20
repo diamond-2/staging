@@ -169,7 +169,8 @@
               <p class="booking-info-label-h"><span id="text">{{ section.settings.cart-item-t17 }}</span><span id="symbol">*</span></p>
             </div>
             <div class="booking-info-input tel-input">
-              <input class="booking-info-input-mobile tah-request-data" type="tel" data-name="mobile" value="" required name="tel" onkeypress="return validateNumber(event)"/>
+              <input class="booking-info-input-mobile tah-request-data" type="tel" data-name="mobile" value="" required name="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" maxlength="11"/>
+             
             </div>
             <div class="error">
             </div>
@@ -249,7 +250,7 @@
                <p class="booking-info-label-h-pincode"><span id="text">Pincode </span><span id="symbol">*</span></p>
              </div>
              <div class="booking-info-input pincode-input">
-               <input class="booking-info-input-pincode tah-request-data" type="text" value="" data-name="zip"  name="pincode" onkeypress="return validateNumber(event)"/>
+               <input class="booking-info-input-pincode tah-request-data" type="text" value="" data-name="zip"  name="pincode" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
              </div>
              <div class="error">
              </div>
@@ -418,7 +419,7 @@
                 </div>
                  
                   <div class="mobile-no-cl" id="mobile-no-cl">
-                      <input type="tel" name="mncl-in" value="" id="mncl-in" onkeypress="return validateNumber(event)"><button id="mncl-in-btn">{{ section.settings.cart-item-t39 }}</button>
+                      <input type="tel" name="mncl-in" value="" id="mncl-in" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" maxlength="16"><button id="mncl-in-btn">{{ section.settings.cart-item-t39 }}</button>
                   </div>
                   <div class="error_n">
                 </div>
@@ -427,7 +428,7 @@
                 <div class="th_cart_inner-outer">
                 <form action="" class="th_cart_inner-form">
                   {% for i in (1..6) %}
-                  <input class="otp" id="th_cart_opt_p_{{ i }}" type="text"  size="1" maxlength="1" onkeypress="return validateNumber(event)">
+                  <input class="otp otp{{ i }}" id="th_cart_opt_p_{{ i }}" type="text"  size="1" maxlength="1" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
                   {% endfor %}              
                 </form>
                 <div class="opt_error">

@@ -59,7 +59,8 @@ let array_len;
           }
           
          }
-    
+        }
+      }
        
         if (localStorage.getItem("th_cart_items_id") === null || parseInt(localStorage.getItem("th_cart_items_id").length) == 0 ) {
     
@@ -69,5 +70,6 @@ let array_len;
             console.log(localStorage.getItem("th_cart_items_id").length);
   
         }
+        
     
 });

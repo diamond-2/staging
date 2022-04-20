@@ -36,23 +36,29 @@ document.getElementById("sap-btn").addEventListener("click", function(event){
      if (date ==''&& name =='' && mobile_no=='' && email =='' && address1 =='' && city=='' && state =='' && country==='' && pincode =='' ){
      let errors= document.querySelectorAll(".error");   
       for (i = 0; i < errors.length; i++) {
+        errors[i].classList.add("error_sty");
         errors[i].innerHTML="<span>Mandatory Field!</span>";
         }
      }
   
      if(date !=''){
      document.querySelector(".date-slot-input").nextElementSibling.innerHTML='';
+     document.querySelector(".date-slot-input").nextElementSibling.classList.remove("error_sty");
+     
      input_fill=true;
      }else{
+      document.querySelector(".date-slot-input").nextElementSibling.classList.add("error_sty");
       document.querySelector(".date-slot-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
       input_fill=false;
     }
   
      if(name !=''){
       input_fill=true;
+      document.querySelector(".name-input").nextElementSibling.classList.remove("error_sty");
        document.querySelector(".name-input").nextElementSibling.innerHTML='';
      }else{
       input_fill=false;
+      document.querySelector(".name-input").nextElementSibling.classList.add("error_sty");
       document.querySelector(".name-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
      }
   
@@ -61,15 +67,18 @@ document.getElementById("sap-btn").addEventListener("click", function(event){
       var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
        if( ! mobile_no.match(phoneno)){
          input_fill=false;
+          document.querySelector(".tel-input").nextElementSibling.classList.add("error_sty");
           document.querySelector(".tel-input").nextElementSibling.innerHTML='<span>Invalid Phone Number!</span>';
             }
           else{
             input_fill=true;
+            document.querySelector(".tel-input").nextElementSibling.classList.remove("error_sty");
             document.querySelector(".tel-input").nextElementSibling.innerHTML='';  
           }
      
      }else{
       input_fill=false;
+      document.querySelector(".tel-input").nextElementSibling.classList.add("error_sty");
       document.querySelector(".tel-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
      }
   
@@ -78,9 +87,11 @@ document.getElementById("sap-btn").addEventListener("click", function(event){
   
         if ( ! email.match(validRegex)) {
           input_fill=false;
+          document.querySelector(".email-input").nextElementSibling.classList.add("error_sty");
           document.querySelector(".email-input").nextElementSibling.innerHTML='<span>Invalid email address!</span>';
         }else{
           input_fill=true;
+          document.querySelector(".email-input").nextElementSibling.classList.remove("error_sty");
           document.querySelector(".email-input").nextElementSibling.innerHTML='';
         }
   
@@ -88,6 +99,7 @@ document.getElementById("sap-btn").addEventListener("click", function(event){
   
      }else{
       input_fill=false;
+      document.querySelector(".email-input").nextElementSibling.classList.add("error_sty");
       document.querySelector(".email-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
      }
   
@@ -102,41 +114,51 @@ document.getElementById("sap-btn").addEventListener("click", function(event){
 
      if(address1 !=''){
       input_fill=true;
+      document.querySelector(".add1-input").nextElementSibling.classList.remove("error_sty");
        document.querySelector(".add1-input").nextElementSibling.innerHTML='';
      }else{
       input_fill=false;
+      document.querySelector(".add1-input").nextElementSibling.classList.add("error_sty");
       document.querySelector(".add1-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
      }
 
      if(city !=''){
       input_fill=true;
+      document.querySelector(".city-input").nextElementSibling.classList.remove("error_sty");
        document.querySelector(".city-input").nextElementSibling.innerHTML='';
      }else{
       input_fill=false;
+      document.querySelector(".city-input").nextElementSibling.classList.add("error_sty");
       document.querySelector(".city-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
      }
 
      if(state !=''){
       input_fill=true;
+      document.querySelector(".state-input").nextElementSibling.classList.remove("error_sty");
        document.querySelector(".state-input").nextElementSibling.innerHTML='';
      }else{
       input_fill=false;
+      document.querySelector(".state-input").nextElementSibling.classList.add("error_sty");
       document.querySelector(".state-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
      }
 
      if(country !=''){
       input_fill=true;
+      document.querySelector(".country-input").nextElementSibling.classList.remove("error_sty");
        document.querySelector(".country-input").nextElementSibling.innerHTML='';
      }else{
       input_fill=false;
+      document.querySelector(".country-input").nextElementSibling.classList.add("error_sty");
       document.querySelector(".country-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
      }
 
      if(pincode !=''){
       input_fill=true;
+      document.querySelector(".pincode-input").nextElementSibling.classList.remove("error_sty");
        document.querySelector(".pincode-input").nextElementSibling.innerHTML='';
      }else{
       input_fill=false;
+      document.querySelector(".pincode-input").nextElementSibling.classList.add("error_sty");
       document.querySelector(".pincode-input").nextElementSibling.innerHTML='<span>Mandatory Field!</span>';
      }
 
@@ -196,6 +218,7 @@ document.getElementById('mncl-in-btn').addEventListener('click', function() {
     let change_mobile_no = document.getElementById('mncl-in').value;
     let input_fill_n;
     if(change_mobile_no ==''){
+    document.querySelector("#mobile-no-cl").nextElementSibling.classList.add("error_sty");
     document.querySelector("#mobile-no-cl").nextElementSibling.innerHTML='<span>Phone Number required!</span>';
 
     }
@@ -203,10 +226,12 @@ document.getElementById('mncl-in-btn').addEventListener('click', function() {
     var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
     if( ! change_mobile_no.match(phoneno)){
         input_fill_n=false;
+        document.querySelector("#mobile-no-cl").nextElementSibling.classList.add("error_sty");
        document.querySelector("#mobile-no-cl").nextElementSibling.innerHTML='<span>Invalid Phone Number!</span>';
          }
        else{
         input_fill_n=true;
+        document.querySelector("#mobile-no-cl").nextElementSibling.classList.remove("error_sty");
          document.querySelector("#mobile-no-cl").nextElementSibling.innerHTML='';  
        }
     }
@@ -246,6 +271,7 @@ for (i = 0; i < th_cart_opt_p_v.length; i++) {
     document.querySelector(".opt_error").innerHTML='';
    let change_mobile_no = document.getElementById("mobile_no_m").value;
    document.querySelector(".booking-info-input-mobile").value=change_mobile_no;
+   document.querySelector(".opt_error").classList.remove("error_sty");
 
     console.log('Fullotp', fullotp);
     verifyOtp(mobile, fullotp)
@@ -253,6 +279,7 @@ for (i = 0; i < th_cart_opt_p_v.length; i++) {
    
 
  }else{
+  document.querySelector(".opt_error").classList.add("error_sty");
   document.querySelector(".opt_error").innerHTML='<span>Fill OTP Inputs!</span>';
  }
 
@@ -601,14 +628,22 @@ document.getElementById('cancel_footer').addEventListener('click', function() {
         } else{
          $(this).next('input').focus();
          $(".opt_error").empty();
+         document.querySelector(".opt_error").classList.remove("error_sty");
         }
        }  
   });
 
-  function validateNumber(e) {
-    const pattern = /^[0-9]$/;
-    return pattern.test(e.key )
-}
+//   function myFunction() {
+//     const pattern = /^[0-9]$/;
+
+//     return pattern.test(e.key );
+// }
+$(document).ready(function() {
+  $('.booking-info-input-mobile,.booking-info-input-pincode,#mncl-in,.otp1,.otp2,.otp3,.otp4,.otp5,.otp6').keypress(function(e) {
+      var verified = (e.which == 8 || e.which == undefined || e.which == 0) ? null : String.fromCharCode(e.which).match(/[^0-9]/);
+      if (verified) {e.preventDefault();}
+  });
+  });
 /* code for show items */
 
 
