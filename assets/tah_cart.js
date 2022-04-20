@@ -33,11 +33,8 @@ document.getElementById("sap-btn").addEventListener("click", function(event){
   
      let input_fill =false; 
   
-     if (date ==''&& name =='' && mobile_no=='' && email =='' && address1 =='' && 
-     city=='' && state =='' && country==='' && pincode ==''
-     ){
-     let errors= document.querySelectorAll(".error");
-   
+     if (date ==''&& name =='' && mobile_no=='' && email =='' && address1 =='' && city=='' && state =='' && country==='' && pincode =='' ){
+     let errors= document.querySelectorAll(".error");   
       for (i = 0; i < errors.length; i++) {
         errors[i].innerHTML="<span>Mandatory Field!</span>";
         }
@@ -162,15 +159,18 @@ document.getElementById("sap-btn").addEventListener("click", function(event){
   
   /* end validation */
   
+ 
   /* after form validation */
-   if( input_fill)
-   {
+
+   if( input_fill)  {
 
     document.getElementById('tah-m-overlay').classList.add('tah-m-is-visible');
     document.getElementById('tah-m-modal').classList.add('tah-m-is-visible');
     let enter_mobole_no = document.querySelector(".booking-info-input-mobile").value;
     document.getElementById("mobile_no_m").innerHTML=enter_mobole_no;
     window.scrollTo({ top: 160, behavior: 'smooth' });
+
+    sentOtp($('.tah-request-data[data-name="mobile"]').val());
   
    }
   
@@ -221,11 +221,14 @@ document.getElementById('mncl-in-btn').addEventListener('click', function() {
   
 document.getElementById('vya_btn').addEventListener('click', function(e) {
 e.preventDefault();
+let mobile = $(document).find('.tah-request-data[data-name="mobile"]').val(); console.log('verifyMobile', mobile)
 let input_fill_opt_in=false;
-let th_cart_opt_p_v = document.querySelectorAll("#th_cart_opt_p");
+let th_cart_opt_p_v = document.querySelectorAll("input.otp");
+var fullotp = '';
 for (i = 0; i < th_cart_opt_p_v.length; i++) {
     if (th_cart_opt_p_v[i].value) {
-   // console.log("yes" + th_cart_opt_p_v[i].value)
+    console.log("yes" + th_cart_opt_p_v[i].value)
+    fullotp += th_cart_opt_p_v[i].value
     input_fill_opt_in=true;
  }else{
   input_fill_opt_in=false;
@@ -238,18 +241,111 @@ for (i = 0; i < th_cart_opt_p_v.length; i++) {
     document.getElementById('breadcrumb-text-c').innerHTML = "Checkout";
     document.getElementById('checkout-form').style.display = "none";
     document.getElementById('checkout-form').style.display = "none";
-    document.getElementById('ac-wrapper').style.display = "block";
     document.getElementById('tah-m-overlay').classList.remove('tah-m-is-visible');
     document.getElementById('tah-m-modal').classList.remove('tah-m-is-visible');
     document.querySelector(".opt_error").innerHTML='';
    let change_mobile_no = document.getElementById("mobile_no_m").value;
    document.querySelector(".booking-info-input-mobile").value=change_mobile_no;
 
+    console.log('Fullotp', fullotp);
+    verifyOtp(mobile, fullotp)
+
+   
+
  }else{
   document.querySelector(".opt_error").innerHTML='<span>Fill OTP Inputs!</span>';
  }
 
 });
+
+// SentOtp API function 
+function sentOtp(mobile){
+  _data = {
+    "mobile_no":mobile
+  }
+  fetch('https://aryamond.mobikasa.net/api/send-otp', {
+    method: "POST",
+    body: JSON.stringify(_data),
+    headers: {"Content-type": "application/json; charset=UTF-8"}
+  })
+  .then(response => response.json()) 
+  .then(json => {
+    console.log(json)
+
+  })
+  .catch(err => console.log(err));
+}
+
+// Verify Otp API function 
+function verifyOtp(mobile, otp){
+  _data = {
+    "mobile_no":mobile,
+    "otp": otp
+  }
+  fetch('https://aryamond.mobikasa.net/api/verify-otp', {
+    method: "POST",
+    body: JSON.stringify(_data),
+    headers: {"Content-type": "application/json; charset=UTF-8"}
+  })
+  .then(response => response.json()) 
+  .then(json => {
+    console.log('verifyOtp', json)
+    var prodArray = [];
+    $('#the_cart_items_render tr').each(function(){
+      prodArray.push(
+        {
+          "tah_product_id":$(this).data('id'),
+          "name":$(this).find('.list-view-item__title').text().trim(),
+          "total_price":$(this).data('price'),
+          "slug":$(this).data('handle'),
+          "image":$(this).find('.cart__image').attr('src'),
+          "status":"Active"
+      }
+      )
+    })
+
+    var addTahRequestData = {
+      "tah_customer_id": $('.tah-request-data[data-name="tah_customer_id"]').val(),
+      "name":$('.tah-request-data[data-name="name"]').val(),
+      "email":$('.tah-request-data[data-name="email"]').val(),
+      "mobile":$('#mobile_no_m').text().trim(),
+      "status":"Pending",
+      "date":$('#calender_date').val(),
+      "time":$('#time-slot-select-time').val(),
+      "address": {
+                  "address_1":$('.tah-request-data[data-name="address_1"]').val(),
+                   "address_2": $('.tah-request-data[data-name="address_2"]').val(),
+                   "city":$('.tah-request-data[data-name="city"]').val(),
+                   "zip":$('.tah-request-data[data-name="zip"]').val(),
+                   "state":$('.tah-request-data[data-name="state"]').val(),
+                   "country":$('.tah-request-data[data-name="country"]').val(), 
+                },
+      "products": prodArray
+      };
+      console.log("addTahRequestData==>", addTahRequestData);
+      addTahReques(addTahRequestData)
+
+  })
+  .catch(err => console.log(err));
+}
+
+// Add TAH request API
+
+
+function addTahReques(addTahRequestData){
+  fetch('https://aryamond.mobikasa.net/api/add-tah-request', {
+    method: "POST",
+    body: JSON.stringify(addTahRequestData),
+    headers: {"Content-type": "application/json; charset=UTF-8"}
+  })
+  .then(response => response.json()) 
+  .then(json => {
+    console.log('AddTahREques', json);
+    document.getElementById('ac-wrapper').style.display = "block";
+
+  })
+  .catch(err => console.log(err));
+}
 
 
 /* time slot using momentum js */
@@ -506,12 +602,11 @@ document.getElementById('cancel_footer').addEventListener('click', function() {
          $(this).next('input').focus();
          $(".opt_error").empty();
         }
-       }
+       }  
   });
 
   function validateNumber(e) {
     const pattern = /^[0-9]$/;
-
     return pattern.test(e.key )
 }
 /* code for show items */
@@ -570,14 +665,25 @@ else{
 
 /* removed items from localstorag */
 
-$(document).on('click', '#remove_th_cart_item', function () {
+$(document).on('click', '[data-remove-tah-item]', function () {
 
   let th_cart_p_handle_ = $(this).attr("th_cart_remove_p_handle");
   var new_arry_remove_item=localStorage.getItem("th_cart_items_id");
   let new_arry_remove_items = new_arry_remove_item.split(",");
+  //  var filteredTahItems = new_arry_remove_items.filter(e => e !== th_cart_p_handle_)
+  //  console.log('FilteredTAHItems', filteredTahItems);
 
     new_arry_remove_items.splice(new_arry_remove_items.indexOf(th_cart_p_handle_), 1);
     localStorage.setItem("th_cart_items_id",new_arry_remove_items);
+    setTimeout(function(){
+      if(localStorage.getItem("th_cart_items_id").length == 0){
+        localStorage.removeItem("th_cart_items_id");
+      }
+    },1000);
+    
+
+
+    console.log('FilteredTAHItems', localStorage.getItem("th_cart_items_id").length);
     
    // console.log(localStorage.getItem("th_cart_items_id")); 
    if (localStorage.getItem("th_cart_items_id") != null ) {

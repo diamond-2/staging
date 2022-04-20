@@ -10682,7 +10682,16 @@ $('form').on('keyup', 'input', function() {
 
 // Show InfoModal
 $(document).on('click', '[data-modal="showInfoModal"]', function(){
-  showInfoModal();
+  if($(this).hasClass('tah-add-to-cart-btn')){
+    $('.info-modal h2').text('Try at home')
+    $('.info-modal p').text('Please Login and you will add products for TAH.');
+    showInfoModal();
+  }else {
+    $('.info-modal h2').text('WishList')
+    $('.info-modal p').text('Please Login and you will add product to your wishlist.');
+    showInfoModal();
+  }
+ 
 });
 
 // Compare product event
@@ -10879,47 +10888,7 @@ $(document).on('click', '.remove-item-from-wishlit', function(){
 
 });
 
-var tahCartItems = [];
-$(document).on('click', '.tah-add-to-cart-btn[data-add-to-cart]', function(){
-console.log('Tah add to bag hit')
-tahCartItems.push($(this).data('handle'));
 
-let uniqueArray = [...new Set(tahCartItems)];
-
-localStorage.setItem("th_cart_items_id", uniqueArray);
- 
-  // let formData = {
-  //   'items': [{
-  //    'id': $(this).data('handle'),
-  //    'quantity': 1
-  //    }]
-  //  };
-  //  fetch(window.Shopify.routes.root + 'cart/add.js', {
-  //    method: 'POST',
-  //    headers: {
-  //      'Content-Type': 'application/json'
-  //    },
-  //    body: JSON.stringify(formData)
-  //  })
-  //  .then(response => {
-  //    console.log('Tah add to bag', response);
-  //    $.ajax({
-  //     url: '/cart.js',
-  //     dataType: "json",
-  //     cache: false,
-  //     success: function(cart) {
-  //       console.log(cart);
-     
-        
-  //     }       
-  //   });
-
-  //    return response.json();
-  //  })
-  //  .catch((error) => {
-  //    console.error('Error:', error);
-  //  });
-});
 
 
 });
@@ -11152,3 +11121,44 @@ function swymRenderWishlistItems(swat) {
   });
 }
 
+window.addEventListener('load', (event) => {
+  console.log('page is fully loaded');
+  
+  var tahCartItems = [];
+if(localStorage.getItem("th_cart_items_id") != null){
+  tahCartItems.push(localStorage.getItem("th_cart_items_id"));
+  let existTahItems = localStorage.getItem("th_cart_items_id").split(',');
+  setTimeout(function(){
+    existTahItems.forEach(function(key, val){
+      console.log("TahCartValue", key);
+      console.log("TahCartValue", key[val]);
+      if(window.location.pathname == '/collections/try-at-home'){
+        $(document).find('[data-list-item] li.grid__item[data-handle="'+key.trim()+'"] .tah-add-to-cart-btn[data-add-to-cart').addClass('tah-item-added');
+      }
+    });
+  },1000)
+   
+}
+
+
+$(document).on('click', '.tah-add-to-cart-btn[data-add-to-cart]', function(){
+console.log('Tah add to bag hit')
+if(tahCartItems.includes($(this).data('handle'))){
+  alert('Item Exist in cart');
+  return false;
+}else {
+  tahCartItems.push($(this).data('handle'));
+$(this).addClass('tah-item-added');
+
+
+  let uniqueArray = [...new Set(tahCartItems)];
+
+  console.log('updateUniqueArrya', uniqueArray);
+
+  localStorage.setItem("th_cart_items_id", uniqueArray);
+window.location.href = '/pages/try-at-home-cart';
+}
+
+});
+
+})

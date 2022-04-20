@@ -500,7 +500,10 @@ span.clear-filter img {
     color: #ffffff;
 }
 
-.tah-add-to-cart-block button.tah-add-to-cart-btn {
+.tah-add-to-cart-block {
+    padding-top: 10px;
+}
+.tah-add-to-cart-block .tah-add-to-cart-btn {
     width: 35px;
     height: 35px;
     background: #6679CC;
@@ -508,12 +511,19 @@ span.clear-filter img {
     appearance: none;
     border-radius: 50%;
     color: white;
+    display: inline-block;
+    line-height: 38px;
+    text-align: center;
+
 }
 .tah-add-to-cart-btn-added-icn,
-.tah-add-to-cart-block button.tah-add-to-cart-btn.tah-item-added .tah-add-to-cart-btn-icn {
+.tah-add-to-cart-block .tah-add-to-cart-btn.tah-item-added .tah-add-to-cart-btn-icn {
     display: none;
 }
-.tah-add-to-cart-block button.tah-add-to-cart-btn.tah-item-added .tah-add-to-cart-btn-added-icn {
+.tah-add-to-cart-block .tah-add-to-cart-btn.tah-item-added {
+    background-color: #6c1d45;
+}
+.tah-add-to-cart-block .tah-add-to-cart-btn.tah-item-added .tah-add-to-cart-btn-added-icn {
     display:  block;
 }
 
