@@ -6867,6 +6867,7 @@ theme.Cart = (function() {
       var index = Number(itemElement.getAttribute(attributes.cartItemIndex));
 
       var request = {
+
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;'
@@ -11126,6 +11127,7 @@ window.addEventListener('load', (event) => {
   
   var tahCartItems = [];
 if(localStorage.getItem("th_cart_items_id") != null){
+
   tahCartItems.push(localStorage.getItem("th_cart_items_id"));
   let existTahItems = localStorage.getItem("th_cart_items_id").split(',');
   setTimeout(function(){
@@ -11143,7 +11145,11 @@ if(localStorage.getItem("th_cart_items_id") != null){
 
 $(document).on('click', '.tah-add-to-cart-btn[data-add-to-cart]', function(){
 console.log('Tah add to bag hit')
-if(tahCartItems.includes($(this).data('handle'))){
+let existTahItemsLen = localStorage.getItem("th_cart_items_id").split(',');
+if(existTahItemsLen.length == 7 ){
+  alert('Maximum 7 items allowed for try at home.');
+  return false;
+}else if(tahCartItems.includes($(this).data('handle'))){
   alert('Item Exist in cart');
   return false;
 }else {
@@ -11156,7 +11162,11 @@ $(this).addClass('tah-item-added');
   console.log('updateUniqueArrya', uniqueArray);
 
   localStorage.setItem("th_cart_items_id", uniqueArray);
-window.location.href = '/pages/try-at-home-cart';
+  $('body').addClass('tah__added');
+  setTimeout (() => {
+    $('body').removeClass('tah__added');
+  },2000);
+// window.location.href = '/pages/try-at-home-cart';
 }
 
 });

@@ -526,6 +526,28 @@ span.clear-filter img {
 .tah-add-to-cart-block .tah-add-to-cart-btn.tah-item-added .tah-add-to-cart-btn-added-icn {
     display:  block;
 }
+.tah__added:after {
+    position: fixed;
+    height: 80px;
+    background: #6c1d45 url(https://cdn.shopify.com/s/files/1/0575/2681/2840/files/tah-tick-white.svg?v=1650480483) no-repeat 120px 22px;
+    color: #fff;
+    content: "Added Try at Home cart";
+    z-index: 999999;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    padding: 30px 130px 30px 180px;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-transition: 0.3s linear ease-in-out;
+    -moz-transition: 0.3s linear ease-in-out;
+    -ms-transition: 0.3s linear ease-in-out;
+    -o-transition: 0.3s linear ease-in-out;
+    transition: 0.3s linear ease-in-out;
+}
 
 @media screen and (max-width: 991px) {
     .collection-filter-wrapper[data-filter-type=shape-filter] {

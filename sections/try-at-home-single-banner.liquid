@@ -74,7 +74,7 @@ body.layout_try-at-home .page-container{position:unset;}
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', function(event) {
-  $('.explore-btn').on('click', function(){
+  $('.explore-btn, .pincode-submittion').on('keydown, click', function(e){
     if($(this).prev('input').val() !=''){
       let getZip = $(this).prev('input').val(); console.log('getZip==>', getZip)
       getProductListByZipCode(getZip);

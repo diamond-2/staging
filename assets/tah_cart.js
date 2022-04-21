@@ -265,7 +265,7 @@ for (i = 0; i < th_cart_opt_p_v.length; i++) {
     document.getElementById('tah-cart-describing').style.display = "none";
     document.getElementById('breadcrumb-text-c').innerHTML = "Checkout";
     document.getElementById('checkout-form').style.display = "none";
-    document.getElementById('checkout-form').style.display = "none";
+    document.getElementById('ac-wrapper').style.display = "block";
     document.getElementById('tah-m-overlay').classList.remove('tah-m-is-visible');
     document.getElementById('tah-m-modal').classList.remove('tah-m-is-visible');
     document.querySelector(".opt_error").innerHTML='';
@@ -369,9 +369,14 @@ function addTahReques(addTahRequestData){
   .then(json => {
     console.log('AddTahREques', json);
     document.getElementById('ac-wrapper').style.display = "block";
-
+    $('#adat-d-v').text($('#calender_date').val());
+    $('#adat-t-v').text($('#time-slot-select-time').val());
   })
-  .catch(err => console.log(err));
+  .catch(err => {
+
+    document.getElementById('checkout-form').style.display = "block";
+    console.log('ADDTAHREQ ERR==>', err)
+  });
 }
 
 

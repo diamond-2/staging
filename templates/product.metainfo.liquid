@@ -211,7 +211,7 @@
         </div>  
         {% if product.tags contains 'TAH' %}
           <div class="tah-add-to-cart-block">
-            <a href="javascript:;" class="tah-add-to-cart-btn" {% if customer %}{% else %}data-modal="showInfoModal"{% endif %}  data-variantid="{{ current_variant.id }}" data-add-to-cart data-handle="{{ product.handle }}">
+            <a href="javascript:;" class="tah-add-to-cart-btn" {% if customer %} data-add-to-cart {% else %}data-modal="showInfoModal"{% endif %}  data-variantid="{{ current_variant.id }}"  data-handle="{{ product.handle }}">
               <span class="tah-add-to-cart-btn-icn">{%- include 'icon-plus-white' -%}</span>
               <span class="tah-add-to-cart-btn-added-icn">{%- include 'icon-tick-white' -%}</span>
             </a>

@@ -1,5 +1,5 @@
 {%- layout none -%}
-<tr class="cart__row custom_cart_row cart__table-row" data-id="{{ product.id }}" data-variantid="{{ product.selected_or_first_available_variant.id }}" data-price="{{ product.price }}" data-handle="{{ product.handle }}">
+<tr class="cart__row custom_cart_row cart__table-row" data-id="{{ product.id }}" data-variantid="{{ product.selected_or_first_available_variant.id }}" data-price="{{ product.price | append: '.00' }}" data-handle="{{ product.handle }}">
     <td class="cart__meta small--text-left custom_cart_item_left_col" data-cart-table-cell="">
     <div class="cart__product-information">
     <div class="cart__image-wrapper">
