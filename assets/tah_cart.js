@@ -426,7 +426,9 @@ for (let i=0; i< allTimes.length; i++)
 
 var option = document.createElement("option");
 option.text = allTimes[i];
-option.value = allTimes[i];
+let after_rlt = allTimes[i].substr(0, allTimes[i].indexOf('-'));
+let final_value= after_rlt.substring(0, after_rlt.length - 2).trim();
+option.value = final_value;
 select_element.appendChild(option);
 
 }
