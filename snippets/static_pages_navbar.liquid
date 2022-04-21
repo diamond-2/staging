@@ -1,11 +1,18 @@
-<div class="sidebar-column">
+<div class="sidebar-column" data-template="{{ template.suffix }}">
     <div class="sidebar-nav">
+        {% if template.suffix == 'tah-appointments' %}
+        <ul>
+            <li><a href="javascript:;" class="active"><span class="menu_text">Try at home</span></a></li>
+            <li><a href="javascript:;" class=""><span class="menu_text">Brand Ambassador</span></a></li>
+        </ul>
+        {% else %}
         {% if linklists.sidebar-nav.links.size > 0 %}
         <ul>
         {% for link in linklists.sidebar-nav.links %}
         {% if link.title %}<li><a {% if page.url == link.url %}class="active"{% endif %} href="{{ link.url }}" ><span class="menu_text">{{ link.title }}</span></a></li>{% endif %}
         {% endfor %}
         </ul>
+        {% endif %}
         {% endif %}
     </div>
 </div>

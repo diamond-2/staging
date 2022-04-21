@@ -422,11 +422,14 @@ while (startTime < endTime) {
 let select_element = document.getElementById("time-slot-select-time");
 for (let i=0; i< allTimes.length; i++)
 {
-//console.log(allTimes[i]);
+console.log('All Times', allTimes[i]);
+let val =  allTimes[i].split('-')[0];
+val = val.replaceAll(' AM',':00');
+val = val.replaceAll(' PM',':00');
 
 var option = document.createElement("option");
 option.text = allTimes[i];
-option.value = allTimes[i];
+option.value = val
 select_element.appendChild(option);
 
 }
@@ -451,20 +454,22 @@ var currentDate = date;
 var startDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
 
 var monthTitle = document.getElementById("month-name");
-var monthName = currentDate.toLocaleString("en-US", {
-  month: "long"
-});
 var yearNum = currentDate.toLocaleString("en-US", {
   year: "numeric"
 });
+var monthName = currentDate.toLocaleString("en-US", {
+  month: "long"
+});
+
 
 let selected_date_default= currentDate.toLocaleString("en-US", {
+  year: "numeric",
   month: "numeric",
   day: "numeric",
-  year: "numeric"
+  
 });
 selected_date_added = selected_date_default;
-monthTitle.innerHTML = `${monthName} ${yearNum}`;
+monthTitle.innerHTML = `${yearNum} ${monthName} `;
 
 if (side == "left") {
   gridTable.className = "animated fadeOutRight";
@@ -498,9 +503,9 @@ setTimeout(() => {
         selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), i);
 
         document.getElementById("eventDayName").innerHTML = selectedDate.toLocaleString("en-US", {
+            year: "numeric",
            month: "long",
-           day: "numeric",
-           year: "numeric"
+           day: "numeric"          
         });
 
         selectedDayBlock = currentDay;
@@ -582,16 +587,20 @@ selectedDayBlock.classList.add("lighten-3");
 selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), parseInt(e.target.innerHTML));
 
 let selected_date= selectedDate.toLocaleString("en-US", {
+  year : "numeric",
   month: "numeric",
-  day: "numeric",
-  year: "numeric"
+  day: "numeric"
+  
 });
 
 
 //console.log("mss"+ selected_date);
+ 
+// get month name, day of month, year, time
+selected_date = moment().format("YYYY-MM-DD");
+console.log(selected_date);
 selected_date_added = selected_date;
 //calender_date
-
 
 
 }
