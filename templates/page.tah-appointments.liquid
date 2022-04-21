@@ -1,1 +1,77 @@
-{{ page.title }}
+<div class="account_section_wrapper padding_t padding_t40">
+    <div class="container_fluid">
+      <div class="sp-account-section-holder">
+        <!-- Top Section 'Breadcrumbs', 'Welocome User', 'Top Nav' -->
+        {% include 'account-top-section' %}
+        <div class="sp-account-section">
+          <div class="myaccount_order_wrapper">
+            <div class="myaccount__order_history">
+              <div class="account_sec_header_mobile show_mobile">
+                <div class="back-to-page-btn">{% include 'icon-back-arrow' %}</div>
+                <p>Welcome, {{ customer.first_name | capitalize }}</p>
+                <h4>{{ 'Profile' }}</h4>
+              </div>
+              {% comment %}<h4 class="hide_mobile">{{ 'PROFILE' }}</h4> {% endcomment %}
+                {% if customer %}
+                {% assign customerGender = '' %}
+                {% assign customerInitial = '' %}
+                {% for tag in customer.tags %}
+                  {% if tag == 'Male' %}
+                  {% assign customerGender = 'Male' %}
+                  {% assign customerInitial = 'Mr.' %}                  
+                  {% endif  %}
+                  {% if tag == 'Female' %}
+                  {% assign customerGender = 'Female' %}
+                  {% assign customerInitial = 'Mrs.' %}
+                  {% endif %}
+                {% endfor %}
+                {% comment %}{{ customer.first_name }}-- {% endcomment %}
+                <div class="profile-content-wrapper">
+                  {% if customer.first_name != blank %}
+                  <div class="profile-content-block">                    
+                    <div class="form__label">Name</div>
+                    <div class="form__input-wrapper" data-form-input-wrapper>
+                     <input class="form_input" type="text" placeholder="" value="{{ customerInitial }}" name="customer[initial]" id="customer-initial" disabled />
+                      <input class="form__input" placeholder="" type="text" value="{{ customer.first_name }}" name="customer[first_name]" id="customer-FirstName" disabled />
+                      {% if customer.last_name != blank %}<input class="form__input" placeholder="" type="text" value="{{ customer.last_name }}" name="customer[last_name]" id="customer-LastName" disabled />{% endif %}
+                    </div>
+                  </div>
+                  {% endif %}                  
+                
+
+                {% if customerGender != blank %}
+                <div class="profile-content-block">                    
+                  <div class="form__label">Gender</div>
+                  <div class="form__input-wrapper" data-form-input-wrapper>
+                    <input class="form_input" type="text" placeholder="" value="{{ customerGender }}" name="customer[gender]" id="customer-gender" disabled />
+                  </div>
+                </div>
+                {% endif %}
+
+                
+                <div class="profile-content-block">                    
+                  <div class="form__label">Email</div>
+                  <div class="form__input-wrapper" data-form-input-wrapper>
+                    <input class="form_input" type="text" placeholder="" size="50" value="{{ customer.email }}" name="customer[email]" id="customer-email" disabled />
+                  </div>
+                </div>
+
+                {% if customer.phone != blank %}
+                <div class="profile-content-block">                    
+                  <div class="form__label">Phone Number</div>
+                  <div class="form__input-wrapper" data-form-input-wrapper>
+                    <input class="form_input" type="text" placeholder="" value="{{ customer.phone }}" name="customer[phone]" id="customer-phone" disabled />
+                  </div>
+                </div>
+                {% endif %}
+                <a href="/account/register" aria-label="Edit Profile" class="glb-btn">Edit Profile</a>
+
+                {% endif %}
+            </div>
+          </div>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
