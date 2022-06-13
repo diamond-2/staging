@@ -1,5 +1,9 @@
 <style>
 
+    .slick-slide:not(.slick-active){
+        opacity: 0.4;
+    }
+
     .carrousel-home-section .slick-slide{
 
         margin: 15px 10px;
@@ -20,11 +24,12 @@
         margin-top: 4%;
     }
 
-    .slick-slide.slick-current.slick-active.slick-center:hover{
+    .slick-slide.slick-current.slick-active.slick-center img:hover{
 
         box-shadow: 0 5px 14px 3px rgb(0 0 0 / 35%);
         -webkit-box-shadow: 0 5px 14px 3px rgb(0 0 0 / 35%);
-
+        transition: all 0.4s;
+        -webkit-transition: all 0.4s;
     }
 
     .carrousel-heading{
@@ -41,6 +46,8 @@
 
     .image-for-desktop img{
         width: 100% !important;
+        max-width: 1050px;
+        max-height: 780px;
     }
 
     .carrousel-home-section .slick-dots li button:before{
@@ -61,9 +68,15 @@
 
     @media screen and (max-width: 767px) {
 
+        .carrousel-home-section .slick-active button:before{
+            background: #6C1D44;
+            color: #6C1D44 !important;
+        }
+
         .carrousel-home-section .slick-dots li button:before{
             height: 15px;
             width: 15px;
+            /* color: #6C1D44 !important; */
         }
 
         .carrousel-heading {
@@ -72,6 +85,12 @@
 
         .slick-initialized .slick-slide .image-for-mobile{
             display: block;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .carrousel-heading{
+            font-size: 20px;
         }
     }
 
@@ -96,7 +115,9 @@
   dots: true,
   centerMode: true,
   infinite: true,
-  centerPadding: '320px',
+  autoplay: true,
+  autoplaySpeed: 3000,
+  centerPadding: '420px',
   slidesToShow: 1,
   responsive: [
     {
@@ -104,7 +125,25 @@
       settings: {
         arrows: false,
         centerMode: true,
+        centerPadding: '320px',
+        slidesToShow: 1
+      }
+    },
+    {
+      breakpoint: 1100,
+      settings: {
+        arrows: false,
+        centerMode: true,
         centerPadding: '220px',
+        slidesToShow: 1
+      }
+    },
+    {
+      breakpoint: 900,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '120px',
         slidesToShow: 1
       }
     },
@@ -122,7 +161,7 @@
       settings: {
         arrows: false,
         centerMode: true,
-        centerPadding: '0px',
+        centerPadding: '10px',
         slidesToShow: 1
       }
     }
