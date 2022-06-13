@@ -102,7 +102,7 @@
                                         <tbody>
                                             {%- if hide_default_title -%}
                                             {%- else -%}
-                                                <tr data-tooltip="jewgoldktclr" data-row="pdp-metal" > 
+                                                <tr data-tooltip="jewgoldktclr" data-row="pdp-metal" data-cont="abcd" > 
                                                     <td><span class="pdp-tab-label">{% if productMetafield[prodtableContent_metalLabel] != blank %}{{ productMetafield[prodtableContent_metalLabel] }}{% else %}Metal{% endif %}</span></td>
                                                     <td><span class="pdp-tab-val"><span class="variantColorTitle" data-variant-title>{{ product.selected_or_first_available_variant.option1  }}</span></span></td>
                                                 </tr>
@@ -1018,4 +1018,5 @@
         
         </div>
     </div>
+</div>
 </div>

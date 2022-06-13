@@ -1,5 +1,6 @@
 {%- layout none -%}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
+{% assign variantMetafield = current_variant.metafields.current_variant %}
 {%- if product.template_suffix contains 'loose' -%}
 {%- assign ls_depth = product.metafields.global.ls_cert_Depth -%}
 {%- assign ls_table = product.metafields.global.ls_cert_Table -%}
@@ -190,9 +191,10 @@
           dots: false
         });
     </script>
-  {%- assign stoneTotalWgt = product.metafields.global.stn_total_ct_wt -%}
-  {%- assign stoneClr = product.metafields.global.jew_stn_graded_color  -%}
-  {%- assign stoneClarity = product.metafields.global.jew_stn_graded_color -%}
+  
+
+  {%- assign stoneClr = variantMetafield["dia_tab1_stone_avg_color"] -%}
+  {%- assign stoneClarity = variantMetafield["dia_tab1_avg_clarity"] -%}
     <div class="prodct_card_body">
       <div class="h4 grid-view-item__title product-card__title aaa" aria-hidden="true">
         <a href="{{ product.url }}"> {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>'}}</a>
@@ -200,7 +202,11 @@
       <span style="display: none;">{%- include 'product-price-listing', product: product, show_vendor: show_vendor -%}</span>
       <div class="product-price-card ter aaa">
         <div class="product-price-card-row" data-id = {{ product.id }}>
-          <div class="product_weight">{%- if stoneTotalWgt != blank -%}{{ stoneTotalWgt | append: 'CTS.' }}{%- endif -%}</div>
+          <div class="product_weight">
+            {% if variantMetafield["frc_stn_total_crt_wt"] != blank  or variantMetafield["dec_stn_total_crt_wt"] != blank %} 
+            {% if variantMetafield["dec_stn_total_crt_wt"] != blank %}{{ variantMetafield["dec_stn_total_crt_wt"] | append: ' CTS.' }}{% else %}{{ variantMetafield["frc_stn_total_crt_wt"] | append: ' (CT. TW.)' }}{% endif %}           
+           {%- endif -%}
+          </div>
           <div class="product_def">{%-if stoneClr != blank -%}{{ stoneClr }}{%- if stoneClarity != blank -%}/{%- endif -%}{%- endif -%}{%- if stoneClarity != blank  -%}{{ stoneClarity }}{%- endif -%}</div>
           <div class="product_compare">COMPARE</div>
         </div>

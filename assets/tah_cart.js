@@ -433,7 +433,6 @@ let after_rlt = allTimes[i].substr(0, allTimes[i].indexOf('-'));
 let final_value= after_rlt.substring(0, after_rlt.length - 2).trim();
 option.value = final_value;
 select_element.appendChild(option);
-
 }
 
 /* time slot using momentum js */
@@ -590,7 +589,7 @@ selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), parse
 
 let selected_date= selectedDate.toLocaleString("en-US", {
   year : "numeric",
-  month: "numeric",
+  month: "2-digit",
   day: "numeric"
   
 });
@@ -599,9 +598,10 @@ let selected_date= selectedDate.toLocaleString("en-US", {
 //console.log("mss"+ selected_date);
  
 // get month name, day of month, year, time
-selected_date = moment().format("YYYY-MM-DD");
-console.log(selected_date);
-selected_date_added = selected_date;
+const dateFomat =  selected_date.split('/');
+selectedDateFormat =  dateFomat[2]+'-'+dateFomat[0]+'-'+dateFomat[1];
+selected_date_added = selectedDateFormat;
+
 //calender_date
 
 

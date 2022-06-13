@@ -94,6 +94,15 @@
     {{ base_font_bold_italic | font_face: font_display: 'swap' }}
   </style>
   <script>
+    document.addEventListener('DOMContentLoaded', function(event) {
+    var getstorageforProfile = localStorage.getItem("updateProfile");
+    if(getstorageforProfile == 'true'){
+      window.location.href = '/pages/profile';  
+      localStorage.removeItem('updateProfile');
+    }
+  });
+  </script>
+  <script>
     var theme = {
       breakpoints: {
         medium: 750,
@@ -291,13 +300,17 @@
 
 	{{ shop.metafields.loox["global_html_body"] }}
 
-    <!-- Wishlistking  App -->
+  <!-- Wishlistking  App -->
   {% include 'swymSnippet' %}
+  {% include 'swym-custom' %}
   {% include 'swym-move-to-wishlist'%}
+
+
   {% if template contains 'collection' %}
   {% include 'compareProductLists'%}
   {% endif %}
   {% include 'login-info-modal' %}
+
 
 </body>
 </html>

@@ -42,7 +42,8 @@
   .collection-filter-wrapper[data-id="global.ls_cert_height_mm"],
   .collection-filter-wrapper[data-id="global.ls_cert_diamtrs_avg"],
   .collection-filter-wrapper[data-id="global.ls_cert_diamtrs_max"],
-  .collection-filter-wrapper[data-id="global.ls_cert_diamtrs_min"] {
+  .collection-filter-wrapper[data-id="global.ls_cert_diamtrs_min"],
+  .collection-filter-wrapper[data-id="global.sku"] {
   display: none!important;
 }
 </style>
@@ -147,46 +148,54 @@
 
 
     $(document).on('click', '#showAdvanceFilters', function(){
-       if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('seventh-level-filter')){
-        console.log('7th exist');
-        // $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('seventh-level-filter eighth-level-filter');
-        $('.filter-block-group[data-advance-filter]').removeClass('visible-advance-filter');
-        $(this).text(function(i, v){
-            return v === 'Show Less' ? 'Advance Filters' : 'Show More'
+    //    if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('seventh-level-filter')){
+    //     console.log('7th exist');
+    //     // $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('seventh-level-filter eighth-level-filter');
+    //     $('.filter-block-group[data-advance-filter]').removeClass('visible-advance-filter');
+    //     $(this).text(function(i, v){
+    //         return v === 'Show Less' ? 'Advance Filters' : 'Show More'
+    //     });
+    //     $('html, body').animate({
+    //     scrollTop: $(".collection-header").offset().top+50
+    // }, 1000);
+    //     // $('').animate({scrollTop:0}, '1000');
+    //   }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('sixth-level-filter')){
+    //     console.log('6th exist');
+    //     $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('sixth-level-filter seventh-level-filter');
+    //     $(this).text(function(i, v){
+    //         return v === 'Show More' ? 'Show Less' : 'Advance Filters'
+    //     });
+    //   }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('fifth-level-filter')){
+    //     console.log('5th exist');
+    //     $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('fifth-level-filter sixth-level-filter');
+    //   }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('fourth-level-filter')){
+    //     console.log('4th exist');
+    //     $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('fourth-level-filter fifth-level-filter');
+    //   }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('third-level-filter')){
+    //     console.log('3th exist');
+    //     $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('third-level-filter fourth-level-filter ');
+    //   }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('second-level-filter')){
+    //     console.log('2th exist');
+    //     $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('second-level-filter third-level-filter ');
+    //   }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('first-level-filter')){
+    //     console.log('1th exist');
+    //     $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('first-level-filter second-level-filter ');
+    if($('.filter-block-group[data-advance-filter]').hasClass('visible-advance-filter')){
+      $(this).text(function(i, v){
+            return v === 'Show Less' ? 'Advance Filters' : 'Show Less'
         });
-        $('html, body').animate({
+      $('.filter-block-group[data-advance-filter]').removeClass('visible-advance-filter');
+      $('html, body').animate({
         scrollTop: $(".collection-header").offset().top+50
-    }, 1000);
-        // $('').animate({scrollTop:0}, '1000');
-      }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('sixth-level-filter')){
-        console.log('6th exist');
-        $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('sixth-level-filter seventh-level-filter');
-        $(this).text(function(i, v){
-            return v === 'Show More' ? 'Show Less' : 'Advance Filters'
-        });
-      }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('fifth-level-filter')){
-        console.log('5th exist');
-        $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('fifth-level-filter sixth-level-filter');
-      }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('fourth-level-filter')){
-        console.log('4th exist');
-        $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('fourth-level-filter fifth-level-filter');
-      }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('third-level-filter')){
-        console.log('3th exist');
-        $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('third-level-filter fourth-level-filter ');
-      }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('second-level-filter')){
-        console.log('2th exist');
-        $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('second-level-filter third-level-filter ');
-      }else if($('.collection-filter-wrapper-main[data-collection-filter-section]').hasClass('first-level-filter')){
-        console.log('1th exist');
-        $('.collection-filter-wrapper-main[data-collection-filter-section]').toggleClass('first-level-filter second-level-filter ');
-      }else {
+      }, 1000);
+       }else {
         console.log('Enter in Else Part of Advnce filter')
         $('.filter-block-group[data-advance-filter]').addClass('visible-advance-filter');
-        $('.collection-filter-wrapper-main[data-collection-filter-section]').addClass('first-level-filter');
+        // $('.collection-filter-wrapper-main[data-collection-filter-section]').addClass('first-level-filter');
         $(this).text(function(i, v){
-            return v === 'Advance Filters' ? 'Show More' : 'Show Less'
+            return v === 'Advance Filters' ? 'Show Less' : 'Advance Filters'
         });
-      }
+       }
       
       
     });
@@ -262,6 +271,7 @@
       $('[data-collection-listing-container]').addClass('inital-load');    
       var newQueryString = filterOnSelect();     
       searchaniseProducts(newQueryString);  
+      _swat.initializeActionButtons('[data-collection-listing-container] .grid__item');
     });
 
     $('body').on('change','#sortByFilter', function(){ 
@@ -689,8 +699,8 @@
                             }                       
                       } else {
                         $.each(filterVal, function(key, val){
-                   //console.log('initiall')
-                   //console.log('Keyyyy', key);
+                  //  console.log('initiall')
+                   console.log('Keyyyy==>>', key, '<<==>>', val);
                       var disableItem = '';
                     if(val.count >= 0){
                       if(val.count == 0){
@@ -1301,14 +1311,17 @@ selectOption +=  '</div">';
             } else {
           var filterVal = v.buckets;
           $.each(filterVal, function(key, val){
+           
            //console.log(val);
                     if(val.count >= 0){
                       if(val.count == 0){
                         //  ('onupdateFilterEach=========')
                         // console.log(val.value);
+                        // console.log('UpdateFilterVal==>', key, '<<<===>>>', val);
                         $(document).find('input[value="'+val.value+'"]').closest('.input-group').removeClass('toShow').addClass('toDisabled')
                           // disableItem = 'toDisabled';
                         } else {
+                          console.log('UpdateFilterValELSEEE==>', key, '<<<===>>>', val);
                           $(document).find('input[value="'+val.value+'"]').closest('.input-group').removeClass('toDisabled').addClass('toShow')
                         }
                         // var show = 'toShow';                       
@@ -1610,28 +1623,38 @@ selectOption +=  '</div">';
             if(prodImages == undefined ){
               var noImage = 'no-image'
             }
-            if($('body').attr('data-customer') == 'true' ){
-              console.log('Customer exist');
-              var addWishlist = '<button data-with-epi="true" class="swym-button swym-add-to-wishlist-view-product product_'+prodId+'" data-swaction="addToWishlist" data-product-id="'+prodId+'" data-variant-id="'+_this_variants[0].variant_id+'" data-product-url="'+window.location.host+getprodlink+'"></button>';
-              console.log('Wislist Button dynamic',addWishlist)
-             
-                function swymCallbackFn(swat){
-                  // your API calls go here
-                  document.addEventListener("swym:collections-loaded", function(){
-                    swat.initializeActionButtons(".data-collection-listing-container");
-                  })
-                }
-                if(!window.SwymCallbacks){
-                  window.SwymCallbacks = [];
-                }
-                window.SwymCallbacks.push(swymCallbackFn);
 
-            } else {
-              var addWishlist = '<a href="javascript:;" data-modal="showInfoModal" class="item-wishlist-icn" aria-describedby="a11y-external-message"><svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">    <path d="M18.9542 3.14027C18.2213 1.69531 16.11 0.513075 13.6542 1.2014C12.4807 1.52703 11.4568 2.22537 10.7499 3.1823C10.0429 2.22537 9.01906 1.52703 7.84555 1.2014C5.38425 0.523584 3.27847 1.69531 2.54555 3.14027C1.51727 5.16321 1.9439 7.43836 3.81448 9.90266C5.28032 11.831 7.37516 13.7857 10.4162 16.0555C10.5123 16.1276 10.6307 16.1667 10.7526 16.1667C10.8745 16.1667 10.9929 16.1276 11.089 16.0555C14.1246 13.7909 16.2249 11.852 17.6907 9.90266C19.5559 7.43836 19.9825 5.16321 8.9542 3.14027Z" fill="white" stroke="currentColor" stroke-width="2"></path> </svg></a>'
-            }
+            // if($('body').attr('data-customer') == 'true' ){
+            //   console.log('Customer exist');
+            //   var addWishlist = '<button data-with-epi="true" class="swym-button swym-add-to-wishlist-view-product product_'+prodId+'" data-swaction="addToWishlist" data-product-id="'+prodId+'" data-variant-id="'+_this_variants[0].variant_id+'" data-product-url="'+window.location.host+getprodlink+'"></button>';
+            //   console.log('Wislist Button dynamic',addWishlist)
+             
+            //     function swymCallbackFn(swat){
+            //       // your API calls go here
+            //       document.addEventListener("swym:collections-loaded", function(){
+            //         swat.initializeActionButtons(".data-collection-listing-container");
+            //       })
+            //     }
+            //     if(!window.SwymCallbacks){
+            //       window.SwymCallbacks = [];
+            //     }
+            //     window.SwymCallbacks.push(swymCallbackFn);
+
+            // } else {
+            //   var addWishlist = '<a href="javascript:;" data-modal="showInfoModal" class="item-wishlist-icn" aria-describedby="a11y-external-message"><svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">    <path d="M18.9542 3.14027C18.2213 1.69531 16.11 0.513075 13.6542 1.2014C12.4807 1.52703 11.4568 2.22537 10.7499 3.1823C10.0429 2.22537 9.01906 1.52703 7.84555 1.2014C5.38425 0.523584 3.27847 1.69531 2.54555 3.14027C1.51727 5.16321 1.9439 7.43836 3.81448 9.90266C5.28032 11.831 7.37516 13.7857 10.4162 16.0555C10.5123 16.1276 10.6307 16.1667 10.7526 16.1667C10.8745 16.1667 10.9929 16.1276 11.089 16.0555C14.1246 13.7909 16.2249 11.852 17.6907 9.90266C19.5559 7.43836 19.9825 5.16321 8.9542 3.14027Z" fill="white" stroke="currentColor" stroke-width="2"></path> </svg></a>'
+            // }
             productGrid += '<div class="grid-view-item product-card">';
             productGrid += '<a class="grid-view-item__link grid-view-item__image-container full-width-link" href="'+getprodlink+'" style="display: none;"><span class="visually-hidden">'+prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</span></a>';
-            productGrid += '<div class="product-images-wrapper '+ noImage +'"><a class="product-full-link" href="'+getprodlink+'"> </a> '+addWishlist+' <div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider '+prodImgSliderDyn+'>';
+
+            var swymProductId = prodObj[i].product_id;
+          	var swymVariantId = prodObj[i].shopify_variants[0].variant_id;  
+          	var swymShopUrl = {{ shop.url | json }};
+            
+            productGrid += '<div class="product-images-wrapper '+ noImage +'"><button data-with-epi="true" class="swym-button swym-add-to-wishlist-view-product product_'+ swymProductId +'" data-swaction="addToWishlist" data-product-id="'+ swymProductId +'" data-variant-id="'+ swymVariantId +'" data-product-url="'+ swymShopUrl +''+ getprodlink +'"></button><a class="product-full-link" href="'+getprodlink+'"> </a><div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider '+prodImgSliderDyn+'>';
+
+
+
+            // productGrid += '<div class="product-images-wrapper '+ noImage +'"><a class="product-full-link" href="'+getprodlink+'"> </a> '+addWishlist+' <div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider '+prodImgSliderDyn+'>';
             // console.log('ProductImageLength', prodImages.length);
 
                if(prodImages != undefined ){
@@ -1770,8 +1793,11 @@ selectOption +=  '</div">';
                 } 
              
                 
-                               
+                
                 $(document).find('[data-col-images-slider-init]').slick(sliderInit());
+                setTimeout(function(){
+                  document.dispatchEvent(new CustomEvent('swym:collections-loaded'));           
+                },1500);
       }
       function sliderInit(){               
           return {

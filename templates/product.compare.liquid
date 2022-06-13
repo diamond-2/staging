@@ -5,10 +5,11 @@
   {% assign compareImgCounter = 0 %}
   {% for slideImage in product.images %}
   {% assign slideImage = slideImage | downcase %}
-  {% if  slideImage contains "xyzg" %}
+  {% assign firstVariantColor = current_variant.option1 %}
+  {% if  slideImage contains "xyzg" and slideImage.alt ==  firstVariantColor  %}
     {% assign compareImgCounter = compareImgCounter | plus: 1 %}
   <div class="compare__image-wrapper">
-    <img class="compare__image" src="{{ slideImage.src | img_url: '150x' }}" alt="{{ slideImage.alt }}" data-compare-item-image="">
+    <a href="{{ product.url }}" aria-label="{{ product.title }}"><img class="compare__image" src="{{ slideImage.src | img_url: '150x' }}" alt="{{ slideImage.alt }}" data-compare-item-image=""></a>
   </div>
   {% if compareImgCounter == 1 %}
   {% break %}
@@ -115,7 +116,16 @@
           <tr>
             <td>
               <div class="compareitem-label">Center Stone Weight</div>
-              <div class="compareitem-value">{% if current_variant.metafields.current_variant.dia_tab1_frc_stn_total_crt_wt != blank %}{{ current_variant.metafields.current_variant.dia_tab1_frc_stn_total_crt_wt}}{% else %}--{% endif %}</div>
+              
+              <div class="compareitem-value">
+                {% if current_variant.metafields.current_variant.frc_stn_total_crt_wt != blank %}
+                  {{ current_variant.metafields.current_variant.frc_stn_total_crt_wt }}
+                {% elsif current_variant.metafields.current_variant.dec_stn_total_crt_wt != blank %}
+                  {{ current_variant.metafields.current_variant.dec_stn_total_crt_wt }}
+                {% else %}
+                  --
+                {% endif %}
+              </div>
               
             </td>
           </tr>
@@ -128,7 +138,7 @@
           <tr>
             <td>
               <div class="compareitem-label">Solitaire Weight</div>
-              <div class="compareitem-value">{% if current_variant.metafields.current_variant.dia_tab1_cert_carats != blank %}{{ current_variant.metafields.current_variant.dia_tab1_cert_carats}}{% else %}--{% endif %}</div>
+              <div class="compareitem-value">{% if current_variant.metafields.current_variant.dia_sol_crt_wt  != blank %}{{ current_variant.metafields.current_variant.dia_sol_crt_wt }}{% else %}--{% endif %}</div>
             </td>
           </tr>
           {% endif %}

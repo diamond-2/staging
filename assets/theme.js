@@ -857,59 +857,63 @@ slate.Variants = (function() {
      * @return {event} variantMetafiedChange
      */
      _updateMetafield: function(variant) {
-       //console.log('update metafield function hit');
-       //console.log(variant);
+       console.log('update metafield function hit');
+       console.log(variant);
        var element = document.querySelector('body');
-       var dataAttribute = element.getAttribute('data-handle');
+       var dataAttribute = element.getAttribute('data-handle')+'?variant='+variant.id;
        var current_variantTitle = $('select[name="id"] option:selected').data('color');
        var current_variantSizeValue = $('select[name="id"] option:selected').data('size');
        $(document).find('[data-variant-title]').text(current_variantTitle);
        if(current_variantSizeValue != '') {
         $(document).find('[data-variant-size]').text(current_variantSizeValue);
        }
+       
        $.ajax({
-        url: dataAttribute+'/?view=metafields',
+        url: dataAttribute+'&view=metafields',
         cache: false,
         success: function(response) {
-          // console.log(response);
-          var data = JSON.parse(response);
-          //console.log(JSON.parse(data));
-          var productData = (data.results.length ? data.results[0]: {} );
-          var productMetafield =  productData.productMetafield;
-          var variantMetaFields = productData.variantMetafileds;
-          productMetafield.forEach(function(ele){ //console.log(ele);
-            for(var key in ele) { 
-                $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val').text(ele[key]);
-            }
-          });
-          //console.log(variantMetaFields);
-          for(var variantKey in variantMetaFields) {// console.log('variantKey');   console.log(variantKey);
-            var selectedVariant = $('select[name="id"]').val();//console.log(selectedVariant);
-            if(selectedVariant != variantKey) continue 
-            variantMetaFields[variantKey].forEach(function(ele){ console.log(ele);
+          
+          $(document).find('#productDetails').html(response);
+
+          // // console.log(response);
+          // var data = JSON.parse(response);
+          // //console.log(JSON.parse(data));
+          // var productData = (data.results.length ? data.results[0]: {} );
+          // var productMetafield =  productData.productMetafield;
+          // var variantMetaFields = productData.variantMetafileds;
+          // productMetafield.forEach(function(ele){ //console.log(ele);
+          //   for(var key in ele) { 
+          //       $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val').text(ele[key]);
+          //   }
+          // });
+          // //console.log(variantMetaFields);
+          // for(var variantKey in variantMetaFields) {// console.log('variantKey');   console.log(variantKey);
+          //   var selectedVariant = $('select[name="id"]').val();//console.log(selectedVariant);
+          //   if(selectedVariant != variantKey) continue 
+          //   variantMetaFields[variantKey].forEach(function(ele){ console.log(ele);
                            
-              for(var key in ele) {   
-                console.log('KKKEEYY', key);   
-                // if(key == 'dec_stn_total_crt_wt' || key == 'frc_stn_total_crt_wt') {
-                //   key = 'tableContent_common_ttl_crt_wgt';
-                // } 
-                // else if(key == 'dia_tab1_dec_stn_total_crt_wt_label' || key == 'dia_tab1_frc_stn_total_crt_wt_label' || key == 'dia_tab2_dec_stn_total_crt_wt_label' || key == 'dia_tab2_frc_stn_total_crt_wt_label' || key == 'dia_tab3_dec_stn_total_crt_wt_label' || key == 'dia_tab3_frc_stn_total_crt_wt_label' || key == 'dia_tab4_dec_stn_total_crt_wt_label' || key == 'dia_tab4_frc_stn_total_crt_wt_label' || key == 'dia_tab5_dec_stn_total_crt_wt_label' || key == 'dia_tab5_frc_stn_total_crt_wt_label' || key == 'dia_tab6_dec_stn_total_crt_wt_label' || key == 'dia_tab6_frc_stn_total_crt_wt_label' || key == 'dia_tab7_dec_stn_total_crt_wt_label' || key == 'dia_tab7_frc_stn_total_crt_wt_label' || key == 'dia_tab8_dec_stn_total_crt_wt_label' || key == 'dia_tab8_frc_stn_total_crt_wt_label' || key == 'dia_tab9_dec_stn_total_crt_wt_label' || key == 'dia_tab9_frc_stn_total_crt_wt_label' || key == 'dia_tab10_dec_stn_total_crt_wt_label' || key == 'dia_tab10_frc_stn_total_crt_wt_label'){
-                //   $(document).find('[data-row="common_dia_tab_ttl_crt_wgt"]').find('.pdp-tab-label').text(ele[key]); 
-                // }
-                // if(key == 'dec_stn_total_crt_wt' || key == 'frc_stn_total_crt_wt') {
-                //   $(document).find('[data-row="common_ttl_crt_wgt"]').find('.pdp-tab-val').text(ele[key]);
-                // } 
-                // else if(key == 'dia_tab1_dec_stn_total_crt_wt' || key == 'dia_tab1_frc_stn_total_crt_wt' || key == 'dia_tab2_dec_stn_total_crt_wt' || key == 'dia_tab2_frc_stn_total_crt_wt' || key == 'dia_tab3_dec_stn_total_crt_wt' || key == 'dia_tab3_frc_stn_total_crt_wt' || key == 'dia_tab4_dec_stn_total_crt_wt' || key == 'dia_tab4_frc_stn_total_crt_wt' || key == 'dia_tab5_dec_stn_total_crt_wt' || key == 'dia_tab5_frc_stn_total_crt_wt' || key == 'dia_tab6_dec_stn_total_crt_wt' || key == 'dia_tab6_frc_stn_total_crt_wt' || key == 'dia_tab7_dec_stn_total_crt_wt' || key == 'dia_tab7_frc_stn_total_crt_wt' || key == 'dia_tab8_dec_stn_total_crt_wt' || key == 'dia_tab8_frc_stn_total_crt_wt' || key == 'dia_tab9_dec_stn_total_crt_wt' || key == 'dia_tab9_frc_stn_total_crt_wt' || key == 'dia_tab10_dec_stn_total_crt_wt' || key == 'dia_tab10_frc_stn_total_crt_wt'){
-                //   $(document).find('[data-row="common_dia_tab_ttl_crt_wgt"]').find('.pdp-tab-val').text(ele[key]);
-                // }
-                // else {
-                  $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val').text(ele[key]);                             
-                // }
-                  //console.log('Enter currentvairant');
+          //     for(var key in ele) {   
+          //       console.log('KKKEEYY', key);   
+          //       // if(key == 'dec_stn_total_crt_wt' || key == 'frc_stn_total_crt_wt') {
+          //       //   key = 'tableContent_common_ttl_crt_wgt';
+          //       // } 
+          //       // else if(key == 'dia_tab1_dec_stn_total_crt_wt_label' || key == 'dia_tab1_frc_stn_total_crt_wt_label' || key == 'dia_tab2_dec_stn_total_crt_wt_label' || key == 'dia_tab2_frc_stn_total_crt_wt_label' || key == 'dia_tab3_dec_stn_total_crt_wt_label' || key == 'dia_tab3_frc_stn_total_crt_wt_label' || key == 'dia_tab4_dec_stn_total_crt_wt_label' || key == 'dia_tab4_frc_stn_total_crt_wt_label' || key == 'dia_tab5_dec_stn_total_crt_wt_label' || key == 'dia_tab5_frc_stn_total_crt_wt_label' || key == 'dia_tab6_dec_stn_total_crt_wt_label' || key == 'dia_tab6_frc_stn_total_crt_wt_label' || key == 'dia_tab7_dec_stn_total_crt_wt_label' || key == 'dia_tab7_frc_stn_total_crt_wt_label' || key == 'dia_tab8_dec_stn_total_crt_wt_label' || key == 'dia_tab8_frc_stn_total_crt_wt_label' || key == 'dia_tab9_dec_stn_total_crt_wt_label' || key == 'dia_tab9_frc_stn_total_crt_wt_label' || key == 'dia_tab10_dec_stn_total_crt_wt_label' || key == 'dia_tab10_frc_stn_total_crt_wt_label'){
+          //       //   $(document).find('[data-row="common_dia_tab_ttl_crt_wgt"]').find('.pdp-tab-label').text(ele[key]); 
+          //       // }
+          //       // if(key == 'dec_stn_total_crt_wt' || key == 'frc_stn_total_crt_wt') {
+          //       //   $(document).find('[data-row="common_ttl_crt_wgt"]').find('.pdp-tab-val').text(ele[key]);
+          //       // } 
+          //       // else if(key == 'dia_tab1_dec_stn_total_crt_wt' || key == 'dia_tab1_frc_stn_total_crt_wt' || key == 'dia_tab2_dec_stn_total_crt_wt' || key == 'dia_tab2_frc_stn_total_crt_wt' || key == 'dia_tab3_dec_stn_total_crt_wt' || key == 'dia_tab3_frc_stn_total_crt_wt' || key == 'dia_tab4_dec_stn_total_crt_wt' || key == 'dia_tab4_frc_stn_total_crt_wt' || key == 'dia_tab5_dec_stn_total_crt_wt' || key == 'dia_tab5_frc_stn_total_crt_wt' || key == 'dia_tab6_dec_stn_total_crt_wt' || key == 'dia_tab6_frc_stn_total_crt_wt' || key == 'dia_tab7_dec_stn_total_crt_wt' || key == 'dia_tab7_frc_stn_total_crt_wt' || key == 'dia_tab8_dec_stn_total_crt_wt' || key == 'dia_tab8_frc_stn_total_crt_wt' || key == 'dia_tab9_dec_stn_total_crt_wt' || key == 'dia_tab9_frc_stn_total_crt_wt' || key == 'dia_tab10_dec_stn_total_crt_wt' || key == 'dia_tab10_frc_stn_total_crt_wt'){
+          //       //   $(document).find('[data-row="common_dia_tab_ttl_crt_wgt"]').find('.pdp-tab-val').text(ele[key]);
+          //       // }
+          //       // else {
+          //         $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val').text(ele[key]);                             
+          //       // }
+          //         //console.log('Enter currentvairant');
                   
-              }
-            });           
-          }
+          //     }
+          //   });           
+          // }
         }
        });
 
@@ -9779,6 +9783,7 @@ document.addEventListener('DOMContentLoaded', function() {
       window.performance.mark('debut:fonts_loaded');
     });
   }
+  
 });
 
 // Youtube API callback
@@ -9800,6 +9805,13 @@ function removeImageLoadingAnimation(image) {
 
 
 document.addEventListener('DOMContentLoaded', function(event) {
+  // Event for update Account and redirect to profile page
+  $(document).on('click', '.cf-submit-form', function(){
+    if($(this).find('span').text() == 'Update account'){
+      localStorage.setItem('updateProfile', true);
+    }
+  });
+
   // full slider call global
   $(".full_width_slider").slick({
     dots: true,
@@ -9866,28 +9878,6 @@ window.addEventListener("resize", function() {
       $(this).parent().siblings().removeClass('menu_down');
       $(this).parent().siblings().children('.site-footer__sub-linklist').slideUp();
   });
-
-  // HeaderNav image change on mouseenter event
-
-  // $(document).on('mouseenter', '.site-nav__childlist-item .site-nav__link', function(){
-  //   let handle = $(this).data('handle');
-  //   console.log(handle);
-  //   handle != undefined ? $(document).find('#nav-img-block img').attr('src', handle).fadeIn():'';//$(document).find('#nav-img-block img').fadeOut();
-  // });
-
-  // HeaderNav image change on Hover
-  // $('#AccessibleNav .site-nav__childlist-grid').each(function(){
-  //   var defaultSetImage = $(this).find('.nav-image-wrapper img').attr('data-src');
-  //   var menuImageItem = $(this).find('.nav-image-wrapper img');
-  //   $(this).find('a[data-handle]').hover(function(){
-  //       let hoveImage = $(this).attr('data-handle');
-  //       $(menuImageItem).attr('src',hoveImage)
-  //       $(menuImageItem).attr('data-src',hoveImage);
-  //   },function(){
-  //       $(menuImageItem).attr('src',defaultSetImage)
-  //       $(menuImageItem).attr('data-src',defaultSetImage);
-  //   });
-  // });
 
   function checkIfImageExists(url, callback) {
     const img = new Image();
@@ -11170,5 +11160,4 @@ $(this).addClass('tah-item-added');
 }
 
 });
-
 })

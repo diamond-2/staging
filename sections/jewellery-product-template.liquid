@@ -167,43 +167,40 @@
                     <div class="product-sku-wrapper">
                         {%- if current_variant.sku != blank -%}
                         <div class="p_sku">SKU: <span class="__sku">{{ current_variant.sku }}</span></div>
-                        {% assign caratWeightGuide = 'Carat Weight Guide' %}
+                       {% comment %} {% assign caratWeightGuide = 'Carat Weight Guide' %}
                         <div class="p_weight_guide"><a href="/pages/caratweightguide">{{caratWeightGuide}}</a></div>
-                        {% comment %}
+                        
                         <div class="p_weight_guide"><a custom-modal="trigger" href="#{{ caratWeightGuide | downcase | replace: ' ', '_' }}">{{caratWeightGuide}}</a></div>        
                         {% capture weightGuidePopup %}
                             {% include 'weight_guide-popup', weight_guide_text: caratWeightGuide %}
                         {% endcapture %}  
 {% endcomment %}
                         {%- endif -%}
-                    </div>
-                    {%- endif -%}
-                    <div class="product-wishlist">
-                        <div class="wishlist-text">SAVE TO WISHLIST</div>
-                        <div class="wishlist-icon">
-                            {% if customer %}
-                        <!-- Swym button on product pages -->
-                        <div class="swym-wishlist-button-bar"></div>
-                        <!-- Swym button on product pages -->  
-                        {% else %}   
-                       
-                            <!-- <button class="btn swym-button swym-add-to-wishlist swym-inject swym-has-fave-count swym-icon swym-heart swym-added swym-loaded" onclick="event.preventDefault();" aria-label="Add to Wishlist">
-                                <span class="swym-wishlist-cta">Add to Wishlist</span>
-                                <span class="swym-tooltip swym-inject swym-tooltip-clickable"><span class="swym-tooltip-text">Add to wishlist</span></span></button><span class="swym-fave-count swym-added" data-count="9">9</span> -->
-                                <a href="javascript:;" data-modal="showInfoModal" class="">
-                                    {% render 'icon-account-wishlist' %}
-                                </a>
-                          
-                        
-
-
-
-
+                        <div class="product-wishlist">
+                            <div class="wishlist-text">SAVE TO WISHLIST</div>
+                            <div class="wishlist-icon">
+                                {% if customer %}
+                            <!-- Swym button on product pages -->
+                            <div class="swym-wishlist-button-bar"></div>
+                            <!-- Swym button on product pages -->  
+                            {% else %}   
+                                    <a href="javascript:;" data-modal="showInfoModal" class="">
+                                        {% render 'icon-account-wishlist' %}
+                                    </a>
+                              
+                            
+    
+    
+    
+    
+                               
+                            {% endif %}                     
                            
-                        {% endif %}                     
-                            {% comment %}{% include 'iocn-wislist' %} {% endcomment %}
+                            </div>
                         </div>
                     </div>
+                    {%- endif -%}
+                    
                    {% comment %}
                     {%- if cart.taxes_included or shop.shipping_policy.body != blank -%}
                     <div class="product__policies rte" data-product-policies>
@@ -246,7 +243,7 @@
                     {% endif %}
 
                     {% unless product.has_only_default_variant %}
-                    <div class="product-form__controls-group">
+                    <div class="product-form__controls-group" data-option="{{ product.options.size }}">
                         {% for option in product.options_with_values %}
                         <div class="selector-wrapper js product-form__item pdp-select-item">
                             {% assign indexVal = forloop.index %}
@@ -264,7 +261,7 @@
                             </div>
 
                             {% else %}
-                            <div class="custom-select-holder">
+                            <div class="custom-select-holder" data-option="{{ option.name }}">
                                 <label for="SingleOptionSelector-{{ forloop.index0 }}">
                                     Select {% if product.metafields.global.jewelery_category != blank %}{{ product.metafields.global.jewelery_category }}{% endif %} {{ option.name }}
                                 </label>
@@ -277,6 +274,10 @@
                                     {% endfor %}
                                 </select>
                             </div>
+                            {% if option.name contains 'TCW' %}
+                            {% assign caratWeightGuide = 'Carat Weight Guide' %}
+                            <div class="p_weight_guide"><a href="/pages/caratweightguide">{{caratWeightGuide}}</a></div>
+                            {% endif %}
                             
                             {% if option.name =='Size' %}
                             {% assign prodCategory = product.metafields.global.jewelery_category %}

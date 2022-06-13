@@ -116,7 +116,7 @@ select#sortByFilter {
     padding: 0 5px;
 }
 .collection_filter_by_shape input:checked + label {
-    box-shadow: 0 0 2px rgb(0 0 0 / 30%);
+    box-shadow: 0 0 2px #6c1d45;
 
 }
 .collection_filter_by_shape img {
