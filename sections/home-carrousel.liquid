@@ -1,0 +1,168 @@
+<style>
+
+    .carrousel-home-section .slick-slide{
+
+        margin: 15px 10px;
+
+    }
+
+    .carrousel-home-section .slick-slide img{
+        margin: auto;
+    }
+
+    .carrousel-home-section .slick-active button:before{
+
+        background: #6C1D45;
+        color: #6C1D45 !important;
+    }
+
+    .carrousel-home-section .slick-dots{
+        margin-top: 4%;
+    }
+
+    .slick-slide.slick-current.slick-active.slick-center:hover{
+
+        box-shadow: 0 5px 14px 3px rgb(0 0 0 / 35%);
+        -webkit-box-shadow: 0 5px 14px 3px rgb(0 0 0 / 35%);
+
+    }
+
+    .carrousel-heading{
+        width: 35.214%;
+        margin: 7% auto;
+        font-family: 'Spectral', serif;
+        font-weight: 200;
+        color: #6C1D45;
+        letter-spacing: normal;
+        margin-top: 9%;
+        text-align: center;
+        max-width: 540px;
+    }
+
+    .image-for-desktop img{
+        width: 100% !important;
+    }
+
+    .carrousel-home-section .slick-dots li button:before{
+        /* color: red; */
+        font-family: "Font Awesome 5 Free";
+        content: "\f1ce";
+        display: inline-block;
+        padding-right: 3px;
+        vertical-align: middle;
+        font-weight: 900;
+        border: 1px solid #6b1d45;
+        border-radius: 50%;
+    }
+
+    img.image-for-desktop.slick-slide {
+        padding-left: 25px;
+    }
+
+    @media screen and (max-width: 767px) {
+
+        .carrousel-home-section .slick-dots li button:before{
+            height: 15px;
+            width: 15px;
+        }
+
+        .carrousel-heading {
+            width: 80%;
+        }
+
+        .slick-initialized .slick-slide .image-for-mobile{
+            display: block;
+        }
+    }
+
+</style>
+
+<div class="carrousel-home-section">
+
+    <h1 class="carrousel-heading">{{section.settings.caraosel_heading}}</h1>
+
+    <div class="carrousel-implemented-main image-for-desktop">
+        {% for block in section.blocks %}
+            <div>
+                <img src="{{block.settings.gallery_image_desktop | img_url: 'master'}}" class="image-for-desktop">
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+<script>
+    $('.carrousel-implemented-main').slick({
+  dots: true,
+  centerMode: true,
+  infinite: true,
+  centerPadding: '320px',
+  slidesToShow: 1,
+  responsive: [
+    {
+      breakpoint: 1500,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '220px',
+        slidesToShow: 1
+      }
+    },
+    {
+      breakpoint: 767,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '0px',
+        slidesToShow: 1
+      }
+    }
+  ]
+});
+</script>
+
+
+
+{% schema %}
+    {
+        "name" : "Jewellery Collection",
+        "class": "jewellery-col-layout",
+        "settings": [
+            {
+                "type": "text",
+                "id": "caraosel_heading",
+                "label": "Heading",
+                "default": "HOUSE OF WORLD BEYOND THE DIAMOND"
+            }
+        ],
+        "blocks": [
+            {
+                "type": "image",
+                "name": "Image",
+                "settings": [
+                    {
+                        "type": "image_picker",
+                        "id": "gallery_image_desktop",
+                        "label": "Gallery Image For Desktop"
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "Jewellery Collection"
+            }
+        ]
+
+
+    }
+    {% endschema %}
