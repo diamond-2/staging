@@ -1666,7 +1666,8 @@ body.landing-exist.scroll-start #shopify-section-landing {
           line-height: 48.6px;
           letter-spacing: 0;
           margin-bottom: 76px;
-          text-transform: uppercase; }
+          /* text-transform: uppercase;  */
+        }
           @media (max-width: 1600px) {
             .home--slider .homepage-slider-wrapper .slide-item .slide-overlay .slide-overaly-heading {
               font-size: 30px;
