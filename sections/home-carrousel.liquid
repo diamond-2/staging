@@ -95,11 +95,22 @@
         }
     }
 
+<<<<<<< HEAD
+=======
+    @media screen and (min-width: 1500px){
+       .carrousel-home-section .image-for-desktop img {
+            width: 100% !important;
+            padding-left: 2%;
+            padding-right: 2%;
+            max-width: 10000px;
+            max-height: 10000px;
+       }
+    }
+
+>>>>>>> dev-avishek
 </style>
 
 <div class="carrousel-home-section">
-
-    <!-- <p></p> -->
 
     <h1 class="carrousel-heading">{{section.settings.caraosel_heading}}</h1>
 
@@ -120,9 +131,22 @@
   infinite: true,
   autoplay: true,
   autoplaySpeed: 3000,
+<<<<<<< HEAD
   centerPadding: '420px',
+=======
+  centerPadding: '520px',
+>>>>>>> dev-avishek
   slidesToShow: 1,
   responsive: [
+    {
+      breakpoint: 1900,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '420px',
+        slidesToShow: 1
+      }
+    },
     {
       breakpoint: 1500,
       settings: {
