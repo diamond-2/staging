@@ -666,8 +666,7 @@ div#PageContainer.js-menu--is-open {
   .site-header .site-header__mobile-nav .site-header__logo .site-header__logo-image img.header_sm_logo {
     max-width: 22px;
     margin: 0 auto 6px;
-    position: relative;
-    left: -10px; }
+    position: relative; }
   .site-header .site-header__mobile-nav #SiteNav {
     position: initial; }
     .site-header .site-header__mobile-nav #SiteNav .site-nav--active .site-nav__label {
@@ -677,6 +676,8 @@ div#PageContainer.js-menu--is-open {
     margin: 0 10px;
     cursor: pointer;
     position: relative; }
+    .site-header .site-header__mobile-nav .site-header__icons .site-header__icon.site-header__wishlist {
+      display: none; }
     @media (max-width: 1600px) {
       .site-header .site-header__mobile-nav .site-header__icons .site-header__icon {
         margin: 0 3px; } }
@@ -6362,7 +6363,8 @@ body[data-template="loose-stone"] .product-content-section {
                 text-align: left; }
               .solitaire-collection-wrapper .grid--view-items .grid__item .grid-view-item .prodct_card_body .product-price-card .product-price-card-row > div.product_compare {
                 text-align: right;
-                cursor: pointer; }
+                cursor: pointer;
+                display: none; }
       .solitaire-collection-wrapper .grid--view-items .grid__item .product_images_slider .slick-arrow {
         z-index: 2;
         width: 30px;
