@@ -1,11 +1,15 @@
 
 {% assign newsletterBg = 'newesletter-bg.jpg' | asset_img_url: 'master' %}
+{% assign newsletterHeading = settings.newsletter_heading %}
+{% assign newsletterOffers = settings.newsletter_offer %}
+
 <div class="newsletter-popup-wrapper">
     <div class="newsletter-popup-holder">
         <div class="newsletter-popup" >
             <div class="newsletter-pop-remove close_newsletter_icon">{% include 'icon-close' %}</div>
             <div class="newsletter-popup-header">
-                <h2>Get 10% off on your first purchase</h2>
+                {% if newsletterHeading != blank %}<h2>{{ newsletterHeading }}</h2>{% endif %}
+                {% if newsletterOffers != blank %}<h3>{{ newsletterOffers }}</h3>{% endif %}
             </div>
             <div class="newsletter-popup-form">
                 {%- assign formId = 'newsletterForm' -%}
