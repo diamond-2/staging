@@ -2769,7 +2769,8 @@ hr {
 
 .product-form__controls-group {
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  padding-bottom: 25px; }
 
 .product-form__controls-group--submit {
   margin-top: 0px; }
