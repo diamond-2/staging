@@ -10220,27 +10220,27 @@ body[data-template="customers/reset_password"] .main-content {
         width: 100%;
         padding-left: 15px;
         padding-right: 15px; } }
-  .newsletter-popup-wrapper .newsletter-popup {
-    background-color: #6c1d45;
-    background-size: cover;
-    background-position: center;
-    min-height: 568px;
-    color: #fff;
-    padding: 75px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    background-image: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/newsletter-background.png?v=1629455550"); }
-    @media (max-width: 1600px) {
-      .newsletter-popup-wrapper .newsletter-popup {
-        padding: 45px;
-        min-height: 400px; } }
-    @media (max-width: 749px) {
-      .newsletter-popup-wrapper .newsletter-popup {
-        padding: 40px 30px;
-        min-height: 225px;
-        background-image: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/newsletter-background-mobile.png?v=1629455637"); } }
+        .newsletter-popup-wrapper .newsletter-popup {
+          background-color: #6c1d45;
+          background-size: cover;
+          background-position: center;
+          min-height: 568px;
+          color: #fff;
+          padding: 75px;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          background-image: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/newsletter_popup_desktop.jpg?v=1645785472"); }
+          @media (max-width: 1600px) {
+            .newsletter-popup-wrapper .newsletter-popup {
+              padding: 45px;
+              min-height: 400px; } }
+          @media (max-width: 749px) {
+            .newsletter-popup-wrapper .newsletter-popup {
+              padding: 40px 30px;
+              min-height: 225px;
+              background-image: url("https://cdn.shopify.com/s/files/1/0575/2681/2840/files/newsletter_popup_mobile.jpg?v=1645785562"); } }
     .newsletter-popup-wrapper .newsletter-popup .close_newsletter_icon {
       position: absolute;
       top: 31px;
