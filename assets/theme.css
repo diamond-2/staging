@@ -2770,7 +2770,7 @@ hr {
 .product-form__controls-group {
   display: flex;
   flex-wrap: wrap;
-  min-height: 90px; }
+  padding-bottom: 25px; }
 
 .product-form__controls-group--submit {
   margin-top: 0px; }

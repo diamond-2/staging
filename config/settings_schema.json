@@ -1642,12 +1642,17 @@
       },
       "settings": [
         {
+<<<<<<< HEAD
           "type":"checkbox",
+=======
+          "type": "checkbox",
+>>>>>>> f5209800c7aa1798ce8d82086cf07ada71e9f25c
           "id": "enable_newsletter_popup",
           "label": "Show Newsletter Popup",
           "default": true
         },
         {
+<<<<<<< HEAD
           "type":"text",
           "id":"newsletter_heading",
           "label":"Newletter heading"
@@ -1655,6 +1660,15 @@
         {
           "type":"text",
           "id":"newsletter_offer",
+=======
+          "type": "text",
+          "id": "newsletter_heading",
+          "label": "Newletter heading"
+        },
+        {
+          "type": "text",
+          "id": "newsletter_offer",
+>>>>>>> f5209800c7aa1798ce8d82086cf07ada71e9f25c
           "label": "newsletter text"
         }
       ]
