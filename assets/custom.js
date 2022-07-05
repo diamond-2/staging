@@ -273,6 +273,7 @@ $(document).on('click', '.product-form__cart-submit:not([aria-label="Sold out"])
 //         $('[data-empty-page-content]').addClass('hide');
         console.log(response);
         $('[data-cart-count]').text(response.item_count);
+
         if(response.item_count === 0) {
           $(document).find('.site-header__cart').removeClass('has-cart-item');
           $('.cart-drawer-container .empty-mini-cart').removeClass('hidden');
