@@ -190,6 +190,19 @@
   {{ content_for_header }}
 
 	{{ shop.metafields.loox["global_html_head"] }}
+
+
+  <!-- Global site tag (gtag.js) - Google Ads: 10925811954 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-10925811954"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-10925811954');
+</script>
+
+
 </head>
 
 <body class="layout_{% if template.suffix %}{{ template.suffix }}{% else %}{{ template }}{% endif %} template-{{ request.page_type | handle }} " data-template="{% if template.suffix %}{{ template.suffix }}{% else %}{{ template }}{% endif %}"  {% if template.suffix == 'jewellery-plp'%}data-load="jewellery-plp-initial"{% endif %} {% if request.page_type == 'product' %}data-handle="{{ product.handle }}" {% endif %} {% if customer %}data-customer="true"  data-customerEmail="{{ customer.email }}" {% endif %}>
@@ -207,11 +220,8 @@
   {% endif %}
   <!-- newsletter Popup End -->
 {%- endif -%}
-<<<<<<< HEAD
-=======
 
 
->>>>>>> f5209800c7aa1798ce8d82086cf07ada71e9f25c
   
 <!-- Cart Drawer -->
 {%- if request.page_type != 'cart' -%}
@@ -315,6 +325,30 @@
   {% include 'compareProductLists'%}
   {% endif %}
   {% include 'login-info-modal' %}
+
+
+
+<!-- codes (Google Ads) to track the sign up button -->
+<script>
+  window.addEventListener('load',function(){
+    var x = 0;
+    var myVar = setInterval(function(){
+      if(x == 0){
+        if(jQuery('[id="form-msg"]:contains(Thanks)').is(':visible'))
+        {
+       gtag('event', 'conversion', {'send_to': 'AW-10925811954/3d5wCNH3y8gDEPLR6tko'});
+          clearInterval(myVar);
+          x = 1;
+        }
+      }
+    }, 1000);
+  jQuery('body').on('mousedown','[href="/account/register"]',function(){
+     gtag('event', 'conversion', {'send_to': 'AW-10925811954/3d5wCNH3y8gDEPLR6tko'});
+  })
+  })
+  </script>
+  
+  
 
 
 </body>
