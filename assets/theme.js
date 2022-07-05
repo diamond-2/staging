@@ -857,67 +857,6 @@ slate.Variants = (function() {
      * @return {event} variantMetafiedChange
      */
      _updateMetafield: function(variant) {
-<<<<<<< HEAD
-       console.log('update metafield function hit');
-       console.log(variant);
-       var element = document.querySelector('body');
-       var dataAttribute = element.getAttribute('data-handle')+'?variant='+variant.id;
-       var current_variantTitle = $('select[name="id"] option:selected').data('color');
-       var current_variantSizeValue = $('select[name="id"] option:selected').data('size');
-       $(document).find('[data-variant-title]').text(current_variantTitle);
-       if(current_variantSizeValue != '') {
-        $(document).find('[data-variant-size]').text(current_variantSizeValue);
-       }
-       
-       $.ajax({
-        url: dataAttribute+'&view=metafields',
-        cache: false,
-        success: function(response) {
-          
-          $(document).find('#productDetails').html(response);
-
-          // // console.log(response);
-          // var data = JSON.parse(response);
-          // //console.log(JSON.parse(data));
-          // var productData = (data.results.length ? data.results[0]: {} );
-          // var productMetafield =  productData.productMetafield;
-          // var variantMetaFields = productData.variantMetafileds;
-          // productMetafield.forEach(function(ele){ //console.log(ele);
-          //   for(var key in ele) { 
-          //       $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val').text(ele[key]);
-          //   }
-          // });
-          // //console.log(variantMetaFields);
-          // for(var variantKey in variantMetaFields) {// console.log('variantKey');   console.log(variantKey);
-          //   var selectedVariant = $('select[name="id"]').val();//console.log(selectedVariant);
-          //   if(selectedVariant != variantKey) continue 
-          //   variantMetaFields[variantKey].forEach(function(ele){ console.log(ele);
-                           
-          //     for(var key in ele) {   
-          //       console.log('KKKEEYY', key);   
-          //       // if(key == 'dec_stn_total_crt_wt' || key == 'frc_stn_total_crt_wt') {
-          //       //   key = 'tableContent_common_ttl_crt_wgt';
-          //       // } 
-          //       // else if(key == 'dia_tab1_dec_stn_total_crt_wt_label' || key == 'dia_tab1_frc_stn_total_crt_wt_label' || key == 'dia_tab2_dec_stn_total_crt_wt_label' || key == 'dia_tab2_frc_stn_total_crt_wt_label' || key == 'dia_tab3_dec_stn_total_crt_wt_label' || key == 'dia_tab3_frc_stn_total_crt_wt_label' || key == 'dia_tab4_dec_stn_total_crt_wt_label' || key == 'dia_tab4_frc_stn_total_crt_wt_label' || key == 'dia_tab5_dec_stn_total_crt_wt_label' || key == 'dia_tab5_frc_stn_total_crt_wt_label' || key == 'dia_tab6_dec_stn_total_crt_wt_label' || key == 'dia_tab6_frc_stn_total_crt_wt_label' || key == 'dia_tab7_dec_stn_total_crt_wt_label' || key == 'dia_tab7_frc_stn_total_crt_wt_label' || key == 'dia_tab8_dec_stn_total_crt_wt_label' || key == 'dia_tab8_frc_stn_total_crt_wt_label' || key == 'dia_tab9_dec_stn_total_crt_wt_label' || key == 'dia_tab9_frc_stn_total_crt_wt_label' || key == 'dia_tab10_dec_stn_total_crt_wt_label' || key == 'dia_tab10_frc_stn_total_crt_wt_label'){
-          //       //   $(document).find('[data-row="common_dia_tab_ttl_crt_wgt"]').find('.pdp-tab-label').text(ele[key]); 
-          //       // }
-          //       // if(key == 'dec_stn_total_crt_wt' || key == 'frc_stn_total_crt_wt') {
-          //       //   $(document).find('[data-row="common_ttl_crt_wgt"]').find('.pdp-tab-val').text(ele[key]);
-          //       // } 
-          //       // else if(key == 'dia_tab1_dec_stn_total_crt_wt' || key == 'dia_tab1_frc_stn_total_crt_wt' || key == 'dia_tab2_dec_stn_total_crt_wt' || key == 'dia_tab2_frc_stn_total_crt_wt' || key == 'dia_tab3_dec_stn_total_crt_wt' || key == 'dia_tab3_frc_stn_total_crt_wt' || key == 'dia_tab4_dec_stn_total_crt_wt' || key == 'dia_tab4_frc_stn_total_crt_wt' || key == 'dia_tab5_dec_stn_total_crt_wt' || key == 'dia_tab5_frc_stn_total_crt_wt' || key == 'dia_tab6_dec_stn_total_crt_wt' || key == 'dia_tab6_frc_stn_total_crt_wt' || key == 'dia_tab7_dec_stn_total_crt_wt' || key == 'dia_tab7_frc_stn_total_crt_wt' || key == 'dia_tab8_dec_stn_total_crt_wt' || key == 'dia_tab8_frc_stn_total_crt_wt' || key == 'dia_tab9_dec_stn_total_crt_wt' || key == 'dia_tab9_frc_stn_total_crt_wt' || key == 'dia_tab10_dec_stn_total_crt_wt' || key == 'dia_tab10_frc_stn_total_crt_wt'){
-          //       //   $(document).find('[data-row="common_dia_tab_ttl_crt_wgt"]').find('.pdp-tab-val').text(ele[key]);
-          //       // }
-          //       // else {
-          //         $(document).find('[data-row="'+key+'"]').find('.pdp-tab-val').text(ele[key]);                             
-          //       // }
-          //         //console.log('Enter currentvairant');
-                  
-          //     }
-          //   });           
-          // }
-        }
-       });
-=======
       console.log('update metafield function hit');
       console.log(variant);
       var element = document.querySelector('body');
@@ -977,7 +916,6 @@ slate.Variants = (function() {
          // }
        }
       });
->>>>>>> f5209800c7aa1798ce8d82086cf07ada71e9f25c
 
      this.container.dispatchEvent(
        new CustomEvent('variantMetafiedChange', {
