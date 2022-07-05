@@ -1,0 +1,9 @@
+{%- layout none -%}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{% assign productMetafield = product.metafields.global %}
+{% assign variantMetafield = current_variant.metafields.current_variant %}
+{%- capture description -%}description{%- endcapture -%}
+
+    {% if variantMetafield[description] != blank %}
+    <div class="product-desc-content" data-row="{{ description}}"><div class="pdp-tab-val">{{ variantMetafield[description] }}</div></div>
+    {% endif %}
