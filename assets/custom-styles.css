@@ -4544,7 +4544,7 @@ body[data-template="product"] .main-content {
       max-width: fit-content;
       padding: 2px 5px;
       font-size: 12px;
-      margin-top: 5px;
+      margin-top: 0px;
       padding-right: 15px;
       background-position: right 3px center; }
       @media (max-width: 749px) {
@@ -14178,19 +14178,24 @@ span.swym-wish-counter {
 }
 span.swym-wish-counter.show-badge {
   position: absolute;
-  right: -5px;
-  top: 0;
-  text-align: center;
-  background: #6679cc;
-  padding: 5px;
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  line-height: 16px;
-  font-size: 12px;
-  font-weight: bold;
-  color: white;
-  opacity: 1;
-  visibility: visible;
-  z-index: 1;
+    right: 0;
+    top: 8px;
+    text-align: center;
+    background: #6d1d45;    
+    border-radius: 50%;    
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+    min-width: 15px;
+    height: 15px;   
+    font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: .6875em;
+    line-height: 1.1;  
+    display: flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
