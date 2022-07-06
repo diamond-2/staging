@@ -13245,7 +13245,7 @@ a[href^="tel"] {
     line-height: 14.6px;
     font-weight: normal;
     text-transform: uppercase;
-    width: 25%;
+    width: 20%;
     border: none;
     height: 43px;
     padding: 5px 10px;
@@ -13254,7 +13254,8 @@ a[href^="tel"] {
       .factual-comparison-table th, .factual-comparison-table td {
         min-width: 130px; } }
     .factual-comparison-table th:nth-child(2), .factual-comparison-table td:nth-child(2) {
-      background: #FEF0F6; }
+      background: #FEF0F6; 
+    }
   .factual-comparison-table th {
     height: 88px; }
 
