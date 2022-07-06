@@ -5,5 +5,5 @@
 {%- capture description -%}description{%- endcapture -%}
 
     {% if variantMetafield[description] != blank %}
-    <div class="product-desc-content" data-row="{{ description}}"><div class="pdp-tab-val">{{ variantMetafield[description] }}</div></div>
+    <div class="pdp-tab-val">{{ variantMetafield[description] }}</div>
     {% endif %}
