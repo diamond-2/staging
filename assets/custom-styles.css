@@ -13892,6 +13892,15 @@ a[href^="tel"] {
       min-height: 27px;
       line-height: 25px;
       margin-top: 10px; }
+
+      @media screen and (min-width: 768px) and (max-width: 1020px){
+        #compare-product-modal .compare-product-modal-content .compare__product-information form [data-add-to-cart]{
+
+          padding: 0 25px;
+
+        }
+      }
+
     #compare-product-modal .compare-product-modal-content .compare__product-information .hide-in-compareModal {
       display: none; }
   #compare-product-modal.compare-modal-opened {
@@ -14219,3 +14228,16 @@ span.swym-wish-counter.show-badge {
 body[data-template="wishlist"] .swym-ui-component.swym-wishlist-page {
   max-width: 1480px!important;
 }
+
+/* compare at alignment of items */
+  
+    @media screen and (max-width: 767px){
+    .compare-img-alignment-custom img{
+      margin: auto;
+    }
+  
+    .compare__product-information #compare__product-table-layout .list-view-item__title{
+      margin: auto;
+    }
+  }
+

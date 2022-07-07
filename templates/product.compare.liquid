@@ -1,6 +1,9 @@
+
+
+
 {% layout none %}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
-<div class="compare__product-information test@123" data-handle="{{ product.handle }}" data-type="{{ product.type }}">
+<div class="compare__product-information" data-handle="{{ product.handle }}" data-type="{{ product.type }}">
   <a class="text-link text-link--accent remove_compare_modal_pop_btn" data-remove-compare-item>Remove {% include 'icon-close' %}</a>
   {% assign compareImgCounter = 0 %}
   {% for slideImage in product.images %}
@@ -8,7 +11,7 @@
   {% assign firstVariantColor = current_variant.option1 %}
   {% if  slideImage contains "xyzg" and slideImage.alt ==  firstVariantColor  %}
     {% assign compareImgCounter = compareImgCounter | plus: 1 %}
-  <div class="compare__image-wrapper">
+  <div class="compare__image-wrapper compare-img-alignment-custom">
     <a href="{{ product.url }}" aria-label="{{ product.title }}"><img class="compare__image" src="{{ slideImage.src | img_url: '150x' }}" alt="{{ slideImage.alt }}" data-compare-item-image=""></a>
   </div>
   {% if compareImgCounter == 1 %}
@@ -205,3 +208,4 @@
       </div>      
     </div>
   </div>
+
