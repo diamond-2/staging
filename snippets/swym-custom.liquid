@@ -1,4 +1,4 @@
-<script defer>
+<!-- <script defer>
     function swymCallbackFn(swat){
         // your API calls go here
         document.addEventListener("swym:collections-loaded", function(){
@@ -9,4 +9,22 @@
         window.SwymCallbacks = [];
       }
       window.SwymCallbacks.push(swymCallbackFn);
-    </script>
+    </script> -->
+
+
+<script defer>
+  function swymCallbackFn(swat){
+      // your API calls go here
+      document.addEventListener("swym:collections-loaded", function(){
+        swat.initializeActionButtons(".grid.grid--uniform.grid--view-items");
+      })
+      document.addEventListener("click",function(){
+      swat.initializeActionButtons(".grid.grid--uniform.grid--view-items");
+      console.log("Wishlist button initialization on filter change");
+      })
+    }
+    if(!window.SwymCallbacks){
+      window.SwymCallbacks = [];
+    }
+    window.SwymCallbacks.push(swymCallbackFn);
+  </script>

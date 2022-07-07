@@ -48,6 +48,8 @@ $(document).ready(function(){
         });
         if(new_url) {
           loadMoreBtn.show();
+          _swat.initializeActionButtons("Body");
+          console.log("Wishlist button initialized");
         }
     });
   }
