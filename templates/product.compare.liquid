@@ -1,6 +1,6 @@
 {% layout none %}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
-<div class="compare__product-information" data-handle="{{ product.handle }}" data-type="{{ product.type }}">
+<div class="compare__product-information test@123" data-handle="{{ product.handle }}" data-type="{{ product.type }}">
   <a class="text-link text-link--accent remove_compare_modal_pop_btn" data-remove-compare-item>Remove {% include 'icon-close' %}</a>
   {% assign compareImgCounter = 0 %}
   {% for slideImage in product.images %}
