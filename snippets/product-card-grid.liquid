@@ -130,7 +130,18 @@
     <div class="product-price-card ter"><div class="product-price-card-row" data-id = {{ product.id }}>
       <div class="product_weight">
         {% if variantMetafield["frc_stn_total_crt_wt"] != blank  or variantMetafield["dec_stn_total_crt_wt"] != blank %} 
-        {% if variantMetafield["dec_stn_total_crt_wt"] != blank %}{{ variantMetafield["dec_stn_total_crt_wt"] | append: ' CTS.' }}{% else %}{{ variantMetafield["frc_stn_total_crt_wt"] | append: ' (CT. TW.)' }}{% endif %}           
+        {% if variantMetafield["dec_stn_total_crt_wt"] != blank %}{{ variantMetafield["dec_stn_total_crt_wt"] | append: ' CTS.' }}
+        {% else %}
+
+        <!-- @23# -->
+
+          {% assign frcwt = variantMetafield["frc_stn_total_crt_wt"] %}
+          <span font-size="+1">
+          {{ variantMetafield["frc_stn_total_crt_wt"] | split: " " | first }}
+          </span>
+          {{ frcwt | split: " " | last }} <span>(CT. TW.)</span>
+
+        {% endif %}           
        {%- endif -%}
       </div>
       <div class="product_def">{%-if stoneClr != blank -%}{{ stoneClr }}{%- if stoneClarity != blank -%}/{%- endif -%}{%- endif -%}{%- if stoneClarity != blank  -%}{{ stoneClarity }}{%- endif -%}</div>

@@ -1,4 +1,15 @@
-   {% if is_filter_by_available or section.settings.sort_enable %}
+<style>
+  /* @23# */
+  @media screen and (min-width: 1600px) {
+    .select-sort-by-content select#sortByFilter{
+
+      max-width: 230px;
+
+    }
+  }
+</style>
+
+{% if is_filter_by_available or section.settings.sort_enable %}
       <div class="filter-toolbar-wrapper-mobile desktop_hide">
         <div class="dia-container">
           <a href="javascript:;" id="filter-btn-mob" class="btn">Filter By</a>
@@ -54,8 +65,8 @@
                   <div class="collection-sort">
                     <span class="collection-sort-label">Sort by</span>
                     <span class="select-sort-by-content">
-                      <select id="sortByFilter" class="select-sort-by">
-                        <option value="relevance&sortOrder=desc" selected>Sort by</option>
+                      <select id="sortByFilter" class="select-sort-by" >
+                        <option value="relevance&sortOrder=desc" selected="selected">Sort by</option>
                         <option value="sales_amount&sortOrder=desc" >Best Selling</option>
                         <option value="price&sortOrder=asc">Price (Low to High)</option>
                         <option value="price&sortOrder=desc">Price (High to Low)</option>
