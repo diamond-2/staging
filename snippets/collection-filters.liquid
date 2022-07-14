@@ -71,12 +71,27 @@
       var searchsortby = $(document).find("#sortByFilter option:selected").attr('value'); // console.log('sortyBy==> '+ searchsortby);
       var searchBaseUrl = 'https://www.searchanise.com/getresults?api_key=7r9L5P8L4h';
 
-    if(window.location.pathname == '/collections/try-at-home' && localStorage.getItem("tahProducts") != null && localStorage.getItem("tahProducts").length > 0){
+      if(localStorage.getItem('browserPushBack') != null){
+
+        console.log('Inside Browser pushback method');
+        console.log(localStorage.getItem('browserPushBack'));
+        // setTimeout(function(){var queryString = localStorage.getItem('browserPushBack')}, 2000);
+        
+        var queryString = localStorage.getItem('browserPushBack')
+        setTimeout(function(){localStorage.removeItem('browserPushBack')}, 3000); 
+      }
+    else if(window.location.pathname == '/collections/try-at-home' && localStorage.getItem("tahProducts") != null && localStorage.getItem("tahProducts").length > 0){
       var getTahSkus = localStorage.getItem("tahProducts").replaceAll(',', '|');
       var tahfilterData = '&restrictBy[filter_metafield_d7c8b4ec7e41c20a313f2959da7994f7]='+getTahSkus;
       var queryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName + tahfilterData+'&maxResults=' + maxResults;
+
+      // console.log("COLLECTION FILTER CHECK (if part):::: ",queryString);
+
     } else {
       var queryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
+
+      console.log("COLLECTION FILTER CHECK ( else part ):::: ",searchBaseUrl + queryString);
+
     }
 
       
@@ -129,6 +144,20 @@
       
       $('.no-result').css('display', 'none');
     });
+
+    // for storing local storage of browser push-back method
+    $(document).on('click', '.product-card__title, .product-full-link', function(e){
+      e.preventDefault();
+
+      var searchsortby = $(document).find("#sortByFilter option:selected").attr('value'); // console.log('sortyBy==> '+ searchsortby);
+
+      var updatedQueryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName +'&maxResults=' + maxResults;
+
+      // console.log("browser pushBack check", queryString);
+
+      localStorage.setItem('browserPushBack', updatedQueryString);
+      window.location.href = $(this).attr('href');
+    })
 
     // Toogle Advance Loose Stone filters
 

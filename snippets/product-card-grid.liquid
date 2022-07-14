@@ -136,9 +136,11 @@
         <!-- @23# -->
 
           {% assign frcwt = variantMetafield["frc_stn_total_crt_wt"] %}
-          <span font-size="+1">
-          {{ variantMetafield["frc_stn_total_crt_wt"] | split: " " | first }}
-          </span>
+          {% if variantMetafield["frc_stn_total_crt_wt"] contains " "%}
+            <span font-size="+1">
+            {{ variantMetafield["frc_stn_total_crt_wt"] | split: " " | first }}
+            </span>
+          {% endif %}
           {{ frcwt | split: " " | last }} <span>(CT. TW.)</span>
 
         {% endif %}           
