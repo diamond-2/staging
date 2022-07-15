@@ -345,7 +345,7 @@
                   });                  
                   selectOption  += '</ul></div>';
                   if(counter >= 1){
-                    sidebarHtml+= '<div class="collection-filter-wrapper" data-filter="&restrictBy[' + filterName + ']" data-filter-type="'+ filterName +'">' + selectOption +'</div>';
+                    sidebarHtml+= '<div class="collection-filter-wrapper" data-filter="&restrictBy[' + filterName + ']" data-filter-type="'+ filterName +'" filter-c-id="'+filterId+'">' + selectOption +'</div>';
                   	$('[data-collection-filter-section]').append(sidebarHtml);
                   }
                 }            

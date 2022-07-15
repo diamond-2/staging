@@ -14214,9 +14214,19 @@ body[data-template="wishlist"] .swym-ui-component.swym-wishlist-page {
   max-width: 1480px!important;
 }
 
-/* @23# */
+/* @23# start */
 @media screen and (min-width: 769px) and (max-width: 1024px){
   .btn.product-form__cart-submit.glb-btn{
     padding: 0 20px !important;
   }
 }
+
+.layout_search-result .collection-filter-wrapper[filter-c-id="global.sku"]{
+  display: none;
+}
+
+.layout_search-result .product-price-card-row .product_compare{
+  display: none;
+}
+
+/* @23# end */

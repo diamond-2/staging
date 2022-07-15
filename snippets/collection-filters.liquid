@@ -77,8 +77,10 @@
         console.log(localStorage.getItem('browserPushBack'));
         // setTimeout(function(){var queryString = localStorage.getItem('browserPushBack')}, 2000);
         
-        var queryString = localStorage.getItem('browserPushBack')
-        setTimeout(function(){localStorage.removeItem('browserPushBack')}, 3000); 
+        var queryString = localStorage.getItem('browserPushBack');
+        
+        setTimeout(function(){$('#sortByFilter').trigger('change');
+        localStorage.removeItem('browserPushBack')}, 3000); 
       }
     else if(window.location.pathname == '/collections/try-at-home' && localStorage.getItem("tahProducts") != null && localStorage.getItem("tahProducts").length > 0){
       var getTahSkus = localStorage.getItem("tahProducts").replaceAll(',', '|');
@@ -157,7 +159,7 @@
 
       localStorage.setItem('browserPushBack', updatedQueryString);
       window.location.href = $(this).attr('href');
-    })
+    });
 
     // Toogle Advance Loose Stone filters
 
