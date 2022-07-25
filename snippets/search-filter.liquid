@@ -3,37 +3,32 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
-<script type="text/javascript">
 
+
+<script type="text/javascript">
   $(function(){
     {% include 'createpagination' %}
     var maxResults = 16;
     var defFilterName =window.location.search.split('&')[0].replace('?q=', 'q=');
       var searchsortby = $(document).find("#sortByFilter option:selected").attr('value'); // console.log('sortyBy==> '+ searchsortby);
       var searchBaseUrl = 'https://www.searchanise.com/getresults?api_key=7r9L5P8L4h';
-
       var queryString = '&'+defFilterName+'&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&';
       var searchData = '';
       var filters = '';
-
     // $(document).on('change', '[data-collection-filter-section] select', function(){
     //   // console.log('select changes');
     //   var getSelectedVal = $(this).val(); console.log(getSelectedVal);
     //   $(this).find('option:selected').attr('selected','selected').siblings().removeAttr('selected');
     //   var getId = $(this).attr('id');  console.log(getId);
-
     //   $(document).find('[data-collection-filter-section] input[id="'+getId+'-filter"]').val(getSelectedVal).attr('checked', 'checked');
     //   $(this).next(':checkbox').trigger('change');
     // });
-
-
     $(document).on('click', '.filter-option-name', function(){
       $(this).closest('.filters-toolbar__input').toggleClass('open-dd');
       $(this).next('.filter-dd').slideToggle()
       $(this).closest('.collection-filter-wrapper').siblings().find('.filter-dd').slideUp();
       $(this).closest('.collection-filter-wrapper').siblings().find('.filters-toolbar__input').removeClass('open-dd');
     })
-
     // Clear filter Event
     $(document).on('click', '[data-clear-filter]', function(){
       var getKey = $(this).data('key');      
@@ -53,20 +48,17 @@
       $(document).find('[data-collection-filter-section] :checkbox:checked[id="'+getKey+'"]').prop('checked', false).trigger('change');    
       $(this).remove();        
     });
-
     $(document).on('change','#price-val-range', function(){
       console.log('PriceRangeChange', $('#collection-price-min-selected').text().length);
       if(!$(this).is('checked')){
         $(this).prop('checked', true);
       }          
     });
-
     $('body').on('change','[data-collection-filter-section] input[type="checkbox"]', function(){   
       $('[data-collection-listing-container]').addClass('inital-load');    
       var newQueryString = filterOnSelect();     
       searchaniseProducts(newQueryString);  
     });
-
     $('body').on('change','#sortByFilter', function(){ 
       var getSelectedVal = $(this).val();
       $(this).find('option:selected').attr('selected','selected').siblings().removeAttr('selected'); 
@@ -76,19 +68,16 @@
      // // console.log('New Query Stirng --------------')
       searchaniseProducts(newQueryString);  
     });
-
     // Hide dropdown when clicked outside
     // $(document).click(function(e) {
     //   if( e.target.class != 'collection-filter-wrapper') {
     //     $(".filter-dd").hide();
     //   }
     // });
-
     function LoadMoreItems() {
       $('.dynamicloadMore-btn').hide();
       $('.dynamic-loader-spiner').show();
     }
-
     $(document).on('click', '.dynamicloadMore-btn', function(){
       
       $('[data-collection-listing-container]').removeClass('inital-load');  
@@ -108,7 +97,6 @@
     });
     
     searchaniseProducts(queryString)
-
     function searchaniseProducts(queryString) {
       $(document).find('.no-result').remove();
     $.ajax({	
@@ -152,14 +140,12 @@
           createPagination(searchData.totalItems, searchData.startIndex/getmaxitemperpage); 
           printProducts(searchData.items);
         }
-
         }       
       });
     }
     
     
      
-
     
     //Create Filters
     	function createFilters(){ 
@@ -185,7 +171,6 @@
               selectOption += '<span class="filter-option-name">'+filterTitle+'</span>';
               selectOption += '<ul class="filter-dd"> <li>';
                 selectOption += '<div class="slider-range-selected ere"><span id="collection-price-min-selected"></span><span id="collection-price-max-selected"></span></div>'
-
               selectOption+='<div id="slider-range"></div><span id="collection-price-min" data-price=""></span> <span id="collection-price-max"  data-price=""></span>';
               selectOption+='<input ' + checked + ' type="checkbox" data-opt-val="&restrictBy[price]=' + minPrice+ ','+ highestPrice +'" value="' + theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00','') + '-'+ theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00','') +'" id="price-val-range" class="visually-hidden" />';  
               
@@ -201,20 +186,12 @@
               if($('#slider-range .ui-slider-range').length <= 0){
                 initializingPriceSlider(minPrice, highestPrice, selectedMinPrice, SelectedHighestPrice);
               }  
-
             } else 
             
             if(filterTitle == 'Collections'){
-
-
             } else if(filterTitle == 'Tags'){
-
-
             } else if(filterTitle == 'Discount'){
-
-
             } else if(filterTitle == 'Product type') {
-
             } else if(filterTitle == 'global.shape_filter'){
               var counter = 0;
                   var selectOptionLabel = '<div class="filter-by-label">Shape <span><a href="/pages/gemstone-cuts" aria-label="Learn more about shapes">Learn More &gt;</a></span></div>'
@@ -228,7 +205,6 @@
                   filterId = filterId.replace('global.', '');
                   $.each(filterVal, function(key, val){
                     var disableItem = '';
-
                     if(val.count >= 0){
                         if(val.count == 0){
                           disableItem = 'toDisabled';
@@ -249,16 +225,13 @@
                   selectOption += '</div>';
                         counter++;                        
                     }
-
                   
                   });
-
                   if(counter >= 1){
                     sidebarHtml+= '<div class="collection-filter-wrapper" data-filter="&restrictBy[' + filterName + ']" data-filter-type="shape-filter">' + selectOption +'</div>';
                   	$('[data-collection-filter-section]').prepend(sidebarHtml);
                     $('[data-collection-filter-section]').prepend(selectOptionLabel);
                   }
-
             } else {
               //global.jewelery_category
               //current_variant.min_stn_total_crt_wt
@@ -285,14 +258,12 @@
                   if(filterTitle == 'global.gender'){
                     filterTitle = 'Gender';
                   }
-
                   if(filterTitle == 'current_variant.dia_tab1_dec_stn_total_crt_wt'){
                     filterTitle = 'CARAT WEIGHT(CTS.)';
                   }
                   if(filterTitle == 'current_variant.dia_tab1_frc_stn_total_crt_wt'){
                     filterTitle = 'CARAT WEIGHT(CT. TW.)';
                   }
-
                   // selectOption += '<select name="product-type" id="'+filterId+'" class="filters-toolbar__input">';
                   
                   // selectOption += '<option data-opt-val="" value="" selected="selected">'+filterTitle+'</option>';          
@@ -312,7 +283,6 @@
                   //   }
                   // });
                   // selectOption  += '</select><input type="checkbox" id="'+filterId+'-filter" value="' + checkVal + '" ' + checked + ' class="visually-hidden" />';
-
                   selectOption += '<div name="product-type" id="'+filterId+'" class="filters-toolbar__input">';
                     selectOption += '<span class="filter-option-name">'+filterTitle+'</span>';
                     selectOption += '<ul class="filter-dd">'
@@ -330,7 +300,6 @@
                         }else {
                           var thisValContent = val.value;//// console.log('thisVal == >  ' + thisVal);
                         }                       
-
                         var filterVal = '&restrictBy[' + filterName + ']=' + val.value;
                         if(val.selected != undefined && val.selected != '' && val.selected == 'true'){
                           var selected = 'selected=selected';
@@ -350,7 +319,6 @@
                   }
                 }            
           });
-
           //Show open the selected filters
           var totSelectedFilters = 0;
           $('[data-collection-filter-section] .collection-filter-wrapper').each(function(){
@@ -367,7 +335,6 @@
             // $('.resetFilters').css('display', 'none');
           }
       }
-
      
       // Filter on Select event
      function filterOnSelect(){ 
@@ -382,7 +349,6 @@
             var Startitems = 0;
           }
       
-
         searchsortby = $(document).find("#sortByFilter option:selected").attr('value');
         var activeFilter = '';
         var fil = $('[data-collection-filter-section] input[type="checkbox"]:checked');  console.log('fil==>' + fil);  console.log(fil);
@@ -394,7 +360,6 @@
             var minPriceValue = '';
             var maxPriceValue = '';
             var FinalpriceValue = '';
-
             console.log('iiii', i);
             console.log('VId', v.id);
             console.log('VValue',v.value);
@@ -448,13 +413,9 @@
       console.log('==========>>');
       return newQueryString;
       }
-
       function createPagination(totalNoOfProducts, startIndex){
-
           $('.dynamic-pagination').empty();
-
           var pageperview = 16;
-
           var totalProducts = totalNoOfProducts;      	
           var noOfPages = totalProducts/pageperview;
           
@@ -496,9 +457,7 @@
                 } else {
                   var prodImages = '';
                 }
-
                 // console.log('prodImagesssssssss', prodImages);
-
                 getcollectionlink = '/collections/'+getcollection;
                 var _thistags = prodTags;
                 _thistags = _thistags.split('[:ATTR:]');            
@@ -541,9 +500,7 @@
                   ItemPrice += '</div>';
                 }
               }
-
                  // console.log('AAA');
-
             var ldTableContent = '';
             var ldListTableContent = '';
             var ldGridContent = '';
@@ -566,7 +523,6 @@
               if(_thistags[i].includes('LDCT:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
               if(_thistags[i].includes('LDSHAPE:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
               if(_thistags[i].includes('LDCOLOR:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
-
               if(_thistags[i].includes('LDSHAPE:')){ldListTableContent += '<td class="shape_td"><a href="{{ product.url }}"><img src="//cdn.shopify.com/s/files/1/0575/2681/2840/t/2/assets/list_360.png" alt="360 View" /><span class="text">'+tagVal+'</span>';}
               ldListTableContent += ItemPrice;
               if(_thistags[i].includes('LDCT:')){ldListTableContent += '<td class="care-tdt">'+tagVal+'</td>';}
@@ -585,7 +541,6 @@
                 if(_thistags[i].includes('LDSHAPE:')){ldGridContentMob += '<div class="product_b_tex">'+tagVal+'</div>';}
                   } else {
                     console.log('testfiilllllll');
-
                   }
                 });
               ldGridContentMob += '</div>'
@@ -626,7 +581,6 @@
               var prodImgSlider = 'product_images_slider';
               var prodImgSliderDyn = 'data-col-images-slider-init'
             // }    
-
             if($('body').attr('data-template') == 'loose-stone-plp'){ 
               productGrid += '<li class="grid__item grid__item--loose-stone-plp-template  bbb">';
               productList += '<tr class="list-view-item">';
@@ -638,11 +592,10 @@
             productGrid += '<a class="grid-view-item__link grid-view-item__image-container full-width-link" href="'+getprodlink+'" style="display: none;"><span class="visually-hidden">'+prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</span></a>';
             productGrid += '<div class="product-images-wrapper"><a class="product-full-link" href="'+getprodlink+'"> </a><div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider '+prodImgSliderDyn+'>';
             // console.log('ProductImageLength', prodImages.length);
-
                if(prodImages != undefined ){
                 for (let j = 0; j < prodImages.length; j++) {
                   if(prodImages[j].indexOf('xyzg') > -1) {
-                    productGrid += '<div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation><div id="" class="grid-view-item__image-wrapper product-card__image-wrapper js"><div class="product_img_holder"><img data-src="'+prodImages[j]+'" alt="'+ prodTitle+'" class="grid-view-item__image lazyload"></div></div></div>'
+                    productGrid += '<div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation><div id="" class="grid-view-item__image-wrapper product-card__image-wrapper js"><div class="product_img_holder"><img data-src="'+prodImages[j]+'" alt="'+ prodTitle +'" class="grid-view-item__image lazyload"></div></div></div>'
                   }
                 }  
              }            
@@ -681,7 +634,6 @@
                 productGrid += '</div>'
                 productGrid += '</div>'
                 productGrid += '</li>'
-
                 // $('[data-collection-listing-container] [data-view="grid"] [data-list-item]').append(productGrid).removeClass('hide'); 
         });
         
@@ -720,7 +672,6 @@
           // });
         }
       };
-
       //Initialize Price Slider
     	function initializingPriceSlider(minPrice, highestPrice, selectedMin, selectedMax){
           console.log(minPrice,'--', highestPrice,'--', selectedMin,'--', selectedMax);
@@ -757,14 +708,12 @@
           $( "#collection-price-min" ).text( theme.Currency.formatMoney(minPrice*100, theme.moneyFormat).replace('.00',''));
           $( "#collection-price-max" ).text( theme.Currency.formatMoney(highestPrice*100, theme.moneyFormat).replace('.00',''));
           
-
           // if(parseFloat(selectedMin) > parseFloat(minPrice) || parseFloat(selectedMax) < parseFloat(highestPrice)){
           //   $('[data-filter-type="price"]').find('.slider-range-selected').append('<i class="selRange">(SGD ' + selectedMin +' - SGD ' + selectedMax + ')</i>');
           // }      
         }
     	//Initialize Price Slider Ends
   });
-
   // Clear all Filter Event
     $(document).on('click', '.clear-filters a', function(){
       $('[data-active-filters]').html('');
