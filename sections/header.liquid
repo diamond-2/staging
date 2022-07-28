@@ -406,6 +406,7 @@
             <a href="{% if customer %}/pages/try-at-home-cart{% else %}javascript:;{% endif %}" {% if customer %}{% else %}data-modal="showInfoModal"{% endif %} class="site-header__icon site-header__tah">
               {% render 'icon-tah' %}
             </a>
+            
             {%- comment -%} Header Wishlist icon  {%- endcomment -%}
             <a href="{% if customer %}/pages/wishlist{% else %}javascript:;{% endif %}" {% if customer %}{% else %}data-modal="showInfoModal"{% endif %} class="swym-wishlist site-header__icon site-header__wishlist">
               <span class="swym-wish-counter"></span>{% render 'icon-account-wishlist' %}
