@@ -148,7 +148,7 @@
     });
 
     // for storing local storage of browser push-back method
-    $(document).on('click', '.product-card__title, .product-full-link', function(e){
+    $(document).on('click', '.product-card__title a, .product-full-link', function(e){
       e.preventDefault();
 
       var searchsortby = $(document).find("#sortByFilter option:selected").attr('value'); // console.log('sortyBy==> '+ searchsortby);
@@ -1618,7 +1618,7 @@ selectOption +=  '</div">';
             ldGridContentMob += '</div>';
           } else {
           //  console.log('inside jewellery');
-            jwGridTitle += '<div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="'+ prodLink +'">'+ prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</a></div>';
+            jwGridTitle += '<div class="h4 grid-view-item__title product-card__title xyz" aria-hidden="true"><a href="'+ prodLink +'">'+ prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</a></div>';
             jwGridContent += '<div class="product-price-card-row abc">';
             //   $.each(_thistags, function(i){ 
             //  ////console.log('INdex==>' + i);
@@ -1629,9 +1629,7 @@ selectOption +=  '</div">';
             //     if(_thistags[i].includes('CTW:')){jwGridContent += '<div class="product_weight">'+tagVal+'</div>';}
             //     if(_thistags[i].includes('DEF:')){jwGridContent += '<div class="product_def">'+tagVal+'</div>';}
             //     }
-            //   });
-
-              
+            //   });             
               
               jwGridContent +='</div>'
           }
