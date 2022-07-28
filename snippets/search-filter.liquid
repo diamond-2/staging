@@ -507,6 +507,13 @@
             var ldGridContentMob = '';
             var jwGridTitle = '';
             var jwGridContent = '';
+
+             //  Get All metainfo by ajax API Call
+             console.log('MetaInfo before::==>>');
+                      var metaInfobyview = '';
+                      var itemUrls = prodLink+'/?view=metainfo';
+
+                      
             if($('body').attr('data-template') == 'loose-stone-plp'){ 
              // console.log('inside Loosestone');
               ldGridContent += '<div class="product-price-card-row hide_mobile">';
@@ -635,6 +642,82 @@
                 productGrid += '</div>'
                 productGrid += '</li>'
                 // $('[data-collection-listing-container] [data-view="grid"] [data-list-item]').append(productGrid).removeClass('hide'); 
+
+
+// Updated New Meatinfo
+function getData(ajaxurl) { 
+                    return $.ajax({
+                      url: itemUrls,
+                      type: 'GET',
+                    });
+                  };
+
+                  async function renderMetaInfo() {
+                    try {
+                      const res = await getData(prodLink+'/?view=metainfo')
+                      // $(document).find('.product_view_tab[data-view="grid"] li .prodct_card_body').html('');
+                      let x  = res;
+                      var GridContentupdate = x;
+                      $(document).find('.product_view_tab[data-view="grid"] li[data-handle="'+prodLink.split('products/')[1]+'"]').html('').html(GridContentupdate);                      
+                    } catch(err) {
+                      console.log(err);
+                    }
+                  }
+                  renderMetaInfo();
+
+                  var itemMoreInfoUrls = prodLink+'/?view=lsmetamoreinfo';
+
+                  function getMoreData(ajaxurl) { 
+                    return $.ajax({
+                      url: itemMoreInfoUrls,
+                      type: 'GET',
+                    });
+                  };
+
+                  var listViewMetaUrls = prodLink+'/?view=listviewmetainfo';
+
+                  function getListViewData(ajaxurl) { 
+                    return $.ajax({
+                      url: listViewMetaUrls,
+                      type: 'GET',
+                    });
+                  };
+
+                  async function renderLSListInfo() {
+                    try {
+                      const responseList = await getListViewData(prodLink+'/?view=listviewmetainfo');
+                      let z  = responseList;
+                      var lsListInfoContent = z;
+                      $(document).find('.product_view_tab[data-view="list"] .product-listing table.list-view-items tbody tr[data-handle="'+prodLink.split('products/')[1]+'"]').html('').html(lsListInfoContent);                      
+                      
+                    } catch(err) {
+                      console.log(err);
+                    }
+                  }
+                  renderLSListInfo();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         });
         
             // productGrid += '</ul>';

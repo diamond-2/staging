@@ -445,6 +445,7 @@
     }
 
     function searchaniseProducts(queryString) {
+      console.log('inside update products');
       $(document).find('.no-result').remove();
     $.ajax({	
         url: searchBaseUrl + queryString,
@@ -1379,7 +1380,7 @@ selectOption +=  '</div">';
           }
       
 
-        searchsortby = $(document).find("#sortByFilter option:selected").attr('value');
+        searchsortby = $(document).find("#sortByFilter option:selected").attr('value'); console.log('selected SortBy==========>', searchsortby);
         var activeFilter = '';
         var fil = $('[data-collection-filter-section] input[type="checkbox"]:checked');  console.log('fil==>' + fil);  console.log(fil);
         if(fil.length > 0) {
@@ -1825,8 +1826,9 @@ selectOption +=  '</div">';
              
                 
                 
-                $(document).find('[data-col-images-slider-init]').slick(sliderInit());
+                
                 setTimeout(function(){
+                  $(document).find('[data-col-images-slider-init]').slick(sliderInit());
                   document.dispatchEvent(new CustomEvent('swym:collections-loaded'));           
                 },1500);
       }
