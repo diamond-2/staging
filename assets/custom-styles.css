@@ -14206,6 +14206,7 @@ span.swym-wish-counter.show-badge {
     justify-content: center;
     display: none;
 }
+
 .swym-btn-container[data-position=default] .swym-add-to-wishlist.swym-icon .swym-tooltip .swym-tooltip-text {
   left: -40px!important;
   top: -8px!important;
