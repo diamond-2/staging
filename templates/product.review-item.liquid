@@ -17,12 +17,12 @@
 <a href="javascript:;" aria-label="Remove product" data-remove-wishslit-product>{% render 'icon-close' %}</a>
 <div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card">
   {% include 'product-badge' %}
-  <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="{{ product.url }}" style="display: none;">
+  <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="{{ product.url | append: '?variant=' | append: product.variants.first.id  }}" style="display: none;">
     <span class="visually-hidden">{{ product.title }}</span>
   </a>
 
   <div class="product-images-wrapper">
-    <a class="product-full-link" href="{{ product.url }}"></a>
+    <a class="product-full-link" href="{{ product.url | append: '?variant=' | append: product.variants.first.id  }}"></a>
     <div class="product-images-wrapper {% if product.images.size > 1 %}product_images_slider{% endif %}" data-slider="product_images_slider_{{product_handle}}">
       {% for slideImage in product.images %}
       {% assign slideImage = slideImage | downcase %}
@@ -46,7 +46,7 @@
   </noscript>
 
   <div class="prodct_card_body">
-    <div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="{{ product.url }}"> {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>'}}</a></div>
+    <div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="{{ product.url | append: '?variant=' | append: product.variants.first.id  }}"> {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>'}}</a></div>
     <span style="display: none;">
       {% include 'product-price-listing', product: product, show_vendor: show_vendor %}
     </span>
@@ -56,7 +56,7 @@
         <div class="product_def">{% if defTag %}{{ defTagVal }}{% endif %}</div>
         <div class="product_compare">COMPARE</div>
       </div>
-      <div class="product-price-card-row price_row ww {% if product.compare_at_price == blank %}no_discount{% endif %}">
+      <div class="product-price-card-row price_row ww opq {% if product.compare_at_price == blank %}no_discount{% endif %}">
         <div class="ragular_price">{{ product.price | money | remove: '.00' }}</div>
         {% if product.compare_at_price %}<div class="compare_at_price">{{ product.compare_at_price | money | remove: '.00' }}</div>{% endif %}
         {% assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price %}

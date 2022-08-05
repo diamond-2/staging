@@ -1520,12 +1520,27 @@ selectOption +=  '</div">';
                 var _variant_RegularPrice_Min = '';
                 var ItemPrice = '';
                 var prodPrice = parseInt(prodObj[i].price)*100;
-                // console.log('prodPrice', prodPrice);
-                
-                    //prodPrice = theme.Currency.formatMoney(prodPrice, theme.moneyFormat).replace('.00',''),                
+                // var prodPrice = '';
+                // var prodComparePrice = '';
                 var prodComparePrice = parseInt(prodObj[i].list_price)*100;
-                //console.log('prodComparePrice', prodComparePrice);
-                // return false;
+                // if(_this_variants.length > 1){
+                //   console.log('getVariantPrice');
+                //   $.each(_this_variants, function(k) {  
+                //     console.log('_this_variants[k].available==>', _this_variants[k].available);
+                //   if(_this_variants[k].available == '1'){
+                    
+                //     prodPrice = parseInt(_this_variants[k].price)*100;
+                //     prodComparePrice = parseInt(prodObj[i].list_price)*100;
+                //     console.log('Available Variant size',prodPrice);
+                //     return false;
+                //   }                                   
+                //   });
+                // }else {
+                //   console.log('getProdPrice');
+                //   prodPrice = parseInt(prodObj[i].price)*100;
+                //   prodComparePrice = parseInt(prodObj[i].list_price)*100;
+                // }
+
             
                 //prodComparePrice = theme.Currency.formatMoney(prodComparePrice, theme.moneyFormat).replace('.00','')
                 if($('body').attr('data-template') == 'loose-stone-plp'){ 
@@ -1543,6 +1558,8 @@ selectOption +=  '</div">';
                   ItemPrice += '<div class="product_discount">'+productDiscount+'% OFF</div>';
                   ItemPrice += '</div>';
                 } else {
+                  console.log('testPrice', prodPrice);
+                  console.log('Available Variant size',prodPrice);
                   ItemPrice += '<div class="product-price-card-row price_row">';
                   ItemPrice += '<div class="ragular_price">'+theme.Currency.formatMoney(prodPrice, theme.moneyFormat).replace('.00','')+'</div>';
                   //ItemPrice += '<div class="compare_at_price"></div>';
@@ -1558,7 +1575,7 @@ selectOption +=  '</div">';
             var jwGridTitle = '';
             var jwGridContent = '';
 
-
+            console.log('VariantSizes=>>', _this_variants.length) ; 
             //  Get All metainfo by ajax API Call
             console.log('MetaInfo before::==>>');
                       var metaInfobyview = '';
@@ -1582,7 +1599,7 @@ selectOption +=  '</div">';
               if(_thistags[i].includes('LDSHAPE:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
               if(_thistags[i].includes('LDCOLOR:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
 
-              if(_thistags[i].includes('SHAPE:')){ldListTableContent += '<td class="shape_td"><a href="'+prodLink+'"><img src="//cdn.shopify.com/s/files/1/0575/2681/2840/t/2/assets/list_360.png" alt="360 View" /><span class="text">'+tagVal+'</span>';}
+              if(_thistags[i].includes('SHAPE:')){ldListTableContent += '<td class="shape_td"><a href="'+prodLink+'?variant='+currentVariantId+'"><img src="//cdn.shopify.com/s/files/1/0575/2681/2840/t/2/assets/list_360.png" alt="360 View" /><span class="text">'+tagVal+'</span>';}
               
               if(_thistags[i].includes('LDCT:')){ldListTableContent += '<td class="care-tdt">'+tagVal+'</td>';}
               if(_thistags[i].includes('LDCOLOR:')){ldListTableContent += '<td class="color_td">'+tagVal+'</td>';}
@@ -1618,7 +1635,7 @@ selectOption +=  '</div">';
             ldGridContentMob += '</div>';
           } else {
           //  console.log('inside jewellery');
-            jwGridTitle += '<div class="h4 grid-view-item__title product-card__title xyz" aria-hidden="true"><a href="'+ prodLink +'">'+ prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</a></div>';
+            jwGridTitle += '<div class="h4 grid-view-item__title product-card__title xyz" aria-hidden="true"><a href="'+ prodLink +'?variant='+currentVariantId+'">'+ prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</a></div>';
             jwGridContent += '<div class="product-price-card-row abc">';
             //   $.each(_thistags, function(i){ 
             //  ////console.log('INdex==>' + i);
@@ -1653,26 +1670,6 @@ selectOption +=  '</div">';
             if(prodImages == undefined ){
               var noImage = 'no-image'
             }
-
-            // if($('body').attr('data-customer') == 'true' ){
-            //   console.log('Customer exist');
-            //   var addWishlist = '<button data-with-epi="true" class="swym-button swym-add-to-wishlist-view-product product_'+prodId+'" data-swaction="addToWishlist" data-product-id="'+prodId+'" data-variant-id="'+_this_variants[0].variant_id+'" data-product-url="'+window.location.host+getprodlink+'"></button>';
-            //   console.log('Wislist Button dynamic',addWishlist)
-             
-            //     function swymCallbackFn(swat){
-            //       // your API calls go here
-            //       document.addEventListener("swym:collections-loaded", function(){
-            //         swat.initializeActionButtons(".data-collection-listing-container");
-            //       })
-            //     }
-            //     if(!window.SwymCallbacks){
-            //       window.SwymCallbacks = [];
-            //     }
-            //     window.SwymCallbacks.push(swymCallbackFn);
-
-            // } else {
-            //   var addWishlist = '<a href="javascript:;" data-modal="showInfoModal" class="item-wishlist-icn" aria-describedby="a11y-external-message"><svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">    <path d="M18.9542 3.14027C18.2213 1.69531 16.11 0.513075 13.6542 1.2014C12.4807 1.52703 11.4568 2.22537 10.7499 3.1823C10.0429 2.22537 9.01906 1.52703 7.84555 1.2014C5.38425 0.523584 3.27847 1.69531 2.54555 3.14027C1.51727 5.16321 1.9439 7.43836 3.81448 9.90266C5.28032 11.831 7.37516 13.7857 10.4162 16.0555C10.5123 16.1276 10.6307 16.1667 10.7526 16.1667C10.8745 16.1667 10.9929 16.1276 11.089 16.0555C14.1246 13.7909 16.2249 11.852 17.6907 9.90266C19.5559 7.43836 19.9825 5.16321 8.9542 3.14027Z" fill="white" stroke="currentColor" stroke-width="2"></path> </svg></a>'
-            // }
             productGrid += '<div class="grid-view-item product-card">';
             productGrid += '<a class="grid-view-item__link grid-view-item__image-container full-width-link" href="'+getprodlink+'" style="display: none;"><span class="visually-hidden">'+prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</span></a>';
 
@@ -1697,15 +1694,6 @@ selectOption +=  '</div">';
                 productGrid += '</div>';
                 if($('body').attr('data-template') == 'loose-stone-plp'){ 
                   productGrid += '<div class="ls-item-more-info hide_mobile">';
-                  // productGrid += '<div class="product-image-body-row">';
-                  // productGrid += '<a class="compare_btn product_compare">COMPARE</a>';
-                  // productGrid += '<a class="p_more_btn"><span class="text_more">MORE</span><span class="text_less">LESS</span></a>';
-                  // productGrid += '</div>';
-                  // productGrid += '<div class="more_product_datatable" style="display: none;">';
-                  // productGrid += ' <table><tbody>';
-                  // productGrid += ldTableContent;
-                  // productGrid += '</tbody></table>';
-                  // productGrid += '</div>'
                   productGrid += '</div>';
                   productList += '<td class="wishlist_td"><a href="#"><span class="wishlist-Icon"><svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.9542 3.14027C18.2213 1.69531 16.11 0.513075 13.6542 1.2014C12.4807 1.52703 11.4568 2.22537 10.7499 3.1823C10.0429 2.22537 9.01906 1.52703 7.84555 1.2014C5.38425 0.523584 3.27847 1.69531 2.54555 3.14027C1.51727 5.16321 1.9439 7.43836 3.81448 9.90266C5.28032 11.831 7.37516 13.7857 10.4162 16.0555C10.5123 16.1276 10.6307 16.1667 10.7526 16.1667C10.8745 16.1667 10.9929 16.1276 11.089 16.0555C14.1246 13.7909 16.2249 11.852 17.6907 9.90266C19.5559 7.43836 19.9825 5.16321 18.9542 3.14027Z" fill="white" stroke="currentColor" stroke-width="2"></path>    </svg></span> </a></td>';
                   productList += ldListTableContent;
@@ -1721,16 +1709,8 @@ selectOption +=  '</div">';
                 productGrid += '<div class="product-price-card">'
                 productGrid += ldGridContent;
                 productGrid += ldGridContentMob;
-
-               
-
-                  
                 productGrid += jwGridContent;
                 productGrid += ItemPrice;
-               
-                // productGrid += '<div class="product-price-card-row price_row">'
-                // productGrid += '<div class="ragular_price">'+ prodPrice +'</div>'
-                // productGrid += '</div>'
                 productGrid += '</div>'  
                 productGrid += '</div>'
                 productGrid += '</div>'
@@ -1745,8 +1725,6 @@ selectOption +=  '</div">';
                   productGrid += $('.capture-metafields-banner .static_image_column_3_layout[data-position="2"]').html();
                //console.log('Yes jewellery-plp template');
                 }
-
-                // $('[data-collection-listing-container] [data-view="grid"] [data-list-item]').append(productGrid).removeClass('hide'); 
 
                 function getData(ajaxurl) { 
                     return $.ajax({
@@ -1776,19 +1754,6 @@ selectOption +=  '</div">';
                       type: 'GET',
                     });
                   };
-
-                  // async function renderLSMetaMoreInfo() {
-                  //   try {
-                  //     const response = await getMoreData(prodLink+'/?view=lsmetamoreinfo')
-                  //     // $(document).find('.product_view_tab[data-view="grid"] li .prodct_card_body').html('');
-                  //     let y  = response;
-                  //     var LsGridmoreInfoContent = y;
-                  //     $(document).find('.product_view_tab[data-view="grid"] li[data-handle="'+prodLink.split('products/')[1]+'"] .product-images-wrapper .ls-item-more-info').html('').html(LsGridmoreInfoContent);                      
-                  //   } catch(err) {
-                  //     console.log(err);
-                  //   }
-                  // }
-                  // renderLSMetaMoreInfo();
 
                   var listViewMetaUrls = prodLink+'/?view=listviewmetainfo';
 
@@ -1824,9 +1789,9 @@ selectOption +=  '</div">';
              
                 
                 
-                
+                $(document).find('[data-col-images-slider-init]').slick(sliderInit());
                 setTimeout(function(){
-                  $(document).find('[data-col-images-slider-init]').slick(sliderInit());
+                  
                   document.dispatchEvent(new CustomEvent('swym:collections-loaded'));           
                 },1500);
       }

@@ -36,7 +36,7 @@
 
     <div class="mobile-pdp-acc-trigger show_mobile"><p>PRODUCT DETAILS</p></div>
     <div class="pdp-acc-body">
-        <h3><span class="pdp-acc-body-heading" data-option2="{{ product.selected_or_first_available_variant.option2 }}">{{ product.title }} {% if hide_default_title %} {% else %}in  <span class="variantColorTitle" data-variant-title>{{ product.selected_or_first_available_variant.option1  }}</span>{% if product.selected_or_first_available_variant.option2.size > 0 %}, Size: <span class="variantSizeValue" data-variant-size>{{ product.selected_or_first_available_variant.option2  }}</span> {% endif %}{% endif %}</span>{% if template.suffix contains 'loose-stone'%}<a class="product-view-report" href="javascript:;" aria-label="">View report&gt;</a>{% endif %}</h3>    
+        <h3><span class="pdp-acc-body-heading" data-option2="{{ product.selected_or_first_available_variant.option2 }}">{{ product.title |  replace: 'Diamond2', 'Diamond2<sup>®</sup>'  }} {% if hide_default_title %} {% else %}in  <span class="variantColorTitle" data-variant-title>{{ product.selected_or_first_available_variant.option1  }}</span>{% if product.selected_or_first_available_variant.option2.size > 0 %}, Size: <span class="variantSizeValue" data-variant-size>{{ product.selected_or_first_available_variant.option2  }}</span> {% endif %}{% endif %}</span>{% if template.suffix contains 'loose-stone'%}<a class="product-view-report" href="javascript:;" aria-label="">View report&gt;</a>{% endif %}</h3>    
         <div class="product-details-row">
             <div class="product-info-gird">
                 {%- capture prodtableContent_title -%}prod_info_title{%- endcapture -%}
@@ -127,7 +127,7 @@
                     %}    
                     <div class="product-info-item">
                         <div class="product-info-holder">
-                            {% if productMetafield[prodtableContent_title] != blank %}<h5>{{ productMetafield[prodtableContent_title] }}</h5>{% endif %}
+                            {% if productMetafield[prodtableContent_title] != blank %}<h5>{{ productMetafield[prodtableContent_title] |  replace: 'Diamond2', 'Diamond2<sup>®</sup>' }}</h5>{% endif %}
 
                             <div class="product-info-table">
                                 <figure class="table">
@@ -278,7 +278,7 @@
                     %}    
                     <div class="product-info-item">
                         <div class="product-info-holder">
-                            {% if productMetafield[prodtableContent_rstab_title] != blank %}<h5>{{ productMetafield[prodtableContent_rstab_title] }}</h5>{% endif %}
+                            {% if productMetafield[prodtableContent_rstab_title] != blank %}<h5>{{ productMetafield[prodtableContent_rstab_title] |  replace: 'Diamond2', 'Diamond2<sup>®</sup>'  }}</h5>{% endif %}
 
                             <div class="product-info-table">
                                 <figure class="table">
@@ -493,7 +493,7 @@
                 
                 <div class="product-info-item">
                     <div class="product-info-holder">
-                        {% if variantMetafield[otherTableContent_title] != blank %}<h5>{{ variantMetafield[otherTableContent_title] }}</h5>{% endif %}
+                        {% if variantMetafield[otherTableContent_title] != blank %}<h5>{{ variantMetafield[otherTableContent_title] |  replace: 'Diamond2', 'Diamond2<sup>®</sup>'  }}</h5>{% endif %}
                         <div class="product-info-table">
                             <figure class="table">
                                 <table>

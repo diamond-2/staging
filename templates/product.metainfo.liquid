@@ -42,7 +42,7 @@
             {% endif %}
             {% endfor %}
           </div>
-          <a href="{{ product.url }}" class="full_link"></a>
+          <a href="{{ product.url | append: '?variant=' | append: product.variants.first.id  }}" class="full_link"></a>
           <!-- capture More Data Table and Buttons -->
           
           {% capture showMoreData %}
@@ -142,7 +142,7 @@
 
   <div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card">
     {% include 'product-badge' %}
-    <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="{{ product.url }}" style="display: none;">
+    <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="{{ product.url | append: '?variant=' | append: product.variants.first.id  }}" style="display: none;">
       <span class="visually-hidden">{{ product.title }}</span>
     </a>
 
@@ -156,7 +156,7 @@
       </a>
         {% endif %}
     <!-- Swym Wishlist Plus EPI Button-->
-      <a class="product-full-link" href="{{ product.url }}"></a>
+      <a class="product-full-link" href="{{ product.url | append: '?variant=' | append: product.variants.first.id }}"></a>
       <div id="product_images_slider_{{ product.selected_or_first_available_variant.id}}" class="product-images-wrapper {% if product.images.size > 1 %}product_images_slider{% endif %}">
         {% for slideImage in product.images %}
         {% assign slideImage = slideImage | downcase %}
@@ -196,8 +196,8 @@
   {%- assign stoneClr = variantMetafield["dia_tab1_stone_avg_color"] -%}
   {%- assign stoneClarity = variantMetafield["dia_tab1_avg_clarity"] -%}
     <div class="prodct_card_body">
-      <div class="h4 grid-view-item__title product-card__title aaa" aria-hidden="true">
-        <a href="{{ product.url }}"> {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>'}}</a>
+      <div class="h4 grid-view-item__title product-card__title aaau xyz" aria-hidden="true">
+        <a data-id="{{ product.variants.first.id }}" href="{{ product.url | append: '?variant=' | append: product.variants.first.id }}"> {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>'}}</a>
       </div>
       <span style="display: none;">{%- include 'product-price-listing', product: product, show_vendor: show_vendor -%}</span>
       <div class="product-price-card ter aaa">
@@ -210,10 +210,10 @@
           <div class="product_def">{%-if stoneClr != blank -%}{{ stoneClr }}{%- if stoneClarity != blank -%}/{%- endif -%}{%- endif -%}{%- if stoneClarity != blank  -%}{{ stoneClarity }}{%- endif -%}</div>
           <div class="product_compare">COMPARE</div>
         </div>
-        <div class="product-price-card-row price_row ww aaa {%- if product.compare_at_price == blank -%}no_discount{%- endif -%}"><div class="ragular_price">{{ product.price | money | remove: '.00' }}</div>
-          {%- if product.compare_at_price -%}<div class="compare_at_price">{{ product.compare_at_price | money | remove: '.00' }}</div>{%- endif -%}
-          {%- assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price -%}
-          {%- if product.compare_at_price -%}<div class="product_discount">{{ discount | floor }}% OFF</div>{%- endif -%}
+        <div class="product-price-card-row price_row ww xy aaa {%- if current_variant.compare_at_price == blank -%}no_discount{%- endif -%}"><div class="ragular_price">{{ current_variant.price | money | remove: '.00' }}</div>
+          {%- if current_variant.compare_at_price -%}<div class="compare_at_price">{{ current_variant.compare_at_price | money | remove: '.00' }}</div>{%- endif -%}
+          {%- assign discount = current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price -%}
+          {%- if current_variant.compare_at_price -%}<div class="product_discount">{{ discount | floor }}% OFF</div>{%- endif -%}
         </div>  
         {% if product.tags contains 'TAH' %}
           <div class="tah-add-to-cart-block">
