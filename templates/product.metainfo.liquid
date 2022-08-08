@@ -13,6 +13,18 @@
 {%- assign ls_shape = product.metafields.global.ls_cert_Shape -%}
 {%- assign ls_cutgrade = product.metafields.global.ls_cert_cutgrade -%}
 {%- assign ls_color = product.metafields.global.ls_cert_color -%}
+
+{% assign lowest_price = product.first_available_variant.price %}
+
+{% for variant in product.variants %}
+  {% if variant.available %}
+    {% if variant.price <= lowest_price %}
+      {% assign lowest_price = variant.price %}
+      {% assign lowest_priceVarId = variant.id %}
+      {% assign selectedVariant = variant %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
   
 
       {%- comment -%}<div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="{{ product.url }}"> {{ product.title }}</a></div>{%- endcomment -%}
@@ -28,11 +40,13 @@
            {% endif %}
            <!-- Swym Wishlist Plus EPI Button-->
           {% include 'product-badge' %}
-          <div id="product_images_slider_{{ product.selected_or_first_available_variant.id}}" class="{% if product.images.size > 1 %}product_images_slider{% endif %}">
+          <div id="product_images_slider_{{ variant.id}}" class="{% if product.images.size > 1 %}product_images_slider{% endif %}">
             {% for slideImage in product.images %}
             {% assign slideImage = slideImage | downcase %}
-            {% if slideImage contains "xyzg" %}
-            <div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation>
+            {% assign firstVariantColor = selectedVariant.option1 %}
+            
+            {% if slideImage.alt ==  firstVariantColor and slideImage contains "xyzg"  %}
+            <div class="aws product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation>
               <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper product-card__image-wrapper js">
                 <div class="product_img_holder">
                   <img data-src="{{ slideImage.src | img_url: 'master' }}" alt="{{ product.title }}" class="grid-view-item__image lazyload">
@@ -160,9 +174,9 @@
       <div id="product_images_slider_{{ product.selected_or_first_available_variant.id}}" class="product-images-wrapper {% if product.images.size > 1 %}product_images_slider{% endif %}">
         {% for slideImage in product.images %}
         {% assign slideImage = slideImage | downcase %}
-        {% assign firstVariantColor = product.selected_or_first_available_variant.option1 %}
-        {% if  slideImage contains "xyzg" and slideImage.alt ==  firstVariantColor %}
-        <div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation>
+        {% assign firstVariantColor = selectedVariant.option1 %}
+        {% if  slideImage contains "xyzg" %}
+        <div class="aws1 product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation>
           <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper product-card__image-wrapper js">
             <div class="product_img_holder">
               <img data-src="{{ slideImage.src | img_url: 'master' }}" alt="{{ product.title }}" class="grid-view-item__image lazyload">

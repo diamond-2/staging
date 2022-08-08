@@ -1499,7 +1499,8 @@ selectOption +=  '</div">';
                 prodTitle = prodObj[i].title,
                 prodTags = prodObj[i].tags,                
                 prodId = prodObj[i].product_id;
-                currentVariantId = prodObj[i].add_to_cart_id
+                currentVariantId = prodObj[i].add_to_cart_id,
+                currentVariantImg = prodObj[i].image_link;
                 if(prodObj[i].hasOwnProperty('shopify_images')){
                  var prodImages = prodObj[i].shopify_images;
                 } else {
@@ -1512,6 +1513,7 @@ selectOption +=  '</div">';
                 var _thistags = prodTags;
                 _thistags = _thistags.split('[:ATTR:]');            
                 var _this_variants = prodObj[i].shopify_variants;
+                var _addTo_cartItemID = prodObj[i].add_to_cart_id; console.log('_addTo_cartItemID==>', _addTo_cartItemID);
                 var _variantComparePrice = [];
                 var _variantRegularPrice = [];
                 var _variant_ComparePrice_Max = '';
@@ -1599,7 +1601,7 @@ selectOption +=  '</div">';
               if(_thistags[i].includes('LDSHAPE:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
               if(_thistags[i].includes('LDCOLOR:')){ldGridContent += '<div class="product_b_tex">'+tagVal+'</div>';}
 
-              if(_thistags[i].includes('SHAPE:')){ldListTableContent += '<td class="shape_td"><a href="'+prodLink+'?variant='+currentVariantId+'"><img src="//cdn.shopify.com/s/files/1/0575/2681/2840/t/2/assets/list_360.png" alt="360 View" /><span class="text">'+tagVal+'</span>';}
+              if(_thistags[i].includes('SHAPE:')){ldListTableContent += '<td class="shape_td"><a href="'+prodLink+'?variant='+_addTo_cartItemID+'"><img src="//cdn.shopify.com/s/files/1/0575/2681/2840/t/2/assets/list_360.png" alt="360 View" /><span class="text">'+tagVal+'</span>';}
               
               if(_thistags[i].includes('LDCT:')){ldListTableContent += '<td class="care-tdt">'+tagVal+'</td>';}
               if(_thistags[i].includes('LDCOLOR:')){ldListTableContent += '<td class="color_td">'+tagVal+'</td>';}
@@ -1635,7 +1637,7 @@ selectOption +=  '</div">';
             ldGridContentMob += '</div>';
           } else {
           //  console.log('inside jewellery');
-            jwGridTitle += '<div class="h4 grid-view-item__title product-card__title xyz" aria-hidden="true"><a href="'+ prodLink +'?variant='+currentVariantId+'">'+ prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</a></div>';
+            jwGridTitle += '<div class="h4 grid-view-item__title product-card__title xyz" aria-hidden="true"><a href="'+ prodLink +'?variant='+_addTo_cartItemID+'">'+ prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</a></div>';
             jwGridContent += '<div class="product-price-card-row abc">';
             //   $.each(_thistags, function(i){ 
             //  ////console.log('INdex==>' + i);
@@ -1683,11 +1685,11 @@ selectOption +=  '</div">';
 
             // productGrid += '<div class="product-images-wrapper '+ noImage +'"><a class="product-full-link" href="'+getprodlink+'"> </a> '+addWishlist+' <div class="product-images-wrapper '+prodImgSlider+'" data-col-images-slider '+prodImgSliderDyn+'>';
             // console.log('ProductImageLength', prodImages.length);
-
+                var shownImg = currentVariantImg.split('?v=')[1];
                if(prodImages != undefined ){
                 for (let j = 0; j < prodImages.length; j++) {
-                  if(prodImages[j].indexOf('xyzg') > -1) {
-                    productGrid += '<div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation><div id="" class="grid-view-item__image-wrapper product-card__image-wrapper js"><div class="product_img_holder"><img data-src="'+prodImages[j]+'" alt="'+ prodTitle+'" class="grid-view-item__image lazyload"></div></div></div>'
+                  if(prodImages[j].indexOf(shownImg) > -1 && prodImages[j].indexOf('xyzg') > -1){
+                    productGrid += '<div data-imgId="'+shownImg+'" class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation><div id="" class="grid-view-item__image-wrapper product-card__image-wrapper js"><div class="product_img_holder"><img data-src="'+prodImages[j]+'" alt="'+ prodTitle+'" class="grid-view-item__image lazyload"></div></div></div>'
                   }
                 }  
              }            

@@ -1,12 +1,25 @@
 
 {% layout none %}
-{%- assign current_variant = product.selected_or_first_available_variant -%}
+{% comment %}{%- assign current_variant = product.selected_or_first_available_variant -%}{% endcomment %}
+{% assign lowest_price = product.first_available_variant.price %}
+{% for variant in product.variants %}
+  {% if variant.available %}
+    {% if variant.price <= lowest_price %}
+      {% assign lowest_price = variant.price %}
+      {% assign lowest_priceVarId = variant.id %}
+      {% assign selectedVariant = variant %}
+      {%- assign current_variant = variant -%}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+
 <div class="compare__product-information" data-handle="{{ product.handle }}" data-type="{{ product.type }}">
   <a class="text-link text-link--accent remove_compare_modal_pop_btn" data-remove-compare-item>Remove {% include 'icon-close' %}</a>
   {% assign compareImgCounter = 0 %}
   {% for slideImage in product.images %}
   {% assign slideImage = slideImage | downcase %}
-  {% assign firstVariantColor = current_variant.option1 %}
+  {% assign firstVariantColor = selectedVariant.option1 %}
   {% if  slideImage contains "xyzg" and slideImage.alt ==  firstVariantColor  %}
     {% assign compareImgCounter = compareImgCounter | plus: 1 %}
   <div class="compare__image-wrapper compare-img-alignment-custom">
@@ -36,12 +49,12 @@
       <div class="compare__product-body-left">
         <table id="compare__product-table-layout">
           <tr>
-            <td class="list-view-item__title"><a href="{{ product.url }}" class="cart__product-title" data-compare-item-title="" data-role="product-title">
+            <td class="list-view-item__title"><a href="{{ product.url }}?variant={{ lowest_priceVarId }}" class="cart__product-title" data-compare-item-title="" data-role="product-title">
               {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>' }}
             </a></td>
           </tr>
           <tr>
-            <td class="compare_product-modal-price-block">{% include 'product-price', variant: current_variant %}</td>
+            <td class="compare_product-modal-price-block">{% include 'product-price', variant: selectedVariant %}</td>
           </tr>
           {% if product.type == 'Loose Stones' %}
 

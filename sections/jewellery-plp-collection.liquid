@@ -97,7 +97,7 @@
       <div data-pagination="{{ paginate.next.url }}" class="product-listing" data-init-content>
         <ul class="grid grid--uniform{% if collection.products_count > 0 %} grid--view-items{% endif %}">
           {% for product in collection.products %}
-            <li class="grid__item grid__item--{{section.id}} {{ grid_item_width }} {% if template.suffix == "jewellery-plp" and paginate.current_page == 1 %}{% if forloop.index == 15 or forloop.index == 16 %} initially-hidden-items{% endif %}{% endif %}" >
+            <li class="xy grid__item grid__item--{{section.id}} {{ grid_item_width }} {% if template.suffix == "jewellery-plp" and paginate.current_page == 1 %}{% if forloop.index == 15 or forloop.index == 16 %} initially-hidden-items{% endif %}{% endif %}" >
               {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
             </li>
 
