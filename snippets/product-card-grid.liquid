@@ -77,13 +77,11 @@
     {% endif %}
   {% endif %}
 {% endfor %}
-
 <div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card" data-variant="{{ lowest_priceVarId }}">
   {% include 'product-badge' %}
   <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="{{ product.url }}?variant={{ lowest_priceVarId }}" style="display: none;">
     <span class="visually-hidden">{{ product.title }}</span>
   </a>
-
   <div class="product-images-wrapper {% if product.images.size == 0%}no-image {% endif %}">
      <!-- Swym Wishlist Plus EPI Button-->
       {% if customer %}
