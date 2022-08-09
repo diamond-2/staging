@@ -1,6 +1,18 @@
 {%- layout none -%}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 {% assign variantMetafield = current_variant.metafields.current_variant %}
+{% assign lowest_price = product.first_available_variant.price %}
+
+{% for variant in product.variants %}
+  {% if variant.available %}
+    {% if variant.price <= lowest_price %}
+      {% assign lowest_price = variant.price %}
+      {% assign lowest_priceVarId = variant.id %}
+      {% assign selectedVariant = variant %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
 {%- if product.template_suffix contains 'loose' -%}
 {%- assign ls_depth = product.metafields.global.ls_cert_Depth -%}
 {%- assign ls_table = product.metafields.global.ls_cert_Table -%}
@@ -14,17 +26,6 @@
 {%- assign ls_cutgrade = product.metafields.global.ls_cert_cutgrade -%}
 {%- assign ls_color = product.metafields.global.ls_cert_color -%}
 
-{% assign lowest_price = product.first_available_variant.price %}
-
-{% for variant in product.variants %}
-  {% if variant.available %}
-    {% if variant.price <= lowest_price %}
-      {% assign lowest_price = variant.price %}
-      {% assign lowest_priceVarId = variant.id %}
-      {% assign selectedVariant = variant %}
-    {% endif %}
-  {% endif %}
-{% endfor %}
   
 
       {%- comment -%}<div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="{{ product.url }}"> {{ product.title }}</a></div>{%- endcomment -%}
@@ -215,7 +216,7 @@
       </div>
       <span style="display: none;">{%- include 'product-price-listing', product: product, show_vendor: show_vendor -%}</span>
       <div class="product-price-card ter aaa">
-        <div class="product-price-card-row" data-id = {{ product.id }}>
+        <div class="product-price-card-row" data-id="{{ current_variant.id }}">
           <div class="product_weight">
             {% if variantMetafield["frc_stn_total_crt_wt"] != blank  or variantMetafield["dec_stn_total_crt_wt"] != blank %} 
             {% if variantMetafield["dec_stn_total_crt_wt"] != blank %}{{ variantMetafield["dec_stn_total_crt_wt"] | append: ' CTS.' }}{% else %}{{ variantMetafield["frc_stn_total_crt_wt"] | append: ' (CT. TW.)' }}{% endif %}           

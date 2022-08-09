@@ -66,16 +66,15 @@
     {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
 {% endcomment %}
 
-{% assign lowest_price = product.first_available_variant.price %}
-
+{% assign lowest_price = product.price %}
+{% assign counterforLowerPrice = 0 %}
 {% for variant in product.variants %}
-  {% if variant.available %}
+  
     {% if variant.price <= lowest_price %}
       {% assign lowest_price = variant.price %}
       {% assign lowest_priceVarId = variant.id %}
       {% assign selectedVariant = variant %}
     {% endif %}
-  {% endif %}
 {% endfor %}
 <div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card" data-variant="{{ lowest_priceVarId }}">
   {% include 'product-badge' %}
@@ -137,7 +136,7 @@
     <div class="h4 grid-view-item__title product-card__title abc" aria-hidden="true"><a href="{{ product.url }}?variant={{lowest_priceVarId}}"> {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>'}}</a></div>
     <span style="display: none;">{%- include 'product-price-listing', product: product, show_vendor: show_vendor -%}</span>
     
-    <div class="product-price-card ter"><div class="product-price-card-row" data-id = {{ product.id }}>
+    <div class="product-price-card ter"><div class="product-price-card-row" data-id = {{ selectedVariant.id }}>
       <div class="product_weight">
         {% if variantMetafield["frc_stn_total_crt_wt"] != blank  or variantMetafield["dec_stn_total_crt_wt"] != blank %} 
         {% if variantMetafield["dec_stn_total_crt_wt"] != blank %}{{ variantMetafield["dec_stn_total_crt_wt"] | append: ' CTS.' }}

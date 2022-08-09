@@ -337,7 +337,7 @@
   {% include 'swym-move-to-wishlist'%}
 
 
-  {% if template contains 'collection' %}
+  {% if template contains 'collection' or template.suffix contains 'search-result' %}
   {% include 'compareProductLists'%}
   {% endif %}
   {% include 'login-info-modal' %}

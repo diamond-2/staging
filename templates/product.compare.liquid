@@ -1,14 +1,15 @@
 
 {% layout none %}
 {% comment %}{%- assign current_variant = product.selected_or_first_available_variant -%}{% endcomment %}
-{% assign lowest_price = product.first_available_variant.price %}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+{% assign lowest_price = product.price %}
 {% for variant in product.variants %}
   {% if variant.available %}
     {% if variant.price <= lowest_price %}
       {% assign lowest_price = variant.price %}
       {% assign lowest_priceVarId = variant.id %}
       {% assign selectedVariant = variant %}
-      {%- assign current_variant = variant -%}
     {% endif %}
   {% endif %}
 {% endfor %}
@@ -23,7 +24,7 @@
   {% if  slideImage contains "xyzg" and slideImage.alt ==  firstVariantColor  %}
     {% assign compareImgCounter = compareImgCounter | plus: 1 %}
   <div class="compare__image-wrapper compare-img-alignment-custom">
-    <a href="{{ product.url }}" aria-label="{{ product.title }}"><img class="compare__image" src="{{ slideImage.src | img_url: '150x' }}" alt="{{ slideImage.alt }}" data-compare-item-image=""></a>
+    <a href="{{ product.url }}?variant={{ lowest_priceVarId }}" aria-label="{{ product.title }}"><img class="compare__image" src="{{ slideImage.src | img_url: '150x' }}" alt="{{ slideImage.alt }}" data-compare-item-image=""></a>
   </div>
   {% if compareImgCounter == 1 %}
   {% break %}
@@ -158,7 +159,7 @@
           {% endif %}
         </table>
         <div class="list-view-item__title hide-in-compareModal">
-          <a href="{{ product.url }}" class="cart__product-title" data-compare-item-title="" data-role="product-title">
+          <a href="{{ product.url }}?variant={{ lowest_priceVarId }}" class="cart__product-title" data-compare-item-title="" data-role="product-title">
             {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>' }}
           </a>
 

@@ -447,6 +447,7 @@
         $.each(prodObj, function(i) {   
             var getprodlink = prodObj[i].link,
                 prodLink = prodObj[i].link,
+                prodType = prodObj[i].product_type,
                 getproductHandle = prodObj[i].link.split('/products/')[1],
                 prodQty = prodObj[i].quantity,
                 prodTitle = prodObj[i].title,
@@ -588,11 +589,18 @@
               var prodImgSlider = 'product_images_slider';
               var prodImgSliderDyn = 'data-col-images-slider-init'
             // }    
+            // if($('body').attr('data-template') == 'loose-stone-plp'){ 
+            //   productGrid += '<li class="grid__item grid__item--loose-stone-plp-template  bbb">';
+            //   productList += '<tr class="list-view-item">';
+            // }else {
+            //   productGrid += '<li class="grid__item grid__item--solitaire-collection  aaa" data-handle="'+getproductHandle+'" data-title="'+prodTitle+'">';
+            // }
+
             if($('body').attr('data-template') == 'loose-stone-plp'){ 
-              productGrid += '<li class="grid__item grid__item--loose-stone-plp-template  bbb">';
-              productList += '<tr class="list-view-item">';
+              productGrid += '<li class="grid__item grid__item--loose-stone-plp-template  bbb" data-handle="'+getproductHandle+'" data-title="'+prodTitle+'" data-type="'+prodType+'">';
+              productList += '<tr class="list-view-item" data-handle="'+getproductHandle+'" data-title="'+prodTitle+'" data-type="'+prodType+'">';
             }else {
-              productGrid += '<li class="grid__item grid__item--solitaire-collection  aaa" data-handle="'+getproductHandle+'" data-title="'+prodTitle+'">';
+              productGrid += '<li class="grid__item grid__item--solitaire-collection  aaa" data-handle="'+getproductHandle+'" data-title="'+prodTitle+'" data-type="'+prodType+'">';
             }
             
             productGrid += '<div class="grid-view-item product-card">';
