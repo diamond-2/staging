@@ -152,8 +152,9 @@
       e.preventDefault();
 
       var searchsortby = $(document).find("#sortByFilter option:selected").attr('value'); // console.log('sortyBy==> '+ searchsortby);
+      var updatedQueryString = filterOnSelect();
 
-      var updatedQueryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName +'&maxResults=' + maxResults;
+      //var updatedQueryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName +'&maxResults=' + maxResults;
 
       // console.log("browser pushBack check", queryString);
 
