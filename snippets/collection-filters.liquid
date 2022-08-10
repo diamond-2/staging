@@ -1636,7 +1636,9 @@ selectOption +=  '</div">';
                 });
               ldGridContentMob += '</div>';            
             ldGridContentMob += '</div>';
-          } else {
+          } 
+          else 
+          {
           //  console.log('inside jewellery');
             jwGridTitle += '<div class="h4 grid-view-item__title product-card__title xyz" aria-hidden="true"><a href="'+ prodLink +'?variant='+_addTo_cartItemID+'">'+ prodTitle.replace('Diamond2', 'Diamond2<sup>®</sup>')+'</a></div>';
             jwGridContent += '<div class="product-price-card-row abc">';
@@ -1780,6 +1782,31 @@ selectOption +=  '</div">';
                     }
                   }
                   renderLSListInfo();
+
+
+                  var plpProductList= prodLink+'/?view=plpcontent';
+
+function getPlpContent(ajaxurl) { 
+  return $.ajax({
+    url: plpProductList,
+    type: 'GET',
+  });
+};
+
+async function renderPlpContent() {
+  try {
+    const responseList = await getPlpContent(plpProductList)
+    // $(document).find('.product_view_tab[data-view="grid"] li .prodct_card_body').html('');
+    let z  = responseList;
+    // var lsListInfoContent = z;
+    console.log('responseList==>>==>>', responseList);
+    $(document).find('.product_view_tab[data-view="grid"] li[data-handle="'+prodLink.split('products/')[1]+'"]').html('').html(responseList);
+    
+  } catch(err) {
+    console.log(err);
+  }
+}
+renderPlpContent();
         });
         
             // productGrid += '</ul>';

@@ -10308,7 +10308,7 @@ window.addEventListener("resize", function() {
       success: function(response) {
         $(document).find('#pdp-Zoom-Gallery .zoom-gallery-container').prepend(response);
         setTimeout(function(){
-          let currentvariantId = $(document).find('select[name="id"] option:selected').val();
+          let currentvariantId = $(document).find('#selectedVariantId').val(); console.log('selectedColor option value==>', currentvariantId);
           let currentVariantColor = $(document).find('select[name="id"] option[value="'+currentvariantId+'"]').data('color');        console.log(currentVariantColor)
           if($('body').attr('data-template') != 'loose-stone'){
             $(document).find('#pdp-Zoom-Gallery .zoom-gallery-container .product-single__media-wrapper').not('[data-alt="'+currentVariantColor+'"]').remove();
@@ -10850,7 +10850,7 @@ $(document).on('click', '.remove-item-from-wishlit', function(){
 
 });
 
-
+updateImgGallery($('select[name="id"]').val());
 
 
 });
@@ -10959,6 +10959,8 @@ function fixedHeaderBg(scrollPosition) {
 }
 
 function updateImgGallery(variantId){
+
+  console.log('abcdefghti', variantId);
   $(document).find('select[name="id"] option').removeAttr('selected');
   $('.product-detail-slider-grp').addClass('__updatingSlideImage');
   $('.product-detail-slider').slick('unslick');

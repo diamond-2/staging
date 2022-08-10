@@ -706,6 +706,32 @@ function getData(ajaxurl) {
 
 
 
+                  var plpProductList= prodLink+'/?view=plpcontent';
+
+function getPlpContent(ajaxurl) { 
+  return $.ajax({
+    url: plpProductList,
+    type: 'GET',
+  });
+};
+
+async function renderPlpContent() {
+  try {
+    const responseList = await getPlpContent(plpProductList)
+    // $(document).find('.product_view_tab[data-view="grid"] li .prodct_card_body').html('');
+    let z  = responseList;
+    // var lsListInfoContent = z;
+    console.log('responseList==>>==>>', responseList);
+    $(document).find('.product_view_tab[data-view="grid"] li[data-handle="'+prodLink.split('products/')[1]+'"]').html('').html(responseList);
+    
+  } catch(err) {
+    console.log(err);
+  }
+}
+renderPlpContent();
+
+
+
 
 
 

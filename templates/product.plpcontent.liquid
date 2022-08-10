@@ -1,4 +1,4 @@
-{% layout none %}
+{%- layout none -%}
 {% assign lowest_price = product.price %}
 {% assign counterforLowerPrice = 0 %}
 {% for variant in product.variants %}
@@ -9,7 +9,7 @@
       {% assign selectedVariant = variant %}
     {% endif %}
 {% endfor %}
-<div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card" data-variant="{{ lowest_priceVarId }}">
+<div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card" data-variant="{{ lowest_priceVarId }}" data-view="plpContent">
   {% include 'product-badge' %}
   <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="{{ product.url }}?variant={{ lowest_priceVarId }}" style="display: none;">
     <span class="visually-hidden">{{ product.title }}</span>
