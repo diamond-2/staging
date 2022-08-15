@@ -10676,6 +10676,7 @@ $(document).on('click', '.product_compare', function(){
   hideCompareItemList();
   var prodHandle = $(this).closest('.grid__item').data('handle');
   var prodTitle = $(this).closest('.grid__item').data('title');
+  var prodVariantId = $(this).closest('.grid__item').find('.product-card').data('variant');
   var productType = $(this).closest('.grid__item').data('type').trim(); console.log("prodType==>>", productType);
 
   console.log(compareItemType+'======='+productType);
@@ -10698,7 +10699,7 @@ $(document).on('click', '.product_compare', function(){
       compareItemHandles.push($(this).closest('.grid__item').data('handle'));
       localStorage.setItem("compareProducts", JSON.stringify(compareItemHandles));
       localStorage.setItem("compareProductsType", productType);
-      let compareitemUrls = '/products/'+prodHandle+'/?view=compare';
+      let compareitemUrls = '/products/'+prodHandle+'/?variant='+prodVariantId+'&view=compare';
       $.ajax({
         url: compareitemUrls,
         cache: false,
@@ -10961,7 +10962,7 @@ function fixedHeaderBg(scrollPosition) {
 function updateImgGallery(variantId){
 
   console.log('abcdefghti', variantId);
-  $(document).find('select[name="id"] option').removeAttr('selected');
+  // $(document).find('select[name="id"] option').removeAttr('selected');
   $('.product-detail-slider-grp').addClass('__updatingSlideImage');
   $('.product-detail-slider').slick('unslick');
   $('.product-detail-slider-thumbnail').slick('unslick');

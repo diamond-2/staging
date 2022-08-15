@@ -7,8 +7,10 @@
 >
   {% comment %}
     Get first variant, or deep linked one
+    {%- assign current_variant = product.selected_or_first_available_variant -%}
   {% endcomment %}
-  {%- assign current_variant = product.selected_or_first_available_variant -%}
+  
+  {%- assign current_variant = product.selected_variant -%}
   {%- assign product_image_zoom_size = '1024x1024' -%}
   {%- assign product_image_scale = '2' -%}
   {%- assign enable_image_zoom = section.settings.enable_image_zoom -%}

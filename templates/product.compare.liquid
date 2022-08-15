@@ -1,8 +1,8 @@
 
 {% layout none %}
 {% comment %}{%- assign current_variant = product.selected_or_first_available_variant -%}{% endcomment %}
-{%- assign current_variant = product.selected_or_first_available_variant -%}
-
+{%- assign current_variant = product.selected_variant -%}
+{% comment %}
 {% assign lowest_price = product.price %}
 {% for variant in product.variants %}
   {% if variant.available %}
@@ -13,18 +13,18 @@
     {% endif %}
   {% endif %}
 {% endfor %}
-
+{% endcomment %}
 
 <div class="compare__product-information" data-handle="{{ product.handle }}" data-type="{{ product.type }}">
   <a class="text-link text-link--accent remove_compare_modal_pop_btn" data-remove-compare-item>Remove {% include 'icon-close' %}</a>
   {% assign compareImgCounter = 0 %}
   {% for slideImage in product.images %}
   {% assign slideImage = slideImage | downcase %}
-  {% assign firstVariantColor = selectedVariant.option1 %}
+  {% assign firstVariantColor = current_variant.option1 %}
   {% if  slideImage contains "xyzg" and slideImage.alt ==  firstVariantColor  %}
     {% assign compareImgCounter = compareImgCounter | plus: 1 %}
   <div class="compare__image-wrapper compare-img-alignment-custom">
-    <a href="{{ product.url }}?variant={{ lowest_priceVarId }}" aria-label="{{ product.title }}"><img class="compare__image" src="{{ slideImage.src | img_url: '150x' }}" alt="{{ slideImage.alt }}" data-compare-item-image=""></a>
+    <a href="{{ product.url }}?variant={{ current_variant.id }}" aria-label="{{ product.title }}"><img class="compare__image" src="{{ slideImage.src | img_url: '150x' }}" alt="{{ slideImage.alt }}" data-compare-item-image=""></a>
   </div>
   {% if compareImgCounter == 1 %}
   {% break %}
@@ -50,12 +50,12 @@
       <div class="compare__product-body-left">
         <table id="compare__product-table-layout">
           <tr>
-            <td class="list-view-item__title"><a href="{{ product.url }}?variant={{ lowest_priceVarId }}" class="cart__product-title" data-compare-item-title="" data-role="product-title">
+            <td class="list-view-item__title"><a href="{{ product.url }}?variant={{ current_variant.id }}" class="cart__product-title" data-compare-item-title="" data-role="product-title">
               {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>' }}
             </a></td>
           </tr>
           <tr>
-            <td class="compare_product-modal-price-block">{% include 'product-price', variant: selectedVariant %}</td>
+            <td class="compare_product-modal-price-block">{% include 'product-price', variant: current_variant %}</td>
           </tr>
           {% if product.type == 'Loose Stones' %}
 
@@ -159,7 +159,7 @@
           {% endif %}
         </table>
         <div class="list-view-item__title hide-in-compareModal">
-          <a href="{{ product.url }}?variant={{ lowest_priceVarId }}" class="cart__product-title" data-compare-item-title="" data-role="product-title">
+          <a href="{{ product.url }}?variant={{ current_variant.id }}" class="cart__product-title" data-compare-item-title="" data-role="product-title">
             {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>' }}
           </a>
 

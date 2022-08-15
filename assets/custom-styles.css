@@ -14225,6 +14225,9 @@ body[data-template="wishlist"] .swym-ui-component.swym-wishlist-page {
 .layout_search-result .collection-filter-wrapper[filter-c-id="global.sku"]{
   display: none;
 }
+.solitaire-collection-wrapper .grid--view-items .grid__item .product_images_slider {
+  opacity: 0;
+}
 
 /* .layout_search-result .product-price-card-row .product_compare{
   display: none;

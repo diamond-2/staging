@@ -72,17 +72,26 @@
       var searchBaseUrl = 'https://www.searchanise.com/getresults?api_key=7r9L5P8L4h';
 
       if(localStorage.getItem('browserPushBack') != null){
-
+        $('.product_view_tab[data-view]').css('opacity', '0');
+        console.log('pushback--1');
         console.log('Inside Browser pushback method');
         console.log(localStorage.getItem('browserPushBack'));
         // setTimeout(function(){var queryString = localStorage.getItem('browserPushBack')}, 2000);
         
         var queryString = localStorage.getItem('browserPushBack');
+        setTimeout(function(){
+          $('#sortByFilter').trigger('change');
+          
+        },1500)
+        // var updatedQueryString = filterOnSelect();
         
-        setTimeout(function(){$('#sortByFilter').trigger('change');
+        setTimeout(function(){
+          // $('#sortByFilter').trigger('change');
+          $('.product_view_tab[data-view]').css('opacity', '1');
         localStorage.removeItem('browserPushBack')}, 3000); 
       }
     else if(window.location.pathname == '/collections/try-at-home' && localStorage.getItem("tahProducts") != null && localStorage.getItem("tahProducts").length > 0){
+      console.log('pushback--2')
       var getTahSkus = localStorage.getItem("tahProducts").replaceAll(',', '|');
       var tahfilterData = '&restrictBy[filter_metafield_d7c8b4ec7e41c20a313f2959da7994f7]='+getTahSkus;
       var queryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName + tahfilterData+'&maxResults=' + maxResults;
@@ -90,6 +99,7 @@
       // console.log("COLLECTION FILTER CHECK (if part):::: ",queryString);
 
     } else {
+      console.log('pushback--3')
       var queryString = '&output=jsonp&sortBy='+ searchsortby +'&'+'startIndex=0&maxResults=' + maxResults + '&items=true&facets=true&facetsShowUnavailableOptions=true&' + defFilterName;
 
       console.log("COLLECTION FILTER CHECK ( else part ):::: ",searchBaseUrl + queryString);
@@ -1373,12 +1383,14 @@ selectOption +=  '</div">';
         var currentPage = Number($('.dynamic-pagination span a.active').text());
           
           
-          if(currentPage > 1) {
-            currentPage = currentPage-1; // console.log(currentPage);
-            var Startitems = maxResults*currentPage;// console.log("startItems==>>" + Startitems);      
-          } else {
-            var Startitems = 0;
-          }
+          // if(currentPage > 1) {
+          //   currentPage = currentPage-1; // console.log(currentPage);
+          //   var Startitems = maxResults*currentPage;// console.log("startItems==>>" + Startitems);      
+          // } else {
+          //   var Startitems = 0;
+          // }
+
+          var Startitems = 0;
       
 
         searchsortby = $(document).find("#sortByFilter option:selected").attr('value'); console.log('selected SortBy==========>', searchsortby);
@@ -1731,34 +1743,59 @@ selectOption +=  '</div">';
                //console.log('Yes jewellery-plp template');
                 }
 
-                function getData(ajaxurl) { 
+                // function getData(ajaxurl) { 
+                //     return $.ajax({
+                //       url: itemUrls,
+                //       type: 'GET',
+                //     });
+                //   };
+
+                //   async function renderMetaInfo() {
+                //     try {
+                //       const res = await getData(prodLink+'/?view=metainfo')
+                //       // $(document).find('.product_view_tab[data-view="grid"] li .prodct_card_body').html('');
+                //       let x  = res;
+                //       var GridContentupdate = x;
+                //       $(document).find('.product_view_tab[data-view="grid"] li[data-handle="'+prodLink.split('products/')[1]+'"]').html('').html(GridContentupdate);                      
+                //     } catch(err) {
+                //       console.log(err);
+                //     }
+                //   }
+                //   renderMetaInfo();
+
+                  // var itemMoreInfoUrls = prodLink+'/?view=lsmetamoreinfo';
+
+                  // function getMoreData(ajaxurl) { 
+                  //   return $.ajax({
+                  //     url: itemMoreInfoUrls,
+                  //     type: 'GET',
+                  //   });
+                  // };
+
+                  var plpProductList= prodLink+'/?view=plpcontent&variant='+currentVariantId;
+
+                  function getPlpContent(ajaxurl) { 
                     return $.ajax({
-                      url: itemUrls,
+                      url: plpProductList,
                       type: 'GET',
                     });
                   };
 
-                  async function renderMetaInfo() {
+                  async function renderPlpContent() {
                     try {
-                      const res = await getData(prodLink+'/?view=metainfo')
+                      const responseList = await getPlpContent(plpProductList)
                       // $(document).find('.product_view_tab[data-view="grid"] li .prodct_card_body').html('');
-                      let x  = res;
-                      var GridContentupdate = x;
-                      $(document).find('.product_view_tab[data-view="grid"] li[data-handle="'+prodLink.split('products/')[1]+'"]').html('').html(GridContentupdate);                      
+                      let z  = responseList;
+                      // var lsListInfoContent = z;
+                      // console.log('responseList==>>==>>', responseList);
+                      $(document).find('.product_view_tab[data-view="grid"] li[data-handle="'+prodLink.split('products/')[1]+'"]').html('').html(responseList);
+                      
                     } catch(err) {
                       console.log(err);
                     }
                   }
-                  renderMetaInfo();
+                  renderPlpContent();
 
-                  var itemMoreInfoUrls = prodLink+'/?view=lsmetamoreinfo';
-
-                  function getMoreData(ajaxurl) { 
-                    return $.ajax({
-                      url: itemMoreInfoUrls,
-                      type: 'GET',
-                    });
-                  };
 
                   var listViewMetaUrls = prodLink+'/?view=listviewmetainfo';
 
@@ -1775,38 +1812,13 @@ selectOption +=  '</div">';
                       // $(document).find('.product_view_tab[data-view="grid"] li .prodct_card_body').html('');
                       let z  = responseList;
                       var lsListInfoContent = z;
-                      $(document).find('.product_view_tab[data-view="list"] .product-listing table.list-view-items tbody tr[data-handle="'+prodLink.split('products/')[1]+'"]').html('').html(lsListInfoContent);                      
+                      $(document).find('.product_view_tab[data-view="list"] .product-listing table.list-view-items tbody tr[data-handle="'+prodLink.split('products/')[1]+'"]').html(lsListInfoContent);                      
                       
                     } catch(err) {
                       console.log(err);
                     }
                   }
                   renderLSListInfo();
-
-
-                  var plpProductList= prodLink+'/?view=plpcontent';
-
-function getPlpContent(ajaxurl) { 
-  return $.ajax({
-    url: plpProductList,
-    type: 'GET',
-  });
-};
-
-async function renderPlpContent() {
-  try {
-    const responseList = await getPlpContent(plpProductList)
-    // $(document).find('.product_view_tab[data-view="grid"] li .prodct_card_body').html('');
-    let z  = responseList;
-    // var lsListInfoContent = z;
-    console.log('responseList==>>==>>', responseList);
-    $(document).find('.product_view_tab[data-view="grid"] li[data-handle="'+prodLink.split('products/')[1]+'"]').html('').html(responseList);
-    
-  } catch(err) {
-    console.log(err);
-  }
-}
-renderPlpContent();
         });
         
             // productGrid += '</ul>';

@@ -1,7 +1,9 @@
 {%- layout none -%}
+{% assign currentVariant = product.selected_variant %}
 {% assign lowest_price = product.price %}
 {% assign counterforLowerPrice = 0 %}
-{% for variant in product.variants %}
+
+{% comment %}{% for variant in product.variants %}
   
     {% if variant.price <= lowest_price %}
       {% assign lowest_price = variant.price %}
@@ -9,9 +11,10 @@
       {% assign selectedVariant = variant %}
     {% endif %}
 {% endfor %}
-<div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card" data-variant="{{ lowest_priceVarId }}" data-view="plpContent">
+{% endcomment %}
+<div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card" data-variant="{{ currentVariant.id }}" data-view="plpContent">
   {% include 'product-badge' %}
-  <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="{{ product.url }}?variant={{ lowest_priceVarId }}" style="display: none;">
+  <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="{{ product.url }}?variant={{ currentVariant.id }}" style="display: none;">
     <span class="visually-hidden">{{ product.title }}</span>
   </a>
   <div class="product-images-wrapper {% if product.images.size == 0%}no-image {% endif %}">
@@ -24,11 +27,11 @@
       </a>
       {% endif %}
   <!-- Swym Wishlist Plus EPI Button-->
-    <a class="product-full-link" href="{{ product.url }}?variant={{lowest_priceVarId}}"></a>
-    <div id="product_images_slider_{{ product.selected_or_first_available_variant.id}}" class="product-images-wrapper {% if product.images.size > 1 %}product_images_slider{% endif %}">
+    <a class="product-full-link" href="{{ product.url }}?variant={{currentVariant.id}}"></a>
+    <div id="product_images_slider_{{ currentVariant.id}}" class="product-images-wrapper {% if product.images.size > 1 %}product_images_slider {% endif %}">
       {% for slideImage in product.images %}
       {% assign slideImage = slideImage | downcase %}
-      {% assign firstVariantColor = selectedVariant.option1 %}
+      {% assign firstVariantColor = currentVariant.option1 %}
       {% if  slideImage contains "xyzg" and slideImage.alt ==  firstVariantColor %}
       <div class="product-card__image-with-placeholder-wrapper product-images-slide" data-image-loading-animation>
         <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper product-card__image-wrapper js">
@@ -46,27 +49,14 @@
     {% capture image_size %}{{ max_height }}x{{ max_height }}{% endcapture %}
     <img class="grid-view-item__image" src="{{ preview_image | img_url: image_size, scale: 2 }}" alt="{{ preview_image.alt }}" style="max-width: {{ max_height | times: preview_image.aspect_ratio }}px;">
   </noscript>
-  <script>
-    // Product Listing Product card Images slider
-        $("#product_images_slider_"+{{ product.selected_or_first_available_variant.id}}).slick({ 
-          autoplay: false,
-          autoplaySpeed: 500,
-          arrows: true,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          Infinite: false,
-          loop: false,
-          dots: false
-        });
-    </script>
   <div class="prodct_card_body">
-    {%- assign current_variant = product.selected_or_first_available_variant -%}
+    {%- assign current_variant = currentVariant -%}
     {% assign variantMetafield = current_variant.metafields.current_variant %}
   {%- assign stoneClr = variantMetafield["dia_tab1_stone_avg_color"] -%}
   {%- assign stoneClarity = variantMetafield["dia_tab1_avg_clarity"] -%}
 
 
-    <div class="h4 grid-view-item__title product-card__title abc" aria-hidden="true"><a href="{{ product.url }}?variant={{lowest_priceVarId}}"> {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>'}}</a></div>
+    <div class="h4 grid-view-item__title product-card__title abc" aria-hidden="true"><a href="{{ product.url }}?variant={{selectedVariant.id}}"> {{ product.title | replace: 'Diamond2', 'Diamond2<sup>®</sup>'}}</a></div>
     <span style="display: none;">{%- include 'product-price-listing', product: product, show_vendor: show_vendor -%}</span>
     
     <div class="product-price-card ter"><div class="product-price-card-row" data-id = {{ selectedVariant.id }}>
@@ -100,3 +90,21 @@
   </div>
   </div>
 </div>
+<script>
+  // Product Listing Product card Images slider
+      $("#product_images_slider_"+{{ currentVariant.id}}).slick({ 
+        autoplay: false,
+        autoplaySpeed: 500,
+        arrows: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        Infinite: false,
+        loop: false,
+        dots: false
+      });
+  </script>
+  {% style %}
+  #product_images_slider_{{ currentVariant.id}} {
+    opacity: 1;
+  }
+  {% endstyle %}

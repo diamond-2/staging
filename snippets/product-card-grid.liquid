@@ -1,76 +1,10 @@
-{% comment %}
-    Renders a product card using "Grid" style
-    Accepts:
-    - max_height: {Number} Maximum height of the product's image (required)
-    - product: {Object} Product Liquid object (required)
-    - show_vendor: {Boolean} Show the product's vendor depending on the section setting (optional)
-
-    Usage:
-    {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
-{% endcomment %}
-
-<!-- Default Collection Code -->
-{% comment %}
-<div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card">
-  <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="{{ product.url }}">
-    <span class="visually-hidden">{{ product.title }}</span>
-  </a>
-
-  {% capture img_id %}ProductCardImage-{{ section.id }}-{{ product.id }}{% endcapture %}
-  {% capture wrapper_id %}ProductCardImageWrapper-{{ section.id }}-{{ product.id }}{% endcapture %}
-  {%- assign preview_image = product.featured_media.preview_image -%}
-  {%- assign img_url = preview_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
-
-  {% unless preview_image == blank %}
-    {% include 'image-style', image: preview_image, height: max_height, wrapper_id: wrapper_id, img_id: img_id %}
-  {% endunless %}
-
-  <div class="product-card__image-with-placeholder-wrapper" data-image-loading-animation>
-    <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper product-card__image-wrapper js">
-      <div style="padding-top:{% unless preview_image == blank %}{{ 1 | divided_by: preview_image.aspect_ratio | times: 100 }}%{% else %}100%{% endunless %};">
-        <img id="{{ img_id }}"
-              class="grid-view-item__image lazyload"
-              alt="{{ preview_image.alt }}"
-              data-src="{{ img_url }}"
-              data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
-              data-aspectratio="{{ preview_image.aspect_ratio }}"
-              data-sizes="auto"
-              data-image>
-      </div>
-    </div>
-  </div>
-
-  <noscript>
-    {% capture image_size %}{{ max_height }}x{{ max_height }}{% endcapture %}
-    <img class="grid-view-item__image" src="{{ preview_image | img_url: image_size, scale: 2 }}" alt="{{ preview_image.alt }}" style="max-width: {{ max_height | times: preview_image.aspect_ratio }}px;">
-  </noscript>
-
-  <div class="h4 grid-view-item__title product-card__title" aria-hidden="true">{{ product.title }}</div>
-
-  {% include 'product-price-listing', product: product, show_vendor: show_vendor %}
-
-</div>
-{% endcomment %}
-
-
-<!-- Customized Collection Code -->
-
-{% comment %}
-    Renders a product card using "Grid" style
-    Accepts:
-    - max_height: {Number} Maximum height of the product's image (required)
-    - product: {Object} Product Liquid object (required)
-    - show_vendor: {Boolean} Show the product's vendor depending on the section setting (optional)
-
-    Usage:
-    {% include 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
-{% endcomment %}
-
-{% assign lowest_price = product.price %}
+{% assign lowest_price = product.variants.first.price %}
+{% assign lowest_priceVarId = product.variants.first.id %}
+{% assign selectedVariant = product.variants.first %}
 {% assign counterforLowerPrice = 0 %}
 {% for variant in product.variants %}
   
-    {% if variant.price <= lowest_price %}
+    {% if variant.price < lowest_price %}
       {% assign lowest_price = variant.price %}
       {% assign lowest_priceVarId = variant.id %}
       {% assign selectedVariant = variant %}
@@ -91,8 +25,8 @@
       </a>
       {% endif %}
   <!-- Swym Wishlist Plus EPI Button-->
-    <a class="product-full-link" href="{{ product.url }}?variant={{lowest_priceVarId}}"></a>
-    <div id="product_images_slider_{{ product.selected_or_first_available_variant.id}}" class="product-images-wrapper {% if product.images.size > 1 %}product_images_slider{% endif %}">
+    <a class="product-full-link" href="{{ product.url }}?variant={{ lowest_priceVarId }}"></a>
+    <div id="product_images_slider_{{ lowest_priceVarId }}" class="product-images-wrapper {% if product.images.size > 1 %}product_images_slider{% endif %}">
       {% for slideImage in product.images %}
       {% assign slideImage = slideImage | downcase %}
       {% assign firstVariantColor = selectedVariant.option1 %}
@@ -113,21 +47,8 @@
     {% capture image_size %}{{ max_height }}x{{ max_height }}{% endcapture %}
     <img class="grid-view-item__image" src="{{ preview_image | img_url: image_size, scale: 2 }}" alt="{{ preview_image.alt }}" style="max-width: {{ max_height | times: preview_image.aspect_ratio }}px;">
   </noscript>
-  <script>
-    // Product Listing Product card Images slider
-        $("#product_images_slider_"+{{ product.selected_or_first_available_variant.id}}).slick({ 
-          autoplay: false,
-          autoplaySpeed: 500,
-          arrows: true,
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          Infinite: false,
-          loop: false,
-          dots: false
-        });
-    </script>
   <div class="prodct_card_body">
-    {%- assign current_variant = product.selected_or_first_available_variant -%}
+    {%- assign current_variant = selectedVariant -%}
     {% assign variantMetafield = current_variant.metafields.current_variant %}
   {%- assign stoneClr = variantMetafield["dia_tab1_stone_avg_color"] -%}
   {%- assign stoneClarity = variantMetafield["dia_tab1_avg_clarity"] -%}
@@ -167,3 +88,21 @@
   </div>
   </div>
 </div>
+<script>
+  // Product Listing Product card Images slider
+      $("#product_images_slider_"+{{ lowest_priceVarId }}).slick({ 
+        autoplay: false,
+        autoplaySpeed: 500,
+        arrows: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        Infinite: false,
+        loop: false,
+        dots: false
+      });
+  </script>
+  {% style %}
+  #product_images_slider_{{ lowest_priceVarId }} {
+    opacity: 1;
+  }
+  {% endstyle %}
