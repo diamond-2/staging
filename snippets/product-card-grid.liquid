@@ -1,13 +1,16 @@
-{% assign lowest_price = product.variants.first.price %}
-{% assign lowest_priceVarId = product.variants.first.id %}
-{% assign selectedVariant = product.variants.first %}
+{% assign lowest_price = product.selected_or_first_available_variant.price %}
+{% assign lowest_priceVarId = product.selected_or_first_available_variant.id %}
+{% assign selectedVariant = product.selected_or_first_available_variant %}
 {% assign counterforLowerPrice = 0 %}
 {% for variant in product.variants %}
   
+  {% if product.available %}
     {% if variant.price < lowest_price %}
+
       {% assign lowest_price = variant.price %}
       {% assign lowest_priceVarId = variant.id %}
       {% assign selectedVariant = variant %}
+    {% endif %}
     {% endif %}
 {% endfor %}
 <div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card" data-variant="{{ lowest_priceVarId }}">

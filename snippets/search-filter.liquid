@@ -451,6 +451,7 @@
                 getproductHandle = prodObj[i].link.split('/products/')[1],
                 prodQty = prodObj[i].quantity,
                 prodTitle = prodObj[i].title,
+                currentVariantId = prodObj[i].add_to_cart_id,
                 prodTags = prodObj[i].tags,                
                 prodId = prodObj[i].id;
                 if(prodObj[i].hasOwnProperty('shopify_images')){
@@ -706,50 +707,29 @@ function getData(ajaxurl) {
 
 
 
-                  var plpProductList= prodLink+'/?view=plpcontent';
+                  var plpProductList= prodLink+'/?view=plpcontent&variant='+currentVariantId;
 
-function getPlpContent(ajaxurl) { 
-  return $.ajax({
-    url: plpProductList,
-    type: 'GET',
-  });
-};
+                  function getPlpContent(ajaxurl) { 
+                    return $.ajax({
+                      url: plpProductList,
+                      type: 'GET',
+                    });
+                  };
 
-async function renderPlpContent() {
-  try {
-    const responseList = await getPlpContent(plpProductList)
-    // $(document).find('.product_view_tab[data-view="grid"] li .prodct_card_body').html('');
-    let z  = responseList;
-    // var lsListInfoContent = z;
-    console.log('responseList==>>==>>', responseList);
-    $(document).find('.product_view_tab[data-view="grid"] li[data-handle="'+prodLink.split('products/')[1]+'"]').html('').html(responseList);
-    
-  } catch(err) {
-    console.log(err);
-  }
-}
-renderPlpContent();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                  async function renderPlpContent() {
+                    try {
+                      const responseList = await getPlpContent(plpProductList)
+                      // $(document).find('.product_view_tab[data-view="grid"] li .prodct_card_body').html('');
+                      let z  = responseList;
+                      // var lsListInfoContent = z;
+                      // console.log('responseList==>>==>>', responseList);
+                      $(document).find('.product_view_tab[data-view="grid"] li[data-handle="'+prodLink.split('products/')[1]+'"]').html('').html(responseList);
+                      
+                    } catch(err) {
+                      console.log(err);
+                    }
+                  }
+                  renderPlpContent();
 
 
         });
