@@ -317,6 +317,7 @@
     });
 
     $(document).on('change','#sortByFilter', function(){ 
+      localStorage.setItem('sortByHit', 'true');
       var getSelectedVal = $(this).val();
       $(this).find('option:selected').attr('selected','selected').siblings().removeAttr('selected'); 
       var newQueryString = filterOnSelect();     
@@ -1493,6 +1494,13 @@ selectOption +=  '</div">';
       // Print Product 
       function printProducts(prodObj){
      //console.log(prodObj.length);
+        let sortByEnabled = localStorage.getItem('sortByHit');
+        if(sortByEnabled != null){
+          $('[data-collection-listing-container] [data-view="grid"] [data-list-item]').html('');
+          setTimeout(function(){
+            localStorage.removeItem('sortByHit');
+          },500);          
+        }
         $(document).find('[data-col-images-slider-init]').slick("unslick");
         if($('[data-collection-listing-container]').hasClass('inital-load')) {
           $(document).find('[data-collection-listing-container] [data-view="grid"] [data-init-content], .bottom-pagination-row').remove();
