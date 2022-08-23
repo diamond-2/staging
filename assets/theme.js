@@ -10676,7 +10676,7 @@ $(document).on('click', '.product_compare', function(){
   hideCompareItemList();
   var prodHandle = $(this).closest('.grid__item').data('handle');
   var prodTitle = $(this).closest('.grid__item').data('title');
-  var prodVariantId = $(this).closest('.grid__item').find('.product-card').data('variant');
+  var prodVariantId = $(this).closest('.grid__item').find('.product-card').data('variant'); console.log('compareVariant==.', prodVariantId);
   var productType = $(this).closest('.grid__item').data('type').trim(); console.log("prodType==>>", productType);
 
   console.log(compareItemType+'======='+productType);
@@ -10695,7 +10695,7 @@ $(document).on('click', '.product_compare', function(){
   // }
   if(compareItemHandles.length < 4){
     $('[data-compareItemCounter]').removeClass('hide');
-    if(!compareItemHandles.includes($(this).closest('.grid__item').data('handle'))){
+    if(!compareItemHandles.includes($(this).closest('.grid__item').data('handle')+'/?variant='+$(this).closest('.grid__item').find('.product-card').data('variant')+'')){
       compareItemHandles.push($(this).closest('.grid__item').data('handle')+'/?variant='+$(this).closest('.grid__item').find('.product-card').data('variant')+'');
       localStorage.setItem("compareProducts", JSON.stringify(compareItemHandles));
       localStorage.setItem("compareProductsType", productType);
@@ -10720,6 +10720,9 @@ $(document).on('click', '.product_compare', function(){
       
     }else {
       $('[data-compare-msg]').addClass('compareItemAddedNotify showMsg').text('Item exist in compare list.').attr('aria-label', 'Item exist in compare list.');
+      setTimeout(function(){
+        $('[data-compare-msg]').removeClass('compareItemAdded showMsg')
+      },2000);
       return false;
     } 
     let itemCount = compareItemHandles.length;
