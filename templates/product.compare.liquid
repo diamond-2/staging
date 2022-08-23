@@ -15,7 +15,7 @@
 {% endfor %}
 {% endcomment %}
 
-<div class="compare__product-information" data-handle="{{ product.handle }}" data-type="{{ product.type }}">
+<div class="compare__product-information" data-handle="{{ product.handle }}/?variant={{ current_variant.id }}" data-type="{{ product.type }}">
   <a class="text-link text-link--accent remove_compare_modal_pop_btn" data-remove-compare-item>Remove {% include 'icon-close' %}</a>
   {% assign compareImgCounter = 0 %}
   {% for slideImage in product.images %}
