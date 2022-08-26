@@ -508,7 +508,7 @@
                                         {% else %}
                                             {% if variantMetafield[tableContent_stone_shape] != blank or variantMetafield[tableContent_stone_category ] != blank %}
                                             <tr data-tooltip="jewstncnt" data-row="{{ variantMetafield[tableContent_stone_shape] | truncate: 30 | prepend: 'Number of ' | handleize }}{{ variantMetafield[tableContent_stone_category ] | truncate: 30 | append: ' Gemstones' | handleize }}">
-                                                <td><span class="pdp-tab-label">{{ variantMetafield[tableContent_stone_shape] | truncate: 30 | prepend: 'Number of ' }} {{ variantMetafield[tableContent_stone_category ] | truncate: 30 | append: ' Gemstones' }}</span></td>
+                                                <td><span class="pdp-tab-label">{{ variantMetafield[tableContent_stone_shape] | truncate: 30 | prepend: 'Number of ' }} {{ variantMetafield[tableContent_stone_category ] | replace: 'DIAMOND2', 'DIAMOND2<sup>®</sup>' | truncate: 30 | append: ' Gemstones' }}</span></td>
                                                 <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_no_of_stones] }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip">{{ variantMetafield[tableContent_tooltip_rhodium] }}</span></td>
                                             </tr>
                                             {% endif %}
