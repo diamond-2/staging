@@ -3,7 +3,11 @@
 <div class="product-details-wrapper pdp-tabber show_tab" id="productDetails">
     <div class="mobile-pdp-acc-trigger show_mobile"><p>PRODUCT DETAILS</p></div>
     <div class="pdp-acc-body">
-        <h3><span class="pdp-acc-body-heading" data-option2="{{ product.selected_or_first_available_variant.option2 }}">{{ product.title }} {% if hide_default_title %} {% else %}in  <span class="variantColorTitle" data-variant-title>{{ product.selected_or_first_available_variant.option1  }}</span>{% if product.selected_or_first_available_variant.option2.size > 0 %}, Size: <span class="variantSizeValue" data-variant-size>{{ product.selected_or_first_available_variant.option2  }}</span> {% endif %}{% endif %}</span>{% if template.suffix contains 'loose-stone'%}<a class="product-view-report" href="javascript:;" aria-label="">View report&gt;</a>{% endif %}</h3>    
+        <h3><span class="pdp-acc-body-heading" data-option2="{{ product.selected_or_first_available_variant.option2 }}">{{ product.title }} {% if hide_default_title %} {% else %}in  
+
+            {% for option in product.options_with_values -%}{% if forloop.index == 1 %}<span class="variantColorTitle" data-variant-title>{{ product.selected_or_first_available_variant.option1 }}</span>{% endif %}{% if forloop.index == 2 %}<span class="variantOption2Value" data-variant-opt2>{{ option.name | escape | prepend: ', ' | append: ':' }} {{ product.selected_or_first_available_variant.option2 }}</span>{% endif %}{% if forloop.index == 3 %}<span class="variantOption3Value" data-variant-opt3>{{ option.name | escape | prepend: ', ' | append: ':' }} {{ product.selected_or_first_available_variant.option3 }}</span>{% endif %}{% endfor %}
+            {% endif %}
+            </span>{% if template.suffix contains 'loose-stone'%}<a class="product-view-report" href="javascript:;" aria-label="">View report&gt;</a>{% endif %}</h3>    
         <div class="product-details-row">
             <div class="product-info-gird">
                 {%- capture prodtableContent_title -%}prod_info_title{%- endcapture -%}
@@ -144,19 +148,9 @@
                                                 </tr>
                                                 {% endif %}
 
-
-                                                {% comment %}
-                                                {% if variantMetafield[tableContent_frc_ttl_crt_wgt] != blank %}
-                                                <tr data-tooltip="jewrhodium" data-row="tableContent_common_ttl_crt_wgt">
-                                                    <td><span class="pdp-tab-label" data-metafield="tableContent_frc_ttl_crt_wgt">Carat Total weight(CT. TW.)</span></td>
-                                                    <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_frc_ttl_crt_wgt] | truncate: 30, '...' }}</span> {% if productMetafield[tableContent_tooltip_ttl_crt_wgt] != blank %} <span class="meta_tooltip" data-tooltip-title="{{productMetafield[tableContent_tooltip_ttl_crt_wgt]}}"></span>{% endif %}</td>
-                                                </tr>
-                                                {% endif %}
-                                                 {% endcomment %}
-
                                                 {% if variantMetafield[tableContent_dec_ttl_crt_wgt] != blank  or variantMetafield[tableContent_frc_ttl_crt_wgt] != blank %} 
                                                 <tr data-tooltip="jewrhodium" data-row="{% if variantMetafield[tableContent_dec_ttl_crt_wgt] != blank %}{{ tableContent_dec_ttl_crt_wgt }}{% else %}{{ tableContent_frc_ttl_crt_wgt }}{% endif %}">
-                                                    <td><span class="pdp-tab-label">{% if variantMetafield[tableContent_dec_ttl_crt_wgt] != blank %}Total carat weight(cts.){% else %}Carat Total weight(CT. TW.){% endif %}</span></td>
+                                                    <td><span class="pdp-tab-label">{% if variantMetafield[tableContent_dec_ttl_crt_wgt] != blank %}Carat weight(cts.){% else %}Carat weight(CT. TW.){% endif %}</span></td>
                                                     <td>
                                                     <span class="pdp-tab-val test-2">{% if variantMetafield[tableContent_dec_ttl_crt_wgt] != blank %}{{ variantMetafield[tableContent_dec_ttl_crt_wgt] | times: 100 | round:2 | money_without_currency  }}{% else %}{{ variantMetafield[tableContent_frc_ttl_crt_wgt] | truncate: 30, '...' }}{% endif %}</span> 
                                                     {% if productMetafield[tableContent_tooltip_ttl_crt_wgt] != blank %} 
@@ -484,14 +478,14 @@
                                         <!-- common_dia_tab_ttl_crt_wgt -->
                                         {% if variantMetafield[tableContent_frc_ttl_crt_wgt_r] != blank %}
                                         <tr data-tooltip="jewstnfrc" data-row="{{ tableContent_frc_ttl_crt_wgt_r }}" data-val="{{ variantMetafield[tableContent_frc_ttl_crt_wgt_r] }}">
-                                            <td><span class="pdp-tab-label">Carat Total Weight(ct. tw.)</span></td>
+                                            <td><span class="pdp-tab-label">Carat Weight(ct. tw.)</span></td>
                                             <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_frc_ttl_crt_wgt_r] }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
                                         </tr>
                                         {% endif %}
                 
                                         {% if variantMetafield[tableContent_dec_ttl_crt_wgt_r] != blank %}                                        
                                         <tr data-tooltip="jewstdec" data-row="{{ tableContent_dec_ttl_crt_wgt_r }}" data-val="{{ variantMetafield[tableContent_dec_ttl_crt_wgt_r] }}">
-                                            <td><span class="pdp-tab-label">Total carat weight(cts.)</span></td>
+                                            <td><span class="pdp-tab-label">Carat weight(cts.)</span></td>
                                             <td>
                                             <span class="pdp-tab-val test-1">{{ variantMetafield[tableContent_dec_ttl_crt_wgt_r] }}</span> 
                                             <span class="meta_tooltip" data-tooltip-title="tooltip"></span>
@@ -549,8 +543,7 @@
                                             <td><span class="pdp-tab-label">{% if variantMetafield[tableContent_color_gradingLabel] != blank %}{{ variantMetafield[tableContent_color_gradingLabel] }}{% else %}Color{% endif %}</span></td>
                                             <td><span class="pdp-tab-val">{{ variantMetafield[tableContent_color_grading] | truncate: 30 }}</span> <span class="meta_tooltip" data-tooltip-title="tooltip"></span></td>
                                         </tr>
-                                        {% endif %}
-                
+                                        {% endif %}                
                 
                                         {% if variantMetafield[tableContent_clarity_grading] != blank %}
                                         <tr data-tooltip="stncertclarity" data-row="{{ tableContent_clarity_grading }}">
