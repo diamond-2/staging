@@ -390,7 +390,7 @@
               {%- assign img_url = 'Diamond2-main-logo.svg' | file_url -%}
                   <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered 11{% endif %}" data-image-loading-animation>
                     {% if request.page_type == 'index' %}
-                    <img class="header_sm_logo" src="{{ 'small_logo.png' | asset_url }}" alt="Diamond2">
+                    <img class="header_sm_logo" src="{{ 'small_logo.svg' | asset_url }}" alt="Diamond2">
                     {% endif %}
                     <img class="lazyload" src="{{ img_url }}" data-src="{{ img_url }}" alt="{{ section.settings.mobile_logo.alt }}">
                   </a>
