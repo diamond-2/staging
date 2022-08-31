@@ -376,7 +376,6 @@
               {% include 'icon-search' %}
               <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
             </button>
-
             <div class="grid__item {{ logo_classes }} show_mobile">
               {% comment %}
                 Use the uploaded logo from theme settings if enabled.
@@ -388,9 +387,10 @@
                 <div class="h2 site-header__logo">
               {% endif %}
               {%- assign img_url = 'Diamond2-main-logo.svg' | file_url -%}
+              {%- assign mobile_img_url = 'small_logo.svg' | file_url -%}
                   <a href="{{ routes.root_url }}" class="site-header__logo-image{% if section.settings.align_logo == 'center' %} site-header__logo-image--centered 11{% endif %}" data-image-loading-animation>
                     {% if request.page_type == 'index' %}
-                    <img class="header_sm_logo" src="{{ 'small_logo.svg' | asset_url }}" alt="Diamond2">
+                    <img  class="header_sm_logo lazyload" src="https://cdn.shopify.com/s/files/1/0575/2681/2840/files/small_logo.svg?v=1661952544" data-src="https://cdn.shopify.com/s/files/1/0575/2681/2840/files/small_logo.svg?v=1661952544" alt="Diamond2">
                     {% endif %}
                     <img class="lazyload" src="{{ img_url }}" data-src="{{ img_url }}" alt="{{ section.settings.mobile_logo.alt }}">
                   </a>
