@@ -267,7 +267,7 @@
                             </div>
 
                             {% else %}
-                            <div class="custom-select-holder" data-option="{{ option.name }}">
+                            <div class="custom-select-holder" data-option="{{ option.name }}" data-index="option-{{ forloop.index }}">
                                 <label for="SingleOptionSelector-{{ forloop.index0 }}">
                                     Select {% if product.metafields.global.jewelery_category != blank %}{{ product.metafields.global.jewelery_category }}{% endif %} {{ option.name }}
                                 </label>

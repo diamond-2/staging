@@ -419,12 +419,12 @@ agreeCartCondition();
     var selectedSizeOption = $('#SingleOptionSelector-1 option:selected').val(); console.log("SingleOptionSelector-1==>",selectedSizeOption)
     var selectedColor = $('.custom-checkbox-list :radio:checked').val(); console.log('selectedColor==>', selectedColor);
     console.log(selectedColor);
-    linkedSizeOptions(selectedSizeOption, selectedColor);  
+      linkedSizeOptions(selectedSizeOption, selectedColor);     
   })
 
   function linkedOptions(selectedOption) {
     console.log('selectedOption==>', selectedOption)
-    $('.single-option-selector[data-index="option2"] option, .single-option-selector[data-index="option3"] option').prop('disabled','disabled');//removeClass('availableoption');
+    $('.single-option-selector[data-index="option2"] option, .single-option-selector[data-index="option3"] option').attr('disabled','disabled');//removeClass('availableoption');
     $('.single-option-selector[data-index="option2"] option, .single-option-selector[data-index="option3"] option').removeAttr('selected');
     $('select[name="id"] option[data-color="'+selectedOption+'"]').each(function(){
       var option2Available = $(this).data('size');
@@ -441,24 +441,28 @@ agreeCartCondition();
         
       }
     })
-    $('.single-option-selector[data-index="option2"] option, .single-option-selector[data-index="option3"] option').not(':disabled').first().attr('selected', 'selected').trigger('change');
-    // $('.single-option-selector[data-index="option2"] option:first').trigger('change');
-    // $('.single-option-selector[data-index="option3"] option:first').trigger('change');
+    $('.single-option-selector[data-index="option2"] option, .single-option-selector[data-index="option3"] option').not(':disabled').first().attr('selected', 'selected');
+    $('.single-option-selector[data-index="option2"]').trigger('change');
+    $('.single-option-selector[data-index="option3"]').trigger('change');
   }
+
 
   function linkedSizeOptions(selectedSizeOption, selectedColor) {
     $('.single-option-selector[data-index="option3"] option').attr('disabled','disabled');//removeClass('availableoption');
     $('.single-option-selector[data-index="option3"] option').removeAttr('selected');
+   
     $('select[name="id"] option[data-size="'+selectedSizeOption+'"][data-color="'+selectedColor+'"]').each(function(){
       var option3Available = $(this).data('option3');
-      // if($('.single-option-selector[data-index="option2"]').length > 0) {
-      //   $('.single-option-selector[data-index="option2"] option[value="'+option2Available+'"]').removeAttr('disabled');//addClass('availableoption')
-      //   $('.single-option-selector[data-index="option2"] option:not(:disabled):first').attr('selected','selected').trigger('change');
-      // } 
+      if($('.single-option-selector[data-index="option2"]').length > 0) {
+        $('.single-option-selector[data-index="option2"] option[value="'+selectedSizeOption+'"]').removeAttr('disabled');//addClass('availableoption')
+        
+      } 
       if($('.single-option-selector[data-index="option3"]').length > 0) {
         $('.single-option-selector[data-index="option3"] option[value="'+option3Available+'"]').removeAttr('disabled'); //.addClass('availableoption')
-        // $('.single-option-selector[data-index="option3"] option[value="'+option3Available+'"]').attr('selected','selected').first().trigger('change');
-        $('.single-option-selector[data-index="option3"] option',).not(':disabled').first().attr('selected', 'selected').trigger('change');
       }
-    })
+    }).promise().done( function(){ 
+      $(document).find('.single-option-selector[data-index="option3"] option').not(':disabled').first().attr('selected', 'selected');      
+        $(document).find('#SingleOptionSelector-2').trigger('change');
+     } );
+    
   }

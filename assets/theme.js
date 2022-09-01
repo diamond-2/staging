@@ -681,6 +681,7 @@ slate.Variants = (function() {
    * @param {object} options - Settings from `product.js`
    */
   function Variants(options) {
+    
     this.container = options.container;
     this.product = options.product;
     this.originalSelectorId = options.originalSelectorId;
@@ -697,6 +698,7 @@ slate.Variants = (function() {
     );
   }
 
+
   Variants.prototype = Object.assign({}, Variants.prototype, {
     /**
      * Get the currently selected options from add-to-cart form. Works with all
@@ -708,14 +710,24 @@ slate.Variants = (function() {
       var result = [];
 
       this.singleOptions.forEach(function(option) {
-        var type = option.getAttribute('type');
-        var isRadioOrCheckbox = type === 'radio' || type === 'checkbox';
+        var type = option.getAttribute('type'); //console.log("optionType==>", type);
+        var isRadioOrCheckbox = type === 'radio' || type === 'checkbox'; //console.log('isRadioOrCheckboxOption==>', isRadioOrCheckbox);
 
         if (!isRadioOrCheckbox || option.checked) {
-          result.push({
-            value: option.value,
-            index: option.getAttribute('data-index')
-          });
+          if(option.getAttribute('data-index') == 'option3'){
+            setTimeout(function(){
+            result.push({
+              value: $(document).find('#SingleOptionSelector-2').val(),
+              index: option.getAttribute('data-index')
+            });
+          },800);
+          }else {
+            result.push({
+              value: option.value,
+              index: option.getAttribute('data-index')
+            });
+          }
+          
         }
       });
 
@@ -729,10 +741,11 @@ slate.Variants = (function() {
      * @return {object || undefined} found - Variant object from product.variants
      */
     _getVariantFromOptions: function() {
-      var selectedValues = this._getCurrentOptions();
-      var variants = this.product.variants;
+      var selectedValues = this._getCurrentOptions(); console.log("selectedValues==>>", selectedValues);
+      var variants = this.product.variants; console.log("selectedValuevariants==>", variants)
 
       var found = variants.find(function(variant) {
+        console.log('foundVariant', variant);
         return selectedValues.every(function(values) {
           return variant[values.index] === values.value;
         });
@@ -746,7 +759,8 @@ slate.Variants = (function() {
      */
     _onSelectChange: function() {
       var variant = this._getVariantFromOptions();
-
+          
+      console.log("variant.id===>>>",variant.id)
       updateImgGallery(variant.id);
       let currentVariantQty = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('qty');
       let currentVariant = $(document).find('select[name="id"] option[value="'+variant.id+'"]').data('title');
@@ -9842,7 +9856,7 @@ window.addEventListener("resize", function() {
 });
 
 
-  $('.site-footer__item-inner .site-footer__linklist > li > a').after('<div class="footer-menu-Childtrigger"></div>');
+  // $('.site-footer__item-inner .site-footer__linklist > li > a').after('<div class="footer-menu-Childtrigger"></div>');
   $('.footer-menu-Childtrigger').click(function(){
       $(this).next().slideToggle();
       $(this).parent().toggleClass('menu_down');

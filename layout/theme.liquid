@@ -190,6 +190,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous" ></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" ></script>
 <script src="{{ 'matchHeight.js' | asset_url }}"></script>
+<script src="{{ 'custom.js' | asset_url }}"></script>
 
   {{ content_for_header }}
 
@@ -265,13 +266,14 @@
     <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
   {%- endif -%}
 
+  
   <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'lazysizes.js' | asset_url }}" async="async"></script>
   <script src="{{ 'pinchzoom.min.js' | asset_url }}"></script>
   <!-- // loader js -->
   <script src="{{ 'loader.js' | asset_url }}"></script>
   <!-- Custom JS -->
-  <script src="{{ 'custom.js' | asset_url }}"></script>
+  
 
   {% if template contains 'collection' %}
   <script src="{{ 'collection-loadmore.js' | asset_url }}" async="async"></script>
