@@ -536,7 +536,7 @@ body {
               font-weight: 600;
               color: #6C1D45; }
             .centered-header-nav#AccessibleNav .site-nav .site-nav__dropdown .site-nav__childlist .site-nav__childlist-grid .site-nav__childlist-item .site-nav__link.site-nav__child-link--parent {
-              font-family: 'Montserrat';
+              font-family: 'Montserrat', sans-serif;
               color: #6C1D45;
               font-weight: 600;
               font-size: 16px;
@@ -905,7 +905,7 @@ div#PageContainer.js-menu--is-open {
               color: #602B3F;
               margin-top: 36px; }
             #AccessibleNav .site-nav .site-nav__dropdown .site-nav__childlist .site-nav__childlist-grid .site-nav__childlist-item .site-nav__link.site-nav__child-link--parent {
-              font-family: Spectral;
+              font-family: 'Spectral', serif;
               color: #602b3f;
               font-weight: 300;
               font-size: 22px;
@@ -1149,13 +1149,13 @@ div#PageContainer.js-menu--is-open {
       color: #6C1D45;
       font-size: 14px;
       line-height: normal;
-      font-family: 'Spectral';
+      font-family: 'Spectral', serif;
       text-transform: uppercase; }
     .mobile-nav-wrapper .mobile_nav_child_inner.lebel-2 > li.not_child_menu a {
       color: #000000;
       font-size: 13px;
       line-height: normal;
-      font-family: Montserrat; }
+      font-family: 'Montserrat', sans-serif; }
     .mobile-nav-wrapper .mobile_nav_child_inner.lebel-2 .mobile-nav__dropdown {
       position: static;
       display: block;
@@ -1356,7 +1356,7 @@ body.js-menu--is-open {
         text-transform: uppercase;
         font-feature-settings: 'kern' off;
         letter-spacing: .64em;
-        font-family: Josefin Sans;
+        font-family: 'Montserrat', sans-serif;
         max-width: 500px;
         margin: 0 auto;
         margin-top: 9px;
@@ -2091,7 +2091,7 @@ body.landing-exist.scroll-start #shopify-section-landing {
           font-size: 22px;
           line-height: 23.76px;
           color: #000000;
-          font-family: Montserrat;
+          font-family: 'Montserrat', sans-serif;
           font-weight: 400;
           margin-bottom: 12px; }
           @media (max-width: 1600px) and (min-width: 750px) {
@@ -2296,7 +2296,7 @@ body.landing-exist.scroll-start #shopify-section-landing {
         text-align: center;
         letter-spacing: 0.02em;
         text-transform: capitalize;
-        font-family: Rubik;
+        /* font-family: Rubik; */
         font-style: normal;
         font-weight: 300; }
         @media (max-width: 749px) {
@@ -2941,7 +2941,7 @@ body.landing-exist.scroll-start #shopify-section-landing {
     border: 1px solid #6679CC;
     font-weight: 300;
     font-size: 13px;
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
     padding: 12px 20px 12px;
     border-radius: 0;
     min-height: 0;
@@ -3291,7 +3291,7 @@ body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3,
             .full_width_slider_wrapper .full_width_slide_item .slider-caption-wrapper .slider-caption-holder .cap_content {
               margin-bottom: 20px; } }
           .full_width_slider_wrapper .full_width_slide_item .slider-caption-wrapper .slider-caption-holder .cap_content p {
-            font-family: Montserrat;
+            font-family: 'Montserrat', sans-serif;
             font-size: 22px;
             line-height: 28.08px;
             margin-bottom: 194px;
@@ -3748,7 +3748,7 @@ body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3,
       margin-top: 30px;
       font-size: 18px;
       line-height: 19.44px;
-      font-family: Montserrat;
+      font-family: 'Montserrat', sans-serif;
       text-transform: uppercase;
       font-weight: 500; }
       @media (max-width: 1600px) {
@@ -3803,7 +3803,7 @@ body[data-template="know-your-diamond"] .shop-loose-diamond2-slider-top-row .h3,
     .collection-slider .slick-arrow:before {
       content: none; }
     .collection-slider .slick-arrow:after {
-      font-family: Rubik;
+      /* font-family: Rubik; */
       font-style: normal;
       font-weight: 300;
       font-size: 50px;
@@ -4228,7 +4228,7 @@ body[data-template="product"] .main-content {
       line-height: 36.53px;
       color: #6C1D45;
       font-weight: bold;
-      font-family: Spectral;
+      font-family: 'Spectral', serif;
       margin: 0;
       text-transform: uppercase;
       min-height: 60px; }
@@ -4242,7 +4242,7 @@ body[data-template="product"] .main-content {
           line-height: normal; } }
       @media (max-width: 749px) {
         .product-section-row .product-detail-content-column .product-single__title {
-          font-family: 'Montserrat';
+          font-family: 'Montserrat', sans-serif;
           font-weight: 500;
           font-size: 18px;
           font-size: 18px;
@@ -4446,7 +4446,7 @@ body[data-template="product"] .main-content {
           width: 30px;
           height: 30px;
           border-radius: 50%;
-          font-family: Montserrat;
+          font-family: 'Montserrat', sans-serif;
           font-size: 10px;
           font-weight: 300;
           line-height: 12px;
@@ -5156,7 +5156,7 @@ body[data-template="product"] .main-content {
         font-size: 18px;
         line-height: 19.44px;
         color: #000;
-        font-family: Montserrat;
+        font-family: 'Montserrat', sans-serif;
         text-transform: uppercase;
         margin-bottom: 30px; }
         @media (max-width: 1600px) {
@@ -5534,7 +5534,7 @@ body.layout_jewellery h2 {
               color: #000000;
               margin-bottom: 8px;
               text-transform: uppercase;
-              font-family: 'Montserrat';
+              font-family: 'Montserrat', sans-serif;
               font-weight: 400; }
               @media (max-width: 1600px) {
                 .jewellary-collection-wrapper .jewellary-collection-row .jewellary-collection-grid .jewellary-collection-block .jewellary-collection-card .content_holder .title {
@@ -6493,8 +6493,11 @@ body[data-template="loose-stone"] .product-content-section {
                   flex: 0 0 33.333%; }
               .solitaire-collection-wrapper .grid--view-items .grid__item .grid-view-item .prodct_card_body .product-price-card .product-price-card-row + {
                 margin-top: 12px; }
-              .solitaire-collection-wrapper .grid--view-items .grid__item .grid-view-item .prodct_card_body .product-price-card .product-price-card-row > div.product_weight {
-                text-align: left; }
+              .solitaire-collection-wrapper .grid--view-items .grid__item .grid-view-item .prodct_card_body .product_weight {
+                text-align: left; font-family: system-ui, 'Montserrat';}
+                .solitaire-collection-wrapper .grid--view-items .grid__item .grid-view-item .prodct_card_body .product-price-card .product-price-card-row > div.product_weight > span {
+                  font-family: 'Montserrat', sans-serif;}
+                
               .solitaire-collection-wrapper .grid--view-items .grid__item .grid-view-item .prodct_card_body .product-price-card .product-price-card-row > div.product_compare {
                 text-align: right;
                 cursor: pointer; }
@@ -7551,7 +7554,7 @@ body.has_top_banner .main-content {
     color: #000000;
     font-size: 18px;
     line-height: 19.44px;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     margin-bottom: 30px; }
     @media (max-width: 1600px) and (min-width: 749px) {
@@ -7663,7 +7666,7 @@ body.has_top_banner .main-content {
           font-size: 24px;
           line-height: 25.92px;
           font-weight: 400;
-          font-family: 'Montserrat';
+          font-family: 'Montserrat', sans-serif;
           color: #000000;
           margin: 0 0 30px;
           text-transform: uppercase; }
@@ -7831,7 +7834,7 @@ body[data-template="static-layout"] .main-content {
     font-size: 14px;
     font-weight: 500;
     line-height: 15.12px;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
     color: #fff;
     border: none;
     text-transform: uppercase;
@@ -7970,7 +7973,7 @@ body[data-template="404"] .main-content {
           line-height: 19px;
           margin: 0 0 30px;
           font-weight: 200;
-          font-family: 'Spectral'; } }
+          font-family: 'Spectral', serif; } }
     .error_banner .error-banner-content-holder a.glb-btn {
       font-size: 18px;
       line-height: 27px;
@@ -8062,7 +8065,7 @@ body[data-template="404"] .main-content {
     font-size: 24px;
     line-height: 26px;
     font-weight: 500;
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
     margin-bottom: 20px; }
     @media (max-width: 1355px) {
       .glb-collection-card .glb-collection-body h4 {
@@ -8222,7 +8225,7 @@ body[data-template="404"] .main-content {
         margin-bottom: 30px; } }
     .sitemap-wrapper .sitemap-menu-grid > li > a {
       font-size: 22px;
-      font-family: 'Spectral';
+      font-family: 'Spectral', serif;
       font-weight: 600;
       text-transform: uppercase;
       color: #6C1D45;
@@ -8795,7 +8798,7 @@ body.template-cart .home-sld {
     font-size: 24px;
     line-height: 25.92px;
     font-weight: 200;
-    font-family: 'Spectral';
+    font-family: 'Spectral', serif;
     color: #6C1D45;
     margin-right: 28px; }
     @media (max-width: 1600px) {
@@ -9183,7 +9186,7 @@ body.template-cart .home-sld {
           line-height: 30px;
           text-transform: uppercase;
           font-weight: 200;
-          font-family: 'Spectral';
+          font-family: 'Spectral', serif;
           color: #6C1D45;
           margin-bottom: 8px; }
           @media (max-width: 1600px) and (min-width: 750px) {
@@ -10636,7 +10639,7 @@ body[data-template="customers/reset_password"] .main-content {
       .cart-remove-popup-wrapper .cart-remove-item .cart_image_content .cart_item-title {
         font-size: 16px;
         line-height: 24.35px;
-        font-family: 'Spectral';
+        font-family: 'Spectral', serif;
         font-weight: 200;
         margin: 0; }
         .cart-remove-popup-wrapper .cart-remove-item .cart_image_content .cart_item-title .cart__product-title {
@@ -10741,7 +10744,7 @@ body[data-template="customers/addresses"] .main-content {
     justify-content: space-between; }
   .account_section-header h1, .account_section-header .logout_link {
     font-weight: 200;
-    font-family: 'Spectral';
+    font-family: 'Spectral', serif;
     font-size: 36px;
     line-height: 40px;
     color: #6C1D45;
@@ -10879,7 +10882,7 @@ body[data-template="customers/addresses"] .main-content {
     font-size: 18px;
     line-height: 1;
     margin-bottom: 4px;
-    font-family: Spectral;
+    font-family: 'Spectral', serif;
     font-weight: 200; } }
 
 .account_section_wrapper .account_sec_header_mobile .back-to-page-btn {
@@ -10901,7 +10904,7 @@ body[data-template="customers/addresses"] .main-content {
     font-size: 24px;
     line-height: 25.92px;
     font-weight: 400;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
     color: #6C1D45;
     margin-bottom: 30px; }
     @media (max-width: 1600px) {
@@ -11003,7 +11006,7 @@ body[data-template="customers/addresses"] .main-content {
         letter-spacing: normal;
         text-transform: uppercase;
         margin: 0 0 15px;
-        font-family: Montserrat; }
+        font-family: 'Montserrat', sans-serif; }
         @media (max-width: 1600px) {
           .orderSection .grid__item .order_sec2 h2 {
             font-size: 18px;
@@ -11328,7 +11331,7 @@ body[data-template="customers/addresses"] .main-content {
   line-height: 26px;
   font-weight: 500;
   text-transform: capitalize;
-  font-family: Montserrat;
+  font-family: 'Montserrat', sans-serif;
   margin: 0 0 30px;
   width: calc(100% - 490px); }
   @media (max-width: 1600px) {
@@ -11346,7 +11349,7 @@ body[data-template="customers/addresses"] .main-content {
     font-size: 24px;
     line-height: 26px;
     font-weight: 500;
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
     margin: 0 0 30px; }
     @media (max-width: 1600px) {
       .address_section_wrapper .account_glb_form h3 {
@@ -11479,7 +11482,7 @@ body[data-template="customers/addresses"] .main-content {
         font-size: 14px;
         line-height: 15.12px;
         font-weight: 400;
-        font-family: Montserrat;
+        font-family: 'Montserrat', sans-serif;
         letter-spacing: 0.05em;
         text-transform: uppercase; }
         @media (max-width: 1600px) {
@@ -11566,7 +11569,7 @@ body[data-template="customers/addresses"] .main-content {
     font-size: 24px;
     line-height: 26px;
     font-weight: 400;
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
     margin: 0 0 30px; }
     @media (max-width: 1600px) {
       .addess_section_header h2 {
@@ -12122,7 +12125,7 @@ body.template-product .pdp-zoom-gallery {
           font-size: 28px;
           line-height: 34px;
           font-weight: 400;
-          font-family: Montserrat;
+          font-family: 'Montserrat', sans-serif;
           letter-spacing: 0.02em;
           margin: 0 0 20px; }
           @media (max-width: 1600px) {
@@ -12255,7 +12258,7 @@ body.template-product .pdp-zoom-gallery {
   .guide-jw-collection-section-wrapper .guide-jw-product-slider .slick-arrow:before {
     content: none; }
   .guide-jw-collection-section-wrapper .guide-jw-product-slider .slick-arrow:after {
-    font-family: Rubik;
+    /* font-family: Rubik; */
     font-style: normal;
     font-weight: 300;
     font-size: 50px;
@@ -13134,7 +13137,7 @@ canvas#the-canvas {
     color: #6C1D45;
     font-size: 26px;
     line-height: 1;
-    font-family: 'Spectral';
+    font-family: 'Spectral', serif;
     text-align: center;
     letter-spacing: -1px;
     text-transform: none;
@@ -13973,7 +13976,7 @@ a[href^="tel"] {
         max-width: 765px;
         font-size: 38px;
         font-weight: 300;
-        font-family: 'MONTSERRAT';
+        font-family: 'Montserrat', sans-serif;
         padding-left: 0; }
         @media screen and (max-width: 1600px) {
           .js-drawer-open-top.js-drawer-open #SearchDrawer .search-bar__interior .search-form__container .search-form__input-wrapper .search-bar__input {
@@ -14163,7 +14166,7 @@ body[data-template="loose-stone"] .product-section-row .product-wishlist {
     font-size: 24px;
     line-height: 26px;
     font-weight: 400;
-    font-family: Montserrat;
+    font-family: 'Montserrat', sans-serif;
     margin: 0 0 30px; }
     @media (max-width: 1600px) {
       .account_section_wrapper .register-page-wrapper .register-form-header h1 {
@@ -14207,10 +14210,9 @@ span.swym-wish-counter.show-badge {
     z-index: 1;
     min-width: 15px;
     height: 15px;   
-    font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-family: 'Spectral', serif;
     font-size: .6875em;
-    line-height: 1.1;  
-    /* display: flex; */
+    line-height: 1.1; 
     align-items: center;
     justify-content: center;
     display: none;
