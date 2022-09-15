@@ -10877,6 +10877,7 @@ updateImgGallery($('select[name="id"]').val());
 
 //update Compare List by Ajax call
 function updateCompareItems(handle,v){
+  
   $.ajax({
     url: handle,
     cache: false,
@@ -10921,16 +10922,20 @@ function updateCompareItems(handle,v){
 
 
       },1000)
-      setTimeout(function(){
-        var compareModalSlider = $('[data-compare-product-modal-content]');
-        if($(compareModalSlider).find('.compare__product-information').length > 0 && window.innerWidth < 750 ){
-          console.log('compare Modal exist1111');
-          compareModalSlider.slick({
-            infinite: false,
-            slidesToShow: 2
-          })
-        }
-      },2000);
+      // setTimeout(function(){
+      //   var compareModalSlider = $('[data-compare-product-modal-content]');
+      //   if($(compareModalSlider).find('.compare__product-information').length > 0 && window.innerWidth < 750 ){
+          
+      //     // compareModalSlider.slick('unslick');
+      //     console.log('compare Modal exist1111');
+      //     // setTimeout(function(){
+      //     //   compareModalSlider.slick({
+      //     //     infinite: false,
+      //     //     slidesToShow: 2
+      //     //   })
+      //     // },2000);          
+      //   }
+      // },2000);
     },
     error: function(XHR, XMLHttpRequest, error){    
       console.log(XHR);
