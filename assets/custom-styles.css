@@ -14164,7 +14164,6 @@ a[href^="tel"] {
     display: block; }
     #compare-product-list .compare_product-modal-price-block .price.price--sold-out .price__pricing-group .price__sale .price-item--regular,
     #compare-product-list .compare_product-price-block .price.price--sold-out .price__pricing-group .price__sale .price-item--regular,
-    #compare-product-modal .compare_product-modal-price-block .price.price--sold-out .price__pricing-group .price__sale .price-item--regular,
     #compare-product-modal .compare_product-price-block .price.price--sold-out .price__pricing-group .price__sale .price-item--regular {
       text-decoration: none;
       font-weight: 500;
@@ -14184,9 +14183,7 @@ a[href^="tel"] {
     #compare-product-modal .compare_product-modal-price-block .price.price--on-sale .price__pricing-group .price__sale .price-item--sale {
       font-size: 14px; }
     #compare-product-modal .compare_product-modal-price-block .price.price--sold-out .price__pricing-group .price__sale {
-      display: block; }
-      #compare-product-modal .compare_product-modal-price-block .price.price--sold-out .price__pricing-group .price__sale .price-item--regular {
-        font-size: 14px; }
+      display: block; }      
 
 body[data-template="loose-stone"] .product-section-row .product-form .product-form__controls-group {
   min-height: initial; }
