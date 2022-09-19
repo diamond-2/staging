@@ -14274,6 +14274,7 @@ body[data-template="wishlist"] .swym-ui-component.swym-wishlist-page {
 }
 .solitaire-collection-wrapper .grid--view-items .grid__item .product_images_slider {
   opacity: 0;
+  visibility:hidden;
 }
 
 
